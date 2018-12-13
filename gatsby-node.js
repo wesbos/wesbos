@@ -29,11 +29,11 @@ async function makePostsFromMdx({ graphql, actions }) {
   );
   if (errors) throw new Error('shit');
   const posts = data.allMdx.edges;
-  console.log(posts);
   posts.forEach(post => {
     actions.createPage({
       path: post.node.fields.slug,
       component: componentWithMDXScope(blogPost, post.node.code.scope),
+      // component: blogPost,
       context: {
         slug: post.node.fields.slug,
       },

@@ -7,7 +7,9 @@ import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import { rhythm, scale } from '../utils/typography'
 import { isFunction } from 'util';
-
+import { withMDXScope } from "gatsby-mdx/context";
+import YouTube from 'react-youtube';
+import Img from '../components/Img';
 // class BlogPostTemplate extends React.Component {
 //   render() {
 //     const post = this.props.data.markdownRemark
@@ -88,6 +90,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        image
       }
       code {
         body
@@ -96,17 +99,27 @@ export const pageQuery = graphql`
   }
 `
 
-function PostTemplate({ data: { mdx: post } }) {
+function PostTemplate({ data: { mdx: post }, scope }) {
+  console.log(scope);
   if (!post) {
     return <p>No Post Found? This should be a 404</p>
   }
+  // TODO  layouts should use mdx layouts,
   return <Layout>
     <Link to="/blog">← Back to Posts</Link>
+    <hr />
+    <Img src="wes-and-scott.jpg" />
+    <Img src="gatsby-image.jpg" />
+    <img src={post.frontmatter.image} alt="" />
+    <hr />
     <h2>{post.frontmatter.title}</h2>
-    <h3>{post.id}</h3>
-    <MDXRenderer>{post.code.body}</MDXRenderer>
+
+    <MDXRenderer scope={{
+      YouTube,
+      ...scope
+    }}>{post.code.body}</MDXRenderer>
   </Layout>
 }
 
 
-export default PostTemplate;
+export default withMDXScope(PostTemplate);

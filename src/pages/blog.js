@@ -29,7 +29,6 @@ const Blog = function ({ data }) {
     {data.allMdx && data.allMdx.edges.map(({ node: post }) => <li key={post.id}>
       <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
     </li>)}
-    <Dump heh={data.allMdx}></Dump>
   </Layout>)
 }
 export default Blog;

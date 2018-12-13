@@ -1,6 +1,6 @@
 const prism = require('@mapbox/rehype-prism')
-const mdxFeed = require("gatsby-mdx/feed");
-
+const mdxFeed = require('gatsby-mdx/feed');
+const path = require(`path`)
 
 module.exports = {
   siteMetadata: {
@@ -12,7 +12,6 @@ module.exports = {
   // ??? what is this
   pathPrefix: '/gatsby-starter-blog',
 
-  // Plugins are run concurrently so order does not matter
   plugins: [
     {
       // This tells us where the plugin lives
@@ -24,6 +23,7 @@ module.exports = {
         name: 'page',
       },
     },
+    // Pages
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -31,10 +31,29 @@ module.exports = {
         name: 'post',
       },
     },
+    // Images
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets/images`
+      },
+    },
     {
       resolve: 'gatsby-mdx',
       options: {
         root: __dirname,
+        gatsbyRemarkPlugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 1035,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              sizeByPixelDensity: true
+            }
+          }
+        ]
       },
     },
     {

@@ -7,9 +7,6 @@ import { MDXProvider } from '@mdx-js/tag';
 
 
 function Layout({ location, title, children }) {
-  console.log(mdxComponents);
-  console.log('-------------------');
-
   return (
     <MDXProvider components={mdxComponents}>
       <div

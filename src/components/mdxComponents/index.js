@@ -17,7 +17,7 @@ export default {
   p: props => <Text {...props} is="p" lineHeight={1.625} mt={3} mb={4} />,
   pre: Pre,
   code: CodeBlock,
-  inlineCode: props => <Code {...props} />
+  inlineCode: props => <Code {...props} />,
   // TODO add `a`
   // TODO add `img`
   // TODO add `blockquote`

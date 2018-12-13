@@ -11,13 +11,13 @@ export default function Nav() {
       <li>
         <Link to="/blog">
           <small>free + premium</small>
-          Courses
+          {' '}Courses
         </Link>
       </li>
       <li>
         <a href="https://syntax.fm">
           <small>Syntax</small>
-          Podcast
+          {' '}Podcast{' '}
           <small>Web Development</small>
         </a>
       </li>
@@ -25,7 +25,7 @@ export default function Nav() {
       <li>
         <Link to="/about">
           <small>more</small>
-          About
+          {' '}About{' '}
           <small>me</small>
         </Link>
       </li>
@@ -33,20 +33,20 @@ export default function Nav() {
       <li>
         <Link to="/blog">
           <small>the</small>
-          Blog
+          {' '}Blog
         </Link>
       </li>
       <li>
         <Link to="/blog">
           <small>real life</small>
-          Speaking
+          {' '}Speaking{' '}
           <small>and training</small>
         </Link>
       </li>
       <li>
         <Link to="/blog">
           <small>I want to</small>
-          Contact
+          {' '}Contact{' '}
           <small>you</small>
         </Link>
       </li>
