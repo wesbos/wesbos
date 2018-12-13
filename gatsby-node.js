@@ -1,5 +1,7 @@
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem');
+const componentWithMDXScope = require("gatsby-mdx/component-with-mdx-scope");
+
 
 
 async function makePostsFromMdx({ graphql, actions }) {
@@ -12,6 +14,9 @@ async function makePostsFromMdx({ graphql, actions }) {
             node {
               fields {
                 slug
+              }
+              code {
+                scope
               }
               frontmatter {
                 title
@@ -28,7 +33,7 @@ async function makePostsFromMdx({ graphql, actions }) {
   posts.forEach(post => {
     actions.createPage({
       path: post.node.fields.slug,
-      component: blogPost,
+      component: componentWithMDXScope(blogPost, post.node.code.scope),
       context: {
         slug: post.node.fields.slug,
       },

@@ -75,7 +75,7 @@ import { isFunction } from 'util';
 // export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query($slug: String!) {
     site {
       siteMetadata {
         title

@@ -35,7 +35,6 @@ module.exports = {
       resolve: 'gatsby-mdx',
       options: {
         root: __dirname,
-        hastPlugins: [[prism, { ignoreMissing: true }]],
       },
     },
     {
