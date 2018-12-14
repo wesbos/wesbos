@@ -1,7 +1,6 @@
 import * as React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import prismTheme from "prism-react-renderer/themes/nightOwl";
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
+import Cobalt2 from '../../assets/cobalt2'
 
 import Pre from "./pre";
 
@@ -20,36 +19,29 @@ function cleanTokens(tokens) {
 
 /* eslint-disable react/jsx-key */
 const CodeBlock = ({ children: exampleCode, ...props }) => {
-  if (props["react-live"]) {
-    return (
-      <LiveProvider code={exampleCode}>
-        <LiveEditor />
-        <LiveError />
-        <LivePreview />
-      </LiveProvider>
-    );
-  } else {
-    return (
-      <Highlight
-        {...defaultProps}
-        code={exampleCode}
-        language="jsx"
-        theme={prismTheme}
-      >
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <Pre className={className} style={style} p={3}>
-            {cleanTokens(tokens).map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </Pre>
-        )}
-      </Highlight>
-    );
-  }
+  console.log(props);
+  return (
+    <Highlight
+      {...defaultProps}
+      code={exampleCode}
+      language={props.className.split('-')[1]}
+      theme={undefined}
+    >
+      {({ className, tokens, getLineProps, getTokenProps }) => (
+
+        <Cobalt2 className={className} p={3}>
+          {cleanTokens(tokens).map((line, i) => (
+            <div {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span {...getTokenProps({ token, key })} />
+              ))}
+            </div>
+          ))}
+        </Cobalt2>
+      )}
+    </Highlight>
+  );
+
 };
 
 export default CodeBlock;

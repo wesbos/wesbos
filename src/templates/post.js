@@ -108,9 +108,8 @@ function PostTemplate({ data: { mdx: post }, scope }) {
   return <Layout>
     <Link to="/blog">← Back to Posts</Link>
     <hr />
-    <Img src="wes-and-scott.jpg" />
-    <Img src="gatsby-image.jpg" />
-    <img src={post.frontmatter.image} alt="" />
+
+    <Img src={post.frontmatter.image} alt={post.frontmatter.title} />
     <hr />
     <h2>{post.frontmatter.title}</h2>
 
