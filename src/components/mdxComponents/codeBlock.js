@@ -17,7 +17,6 @@ function cleanTokens(tokens) {
 
 /* eslint-disable react/jsx-key */
 const CodeBlock = ({ children: exampleCode, ...props }) => {
-  console.log(props);
   return (
     <Highlight
       {...defaultProps}

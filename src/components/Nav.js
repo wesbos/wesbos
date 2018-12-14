@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby'
+import styled from 'styled-components';
+const NavStyles = styled.nav`
+  background: red;
+`;
 
 export default function Nav() {
-  return <nav>
+  return <NavStyles>
     <ul>
       <li>
         <Link to="/">Wes Bos</Link>
@@ -51,5 +55,5 @@ export default function Nav() {
       </li>
     </ul>
 
-  </nav>
+  </NavStyles>
 }
