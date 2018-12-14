@@ -11,7 +11,6 @@ class BlogIndex extends React.Component {
       this,
       'props.data.site.siteMetadata.description'
     )
-    const posts = get(this, 'props.data.allMarkdownRemark.edges')
 
     return (
       <Layout location={this.props.location} title={siteTitle}>

@@ -17,7 +17,6 @@
     "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.0.6",
-    "gatsby-plugin-typography": "^2.2.0",
     "gatsby-remark-copy-linked-files": "^2.0.5",
     "gatsby-remark-images": "^2.0.4",
     "gatsby-remark-prismjs": "^3.0.0",
@@ -32,14 +31,9 @@
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
-    "react-live": "^1.12.0",
-    "react-typography": "^0.16.13",
     "react-youtube": "^7.8.0",
     "styled-components": "^4.1.2",
-    "typeface-merriweather": "0.0.43",
-    "typeface-montserrat": "0.0.43",
-    "typography": "^0.16.17",
-    "typography-theme-wordpress-2016": "^0.15.10"
+    "typeface-merriweather": "0.0.43"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -47,25 +41,18 @@
     "gh-pages": "^1.2.0",
     "prettier": "^1.14.2"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://wesbos.com",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "wesbos"
   ],
-  "license": "MIT",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
   "scripts": {
     "dev": "gatsby develop",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   }
 }

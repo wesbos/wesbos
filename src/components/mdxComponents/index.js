@@ -5,8 +5,8 @@ import Code from "./code";
 import CodeBlock from "./codeBlock";
 import Pre from "./pre";
 
-/* eslint-disable react/display-name*/
-// TODO: This sohuld be a custom heading?
+/* eslint-disable */
+// TODO: This Should be a custom heading?
 export default {
   h1: props => <h1 {...props} />,
   h2: props => <h2 {...props} />,

@@ -2,8 +2,6 @@ import * as React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import Cobalt2 from '../../assets/cobalt2'
 
-import Pre from "./pre";
-
 /** Removes the last token from a code example if it's empty. */
 function cleanTokens(tokens) {
   const tokensLength = tokens.length;
