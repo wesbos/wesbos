@@ -28,6 +28,7 @@ const HStyles = styled.h1`
     right: 0;
     bottom:0;
     left:0;
+    pointer-events: none;
   }
   span.grit {
     background: url(${blackGrit});
@@ -46,10 +47,26 @@ const HStyles = styled.h1`
     z-index: -1;
     transform: translateX(-0.5rem) translateY(-0.5rem);
   }
+  a {
+    color: inherit;
+    text-decoration-color: ${props => props.theme.yellow};
+  }
+  .anchor {
+    position: absolute;
+    transform: translateX(-120%);
+    text-decoration: none;
+    /* opacity:0; */
+    transition: all 0.2s;
+    &:after {
+      content: '🔗';
+      &:hover {
+        background: red;
+      }
+    }
+  }
 `;
 
 export default function H(props) {
-  console.log(props);
   return <HStyles {...props} >
     <span className="grit">{props.children}</span>
   </HStyles>

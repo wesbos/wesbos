@@ -21,7 +21,7 @@ const CodeBlock = ({ children: exampleCode, ...props }) => {
     <Highlight
       {...defaultProps}
       code={exampleCode}
-      language={props.className.split('-')[1]}
+      language={props.className && props.className.split('-')[1]}
       theme={undefined}
     >
       {({ className, tokens, getLineProps, getTokenProps }) => (

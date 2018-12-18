@@ -11,8 +11,10 @@ const cobalt2 = styled.div`
 background: #223545;
 padding: 2rem;
 font-family: 'Operator Mono','Inconsolata', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-font-size: 1rem;
+font-size: 2rem;
 border-top: 5px solid #ffc600;
+color: white;
+line-height:1.5;
 [class*="language-"] {
   color: #f8f8f2;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);

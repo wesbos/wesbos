@@ -23,17 +23,22 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
   }
   ::selection {
-      background: ${props => props.theme.yellow};
-    }
+    background: ${props => props.theme.yellow};
+  }
+  a {
+    /* text-decoration-color: blue; */
+    color: #110059;
+    text-decoration-color: antiquewhite;
+  }
 `
 
 function Layout({ location, title, children }) {
   return (
-    <ThemeProvider theme={{ yellow: '#ffc600' }}>
+    <ThemeProvider theme={{ yellow: '#ffc600', grey: '#dadada' }}>
       <MDXProvider components={mdxComponents}>
         <>
           <GlobalStyle />
-          <div style={{ maxWidth: 600, margin: '0 auto' }}>
+          <div>
             <Nav />
             {children}
           </div>
