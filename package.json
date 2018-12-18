@@ -5,9 +5,10 @@
   "author": "Wes Bos <wesbos@gmail.com>",
   "dependencies": {
     "@mapbox/rehype-prism": "^0.3.0",
-    "@mdx-js/loader": "0.15.7",
-    "@mdx-js/mdx": "0.15.7",
+    "@mdx-js/loader": "0.15.3",
+    "@mdx-js/mdx": "0.15.3",
     "@mdx-js/tag": "0.15.6",
+    "core-js": "^2.6.0",
     "gatsby": "^2.0.19",
     "gatsby-image": "^2.0.25",
     "gatsby-mdx": "^0.2.0",
@@ -18,7 +19,7 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.0.6",
     "gatsby-remark-copy-linked-files": "^2.0.5",
-    "gatsby-remark-images": "^2.0.4",
+    "gatsby-remark-images": "^3.0.1",
     "gatsby-remark-prismjs": "^3.0.0",
     "gatsby-remark-responsive-iframe": "^2.0.5",
     "gatsby-remark-smartypants": "^2.0.5",
@@ -33,12 +34,12 @@
     "react-helmet": "^5.2.0",
     "react-youtube": "^7.8.0",
     "styled-components": "^4.1.2",
-    "typeface-merriweather": "0.0.43"
+    "typeface-merriweather": "0.0.54"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "eslint": "^5.10.0",
     "eslint-plugin-react": "^7.11.1",
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^2.0.1",
     "prettier": "^1.14.2"
   },
   "homepage": "https://wesbos.com",
