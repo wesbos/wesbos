@@ -3,6 +3,7 @@ import H from './Headings';
 // import Heading from "../heading";
 import Text from "./text";
 import Code from "./code";
+import Blockquote from "./blockquote";
 import Table from "./table";
 import CodeBlock from "./codeBlock";
 import Pre from "./pre";
@@ -21,9 +22,9 @@ export default {
   code: CodeBlock,
   inlineCode: props => <Code {...props} />,
   table: Table,
+  blockquote: Blockquote,
   // TODO add `a`
   // TODO add `img`
-  // TODO add `blockquote`
   // TODO add `ul`
   // TODO add `li`
 };

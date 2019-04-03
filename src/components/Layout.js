@@ -3,8 +3,9 @@ import Nav from '../components/Nav';
 import mdxComponents from './mdxComponents';
 import { MDXProvider } from '@mdx-js/tag';
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import 'normalize.css';
+import font from '../assets/fonts/RadnikaNext/RadnikaNext-Black.woff2';
 
-import font from '../assets/fonts/RadnikaNext/RadnikaNext-BlackItalic.woff2';
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: radnika;
@@ -21,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
   h1,h2,h3,h4,h5,h6 {
     font-family: 'radnika', sans-serif;
     font-weight: normal;
+    font-style: italic;
   }
   ::selection {
     background: ${props => props.theme.yellow};
