@@ -1,5 +1,5 @@
 const prism = require('@mapbox/rehype-prism')
-const mdxFeed = require('gatsby-mdx/feed');
+// const mdxFeed = require('gatsby-mdx/feed');
 const path = require(`path`)
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
         root: __dirname,
         gatsbyRemarkPlugins: [
@@ -50,7 +50,6 @@ module.exports = {
               maxWidth: 1035,
               linkImagesToOriginal: false,
               withWebp: true,
-              sizeByPixelDensity: true
             }
           }, {
             resolve: `gatsby-remark-autolink-headers`,
@@ -96,10 +95,11 @@ module.exports = {
       },
     },
     // RSS Feed
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: mdxFeed
-    },
+    // Broke wit 1.x
+    // {
+    //   resolve: `gatsby-plugin-feed`,
+    //   options: mdxFeed
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

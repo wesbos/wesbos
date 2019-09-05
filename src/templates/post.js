@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
-import MDXRenderer from "gatsby-mdx/mdx-renderer";
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import Layout from '../components/Layout'
-import { withMDXScope } from "gatsby-mdx/context";
 import YouTube from 'react-youtube';
 import Img from '../components/Img';
 import H from '../components/mdxComponents/Headings';
@@ -23,13 +22,10 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         image
       }
-      code {
-        body
-      }
+      body
     }
   }
 `
-
 function PostTemplate({ data: { mdx: post }, scope }) {
   if (!post) {
     return <p>No Post Found? This should be a 404</p>
@@ -48,10 +44,10 @@ function PostTemplate({ data: { mdx: post }, scope }) {
     <MDXRenderer scope={{
       YouTube,
       ...scope
-    }}>{post.code.body}</MDXRenderer>
+    }}>{post.body}</MDXRenderer>
     <a rel="noopener noreferrer" target="_blank" href={editURL}>Edit This File</a>
   </Layout>
 }
 
 
-export default withMDXScope(PostTemplate);
+export default PostTemplate;

@@ -12,9 +12,7 @@ async function makePostsFromMdx({ graphql, actions }) {
               fields {
                 slug
               }
-              code {
-                scope
-              }
+              body
               frontmatter {
                 title
               }
