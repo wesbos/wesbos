@@ -2,17 +2,20 @@ import React from 'react';
 import { Link } from 'gatsby'
 import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
-
+import H from './mdxComponents/Headings';
 const NavStyles = styled.nav`
   border-bottom: 5px solid ${props => props.theme.yellow};
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   ul {
+    background: white;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     list-style: none;
     margin: 0;
-    padding: 0;
+    /* margin-bottom: 2rem; */
+    padding: 3rem 2rem 2rem 2rem;
+    box-shadow: 0 -4px 4px rgba(0,0,0,0.06);
     li {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -33,6 +36,13 @@ const NavStyles = styled.nav`
       color: black;
       text-decoration:none;
       line-height: 1;
+      &[aria-current="page"] {
+
+       .grit {
+         text-decoration: underline;
+         text-decoration-color: ${props => props.theme.yellow};
+       }
+      }
       small {
         font-size: 1.3rem;
         display: block;
@@ -42,6 +52,12 @@ const NavStyles = styled.nav`
         line-height: 10px;
       }
     }
+  }
+  h1 {
+    display: grid;
+    justify-items: center;
+    margin-bottom: -4rem;
+    z-index: 2;
   }
 `;
 
@@ -54,15 +70,17 @@ export default function Nav() {
     </h1>
     <ul>
       <li>
-        <Link to="/blog">
+        <Link to="/courses">
           <small>free + premium</small>
-          {' '}Courses
+          {' '}<H as="span">Courses</H>
         </Link>
       </li>
       <li>
         <a href="https://syntax.fm">
           <small className="top">Syntax</small>
-          {' '}Podcast{' '}
+          {' '}<H as="span">
+            Podcast
+          </H>{' '}
           <small className="bottom">Web Development</small>
         </a>
       </li>
@@ -70,7 +88,9 @@ export default function Nav() {
       <li>
         <Link to="/about">
           <small className="top">more</small>
-          {' '}About{' '}
+          {' '}<H as="span">
+            About
+          </H>{' '}
           <small className="bottom">me</small>
         </Link>
       </li>
@@ -78,20 +98,26 @@ export default function Nav() {
       <li>
         <Link to="/blog">
           <small className="top">the</small>
-          {' '}Blog
+          {' '}<H as="span">
+            Blog
+          </H>
         </Link>
       </li>
       <li>
-        <Link to="/blog">
+        <Link to="/speaking-and-training">
           <small className="top">real life</small>
-          {' '}Speaking{' '}
+          {' '}<H as="span">
+            Speaking
+          </H>{' '}
           <small className="bottom">and training</small>
         </Link>
       </li>
       <li>
-        <Link to="/blog">
+        <Link to="/contact">
           <small className="top">I want to</small>
-          {' '}Contact{' '}
+          {' '}<H as="span">
+            Contact
+          </H>{' '}
           <small className="bottom">you</small>
         </Link>
       </li>

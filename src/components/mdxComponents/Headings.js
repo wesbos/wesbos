@@ -2,6 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import blackGrit from './blackgrit.png'
 import whiteGrit from './whitegrit.png'
+import { keyframes } from 'styled-components';
+const gritty = keyframes`
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: -600px;
+  }
+`;
 
 const headingSizes = {
   h1: 5,
@@ -10,6 +20,7 @@ const headingSizes = {
   h4: 2.5,
   h5: 2,
   h6: 1.8,
+  span: 3.2
 }
 
 const HStyles = styled.h1`
@@ -35,7 +46,13 @@ const HStyles = styled.h1`
     background-size: 600px;
     padding: 2rem 2rem 2rem 0;
     position: relative;
+    ${({ as }) => as === 'span' && `margin-right: -2rem;`};
+    &:hover {
+      /* background-position: -600px; */
+        animation: ${gritty} 2s steps(10) infinite;
+    }
   }
+
   &:before {
     /* Yellow square is using ems so it scales up/down with the font size */
     width: 0.75em;
@@ -45,7 +62,13 @@ const HStyles = styled.h1`
     background: ${props => props.theme.yellow};
     position: absolute;
     z-index: -1;
-    transform: translateX(-0.5rem) translateY(-0.5rem);
+    --translate: -0.5rem;
+    --rotate: 0deg;
+    transform: translateX(var(--translate)) translateY(var(--translate)) rotate(var(--rotate));
+    ${({ as }) => as === 'span' && `visibility: hidden;`};
+  }
+  &:hover:before  {
+    visibility: visible;
   }
   a {
     color: inherit;
