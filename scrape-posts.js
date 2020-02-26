@@ -3,6 +3,7 @@ import { promises as fs, createWriteStream } from 'fs';
 import { Html5Entities } from 'html-entities';
 import replaceAll from 'string.prototype.replaceall';
 import { JSDOM } from 'jsdom';
+import FileType from 'file-type';
 
 const DLIMAGES = true;
 
@@ -16,9 +17,9 @@ function findImagePaths(content) {
   return Array.from(imgs).map(img => img.src);
 }
 
-async function tagGetter() {
-  const tags = await fetch('https://wesbos.com/wp-json/wp/v2/tags?per_page=100').then(x => x.json());
-  return function getTag(id) {
+async function categoryGetter() {
+  const tags = await fetch('https://wesbos.com/wp-json/wp/v2/categories?per_page=100').then(x => x.json());
+  return function getCategory(id) {
     return tags.find(tag => tag.id === id).name;
   }
 }
@@ -56,25 +57,27 @@ function replacify(text) {
   text = replaceAll(text, '<p style="text-align: center;">', '');
   text = replaceAll(text, '<p style="text-align:center;">', '');
   text = replaceAll(text, '<p style="color: white;">', '');
+  text = replaceAll(text, '<img src="facebook-share2.png">', '<img src="facebook-share2.png"/>');
   text = replaceAll(text, /<span style\s*=\s*"([^"]*)">/gi, '');
   text = replaceAll(text, '</span>', '');
   text = replaceAll(text, /style\s*=\s*"([^"]*)"/gi, '');
   text = replaceAll(text, '</p>', '');
-  text = replaceAll(text, '<img src="facebook-share2.png">', '<img src="facebook-share2.png" />');
   return text;
 }
 
 async function downloadImage(remotePath, localFolder) {
   console.log(`Downloading ${remotePath} to ${localFolder}`);
   const imageData = await fetch(remotePath).then(res => res.buffer());
+  console.log(`~~~Doing ${remotePath}`);
+  const { ext } = await FileType.fromBuffer(imageData)
   const imageName = getImageName(remotePath);
   const [, extension] = imageName.split('.');
-  await fs.writeFile(`${localFolder}/${imageName}${extension ? '' : '.png'}`, imageData);
+  await fs.writeFile(`${localFolder}/${imageName}${extension ? '' : `.${ext}`}`, imageData);
 }
 
 async function go() {
   const posts = await getPosts();
-  const getTag = await tagGetter();
+  const getCategory = await categoryGetter();
   await fs.mkdir(`./src/posts-import/`, { recursive: true });
   // loop over each post and make a folder for them
   for(const post of posts) {
@@ -87,13 +90,13 @@ async function go() {
     await fs.mkdir(folderPath, { recursive: true });
     // 2. Save the raw contents to a mdx file
     // 3. Save the title slug image tags date
-    const tags = post.tags.map(getTag);
+    const categories = post.categories.map(getCategory);
     console.log('Fetching ', title);
     const content = `---
 title: ${title}
 slug: ${post.slug}
 image: ${getImageName(post.jetpack_featured_media_url)}
-tags: ${tags.join(',')}
+category: ${categories.join(',')}
 date: ${post.date}
 ---
 
