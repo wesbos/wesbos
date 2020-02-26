@@ -4,7 +4,7 @@ import { Html5Entities } from 'html-entities';
 import replaceAll from 'string.prototype.replaceall';
 import { JSDOM } from 'jsdom';
 
-const DLIMAGES = false;
+const DLIMAGES = true;
 
 function getImageName(path) {
   return path.split('/').pop();
@@ -30,8 +30,8 @@ async function getPosts() {
   return content;
 }
 
-function backtickify(text) {
-  // bash, js, html,xml
+function replacify(text) {
+  // this replaces all kinds of stuff that needs to be converted back to markdown, or makes gatsby choke.
   text = replaceAll(text, '<pre><code class="language-js">', '\n\`\`\`js\n')
   text = replaceAll(text, '<pre><code class="js">', '\n\`\`\`js\n')
   text = replaceAll(text, '<pre><code class="bash">', '\n\`\`\`bash\n')
@@ -78,11 +78,10 @@ async function go() {
   await fs.mkdir(`./src/posts-import/`, { recursive: true });
   // loop over each post and make a folder for them
   for(const post of posts) {
-    const title = Html5Entities.decode(post.title.rendered).trim();
-    const folder = title.replace(/[^A-Za-z0-9 \-\:]/g, '')
+    const title = Html5Entities.decode(post.title.rendered).trim(); const folder = title.replace(/[^A-Za-z0-9 \-\:]/g, '')
     const folderPath = `./src/posts-import/${folder}`.trim();
     const imgs = findImagePaths(post.content_raw);
-    let contentWithBackticks = backtickify(post.content_raw);
+    let contentWithBackticks = replacify(post.content_raw);
     imgs.forEach(img => contentWithBackticks = contentWithBackticks.replace(img, getImageName(img)));
     // 1. Make a folder for that post
     await fs.mkdir(folderPath, { recursive: true });
