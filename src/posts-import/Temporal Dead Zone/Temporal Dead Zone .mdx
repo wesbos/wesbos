@@ -1,0 +1,51 @@
+---
+title: Temporal Dead Zone ☠️
+slug: temporal-dead-zone
+image: dead-zone.png
+tags: 
+date: 2016-09-01T09:12:46
+---
+
+Let's talk real quick about the <strong>Temporal Dead Zone</strong>. This is a bit of a boring topic, so I'm going to try and make it at least a little fun for you.
+
+This is something that you probably won't come across too often, but it's helpful to know in case someone ever slings it out in an interview. You'd be able to talk them about it. First of all, I call it the temporal dad zone, which is kind of fun.
+
+
+```js
+var pizza = 'Deep Dish 🍕🍕🍕';
+console.log(pizza);
+
+```
+
+What happens when you try and log <code>pizza</code> to the console after it's been created? You'll see that we actually get to see <code>'Deep Dish 🍕🍕🍕'</code>.
+
+No big issue there.
+
+What if I try to run <code>console.log</code> before creating it?
+
+
+```js
+console.log(pizza);
+var pizza = 'Deep Dish 🍕🍕🍕';
+
+```
+
+Are we going to get:
+
+<ul>
+<li><code>Undefined</code> </li>
+<li>An error saying <code>pizza</code> is not defined yet</li>
+<li>Are we actually going to see <code>'Deep Dish 🍕🍕🍕'</code> </li>
+</ul>
+
+We get <code>undefined</code>.  Why?
+
+Because with <code>var</code> variables, you can only access them as they are defined. Before they are defined, you cannot access the actual value of them, but <strong>you can access the fact that the variable has been created before</strong>.
+
+However, if I change that to <code>const</code> or <code>let</code>, you'll now see that <code>pizza</code> is not defined at all. That's an actual error, and that will <strong>break your code</strong>.
+
+That is called the <strong>temporal dead zone</strong>, where you cannot access a variable before it is defined.
+
+They mean that this is the temporal dead zone between <code>console.log</code> and a <code>let</code> or <code>const</code> variable, because you cannot access those kinds of variables before they're created.
+
+That's all you need to know. Put that in your back pocket, because you'll need it someday!

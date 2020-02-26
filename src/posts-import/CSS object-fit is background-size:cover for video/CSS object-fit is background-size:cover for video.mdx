@@ -1,0 +1,23 @@
+---
+title: CSS object-fit is background-size:cover; for video!
+slug: css-object-fit
+image: ss-2015-04-13-at-4.03.32-PM.png
+tags: 
+date: 2015-04-13T16:05:04
+---
+
+Have you ever wished you could use <code>background-size:cover;</code> on regular elements? Well, it turns out you can with a CSS property called <code>object-fit</code> - and with the recent release of FireFox 36, we can start to use it in our designs as we have <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit#Browser_compatibility">really good browser support</a> for it.
+
+<p data-height="487" data-theme-id="5332" data-slug-hash="YPmyxy" data-default-tab="result" data-user="wesbos" class='codepen'>See the Pen <a href='http://codepen.io/wesbos/pen/YPmyxy/'>Object Fit for Videos</a> by Wes Bos (<a href='http://codepen.io/wesbos'>@wesbos</a>) on <a href='http://codepen.io'>CodePen</a>.
+
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+It's a popular design trend to have videos and images span the entire width and height of an element. Problems arise when it comes to the media's ratio - they never quite fit perfectly width and height wise - especially with dynamic content and responsive viewports.
+
+Enter object-fit. It's a new CSS3 property that we can use to stretch embedded media (videos and images) across the entire parent, while still maintaining the aspect ratio. No JavaScript required!
+
+How does it work? It's pretty easy - first you start with a container that has a defined width and a height on it - for our purposes I'm using viewport units so get a perfect 100% width and height of the screen. Then on the video or image itself, we use <code>object-fit: cover;</code>.  You'll now see the video span across the entire element - it's cropped either at the left/right or the top/bottom to ensure full coverage.
+
+We can also use <code>object-fit:contain;</code>, which is the same as <code>background-size:cover;</code>, it won't crop the video but rather show ensure the entire video is always visible. There are a few more values <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit">available</a>, but these are the most likely use cases when trying to replicate <code>background-size:cover;</code> with a video.
+
+Check out the demo - <a href="http://codepen.io/wesbos/full/YPmyxy/">http://codepen.io/wesbos/full/YPmyxy/</a> or view the code below. Enjoy!

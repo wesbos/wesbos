@@ -1,0 +1,108 @@
+---
+title: More Arrow Function Examples
+slug: arrow-function-examples
+image: arrow-func-examples.png
+tags: 
+date: 2016-09-09T09:00:28
+---
+
+Let's look at a couple more JavaScript arrow function examples.
+
+This is something that comes up often where I'm building an application, and I don't necessary have the data in the right format that I need.
+
+I'm building a website for a bunch of racers, where the winners have been supplied to me in an array of strings in the order that they placed, and then they also gave me a variable, which includes the race that they won.
+
+
+```js
+const race = '100m Dash';
+const winners = ['Hunter Gath', 'Singa Song', 'Imda Bos'];
+
+```
+
+So Hunter Gath came in first, Singa Song came in second, and Imda Bos came in third.
+
+Ideally for me, I would have an object with <code>name</code>, with the name of the racer, <code>place</code> with the place that they came in, and we can use the race variable to say what they won. Something like this:
+
+
+```js
+{
+    name: 'Wes Bos',
+    place: 1,
+    race: race
+}
+
+```
+
+How would we do that? Well, we can actually use <code>.map()</code> again for that. By the way, <code>map</code> is not the only function that arrow functions work with. Arrow functions work with anything, and they're particularly useful in these callback situations.
+
+
+```js
+const win = winners.map((winner, i) => {name: winner, race: race, place: i})
+
+```
+
+We're going to loop over each winner and return an object for each of the winners here. Our function passes two arguments, the <code>winner</code> string and <code>i</code>, for our index, and we're going to return our <code>name</code>, <code>race</code>, and <code>place</code> that the person came in.
+
+<h3>Arrow Function Implicit Return an Object Literal</h3>
+
+That should work, where we've got this object here, but it doesn't work, it throws a syntax error: <code>Unexpected token :</code>
+
+What's wrong here? Well, earlier we told you that if you take the curly brackets off it's an implicit <code>return</code>. How do you implicit <code>return</code>curly brackets when you mean for it to be an <strong>object literal</strong>, not the actual function block?
+
+What we can do is, you just put parentheses around the object literal so that the arrow function knows it's an object and <em>not</em> a a function block.
+
+
+```js
+const win = winners.map((winner, i) => ({name: winner, race: race, place: i + 1}));
+
+```
+
+These parentheses show that you're actually going to return an object literal, and these curly brackets aren't for the actual function block. So <code>name</code> is <code>winner</code>, <code>race</code> is the <code>race</code> variable we have, and <code>place</code> is going to be set to <code>i + 1</code>, our index, plus one so that we aren't zero-based.
+
+<h3>Viewing our Data</h3>
+
+Now we'll take a look at our data.
+
+<img src="ss-2016-09-07-at-10.50.42-AM.png" alt="" />
+
+A little hot tip, you refresh. You can type <code>win</code> in the console to see all your objects, but then you got to do all this work on opening them up. What you can actually do is use <code>console.table(win)</code> and you get a sweet-looking table that will show you all the information.
+
+Then the other thing, we haven't learned about this yet, but <code>race: race</code> in our object looks a little bit redundant. A new feature of ES6 is you can just use <code>race</code>,  which is the same thing as saying, <code>race: race</code> Just say the variable <code>race</code> and the property name <code>race</code> is all named <code>race</code>. It's going to do it just for us.
+
+
+```js
+const win = winners.map((winner, i) => ({name: winner, race, place: i + 1}))
+
+```
+
+There we go, so that's an example of doing an implicit return with an object literal.
+
+<h3>Arrow Function Filtering Example</h3>
+
+There's another example here where we poll the people in the room for ages.
+
+
+```js
+const ages = [23, 62, 45, 234, 2, 62, 234, 62, 34];
+
+```
+
+We want to filter this list for people who are older than 60 years old. Normally you'd do something like:
+
+
+```js
+const old = ages.filter(age => if(age > 60))...
+
+```
+
+Since we can pass it a condition that goes to true or false, and filter will return if it's true and it won't return if it's false, we can just say, "Age is greater or equal to 60."
+
+
+```js
+const old = ages.filter(age => age >= 60);
+
+```
+
+That looks like a bit funky because you got an arrow and a greater than, but what that will do is, if the age is greater or equal to 60, it will return <code>true</code> and thus be put into the <code>old</code> array.
+
+That age is going to be put back into this new old array, and we can use <code>console.log(old)</code> to return our filtered array.

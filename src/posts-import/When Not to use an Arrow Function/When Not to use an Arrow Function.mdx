@@ -1,0 +1,209 @@
+---
+title: When Not to use an Arrow Function
+slug: arrow-function-no-no
+image: when-not-to.png
+tags: 
+date: 2016-09-10T04:38:37
+---
+
+Before you start going absolutely bananas on using arrow functions everywhere, we need to chat. <strong>Arrow functions don't replace regular functions</strong>. Just like Flexbox and floats, pixels and rems and anything else new that comes along, the older thing still retains lots of utility because it works differently than the new thing.
+
+We talked about the benefits of ES6 Arrow Functions in earlier videos and blog posts but let's go through a couple examples of when you probably <em>don't want an arrow function</em>. All of these are just going to boil down to not having the keyword <code>this</code>, but they are also different use cases that you'd run into.
+
+<h3>#1 — click handlers</h3>
+
+First of all, I've got this big button that says 'Push me':
+
+
+```html
+<style>
+button {font-size: 100px; }
+.on {background: #ffc600;}
+</style>
+
+<button id="pushy">Push me</button>
+
+```
+
+When someone pushes or clicks that button, I want to toggle the class of <code>on</code> which should turn it yellow. When someone clicks that button, I'm going to run this following function:
+
+
+```js
+const button = document.querySelector('#pushy');
+button.addEventListener('click', () => {
+    this.classList.toggle('on');
+});
+
+```
+
+But if we click it, we get an error in the console: <code>TypeError, cannot read property 'toggle' of undefined</code>
+
+What does that mean? Well, if we remember from earlier, it's the browser's <code>window</code> attribute, right? We can use <code>console.log</code> to confirm it:
+
+
+```js
+const button = document.querySelector('#pushy');
+button.addEventListener('click', () => {
+    console.log(this); // Window!
+    this.classList.toggle('on');
+});
+
+```
+
+Remember: we talked about that if you use an arrow function, the keyword <code>this</code> is not bound to that element. If we use a regular function, the keyword <code>this</code> will be bound to the element we clicked!
+
+
+```js
+const button = document.querySelector('#pushy');
+button.addEventListener('click', function() {
+    console.log(this);
+    this.classList.toggle('on');
+});
+
+```
+
+In the console, <code>this</code> is now our button, and our big yellow button is actually working. The sames rules apply with jQuery, Google Maps or any other DOM Library you are using.
+
+<h3>#2: Object Methods</h3>
+
+Now, let's take a look at this next one, when you need a method to bind to an object.
+
+
+```js
+const person = {
+    points: 23,
+    score: () => {
+        this.points++;
+    }
+}
+
+```
+
+We have our method called <code>score</code>, and whenever we call <code>person.score</code>, it should add one to our <code>points</code>, which is currently 23.
+
+If we run <code>person.score();</code> a few times, we should be at 26 or something.
+
+But if I call <code>person</code>, <code>points</code> is still at 23. Why?
+
+Because it's trying to add points to the window! Remember, when using an arrow function <code>this</code> is not bound to anything and it just inherits it from the parent scope which in this case is the window.
+
+So let's do the same thing with an OG function:
+
+
+```js
+const person = {
+    points: 23,
+    score: function()  {
+        this.points++;
+    }
+}
+
+```
+
+There we go. That will actually work, because that's a full on function, and not an arrow function.
+
+<h3>3: Prototype Methods</h3>
+
+As our third example, we'll talk about when you need to add a prototype method.
+
+
+```js
+class Car {
+    constructor(make, colour) {
+        this.make = make;
+        this.colour = colour;
+    }
+}
+
+```
+
+Here, I've got a <code>class</code>. We haven't learned about classes yet, but just know that this is a way for us to make new cars.
+
+I have a <code>class</code> constructor where, when you call <code>new Car</code> we pass it the type of <code>Car</code>, as well as the <code>colour</code> of the <code>Car</code>.
+
+I can say <code>beemer</code> is a <code>BMW</code> that is <code>blue</code>, and the <code>subie</code> is a <code>Subaru</code> that is <code>white</code>:
+
+
+```js
+const beemer = new Car('BMW', 'blue');
+const subie = new Car('Subaru', 'white');
+
+```
+
+Let's go ahead and look at them by calling them in the console, you'll see that <code>subie</code> comes back as <code>Car {make: "Subaru", colour: "white"}</code>, and <code>beemer</code> will come back as <code>Car {make: "BMW", colour: "blue"}</code>, which is what we'd expect.
+
+Now, after the fact, I added on this prototype method:
+
+
+```js
+Car.prototype.summarize = () => {
+    return `This car is a ${this.make} in the colour ${this.colour}`;  
+};
+
+```
+
+...and what that allows us to do is that, even after these things have been created, we can add methods onto all of them. So our <code>Car.prototype.summarize</code> method is set, so let's type into the console: <code>subie.summarize</code>.
+
+If you're using Chrome's console, you'll see that it auto-completes the method, because it's available to you. Even though we added it after we created the <code>Car</code>, because I added it to the <code>prototype</code>, it's available in every object that has been created from there.
+
+What this <code>prototype</code> does is it returns <code>this.make</code> which is the make that we passed in, and <code>this.color</code> in a sentence.
+
+However, with our example, <code>this.car</code> is <code>undefined</code> and the <code>colour</code> is <code>undefined</code>. Why is that?
+
+It's because we try to be cool. We try to be a bit of a hot shot here by using an arrow function. Again, why don't we use an arrow function here? Because we explicitly need the keyword <code>this</code> so you have to use a regular function:
+
+
+```js
+Car.prototype.summarize = function() {
+    return `This car is a ${this.make} in the colour ${this.colour}`;  
+};
+
+```
+
+Now, if we call <code>subie.summarize</code>, it says it's a white Subaru, and <code>beemer.summarize</code>, we get BMW in blue.
+
+Again, you must use a regular function for that.
+
+<h3>4: When you need an arguments Object</h3>
+
+For our last example, this is a little bit different:
+
+
+```js
+const orderChildren = () => {
+    const children = Array.from(arguments);
+    return children.map((child, i) => {
+        return `${child} was child #${i + 1}`;
+    })
+    console.log(arguments);
+}
+
+```
+
+It doesn't have to do with the keyword "this," but we don't have access to the <code>arguments</code> object when you use an arrow function.
+
+This is helpful for when you want to run a function like <code>orderChildren</code> here, which can take unlimited arguments.
+
+It might take one, it might take 100. It's going to just say "This child was born #1", or whichever.
+
+For an example, let's type into the console <code>orderChildren('jill', 'wes', 'jenna')</code>, which passes in <code>jill</code> as our first argument, <code>wes</code>, as our second, and <code>jenna</code> as our third. When you run it, you'll get an error: <code>ReferenceError, arguments is not defined</code>.
+
+this is because <code>arguments</code> is a keyword that we have in our <code>orderChildren</code> that's going to give us an <code>Array</code> or array-ish value of everything that was passed in.
+
+However, you do not get the <code>arguments</code> object if you use an arrow function. When you use a regular function, which is going to give us the actual content that we need.
+
+
+```js
+const orderChildren = function() {
+    const children = Array.from(arguments);
+    return children.map((child, i) => {
+        return `${child} was child #${i + 1}`;
+    })
+    console.log(arguments);
+}
+
+```
+
+<strong>Note:</strong> Another fix for this is to use a <code>...rest</code> param to collect all the arguments into an array. We will learn all about that in the rest videos and blog posts!
+
+Again, to go through all those really quickly. Make sure that you aren't just using arrow functions willy-nilly. In general, if you do not need the <code>arguments</code> object or you do not need <code>this</code>, or you know that you will not need it in the future, then you can feel free to go ahead and use an arrow function on everything else.

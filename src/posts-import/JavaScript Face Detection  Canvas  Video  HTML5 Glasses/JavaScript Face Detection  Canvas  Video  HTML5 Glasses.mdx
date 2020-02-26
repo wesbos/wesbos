@@ -1,0 +1,132 @@
+---
+title: JavaScript Face Detection + Canvas + Video = HTML5 Glasses!
+slug: html5-video-face-detection-canvas-javascript
+image: facedetection.png
+tags: 
+date: 2011-09-26T22:50:19
+---
+
+This morning I saw <a href="http://www.youtube.com/watch?v=EBxDyr--HIY" target="_blank">this</a> link on youtube which was a little mashup of some HTML5 technologies. I thought it would be funny if I could do the same, but with goofy pair of glasses. I've also been itching to put the <a title="JavaScript Face Detection" href="https://github.com/liuliu/ccv" target="_blank">CCV</a> JavaScript Face Detection library to use. This library shows a few examples on static images, but after a quick look at the code, it shows that the underlying element to the script is a canvas element. So instead of running it on a single image, I am running it on a feed of frames coming from an HTML5 video element.
+
+I'll go into the technical details further on in the post, but here is a demo as well as a youtube video showing the effect as it can be a little sluggish on older machines. Currently tested and working in Google Chrome 14 and Firefox 6.0. <!--more-->
+
+<a href="http://wesbos.com/demos/html5-face-detection/" target="_blank">Try the Demo</a>   |  <a href="https://github.com/wesbos/HTML5-Face-Detection" target="_blank">Download the Source</a>
+
+http://www.youtube.com/watch?v=YYES9Qd094o&hd=1
+
+
+<h3>Setting up our document</h3>
+To get started, we dont really need that much. Only two of the files from the CCV Library are required are <a title="CCV.JS Face Detection" href="https://github.com/liuliu/ccv/blob/stable/js/ccv.js" target="_blank">CCV.js</a> which does the acutal detection of the the face, and <a href="https://github.com/liuliu/ccv/blob/stable/js/face.js" target="_blank">face.js</a> which holds the data for what faces look like. We will also need an empty canvas element, a HTML5 video element with .MP4 and .OGG encoded files  (I used <a href="http://www.mirovideoconverter.com/" target="_blank">Miro</a> to convert mine), and a blank scripts.js file. Things will look like this when we are setup:
+
+```xml
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HTML5 Face Detection</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="wrapper">
+	<h1>HTML5 GLASSES</h1>
+	Created by <a href="http://twitter.com/wesbos" target="_blank">Wes Bos</a>. See full details <a href="">here.</a>
+	<!-- Our Main Video Element -->
+	<video height="426" width="640" controls="false">
+		<source src="videos/wes4.ogg" />
+		<source src="videos/wes4.mp4" />
+	</video>
+
+	<!-- Out Canvas Element for output -->
+	<canvas id="output"  height="426" width="640" ></canvas>
+
+	<!-- div to track progress -->
+	<div id="elapsed_time">Press play for HTML5 Glasses!</div>
+</div>
+<script type="text/javascript" src="scripts/ccv.js"></script>
+<script type="text/javascript" src="scripts/face.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+</body>
+</html>
+
+```
+ 
+
+<h3>Let's write some JavaScript!</h3>
+The core of this application is just a single function called <code>html5glasses()</code> that runs every 200 miliseconds. The function grabs the current frame from the window, spits it onto the canvas and then lets the CCV JS library detect the face. When it  returns the data we loop through each of the found faces and and apply the silly glasses.
+
+I should note that this isn't the fastest thing in the world, and it is blocking. In the CCV examples, they provide a web worker example so we could do this asynchronously, but in my tests it was significantly slower. This is new technology and will only get better. On my computer I see a new frame about every 300 miliseconds, or 3 times a second.
+
+<h3>Setup the JavaScript Variables</h3>
+I've commented these inline.
+
+```js
+
+var		
+		// Store the first HTML5 video element in the document
+		video = document.querySelector('video'),
+		// We use this to time how long things are taking. Not that important..
+		time_dump = document.getElementById("elapsed_time"),
+		// Create a new image that will be our goofy glasses
+		glasses = new Image(),
+		// Store the canvas so we can write to it
+		canvas = document.getElementById("output"),
+		// Get the canvas 2d Context
+		ctx = canvas.getContext("2d");
+		// Finally set the source of our new glasses img element
+		glasses.src = "i/glasses.png";
+
+```
+
+<h3>Create our main html5glasses() function</h3>
+This is where all the magic happens. Read through each line and realize what is happening. Pay specific attenton to the <code>ccv.detect_objects()</code> function.
+ 
+
+```js
+
+function html5glasses() {
+	// Start the clock 
+	var elapsed_time = (new Date()).getTime();
+
+	// Draw the video to canvas
+	ctx.drawImage(video, 0, 0, video.width, video.height, 0, 0, canvas.width, canvas.height);
+
+	// use the face detection library to find the face
+	var comp = ccv.detect_objects({ "canvas" : (ccv.pre(canvas)),
+									"cascade" : cascade,
+									"interval" : 5,
+									"min_neighbors" : 1 });
+
+	// Stop the clock
+	time_dump.innerHTML = "Process time : " + ((new Date()).getTime() - elapsed_time).toString() + "ms";
+
+	// Draw glasses on everyone!
+	for (var i = 0; i < comp.length; i++) {
+		ctx.drawImage(glasses, comp[i].x, comp[i].y,comp[i].width, comp[i].height);
+	}
+}
+
+```
+
+<h3>Finally, trigger it!</h3>
+We trigger the detection when the video element is played and stop it when it reaches the end. 
+
+```js
+
+/* Events */ 
+
+video.addEventListener('play', function() {
+	vidInterval = setInterval(html5glasses,200); 
+});
+
+video.addEventListener('ended', function() {
+	clearInterval(vidInterval);
+	time_dump.innerHTML = "finished";
+});
+
+```
+
+<h3> Pretty cool, eh? </h3>
+I'm just getting into CCV, but the library can be extended to recognize much more than just faces. If you take at look at the github repo, they have examples for detecting all kinds of things.
+
+<h3>What else?</h3>
+Next time I'm in the mood for a little hack, I'll try and hook this up to a flash webcam app or <a href="http://mozillalabs.com/rainbow/" target="_blank">Mozilla's Rainbow</a> to stream the data right from the device itself, giving us realtime funny glasses!
+
+Let me know if you have any ideas or questions. I'm <a href="http://twitter.com/wesbos" target="_blank">@wesbos on twitter</a> and have hosted the source on Git Hub

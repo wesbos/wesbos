@@ -9,6 +9,7 @@
     "@mdx-js/mdx": "1.4.4",
     "@mdx-js/tag": "0.20.3",
     "core-js": "^3.2.1",
+    "esm": "^3.2.25",
     "gatsby": "^2.15.7",
     "gatsby-image": "^2.2.17",
     "gatsby-plugin-feed": "^2.3.11",
@@ -27,7 +28,9 @@
     "gatsby-source-filesystem": "^2.1.21",
     "gatsby-transformer-remark": "^2.6.21",
     "gatsby-transformer-sharp": "^2.2.13",
-    "lodash": "^4.17.15",
+    "html-entities": "^1.2.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jsdom": "^16.2.0",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^0.1.7",
     "prismjs": "^1.17.1",
@@ -36,6 +39,7 @@
     "react-helmet": "^5.2.1",
     "react-youtube": "^7.9.0",
     "remark-autolink-headings": "^5.2.1",
+    "string.prototype.replaceall": "^1.0.3",
     "styled-components": "^4.3.2",
     "typeface-merriweather": "0.0.72"
   },
@@ -55,6 +59,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "scrape": "NODE_OPTIONS='--inspect=localhost:4444 -r esm' node scrape-posts.js"
   }
 }

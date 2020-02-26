@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  
+
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="2bqmXE+UIgeBUDfzWfXx/zQMbI2kfuIGvKCZfW8KV5wIm/iIuMHbgf5pLl5CBHyB65kJygd5ed+nyE3r6fyvUw==" />
+  
+  <title>CloudApp</title>
+
+  <link rel="stylesheet" media="all" href="/assets/application-5582fe702b4e5a8aca899a9d410d6b9781b1099f4f27ff05e0133ec003d1adf3.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/cloudapp-icon-c00dabfccf3d5dcc75f1551d87d4d618866291e4a236ac68453072125cfee036.png" />
+
+  <script src="https://js.recurly.com/v4/recurly.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+  <script src="/assets/woopra-9cee0e8d3040b69abcd532de75ed560cc5eaafab2a91dc46e3613737f2b77a1b.js"></script>
+
+  <link rel="stylesheet" media="screen" href="//vjs.zencdn.net/7.6.6/video-js.min.css" />
+  <script src="//vjs.zencdn.net/7.6.6/video.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+
+    <script>
+     window.sessionStorage.removeItem("jwt")
+    </script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-32600009-9"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-32600009-9', { 'optimize_id': 'GTM-N5GKDD2'});
+</script>
+
+
+<!-- Start Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WQ4HG7B');</script>
+<!-- End Google Tag Manager -->
+
+  <script>
+  function iframePostMessageHandler(event) {
+    const { action, value } = event.data;
+    if (action == 'returnData') {
+      if (window.location.search == "") {
+        window.location = `${window.location.href}?token=${value}`
+      } else {
+        window.location = `${window.location.href}&token=${value}`
+      }
+    }
+  }
+  window.addEventListener('message', iframePostMessageHandler, false);
+</script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document
+      .getElementById('session-iframe')
+      .contentWindow.postMessage({ action: 'loginCustomDomain' }, '*');
+  });
+</script>
+
+  <meta name="robots" content="noindex" />
+</head>
+
+<body data-spy="scroll" data-offset="70">
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQ4HG7B"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+      <a class="navbar-brand link-disabled" href="https://www.getcloudapp.com/">
+        <img class="logo" data-testid="cloudapp-logo" src="/assets/cloudapp-fd5b1e6319ce004d1c46cb6ec2921890dcb3ac04c15445e4f7bf093d4d3d7bd8.png" />
+</a>    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <div class="container">
+    <div class="flash alert alert-danger"></div>
+    <div class="flash alert alert-success"></div>
+    
+    
+  </div>
+    <style>
+
+    body{
+        background: gray;
+        color:#fff;
+        font-family: 'Open Sans', sans-serif;
+        max-height:700px;
+        overflow: hidden;
+    }
+    .c{
+        text-align: center;
+        display: block;
+        position: relative;
+        width:80%;
+        margin:100px auto;
+    }
+    ._404{
+        font-size: 220px;
+        position: relative;
+        display: inline-block;
+        z-index: 2;
+        height: 250px;
+        letter-spacing: 15px;
+    }
+    ._1{
+        text-align:center;
+        display:block;
+        position:relative;
+        letter-spacing: 12px;
+        font-size: 4em;
+        line-height: 80%;
+    }
+    ._2{
+        text-align:center;
+        display:block;
+        position: relative;
+        font-size: 20px;
+    }
+    .text{
+        font-size: 70px;
+        text-align: center;
+        position: relative;
+        display: inline-block;
+        margin: 19px 0px 0px 0px;
+        /* top: 256.301px; */
+        z-index: 3;
+        width: 100%;
+        line-height: 1.2em;
+        display: inline-block;
+    }
+
+
+    .btn-404{
+        background-color: rgb( 255, 255, 255 );
+        position: relative;
+        display: inline-block;
+        width: 358px;
+        padding: 5px;
+        z-index: 5;
+        font-size: 25px;
+        margin:0 auto;
+        color:gray;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .right{
+        float:right;
+        width:60%;
+    }
+
+    hr{
+        padding: 0;
+        border: none;
+        border-top: 5px solid #fff;
+        color: #fff;
+        text-align: center;
+        margin: 0px auto;
+        width: 420px;
+        height:10px;
+        z-index: -10;
+    }
+
+    hr:after {
+        content: "\2022";
+        display: inline-block;
+        position: relative;
+        top: -0.75em;
+        font-size: 2em;
+        padding: 0 0.2em;
+        background: #464d4a;
+    }
+
+    .cloud {
+        width: 350px; height: 120px;
+
+        background: #FFF;
+        background: linear-gradient(top, #FFF 100%);
+        background: -webkit-linear-gradient(top, #FFF 100%);
+        background: -moz-linear-gradient(top, #FFF 100%);
+        background: -ms-linear-gradient(top, #FFF 100%);
+        background: -o-linear-gradient(top, #FFF 100%);
+
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+
+        position: absolute;
+        margin: 120px auto 20px;
+        z-index:-1;
+        transition: ease 1s;
+    }
+
+    .cloud:after, .cloud:before {
+        content: '';
+        position: absolute;
+        background: #FFF;
+        z-index: -1
+    }
+
+    .cloud:after {
+        width: 100px; height: 100px;
+        top: -50px; left: 50px;
+
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+    }
+
+    .cloud:before {
+        width: 180px; height: 180px;
+        top: -90px; right: 50px;
+
+        border-radius: 200px;
+        -webkit-border-radius: 200px;
+        -moz-border-radius: 200px;
+    }
+
+    .x1 {
+        top:-50px;
+        left:100px;
+        -webkit-transform: scale(0.3);
+        -moz-transform: scale(0.3);
+        transform: scale(0.3);
+        opacity: 0.9;
+        -webkit-animation: moveclouds 15s linear infinite;
+        -moz-animation: moveclouds 15s linear infinite;
+        -o-animation: moveclouds 15s linear infinite;
+    }
+
+    .x1_5{
+        top:-80px;
+        left:250px;
+        -webkit-transform: scale(0.3);
+        -moz-transform: scale(0.3);
+        transform: scale(0.3);
+        -webkit-animation: moveclouds 17s linear infinite;
+        -moz-animation: moveclouds 17s linear infinite;
+        -o-animation: moveclouds 17s linear infinite;
+    }
+
+    .x2 {
+        left: 250px;
+        top:30px;
+        -webkit-transform: scale(0.6);
+        -moz-transform: scale(0.6);
+        transform: scale(0.6);
+        opacity: 0.6;
+        -webkit-animation: moveclouds 25s linear infinite;
+        -moz-animation: moveclouds 25s linear infinite;
+        -o-animation: moveclouds 25s linear infinite;
+    }
+
+    .x3 {
+        left: 250px; bottom: -70px;
+
+        -webkit-transform: scale(0.6);
+        -moz-transform: scale(0.6);
+        transform: scale(0.6);
+        opacity: 0.8;
+
+        -webkit-animation: moveclouds 25s linear infinite;
+        -moz-animation: moveclouds 25s linear infinite;
+        -o-animation: moveclouds 25s linear infinite;
+    }
+
+    .x4 {
+        left: 470px; botttom: 20px;
+
+        -webkit-transform: scale(0.75);
+        -moz-transform: scale(0.75);
+        transform: scale(0.75);
+        opacity: 0.75;
+
+        -webkit-animation: moveclouds 18s linear infinite;
+        -moz-animation: moveclouds 18s linear infinite;
+        -o-animation: moveclouds 18s linear infinite;
+    }
+
+    .x5 {
+        left: 200px; top: 300px;
+
+        -webkit-transform: scale(0.5);
+        -moz-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 0.8;
+
+        -webkit-animation: moveclouds 20s linear infinite;
+        -moz-animation: moveclouds 20s linear infinite;
+        -o-animation: moveclouds 20s linear infinite;
+    }
+
+    @-webkit-keyframes moveclouds {
+        0% {margin-left: 1000px;}
+        100% {margin-left: -1000px;}
+    }
+    @-moz-keyframes moveclouds {
+        0% {margin-left: 1000px;}
+        100% {margin-left: -1000px;}
+    }
+    @-o-keyframes moveclouds {
+        0% {margin-left: 1000px;}
+        100% {margin-left: -1000px;}
+    }
+    </style>
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <div id="clouds">
+      <div class="cloud x1"></div>
+      <div class="cloud x1_5"></div>
+      <div class="cloud x2"></div>
+      <div class="cloud x3"></div>
+      <div class="cloud x4"></div>
+      <div class="cloud x5"></div>
+    </div>
+    <div class='c'>
+      <div class='_404'>404</div>
+      <hr>
+      <div class='_1'>THE PAGE</div>
+      <div class='_2'>WAS NOT FOUND</div>
+      <p style="color: white;">This isn't the page you were looking for. Double check the URL, or contact us at
+      <a href="/cdn-cgi/l/email-protection#12616762627d606652757766717e7d67767362623c717d7f" style="color:white; font-weight:bold;"><span class="__cf_email__" data-cfemail="4c3f393c3c233e380c2b29382f202339282d3c3c622f2321">[email&#160;protected]</span></a>.</p>
+      <a class='btn-404 my-3' href='https://share.getcloudapp.com'>BACK TO CloudApp</a>
+      <h2>Over 2 million people use CloudApp's <br> screen recorder to work faster.</h2>
+      <a class="btn_join" style="color: white; text-decoration: underline" href="https://share.getcloudapp.com/signup">Get CloudApp for free</a>
+    </div>
+
+
+
+
+
+    <div class="go-top"><i class="icofont-stylish-up"></i></div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/assets/application-1e25ecb434bbdceb12845ddff925a3800ccf4364c590b04ece07075f386ea888.js"></script>
+  <meta name="action-cable-url" content="ws://localhost:3334/cable" />
+    <!-- Full Story -->
+  <script>
+  window['_fs_debug'] = false;
+  window['_fs_host'] = 'fullstory.com';
+  window['_fs_org'] = '22MN3';
+  window['_fs_namespace'] = 'FS';
+  (function(m,n,e,t,l,o,g,y){
+     if (e in m) {if(m.console && m.console.log) { m.console.log('FullStory namespace conflict. Please set window["_fs_namespace"].');} return;}
+     g=m[e]=function(a,b,s){g.q?g.q.push([a,b,s]):g._api(a,b,s);};g.q=[];
+     o=n.createElement(t);o.async=1;o.crossOrigin='anonymous';o.src='https://'+_fs_host+'/s/fs.js';
+     y=n.getElementsByTagName(t)[0];y.parentNode.insertBefore(o,y);
+     g.identify=function(i,v,s){g(l,{uid:i},s);if(v)g(l,v,s)};g.setUserVars=function(v,s){g(l,v,s)};g.event=function(i,v,s){g('event',{n:i,p:v},s)};
+     g.shutdown=function(){g("rec",!1)};g.restart=function(){g("rec",!0)};
+     g.consent=function(a){g("consent",!arguments.length||a)};
+     g.identifyAccount=function(i,v){o='account';v=v||{};v.acctId=i;g(o,v)};
+     g.clearUserCookie=function(){};
+  })(window,document,window['_fs_namespace'],'script','user');
+  </script>
+<!-- End Full Story -->
+
+
+      <!-- Help Scout -->
+<script type="text/javascript">!function(e,t,n){function a(){var e=t.getElementsByTagName("script")[0],n=t.createElement("script");n.type="text/javascript",n.async=!0,n.src="https://beacon-v2.helpscout.net",e.parentNode.insertBefore(n,e)}if(e.Beacon=n=function(t,n,a){e.Beacon.readyQueue.push({method:t,options:n,data:a})},n.readyQueue=[],"complete"===t.readyState)return a();e.attachEvent?e.attachEvent("onload",a):e.addEventListener("load",a,!1)}(window,document,window.Beacon||function(){});</script>
+<script type="text/javascript">window.Beacon('init', '77aa0953-691a-4ee9-88ef-7fe3b6782020')</script>
+<!-- End Help Scout -->
+
+  <script>
+  var token = $( 'meta[name="csrf-token"]' ).attr( 'content' );
+
+  $("body").on("click", "[event]", function() {
+    eventName = $(this).attr("event");
+    dataContent = jQuery.isEmptyObject($(this).data()) ? $(this).attr("data") : $(this).data();
+    $.ajaxSetup( {
+      beforeSend: function ( xhr ) {
+        xhr.setRequestHeader( 'X-CSRF-Token', token );
+      }
+    });
+    $.post( "/tracking", { event: eventName, properties: dataContent } );
+  })
+</script>
+
+  <iframe id="session-iframe" style="display: none;" src="https://share.getcloudapp.com/session_iframe"></iframe>
+  <iframe style="display: none;" src="/session_destroy"></iframe>
+</body>
+</html>

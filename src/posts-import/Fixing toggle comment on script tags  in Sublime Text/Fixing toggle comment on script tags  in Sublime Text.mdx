@@ -1,0 +1,31 @@
+---
+title: Fixing toggle comment on script tags  in Sublime Text
+slug: fix-sublime-text-toggle-comment
+image: ss-2014-06-01-at-3.25.53-PM.png
+tags: 
+date: 2014-06-01T15:26:18
+---
+
+Toggling comments in Sublime Text is broken and it's time you fix it. If you work with HTML/JavaScript you have probably run into this while using the ⌘ + / comment toggle.
+
+<img src="broken-toggle.gif" alt="broken-toggle" class="aligncenter size-medium wp-image-2797" >
+
+Sublime Text thinks it is JavaScript, so it uses a JavaScript comment! The problem is that the script tag is acutally HTML, so we need to use an HTML comment to comment it out. We want something like this:
+
+<code><!-- <script src="jquery.js"></script> --></code>
+
+The underlying problem is inside the HTML syntax file and it is actually an easy fix.
+
+We need to edit the <code>HTML.tmLanguage</code> file that is located in <code>preferences</code> →  <code>browse packages</code> → <code>HTML</code>.
+
+Open it up and look for a line that looks like the following. It should be around line 286.
+
+<code><string>(?:^\s+)?(&lt;)((?i:script))\b(?![^&gt;]*/&gt;)</string></code>
+
+Replace it with this:
+
+<code><string>(?:^\s+)?(&lt;)((?i:script))\b(?![^&gt;]*/&gt;)(?!.*&lt;/script&gt;)</string></code>
+
+Save. You should now be able to properly toggle comment out script tags in Sublime Text!
+
+<a href="https://sublimetextbook.com/?utm_source=scripttoggle&utm_medium=banner&utm_campaign=product"><img src="facebook-share2.png"></a>

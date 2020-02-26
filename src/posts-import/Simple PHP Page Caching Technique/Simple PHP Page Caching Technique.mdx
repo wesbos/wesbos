@@ -1,0 +1,37 @@
+---
+title: Simple PHP Page Caching Technique
+slug: simple-php-page-caching-technique
+image: pagecache.png
+tags: example,page-cache,php,snippet
+date: 2011-03-15T10:17:20
+---
+
+This is a little code snippet that I use in almost every project that isn't based on a popular CMS. Since its fairly expensive to hit the database on every page load, its a smart idea to cache the plain HTML markup of your page and serve that up. You can set how often the page cache is flushed out depending on how often you update your site's content.<!--more-->
+
+```php
+<?php
+	// define the path and name of cached file
+	$cachefile = 'cached-files/'.date('M-d-Y').'.php';
+	// define how long we want to keep the file in seconds. I set mine to 5 hours.
+	$cachetime = 18000;
+	// Check if the cached file is still fresh. If it is, serve it up and exit.
+	if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
+   	include($cachefile);
+    	exit;
+	}
+	// if there is either no file OR the file to too old, render the page and capture the HTML.
+	ob_start();
+?>
+	<html>
+		output all your html here.
+	</html>
+<?php
+	// We're done! Save the cached content to a file
+	$fp = fopen($cachefile, 'w');
+	fwrite($fp, ob_get_contents());
+	fclose($fp);
+	// finally send browser output
+	ob_end_flush();
+?>
+```
+Have some others tricks? Leave a comment below!

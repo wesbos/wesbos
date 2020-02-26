@@ -1,0 +1,74 @@
+---
+title: ES6 Block Scope is The new IIFE
+slug: es6-block-scope-iife
+image: block-scope.png
+tags: 
+date: 2016-08-31T22:20:16
+---
+
+You can probably see where <code>let</code> and <code>const</code> are going to be useful: <strong>if you need to scope something to a block</strong>, or <strong>if you want to make a variable that cannot be changed</strong> by accident or on purpose.
+
+Let's take a look at a couple of more examples of when it might be useful.
+
+The first one is replacing the <strong>Immediately-Invoked Function Expression</strong>, or <strong>IIFE</strong>. I'm not sure if you've ever heard of this before, but it was coined by <a href="(http://benalman.com/news/2010/11/immediately-invoked-function-expression/)">Ben Allman back in 2010</a>.
+
+An IIFE function runs itself immediately, and it creates a scope where nothing is going to leak into the parent scope. In our case, nothing is going to leak into the global scope of the window.
+
+If I have a <code>var</code> variable: <code>var name = 'wes'</code>
+
+You can call that in the console, and that's fine here. However, the window already has a <code>name</code> attribute, which is needed when you have a window opening up a another window.
+
+That could something that some third-party JavaScript relies on in order for it to run, or maybe another script is using a variable called <code>name</code> and you accidentally overwrite that. It can get a little bit messy.
+
+The way the IIFE fixes that is that the function runs immediately and you put your variables inside of that:
+
+
+```js
+(function() {
+var name = 'wes';
+})();
+
+```
+
+These variables are now scoped to the IIFE function, and because <code>var</code> variables are function-scoped, they are not available in the global scope.
+
+If you try to call <code>name</code> in the console now, it's not undefined, it's blank because, like I mentioned, it's just blank because that is a property that lives on the window natively in JavaScript.
+
+If I needed to access our function's <code>name</code>, obviously, I'd have to do a <code>console.log</code> inside of the IIFE function, but the important thing is that it's no longer leaking into the global scope.
+
+With <code>let</code> and <code>const</code> variables, we don't need a function for our variables to be scoped to that.
+
+Why? Because <code>let</code> and <code>const</code> use <strong>block scope</strong>.
+
+Let's start over with a <code>const</code> instead of a <code>var</code>
+
+
+```js
+const name = 'wes';
+
+```
+
+If we call this in the console, we'll see <code>'wes'</code>, but if we wrap it in curly brackets:
+
+
+```js
+{
+const name = 'wes';
+}
+
+
+```
+
+Our <code>const</code> is going to be scoped to that block. If you try to call <code>name</code> in the console, we'll get the window's <code>name</code>, which is blank. But if we add a <code>console.log</code> to our block:
+
+
+```js
+{
+const name = 'wes';
+console.log(name);
+}
+
+
+```
+
+...we'll get <code>wes</code> in the console. You don't the IIFE stuff anymore. You're using <code>let</code> and <code>const</code> because they are going to be scoped to that block.

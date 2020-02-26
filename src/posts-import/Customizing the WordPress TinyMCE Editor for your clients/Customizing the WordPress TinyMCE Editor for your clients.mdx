@@ -1,0 +1,97 @@
+---
+title: Customizing the WordPress TinyMCE Editor for your clients
+slug: custom-wordpress-tinymce-wysiwyg-classes
+image: wordpress.png
+tags: 
+date: 2011-08-16T23:21:32
+---
+
+We have all been there. You finish up the most beautiful design with perfectly picked colours, font sizes and page style and pass it off to the client. A few days later you check back at the site and they have happily splattered underlined neon green h1 tags with inline styles. Why why why? Because the WordPress WYSIWYG editor is hard to use and by default it temps you with a basic colour pallet and basic h1-h6 tags.
+<!--more-->
+Not to worry! With a few lines of code we can remove the harmful parts of TinyMCE and supply a few useful features! Pop open your theme's functions.php file and create a basic function and hook like this:
+
+```php
+function make_mce_awesome( $init ) {
+	// our Options will go here..
+	return $init;
+}
+
+add_filter('tiny_mce_before_init', 'make_mce_awesome');
+```
+
+<h3>Only allow certain block level elements</h3>
+Out of the box WordPress has a bunch of elements which you can use to style your text. Chances are your client doesnt need most of them. Also, they certainly do not need access to h1 and h2 elements as they should be already coded into your theme.
+
+```php
+
+$init['theme_advanced_blockformats'] = 'h3,h4,h5,h6,p';
+
+```
+
+<h3>Remove Unnecessary Buttons</h3>
+This is totally up to you, but I like to remove the underline as its ugly, the spellchecker as this is now built into most browsers and the WordPress Help button. You can find the names of all the buttons by opening up dev tools and looking at the title attribute of each button.
+
+```php
+
+	$init['theme_advanced_disable'] = 'underline,spellchecker,wp_help';
+
+```
+
+<h3>Create a custom Colour Pallet based on the themes colours.</h3>
+Changes are the default colours in WordPress arent the same as your theme's colours. Feed in a comma separated list of hex colours and you're off the the races!
+
+```php
+
+	$init['theme_advanced_text_colors'] = '0f3156,636466,0486d3';
+
+```
+
+
+<h3>Add Custom Classes to mirror your CSS</h3>
+When you want to move past your basic heading and paragraph tags, it can be helpful to append custom classes to your elements from within TinyMCE. First you want to enable the style select drop down: 
+
+```php
+
+	$init['theme_advanced_buttons2_add'] = 'styleselect';
+
+```
+Then you can specify a list of labels and associated CSS classes. 
+
+```php
+
+$init['theme_advanced_styles'] = "bigTitle=bigTitle;Call To Action Button=ctaButton,Rounded Corners=rounded";
+
+```
+
+Our Final function looks like this:
+
+
+```php
+
+function make_mce_awesome( $init ) {
+	$init['theme_advanced_blockformats'] = 'h2,h3,h4,p';
+	$init['theme_advanced_disable'] = 'underline,spellchecker,wp_help';
+	$init['theme_advanced_text_colors'] = '0f3156,636466,0486d3';
+	$init['theme_advanced_buttons2_add'] = 'styleselect';
+   	$init['theme_advanced_styles'] = "bigTitle=bigTitle;Call To Action Button=ctaButton,Rounded Corners=rounded";
+	return $init;
+}
+
+add_filter('tiny_mce_before_init', 'make_mce_awesome');
+
+```
+
+<h3>Style the editor on the backend</h3>
+Your theme's styles should mirror on the backend. You can add in a custom stylesheet for the backend with the following line. This is helpful for getting an accurate idea of what size/colour/alignment your page will have.
+
+
+```php
+
+	add_editor_style('editor-style.css');
+
+```
+
+I found that passing in editor-style.css (which should be found in the root of your theme) busted any cache that add_editor_style() was giving me. 
+
+<h3>Have more tips? </h3>
+I would love to hear them! Leave them in the comments below and I'll update this list as we go along.
