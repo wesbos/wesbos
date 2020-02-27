@@ -22,7 +22,9 @@ async function makePostsFromMdx({ graphql, actions }) {
       }
     `
   );
-  if (errors) throw new Error('shit');
+  if (errors) {
+    throw new Error('There was an error');
+  }
   const posts = data.allMdx.edges;
   posts.forEach(post => {
     actions.createPage({

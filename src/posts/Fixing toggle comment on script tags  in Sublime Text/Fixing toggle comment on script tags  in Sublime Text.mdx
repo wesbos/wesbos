@@ -4,11 +4,12 @@ slug: fix-sublime-text-toggle-comment
 image: ss-2014-06-01-at-3.25.53-PM.png
 category: Sublime Text
 date: 2014-06-01T15:26:18
+id: 2794
 ---
 
 Toggling comments in Sublime Text is broken and it's time you fix it. If you work with HTML/JavaScript you have probably run into this while using the ⌘ + / comment toggle.
 
-<img src="broken-toggle.gif" alt="broken-toggle" class="aligncenter size-medium wp-image-2797"/>
+<img src="broken-toggle.gif" alt="broken-toggle" class="aligncenter size-medium wp-image-2797" />
 
 Sublime Text thinks it is JavaScript, so it uses a JavaScript comment! The problem is that the script tag is acutally HTML, so we need to use an HTML comment to comment it out. We want something like this:
 

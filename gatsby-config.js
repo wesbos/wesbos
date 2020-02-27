@@ -24,20 +24,20 @@ module.exports = {
       },
     },
     // Posts
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/src/posts`,
-    //     name: 'post',
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/posts-import`,
+        path: `${__dirname}/src/posts`,
         name: 'post',
       },
     },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/src/posts-import`,
+    //     name: 'post',
+    //   },
+    // },
     // Images
     {
       resolve: `gatsby-source-filesystem`,

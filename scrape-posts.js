@@ -34,7 +34,7 @@ async function getPosts() {
 }
 
 function replacify(text) {
-  // this replaces all kinds of stuff that needs to be converted back to markdown, or makes gatsby choke.
+  // this replaces all kinds of stuff that needs to be converted back to markdown, or makes gatsby MDX choke
   text = replaceAll(text, '<pre><code class="language-js">', '\n\`\`\`js\n')
   text = replaceAll(text, '<pre><code class="js">', '\n\`\`\`js\n')
   text = replaceAll(text, '<pre><code class="bash">', '\n\`\`\`bash\n')
@@ -78,6 +78,8 @@ function replacify(text) {
   text = replaceAll(text, '</li>', '\n');
   text = replaceAll(text, '<ul>', '\n');
   text = replaceAll(text, '</ul>', '');
+  text = replaceAll(text, '<ol>', '\n');
+  text = replaceAll(text, '</ol>', '');
   text = replaceAll(text, '<strong>', '**');
   text = replaceAll(text, '</strong>', '**');
   text = replaceAll(text, '<img src="iphone-tel.gif">', '<img src="iphone-tel.gif"/>');
@@ -86,6 +88,10 @@ function replacify(text) {
   text = replaceAll(text, '<style>.entry-utility {clear:both;}</style>', '');
   text = replaceAll(text, `<p data-height="487" data-theme-id="5332" data-slug-hash="YPmyxy" data-default-tab="result" data-user="wesbos" class='codepen'>`, '');
   text = replaceAll(text, `<ul class="blocks-gallery-grid"><li class="blocks-gallery-item">`, '');
+  text = replaceAll(text, '<h2>`git diff --shortstat "@{0 day ago}"`</h2>', '## `git diff --shortstat "@{0 day ago}"`');
+  text = replaceAll(text, `2797" >`, `2797" />`);
+  text = replaceAll(text, `springboard!</h3>`, `springboard!`);
+  text = replaceAll(text, `**** <em>**UPDATE: **</em>**In Sendy 3 they have added list segmentation! ******`, `**UPDATE:** In Sendy 3 they have added list segmentation!`);
   return text;
 }
 
@@ -102,12 +108,12 @@ async function downloadImage(remotePath, localFolder) {
 async function go() {
   const posts = await getPosts();
   const getCategory = await categoryGetter();
-  await fs.mkdir(`./src/posts-import/`, { recursive: true });
+  await fs.mkdir(`./src/posts/`, { recursive: true });
   // loop over each post and make a folder for them
   for (const post of posts) {
     const title = Html5Entities.decode(post.title.rendered).trim().replace(':', ' - ');
     const folder = title.replace(/[^A-Za-z0-9 \-\:]/g, '')
-    const folderPath = `./src/posts-import/${folder}`.trim();
+    const folderPath = `./src/posts/${folder}`.trim();
     const imgs = findImagePaths(post.content_raw);
     let contentWithBackticks = replacify(post.content_raw);
     imgs.forEach(img => contentWithBackticks = contentWithBackticks.replace(img, getImageName(img)));
@@ -124,6 +130,7 @@ slug: ${post.slug}
 image: ${getImageName(post.jetpack_featured_media_url)}
 category: ${categories.join(',')}
 date: ${post.date}
+id: ${post.id}
 ---
 
 ${contentWithBackticks}
