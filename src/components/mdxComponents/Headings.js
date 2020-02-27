@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import blackGrit from './blackgrit.png'
-import whiteGrit from './whitegrit.png'
-import { keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import blackGrit from './blackgrit.png';
+import whiteGrit from './whitegrit.png';
+
 const gritty = keyframes`
   from {
     background-position: 0;
@@ -20,8 +20,8 @@ const headingSizes = {
   h4: 2.5,
   h5: 2,
   h6: 1.8,
-  span: 3.2
-}
+  span: 3.2,
+};
 
 const HStyles = styled.h1`
   font-size: ${headingSizes.h1}rem;
@@ -29,7 +29,7 @@ const HStyles = styled.h1`
   position: relative;
   &:after {
     position: absolute;
-    z-index:2;
+    z-index: 2;
     content: '';
     background: url(${whiteGrit});
     background-size: 700px;
@@ -37,8 +37,8 @@ const HStyles = styled.h1`
     background-position: center;
     top: 0;
     right: 0;
-    bottom:0;
-    left:0;
+    bottom: 0;
+    left: 0;
     pointer-events: none;
   }
   span.grit {
@@ -49,7 +49,7 @@ const HStyles = styled.h1`
     ${({ as }) => as === 'span' && `margin-right: -2rem;`};
     &:hover {
       /* background-position: -600px; */
-        animation: ${gritty} 2s steps(10) infinite;
+      animation: ${gritty} 2s steps(10) infinite;
     }
   }
 
@@ -64,10 +64,11 @@ const HStyles = styled.h1`
     z-index: -1;
     --translate: -0.5rem;
     --rotate: 0deg;
-    transform: translateX(var(--translate)) translateY(var(--translate)) rotate(var(--rotate));
+    transform: translateX(var(--translate)) translateY(var(--translate))
+      rotate(var(--rotate));
     ${({ as }) => as === 'span' && `visibility: hidden;`};
   }
-  &:hover:before  {
+  &:hover:before {
     visibility: visible;
   }
   a {
@@ -90,9 +91,9 @@ const HStyles = styled.h1`
 `;
 
 export default function H(props) {
-  return <HStyles {...props} >
-    <span className="grit">{props.children}</span>
-  </HStyles>
+  return (
+    <HStyles {...props}>
+      <span className="grit">{props.children}</span>
+    </HStyles>
+  );
 }
-
-

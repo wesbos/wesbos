@@ -2,7 +2,9 @@
 title: Remote Debugging with Chrome for Android [video + tut]
 slug: remote-debugging-mobile-chrome-android
 image: androidthumb.png
-category: HTML5,JavaScript
+category:
+ - HTML5
+ - JavaScript
 date: 2012-02-13T09:32:21
 id: 522
 ---
@@ -18,7 +20,8 @@ So, while there have been a <a href="http://phonegap.github.com/weinre/" target=
 Update: I'd like to specifically point out that Opera Mobile has has this functionality for quite some time now and you're able to do it without USB or a SDK (<a href="http://twitter.com/#!/miketaylr" target="_blank">miketaylr</a> had an awesome presentation on it at jQuer conf). So, develop in whatever browser you prefer and use both these tools when you're debugging that specific mobile browser. 
 
 <h3>What you'll need</h3>
-<ol>
+
+
 	* An android phone that runs Ice Cream Sandwhich
 
 	* Google Chrome beta from the Android Market
@@ -27,7 +30,7 @@ Update: I'd like to specifically point out that Opera Mobile has has this functi
 
 	* The <a title="Android SDK with Remote Debugging" href="http://developer.android.com/sdk" target="_blank">Android SDK </a>if you haven't already installed it.
 
-</ol>
+
 
 http://www.youtube.com/watch?v=n_7Wyj6DciY
 
@@ -42,12 +45,13 @@ You'll also probably want to add the `/platform tools/ to your $PATH so you can 
 
 <h3>Preparing your phone</h3>
 There are two things you need to enable to make remote debugging. Plug your phone in via USB and set the following two options.
-<ol>
+
+
    * Check the box for `Settings → Developer options &rarrl USB debugging`
 
 * Open Chrome on your phone → `Settings → Developer Tools → check Enable USB Web debugging`
 
-</ol>
+
 
 <h3>Starting the remote debugging!</h3>
 Now that we have everything in place and our phone is plugged in, we can start the remote debugging server. Fire open your terminal and type the following command and hit enter:

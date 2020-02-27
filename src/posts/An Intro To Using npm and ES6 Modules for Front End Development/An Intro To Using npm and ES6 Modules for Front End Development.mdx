@@ -2,7 +2,8 @@
 title: An Intro To Using npm and ES6 Modules for Front End Development
 slug: javascript-modules
 image: es6-NPM.png
-category: JavaScript
+category:
+ - JavaScript
 date: 2015-12-14T13:00:47
 id: 3678
 ---
@@ -35,18 +36,20 @@ Whether you are doing Node or front end development, I believe that ES6 modules 
 
 Many workflows for JavaScript look like this:
 
-<ol>
+
+
 * Find a plugin or library that you want and download it from GitHub
 
 * Load it into your website via a script tag
 
 * Access it via a global variable or as a jQuery plugin
 
-</ol>
+
 
 This type of workflow has worked fairly well for years, but not without its issues:
 
-<ol>
+
+
 * Updates to the plugins have to be done manually — it's hard to know when there are critical bug fixes or new functionality available.
 
 * Messy source control history — all dependencies need to be checked into source control and unpleasantness can result when libraries are updated.
@@ -55,7 +58,7 @@ This type of workflow has worked fairly well for years, but not without its issu
 
 * Pollution and possible collisions within the global name space. 
 
-</ol>
+
 
 The idea of writing JavaScript modules isn't new, but with the arrival of ES6 and the industry settling on `npm as the preferred package manager for JavaScript, we're starting to see many devs migrate away from the above workflow and standardizing on using ES6 and npm`.
 
@@ -63,12 +66,13 @@ The idea of writing JavaScript modules isn't new, but with the arrival of ES6 an
 
 Many moons ago, `npm` began as the package manager for Node.js, but it has since evolved to become the package manager for JavaScript and front end dev in general. Nowadays, we can cut the whole song and dance for installing libraries down to 2 steps:
 
-<ol>
+
+
 * Install our dependency from `npm, e.g.:  npm install lodash --save`
 
 * Import it into the file where we need that dependency, e.g.:
 
-</ol>
+
 
 
 ```js
