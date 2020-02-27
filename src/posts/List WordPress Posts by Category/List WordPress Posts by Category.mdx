@@ -1,0 +1,72 @@
+---
+title: List WordPress Posts by Category
+slug: wordpress-list-posts-by-category
+image: wordpress-logo.png
+category: PHP,WordPress
+date: 2011-03-29T14:21:05
+---
+
+I saw on twitter that <a href="http://twitter.com/j_gardner/status/52762151860965376#">John Gardner</a> was looking for a way to loop through his WordPress categories and then display all posts that belonged to that category below it.  I thought it was a great question / problem to solve so I did a quick tutorial on how to do so.
+
+
+
+[youtube=http://www.youtube.com/watch?v=tiLKGPhUEpM&rel=0&hd=1]
+
+Make sure to view video in HD :)
+
+First thing you need to do is setup a new page with a custom page template. It can be as simple as below but may vary depending on your theme structure. I'm using the default Wordpress 2010 theme.
+
+```php
+<?php
+/* template name: Posts by Category! */
+get_header(); ?>
+		<div id="container">
+			<div id="content" role="main">
+			</div><!-- #content -->
+		</div><!-- #container -->
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
+```
+Then We need to get all of our categories into a variable called $cats. Once they are setup, we'll just loop through the categories, setup a new WordPress loop for each of them, and echo out the information needed.
+
+Here is the final code, I've commended each line as needed.
+
+```php
+<?php
+/* template name: Posts by Category! */
+get_header(); ?>
+
+		<div id="container">
+			<div id="content" role="main">
+
+			<?php
+			// get all the categories from the database
+			$cats = get_categories(); 
+
+				// loop through the categries
+				foreach ($cats as $cat) {
+					// setup the cateogory ID
+					$cat_id= $cat->term_id;
+					// Make a header for the cateogry
+					echo "<h2>".$cat->name."</h2>";
+					// create a custom wordpress query
+					query_posts("cat=$cat_id&posts_per_page=100");
+					// start the wordpress loop!
+					if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+						<?php // create our link now that the post is setup ?>
+						<a href="<?php the_permalink();?>"><?php the_title(); ?></a>
+						<?php echo '<hr/>'; ?>
+
+					<?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
+				<?php } // done the foreach statement ?>
+
+			</div><!-- #content -->
+		</div><!-- #container -->
+
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>
+```
+Thats it! You can obviously customize this to your own likings. I suggest you check out and read <a href="http://codex.wordpress.org/The_Loop">The Loop</a> and <a href="http://codex.wordpress.org/Function_Reference/query_posts">query_posts()</a>.
+
+Please leave any questions or commend below!

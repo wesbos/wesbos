@@ -1,0 +1,74 @@
+---
+title: ES6 Block Scope is The new IIFE
+slug: es6-block-scope-iife
+image: block-scope.png
+category: ES6,JavaScript
+date: 2016-08-31T22:20:16
+---
+
+You can probably see where `let and const` are going to be useful: **if you need to scope something to a block**, or **if you want to make a variable that cannot be changed** by accident or on purpose.
+
+Let's take a look at a couple of more examples of when it might be useful.
+
+The first one is replacing the **Immediately-Invoked Function Expression**, or **IIFE**. I'm not sure if you've ever heard of this before, but it was coined by <a href="(http://benalman.com/news/2010/11/immediately-invoked-function-expression/)">Ben Allman back in 2010</a>.
+
+An IIFE function runs itself immediately, and it creates a scope where nothing is going to leak into the parent scope. In our case, nothing is going to leak into the global scope of the window.
+
+If I have a `var variable: var name = 'wes'`
+
+You can call that in the console, and that's fine here. However, the window already has a `name` attribute, which is needed when you have a window opening up a another window.
+
+That could something that some third-party JavaScript relies on in order for it to run, or maybe another script is using a variable called `name` and you accidentally overwrite that. It can get a little bit messy.
+
+The way the IIFE fixes that is that the function runs immediately and you put your variables inside of that:
+
+
+```js
+(function() {
+var name = 'wes';
+})();
+
+```
+
+These variables are now scoped to the IIFE function, and because `var` variables are function-scoped, they are not available in the global scope.
+
+If you try to call `name` in the console now, it's not undefined, it's blank because, like I mentioned, it's just blank because that is a property that lives on the window natively in JavaScript.
+
+If I needed to access our function's `name, obviously, I'd have to do a console.log` inside of the IIFE function, but the important thing is that it's no longer leaking into the global scope.
+
+With `let and const` variables, we don't need a function for our variables to be scoped to that.
+
+Why? Because `let and const` use **block scope**.
+
+Let's start over with a `const instead of a var`
+
+
+```js
+const name = 'wes';
+
+```
+
+If we call this in the console, we'll see `'wes'`, but if we wrap it in curly brackets:
+
+
+```js
+{
+const name = 'wes';
+}
+
+
+```
+
+Our `const is going to be scoped to that block. If you try to call name in the console, we'll get the window's name, which is blank. But if we add a console.log` to our block:
+
+
+```js
+{
+const name = 'wes';
+console.log(name);
+}
+
+
+```
+
+...we'll get `wes in the console. You don't the IIFE stuff anymore. You're using let and const` because they are going to be scoped to that block.

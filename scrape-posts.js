@@ -1,11 +1,13 @@
 import fetch from 'isomorphic-fetch';
-import { promises as fs, createWriteStream } from 'fs';
+import { promises as fs } from 'fs';
+
+
 import { Html5Entities } from 'html-entities';
 import replaceAll from 'string.prototype.replaceall';
 import { JSDOM } from 'jsdom';
 import FileType from 'file-type';
 
-const DLIMAGES = true;
+const DLIMAGES = false;
 
 function getImageName(path) {
   return path.split('/').pop();
@@ -48,20 +50,42 @@ function replacify(text) {
   text = replaceAll(text, '<pre class="brush:xml">', '\n\`\`\`xml\n')
   text = replaceAll(text, '<pre class="brush:php">', '\n\`\`\`php\n')
   text = replaceAll(text, '<pre class="brush:plain">', '\n\`\`\`html\n')
+  text = replaceAll(text, '<pre class="brush:shell">', '\n\`\`\`bash\n')
   text = replaceAll(text, '<pre>', '\n\`\`\`\n')
   text = replaceAll(text, '</pre>', '\n\`\`\`');
   text = Html5Entities.decode(text);
   text = replaceAll(text, '<p>', '');
+  text = replaceAll(text, '<p >', '');
+  text = replaceAll(text, '<p lang="en" dir="ltr">', '');
   text = replaceAll(text, '<p style="text-align: left;">', '');
   text = replaceAll(text, '<p style="text-align: right;">', '');
   text = replaceAll(text, '<p style="text-align: center;">', '');
   text = replaceAll(text, '<p style="text-align:center;">', '');
   text = replaceAll(text, '<p style="color: white;">', '');
-  text = replaceAll(text, '<img src="facebook-share2.png">', '<img src="facebook-share2.png"/>');
+  text = replaceAll(text, '<img src="facebook-share2.png">', '<img src="facebook-share2.png" />');
   text = replaceAll(text, /<span style\s*=\s*"([^"]*)">/gi, '');
   text = replaceAll(text, '</span>', '');
   text = replaceAll(text, /style\s*=\s*"([^"]*)"/gi, '');
   text = replaceAll(text, '</p>', '');
+  text = replaceAll(text, /<!-- \/?wp(.*) -->/gi, '');
+  text = replaceAll(text, '<!--more-->', '');
+  text = replaceAll(text, /<code>(.*)<\/code>/gi, "`$&`");
+  text = replaceAll(text, '<code>', '');
+  text = replaceAll(text, '</code>', '');
+  text = replaceAll(text, '<br>', '<br/>');
+  text = replaceAll(text, '<hr>', '<hr/>');
+  text = replaceAll(text, '<li>', '* ');
+  text = replaceAll(text, '</li>', '\n');
+  text = replaceAll(text, '<ul>', '\n');
+  text = replaceAll(text, '</ul>', '');
+  text = replaceAll(text, '<strong>', '**');
+  text = replaceAll(text, '</strong>', '**');
+  text = replaceAll(text, '<img src="iphone-tel.gif">', '<img src="iphone-tel.gif"/>');
+  text = replaceAll(text, '<img src="hehe.gif">', '<img src="hehe.gif"/>');
+  text = replaceAll(text, /<div id="mc_embed_signup2">(.|\n)*<\/div >/gi, '');
+  text = replaceAll(text, '<style>.entry-utility {clear:both;}</style>', '');
+  text = replaceAll(text, `<p data-height="487" data-theme-id="5332" data-slug-hash="YPmyxy" data-default-tab="result" data-user="wesbos" class='codepen'>`, '');
+  text = replaceAll(text, `<ul class="blocks-gallery-grid"><li class="blocks-gallery-item">`, '');
   return text;
 }
 
@@ -80,12 +104,14 @@ async function go() {
   const getCategory = await categoryGetter();
   await fs.mkdir(`./src/posts-import/`, { recursive: true });
   // loop over each post and make a folder for them
-  for(const post of posts) {
-    const title = Html5Entities.decode(post.title.rendered).trim(); const folder = title.replace(/[^A-Za-z0-9 \-\:]/g, '')
+  for (const post of posts) {
+    const title = Html5Entities.decode(post.title.rendered).trim().replace(':', ' - ');
+    const folder = title.replace(/[^A-Za-z0-9 \-\:]/g, '')
     const folderPath = `./src/posts-import/${folder}`.trim();
     const imgs = findImagePaths(post.content_raw);
     let contentWithBackticks = replacify(post.content_raw);
     imgs.forEach(img => contentWithBackticks = contentWithBackticks.replace(img, getImageName(img)));
+    contentWithBackticks = replacify(contentWithBackticks);
     // 1. Make a folder for that post
     await fs.mkdir(folderPath, { recursive: true });
     // 2. Save the raw contents to a mdx file
@@ -103,9 +129,9 @@ date: ${post.date}
 ${contentWithBackticks}
 `.trim();
 
-    await fs.writeFile(`${folderPath}/${folder}.mdx`, content, { encoding: 'utf-8'})
+    await fs.writeFile(`${folderPath}/${folder}.mdx`, content, { encoding: 'utf-8' })
     // Fetch Featured Image
-    if(post.jetpack_featured_media_url) {
+    if (post.jetpack_featured_media_url) {
       // 4. Download the feature image for each one
       const imageData = await fetch(post.jetpack_featured_media_url).then(res => res.buffer());
       await fs.writeFile(`${folderPath}/${getImageName(post.jetpack_featured_media_url)}`, imageData);

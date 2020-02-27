@@ -1,0 +1,43 @@
+---
+title: use × HTML entity for close buttons rather than the letter X for a perfectly angled ×
+slug: times-html-entity-close-button
+image: ss-2014-08-12-at-1.22.54-PM.png
+category: HTML5
+date: 2014-08-18T10:28:37
+---
+
+I posted this simple tip to twitter and it was instantly popular with developers from all around the world. It's a small improvement that makes a big visual difference in your applications.
+
+<blockquote class="twitter-tweet" lang="en">××× Protip: use × HTML entity for close buttons rather than the letter X for a perfectly angled × <a href="http://t.co/1dgqhzxgQY">pic.twitter.com/1dgqhzxgQY</a>— Wes Bos (@wesbos) <a href="https://twitter.com/wesbos/statuses/499245255703949312">August 12, 2014</a></blockquote>
+
+Since a tweet is only 140 characters, I thought I would expand on best practices a little bit in a post.
+
+<h3>Using UTF-8</h3>
+
+A few mentioned that you can just go ahead and use the unicode × instead of the HTML entity `×. As long as your document is setup for UTF-8, go ahead. I personally rather use the HTML entity × because I can remember and type that, whereas ×` needs to be copy and pasted from a blog post like this.
+
+<h3>Accessibility</h3>
+
+If a visually impaired user uses a screenreader like JAWS to access your website, this will read **multiplication**  to them. So, it is <em>very important</em> that you use proper aria attributes. Something like this will work great:
+
+
+```js
+<a href="#" aria-label="Close Account Info Modal Box">×</a>
+
+```
+
+or better yet:
+
+
+```js
+<button aria-label="Close Account Info Modal Box">×</button>
+
+```
+
+<h3>Other Appropriate Characters</h3>
+
+A few more mentioned that it would be better to use `❌ and ❎` as they are real × characters rather than just the multiplication sign. While these are great, they are 1) Not supported on many systems. I'm on osx 10.9.4 and Chrome Canary and they are just boxes. ❌ ❎ 2) twitter and the iPhone swap them out with goofy looking emojis.
+
+So unfortunately, not a good solution just yet.
+
+<blockquote class="twitter-tweet" lang="en"><a href="https://twitter.com/wesbos">@wesbos</a> wouldn't ❌ (&<a href="https://twitter.com/hashtag/x274C?src=hash">#x274C</a>;) or ❎ (&<a href="https://twitter.com/hashtag/x274E?src=hash">#x274E</a>;) be better since they are just "cross marks", not "multiplication signs"?— SelenIT (@SelenIT2) <a href="https://twitter.com/SelenIT2/statuses/499321739411996672">August 12, 2014</a></blockquote>

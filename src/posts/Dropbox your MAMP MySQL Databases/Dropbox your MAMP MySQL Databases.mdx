@@ -1,0 +1,22 @@
+---
+title: Dropbox your MAMP MySQL Databases
+slug: dropbox-your-mamp-mysql-databases
+image: mamp-logo.png
+category: Other
+date: 2011-04-04T14:04:35
+---
+
+I'm a backup fanatic and not having a few backups of files makes me uneasy. Today I had a little scare where I couldn't find a few of my databases when viewing PHPmyAdmin through MAMP. Turns out sometimes MAMP likes to sometimes grab the databases from the MAMP Pro location and sometimes the MAMP location.
+
+So, I decided it was time to figure out how to automatically backup my databases. The problem is that my MySQL databases are not in the same folder as my Dropbox folder.
+
+The answer to this is very simple! First, if you haven't already, <a target="_blank" href="http://db.tt/87Zmy6yJ">sign up for dropbox</a>. Then we just need to create a simple symlink that will allow the databases to be stored in their location and still be backed up to the DropBox folder.
+
+First, figure out where MAMP stores your databases. If you are on good old MAMP, they will be located at /Applications/MAMP/db/ and if you are on MAMP Pro, they are located at /Library/Application Support/appsolute/MAMP PRO/db/mysql/
+
+Next, pop open terminal so we can create our symlink. We will be using the link folders command (ln) and the -s argument to specify that its a symbolic link.
+
+```bash
+ln -s  /Applications/MAMP/db/ ~/Dropbox/symlinks/db
+```
+If your dropbox folder is different, make sure to change the last argument. Other than that, you're setup. No more database loss nightmares!

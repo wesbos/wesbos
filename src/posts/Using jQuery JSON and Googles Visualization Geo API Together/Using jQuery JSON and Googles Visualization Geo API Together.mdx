@@ -1,0 +1,77 @@
+---
+title: Using jQuery, JSON and Google’s Visualization Geo API Together
+slug: jquery-json-google-visualization-api
+image: Screen-shot-2011-03-16-at-11.44.30-PM.png
+category: jQuery
+date: 2011-03-16T23:44:23
+---
+
+Was helping someone out in the jQuery IRC channel today and they were having some trouble with a JSON api that they were using. To simply put it they wanted to:
+<ol>
+	* Load a JSON file via Ajax
+
+	* Parse the results
+
+	* Pass it to <a href="http://code.google.com/apis/ajax/playground/?type=visualization#geo_map" target="_blank">Google's Visualization</a> into a data table
+
+	* Create a map based on that data.
+
+</ol>
+Now the example given is great, however it doesn't jive well when you want to add in a friendly library like jQuery. So here is how we fixed it:
+<h3>The JSON Data in regiontop10.json</h3>
+
+```js
+[
+    {
+        "DisplayName": "United States",
+        "Name": "US",
+        "population": 307006550
+    },
+    {
+        "DisplayName": "Canada",
+        "Name": "CA",
+        "population": 33739900
+    },
+    {
+        "DisplayName": "United Kingdom",
+        "Name": "GB",
+        "population": 61838154
+    },
+    {
+        "DisplayName": "Mexico",
+        "Name": "MX",
+        "population": 107431225
+    }
+]
+```
+Then we just needed load the data from this file and create the map. Comments on how this code works are inline.
+
+```js
+    google.load('visualization', '1', {packages: ['geomap']});
+
+    $(function() {
+    		// when document loads, grab the json
+			$.getJSON('regiontop10.json', function(data) {
+				// once grabbed, we run this callback
+
+				// setup the new map and its variables
+				var map = new google.visualization.DataTable();
+					map.addRows(data.length);  // length gives us the number of results in our returned data
+					map.addColumn('string', 'Country');
+	      		map.addColumn('number', 'Population');
+
+				// now we need to build the map data, loop over each result
+				$.each(data, function(i,v) {
+					// set the values for both the name and the population
+					map.setValue(i, 0, v.DisplayName);
+					map.setValue(i, 1, v.population);
+				});
+				// finally, create the map!
+				var geomap = new google.visualization.GeoMap(
+		          document.getElementById('visualization'));
+		     		 geomap.draw(map, null);
+
+			});
+   });
+```
+And that is it! <a href="http://wesbos.com/demos/google-geo-map-visualization/">Take a look at the demo</a> and view source for the rest of the HTML markup.
