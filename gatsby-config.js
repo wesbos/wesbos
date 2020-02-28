@@ -24,20 +24,20 @@ module.exports = {
       },
     },
     // Posts
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/src/posts`,
-    //     name: 'post',
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/posts-import`,
+        path: `${__dirname}/src/posts`,
         name: 'post',
       },
     },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/src/posts-import`,
+    //     name: 'post',
+    //   },
+    // },
     // Images
     {
       resolve: `gatsby-source-filesystem`,
@@ -51,6 +51,25 @@ module.exports = {
       options: {
         root: __dirname,
         gatsbyRemarkPlugins: [
+          // {
+          //   resolve: 'gatsby-remark-prismjs',
+          //   options: {
+          //     noInlineHighlight: true,
+          //   },
+          // },
+          {
+            resolve: 'gatsby-remark-vscode',
+            options: {
+              theme: `Cobalt2`,
+              extensions: [`theme-cobalt2`],
+            },
+          },
+          // {
+          //   resolve: `gatsby-remark-shiki`,
+          //   options: {
+          //     theme: 'zeit', // Default: 'nord'
+          //   },
+          // },
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -78,7 +97,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
+              maxWidth: 1200,
             },
           },
           {
@@ -87,8 +106,8 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          'gatsby-remark-prismjs',
-          'gatsby-remark-copy-linked-files',
+          // 'gatsby-remark-prismjs',
+          // 'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
         ],
       },
@@ -98,7 +117,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // trackingId: `TODO ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-176517-1`,
       },
     },
     // RSS Feed

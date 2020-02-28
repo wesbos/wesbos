@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import format from 'date-fns/format';
 import Layout from '../components/Layout';
 import PostGrid, { PostGridItem } from '../styles/PostGrid';
 import H from '../components/mdxComponents/Headings';
@@ -17,19 +18,32 @@ const Blog = function({ data }) {
               <PostGridItem key={post.id}>
                 {post.frontmatter.image &&
                   post.frontmatter.image.childImageSharp && (
-                    <Link to={post.fields.slug}>
-                      <Img
-                        fluid={post.frontmatter.image.childImageSharp.fluid}
-                      />
-                    </Link>
+                    <div>
+                      <Link to={post.fields.slug}>
+                        <Img
+                          fluid={post.frontmatter.image.childImageSharp.fluid}
+                        />
+                      </Link>
+                      <div className="postMeta">
+                        <time dateTime={post.frontmatter.date}>
+                          {format(
+                            new Date(post.frontmatter.date),
+                            'MMMM d, yyyy'
+                          )}
+                        </time>
+                        <ul className="categories">
+                          {post.frontmatter.category.map(cat => (
+                            <li key={cat}>{cat}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   )}
-
-                <H as="h3">
-                  <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
-                </H>
-                <div className="postMeta">
-                  {post.frontmatter.date}
-                  {post.frontmatter.category}
+                <div>
+                  <H as="h3">
+                    <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
+                  </H>
+                  <p>{post.excerpt}</p>
                 </div>
               </PostGridItem>
             );

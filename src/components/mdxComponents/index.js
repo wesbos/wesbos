@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
 import H from './Headings';
 // import Heading from "../heading";
-import Text from "./text";
-import Code from "./code";
-import Blockquote from "./blockquote";
-import Table from "./table";
-import CodeBlock from "./codeBlock";
-import Pre from "./pre";
-
+import Text from './text';
+import Code from './code';
+import Blockquote from './blockquote';
+import Table from './table';
+import CodeBlock from './codeBlock';
+import Pre from './pre';
 
 /* eslint-disable */
 export default {
