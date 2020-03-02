@@ -8,7 +8,7 @@ async function go() {
       const [match, timestamp] = text.match(/date: (.*)/);
       const date = new Date(parseFloat(timestamp));
       const updatedText = text.replace(timestamp, date.toISOString());
-      console.log(updatedText);
+      await fs.writeFile(path, updatedText, 'utf8');
     }
   });
 }
