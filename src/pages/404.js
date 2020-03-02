@@ -1,15 +1,21 @@
-import React from 'react'
-import Layout from '../components/Layout'
+import React from 'react';
+import { Link } from 'gatsby';
+import Layout from '../components/Layout';
+import H from '../components/mdxComponents/Headings';
 
 class NotFoundPage extends React.Component {
   render() {
     return (
       <Layout location={this.props.location}>
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <H>Shoot, eh!</H>
+        <p>404.</p>
+        <p>
+          This page doesn't exist. If you think this is an error{' '}
+          <Link to="/contact">contact me</Link>
+        </p>
       </Layout>
-    )
+    );
   }
 }
 
-export default NotFoundPage
+export default NotFoundPage;

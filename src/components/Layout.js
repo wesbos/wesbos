@@ -10,6 +10,7 @@ import LayoutStyles from '../assets/styles/LayoutStyles';
 import Fonts from './Fonts';
 import whiteGrit from './mdxComponents/whitegrit.png';
 import blackGrit from './mdxComponents/blackgrit.png';
+import Footer from './Footer';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -148,6 +149,7 @@ function Layout({ location, title, children, className }) {
           <LayoutStyles className={className}>
             <Nav />
             <ContentStyles>{children}</ContentStyles>
+            <Footer />
           </LayoutStyles>
         </>
       </MDXProvider>
