@@ -43,25 +43,6 @@ function findImagePaths(content) {
   };
 }
 
-async function categoryGetter() {
-  const tags = await fetch(
-    'https://wesbos.com/wp-json/wp/v2/categories?per_page=100'
-  ).then(x => x.json());
-  return function getCategory(id) {
-    return tags.find(tag => tag.id === id).name;
-  };
-}
-
-async function getPosts() {
-  const p1 = fetch(
-    'https://wesbos.com/wp-json/wp/v2/posts?per_page=100&page=1'
-  ).then(x => x.json());
-  const p2 = fetch(
-    'https://wesbos.com/wp-json/wp/v2/posts?per_page=100&page=2'
-  ).then(x => x.json());
-  const content = (await Promise.all([p1, p2])).flat();
-  return content;
-}
 
 async function downloadImage(remotePath, localFolder) {
   console.log(`Downloading ${remotePath} to ${localFolder}`);
