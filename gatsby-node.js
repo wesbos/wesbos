@@ -37,9 +37,45 @@ async function makePostsFromMdx({ graphql, actions }) {
   });
 }
 
+async function makeTipsFromMdx({ graphql, actions }) {
+  const tipTemplate = path.resolve('./src/templates/tip.js');
+  const { errors, data } = await graphql(
+    `
+      {
+        allMdx(filter: { fields: { collection: { eq: "tip" } } }) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+  if (errors) {
+    throw new Error('There was an error');
+  }
+  const tips = data.allMdx.edges;
+  tips.forEach(tip => {
+    console.log(tip.node.fields.slug);
+    actions.createPage({
+      path: `/tip${tip.node.fields.slug}`,
+      component: tipTemplate,
+      context: {
+        slug: tip.node.fields.slug,
+      },
+    });
+  });
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  await makePostsFromMdx({ graphql, actions });
+  await Promise.all([
+    makePostsFromMdx({ graphql, actions }),
+    makeTipsFromMdx({ graphql, actions }),
+  ]);
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
