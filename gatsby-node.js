@@ -12,7 +12,6 @@ async function makePostsFromMdx({ graphql, actions }) {
               fields {
                 slug
               }
-              body
               frontmatter {
                 title
               }
@@ -23,10 +22,12 @@ async function makePostsFromMdx({ graphql, actions }) {
     `
   );
   if (errors) {
+    console.log('errors');
     throw new Error('There was an error');
   }
   const posts = data.allMdx.edges;
   posts.forEach(post => {
+    // console.log(`Post:`, post.node.fields.slug);
     actions.createPage({
       path: post.node.fields.slug,
       component: blogPost,
@@ -59,7 +60,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
   }
   const tips = data.allMdx.edges;
   tips.forEach(tip => {
-    console.log(tip.node.fields.slug);
+    // console.log(`Tip:`, tip.node.fields.slug);
     actions.createPage({
       path: `/tip${tip.node.fields.slug}`,
       component: tipTemplate,

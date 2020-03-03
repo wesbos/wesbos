@@ -128,6 +128,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 300;
   }
 
+  video {
+    max-width: 100%;
+  }
+
 `;
 
 const ContentStyles = styled.div`

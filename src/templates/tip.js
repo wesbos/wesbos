@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import YouTube from 'react-youtube';
-import Helmet from 'react-helmet';
-import Img from 'gatsby-image';
+import Img from '../components/Img';
 import Layout from '../components/Layout';
-import H from '../components/mdxComponents/Headings';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -21,16 +18,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         images {
-          childImageSharp {
-            fluid(maxWidth: 700) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+          ...ImageFields
         }
         videos
-        # image {
-        #   id
-        # }
       }
       body
     }
@@ -48,9 +38,7 @@ export default function TipTemplate({ data: { mdx: tip } }) {
             <video src={url} autoPlay mute loop />
           ))}
         {tip.frontmatter.images &&
-          tip.frontmatter.images.map(image => (
-            <Img fluid={image.childImageSharp.fluid} />
-          ))}
+          tip.frontmatter.images.map(image => <Img image={image} />)}
       </div>
     </Layout>
   );

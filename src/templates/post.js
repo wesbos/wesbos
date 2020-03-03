@@ -22,9 +22,9 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        # image {
-        #   id
-        # }
+        image {
+          ...ImageFields
+        }
       }
       body
     }
@@ -41,7 +41,7 @@ function PostTemplate({ data: { mdx: post }, scope }) {
   return (
     <>
       <Layout title={`${post.frontmatter.title} - Wes Bos`}>
-        <Img src={post.frontmatter.image} alt={post.frontmatter.title} />
+        <Img image={post.frontmatter.image} alt={post.frontmatter.title} />
         <H>{post.frontmatter.title}</H>
         <MDXRenderer
           scope={{

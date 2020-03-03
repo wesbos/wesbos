@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import format from 'date-fns/format';
+import Img from '../components/Img';
 import Layout from '../components/Layout';
 import PostGrid, { PostGridItem } from '../styles/PostGrid';
 import H from '../components/mdxComponents/Headings';
@@ -20,9 +20,7 @@ const Blog = function({ data }) {
                   post.frontmatter.image.childImageSharp && (
                     <div>
                       <Link to={post.fields.slug}>
-                        <Img
-                          fluid={post.frontmatter.image.childImageSharp.fluid}
-                        />
+                        <Img image={post.frontmatter.image} />
                       </Link>
                       <div className="postMeta">
                         <time dateTime={post.frontmatter.date}>
@@ -81,11 +79,7 @@ export const pageQuery = graphql`
             date
             category
             image {
-              childImageSharp {
-                fluid(maxWidth: 700) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+              ...ImageFields
             }
           }
         }
