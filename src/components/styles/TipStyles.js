@@ -46,6 +46,7 @@ const TipStyles = styled.div`
     /* margin-left: -1rem; */
     transform: rotate(-1deg);
     /* position: relative; */
+
     &:after {
       display: block;
       content: '';

@@ -71,11 +71,40 @@ async function makeTipsFromMdx({ graphql, actions }) {
   });
 }
 
+async function paginate({ graphql, actions, collection }) {
+  const tipsPage = path.resolve('./src/pages/tips.js');
+  const { errors, data } = await graphql(
+    `
+      {
+        allMdx(filter: { fields: { collection: { eq: "${collection}" } } }) {
+          totalCount
+        }
+      }
+    `
+  );
+
+  const { totalCount } = data.allMdx;
+  const pages = Math.ceil(totalCount / 10);
+
+  Array.from({ length: pages }).forEach((_, i) => {
+    // for each page, use the createPages api to dynamically create that page
+    actions.createPage({
+      path: `/tips/${i + 1}`,
+      component: tipsPage,
+      context: {
+        skip: i * 10,
+        currentPage: i + 1,
+      },
+    });
+  });
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   await Promise.all([
     makePostsFromMdx({ graphql, actions }),
     makeTipsFromMdx({ graphql, actions }),
+    paginate({ graphql, actions, collection: 'tip' }),
   ]);
 };
 

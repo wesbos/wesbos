@@ -80,7 +80,7 @@ export default function Nav() {
         </li>
         <li>
           <a href="https://syntax.fm">
-            <small className="top">Syntax</small> <H as="span">Podcast</H>{' '}
+            <small className="top">The Syntax</small> <H as="span">Podcast</H>{' '}
             <small className="bottom">Web Development</small>
           </a>
         </li>
@@ -95,13 +95,24 @@ export default function Nav() {
         <li>
           <Link to="/blog">
             <small className="top">the</small> <H as="span">Blog</H>
-            <small className="bottom">+ 🔥 Tips</small>
+          </Link>
+        </li>
+        <li>
+          <Link to="/blog">
+            <small className="top">🔥</small> <H as="span">Tips</H>
+            <small className="bottom">real spicy</small>
           </Link>
         </li>
         <li>
           <Link to="/speaking-and-training">
             <small className="top">real life</small> <H as="span">Speaking</H>{' '}
             <small className="bottom">and training</small>
+          </Link>
+        </li>
+        <li>
+          <Link to="/uses">
+            <small className="top">what font?!</small> <H as="span">/uses</H>{' '}
+            <small className="bottom">what theme?!</small>
           </Link>
         </li>
         <li>

@@ -7,9 +7,9 @@ import Img from '../components/Img';
 import Layout from '../components/Layout';
 import H from '../components/mdxComponents/Headings';
 import TipStyles from '../components/styles/TipStyles';
+import Pagination from '../components/Pagination';
 
-export default function TipsPage({ data: { allMdx: tips } }) {
-  console.log(tips);
+export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
   return (
     <Layout>
       <H>🔥 There are {tips.totalCount} Hot Tips</H>
@@ -19,6 +19,10 @@ export default function TipsPage({ data: { allMdx: tips } }) {
         <a href="https://twitter.com/wesbos">my twitter account</a>. I've logged
         them here to make them easier to find.
       </p>
+      <Pagination
+        currentPage={pageContext.currentPage}
+        totalCount={tips.totalCount}
+      />
       <div>
         {tips.edges.map(({ node: tip }, i) => (
           <TipStyles key={`${tip.frontmatter.slug}-${i}`}>
@@ -69,10 +73,12 @@ export default function TipsPage({ data: { allMdx: tips } }) {
 }
 
 export const pageQuery = graphql`
-  query {
+  query Tips($skip: Int! = 0) {
     allMdx(
       filter: { fields: { collection: { eq: "tip" } } }
       sort: { fields: [frontmatter___date], order: DESC }
+      limit: 10
+      skip: $skip
     ) {
       totalCount
       edges {
