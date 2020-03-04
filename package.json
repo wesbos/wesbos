@@ -4,9 +4,6 @@
   "version": "1.0.0",
   "author": "Wes Bos <wesbos@gmail.com>",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.27",
-    "@fortawesome/free-solid-svg-icons": "^5.12.1",
-    "@fortawesome/react-fontawesome": "^0.1.8",
     "@mapbox/rehype-prism": "^0.4.0",
     "@mdx-js/loader": "1.5.7",
     "@mdx-js/mdx": "1.5.7",
@@ -46,6 +43,7 @@
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
+    "react-icons": "^3.9.0",
     "react-youtube": "^7.9.0",
     "remark-autolink-headings": "^5.2.1",
     "speakingurl": "^14.0.1",

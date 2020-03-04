@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: radnika;
     src: url(${font});
   }
+  :root {
+    --yellow: #ffc600;
+  }
   html {
     box-sizing: border-box;
     border: 20px solid black;
