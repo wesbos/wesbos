@@ -22,6 +22,7 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
       <Pagination
         currentPage={pageContext.currentPage}
         totalCount={tips.totalCount}
+        pathPrefix="/tips/"
       />
       <div>
         {tips.edges.map(({ node: tip }, i) => (

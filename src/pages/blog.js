@@ -5,12 +5,18 @@ import Img from '../components/Img';
 import Layout from '../components/Layout';
 import PostGrid, { PostGridItem } from '../styles/PostGrid';
 import H from '../components/mdxComponents/Headings';
+import Pagination from '../components/Pagination';
 
-const Blog = function({ data }) {
+const Blog = function({ data, pageContext }) {
   if (!data) return <p>Shooooot! No data found!</p>;
   console.log(data);
   return (
     <Layout>
+      <Pagination
+        currentPage={pageContext.currentPage}
+        totalCount={data.allMdx.totalCount}
+        pathPrefix="/blog/"
+      />
       <PostGrid>
         {data.allMdx &&
           data.allMdx.edges.map(function({ node: post }) {
@@ -54,7 +60,7 @@ const Blog = function({ data }) {
 export default Blog;
 
 export const pageQuery = graphql`
-  query {
+  query blogPosts($skip: Int! = 0) {
     site {
       siteMetadata {
         title
@@ -64,6 +70,8 @@ export const pageQuery = graphql`
     allMdx(
       filter: { fields: { collection: { eq: "post" } } }
       sort: { fields: [frontmatter___date], order: DESC }
+      limit: 10
+      skip: $skip
     ) {
       totalCount
       edges {

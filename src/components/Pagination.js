@@ -45,13 +45,20 @@ const PaginationStyles = styled.div`
   }
 `;
 
-export default function Pagination({ totalCount, currentPage = 1 }) {
+export default function Pagination({
+  totalCount,
+  currentPage = 1,
+  pathPrefix,
+}) {
   const totalPages = Math.ceil(totalCount / 10);
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
   return (
     <PaginationStyles>
-      <Link disabled={prevPage <= 0 ? 'true' : null} to={`/tips/${prevPage}`}>
+      <Link
+        disabled={prevPage <= 0 ? 'true' : null}
+        to={`${pathPrefix}${prevPage}`}
+      >
         ← Prev 10 please
       </Link>
       <p>
@@ -59,7 +66,7 @@ export default function Pagination({ totalCount, currentPage = 1 }) {
       </p>
       <Link
         disabled={nextPage > totalPages ? 'true' : null}
-        to={nextPage > totalPages ? null : `/tips/${nextPage}`}
+        to={nextPage > totalPages ? null : `${pathPrefix}${nextPage}`}
       >
         {nextPage > totalPages ? `That's all Folks` : `10 More please →`}
       </Link>

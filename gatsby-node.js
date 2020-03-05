@@ -71,8 +71,13 @@ async function makeTipsFromMdx({ graphql, actions }) {
   });
 }
 
-async function paginate({ graphql, actions, collection }) {
-  const tipsPage = path.resolve('./src/pages/tips.js');
+async function paginate({
+  graphql,
+  actions,
+  collection,
+  pathPrefix,
+  component,
+}) {
   const { errors, data } = await graphql(
     `
       {
@@ -89,8 +94,8 @@ async function paginate({ graphql, actions, collection }) {
   Array.from({ length: pages }).forEach((_, i) => {
     // for each page, use the createPages api to dynamically create that page
     actions.createPage({
-      path: `/tips/${i + 1}`,
-      component: tipsPage,
+      path: `${pathPrefix}${i + 1}`,
+      component,
       context: {
         skip: i * 10,
         currentPage: i + 1,
@@ -104,7 +109,20 @@ exports.createPages = async ({ graphql, actions }) => {
   await Promise.all([
     makePostsFromMdx({ graphql, actions }),
     makeTipsFromMdx({ graphql, actions }),
-    paginate({ graphql, actions, collection: 'tip' }),
+    paginate({
+      graphql,
+      actions,
+      collection: 'tip',
+      pathPrefix: '/tips/',
+      component: path.resolve('./src/pages/tips.js'),
+    }),
+    paginate({
+      graphql,
+      actions,
+      collection: 'post',
+      pathPrefix: '/blog/',
+      component: path.resolve('./src/pages/blog.js'),
+    }),
   ]);
 };
 
