@@ -3,8 +3,6 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import dirty from './styles/Dirty';
 
-console.log(dirty);
-
 const PaginationStyles = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -56,7 +54,7 @@ export default function Pagination({
   return (
     <PaginationStyles>
       <Link
-        disabled={prevPage <= 0 ? 'true' : null}
+        disabled={prevPage <= 0 ? true : null}
         to={`${pathPrefix}${prevPage}`}
       >
         ← Prev 10 please
@@ -65,7 +63,7 @@ export default function Pagination({
         Page {currentPage} of {totalPages}
       </p>
       <Link
-        disabled={nextPage > totalPages ? 'true' : null}
+        disabled={nextPage > totalPages ? true : null}
         to={nextPage > totalPages ? null : `${pathPrefix}${nextPage}`}
       >
         {nextPage > totalPages ? `That's all Folks` : `10 More please →`}

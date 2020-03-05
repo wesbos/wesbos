@@ -143,7 +143,6 @@ const ContentStyles = styled.div`
 `;
 
 function Layout({ location, title, children, className }) {
-  console.log(location);
   return (
     <ThemeProvider theme={{ yellow: '#ffc600', grey: '#dadada' }}>
       <MDXProvider components={mdxComponents}>
