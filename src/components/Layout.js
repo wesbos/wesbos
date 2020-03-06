@@ -19,6 +19,9 @@ const GlobalStyle = createGlobalStyle`
   }
   :root {
     --yellow: #ffc600;
+    --lightGrey: #d8d8d8;
+    --lightGray: var(--lightGrey);
+    --imGoingToFaint: #fbfbfb;
   }
   html {
     box-sizing: border-box;
@@ -54,7 +57,6 @@ const GlobalStyle = createGlobalStyle`
       z-index: -1;
       border: var(--size) solid transparent;
       border-image: url(${blackGrit}) 250 round;
-      /* display: none; */
     }
   }
   body {
@@ -71,6 +73,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: italic;
     line-height: 1.5;
   }
+
   ::selection {
     background: ${props => props.theme.yellow};
   }
@@ -103,7 +106,7 @@ const GlobalStyle = createGlobalStyle`
       transform: skew(-20deg) rotate(var(--rotate)) scaleX(var(--scaleX));
     }
     &:hover {
-      --scaleX: 1.1;
+      --scaleX: 1.03;
     }
   }
 
@@ -133,6 +136,20 @@ const GlobalStyle = createGlobalStyle`
 
   video {
     max-width: 100%;
+  }
+
+  @media (min-width:2500px) {
+    body:after {
+      content: 'Wow you have a big monitor!';
+      display: block;
+      position: fixed;
+      top: 0;
+      bottom:0;
+      right: 3rem;
+      font-size: 6.5vh;
+      pointer-events: none;
+      transform: rotate(90deg);
+    }
   }
 
 `;

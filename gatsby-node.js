@@ -6,9 +6,13 @@ async function makePostsFromMdx({ graphql, actions }) {
   const { errors, data } = await graphql(
     `
       {
-        allMdx(filter: { fields: { collection: { eq: "post" } } }) {
+        allMdx(
+          filter: { fields: { collection: { eq: "post" } } }
+          sort: { fields: [frontmatter___date], order: DESC }
+        ) {
           edges {
             node {
+              body
               fields {
                 slug
               }
@@ -26,13 +30,17 @@ async function makePostsFromMdx({ graphql, actions }) {
     throw new Error('There was an error');
   }
   const posts = data.allMdx.edges;
-  posts.forEach(post => {
-    // console.log(`Post:`, post.node.fields.slug);
+  posts.forEach((post, i) => {
+    const prev = posts[i - 1];
+    const next = posts[i + 1];
     actions.createPage({
       path: post.node.fields.slug,
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
+        prev,
+        next,
+        pathPrefix: '',
       },
     });
   });
@@ -43,9 +51,13 @@ async function makeTipsFromMdx({ graphql, actions }) {
   const { errors, data } = await graphql(
     `
       {
-        allMdx(filter: { fields: { collection: { eq: "tip" } } }) {
+        allMdx(
+          filter: { fields: { collection: { eq: "tip" } } }
+          sort: { fields: [frontmatter___date], order: DESC }
+        ) {
           edges {
             node {
+              body
               fields {
                 slug
               }
@@ -59,13 +71,19 @@ async function makeTipsFromMdx({ graphql, actions }) {
     throw new Error('There was an error');
   }
   const tips = data.allMdx.edges;
-  tips.forEach(tip => {
+  tips.forEach((tip, i) => {
+    // figure out if there is a prev and next tip
+    const prev = tips[i - 1];
+    const next = tips[i + 1];
     // console.log(`Tip:`, tip.node.fields.slug);
     actions.createPage({
       path: `/tip${tip.node.fields.slug}`,
       component: tipTemplate,
       context: {
         slug: tip.node.fields.slug,
+        prev,
+        next,
+        pathPrefix: '/tip',
       },
     });
   });

@@ -1,13 +1,13 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import formatDistance from 'date-fns/formatDistance';
 import { IoIosLink, IoLogoTwitter } from 'react-icons/io';
 import Img from '../components/Img';
 import Layout from '../components/Layout';
 import H from '../components/mdxComponents/Headings';
 import TipStyles from '../components/styles/TipStyles';
 import Pagination from '../components/Pagination';
+import TipMeta from '../components/TipMeta';
 
 export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
   return (
@@ -36,35 +36,8 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
                 tip.frontmatter.images.map(image => <Img image={image} />)}
             </Link>
             <div className="tipContent">
+              <TipMeta tip={tip} />
               <MDXRenderer>{tip.body}</MDXRenderer>
-              <div className="tipMeta">
-                <Link
-                  to={`/tip/${tip.frontmatter.slug}`}
-                  title="View Tip Details"
-                >
-                  <IoIosLink /> Deets
-                </Link>
-                <Link
-                  to={`/tip/${tip.frontmatter.slug}`}
-                  title="View Tip Details"
-                >
-                  <time dateTime={tip.frontmatter.date}>
-                    {formatDistance(
-                      new Date(tip.frontmatter.date),
-                      new Date(),
-                      {
-                        addSuffix: true,
-                      }
-                    )}
-                  </time>
-                </Link>
-                <a
-                  href={tip.frontmatter.tweetURL}
-                  title="Link to original tweet"
-                >
-                  <IoLogoTwitter class="twitter" /> Tweet
-                </a>
-              </div>
             </div>
           </TipStyles>
         ))}
