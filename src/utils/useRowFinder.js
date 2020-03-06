@@ -42,7 +42,6 @@ export default function useRowFinder() {
 
   useEffect(
     function() {
-      console.log('didMount or didUpdate');
       const observer = new ResizeObserver(callback);
       const el = ref.current;
       observer.observe(el);
