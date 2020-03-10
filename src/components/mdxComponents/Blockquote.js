@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const blockquote = styled.blockquote`
-  border-left: 3px solid ${props => props.theme.yellow};
+  border-left: 3px solid var(--yellow);
   padding-left: 1rem;
 `;
 

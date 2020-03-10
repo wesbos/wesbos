@@ -59,7 +59,7 @@ const HStyles = styled.h1`
     height: 0.75em;
     content: '';
     pointer-events: none;
-    background: ${props => props.theme.yellow};
+    background: var(--yellow);
     position: absolute;
     z-index: -1;
     --translate: -0.5rem;
@@ -73,7 +73,7 @@ const HStyles = styled.h1`
   }
   a {
     color: inherit;
-    text-decoration-color: ${props => props.theme.yellow};
+    text-decoration-color: var(--yellow);
   }
   .anchor {
     position: absolute;

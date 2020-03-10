@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Wes Bos <wesbos@gmail.com>",
   "dependencies": {
+    "@kennethormandy/react-fittext": "^0.6.0",
     "@mapbox/rehype-prism": "^0.4.0",
     "@mdx-js/loader": "1.5.7",
     "@mdx-js/mdx": "1.5.7",

@@ -25,6 +25,7 @@ export const pageQuery = graphql`
       fileAbsolutePath
       frontmatter {
         title
+        slug
         date(formatString: "MMMM DD, YYYY")
         image {
           ...ImageFields
@@ -42,9 +43,18 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
     post.fileAbsolutePath.split('/src/')[1]
   }`;
+
+  const thumbnailQuery = `?title=${post.frontmatter.title}&url=https://wesbos.com${pageContext.slug}&thumbnail=${post.frontmatter.image.publicURL}`;
+
   return (
     <>
       <Layout title={`${post.frontmatter.title} - Wes Bos`}>
+        <img
+          width="400"
+          src={`http://localhost:8888/.netlify/functions/ogimage${thumbnailQuery}`}
+          alt={post.title}
+        />
+
         <Img image={post.frontmatter.image} alt={post.frontmatter.title} />
         <PostHeaderStyles>
           <H>{post.frontmatter.title}</H>

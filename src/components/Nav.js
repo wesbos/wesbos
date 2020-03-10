@@ -6,7 +6,7 @@ import H from './mdxComponents/Headings';
 import useRowFinder from '../utils/useRowFinder';
 
 const NavStyles = styled.nav`
-  border-bottom: 5px solid ${props => props.theme.yellow};
+  border-bottom: 5px solid var(--yellow);
   display: grid;
   grid-template-columns: 1fr;
   h1 {
@@ -51,7 +51,7 @@ const NavLi = styled.li`
   &:after {
     content: '×';
     display: block;
-    color: ${props => props.theme.yellow};
+    color: var(--yellow);
   }
   &:last-child:after {
     display: none;
@@ -65,7 +65,7 @@ const NavLi = styled.li`
     &[aria-current='page'] {
       .grit {
         text-decoration: underline;
-        text-decoration-color: ${props => props.theme.yellow};
+        text-decoration-color: var(--yellow);
       }
     }
     small {

@@ -3,7 +3,7 @@ import blackgrit from '../mdxComponents/blackgrit.png';
 import whitegrit from '../mdxComponents/whitegrit.png';
 
 const TipStyles = styled.div`
-  border-bottom: 2px solid ${props => props.theme.yellow};
+  border-bottom: 2px solid var(--yellow);
   padding-bottom: 2rem;
   margin-bottom: 2rem;
   display: grid;
