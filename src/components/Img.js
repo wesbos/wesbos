@@ -5,7 +5,6 @@ import Img from 'gatsby-image';
 
 export default function WhyDoINeedToMakeThisComponent({ image, ...theRest }) {
   if (!image) {
-    console.log('No image???', image, theRest);
     return null;
   }
   if (image.extension === 'gif') {

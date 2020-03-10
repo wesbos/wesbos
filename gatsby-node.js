@@ -26,7 +26,6 @@ async function makePostsFromMdx({ graphql, actions }) {
     `
   );
   if (errors) {
-    console.log('errors');
     throw new Error('There was an error');
   }
   const posts = data.allMdx.edges;
@@ -75,7 +74,6 @@ async function makeTipsFromMdx({ graphql, actions }) {
     // figure out if there is a prev and next tip
     const prev = tips[i - 1];
     const next = tips[i + 1];
-    // console.log(`Tip:`, tip.node.fields.slug);
     actions.createPage({
       path: `/tip${tip.node.fields.slug}`,
       component: tipTemplate,

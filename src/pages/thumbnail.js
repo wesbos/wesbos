@@ -5,11 +5,11 @@ import H from '../components/mdxComponents/Headings';
 import logo from '../assets/images/logo.png';
 
 export default function ThumbNail({ location }) {
+  if (!location.href) return null;
   const url = new URL(location.href);
   const thumbnail = url.searchParams.get('thumbnail');
   const link = url.searchParams.get('url');
   const linkURL = new URL(link);
-  console.log(linkURL);
   const title = url.searchParams.get('title');
   const H1 = styled(H)`
     font-size: ${title.length > 32 ? `7rem` : `10rem`};

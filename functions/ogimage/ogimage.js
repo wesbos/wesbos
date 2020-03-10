@@ -23,7 +23,6 @@ async function getOptions(isDev) {
 
 async function getScreenshot(url, isDev) {
   const options = await getOptions(isDev);
-  console.log('📷');
   const browser = await puppeteer.launch(options);
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1.5 });

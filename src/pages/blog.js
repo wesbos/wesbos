@@ -9,7 +9,6 @@ import Pagination from '../components/Pagination';
 
 const Blog = function({ data, pageContext }) {
   if (!data) return <p>Shooooot! No data found!</p>;
-  console.log(data);
   return (
     <Layout>
       <Pagination
