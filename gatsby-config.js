@@ -52,6 +52,7 @@ module.exports = {
       options: {
         root: __dirname,
         gatsbyRemarkPlugins: [
+          `gatsby-remark-copy-linked-files`,
           {
             resolve: 'gatsby-remark-vscode',
             options: {
@@ -62,7 +63,7 @@ module.exports = {
           {
             resolve: 'gatsby-remark-images',
             options: {
-              maxWidth: 1035,
+              maxWidth: 1500,
               linkImagesToOriginal: false,
               withWebp: true,
             },

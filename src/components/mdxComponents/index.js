@@ -5,7 +5,6 @@ import Text from './text';
 import Code from './code';
 // import Blockquote from './blockquote';
 import Table from './table';
-import CodeBlock from './codeBlock';
 import Pre from './pre';
 
 /* eslint-disable */
@@ -18,7 +17,6 @@ export default {
   h6: props => <H as="h6" {...props} />,
   p: props => <Text {...props} />,
   pre: Pre,
-  code: CodeBlock,
   inlineCode: props => <Code {...props} />,
   table: Table,
   // blockquote: Blockquote,
