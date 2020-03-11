@@ -13,6 +13,7 @@ module.exports = {
   pathPrefix: '/gatsby-starter-blog',
 
   plugins: [
+    `gatsby-plugin-netlify-cache`,
     {
       // This tells us where the plugin lives
       // this one is in our node_modules
