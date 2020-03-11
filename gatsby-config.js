@@ -39,13 +39,6 @@ module.exports = {
         name: 'tip',
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/src/posts-import`,
-    //     name: 'post',
-    //   },
-    // },
     // Images
     {
       resolve: `gatsby-source-filesystem`,
@@ -59,12 +52,6 @@ module.exports = {
       options: {
         root: __dirname,
         gatsbyRemarkPlugins: [
-          // {
-          //   resolve: 'gatsby-remark-prismjs',
-          //   options: {
-          //     noInlineHighlight: true,
-          //   },
-          // },
           {
             resolve: 'gatsby-remark-vscode',
             options: {
@@ -72,12 +59,6 @@ module.exports = {
               extensions: [`theme-cobalt2`],
             },
           },
-          // {
-          //   resolve: `gatsby-remark-shiki`,
-          //   options: {
-          //     theme: 'zeit', // Default: 'nord'
-          //   },
-          // },
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -114,7 +95,6 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          // 'gatsby-remark-prismjs',
           // 'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
         ],
