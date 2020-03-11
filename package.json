@@ -17,11 +17,11 @@
     "file-type": "^14.1.4",
     "gatsby": "^2.19.38",
     "gatsby-image": "^2.2.43",
+    "gatsby-parallel-runner": "^1.2.3",
     "gatsby-plugin-feed": "^2.3.28",
     "gatsby-plugin-google-analytics": "^2.1.37",
     "gatsby-plugin-manifest": "^2.2.46",
     "gatsby-plugin-mdx": "^1.0.79",
-    "gatsby-plugin-netlify-cache": "^1.2.0",
     "gatsby-plugin-nprogress": "^2.1.20",
     "gatsby-plugin-offline": "^3.0.39",
     "gatsby-plugin-react-helmet": "^3.1.23",
@@ -91,8 +91,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "build": "gatsby build",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
+    "build": "gatsby-parallel-runner",
+    "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
     "scrape": "NODE_OPTIONS='--inspect=localhost:4444 -r esm' node scrape-tips.js"
   }
 }
