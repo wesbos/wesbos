@@ -53,7 +53,8 @@
     "string.prototype.replaceall": "^1.0.3",
     "styled-components": "^5.0.1",
     "theme-cobalt2": "^2.1.6",
-    "typeface-merriweather": "0.0.72"
+    "typeface-merriweather": "0.0.72",
+    "waait": "^1.0.5"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
