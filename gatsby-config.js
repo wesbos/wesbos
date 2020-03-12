@@ -13,6 +13,7 @@ module.exports = {
   pathPrefix: '/gatsby-starter-blog',
 
   plugins: [
+    `gatsby-plugin-styled-components`,
     {
       // This tells us where the plugin lives
       // this one is in our node_modules
