@@ -41,6 +41,7 @@
     "html-entities": "^1.2.1",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^16.2.1",
+    "netlify-lambda": "^1.6.3",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.0.2",
     "puppeteer-core": "^2.1.1",
@@ -95,6 +96,7 @@
     "start": "npm run develop",
     "build": "gatsby-parallel-runner",
     "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
-    "scrape": "NODE_OPTIONS='--inspect=localhost:4444 -r esm' node scrape-tips.js"
+    "scrape": "NODE_OPTIONS='--inspect=localhost:4444 -r esm' node scrape-tips.js",
+    "postinstall": "netlify-lambda install"
   }
 }
