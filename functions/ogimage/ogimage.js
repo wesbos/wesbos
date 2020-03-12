@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
 
   const photoBuffer = await getScreenshot(
     `https://condescending-pasteur-8185e8.netlify.com/thumbnail?${qs.toString()}`,
-    true
+    process.env.NETLIFY
   );
   return {
     statusCode: 200,
