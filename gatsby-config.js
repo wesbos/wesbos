@@ -1,6 +1,10 @@
 // const mdxFeed = require('gatsby-mdx/feed');
 
-console.log(process.env.DEPLOY_PRIME_URL);
+const {
+  NODE_ENV,
+  URL = 'https://wesbos.com',
+  DEPLOY_PRIME_URL = URL,
+} = process.env;
 
 module.exports = {
   siteMetadata: {
