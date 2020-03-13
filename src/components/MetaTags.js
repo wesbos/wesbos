@@ -15,7 +15,7 @@ export function PostMetaTags({ post }) {
     )
   ).toString();
 
-  const ogImage = `${process.env.GATSBY_DEPLOY_PRIME_URL}/.netlify/functions/thumbnail?${thumbnailQuery}`;
+  const ogImage = `${process.env.GATSBY_DEPLOY_PRIME_URL}/.netlify/functions/ogimage?${thumbnailQuery}`;
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />
