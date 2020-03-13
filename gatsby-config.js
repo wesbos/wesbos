@@ -1,6 +1,4 @@
-const prism = require('@mapbox/rehype-prism');
 // const mdxFeed = require('gatsby-mdx/feed');
-const path = require(`path`);
 
 module.exports = {
   siteMetadata: {

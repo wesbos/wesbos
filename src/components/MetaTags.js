@@ -1,11 +1,10 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { useLocation } from '@reach/router';
 
 export function PostMetaTags({ post }) {
-  const location = useLocation();
+  console.log(process.env.URL);
   const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
-  const url = `${location.origin}/${post.frontmatter.slug}`;
+  const url = `${process.env.URL}/${post.frontmatter.slug}`;
   const thumbnailData = {
     title: post.frontmatter.title,
     url,
@@ -17,7 +16,7 @@ export function PostMetaTags({ post }) {
     )
   ).toString();
 
-  const ogImage = `${location.origin}/.netlify/functions/thumbnail?${thumbnailQuery}`;
+  const ogImage = `${process.env.URL}/.netlify/functions/thumbnail?${thumbnailQuery}`;
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />
@@ -48,9 +47,9 @@ export function PostMetaTags({ post }) {
 export function TipMetaTags({ post }) {
   const location = useLocation();
   const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
-  const url = `${location.origin}/${post.frontmatter.slug}`;
+  const url = `${process.env.URL}/${post.frontmatter.slug}`;
   const thumbnailQuery = `?title=${post.frontmatter.title}&url=${url}&thumbnail=${post.frontmatter.image.publicURL}`;
-  const ogImage = `${location.origin}/.netlify/functions/thumbnail${thumbnailQuery}`;
+  const ogImage = `${process.env.URL}/.netlify/functions/thumbnail${thumbnailQuery}`;
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />
