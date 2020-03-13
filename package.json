@@ -94,6 +94,5 @@
     "build": "gatsby-parallel-runner",
     "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
     "scrape": "NODE_OPTIONS='--inspect=localhost:4444 -r esm' node scrape-tips.js",
-    "postinstall": "netlify-lambda install"
   }
 }
