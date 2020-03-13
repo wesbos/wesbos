@@ -1,15 +1,14 @@
 // const mdxFeed = require('gatsby-mdx/feed');
 
+console.log(process.env.DEPLOY_PRIME_URL);
+
 module.exports = {
   siteMetadata: {
     title: 'Wes Bos',
     author: 'Wes Bos',
     description: 'The Personal Website of Wes Bos',
-    siteUrl: 'https://wesbos.com',
+    siteUrl: process.env.DEPLOY_PRIME_URL,
   },
-  // ??? what is this
-  pathPrefix: '/gatsby-starter-blog',
-
   plugins: [
     `gatsby-plugin-styled-components`,
     {
