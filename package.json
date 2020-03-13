@@ -3,6 +3,9 @@
   "description": "Wesssss Site",
   "version": "1.0.0",
   "author": "Wes Bos <wesbos@gmail.com>",
+  "engines": {
+    "node": ">=12.14.0"
+  },
   "dependencies": {
     "@mdx-js/loader": "1.5.7",
     "@mdx-js/mdx": "1.5.7",
