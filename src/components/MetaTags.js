@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 export function PostMetaTags({ post }) {
-  console.log(process.env.URL);
+  console.log(process.env.DEPLOY_PRIME_URL);
   const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
   const url = `${process.env.URL}/${post.frontmatter.slug}`;
   const thumbnailData = {
