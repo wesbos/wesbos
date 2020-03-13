@@ -10,6 +10,7 @@ import H from '../components/mdxComponents/Headings';
 import ContentNav from '../components/ContentNav';
 import PostHeaderStyles from '../components/styles/PostHeaderStyles';
 import EditDialogStyles from '../components/styles/EditDialogStyles';
+import { PostMetaTags } from '../components/MetaTags';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -21,7 +22,7 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      # excerpt
+      excerpt
       fileAbsolutePath
       frontmatter {
         title
@@ -57,6 +58,7 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
 
         <Img image={post.frontmatter.image} alt={post.frontmatter.title} />
         <PostHeaderStyles>
+          <PostMetaTags post={post} />
           <H>{post.frontmatter.title}</H>
           <div className="postMeta">
             <time dateTime={post.frontmatter.date}>

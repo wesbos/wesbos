@@ -47,7 +47,7 @@ exports.handler = async (event, context) => {
   const qs = new URLSearchParams(event.queryStringParameters);
 
   const photoBuffer = await getScreenshot(
-    `https://condescending-pasteur-8185e8.netlify.com/thumbnail?${qs.toString()}`,
+    `${process.env.URL || `http://localhost:8888`}/thumbnail?${qs.toString()}`,
     process.env.NETLIFY
   );
   return {
