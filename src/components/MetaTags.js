@@ -1,9 +1,11 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+const baseURL = process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`;
+
 export function PostMetaTags({ post }) {
   const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
-  const url = `${process.env.GATSBY_DEPLOY_PRIME_URL}/${post.frontmatter.slug}`;
+  const url = `${baseURL}/${post.frontmatter.slug}`;
   const thumbnailData = {
     title: post.frontmatter.title,
     url,
@@ -43,12 +45,23 @@ export function PostMetaTags({ post }) {
     </Helmet>
   );
 }
-export function TipMetaTags({ post }) {
-  const location = useLocation();
-  const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
-  const url = `${process.env.GATSBY_DEPLOY_PRIME_URL}/${post.frontmatter.slug}`;
-  const thumbnailQuery = `?title=${post.frontmatter.title}&url=${url}&thumbnail=${post.frontmatter.image.publicURL}`;
-  const ogImage = `${process.env.GATSBY_DEPLOY_PRIME_URL}/.netlify/functions/thumbnail${thumbnailQuery}`;
+
+export function TipsMetaTags({ post }) {
+  console.log(post);
+  const canonical = `https://wesbos.com/tip/${post.frontmatter.slug}`;
+  const url = `${baseURL}/tip/${post.frontmatter.slug}`;
+  const thumbnailData = {
+    title: post.excerpt,
+    url,
+    thumbnail: post.frontmatter.images?.[0]?.publicURL,
+  };
+  const thumbnailQuery = new URLSearchParams(
+    Object.fromEntries(
+      Object.entries(thumbnailData).filter(([key, val]) => val !== undefined)
+    )
+  ).toString();
+
+  const ogImage = `${baseURL}/.netlify/functions/ogimage?${thumbnailQuery}`;
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />
@@ -60,7 +73,6 @@ export function TipMetaTags({ post }) {
       <meta name="twitter:title" content={post.frontmatter.title} />
       <meta name="twitter:description" content={post.excerpt} />
       <meta name="twitter:image" content={ogImage} />
-
       <meta property="og:type" content="article" />
       <meta property="og:title" content={post.frontmatter.title} />
       <meta property="og:url" content={url} />

@@ -4,6 +4,16 @@ import GlobalStyles from '../components/styles/GlobalStyles';
 import H from '../components/mdxComponents/Headings';
 import logo from '../assets/images/logo.png';
 
+function getFontSize(length) {
+  if (length > 55) {
+    return `5rem`;
+  }
+  if (length > 32) {
+    return `7rem`;
+  }
+  return `10rem`;
+}
+
 export default function ThumbNail({ location }) {
   if (!location.href) return null;
   const url = new URL(location.href);
@@ -12,7 +22,7 @@ export default function ThumbNail({ location }) {
   const linkURL = new URL(link);
   const title = url.searchParams.get('title');
   const H1 = styled(H)`
-    font-size: ${title.length > 32 ? `7rem` : `10rem`};
+    font-size: ${getFontSize(title.length)};
     margin: 0;
     line-height: 1.3;
   `;

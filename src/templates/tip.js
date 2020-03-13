@@ -7,6 +7,7 @@ import ContentNav from '../components/ContentNav';
 import H from '../components/mdxComponents/Headings';
 import TipMeta from '../components/TipMeta';
 import { Grid } from '../components/styles/Grid';
+import { TipsMetaTags } from '../components/MetaTags';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -18,8 +19,10 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
+      excerpt
       frontmatter {
         title
+        slug
         tweetURL
         date(formatString: "MMMM DD, YYYY")
         images {
@@ -36,6 +39,7 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
   return (
     <Layout>
       <div>
+        <TipsMetaTags post={tip} />
         <Grid columns="auto 1fr">
           <H>Hot Tip</H>
           <TipMeta tip={tip} />
@@ -43,10 +47,12 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
         <MDXRenderer>{tip.body}</MDXRenderer>
         {tip.frontmatter.videos &&
           tip.frontmatter.videos.map(url => (
-            <video src={url} autoPlay mute loop />
+            <video key={url} src={url} autoPlay mute loop />
           ))}
         {tip.frontmatter.images &&
-          tip.frontmatter.images.map(image => <Img image={image} />)}
+          tip.frontmatter.images.map(image => (
+            <Img key={image.id} image={image} />
+          ))}
       </div>
       <ContentNav
         pathPrefix={pageContext.pathPrefix}

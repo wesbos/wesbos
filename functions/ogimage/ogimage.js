@@ -48,7 +48,7 @@ exports.handler = async (event, context) => {
 
   const photoBuffer = await getScreenshot(
     `${process.env.URL || `http://localhost:8888`}/thumbnail?${qs.toString()}`,
-    process.env.NETLIFY
+    !process.env.NETLIFY
   );
   return {
     statusCode: 200,
