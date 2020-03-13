@@ -91,7 +91,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "prebuild": "GATSBY_DEPLOY_PRIME_URL=$DEPLOY_PRIME_URL",
+    "prebuild": "export GATSBY_DEPLOY_PRIME_URL=$DEPLOY_PRIME_URL",
     "build": "gatsby-parallel-runner",
     "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
     "scrape": "NODE_OPTIONS='--inspect=localhost:4444 -r esm' node scrape-tips.js"
