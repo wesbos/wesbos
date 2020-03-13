@@ -2,6 +2,8 @@ require('dotenv').config();
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
+process.env.GATSBY_DEPLOY_PRIME_URL = process.env.DEPLOY_PRIME_URL;
+
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
   const { errors, data } = await graphql(
