@@ -10,16 +10,16 @@ export default function Footer() {
       <p>Hey im the footer</p>
       twitter insta youtube github syntax my courses my podcast my twitter insta
       * list of posts * list of courses
-      <p>NETLIFY: ${process.env.NETLIFY}</p>
-      <p>BUILD_ID: ${process.env.BUILD_ID}</p>
-      <p>CONTEXT: ${process.env.CONTEXT}</p>
-      <p>REPOSITORY_URL: ${process.env.REPOSITORY_URL}</p>
-      <p>BRANCH: ${process.env.BRANCH}</p>
-      <p>HEAD: ${process.env.HEAD}</p>
-      <p>URL: ${process.env.URL}</p>
-      <p>DEPLOY_URL: ${process.env.DEPLOY_URL}</p>
-      <p>DEPLOY_PRIME_URL: ${process.env.DEPLOY_PRIME_URL}</p>
-      <p>DEPLOY_ID: ${process.env.DEPLOY_ID}</p>
+      <p>NETLIFY: {process.env.GATSBY_NETLIFY}</p>
+      <p>BUILD_ID: {process.env.GATSBY_BUILD_ID}</p>
+      <p>CONTEXT: {process.env.GATSBY_CONTEXT}</p>
+      <p>REPOSITORY_URL: {process.env.GATSBY_REPOSITORY_URL}</p>
+      <p>BRANCH: {process.env.GATSBY_BRANCH}</p>
+      <p>HEAD: {process.env.GATSBY_HEAD}</p>
+      <p>URL: {process.env.GATSBY_URL}</p>
+      <p>DEPLOY_URL: {process.env.GATSBY_DEPLOY_URL}</p>
+      <p>DEPLOY_PRIME_URL: {process.env.GATSBY_DEPLOY_PRIME_URL}</p>
+      <p>DEPLOY_ID: {process.env.DEPLOY_ID}</p>
     </FooterStyles>
   );
 }

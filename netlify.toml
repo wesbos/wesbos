@@ -1,3 +1,13 @@
 [build]
   command = "npm run build"
   functions = "functions/"
+[context.production.environment]
+  GATSBY_NETLIFY="$NETLIFY"
+  GATSBY_BUILD_ID="$BUILD_ID"
+  GATSBY_CONTEXT="$CONTEXT"
+  GATSBY_REPOSITORY_URL="$REPOSITORY_URL"
+  GATSBY_BRANCH="$BRANCH"
+  GATSBY_HEAD="$HEAD"
+  GATSBY_URL="$URL"
+  GATSBY_DEPLOY_URL="$DEPLOY_URL"
+  GATSBY_DEPLOY_PRIME_URL="$DEPLOY_PRIME_URL"
