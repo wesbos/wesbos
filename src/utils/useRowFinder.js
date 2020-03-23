@@ -11,9 +11,10 @@ export default function useRowFinder() {
   // when the nav changes size, run this callback
   function callback([entry]) {
     // if there is nothing, skip it
-    if (!entry || !entry.target || !entry.target.children) return;
+    console.log(entry);
+    if (!entry.target?.children) return;
     // if the width has not changed, skip it
-    const width = entry.borderBoxSize.inlineSize;
+    const { width } = entry.contentRect;
     if (width === previous.current.width && previous.current.renders >= 2) {
       // console.log('Same width, skipping');
       previous.current.renders = 0;
