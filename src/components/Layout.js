@@ -23,6 +23,8 @@ function Layout({ location, title, children, className }) {
         <Fonts />
         <Helmet>
           <title>{title}</title>
+          <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         </Helmet>
         <LayoutStyles className={className}>
           <Nav />

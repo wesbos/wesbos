@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { IoIosLink, IoLogoTwitter } from 'react-icons/io';
+import Helmet from 'react-helmet';
 import Img from '../components/Img';
 import Layout from '../components/Layout';
 import H from '../components/mdxComponents/Headings';
@@ -12,6 +12,9 @@ import TipMeta from '../components/TipMeta';
 export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
   return (
     <Layout>
+      <Helmet>
+        <title>{`Hot Tips — Page ${pageContext.currentPage}`}</title>
+      </Helmet>
       <H>🔥 There are {tips.totalCount} Hot Tips</H>
       <p>
         Hot tips are spicy lil' nuggets related to web development and tooling
