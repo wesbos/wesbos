@@ -10,7 +10,7 @@ import Pagination from '../components/Pagination';
 const Blog = function({ data, pageContext }) {
   if (!data) return <p>Shooooot! No data found!</p>;
   return (
-    <Layout>
+    <>
       <Pagination
         currentPage={pageContext.currentPage}
         totalCount={data.allMdx.totalCount}
@@ -52,7 +52,7 @@ const Blog = function({ data, pageContext }) {
             );
           })}
       </PostGrid>
-    </Layout>
+    </>
   );
 };
 

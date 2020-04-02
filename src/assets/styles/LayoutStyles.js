@@ -6,7 +6,7 @@ const LayoutStyles = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   &.welcome {
-    background: url(${handsome}) no-repeat;
+    background: url(${handsome}) no-repeat top center;
   }
 `;
 

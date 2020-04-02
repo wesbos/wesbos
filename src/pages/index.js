@@ -1,7 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import Layout from '../components/Layout';
 import WelcomeStyles from '../assets/styles/WelcomeStyles';
 import H from '../components/mdxComponents/Headings';
 
@@ -9,7 +8,7 @@ export default function HomePage({ data }) {
   const { title, description } = data.site.siteMetadata;
 
   return (
-    <Layout title={title} className="welcome">
+    <div className="welcome">
       <Helmet
         htmlAttributes={{ lang: 'en' }}
         meta={[{ name: 'description', content: description }]}
@@ -38,7 +37,7 @@ export default function HomePage({ data }) {
         </ul>
         <p />
       </WelcomeStyles>
-    </Layout>
+    </div>
   );
 }
 

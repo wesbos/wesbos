@@ -11,7 +11,7 @@ import TipMeta from '../components/TipMeta';
 
 export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
   return (
-    <Layout>
+    <>
       <Helmet>
         <title>{`Hot Tips — Page ${pageContext.currentPage}`}</title>
       </Helmet>
@@ -45,7 +45,7 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
           </TipStyles>
         ))}
       </div>
-    </Layout>
+    </>
   );
 }
 

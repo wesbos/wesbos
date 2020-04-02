@@ -13,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
     --lightGrey: #d8d8d8;
     --lightGray: var(--lightGrey);
     --imGoingToFaint: #fbfbfb;
+    --maxWidth: 1200px;
   }
   html {
     box-sizing: border-box;
@@ -143,5 +144,8 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
+  img {
+    max-width: 100%;
+  }
 `;
 export default GlobalStyles;

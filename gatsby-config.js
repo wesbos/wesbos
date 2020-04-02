@@ -10,6 +10,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-styled-components`,
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layout`),
+      },
+    },
+    {
       // This tells us where the plugin lives
       // this one is in our node_modules
       resolve: `gatsby-source-filesystem`,

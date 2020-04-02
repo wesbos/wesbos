@@ -15,7 +15,8 @@ const ContentStyles = styled.div`
   margin: 0 auto;
 `;
 
-function Layout({ location, title, children, className }) {
+function Layout({ location, title, children, className, pageContext }) {
+  if (pageContext.layout === 'thumbnail') return children;
   return (
     <MDXProvider components={mdxComponents}>
       <>

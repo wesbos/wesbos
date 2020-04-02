@@ -170,3 +170,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions;
+
+  if (page.path.match(/thumbnail/)) {
+    page.context.layout = 'thumbnail';
+    createPage(page);
+  }
+};

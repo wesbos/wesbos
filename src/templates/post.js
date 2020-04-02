@@ -49,56 +49,54 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
 
   return (
     <>
-      <Layout title={`${post.frontmatter.title} - Wes Bos`}>
-        {/* <img
+      {/* <Layout title={`${post.frontmatter.title} - Wes Bos`}> */}
+      {/* <img
           width="400"
           src={`http://localhost:8888/.netlify/functions/ogimage${thumbnailQuery}`}
           alt={post.title}
         /> */}
 
-        <Img image={post.frontmatter.image} alt={post.frontmatter.title} />
-        <PostHeaderStyles>
-          <PostMetaTags post={post} />
-          <H>{post.frontmatter.title}</H>
-          <div className="postMeta">
-            <time dateTime={post.frontmatter.date}>
-              {post.frontmatter.date}
-            </time>
-            <span>{post.frontmatter.category.join(', ')}</span>
-            <a rel="noopener noreferrer" target="_blank" href={editURL}>
-              Edit Post <IoLogoGithub />
-            </a>
-          </div>
-        </PostHeaderStyles>
-        <MDXRenderer
-          scope={{
-            YouTube,
-            ...scope,
-          }}
-        >
-          {post.body}
-        </MDXRenderer>
-        <EditDialogStyles>
-          <p>
-            Find an issue with this post? Think you could clarify, update or add
-            something?
-          </p>
-          <p>
-            All my posts are available to edit on Github. Any fix, little or
-            small, is appreciated!
-          </p>
-          <p>
-            <a rel="noopener noreferrer" target="_blank" href={editURL}>
-              <IoLogoGithub /> Edit on Github
-            </a>
-          </p>
-        </EditDialogStyles>
-        <ContentNav
-          pathPrefix={pageContext.pathPrefix}
-          prev={pageContext.prev}
-          next={pageContext.next}
-        />
-      </Layout>
+      <Img image={post.frontmatter.image} alt={post.frontmatter.title} />
+      <PostHeaderStyles>
+        <PostMetaTags post={post} />
+        <H>{post.frontmatter.title}</H>
+        <div className="postMeta">
+          <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+          <span>{post.frontmatter.category.join(', ')}</span>
+          <a rel="noopener noreferrer" target="_blank" href={editURL}>
+            Edit Post <IoLogoGithub />
+          </a>
+        </div>
+      </PostHeaderStyles>
+      <MDXRenderer
+        scope={{
+          YouTube,
+          ...scope,
+        }}
+      >
+        {post.body}
+      </MDXRenderer>
+      <EditDialogStyles>
+        <p>
+          Find an issue with this post? Think you could clarify, update or add
+          something?
+        </p>
+        <p>
+          All my posts are available to edit on Github. Any fix, little or
+          small, is appreciated!
+        </p>
+        <p>
+          <a rel="noopener noreferrer" target="_blank" href={editURL}>
+            <IoLogoGithub /> Edit on Github
+          </a>
+        </p>
+      </EditDialogStyles>
+      <ContentNav
+        pathPrefix={pageContext.pathPrefix}
+        prev={pageContext.prev}
+        next={pageContext.next}
+      />
+      {/* </Layout> */}
     </>
   );
 }

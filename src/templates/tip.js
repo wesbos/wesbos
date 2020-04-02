@@ -37,7 +37,7 @@ export const pageQuery = graphql`
 
 export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
   return (
-    <Layout>
+    <>
       <div>
         <TipsMetaTags post={tip} />
         <Grid columns="auto 1fr">
@@ -59,6 +59,6 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
         prev={pageContext.prev}
         next={pageContext.next}
       />
-    </Layout>
+    </>
   );
 }
