@@ -29,6 +29,7 @@ async function getTweets() {
     // we ask for 200, and then only give 5. We have to do this because it includes rts and replies as part of this 200? ?!?!?
     count: 200,
     trim_user: true,
+    tweet_mode: 'extended',
   });
 
   cache.tweets = tweets

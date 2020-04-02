@@ -99,7 +99,10 @@ export default function Twitter() {
       {!tweets.length && <p>brb getting some good tweets...</p>}
       {tweets.map(tweet => {
         const { media } = tweet.entities;
-        const text = tweet.text.split('https://t.co').shift();
+        const text = tweet.full_text
+          .split('https://t.co')
+          .shift()
+          .slice(0, 100);
         return (
           <div>
             <p>
@@ -110,7 +113,7 @@ export default function Twitter() {
                 href={`https://twitter.com/wesbos/status/${tweet.id_str}`}
               >
                 <Media media={media} alt={text} />
-                {text}
+                {text}…
               </a>
             </p>
             <TweetMeta>

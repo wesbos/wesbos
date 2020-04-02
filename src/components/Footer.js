@@ -34,6 +34,11 @@ const FooterStyles = styled.footer`
         margin-top: -30px;
         ${dirty}
         background: none;
+        svg {
+          position: relative;
+          top: 3.5px;
+          margin-right: 3px;
+        }
         .highlight {
           background: var(--yellow) url(${blackGrit});
           background-size: 500px;
