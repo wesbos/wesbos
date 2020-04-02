@@ -75,9 +75,12 @@ const GlobalStyles = createGlobalStyle`
     text-decoration-style: solid;
     text-decoration-thickness: 2px; */
   }
-  p {
+  p, ul, ol {
     line-height: 1.77777777777777776777777777;
     font-weight: 400;
+  }
+  ul {
+    list-style-type: square;
   }
 
   p a, li a {

@@ -30,7 +30,9 @@ export default function Instagram() {
   if (!podcast)
     return (
       <PodStyles>
-        <h3>Syntax Podcast</h3>
+        <h3>
+          <span className="highlight">Syntax Podcast</span>
+        </h3>
         <p>Hold on — I'm grabbin' the last one.</p>
         <a href="https://syntax.fm/">Listen Now → </a>
         <img src="/syntax.jpg" alt="Syntax Podcast" />
