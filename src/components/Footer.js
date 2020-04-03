@@ -59,6 +59,7 @@ export default function Footer() {
         <Twitter />
         <Instagram />
         <LatestCourse />
+        <div>Youtube, Github, Facebook,</div>
       </div>
     </FooterStyles>
   );

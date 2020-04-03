@@ -104,7 +104,7 @@ export default function Twitter() {
           .shift()
           .slice(0, 100);
         return (
-          <div>
+          <div key={tweet.id_str}>
             <p>
               <a
                 className="tweet-link"

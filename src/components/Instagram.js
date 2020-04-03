@@ -65,7 +65,10 @@ function Stories() {
       <h4>Stories</h4>
       <StoriesStyles href="https://instagram.com/wesbos">
         {stories.map(story => (
-          <img src={converIGtoJPG(story.media_preview)} />
+          <img
+            key={story.media_preview}
+            src={converIGtoJPG(story.media_preview)}
+          />
         ))}
       </StoriesStyles>
     </>
@@ -89,7 +92,7 @@ export default function Instagram() {
           Instant Grams
         </span>
       </h3>
-      <p>{!gramz.length && <p>One sec, getting the gramz...</p>}</p>
+      {!gramz.length && <p>One sec, getting the gramz...</p>}
       <Stories />
       {gramz.length ? <h4>Posts</h4> : null}
       <InstaStyles>
