@@ -20,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
     border: 20px solid black;
     border-color: black;
     border-image: url(${whiteGrit}) 200 round;
-    background: white;
+    /* background: black; */
     font-size: 10px;
     font-family: 'HCo Operator Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     position: relative;
@@ -35,6 +35,8 @@ const GlobalStyles = createGlobalStyle`
       left: -20px;
       z-index: -1;
       border: 20px solid black;
+      background: white;
+      /* clip-path: polygon(0 90px, 100% 20px, 100% 100%, 0% 100%); */
     }
     &:before {
       --size: 40px;
@@ -49,6 +51,8 @@ const GlobalStyles = createGlobalStyle`
       z-index: -1;
       border: var(--size) solid transparent;
       border-image: url(${blackGrit}) 250 round;
+      /* background: black url(${whiteGrit});
+      background-size: 250px; */
     }
   }
   body {

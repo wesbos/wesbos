@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 import logo from '../assets/images/logo.png';
 import H from './mdxComponents/Headings';
 import useRowFinder from '../utils/useRowFinder';
+// import blackBorder from './styles/grunge-border-black.png';
 
 const NavStyles = styled.nav`
   border-bottom: 5px solid var(--yellow);
@@ -26,6 +27,8 @@ const NavUl = styled.ul`
   margin: 0;
   padding: 3rem 2rem 2rem 2rem;
   box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.06);
+  /* box-shadow: 0 -4px 18px 2px rgba(0,0,0,0.1); */
+  /* border-image: url(${blackBorder}) 200 round; */
 `;
 
 const NavLi = styled.li`
