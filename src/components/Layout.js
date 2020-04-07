@@ -15,7 +15,16 @@ const ContentStyles = styled.div`
   margin: 0 auto;
 `;
 
-function Layout({ location, title, children, className, pageContext }) {
+function Layout({
+  location,
+  title,
+  children,
+  className,
+  pageContext,
+  path,
+  ...rest
+}) {
+  console.log({ location, title, children, pageContext, rest });
   if (pageContext.layout === 'thumbnail') return children;
   return (
     <MDXProvider components={mdxComponents}>
@@ -27,8 +36,8 @@ function Layout({ location, title, children, className, pageContext }) {
           <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         </Helmet>
-        <LayoutStyles className={className}>
-          <Nav />
+        <LayoutStyles className={path === '/' ? 'welcome' : null}>
+          <Nav pageContext={pageContext} />
           <ContentStyles>{children}</ContentStyles>
           <Footer />
         </LayoutStyles>

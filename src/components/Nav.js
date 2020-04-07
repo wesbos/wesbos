@@ -27,8 +27,6 @@ const NavUl = styled.ul`
   margin: 0;
   padding: 3rem 2rem 2rem 2rem;
   box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.06);
-  /* box-shadow: 0 -4px 18px 2px rgba(0,0,0,0.1); */
-  /* border-image: url(${blackBorder}) 200 round; */
 `;
 
 const NavLi = styled.li`
@@ -65,7 +63,8 @@ const NavLi = styled.li`
     color: black;
     text-decoration: none;
     line-height: 1;
-    &[aria-current='page'] {
+    &[aria-current='page'],
+    &.current-parent {
       .grit {
         text-decoration: underline;
         text-decoration-color: var(--yellow);
@@ -82,7 +81,8 @@ const NavLi = styled.li`
     }
   }
 `;
-export default function Nav() {
+export default function Nav({ pageContext }) {
+  console.log(pageContext);
   const { ref, getRow } = useRowFinder();
   return (
     <NavStyles>
@@ -114,13 +114,23 @@ export default function Nav() {
         </NavLi>
 
         <NavLi row={getRow(3)}>
-          <Link to="/blog">
+          <Link
+            to="/blog"
+            className={
+              pageContext.collection === 'post' ? 'current-parent' : null
+            }
+          >
             <small className="top">the</small>
             <H as="span">Blog</H>
           </Link>
         </NavLi>
         <NavLi row={getRow(4)}>
-          <Link to="/tips">
+          <Link
+            to="/tips"
+            className={
+              pageContext.collection === 'post' ? 'current-parent' : null
+            }
+          >
             <small className="top">🔥</small>
             <H as="span">Tips</H>
             <small className="bottom">real spicy</small>

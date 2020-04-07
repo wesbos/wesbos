@@ -96,7 +96,6 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
         prev={pageContext.prev}
         next={pageContext.next}
       />
-      {/* </Layout> */}
     </>
   );
 }

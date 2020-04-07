@@ -46,11 +46,6 @@ const FooterStyles = styled.footer`
           top: 3.5px;
           margin-right: 3px;
         }
-        .highlight {
-          background: var(--yellow) url(${blackGrit});
-          background-size: 500px;
-          padding: 5px;
-        }
       }
       p {
         font-size: 1.6rem;

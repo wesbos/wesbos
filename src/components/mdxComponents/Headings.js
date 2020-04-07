@@ -24,8 +24,12 @@ const headingSizes = {
 };
 
 const HStyles = styled.h1`
+  /* Default h1 */
   font-size: ${headingSizes.h1}rem;
+  /* Default allow to change */
   font-size: ${({ as }) => as && `${headingSizes[as]}rem`};
+  /* Visually override if need different font size vs the semantic element */
+  font-size: ${({ looksLike }) => looksLike && `${headingSizes[looksLike]}rem`};
   position: relative;
   &:after {
     position: absolute;
@@ -61,7 +65,7 @@ const HStyles = styled.h1`
     pointer-events: none;
     background: var(--yellow);
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     --translate: -0.5rem;
     --rotate: 0deg;
     transform: translateX(var(--translate)) translateY(var(--translate))

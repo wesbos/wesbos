@@ -40,6 +40,7 @@ async function makePostsFromMdx({ graphql, actions }) {
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
+        collection: 'post',
         prev,
         next,
         pathPrefix: '',
@@ -83,6 +84,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
       context: {
         slug: tip.node.fields.slug,
         prev,
+        collection: 'tip',
         next,
         pathPrefix: '/tip',
       },

@@ -154,5 +154,10 @@ const GlobalStyles = createGlobalStyle`
   img {
     max-width: 100%;
   }
+  .highlight {
+    background: var(--yellow) url(${blackGrit});
+    background-size: 500px;
+    padding: 5px;
+  }
 `;
 export default GlobalStyles;
