@@ -99,7 +99,7 @@ export default function Nav({ pageContext }) {
           </Link>
         </NavLi>
         <NavLi row={getRow(1)}>
-          <a href="https://syntax.fm">
+          <a href="https://syntax.fm" target="_blank">
             <small className="top">The Syntax</small>
             <H as="span">Podcast</H>{' '}
             <small className="bottom">Web Development</small>

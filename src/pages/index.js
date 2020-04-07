@@ -23,22 +23,16 @@ export default function HomePage({ data }) {
           </span>
         </H>
 
-        <p>I'm a full Stack JavaScript developer from Canada.</p>
+        <p>I'm a full Stack JavaScript developer from Canada 🇨🇦.</p>
         <p>
           I create <Link to="/courses">free + premium courses</Link> and do a{' '}
           <a href="https://syntax.fm">twice-weekly podcast</a> called Syntax.
         </p>
         <p>
           You can <Link to="/about">read more about me here</Link>, but stick
-          around if you like:
+          around if you like CSS, JavaScript, mediocre jokes, learnings new
+          things or BBQ Tips.
         </p>
-        <ul>
-          <li>mediocre jokes</li>
-          <li>pretty good explanations on how web development works</li>
-          <li>🔥 Hot Tips</li>
-          <li>BBQ</li>
-        </ul>
-        <p />
       </WelcomeStyles>
     </div>
   );
