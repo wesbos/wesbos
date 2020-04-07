@@ -10,7 +10,6 @@
     "@mdx-js/loader": "1.5.7",
     "@mdx-js/mdx": "1.5.7",
     "@mdx-js/tag": "0.20.3",
-    "chrome-aws-lambda": "^2.1.1",
     "core-js": "^3.6.4",
     "date-fns": "^2.10.0",
     "dotenv": "^8.2.0",
@@ -44,7 +43,6 @@
     "netlify-lambda": "^1.6.3",
     "normalize.css": "^8.0.1",
     "prism-react-renderer": "^1.0.2",
-    "puppeteer-core": "^2.1.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
@@ -54,8 +52,7 @@
     "speakingurl": "^14.0.1",
     "string.prototype.replaceall": "^1.0.3",
     "styled-components": "^5.0.1",
-    "theme-cobalt2": "^2.1.6",
-    "waait": "^1.0.5"
+    "theme-cobalt2": "^2.1.6"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
