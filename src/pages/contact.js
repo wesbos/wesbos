@@ -1,5 +1,6 @@
 import React from 'react';
 import H from '../components/mdxComponents/Headings';
+import { PostMetaTags } from '../components/MetaTags';
 
 export default function ContactPage({ path }) {
   return (

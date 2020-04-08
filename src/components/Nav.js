@@ -82,7 +82,6 @@ const NavLi = styled.li`
   }
 `;
 export default function Nav({ pageContext }) {
-  console.log(pageContext);
   const { ref, getRow } = useRowFinder();
   return (
     <NavStyles>

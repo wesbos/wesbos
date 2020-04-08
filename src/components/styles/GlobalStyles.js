@@ -129,7 +129,7 @@ const GlobalStyles = createGlobalStyle`
 
   }
   code, kbd, samp {
-    font-family: 'Operator mono';
+    font-family: 'HCo Operator Mono';
     font-weight: 300;
   }
 

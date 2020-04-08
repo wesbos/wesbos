@@ -38,10 +38,12 @@ export default function TipsPage({
             <Link to={`/tip/${tip.frontmatter.slug}`}>
               {tip.frontmatter.videos &&
                 tip.frontmatter.videos.map(url => (
-                  <video src={url} autoPlay mute loop />
+                  <video src={url} key={url} autoPlay mute="true" loop />
                 ))}
               {tip.frontmatter.images &&
-                tip.frontmatter.images.map(image => <Img image={image} />)}
+                tip.frontmatter.images.map((image, i) => (
+                  <Img image={image} key={`image${i}`} />
+                ))}
             </Link>
             <div className="tipContent">
               <TipMeta tip={tip} />
