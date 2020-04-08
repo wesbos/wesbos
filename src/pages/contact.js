@@ -1,7 +1,7 @@
 import React from 'react';
 import H from '../components/mdxComponents/Headings';
 
-export default function AboutPage({ data }) {
+export default function ContactPage({ path }) {
   return (
     <>
       <H>Contact</H>
@@ -79,6 +79,15 @@ export default function AboutPage({ data }) {
       </ul>
 
       <p>Thanks, have a great day!</p>
+
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: `Contact`,
+          },
+        }}
+      />
     </>
   );
 }

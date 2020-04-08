@@ -2,19 +2,30 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import format from 'date-fns/format';
 import Img from '../components/Img';
-import Layout from '../components/Layout';
 import PostGrid, { PostGridItem } from '../styles/PostGrid';
 import H from '../components/mdxComponents/Headings';
 import Pagination from '../components/Pagination';
+import { PostMetaTags } from '../components/MetaTags';
 
-const Blog = function({ data, pageContext }) {
-  if (!data) return <p>Shooooot! No data found!</p>;
+const Blog = function({ data, pageContext, path }) {
+  console.log(path);
+  if (!data) return <p>Shooooot! No Post found!</p>;
   return (
     <>
       <Pagination
         currentPage={pageContext.currentPage}
         totalCount={data.allMdx.totalCount}
         pathPrefix="/blog/"
+      />
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: `Blog ${
+              pageContext.currentPage ? `- Page ${pageContext.currentPage}` : ''
+            }`,
+          },
+        }}
       />
       <PostGrid>
         {data.allMdx &&

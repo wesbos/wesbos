@@ -8,8 +8,13 @@ import H from '../components/mdxComponents/Headings';
 import TipStyles from '../components/styles/TipStyles';
 import Pagination from '../components/Pagination';
 import TipMeta from '../components/TipMeta';
+import { PostMetaTags } from '../components/MetaTags';
 
-export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
+export default function TipsPage({
+  data: { allMdx: tips },
+  pageContext,
+  path,
+}) {
   return (
     <>
       <Helmet>
@@ -45,6 +50,16 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext }) {
           </TipStyles>
         ))}
       </div>
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: `🔥 Hot Tips ${
+              pageContext.currentPage ? `- Page ${pageContext.currentPage}` : ''
+            }`,
+          },
+        }}
+      />
     </>
   );
 }

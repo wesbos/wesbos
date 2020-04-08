@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import H from '../components/mdxComponents/Headings';
+import { PostMetaTags } from '../components/MetaTags';
 
 const CourseListStyles = styled.div`
   display: grid;
@@ -26,7 +27,7 @@ const CourseListStyles = styled.div`
   }
 `;
 
-export default function AboutPage({ data }) {
+export default function AboutPage({ data, path }) {
   return (
     <>
       <p>
@@ -226,17 +227,14 @@ export default function AboutPage({ data }) {
           </p>
         </div>
       </CourseListStyles>
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: 'Courses',
+          },
+        }}
+      />
     </>
   );
 }
-
-// export const pageQuery = graphql`
-//   query {
-//     site {
-//       siteMetadata {
-//         title
-//         description
-//       }
-//     }
-//   }
-// `;

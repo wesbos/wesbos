@@ -33,15 +33,19 @@ export function PostMetaTags({ post }) {
       <meta property="og:title" content={post.frontmatter.title} />
       <meta property="og:url" content={url} />
       <meta property="og:description" content={post.excerpt} />
-      <meta
-        property="article:published_time"
-        content={new Date(post.frontmatter.date).toISOString()}
-      />
+      {post.frontmatter.date ? (
+        <meta
+          property="article:published_time"
+          content={new Date(post.frontmatter.date).toISOString()}
+        />
+      ) : null}
+
       <meta property="og:site_name" content="Wes Bos" />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_CA" />
+      <title>{post.frontmatter.title} - Wes Bos</title>
     </Helmet>
   );
 }
@@ -86,6 +90,7 @@ export function TipsMetaTags({ post }) {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_CA" />
+      <title>{post.frontmatter.title} - Wes Bos</title>
     </Helmet>
   );
 }

@@ -3,8 +3,9 @@ import { Link, graphql } from 'gatsby';
 import H from '../components/mdxComponents/Headings';
 import Img from '../components/Img';
 import useInterval from '../utils/useInterval';
+import { PostMetaTags } from '../components/MetaTags';
 
-function useOldGuy() {
+function useOldGuy({ update = 60000 }) {
   const startingDate = 940001932590;
   const birth = 572195051960;
   const [timeSinceStarting, setTime] = useState(Date.now() - startingDate);
@@ -12,7 +13,7 @@ function useOldGuy() {
   useInterval(() => {
     setTime(Date.now() - startingDate);
     setAge(Date.now() - birth);
-  }, 100);
+  }, update);
   return {
     timeSinceStarting,
     timeAsYears: Math.floor(timeSinceStarting / 1000 / 60 / 60 / 24 / 365),
@@ -22,11 +23,29 @@ function useOldGuy() {
   };
 }
 
-export default function AboutPage({ data }) {
-  console.log(data);
-  const { age, ageAsYears, timeSinceStarting, timeAsYears } = useOldGuy();
+function TimeSinceStarting() {
+  const { timeSinceStarting } = useOldGuy({
+    update: 100,
+  });
+  return <>{timeSinceStarting}</>;
+}
+
+export default function AboutPage({ data, path }) {
+  const { age, ageAsYears, timeSinceStarting, timeAsYears } = useOldGuy({
+    update: 60000,
+  });
   return (
     <>
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: 'About',
+            image: `${process.env.GATSBY_DEPLOY_PRIME_URL ||
+              `http://localhost:8888`}${data.wes.childImageSharp.fluid.src}`,
+          },
+        }}
+      />
       <H>About</H>
       <p>Hey, I'm Wes Bos.</p>
       <Img
@@ -46,7 +65,8 @@ export default function AboutPage({ data }) {
         >
           making websites
         </a>{' '}
-        for about {timeAsYears} years - that is {timeSinceStarting} miliseconds!
+        for about {timeAsYears} years - that is <TimeSinceStarting />{' '}
+        miliseconds!
       </p>
 
       <p>
