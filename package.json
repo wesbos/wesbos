@@ -17,7 +17,7 @@
     "file-type": "^14.1.4",
     "gatsby": "^2.19.38",
     "gatsby-image": "^2.2.43",
-    "gatsby-parallel-runner": "^1.2.3",
+    "gatsby-parallel-runner": "^1.2.5",
     "gatsby-plugin-feed": "^2.3.28",
     "gatsby-plugin-google-analytics": "^2.1.37",
     "gatsby-plugin-layout": "^1.2.1",
