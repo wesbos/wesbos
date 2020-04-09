@@ -38,7 +38,7 @@ const TweetMeta = styled.div`
     content: '';
     width: 100%;
     height: 1.5px;
-    background: black;
+    background: var(--dark);
   }
   span {
     display: flex;

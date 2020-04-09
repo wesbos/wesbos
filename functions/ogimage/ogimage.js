@@ -27,7 +27,6 @@ async function getScreenshot(url, isDev) {
   // first check if this value has been cached
   const cachedImage = cached.get(url);
   if (cachedImage) {
-    console.log('Cached image! Return this');
     return cachedImage;
   }
   const options = await getOptions(isDev);

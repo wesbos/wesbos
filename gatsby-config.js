@@ -16,6 +16,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-prettier-build`,
+      options: {
+        types: ['html'], // default value
+      },
+    },
+    {
       // This tells us where the plugin lives
       // this one is in our node_modules
       resolve: `gatsby-source-filesystem`,

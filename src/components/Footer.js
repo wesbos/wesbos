@@ -10,14 +10,14 @@ import whiteGrit from './mdxComponents/whitegrit.png';
 import dirty from './styles/Dirty';
 
 const FooterStyles = styled.footer`
-  background: black url(${whiteGrit});
+  background: var(--dark) url(${whiteGrit});
   background-size: 500px;
   padding-top: 180px;
   padding-bottom: 80px;
   clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
 
   & > div {
-    color: black;
+    color: var(--dark);
     display: grid;
     max-width: var(--maxWidth);
     margin: 0 auto;
@@ -27,11 +27,11 @@ const FooterStyles = styled.footer`
       grid-column: 1 / -1;
       text-align: center;
       background: none;
-      color: white;
+      color: var(--light);
     }
     & > * {
       padding: 2rem;
-      background: white url(${blackGrit});
+      background: var(--light) url(${blackGrit});
       background-size: 500px;
       h3 {
         margin: 0;
@@ -53,19 +53,19 @@ const FooterStyles = styled.footer`
     }
   }
   a.socialLink {
-    background: black;
+    background: var(--dark);
     padding: 2px 6px;
     border-radius: 4px;
     text-decoration: none;
-    color: white;
+    color: var(--light);
     display: inline-flex;
     align-items: center;
     &[href*='youtube.com'] {
       background: red;
     }
     &[href*='github.com'] {
-      background: white;
-      color: black;
+      background: var(--light);
+      color: var(--dark);
     }
     svg {
       margin-right: 3px;

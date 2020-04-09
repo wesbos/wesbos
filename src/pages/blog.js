@@ -8,7 +8,6 @@ import Pagination from '../components/Pagination';
 import { PostMetaTags } from '../components/MetaTags';
 
 const Blog = function({ data, pageContext, path }) {
-  console.log(path);
   if (!data) return <p>Shooooot! No Post found!</p>;
   return (
     <>

@@ -29,9 +29,9 @@ const PostGridItem = styled.div`
       padding: 0;
       display: flex;
       li {
-        background: black;
+        background: var(--dark);
         display: inline;
-        color: white;
+        color: var(--light);
         padding: 2px;
         margin-right: 4px;
       }

@@ -16,7 +16,7 @@ const PaginationStyles = styled.div`
   & > * {
     display: inline;
     ${dirty}
-    background-color: white;
+    background-color: var(--light);
     text-decoration: none;
     padding: 4px;
     margin: 0;

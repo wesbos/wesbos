@@ -10,6 +10,10 @@ const GlobalStyles = createGlobalStyle`
   }
   :root {
     --yellow: #ffc600;
+    --light: #ffffff;
+    --dark: #000000;
+    /* --light: #000;
+    --dark: #fff; */
     --lightGrey: #d8d8d8;
     --lightGray: var(--lightGrey);
     --imGoingToFaint: #fbfbfb;
@@ -18,12 +22,12 @@ const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     border: 20px solid black;
-    border-color: black;
+    border-color: var(--dark);
     border-image: url(${whiteGrit}) 200 round;
-    /* background: black; */
     font-size: 10px;
     font-family: 'HCo Operator Mono', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     position: relative;
+    color: var(--dark);
     &:after {
       box-sizing: content-box;
       display: block;
@@ -35,8 +39,7 @@ const GlobalStyles = createGlobalStyle`
       left: -20px;
       z-index: -1;
       border: 20px solid black;
-      background: white;
-      /* clip-path: polygon(0 90px, 100% 20px, 100% 100%, 0% 100%); */
+      background: var(--light);
     }
     &:before {
       --size: 40px;
@@ -51,7 +54,6 @@ const GlobalStyles = createGlobalStyle`
       z-index: -1;
       border: var(--size) solid transparent;
       border-image: url(${blackGrit}) 250 round;
-      /* background: black url(${whiteGrit});
       background-size: 250px; */
     }
   }
@@ -74,10 +76,7 @@ const GlobalStyles = createGlobalStyle`
     background: var(--yellow);
   }
   a {
-    color: black;
-    /* text-decoration-color: rgba(0,0,0,0.5)
-    text-decoration-style: solid;
-    text-decoration-thickness: 2px; */
+    color: var(--dark);
   }
   p, ul, ol {
     line-height: 1.77777777777777776777777777;

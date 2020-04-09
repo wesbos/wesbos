@@ -19,7 +19,7 @@ const NavStyles = styled.nav`
 `;
 
 const NavUl = styled.ul`
-  background: white;
+  background: var(--light);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -60,7 +60,7 @@ const NavLi = styled.li`
   a {
     font-size: 3.2rem;
     font-family: 'radnika';
-    color: black;
+    color: var(--dark);
     text-decoration: none;
     line-height: 1;
     &[aria-current='page'],

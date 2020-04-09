@@ -51,7 +51,6 @@ export function PostMetaTags({ post }) {
 }
 
 export function TipsMetaTags({ post }) {
-  console.log(post);
   const canonical = `https://wesbos.com/tip/${post.frontmatter.slug}`;
   const url = `${baseURL}/tip/${post.frontmatter.slug}`;
   const thumbnailData = {
