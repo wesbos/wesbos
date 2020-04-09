@@ -15,13 +15,14 @@ const FooterStyles = styled.footer`
   padding-top: 180px;
   padding-bottom: 80px;
   clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
-
+  overflow: hidden;
   & > div {
+    width: 100%;
     color: var(--dark);
     display: grid;
     max-width: var(--maxWidth);
     margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 3rem;
     .bottom {
       grid-column: 1 / -1;

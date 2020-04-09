@@ -7,12 +7,16 @@ const PaginationStyles = styled.div`
   display: grid;
   grid-template-columns: auto 1fr auto;
   text-align: center;
-  margin-bottom: 5rem;
+  margin: 2rem 0;
   background: var(--yellow);
   justify-items: center;
   align-items: center;
   ${dirty}
   --rotate: 0.243deg;
+  @media (max-width: 750px) {
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
   & > * {
     display: inline;
     ${dirty}

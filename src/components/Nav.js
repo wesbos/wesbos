@@ -26,6 +26,10 @@ const NavUl = styled.ul`
   margin: 0;
   padding: 3rem 2rem 2rem 2rem;
   box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.06);
+  @media (max-width: 550px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
 `;
 
 const NavLi = styled.li`
@@ -35,6 +39,7 @@ const NavLi = styled.li`
   align-content: center;
   grid-gap: 2rem;
   margin: 1rem;
+
   ${props =>
     props.row >= 2 &&
     css`
@@ -79,6 +84,30 @@ const NavLi = styled.li`
       line-height: 10px;
     }
   }
+  @media (max-width: 550px) {
+    grid-template-columns: 1fr;
+    margin: 0;
+    text-align: center;
+    /* This gets rid of the X */
+    &:after {
+      display: none;
+    }
+    a {
+      &:before {
+        display: none;
+      }
+    }
+
+    & > *,
+    span {
+      transform: scale(1);
+      font-size: 1.7rem;
+    }
+    small.top,
+    small.bottom {
+      display: none;
+    }
+  }
 `;
 export default function Nav({ pageContext }) {
   const { ref, getRow } = useRowFinder();
@@ -107,7 +136,7 @@ export default function Nav({ pageContext }) {
       <NavUl ref={ref}>
         <NavLi row={getRow(0)}>
           <Link to="/courses">
-            <small>free + premium</small>
+            <small className="top">free + premium</small>
             <H as="span">Courses</H>
           </Link>
         </NavLi>

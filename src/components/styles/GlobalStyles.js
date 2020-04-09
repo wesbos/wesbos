@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
     --maxWidth: 1200px;
   }
   html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-sizing: border-box;
     border: 20px solid black;
     border-color: var(--dark);
@@ -72,9 +73,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
   }
 
-  ::selection {
-    background: var(--yellow);
-  }
+
   a {
     color: var(--dark);
   }
@@ -127,6 +126,9 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
 
   }
+  pre {
+    white-space: break-spaces;
+  }
   code, kbd, samp {
     font-family: 'HCo Operator Mono';
     font-weight: 300;
@@ -147,6 +149,7 @@ const GlobalStyles = createGlobalStyle`
       font-size: 6.5vh;
       pointer-events: none;
       transform: rotate(90deg);
+      text-shadow: 3px 3px 0 white;
     }
   }
 
@@ -157,6 +160,25 @@ const GlobalStyles = createGlobalStyle`
     background: var(--yellow) url(${blackGrit});
     background-size: 500px;
     padding: 5px;
+  }
+  ::selection {
+    background: var(--yellow);
+  }
+  /* Scrollbar Styles */
+    body::-webkit-scrollbar {
+    width: 12px;
+  }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--yellow) var(--dark);
+  }
+  body::-webkit-scrollbar-track {
+    background: var(--dark);
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--yellow) ;
+    border-radius: 6px;
+    border: 3px solid var(--dark);
   }
 `;
 export default GlobalStyles;

@@ -11,12 +11,13 @@ const PostGridItem = styled.div`
   grid-gap: 3rem;
   border-block-end: 1px solid var(--yellow);
   padding: 4rem 0;
-
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
   h3 {
     margin-top: 0;
     margin-bottom: 0;
   }
-
   .postMeta {
     font-size: 1.1rem;
     display: grid;

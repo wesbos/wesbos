@@ -62,6 +62,11 @@ const Blog = function({ data, pageContext, path }) {
             );
           })}
       </PostGrid>
+      <Pagination
+        currentPage={pageContext.currentPage}
+        totalCount={data.allMdx.totalCount}
+        pathPrefix="/blog/"
+      />
     </>
   );
 };
