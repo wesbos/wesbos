@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
 import logo from '../assets/images/logo.png';
 import H from './mdxComponents/Headings';
 import useRowFinder from '../utils/useRowFinder';
-// import blackBorder from './styles/grunge-border-black.png';
 
 const NavStyles = styled.nav`
   border-bottom: 5px solid var(--yellow);
@@ -83,11 +82,27 @@ const NavLi = styled.li`
 `;
 export default function Nav({ pageContext }) {
   const { ref, getRow } = useRowFinder();
+  const data = useStaticQuery(graphql`
+    query {
+      logo: file(relativePath: { eq: "logo.png" }) {
+        childImageSharp {
+          resize(width: 400) {
+            src
+          }
+        }
+      }
+    }
+  `);
+  console.log(data);
   return (
     <NavStyles>
       <h1>
         <Link to="/">
-          <img width="200" src={logo} alt="Wes Bos" />
+          <img
+            width="200"
+            src={data.logo.childImageSharp.resize.src}
+            alt="Wes Bos"
+          />
         </Link>
       </h1>
       <NavUl ref={ref}>

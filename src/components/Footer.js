@@ -61,7 +61,10 @@ const FooterStyles = styled.footer`
     display: inline-flex;
     align-items: center;
     &[href*='youtube.com'] {
-      background: red;
+      /* Kind of interesting, so I'm leaving this in: https://twitter.com/wesbos/status/1248252653953601538 */
+      background: #ff0000; /* Red */
+      background: #dd0000; /* AA Grade */
+      background: #ec1212;
     }
     &[href*='github.com'] {
       background: var(--light);

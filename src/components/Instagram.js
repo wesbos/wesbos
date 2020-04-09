@@ -68,6 +68,7 @@ function Stories() {
           <img
             key={story.media_preview}
             src={converIGtoJPG(story.media_preview)}
+            alt="@wesbos Instagram Story"
           />
         ))}
       </StoriesStyles>
