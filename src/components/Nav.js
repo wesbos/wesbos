@@ -93,7 +93,6 @@ export default function Nav({ pageContext }) {
       }
     }
   `);
-  console.log(data);
   return (
     <NavStyles>
       <h1>
