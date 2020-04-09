@@ -36,7 +36,7 @@ const NavLi = styled.li`
   grid-gap: 2rem;
   margin: 1rem;
   ${props =>
-    props.row !== 1 &&
+    props.row >= 2 &&
     css`
       margin: 0;
       & > *,
@@ -112,7 +112,7 @@ export default function Nav({ pageContext }) {
           </Link>
         </NavLi>
         <NavLi row={getRow(1)}>
-          <a href="https://syntax.fm" target="_blank">
+          <a href="https://syntax.fm" target="_blank" rel="noreferrer noopener">
             <small className="top">The Syntax</small>
             <H as="span">Podcast</H>{' '}
             <small className="bottom">Web Development</small>

@@ -88,6 +88,7 @@ export default function Footer() {
           <a
             href="https://youtube.com/wesbos?sub_confirmation=1"
             target="_blank"
+            rel="noreferrer noopener"
             className="socialLink"
           >
             <IoLogoYoutube /> YouTube
@@ -96,6 +97,7 @@ export default function Footer() {
           <a
             href="https://github.com/wesbos"
             target="_blank"
+            rel="noreferrer noopener"
             className="socialLink"
           >
             <IoLogoGithub /> Github
