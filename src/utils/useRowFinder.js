@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 
 export default function useRowFinder() {
   const ref = useRef(null);
