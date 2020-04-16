@@ -103,7 +103,7 @@ export default function Footer() {
           >
             <IoLogoGithub /> Github
           </a>
-          <p>&copy; Wes Bos 1999 — {new Date().getFullYear()}</p>
+          <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
         </div>
       </div>
     </FooterStyles>
