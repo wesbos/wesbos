@@ -102,7 +102,12 @@ export default function Instagram() {
       <InstaStyles>
         {gramz.map(gram => (
           <a href={gram.url} key={gram.id}>
-            <img src={gram.thumbnail} alt={gram.caption} />
+            <img
+              src={`https://images.weserv.nl/?url=${encodeURIComponent(
+                gram.thumbnail
+              )}&w=230`}
+              alt={gram.caption}
+            />
           </a>
         ))}
       </InstaStyles>

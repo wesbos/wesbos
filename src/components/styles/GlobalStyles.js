@@ -12,17 +12,20 @@ const GlobalStyles = createGlobalStyle`
     --yellow: #ffc600;
     --light: #ffffff;
     --dark: #000000;
-    /* --light: #000;
-    --dark: #fff; */
     --lightGrey: #d8d8d8;
     --lightGray: var(--lightGrey);
     --imGoingToFaint: #fbfbfb;
     --maxWidth: 1200px;
   }
   html {
+    --size: 40px;
+    @media(max-width: 800px) {
+      --size: 20px;
+    }
+    --borderSize: calc(var(--size) / 2);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     box-sizing: border-box;
-    border: 20px solid black;
+    border: var(--borderSize) solid var(--dark);
     border-color: var(--dark);
     border-image: url(${whiteGrit}) 200 round;
     font-size: 10px;
@@ -36,14 +39,13 @@ const GlobalStyles = createGlobalStyle`
       height: 100%;
       width: 100%;
       position: absolute;
-      top:-20px;
-      left: -20px;
+      top: calc(var(--borderSize) * -1);
+      left: calc(var(--borderSize) * -1);
       z-index: -1;
-      border: 20px solid black;
+      border: var(--borderSize) solid var(--dark);
       background: var(--light);
     }
     &:before {
-      --size: 40px;
       box-sizing: content-box;
       display: block;
       content: '';
