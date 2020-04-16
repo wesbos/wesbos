@@ -18,7 +18,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-prettier-build`,
       options: {
-        types: ['html'], // default value
+        types: ['html'],
+        concurrency: 20,
+        verbose: true,
       },
     },
     {
