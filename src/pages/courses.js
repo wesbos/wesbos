@@ -7,8 +7,7 @@ import { PostMetaTags } from '../components/MetaTags';
 
 const CourseListStyles = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr;
   grid-gap: 2rem;
   & > * {
     padding: 2rem;
@@ -23,6 +22,18 @@ const CourseListStyles = styled.div`
       max-width: 300px;
       float: left;
       margin-right: 2rem;
+      @media (max-width: 800px) {
+        margin-right: 0;
+      }
+    }
+    @media (max-width: 450px) {
+      padding: 0;
+      border: 0;
+      border-top: 2px solid var(--yellow);
+      padding-top: 4rem;
+      img {
+        width: 100%;
+      }
     }
   }
 `;
@@ -217,7 +228,7 @@ export default function AboutPage({ data, path }) {
             src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/MMD/share.png"
             alt="Mastering Markdown"
           />
-          <H as="h3">Mastering </H>
+          <H as="h3">Mastering Markdown</H>
           <a href="http://MasteringMarkdown.com">MasteringMarkdown.com</a>
           <p>
             A quick 34 minute mini course for anyone who is looking to learn
