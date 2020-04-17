@@ -13,7 +13,7 @@ export default function ContactPage({ path }) {
       </p>
       <p>
         <strong>If you want me to work for you</strong>, I am not accepting any
-        client work at the moment, but I'd recomend you{' '}
+        client work at the moment, but I'd recommend you{' '}
         <a href="https://junocollege.com/alumni/freelancers">
           hire a Juno college
         </a>{' '}
