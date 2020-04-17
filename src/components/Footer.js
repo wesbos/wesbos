@@ -61,6 +61,7 @@ const FooterStyles = styled.footer`
     color: var(--light);
     display: inline-flex;
     align-items: center;
+    margin: 2px;
     &[href*='youtube.com'] {
       /* Kind of interesting, so I'm leaving this in: https://twitter.com/wesbos/status/1248252653953601538 */
       background: #ff0000; /* Red */
