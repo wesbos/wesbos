@@ -16,6 +16,9 @@ const TipStyles = styled.div`
   grid-gap: 2rem;
   background: url(${blackgrit});
   background-size: 550px;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
   .tipContent {
     align-self: stretch;
     display: grid;
@@ -27,6 +30,9 @@ const TipStyles = styled.div`
   }
   .tipMeta {
     margin-top: -45px;
+    @media (max-width: 800px) {
+      margin-top: -20px;
+    }
   }
 `;
 
