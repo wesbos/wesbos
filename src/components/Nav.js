@@ -107,6 +107,9 @@ const NavLi = styled.li`
     small.bottom {
       display: none;
     }
+    span.grit {
+      padding: 0;
+    }
   }
 `;
 export default function Nav({ pageContext }) {
