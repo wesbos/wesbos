@@ -8,8 +8,8 @@ export default function ContactPage({ path }) {
       <H>Contact</H>
       <p>
         Hey! I get lots of email, so please scan this page before firing one
-        off. Don't be afraid to email me, it just might take a few days or week
-        for me to get back to you 😃.
+        off. Don't be afraid to email me, it just might take a few days (or
+        weeks) for me to get back to you 😃.
       </p>
       <p>
         <strong>If you want me to work for you</strong>, I am not accepting any

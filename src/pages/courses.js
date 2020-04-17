@@ -38,6 +38,18 @@ const CourseListStyles = styled.div`
   }
 `;
 
+const PriceTag = styled.span`
+  text-transform: uppercase;
+  display: block;
+  font-size: 1.1rem;
+  color: black;
+  &:before {
+    content: '$ ';
+    color: var(--yellow);
+    font-weight: bold;
+  }
+`;
+
 export default function AboutPage({ data, path }) {
   return (
     <>
@@ -64,6 +76,7 @@ export default function AboutPage({ data, path }) {
             alt="Beginner JavaScript"
           />
           <H as="h3">Beginner JavaScript</H>
+          <PriceTag>Premium</PriceTag>
           <a href="https://BeginnerJavaScript.com">BeginnerJavaScript.com</a>
           <p>
             A fun, exercise heavy approach to learning Modern JavaScript from
@@ -78,6 +91,7 @@ export default function AboutPage({ data, path }) {
             alt="Advanced React"
           />
           <H as="h3">Fullstack Advanced React and GraphQL</H>
+          <PriceTag>Premium</PriceTag>
           <a href="https://AdvancedReact.com">AdvancedReact.com</a>
           <p>
             This is a course that will teach you everything you need to build a
@@ -106,6 +120,7 @@ export default function AboutPage({ data, path }) {
             alt="ES6 for Everyone"
           />
           <H as="h3">ES6 for Everyone</H>
+          <PriceTag>Premium</PriceTag>
           <a href="https://ES6.io">ES6.io</a>
           <p>
             ES6 is a major update to JavaScript that includes dozens of new
@@ -114,13 +129,27 @@ export default function AboutPage({ data, path }) {
             offer while sharpening your core JavaScript skills.{' '}
           </p>
         </div>
-
+        <div className="course">
+          <img
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/JS3-social-share.png"
+            alt="JavaScript30"
+          />
+          <H as="h3">JavaScript30</H>
+          <PriceTag>Free</PriceTag>
+          <a href="https://JavaScript30.com">JavaScript30.com</a>
+          <p>
+            A free 30 day vanilla js coding challenge. Learn to build Build 30
+            things in 30 days with 30 tutorials. No Frameworks, No Compilers, No
+            Libraries, No Boilerplate. Good luck!{' '}
+          </p>
+        </div>
         <div className="course">
           <img
             src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share.png"
             alt="React for Beginners"
           />
           <H as="h3">React For Beginners</H>
+          <PriceTag>Premium</PriceTag>
           <p>
             Upgrade your JavaScript skills to learn React.js in just a couple of
             afternoons. A premium step-by-step training course to get you
@@ -135,6 +164,7 @@ export default function AboutPage({ data, path }) {
             alt="CSS Grid"
           />
           <H as="h3">CSS Grid</H>
+          <PriceTag>Free</PriceTag>
           <a href="https://CSSGrid.io">CSSGrid.io</a>
           <p>
             A free 25 video course on all there is to learn about CSS Grid! We
@@ -145,23 +175,11 @@ export default function AboutPage({ data, path }) {
 
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/JS3-social-share.png"
-            alt="JavaScript30"
-          />
-          <H as="h3">JavaScript30</H>
-          <a href="https://JavaScript30.com">JavaScript30.com</a>
-          <p>
-            A free 30 day vanilla js coding challenge. Learn to build Build 30
-            things in 30 days with 30 tutorials. No Frameworks, No Compilers, No
-            Libraries, No Boilerplate. Good luck!{' '}
-          </p>
-        </div>
-        <div className="course">
-          <img
             src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/NODE/node-facebook-share.jpg"
             alt="Learn Node"
           />
           <H as="h3">Learn Node</H>
+          <PriceTag>Premium</PriceTag>
           <a href="https://LearnNode.com">LearnNode.com</a>
           <p>
             A premium training course to learn to build apps with Node.js,
@@ -174,6 +192,7 @@ export default function AboutPage({ data, path }) {
             alt="Sublime Text Power User"
           />
           <H as="h3">Sublime Text Power User</H>
+          <PriceTag>Premium</PriceTag>
           <a href="https://SublimeTextBook.com">SublimeTextBook.com</a>
           <p>
             Ever wonder how so many great developers seem to get so much done?
@@ -194,6 +213,7 @@ export default function AboutPage({ data, path }) {
             alt="What The Flexbox?!"
           />
           <H as="h3">What The Flexbox?!</H>
+          <PriceTag>Premium</PriceTag>
           <a href="http://Flexbox.io">Flexbox.io</a>
           <p>
             Flexbox sure is tricky to learn. Get a grasp on flexbox while
@@ -207,6 +227,7 @@ export default function AboutPage({ data, path }) {
             alt="Command Line Power User"
           />
           <H as="h3">Command Line Power User</H>
+          <PriceTag>Premium</PriceTag>
           <a href="http://CommandLinePowerUser.com">CommandLinePowerUser.com</a>
           <p>
             As web developers, we use the command line a lot. A video series for
@@ -221,6 +242,7 @@ export default function AboutPage({ data, path }) {
             alt="Learn Redux"
           />
           <H as="h3">Learn Redux</H>
+          <PriceTag>Premium</PriceTag>
           <a href="https://LearnRedux.com">LearnRedux.com</a>
           <p>
             A 20 video / 2.5 hour course to learn how to use Redux, React Router
@@ -236,6 +258,7 @@ export default function AboutPage({ data, path }) {
             alt="Mastering Markdown"
           />
           <H as="h3">Mastering Markdown</H>
+          <PriceTag>Premium</PriceTag>
           <a href="http://MasteringMarkdown.com">MasteringMarkdown.com</a>
           <p>
             A quick 34 minute mini course for anyone who is looking to learn
