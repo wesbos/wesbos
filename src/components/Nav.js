@@ -141,6 +141,7 @@ export default function Nav({ pageContext }) {
           <Link to="/courses">
             <small className="top">free + premium</small>
             <H as="span">Courses</H>
+            <small className="bottom"> </small>
           </Link>
         </NavLi>
         <NavLi row={getRow(1)}>
@@ -167,6 +168,7 @@ export default function Nav({ pageContext }) {
           >
             <small className="top">the</small>
             <H as="span">Blog</H>
+            <small className="bottom"> </small>
           </Link>
         </NavLi>
         <NavLi row={getRow(4)}>
