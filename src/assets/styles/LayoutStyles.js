@@ -14,6 +14,9 @@ const LayoutStyles = styled.div`
       text-decoration-color: var(--yellow);
     }
   }
+  p {
+    word-wrap: anywhere;
+  }
 `;
 
 export default LayoutStyles;
