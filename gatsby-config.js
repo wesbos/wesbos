@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Wes Bos',
     author: 'Wes Bos',
-    description: 'The Personal Website of Wes Bos',
+    description: 'Fullstack Web Developer',
     siteUrl: process.env.DEPLOY_PRIME_URL,
   },
   plugins: [
