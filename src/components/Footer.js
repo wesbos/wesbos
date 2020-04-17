@@ -22,7 +22,13 @@ const FooterStyles = styled.footer`
     display: grid;
     max-width: var(--maxWidth);
     margin: 0 auto;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    @media (max-width: 1100px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 575px) {
+      grid-template-columns: 1fr;
+    }
     grid-gap: 3rem;
     .bottom {
       grid-column: 1 / -1;
