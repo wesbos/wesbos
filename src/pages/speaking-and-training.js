@@ -7,6 +7,9 @@ import useInterval from '../utils/useInterval';
 export default function SpeakingAndTrainingPage({ data }) {
   return (
     <>
+      <Helmet>
+        <title>Speaking &amp; Training - Wes Bos</title>
+      </Helmet>
       <H>Speaking and Training</H>
       <p>
         I'm still working on this page, but if you'd like to have me come speak
