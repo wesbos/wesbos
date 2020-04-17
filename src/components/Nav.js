@@ -194,7 +194,7 @@ export default function Nav({ pageContext }) {
           <Link to="/uses">
             <small className="top">what font?!</small>
             <H as="span">/uses</H>{' '}
-            <small className="bottom">what theme?!</small>
+            <small className="bottom">what theme!?</small>
           </Link>
         </NavLi>
         <NavLi row={getRow(7)}>
