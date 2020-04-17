@@ -175,7 +175,7 @@ export default function Nav({ pageContext }) {
           <Link
             to="/tips"
             className={
-              pageContext.collection === 'post' ? 'current-parent' : null
+              pageContext.collection === 'tip' ? 'current-parent' : null
             }
           >
             <small className="top">🔥</small>
