@@ -1,9 +1,19 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const baseURL = process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`;
+function getBaseURL() {
+  const url = process.env.GATSBY_DEPLOY_PRIME_URL;
+  if (!url || url === 'undefined') {
+    // seriously
+    return `http://localhost:8888`;
+  }
+  return url;
+}
+
+const baseURL = getBaseURL();
 
 export function PostMetaTags({ post }) {
+  console.log(baseURL);
   const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
   const url = `${baseURL}/${post.frontmatter.slug}`;
   const thumbnailData = {
@@ -17,7 +27,7 @@ export function PostMetaTags({ post }) {
     )
   ).toString();
 
-  const ogImage = `${process.env.GATSBY_DEPLOY_PRIME_URL}/.netlify/functions/ogimage?${thumbnailQuery}`;
+  const ogImage = `${baseURL}/.netlify/functions/ogimage?${thumbnailQuery}`;
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />

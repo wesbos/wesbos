@@ -41,7 +41,7 @@ const GlobalStyles = createGlobalStyle`
       position: absolute;
       top: calc(var(--borderSize) * -1);
       left: calc(var(--borderSize) * -1);
-      z-index: -1;
+      z-index: -3;
       border: var(--borderSize) solid var(--dark);
       background: var(--light);
     }
