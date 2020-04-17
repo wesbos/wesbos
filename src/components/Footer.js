@@ -47,6 +47,9 @@ const FooterStyles = styled.footer`
           top: 3.5px;
           margin-right: 3px;
         }
+        a {
+          text-decoration: none;
+        }
       }
       p {
         font-size: 1.6rem;
