@@ -46,7 +46,7 @@ export default function Instagram() {
       <img className="logo" src="/syntax.jpg" alt="Syntax Podcast" />
       <time>{podcast.displayDate}</time>
       <p>{podcast.title}</p>
-      <a href={`https://syntax.fm/show/${podcast.number}`}>Listen Now → </a>
+      <a href={`https://syntax.fm${podcast.slug}`}>Listen Now → </a>
     </PodStyles>
   );
 }
