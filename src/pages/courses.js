@@ -54,7 +54,7 @@ export default function AboutPage({ data, path }) {
         free.
       </p>
       <p>
-        I'm delivering a few new course every year, so sign up for any of these
+        I'm delivering a few new courses every year, so sign up for any of these
         courses and you'll hear when I announce new ones!
       </p>
       <CourseListStyles>
