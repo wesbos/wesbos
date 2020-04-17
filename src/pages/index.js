@@ -30,7 +30,7 @@ export default function HomePage({ data }) {
         </p>
         <p>
           You can <Link to="/about">read more about me here</Link>, but stick
-          around if you like CSS, JavaScript, mediocre jokes, learnings new
+          around if you like CSS, JavaScript, mediocre jokes, learning new
           things or BBQ Tips.
         </p>
       </WelcomeStyles>
