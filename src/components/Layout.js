@@ -35,6 +35,7 @@ function Layout({
           <title>{title}</title>
           <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+          <meta name="theme-color" content="#ffc600" />
         </Helmet>
         <LayoutStyles className={location.pathname === '/' ? 'welcome' : null}>
           <Nav pageContext={pageContext} />
