@@ -16,7 +16,7 @@ export default function SpeakingAndTrainingPage({ data }) {
       <p>
         I usually like to speak about JavaScript, CSS, Hot Tips, React.js,
         Node.js and related topics. For workshops, I have pre-made workshops on
-        Gatsby.js, React,js and several other topics. I am able to create custom
+        Gatsby.js, React.js and several other topics. I am able to create custom
         workshops tailored towards your team.
       </p>
       <p>
