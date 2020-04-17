@@ -199,9 +199,9 @@ export default function Nav({ pageContext }) {
         </NavLi>
         <NavLi row={getRow(7)}>
           <Link to="/contact">
-            <small className="top">I want to</small>
+            <small className="top">You want to</small>
             <H as="span">Contact</H>
-            <small className="bottom">you</small>
+            <small className="bottom">me</small>
           </Link>
         </NavLi>
       </NavUl>
