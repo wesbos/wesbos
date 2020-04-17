@@ -7,6 +7,9 @@ const LayoutStyles = styled.div`
   grid-template-rows: auto 1fr auto;
   &.welcome {
     background: url(${handsome}) no-repeat top center;
+    @media (max-width: 650px) {
+      background-position: top left -400px;
+    }
     a {
       text-decoration-color: var(--yellow);
     }
