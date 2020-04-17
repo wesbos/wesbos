@@ -66,7 +66,7 @@ function Stories() {
   return (
     <>
       <h4>Stories</h4>
-      <StoriesStyles href="https://instagram.com/wesbos">
+      <StoriesStyles href="https://www.instagram.com/stories/wesbos/">
         {stories.map(story => (
           <img
             key={story.media_preview}
