@@ -47,7 +47,9 @@ exports.handler = async (event, context) => {
 
   const photoBuffer = await getScreenshot(
     `${process.env.URL || `http://localhost:8888`}/thumbnail?${qs.toString()}`,
-    !process.env.NETLIFY
+    // Here we need to pass a boolean to say if we are on the server. Netlify has a bug where process.env.NETLIFY is undefiend in functions so I'm using one of the only vars I can find
+    // !process.env.NETLIFY
+    !process.env.URL
   );
   return {
     statusCode: 200,
