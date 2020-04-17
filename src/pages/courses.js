@@ -42,6 +42,13 @@ export default function AboutPage({ data, path }) {
   return (
     <>
       <p>
+        <strong>
+          <a href="https://courses.wesbos.com">
+            Sign in to course dashboard here!
+          </a>
+        </strong>
+      </p>
+      <p>
         Ready to learn and up your game as a web developer? Here is a listing of
         all the courses I've put out. Some of them are paid and some of them are
         free.
