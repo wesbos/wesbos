@@ -34,6 +34,9 @@ const CourseListStyles = styled.div`
       img {
         width: 100%;
       }
+      a {
+        font-size: 1.5rem;
+      }
     }
   }
 `;

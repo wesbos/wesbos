@@ -15,6 +15,25 @@ const NavStyles = styled.nav`
     margin-bottom: -4rem;
     z-index: 2;
   }
+  @media (max-width: 550px) {
+    ul {
+      padding: 2.5rem 1rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      a > span {
+        display: block;
+        padding: 1rem 0;
+      }
+      span.grit {
+        margin: 0;
+      }
+      a:hover {
+        span:before {
+          display: none;
+        }
+      }
+    }
+  }
 `;
 
 const NavUl = styled.ul`
@@ -98,7 +117,6 @@ const NavLi = styled.li`
         display: none;
       }
     }
-
     & > *,
     span {
       transform: scale(1);

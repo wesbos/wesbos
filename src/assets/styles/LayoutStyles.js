@@ -9,6 +9,9 @@ const LayoutStyles = styled.div`
     background: url(${handsome}) no-repeat top center;
     @media (max-width: 650px) {
       background-position: top left -400px;
+      h2 {
+        font-size: 3rem;
+      }
     }
     a {
       text-decoration-color: var(--yellow);
