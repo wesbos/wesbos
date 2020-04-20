@@ -13,17 +13,16 @@ export default function HomePage({ data, path }) {
       <Helmet
         htmlAttributes={{ lang: 'en' }}
         meta={[{ name: 'description', content: description }]}
-        title={title}
-      >
-        <PostMetaTags
-          post={{
-            frontmatter: {
-              slug: path,
-              title: 'Wes Bos',
-            },
-          }}
-        />
-      </Helmet>
+        title="Wes Bos - Full Stack Developer"
+      />
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: 'Wes Bos',
+          },
+        }}
+      />
       <WelcomeStyles>
         <H as="h2">Hey, I'm Wes&nbsp;Bos.</H>
 

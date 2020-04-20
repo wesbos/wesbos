@@ -40,7 +40,6 @@ function useLatestPodcast() {
 
 export default function Instagram() {
   const { podcast, art } = useLatestPodcast();
-  console.log(art);
   if (!podcast)
     return (
       <PodStyles>
