@@ -15,7 +15,7 @@ export default function HomePage({ data }) {
         title={title}
       />
       <WelcomeStyles>
-        <H as="h2">Hey, I'm Wes Bos.</H>
+        <H as="h2">Hey, I'm Wes&nbsp;Bos.</H>
 
         <H as="h2" looksLike="h1">
           <span className="highlight">
