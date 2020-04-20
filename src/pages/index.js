@@ -3,8 +3,9 @@ import { graphql, Link } from 'gatsby';
 import Helmet from 'react-helmet';
 import WelcomeStyles from '../assets/styles/WelcomeStyles';
 import H from '../components/mdxComponents/Headings';
+import { PostMetaTags } from '../components/MetaTags';
 
-export default function HomePage({ data }) {
+export default function HomePage({ data, path }) {
   const { title, description } = data.site.siteMetadata;
 
   return (
@@ -13,7 +14,16 @@ export default function HomePage({ data }) {
         htmlAttributes={{ lang: 'en' }}
         meta={[{ name: 'description', content: description }]}
         title={title}
-      />
+      >
+        <PostMetaTags
+          post={{
+            frontmatter: {
+              slug: path,
+              title: 'Wes Bos',
+            },
+          }}
+        />
+      </Helmet>
       <WelcomeStyles>
         <H as="h2">Hey, I'm Wes&nbsp;Bos.</H>
 
