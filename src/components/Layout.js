@@ -25,6 +25,7 @@ function Layout({
   path,
   ...rest
 }) {
+  console.log(location);
   if (pageContext.layout === 'thumbnail') return children;
   return (
     <MDXProvider components={mdxComponents}>
