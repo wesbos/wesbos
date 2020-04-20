@@ -10,11 +10,6 @@ export default function HomePage({ data, path }) {
 
   return (
     <div className="welcome">
-      <Helmet
-        htmlAttributes={{ lang: 'en' }}
-        meta={[{ name: 'description', content: description }]}
-        title="Wes Bos - Full Stack Developer"
-      />
       <PostMetaTags
         post={{
           frontmatter: {
@@ -22,6 +17,11 @@ export default function HomePage({ data, path }) {
             title: 'Wes Bos',
           },
         }}
+      />
+      <Helmet
+        htmlAttributes={{ lang: 'en' }}
+        meta={[{ name: 'description', content: description }]}
+        title="Wes Bos - Full Stack Developer"
       />
       <WelcomeStyles>
         <H as="h2">Hey, I'm Wes&nbsp;Bos.</H>
