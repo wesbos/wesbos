@@ -38,7 +38,11 @@ function Layout({
           <link rel="shortcut icon" href="/favicon.png" type="image/png" />
           <meta name="theme-color" content="#ffc600" />
         </Helmet>
-        <LayoutStyles className={location.pathname === '/' ? 'welcome' : null}>
+        <LayoutStyles
+          className={
+            location.pathname === '/' || path === '/' ? 'welcome' : null
+          }
+        >
           <Nav pageContext={pageContext} />
           <ContentStyles>{children}</ContentStyles>
           <Footer />
