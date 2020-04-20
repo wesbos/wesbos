@@ -82,6 +82,7 @@ const NavLi = styled.li`
       font-weight: 400;
       text-align: right;
       line-height: 10px;
+      position: relative;
     }
   }
   @media (max-width: 550px) {
@@ -163,7 +164,10 @@ export default function Nav({ pageContext }) {
           <Link
             to="/blog"
             className={
-              pageContext.collection === 'post' ? 'current-parent' : null
+              pageContext.collection === 'post' &&
+              !pageContext.slug.includes('uses')
+                ? 'current-parent'
+                : null
             }
           >
             <small className="top">the</small>

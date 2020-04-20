@@ -126,10 +126,7 @@ export default function AboutPage({ data, path }) {
         known to make some pretty killer pulled pork. I've recently dipped my
         toes into fermentation and curing.
       </p>
-      <Img
-        image={data.family}
-        alt="Wes and Scott meet for the very first time"
-      />
+      <Img image={data.family} alt="My beautiful Family" />
     </>
   );
 }
