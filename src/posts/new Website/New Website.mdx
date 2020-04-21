@@ -57,7 +57,7 @@ There are a few pieces of dynamic content on the footer of this site — the lat
 
 I didn't use Gatsby plugins for these because they would quickly become outdated. Instead I load them on the client once the page loads.
 
-For this I use Amazon's Lamda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions).
+For this I use Amazon's Lambda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions).
 
 I also use Serverless Functions to generate the [Open Graph images](https://github.com/wesbos/wesbos/blob/master/functions/ogimage/ogimage.js). It's just a page on this site that is screenshotted with puppeteer.
 
@@ -65,7 +65,7 @@ I also use Serverless Functions to generate the [Open Graph images](https://gith
 
 I'm building and hosting it on [Netlify](https://www.netlify.com). I really like how it's hooked up to github and auto-deploys. Initially the site didn't build at all because apparently 350 images is too many — more in the next section on how we solved that.
 
-I really wanted to maintain a viewable view-source, so after a tweet asking about nicely formatting the compacted HTML, James Vickery build this really cool [gatsby-plugin-prettier-build](https://github.com/jmsv/gatsby-plugin-prettier-build/) plugin that hooks into onPostBuild and runs the HTML through prettier.
+I really wanted to maintain a viewable view-source, so after a tweet asking about nicely formatting the compacted HTML, James Vickery built this really cool [gatsby-plugin-prettier-build](https://github.com/jmsv/gatsby-plugin-prettier-build/) plugin that hooks into onPostBuild and runs the HTML through prettier.
 
 Seems weird to un-minify the HTML, but I grew up on view source and want to maintain that for other developers learning today.
 

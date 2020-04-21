@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 function getBaseURL() {
-  const url = process.env.GATSBY_DEPLOY_PRIME_URL;
+  const url = process.env.GATSBY_URL;
   if (!url || url === 'undefined') {
     // seriously
     return `http://localhost:8888`;
