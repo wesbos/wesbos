@@ -1,0 +1,92 @@
+---
+title: New Website
+slug: new-wesbos-website
+image: ss-2016-03-10-at-9.09.24-AM.png
+category:
+ - Javascript
+date: 2020-04-21T13:37:50.261Z
+---
+
+It's here! My new website.
+
+It's funny how being a developer, you neglect your own website until things are dire.
+
+Over the past year I've been chipping away at building this new site and I'm super happy with how it's turned out.
+
+## Old Stack
+
+My old site, built in 2014, was starting to feel a little creeky.
+
+It was running on WordPress. I had over a decade on WordPress and I still love it, but Ill explain why I left WP in just a second. Here is the tech I used on the old site:
+
+* WordPress
+* Custom theme
+* LESS for styling
+* jQuery
+
+## New Stack
+
+### Gatsby (and y not Next.js)
+
+Gatsby is the framework and despite a few hiccups, I really enjoyed working with it! It makes this site wicked fast without having to really do much at all.
+
+Many of you will ask why I didn't use [Next.js](https://nextjs.org/) - a framework of which I love and have built much of my course platform on. I used to say that Gatsby was for websites and Next.js was for apps. I don't belive that to be true as Next.js has per-page opt-in static generation and on-demand page builds in development. So, it comes down to:
+
+1. I already started on Gatsby over a year ago
+2. The plugin ecosystem for Gatsby is a bit more mature at the time, specifically around compressing, converting, resizing and loading images with [gatsby image](https://www.gatsbyjs.org/packages/gatsby-image/). A bunch of you will say "Just use Cloudinary!" — which I do use for my course platform and I really love - I just wanted this entire project to run without having to pay for anything but hosting.
+
+### Styled Components
+
+All the styling is done with Styled Components. I don't go overboard with components, but I do really enjoy being able to scope my CSS and still use descendant classes. Big fan!
+
+I designed the site myself and I'm really happy with the early 2000s hardcore emo kid vibe.
+
+### MDX
+
+Most of my blog posts were already written in Markdown, so I went wit MDX which allows you to use React components inside of your markdown. Handy for embedding Video players, graphs or anything else that is already a React component.
+
+If this were a client project, I'd likely go Headless CMS like WordPress w/ GraphQL, Sanity, Prismic or similar.
+
+I don't usually recommend someone use markdown for their content, but in my case I want to have all my content on github, easily editable so the nitpickers can fix things themselves instead of emailing me 😃
+
+### Serverless Functions
+
+There are a few pieces of dynamic content on footer of this site - the latest Podcast, Tweets, Instagram stories and Instagram posts.
+
+I didn't use Gatsby plugins for these because they would quickly become outdated. Instead I load them on the client once the page loads.
+
+For this I use Amazon's Lamda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions)
+
+I also use Serverless Functions to generate the [Open Graph images](https://github.com/wesbos/wesbos/blob/master/functions/ogimage/ogimage.js). It's just a page on this site that is screenshotted with puppeteer.
+
+### Hosting + Building
+
+I'm building and hosting it on [Netlify](https://www.netlify.com). I really like how it's hooked up to github and auto deploys.
+
+I really wanted to maintain a viewable view-source, so after a tweet asking about nicely formatting the compacted HTML, James Vickery build this really cool [gatsby-plugin-prettier-build](https://github.com/jmsv/gatsby-plugin-prettier-build/) plugin that hooks into onPostBuild and runs the HTML through prettier.
+
+Seems weird to un-minify the HTML, but I grew up on view source and want to maintain that for other developers learning today.
+
+### Pain Points
+
+Likely the worst part of this whole stack is the **slow build times**. Gatsby must generate each page before hand, so with 500+ pages, that can take some time.
+
+Gatsby images is literally resizing and making multiple versions of each image, so that also takes some time.
+
+The build times were getting up to ~25 mins which was really frustrating. Part of me missed being able to cowboy code right on the server and refesh to page to see if something worked (_not all of me, relax_).
+
+There were two big solutions to this: [Gatsby Cloud](https://www.gatsbyjs.com/cloud/) and [Gatsby Parallel Build](https://www.netlify.com/blog/2020/02/25/gatsby-build-speed-improvements-with-parallel-image-processing/).
+
+I am currently running on the later, and big thanks to [Jason Lengstorf](https://twitter.com/jlengstorf) for helping me get this up and running. My build still take ~10 mins to build and deploy which is less than excellent, but I have hope for Gatsby incremental builds in the future.
+
+I did try Gatsby Cloud and it was [wicked fast](https://twitter.com/wesbos/status/1237793770739023873). I don't have a good reason why I'm not using that over the previous other than I'm out of time on this project.
+
+**Gatsby queries** was another huge pain point. Only being able to have a dynamic query at a page level is weird. This means you can't do things like query an image unless you have it's filename as a string.
+
+The fact that I need to write a GraphQL query that is [8 lines long](https://github.com/wesbos/wesbos/blob/master/src/pages/about.js#L136-L143) to display an image is weird. There are [some solutions](https://spectrum.chat/gatsby-js/general/using-variables-in-a-staticquery~abee4d1d-6bc4-4202-afb2-38326d91bd05) but nothing that works great. I'm hearing rumbles of a "unified query" in gatsby, so I hope that fixes this!
+
+**Gatsby image also doesn't handle gifs**. At all. I had to write [this component](https://github.com/wesbos/wesbos/blob/master/src/components/Img.js) so that I could display gifs. Seems like something that should be handled inside of gatsby-image.
+
+**Overall I'm happy** with the stack. The few pain points I have are made up quickly by the speed and perf of the site!
+
+All the code to the site is on [github](https://github.com/wesbos/wesbos). I hope you can learn a thing or two from it!
