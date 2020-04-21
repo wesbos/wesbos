@@ -19,8 +19,8 @@ const StoriesStyles = styled.a`
   display: flex;
   flex-wrap: wrap;
   .story {
-    width: 50px;
-    height: 89px;
+    width: 30px;
+    height: 89px1;
     background-size: cover;
     font-size: 0;
     display: block;

@@ -2,6 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 function getBaseURL() {
+  // temp fix for netlify urls leaking into my custom domain
+  return `https://wesbos.com`;
+
   const url = process.env.GATSBY_DEPLOY_PRIME_URL;
   if (!url || url === 'undefined') {
     // seriously
