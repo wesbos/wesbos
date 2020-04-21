@@ -11,7 +11,7 @@ const courses = [
       alt: 'Beginner JavaScript',
     },
     title: 'Beginner JavaScript',
-    price: 'Premuim',
+    price: 'Premium',
     link: {
       label: 'BeginnerJavaScript.com',
       url: 'https://BeginnerJavaScript.com',
@@ -30,7 +30,7 @@ const courses = [
       alt: 'Advanced React',
     },
     title: 'Fullstack Advanced React and GraphQL',
-    price: 'Premuim',
+    price: 'Premium',
     link: {
       label: 'AdvancedReact.com',
       url: 'https://AdvancedReact.com',
@@ -57,7 +57,7 @@ const courses = [
       alt: 'ES6 for Everyone',
     },
     title: 'ES6 for Everyone',
-    price: 'Premuim',
+    price: 'Premium',
     link: {
       label: 'ES6.io',
       url: 'https://ES6.io',
@@ -94,7 +94,7 @@ const courses = [
       alt: 'React for Beginners',
     },
     title: 'React for Beginners',
-    price: 'Premuim',
+    price: 'Premium',
     link: {
       label: 'ReactForBeginners.com',
       url: 'https://ReactForBeginners.com',
@@ -130,7 +130,7 @@ const courses = [
       alt: 'Learn Node',
     },
     title: 'Learn Node',
-    price: 'Premuim',
+    price: 'Premium',
     link: {
       label: 'LearnNode.com',
       url: 'https://LearnNode.com',
@@ -147,7 +147,7 @@ const courses = [
       alt: 'Sublime Text Power User',
     },
     title: 'Sublime Text Power User',
-    price: 'Premuim',
+    price: 'Premium',
     link: {
       label: 'SublimeTextBook.com',
       url: 'https://SublimeTextBook.com',
