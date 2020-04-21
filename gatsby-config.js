@@ -137,7 +137,7 @@ module.exports = {
     //     icon: `src/assets/gatsby-icon.png`,
     //   },
     // },
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
   ],
 };
