@@ -169,7 +169,7 @@ const courses = [
       alt: 'What The Flexbox?!',
     },
     title: 'What The Flexbox?!',
-    price: 'Premuim',
+    price: 'Free',
     link: {
       label: 'Flexbox.io',
       url: 'https://Flexbox.io',
@@ -186,7 +186,7 @@ const courses = [
       alt: 'Command Line Power User',
     },
     title: 'Command Line Power User',
-    price: 'Premuim',
+    price: 'Free',
     link: {
       label: 'CommandLinePowerUser.com',
       url: 'https://CommandLinePowerUser.com',
@@ -204,7 +204,7 @@ const courses = [
       alt: 'Learn Redux',
     },
     title: 'Learn Redux',
-    price: 'Premuim',
+    price: 'Free',
     link: {
       label: 'LearnRedux.com',
       url: 'https://LearnRedux.com',

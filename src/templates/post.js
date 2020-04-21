@@ -4,7 +4,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import YouTube from 'react-youtube';
 import { Helmet } from 'react-helmet';
 import { IoLogoGithub } from 'react-icons/io';
-import { MDXProvider } from '@mdx-js/tag';
 import Layout from '../components/Layout';
 import Img from '../components/Img';
 import H from '../components/mdxComponents/Headings';
@@ -12,7 +11,6 @@ import ContentNav from '../components/ContentNav';
 import PostHeaderStyles from '../components/styles/PostHeaderStyles';
 import EditDialogStyles from '../components/styles/EditDialogStyles';
 import { PostMetaTags } from '../components/MetaTags';
-import mdxComponents from '../components/mdxComponents';
 
 export const pageQuery = graphql`
   query($slug: String!) {

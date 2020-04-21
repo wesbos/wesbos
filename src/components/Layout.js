@@ -16,8 +16,6 @@ const ContentStyles = styled.div`
   padding: 2rem;
 `;
 
-console.log(mdxComponents);
-
 function Layout({
   location,
   title,

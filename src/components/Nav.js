@@ -104,6 +104,7 @@ const NavLi = styled.li`
       text-align: right;
       line-height: 10px;
       position: relative;
+      pointer-events: none;
     }
   }
   @media (max-width: 550px) {
