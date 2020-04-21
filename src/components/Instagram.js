@@ -6,8 +6,27 @@ const InstaStyles = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
-  @media (max-width: 400px) {
+  @media (max-width: 320px) {
     grid-template-columns: 1fr;
+    img {
+      width: 100%;
+    }
+  }
+`;
+
+const StoriesStyles = styled.a`
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  grid-gap: 2px; */
+  font-size: 0;
+  display: block;
+  display: flex;
+  .story {
+    width: 50px;
+    height: 89px;
+    background-size: cover;
+    font-size: 0;
+    display: block;
   }
 `;
 
@@ -53,13 +72,6 @@ function useInstagramStories() {
   return posts;
 }
 
-const StoriesStyles = styled.a`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-  grid-gap: 2px;
-  display: block;
-`;
-
 function Stories() {
   const stories = useInstagramStories();
   if (!stories.length) return null;
@@ -69,9 +81,15 @@ function Stories() {
       <StoriesStyles href="https://www.instagram.com/stories/wesbos/">
         {stories.map(story => (
           <img
+            className="story"
             key={story.media_preview}
-            src={converIGtoJPG(story.media_preview)}
+            src={`https://images.weserv.nl/?url=${encodeURIComponent(
+              story.display_url
+            )}&h=100`}
             alt="@wesbos Instagram Story"
+            style={{
+              backgroundImage: `url(${converIGtoJPG(story.media_preview)})`,
+            }}
           />
         ))}
       </StoriesStyles>

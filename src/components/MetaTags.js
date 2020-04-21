@@ -13,7 +13,6 @@ function getBaseURL() {
 const baseURL = getBaseURL();
 
 export function PostMetaTags({ post }) {
-  console.log(baseURL);
   const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
   const url = `${baseURL}/${post.frontmatter.slug}`;
   const thumbnailData = {

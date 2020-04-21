@@ -24,10 +24,13 @@ async function getPosts() {
   // get ready
   const posts = res.data.user.feed_reels_tray.edge_reels_tray_to_reel.edges
     .map(edge => edge.node)[0]
-    .items.map(item => ({ media_preview: item.media_preview }));
+    .items.map(item => ({
+      media_preview: item.media_preview,
+      display_url: item.display_url,
+    }));
   cache.lastFetch = Date.now();
   cache.posts = posts;
-  return posts;
+  return cache.posts;
 }
 
 exports.handler = async function(event, context, callback) {
