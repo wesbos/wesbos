@@ -15,12 +15,9 @@ const InstaStyles = styled.div`
 `;
 
 const StoriesStyles = styled.a`
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
-  grid-gap: 2px; */
   font-size: 0;
-  display: block;
   display: flex;
+  flex-wrap: wrap;
   .story {
     width: 50px;
     height: 89px;
