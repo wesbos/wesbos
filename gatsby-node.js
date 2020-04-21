@@ -2,7 +2,10 @@ require('dotenv').config();
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
+// This surfaces backend env variables to the front end by prefixing them with GATSBY_
 process.env.GATSBY_DEPLOY_PRIME_URL = process.env.DEPLOY_PRIME_URL;
+process.env.GATSBY_COMMIT_REF = process.env.COMMIT_REF;
+process.env.GATSBY_REPOSITORY_URL = process.env.REPOSITORY_URL;
 
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
