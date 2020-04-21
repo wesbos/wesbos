@@ -65,7 +65,7 @@ I also use Serverless Functions to generate the [Open Graph images](https://gith
 
 I'm building and hosting it on [Netlify](https://www.netlify.com). I really like how it's hooked up to github and auto-deploys. Initially the site didn't build at all because apparently 350 images is too many — more in the next section on how we solved that.
 
-I really wanted to maintain a viewable view-source, so after a tweet asking about nicely formatting the compacted HTML, James Vickery build this really cool [gatsby-plugin-prettier-build](https://github.com/jmsv/gatsby-plugin-prettier-build/) plugin that hooks into onPostBuild and runs the HTML through prettier.
+I really wanted to maintain a viewable view-source, so after a tweet asking about nicely formatting the compacted HTML, James Vickery built this really cool [gatsby-plugin-prettier-build](https://github.com/jmsv/gatsby-plugin-prettier-build/) plugin that hooks into onPostBuild and runs the HTML through prettier.
 
 Seems weird to un-minify the HTML, but I grew up on view source and want to maintain that for other developers learning today.
 
