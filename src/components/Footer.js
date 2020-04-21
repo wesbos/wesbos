@@ -119,7 +119,8 @@ export default function Footer() {
               Baked Fresh from commit <a href={process.env.REPOSITORY_URL} />
               {process.env.COMMIT_REF}
             </small>
-          </p> */}
+          </p>
+          */}
         </div>
       </div>
     </FooterStyles>
