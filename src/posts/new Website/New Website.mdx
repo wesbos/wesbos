@@ -49,15 +49,15 @@ Most of my blog posts were already written in Markdown, so I went with MDX which
 
 If this were a client project, I'd likely go Headless CMS like WordPress w/ GraphQL, Sanity, Prismic or similar.
 
-I don't usually recommend someone use markdown for their content, but in my case I want to have all my content on github, easily editable so the nitpickers can fix things themselves instead of emailing me 😃
+I don't usually recommend someone use markdown for their content, but in my case I want to have all my content on github, easily editable so the nitpickers can fix things themselves instead of emailing me. 😃
 
 ### Serverless Functions
 
-There are a few pieces of dynamic content on footer of this site — the latest Podcast, Tweets, Instagram stories and Instagram posts.
+There are a few pieces of dynamic content on the footer of this site — the latest Podcast, Tweets, Instagram stories and Instagram posts.
 
 I didn't use Gatsby plugins for these because they would quickly become outdated. Instead I load them on the client once the page loads.
 
-For this I use Amazon's Lamda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions)
+For this I use Amazon's Lamda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions).
 
 I also use Serverless Functions to generate the [Open Graph images](https://github.com/wesbos/wesbos/blob/master/functions/ogimage/ogimage.js). It's just a page on this site that is screenshotted with puppeteer.
 
