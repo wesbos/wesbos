@@ -6,8 +6,6 @@ import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
 
 export default function HomePage({ data, path }) {
-  const { title, description } = data.site.siteMetadata;
-
   return (
     <div className="welcome">
       <PostMetaTags
@@ -20,7 +18,6 @@ export default function HomePage({ data, path }) {
       />
       <Helmet
         htmlAttributes={{ lang: 'en' }}
-        meta={[{ name: 'description', content: description }]}
         title="Wes Bos - Full Stack Developer"
       />
       <WelcomeStyles>
@@ -46,14 +43,3 @@ export default function HomePage({ data, path }) {
     </div>
   );
 }
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
-  }
-`;
