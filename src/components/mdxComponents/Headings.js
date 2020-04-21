@@ -79,18 +79,14 @@ const HStyles = styled.h1`
     color: inherit;
     text-decoration-color: var(--yellow);
   }
-  .anchor {
+  .hash-anchor {
     position: absolute;
     transform: translateX(-120%);
     text-decoration: none;
-    /* opacity:0; */
-    transition: all 0.2s;
-    &:after {
-      content: '🔗';
-      &:hover {
-        background: red;
-      }
-    }
+    opacity: 0;
+  }
+  &:hover .hash-anchor {
+    opacity: 1;
   }
 `;
 

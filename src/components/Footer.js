@@ -114,12 +114,12 @@ export default function Footer() {
             <IoLogoGithub /> Github
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
-          <p>
+          {/* <p>
             <small>
               Baked Fresh from commit <a href={process.env.REPOSITORY_URL} />
               {process.env.COMMIT_REF}
             </small>
-          </p>
+          </p> */}
         </div>
       </div>
     </FooterStyles>

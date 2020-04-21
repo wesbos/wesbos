@@ -9,6 +9,7 @@
   "dependencies": {
     "@mdx-js/loader": "1.5.8",
     "@mdx-js/mdx": "1.5.8",
+    "@mdx-js/react": "^1.5.8",
     "@mdx-js/tag": "0.20.3",
     "core-js": "^3.6.5",
     "date-fns": "^2.12.0",

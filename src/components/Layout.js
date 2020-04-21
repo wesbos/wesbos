@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDXProvider } from '@mdx-js/tag';
+import { MDXProvider } from '@mdx-js/react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import Nav from './Nav';
@@ -16,6 +16,8 @@ const ContentStyles = styled.div`
   padding: 2rem;
 `;
 
+console.log(mdxComponents);
+
 function Layout({
   location,
   title,
@@ -27,23 +29,23 @@ function Layout({
 }) {
   if (pageContext.layout === 'thumbnail') return children;
   return (
-    <MDXProvider components={mdxComponents}>
-      <>
-        <GlobalStyles />
-        <Fonts />
-        <Helmet>
-          <title>{title}</title>
-          <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
-          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
-          <meta name="theme-color" content="#ffc600" />
-        </Helmet>
-        <LayoutStyles className={location.pathname === '/' ? 'welcome' : null}>
-          <Nav pageContext={pageContext} />
+    <>
+      <GlobalStyles />
+      <Fonts />
+      <Helmet>
+        <title>{title}</title>
+        <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <meta name="theme-color" content="#ffc600" />
+      </Helmet>
+      <LayoutStyles className={location.pathname === '/' ? 'welcome' : null}>
+        <Nav pageContext={pageContext} />
+        <MDXProvider components={mdxComponents}>
           <ContentStyles>{children}</ContentStyles>
-          <Footer />
-        </LayoutStyles>
-      </>
-    </MDXProvider>
+        </MDXProvider>
+        <Footer />
+      </LayoutStyles>
+    </>
   );
 }
 
