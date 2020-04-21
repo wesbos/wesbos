@@ -216,7 +216,7 @@ export default function AboutPage({ data, path }) {
             alt="What The Flexbox?!"
           />
           <H as="h3">What The Flexbox?!</H>
-          <PriceTag>Premium</PriceTag>
+          <PriceTag>Free</PriceTag>
           <a href="http://Flexbox.io">Flexbox.io</a>
           <p>
             Flexbox sure is tricky to learn. Get a grasp on flexbox while
@@ -230,7 +230,7 @@ export default function AboutPage({ data, path }) {
             alt="Command Line Power User"
           />
           <H as="h3">Command Line Power User</H>
-          <PriceTag>Premium</PriceTag>
+          <PriceTag>Free</PriceTag>
           <a href="http://CommandLinePowerUser.com">CommandLinePowerUser.com</a>
           <p>
             As web developers, we use the command line a lot. A video series for
@@ -245,7 +245,7 @@ export default function AboutPage({ data, path }) {
             alt="Learn Redux"
           />
           <H as="h3">Learn Redux</H>
-          <PriceTag>Premium</PriceTag>
+          <PriceTag>Free</PriceTag>
           <a href="https://LearnRedux.com">LearnRedux.com</a>
           <p>
             A 20 video / 2.5 hour course to learn how to use Redux, React Router
@@ -261,7 +261,7 @@ export default function AboutPage({ data, path }) {
             alt="Mastering Markdown"
           />
           <H as="h3">Mastering Markdown</H>
-          <PriceTag>Premium</PriceTag>
+          <PriceTag>Free</PriceTag>
           <a href="http://MasteringMarkdown.com">MasteringMarkdown.com</a>
           <p>
             A quick 34 minute mini course for anyone who is looking to learn
