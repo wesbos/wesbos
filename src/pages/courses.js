@@ -261,7 +261,7 @@ export default function AboutPage({ data, path }) {
             alt="Mastering Markdown"
           />
           <H as="h3">Mastering Markdown</H>
-          <PriceTag>Premium</PriceTag>
+          <PriceTag>Free</PriceTag>
           <a href="http://MasteringMarkdown.com">MasteringMarkdown.com</a>
           <p>
             A quick 34 minute mini course for anyone who is looking to learn
