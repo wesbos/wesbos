@@ -49,6 +49,9 @@ const TweetMeta = styled.div`
       color: var(--yellow);
     }
   }
+  .media {
+    font-size: 0;
+  }
 `;
 
 function useTwitter() {
@@ -68,10 +71,12 @@ function Media({ media, alt }) {
   const url = media[0].media_url_https;
   const parts = url.split('.');
   const base = parts.slice(0, parts.length - 1).join('.');
+  const thumb = `${base}?name=thumb&format=jpg`;
   return (
     <img
-      src={`${base}?name=thumb&format=jpg`}
+      src={`https://images.weserv.nl/?url=${encodeURIComponent(thumb)}&h=75`}
       alt={alt}
+      className="media"
       width="75"
       height="75"
     />
