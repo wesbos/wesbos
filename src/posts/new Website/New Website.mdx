@@ -61,7 +61,7 @@ I also use Serverless Functions to generate the [Open Graph images](https://gith
 
 ### Hosting + Building
 
-I'm building and hosting it on [Netlify](https://www.netlify.com). I really like how it's hooked up to github and auto deploys.
+I'm building and hosting it on [Netlify](https://www.netlify.com). I really like how it's hooked up to github and auto deploys. Initially the site didn't build at all because apparently 350 images is too many — more in the next section on how we solved that.
 
 I really wanted to maintain a viewable view-source, so after a tweet asking about nicely formatting the compacted HTML, James Vickery build this really cool [gatsby-plugin-prettier-build](https://github.com/jmsv/gatsby-plugin-prettier-build/) plugin that hooks into onPostBuild and runs the HTML through prettier.
 
@@ -71,7 +71,7 @@ Seems weird to un-minify the HTML, but I grew up on view source and want to main
 
 Likely the worst part of this whole stack is the **slow build times**. Gatsby must generate each page before hand, so with 500+ pages, that can take some time.
 
-Gatsby images is literally resizing and making multiple versions of each image, so that also takes some time.
+Gatsby images is literally resizing and making multiple versions of each image, so that also takes lots of time. I have about 350 images, which I don't consider to be _that_ many, but it caused big problems.
 
 The build times were getting up to ~25 mins which was really frustrating. Part of me missed being able to cowboy code right on the server and refesh to page to see if something worked (_not all of me, relax_).
 
