@@ -17,7 +17,7 @@ Over the past year I've been chipping away at building this new site and I'm sup
 
 My old site, built in 2014, was starting to feel a little creeky.
 
-It was running on WordPress. I had over a decade on WordPress and I still love it, but Ill explain why I left WP in just a second. Here is the tech I used on the old site:
+It was running on WordPress. I had over a decade on WordPress and I still love it, but I'll explain why I left WP in just a second. Here is the tech I used on the old site:
 
 * WordPress
 * Custom theme
@@ -53,11 +53,11 @@ I don't usually recommend someone use markdown for their content, but in my case
 
 ### Serverless Functions
 
-There are a few pieces of dynamic content on footer of this site - the latest Podcast, Tweets, Instagram stories and Instagram posts.
+There are a few pieces of dynamic content on the footer of this site - the latest Podcast, Tweets, Instagram stories and Instagram posts.
 
 I didn't use Gatsby plugins for these because they would quickly become outdated. Instead I load them on the client once the page loads.
 
-For this I use Amazon's Lamda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions)
+For this I use Amazon's Lambda functions. I loved this workflow of needing a "sip of backend", I just created [a new file in this folder](https://github.com/wesbos/wesbos/tree/master/functions)
 
 I also use Serverless Functions to generate the [Open Graph images](https://github.com/wesbos/wesbos/blob/master/functions/ogimage/ogimage.js). It's just a page on this site that is screenshotted with puppeteer.
 
@@ -75,7 +75,7 @@ Likely the worst part of this whole stack is the **slow build times**. Gatsby mu
 
 Gatsby images is literally resizing and making multiple versions of each image, so that also takes lots of time. I have about 350 images, which I don't consider to be _that_ many, but it caused big problems.
 
-The build times were getting up to ~25 mins which was really frustrating. Part of me missed being able to cowboy code right on the server and refesh to page to see if something worked (_not all of me, relax_).
+The build times were getting up to ~25 mins which was really frustrating. Part of me missed being able to cowboy code right on the server and refesh the page to see if something worked (_not all of me, relax_).
 
 There were two big solutions to this: [Gatsby Cloud](https://www.gatsbyjs.com/cloud/) and [Gatsby Parallel Build](https://www.netlify.com/blog/2020/02/25/gatsby-build-speed-improvements-with-parallel-image-processing/).
 
