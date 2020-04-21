@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import YouTube from 'react-youtube';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { IoLogoGithub } from 'react-icons/io';
 import Layout from '../components/Layout';
 import Img from '../components/Img';

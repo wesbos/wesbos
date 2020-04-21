@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import Img from '../components/Img';
 import Layout from '../components/Layout';
 import H from '../components/mdxComponents/Headings';

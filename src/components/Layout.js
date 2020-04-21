@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/tag';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import Nav from './Nav';
 import mdxComponents from './mdxComponents';
@@ -26,7 +26,6 @@ function Layout({
   ...rest
 }) {
   if (pageContext.layout === 'thumbnail') return children;
-  console.log(children);
   return (
     <MDXProvider components={mdxComponents}>
       <>

@@ -2,7 +2,7 @@ import React from 'react';
 import { IoIosLink, IoLogoTwitter } from 'react-icons/io';
 import { Link } from 'gatsby';
 import formatDistance from 'date-fns/formatDistance';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { TipMetaStyles } from './styles/TipStyles';
 
 export default function TipMeta({ tip }) {
