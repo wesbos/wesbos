@@ -124,7 +124,7 @@ You can use whatever loop or logic you prefer inside of this function. You could
 
 
 ```js
-function highlight() {
+function highlight(strings, ...values) {
    let str = '';
    strings.forEach((string, i) => {
        str += string + values[i];
@@ -148,7 +148,7 @@ A little trick you can do here, is you can use your values of I or just a blank 
 
 
 ```js
-function highlight() {
+function highlight(strings, ...values) {
    let str = '';
    strings.forEach((string, i) => {
        str += string + (values[i] || '');
@@ -167,10 +167,10 @@ You maybe want to show your user which pieces of the string were variables or wh
 
 
 ```js
-function highlight() {
+function highlight(strings, ...values) {
    let str = '';
    strings.forEach((string, i) => {
-       str += `${string} <span class='hl'>${values[i] || ''}`;
+       str += `${string} <span class='hl'>${values[i] || ''}</span>`;
    });
    return str;
 }
