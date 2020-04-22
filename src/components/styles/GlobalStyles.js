@@ -74,8 +74,6 @@ const GlobalStyles = createGlobalStyle`
     font-style: italic;
     line-height: 1.5;
   }
-
-
   a {
     color: var(--dark);
   }
