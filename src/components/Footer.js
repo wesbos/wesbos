@@ -111,7 +111,7 @@ export default function Footer() {
             rel="noreferrer noopener"
             className="socialLink"
           >
-            <IoLogoGithub /> Github
+            <IoLogoGithub /> GitHub
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
           {/* <p>
