@@ -41,8 +41,9 @@ export default function AboutPage({ data, path }) {
           frontmatter: {
             slug: path,
             title: 'About',
-            image: `${process.env.GATSBY_DEPLOY_PRIME_URL ||
-              `http://localhost:8888`}${data.wes.childImageSharp.fluid.src}`,
+            image: `${
+              process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`
+            }${data.wes.childImageSharp.fluid.src}`,
           },
         }}
       />
@@ -112,7 +113,7 @@ export default function AboutPage({ data, path }) {
       </p>
 
       <p>
-        <strong>I live</strong> in a really cool city called Hamilton in it's
+        <strong>I live</strong> in a really cool city called Hamilton in its
         downtown core in a super old house with my{' '}
         <a href="http://kaitbos.com/">wife Kaitlin</a>, two girls, one boy and a
         pup named Snickers. We spend our summers at our cottage up in beautiful

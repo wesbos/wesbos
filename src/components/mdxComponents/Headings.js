@@ -52,7 +52,6 @@ const HStyles = styled.h1`
     position: relative;
     ${({ as }) => as === 'span' && `margin-right: -2rem;`};
     &:hover {
-      /* background-position: -600px; */
       animation: ${gritty} 2s steps(10) infinite;
     }
   }
@@ -97,3 +96,5 @@ export default function H(props) {
     </HStyles>
   );
 }
+
+export { gritty };

@@ -157,7 +157,8 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
   }
   .highlight {
-    background: var(--yellow) url(${blackGrit});
+    background-image: url(${blackGrit});
+    background-color: var(--yellow);
     background-size: 500px;
     padding: 5px;
   }
