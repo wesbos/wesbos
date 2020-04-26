@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { pathJoin } from '../utils/path-join';
 
 function getBaseURL() {
   const url = process.env.GATSBY_URL;
@@ -13,8 +14,8 @@ function getBaseURL() {
 const baseURL = getBaseURL();
 
 export function PostMetaTags({ post }) {
-  const canonical = `https://wesbos.com/${post.frontmatter.slug}`;
-  const url = `${baseURL}/${post.frontmatter.slug}`;
+  const canonical = pathJoin('https://wesbos.com', post.frontmatter.slug);
+  const url = pathJoin(baseURL, post.frontmatter.slug);
   const thumbnailData = {
     title: post.frontmatter.title,
     url,
