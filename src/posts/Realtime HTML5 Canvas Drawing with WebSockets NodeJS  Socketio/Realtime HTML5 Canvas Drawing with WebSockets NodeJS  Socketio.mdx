@@ -14,25 +14,26 @@ Web sockets and Canvas are two really cool features that are currently being imp
 
 
 
-	* <a href="https://github.com/wesbos/websocket-canvas-draw" target="_blank">Download the code on GitHub</a> 
+	* <a href="https://github.com/wesbos/websocket-canvas-draw" target="_blank">Download the code on GitHub</a>
 
 	* <a href="http://twitter.com/wesbos">Follow @wesbos on Twitter</a>
 
 
 
 <h3>Quick Screencast detailing tutorial</h3>
-http://www.youtube.com/watch?v=n7wQsLu_k00
+
+https://youtu.be/n7wQsLu_k00
 
 <h3>Cross Device / Browser compatibility </h3>
-http://www.youtube.com/watch?v=oI9AahO9vDY
 
+https://youtu.be/oI9AahO9vDY
 
 <h3>Server Side</h3>
 The first thing we need to do is create a web socket server. For this we will be using <a href="http://nodejs.org/" target="_blank">Node.js</a> and the module <a href="http://socket.io" target="_blank">Socket.io</a>. Socket.io makes its super easy to get a web socket server up and running. It even provides a flash fallback for browsers that don't support native web sockets. In this tutorial we will only be working with browsers that support the canvas element.
 
 If you don't have Socket.io installed yet, make sure you do so by typing `npm install socket.io` into your terminal.
 
-For now, lets just set up the web socket server. Create your `server.coffee` file with the following configuration. 
+For now, lets just set up the web socket server. Create your `server.coffee` file with the following configuration.
 
 
 ```js
@@ -42,7 +43,7 @@ io.sockets.on 'connection', (socket) ->
 
 ```
 
-Compile your coffeescript and hop back into your terminal and type `node server.js`. You now have a web socket server running on port 4000. 
+Compile your coffeescript and hop back into your terminal and type `node server.js`. You now have a web socket server running on port 4000.
 <img src="Screen_Shot_2011-08-12_at_7.35.45_PM.png" alt="" />
 
 If you go to localhost:4000 you'll see the following:
@@ -78,31 +79,31 @@ First, lets quickly get our `index.html` file up and running. In addition to som
 </body>
 ```
 
-Now that we have our server up and running, we can write some code which will draw to the canvas. Create a new file called `scripts.coffee`.  All of the following code happens within the App.init() method which we will trigger on the jQuery document ready. 
+Now that we have our server up and running, we can write some code which will draw to the canvas. Create a new file called `scripts.coffee`.  All of the following code happens within the App.init() method which we will trigger on the jQuery document ready.
 
 <h4>Create our Canvas Element</h4>
 
 
 ```js
 
-# setup our application with its own namespace 
+# setup our application with its own namespace
 App = {}
 
 ###
-	Init 
+	Init
 ###
-App.init = -> 
-	App.canvas = document.createElement 'canvas' #create the canvas element 
+App.init = ->
+	App.canvas = document.createElement 'canvas' #create the canvas element
 	App.canvas.height = 400
 	App.canvas.width = 800  #size it up
-	document.getElementsByTagName('article')[0].appendChild(App.canvas) #append it into the DOM 
+	document.getElementsByTagName('article')[0].appendChild(App.canvas) #append it into the DOM
 
-	App.ctx = App.canvas.getContext("2d") # Store the context 
+	App.ctx = App.canvas.getContext("2d") # Store the context
 
 	# set some preferences for our line drawing.
-	App.ctx.fill 		
-	App.ctx.stroke		
-	App.ctx.lineWidth = 5				
+	App.ctx.fill
+	App.ctx.stroke
+	App.ctx.lineWidth = 5
 	App.ctx.lineCap = "round"
 
 	# Draw Function
@@ -139,7 +140,7 @@ return
 ```
 
 <h4>Setup our client side web socket</h4>
-Since we included our file at `http://localhost:4000/socket.io/socket.io.js` we are able to create an object which we can send our data over. With just a few lines, we create our App.socket object and bind to any incoming web socket events called 'draw'. We will go over this more soon. 
+Since we included our file at `http://localhost:4000/socket.io/socket.io.js` we are able to create an object which we can send our data over. With just a few lines, we create our App.socket object and bind to any incoming web socket events called 'draw'. We will go over this more soon.
 
 
 ```js
@@ -164,10 +165,10 @@ This is where things gets exciting. Now we want to bind a few events to our canv
 $('canvas').live 'drag dragstart dragend', (e) ->
 	type = e.handleObj.type
 	offset = $(this).offset()
-	
+
 	e.offsetX = e.layerX - offset.left
 	e.offsetY = e.layerY - offset.top
-	x = e.offsetX 
+	x = e.offsetX
 	y = e.offsetY
 	App.draw(x,y,type)
 	App.socket.emit('drawClick', { x : x, y : y, type : type})
