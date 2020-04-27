@@ -28,6 +28,7 @@ module.exports = {
         name: 'page',
       },
     },
+    `gatsby-plugin-twitter`,
     // Posts
     {
       resolve: `gatsby-source-filesystem`,
