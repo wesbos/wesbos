@@ -1,6 +1,6 @@
 require('isomorphic-fetch');
 
-const url = `https://www.instagram.com/graphql/query/?query_hash=04334405dbdef91f2c4e207b84c204d7&variables=%7B%22only_stories%22%3Atrue%2C%22stories_prefetch%22%3Atrue%2C%22stories_video_dash_manifest%22%3Afalse%7D`;
+const url = `https://www.instagram.com/graphql/query/?query_hash=04334405dbdef91f2c4e207b84c204d7&variables={"only_stories":true,"stories_prefetch":true,"stories_video_dash_manifest":false}`;
 
 const cache = {
   lastFetch: 0,
