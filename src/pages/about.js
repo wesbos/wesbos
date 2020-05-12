@@ -67,7 +67,7 @@ export default function AboutPage({ data, path }) {
           making websites
         </a>{' '}
         for about {timeAsYears} years - or <em>exactly</em>{' '}
-        <TimeSinceStarting /> miliseconds!
+        <TimeSinceStarting /> milliseconds!
       </p>
 
       <p>
