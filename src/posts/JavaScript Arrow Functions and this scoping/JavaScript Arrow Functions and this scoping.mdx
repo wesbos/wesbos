@@ -13,7 +13,7 @@ We've learned about the concise syntax of arrow functions. We've learned about t
 
 What does that mean? Let's show an example as to when you might run into this. This is a pretty visual one so you might be better off watching the corresponding <a href="https://ES6.io">ES6.io</a> video. We will be creating this:
 
-[codepen_embed height="400" theme_id="dark" slug_hash="KgpNjJ" default_tab="css,result" user="wesbos" data-editable="true"]See the Pen <a href='http://codepen.io/wesbos/pen/KgpNjJ/'>Arrow Functions and `this`. — ES6.io</a> by Wes Bos (<a href='http://codepen.io/wesbos'>@wesbos</a>) on <a href='http://codepen.io'>CodePen</a>.[/codepen_embed]
+http://codepen.io/wesbos/pen/KgpNjJ
 
 What I have here is I've got this `div with the class of box` right here.
 
@@ -83,7 +83,7 @@ Here we are going to type a regular function, and include a `console.log` so we 
 ```js
 const box = document.querySelector('.box');
 box.addEventListener('click', function() {
-    console.log(this);    
+    console.log(this);
 });
 
 ```
@@ -96,7 +96,7 @@ That's good. But, if you swap this out with an arrow function here, watch what h
 ```js
 const box = document.querySelector('.box');
 box.addEventListener('click', () => {
-    console.log(this);    
+    console.log(this);
 });
 
 ```
@@ -117,7 +117,7 @@ We can't use an arrow function there. I'm going to bring that back to regular fu
 ```js
 const box = document.querySelector('.box');
 box.addEventListener('click', function() {
-    console.log(this);    
+    console.log(this);
 });
 
 ```
@@ -128,7 +128,7 @@ That's what we want. You generally want these functions for your top level ones.
 ```js
 const box = document.querySelector('.box');
 box.addEventListener('click', function() {
-    this.classList.toggle('opening');    
+    this.classList.toggle('opening');
 });
 
 ```
@@ -145,7 +145,7 @@ const box = document.querySelector('.box');
 box.addEventListener('click', function() {
     this.classList.toggle('opening');
     setTimeout(function() {
-       this.classList.toggle('open'); 
+       this.classList.toggle('open');
     });
 });
 
@@ -164,7 +164,7 @@ box.addEventListener('click', function() {
     this.classList.toggle('opening');
     setTimeout(function() {
        console.log(this.classList);
-       this.classList.toggle('open'); 
+       this.classList.toggle('open');
     });
 });
 
@@ -181,7 +181,7 @@ box.addEventListener('click', function() {
     this.classList.toggle('opening');
     setTimeout(function() {
        console.log(this);
-       this.classList.toggle('open'); 
+       this.classList.toggle('open');
     });
 });
 
@@ -203,7 +203,7 @@ box.addEventListener('click', function() {
     this.classList.toggle('opening');
     setTimeout(function() {
        console.log(this);
-       self.classList.toggle('open'); 
+       self.classList.toggle('open');
     });
 });
 
@@ -220,7 +220,7 @@ box.addEventListener('click', function() {
     this.classList.toggle('opening');
     setTimeout(() => {
        console.log(this);
-       this.classList.toggle('open'); 
+       this.classList.toggle('open');
     });
 });
 
@@ -237,7 +237,7 @@ box.addEventListener('click', function() {
     this.classList.toggle('opening');
     setTimeout(() => {
        console.log(this);
-       this.classList.toggle('open'); 
+       this.classList.toggle('open');
     }, 500);
 });
 
@@ -262,7 +262,7 @@ box.addEventListener('click', function() {
     this.classList.toggle(first);
     setTimeout(() => {
        console.log(this);
-       this.classList.toggle(second); 
+       this.classList.toggle(second);
     }, 500);
 });
 
@@ -285,7 +285,7 @@ box.addEventListener('click', function() {
     this.classList.toggle(first);
     setTimeout(() => {
        console.log(this);
-       this.classList.toggle(second); 
+       this.classList.toggle(second);
     }, 500);
 });
 

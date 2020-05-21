@@ -9,14 +9,13 @@ date: 2011-09-26T22:50:19
 id: 388
 ---
 
-This morning I saw <a href="http://www.youtube.com/watch?v=EBxDyr--HIY" target="_blank">this</a> link on youtube which was a little mashup of some HTML5 technologies. I thought it would be funny if I could do the same, but with goofy pair of glasses. I've also been itching to put the <a title="JavaScript Face Detection" href="https://github.com/liuliu/ccv" target="_blank">CCV</a> JavaScript Face Detection library to use. This library shows a few examples on static images, but after a quick look at the code, it shows that the underlying element to the script is a canvas element. So instead of running it on a single image, I am running it on a feed of frames coming from an HTML5 video element.
+This morning I saw <a href="https://youtu.be/EBxDyr--HIY" target="_blank">this</a> link on youtube which was a little mashup of some HTML5 technologies. I thought it would be funny if I could do the same, but with goofy pair of glasses. I've also been itching to put the <a title="JavaScript Face Detection" href="https://github.com/liuliu/ccv" target="_blank">CCV</a> JavaScript Face Detection library to use. This library shows a few examples on static images, but after a quick look at the code, it shows that the underlying element to the script is a canvas element. So instead of running it on a single image, I am running it on a feed of frames coming from an HTML5 video element.
 
 I'll go into the technical details further on in the post, but here is a demo as well as a youtube video showing the effect as it can be a little sluggish on older machines. Currently tested and working in Google Chrome 14 and Firefox 6.0. 
 
 <a href="http://wesbos.com/demos/html5-face-detection/" target="_blank">Try the Demo</a>   |  <a href="https://github.com/wesbos/HTML5-Face-Detection" target="_blank">Download the Source</a>
 
-http://www.youtube.com/watch?v=YYES9Qd094o&hd=1
-
+https://youtu.be/YYES9Qd094o
 
 <h3>Setting up our document</h3>
 To get started, we dont really need that much. Only two of the files from the CCV Library are required are <a title="CCV.JS Face Detection" href="https://github.com/liuliu/ccv/blob/stable/js/ccv.js" target="_blank">CCV.js</a> which does the acutal detection of the the face, and <a href="https://github.com/liuliu/ccv/blob/stable/js/face.js" target="_blank">face.js</a> which holds the data for what faces look like. We will also need an empty canvas element, a HTML5 video element with .MP4 and .OGG encoded files  (I used <a href="http://www.mirovideoconverter.com/" target="_blank">Miro</a> to convert mine), and a blank scripts.js file. Things will look like this when we are setup:
@@ -62,7 +61,7 @@ I've commented these inline.
 
 ```js
 
-var		
+var
 		// Store the first HTML5 video element in the document
 		video = document.querySelector('video'),
 		// We use this to time how long things are taking. Not that important..
@@ -80,12 +79,12 @@ var
 
 <h3>Create our main html5glasses() function</h3>
 This is where all the magic happens. Read through each line and realize what is happening. Pay specific attenton to the `ccv.detect_objects()` function.
- 
+
 
 ```js
 
 function html5glasses() {
-	// Start the clock 
+	// Start the clock
 	var elapsed_time = (new Date()).getTime();
 
 	// Draw the video to canvas
@@ -109,14 +108,14 @@ function html5glasses() {
 ```
 
 <h3>Finally, trigger it!</h3>
-We trigger the detection when the video element is played and stop it when it reaches the end. 
+We trigger the detection when the video element is played and stop it when it reaches the end.
 
 ```js
 
-/* Events */ 
+/* Events */
 
 video.addEventListener('play', function() {
-	vidInterval = setInterval(html5glasses,200); 
+	vidInterval = setInterval(html5glasses,200);
 });
 
 video.addEventListener('ended', function() {

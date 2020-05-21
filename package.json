@@ -34,6 +34,7 @@
     "gatsby-plugin-twitter": "^2.3.0",
     "gatsby-remark-autolink-headers": "^2.2.3",
     "gatsby-remark-copy-linked-files": "^2.2.3",
+    "gatsby-remark-embedder": "^2.0.1",
     "gatsby-remark-images": "^3.2.4",
     "gatsby-remark-responsive-iframe": "^2.3.3",
     "gatsby-remark-shiki": "^0.1.2",
