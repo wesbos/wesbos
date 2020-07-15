@@ -83,7 +83,7 @@ You could make a sanitized tag template and use this library inside of it. I'm g
 
 ```js
 function sanitize(strings, ...values) {
-    return strings.reduce((prev, next, i) => `${prev}${next}${values[i]} || ''}`);
+    return strings.reduce((prev, next, i) => `${prev}${next}${values[i] || ''}`);
 }
 const first = 'Wes';
 const aboutMe = sanitize`I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" />`;
@@ -104,7 +104,7 @@ We still have, "you got hacked" because we're not finished yet.
 
 ```js
 function sanitize(strings, ...values) {
-    const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i]} || ''}`);
+    const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i] || ''}`);
 }
 const first = 'Wes';
 const aboutMe = sanitize`I love to do evil <img src="http://unsplash.it/100/100?random" onload="alert('you got hacked');" />`;
@@ -125,7 +125,7 @@ Now we'll use our library that we loaded, and it's called with `DOMPurify.saniti
 
 ```js
 function sanitize(strings, ...values) {
-    const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i]} || ''}`, '');
+    const dirty = strings.reduce((prev, next, i) => `${prev}${next}${values[i] || ''}`, '');
     return DomPurify.sanitize(dirty);
 }
 const first = 'Wes';
