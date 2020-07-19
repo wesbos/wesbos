@@ -112,11 +112,9 @@ async function paginate({
       }
     `
   );
-
   if (errors) {
     throw new Error('There was an error');
   }
-
   const { totalCount } = data.allMdx;
   const pages = Math.ceil(totalCount / 10);
 
