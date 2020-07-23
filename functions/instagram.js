@@ -26,7 +26,10 @@ function slimUpPosts(response) {
     biggie: edge.node.thumbnail_src,
     thumbnail: edge.node.thumbnail_resources[2].src,
     url: `https://instagram.com/p/${edge.node.shortcode}`,
-    caption: edge.node.edge_media_to_caption.edges[0].node.text,
+    caption:
+      edge.node.edge_media_to_caption.edges.length > 0
+        ? edge.node.edge_media_to_caption.edges[0].node.text
+        : null,
     id: edge.node.id,
   }));
 }
