@@ -31,7 +31,7 @@ console.log(sentence)
 
 This tags it with a function name. What will happen is the browser will run this function, it will provide it with all the information about the string, all the pieces that the person typed, as well as the variables that get passed in. Whatever we return from this function is what `sentence` actually is going to be.
 
-It acts like a step in between. Before this function actually gets put into `sentence, we have the ability to modify it in any given way. Let's take a look at highlight` here:
+It acts like a step in between. Before this function actually gets put into `sentence`, we have the ability to modify it in any given way. Let's take a look at `highlight` here:
 
 
 ```js
@@ -40,7 +40,7 @@ function highlight() {
 }
 ```
 
-If I just use `return 'cool' that is going to take in this entire string as an argument, but then just return the word "cool." Now we see cool` in console.
+If I just use `return 'cool'` that is going to take in this entire string as an argument, but then just return the word "cool." Now we see `cool` in console.
 
 
 ```js
@@ -62,7 +62,8 @@ First, we get an array of all the string pieces:
 
 
 
-After the array of all the strings, the subsequent arguments will be the values that are being interpolated.
+After the array of all the 
+, the subsequent arguments will be the values that are being interpolated.
 
 In this case, we're passing `name and age`.
 
@@ -73,7 +74,7 @@ function highlight(strings, name, age) {
 }
 ```
 
-Now, we could do this. It passes a name and passes an age, but if you don't know exactly how many values someone is passing, there's no way for you to really scale it. You could say `Arg1, Arg2, go through all the way to Arg100`, just in case there are a hundred arguments, but that's no way to live your life, right?
+Now, we could do this. It passes a name and passes an age, but if you don't know exactly how many values someone is passing, there's no way for you to really scale it. You could say `Arg1`, `Arg2`, go through all the way to `Arg100`, just in case there are a hundred arguments, but that's no way to live your life, right?
 
 For this, We can use ES6 rest operator, which is three dots. We're going to go into that a lot more in a future video, but know for now, if we do `... values`, what it's going to do is take the <em>rest</em> of the values that are passed to that argument, and put them into an array for us.
 
@@ -84,7 +85,7 @@ function highlight(strings, ...values) {
 }
 ```
 
-What's `strings? Strings` is an array of three things:
+What's `strings?` `Strings` is an array of three things:
 
 
 
@@ -98,9 +99,9 @@ What's `strings? Strings` is an array of three things:
 
 As you can see, it breaks up the string into the biggest pieces it can until a variable interrupts it.
 
-We've got `"My dog's name is" then it pops in a variable, "and he is ", that's the second item in the strings array, and then, "years old "`, which are the three strings that don't get changed.
+We've got `"My dog's name is"` then it pops in a variable, `"and he is "`, that's the second item in the strings array, and then, `"years old "`, which are the three strings that don't get changed.
 
-The other things we get is an array of `values, which we passed in two values here. We get "Snickers" and "100"` which are the values that I passed in.
+The other things we get is an array of `values`, which we passed in two values here. We get `"Snickers"` and `"100"` which are the values that I passed in.
 
 So - the whole point of the tagged template is so that we can create the string ourselves. Let's move along to creating it!
 
@@ -116,11 +117,11 @@ const sentence = highlight`My dog's name is ${name} and he is ${age} years old`;
 console.log(sentence)
 ```
 
-I'm using `let here. Why? Because we're going to be appending more strings on to this actual string. If I used const`, I wouldn't be able to tack onto it.
+I'm using `let` here. Why? Because we're going to be appending more strings on to this actual string. If I used `const`, I wouldn't be able to tack onto it.
 
-Then, we want to loop over this first strings array here, tack on `My dog's name is, and then the first value, and he is and the second value, and then years old` and then third value, but in this case, we don't have a third value.
+Then, we want to loop over this first strings array here, tack on `My dog's name is`, and then the first value, and he is and the second value, and then `years old` and then third value, but in this case, we don't have a third value.
 
-You can use whatever loop or logic you prefer inside of this function. You could even use a `map and then join it together. I'm going to use forEach` in my example:
+You can use whatever loop or logic you prefer inside of this function. You could even use a `map` and then join it together. I'm going to use `forEach` in my example:
 
 
 ```js
@@ -140,9 +141,9 @@ console.log(sentence)
 
 That's going to say, "Give me the first value from the strings and the first value from our values array and tack them on."
 
-We're going to hit a little bit of an error here. If we `return str, the string that we've been tacking things onto, we should now see "My dog's name is Snickers and he is 100 years oldundefined."`
+We're going to hit a little bit of an error here. If we `return str`, the string that we've been tacking things onto, we should now see `"My dog's name is Snickers and he is 100 years oldundefined."`
 
-First of all, remember, that's because the `strings array is always going to be one larger than the values array. When we hit that last one, it's only going to be a string and there's going to be no value to tack on the end. You could check if values of [i] is undefined` and, if it is, then don't put it on.
+First of all, remember, that's because the `strings` array is always going to be one larger than the values array. When we hit that last one, it's only going to be a string and there's going to be no value to tack on the end. You could check if values of [i] is `undefined` and, if it is, then don't put it on.
 
 A little trick you can do here, is you can use your values of I or just a blank string:
 
@@ -176,7 +177,7 @@ function highlight(strings, ...values) {
 }
 ```
 
-Now with our `<span>, let's see what our sentence looks like here. There we go. We've got a span with a class of hl` wrapped around every single possible one.
+Now with our `<span>`, let's see what our sentence looks like here. There we go. We've got a span with a class of `hl` wrapped around every single possible one.
 
 
 ```html
@@ -194,10 +195,10 @@ Then, we can add it to our document instead of using the console:
 document.body.innerHTML = sentence;
 ```
 
-Once you do that, you'll see that the values being highlighted. You can go ahead and add a `contenteditable to our <span>` so that if the user didn't like it, they can change the value they actually wanted. Maybe they didn't like that Snickers is a hundred years old, so they could change that value as well. It's kind of a fun way to do it.
+Once you do that, you'll see that the values being highlighted. You can go ahead and add a `contenteditable` to our `<span>` so that if the user didn't like it, they can change the value they actually wanted. Maybe they didn't like that Snickers is a hundred years old, so they could change that value as well. It's kind of a fun way to do it.
 
 <h3>Bring it in, Team</h3>
 
 There are much more complicated use cases for that and there are many more in-depth use cases for that, but that is the main idea behind these template tag templates. If you have a string, you pass in the regular string that you want, and then you get all the pieces.
 
-It's up to you to craft it together and to return some sort of modified data. In our case, we're wrapping it in a `<span>, but you may want to format it or do some if` statement and conditional work on all the values.
+It's up to you to craft it together and to return some sort of modified data. In our case, we're wrapping it in a `<span>`, but you may want to format it or do some `if` statement and conditional work on all the values.
