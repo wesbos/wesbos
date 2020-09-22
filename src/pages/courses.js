@@ -73,6 +73,27 @@ export default function CoursesPage({ data, path }) {
       <CourseListStyles>
         <div className="course">
           <img
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GAT/GAT-social-share.png"
+            alt="Beginner JavaScript"
+          />
+          <H as="h3">Master Gatsby</H>
+          <PriceTag>Premium</PriceTag>
+          <a href="https://MasterGatsby.com" target="_blank">
+            MasterGatsby.com
+          </a>
+          <p>
+            Building modern websites is tough. Preloading, routing, compression,
+            critical CSS, caching, scaling and bundlers all make for blazing
+            fast websites, but extra development and tooling get in the way.
+          </p>
+          <p>
+            Gatsby is a React.js framework that does it all for you. This course
+            will teach you how to build your websites and let Gatsby take care
+            of all the Hard Stuff™.
+          </p>
+        </div>
+        <div className="course">
+          <img
             src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/BJS/BJS-Social-Share.png"
             alt="Beginner JavaScript"
           />
@@ -98,6 +119,10 @@ export default function CoursesPage({ data, path }) {
           <a href="https://AdvancedReact.com" target="_blank">
             AdvancedReact.com
           </a>
+          <p>
+            Note: This course is currently being re-recorded. you should wait
+            until this is out before you take it.
+          </p>
           <p>
             This is a course that will teach you everything you need to build a
             full stack application with React.js and GraphQL.
