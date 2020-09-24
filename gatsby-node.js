@@ -33,6 +33,7 @@ async function makePostsFromMdx({ graphql, actions }) {
     `
   );
   if (errors) {
+    console.log(errors);
     throw new Error('There was an error');
   }
   const posts = data.allMdx.edges;
@@ -75,6 +76,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
     `
   );
   if (errors) {
+    console.log(errors);
     throw new Error('There was an error');
   }
   const tips = data.allMdx.edges;
@@ -113,6 +115,7 @@ async function paginate({
     `
   );
   if (errors) {
+    console.log(errors);
     throw new Error('There was an error');
   }
   const { totalCount } = data.allMdx;
