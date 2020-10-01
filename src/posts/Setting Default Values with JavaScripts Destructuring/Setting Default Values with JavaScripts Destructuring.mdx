@@ -22,7 +22,7 @@ const { speed, width } = settings;
 console.log(width);
 ```
 
-What is width? It's `undefined` because we create the variable, but it's not able to be set to anything.
+What is _width_? It's `undefined` because we create the variable, but it's not able to be set to anything.
 
 With destructuring we can set defaults, or <em>fallback values</em> so that if an item is not in the object (or Array, Map, or Set) it will fall back to what you have set at the default.
 
@@ -38,7 +38,7 @@ console.log(speed); // 150 - comes from settings object
 console.log(width); // 500 - fallback to default
 ```
 
-Now if the `speed or width properties don't exist on our settings object, they fallback to 750 and 500` respectively.
+Now if the `speed` or `width` properties don't exist on our `settings` object, they fallback to `750` and `500` respectively.
 
 <h2>Careful: null and undefined</h2>
 
@@ -51,7 +51,7 @@ const speed = mySpeed || 760;
 console.log(speed); // 760!
 ```
 
-Why? Because ES6 destructuring default values only kick in if the value is undefined. null, false and 0 are all still values!
+Why? Because ES6 destructuring default values only kick in if the value is `undefined`, `null`, `false` and `0` are all still values!
 
 
 ```js
@@ -70,8 +70,7 @@ console.log(dogName) // what will it be? 0!
 
 <h3>Combining with Destructuring Renaming</h3>
 
-In my last post we learned that we can destrucutre and rename varaibles at the same time with something like this:
-
+In my last post we learned that we can destructure and rename variables at the same time with something like this:
 
 ```js
 const person = {
@@ -95,13 +94,11 @@ console.log(middleName); // 'Super Rad'
 Woah - let's step through that one!
 
 
-
 * First we create a new const var called `middleName`.
 
 * Next we look for `person.middle. If there was a person.middle property, it would be put into the middleName` variable.
 
 * There isn't a `middle property on our person object, so we fall back to the default of Super Rad`. 
-
 
 
 Cool! Make sure to check out <a href="https://ES6.io">ES6.io</a> for more like this!
