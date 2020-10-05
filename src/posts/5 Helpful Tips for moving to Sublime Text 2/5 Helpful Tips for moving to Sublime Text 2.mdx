@@ -8,7 +8,7 @@ date: 2011-09-22T16:54:03
 id: 359
 ---
 
-I'm a long time <a href="http://www.panic.com/coda/" target="_blank">Coda</a> user. A few months ago I, like everyone else, decided to switch over to vim. I really liked Vim but just couldn't get the hang of it for whatever reason. After shamefully crawling back to Coda, I found myself realizing that Coda fell short in a few areas. It was then I decided to give Sublime Text 2 a shot as it had been touted as the sucessor to Text Mate.  Its taken me a few weeks to get used to, but I can happily say I'm a Sublime Text 2 user now. Here are a few tips that make switching over easier.
+I'm a long time <a href="http://www.panic.com/coda/" target="_blank">Coda</a> user. A few months ago I, like everyone else, decided to switch over to Vim. I really liked Vim but just couldn't get the hang of it for whatever reason. After shamefully crawling back to Coda, I found myself realizing that Coda fell short in a few areas. It was then I decided to give Sublime Text 2 a shot as it had been touted as the successor to Text Mate.  Its taken me a few weeks to get used to, but I can happily say I'm a Sublime Text 2 user now. Here are a few tips that make switching over easier.
 
 
 
@@ -16,14 +16,14 @@ I'm a long time <a href="http://www.panic.com/coda/" target="_blank">Coda</a> us
 
 <img class="aligncenter size-full wp-image-364" title="Sublime Text 2 Command Line Utility" src="Screen-Shot-2011-09-22-at-4.00.21-PM.png" alt="Sublime Text 2 Command Line Utility" width="634" height="440" />
 
-If you do a lot of work in bash, its helpful to open up a file or entire folder in your editor right from the command line.
+If you do a lot of work in bash, it's helpful to open up a file or entire folder in your editor right from the command line.
 
 **To Install:**
 Run the following line in your terminal.
 `sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /bin/subl`
 This will then give you access to the bash command **subl** with a number of arguments.
 
-The most basic usage is to open the current folder in Sublime Text 2. Simply Type `subl .`
+The most basic usage is to open the current folder in Sublime Text 2. Simply type `subl .`
 
 `subl -ab tutorial.html ` opens the file tutorial.html in the current window but keeps terminal in focus. This is handy if you need to traverse a few directories and cherry pick a number of files to be opened.
 
@@ -42,9 +42,9 @@ The most basic usage is to open the current folder in Sublime Text 2. Simply Typ
 
 <h2>2. Open files in current sublime text window</h2>
 
-This was one of the biggest annoyances for me when switching over from coda. Whenever I would drag a file into the sublime dock icon it would open a brand new instance of sublime when I just wanted to view it along with the rest of my files. Turns out this is a super simple fix.
+This was one of the biggest annoyances for me when switching over from Coda. Whenever I would drag a file into the sublime dock icon it would open a brand new instance of Sublime when I just wanted to view it along with the rest of my files. Turns out this is a super simple fix.
 
-Hit`Command + Shift + P` to bring up the sublime launcher type **"user global settings** and hit enter. This file is similar to a .vimrc file and holds all of your custom settings. This file wont be written over when you upgrade like **default global settings**. Once you have this file open, add the following line:
+Hit `Command + Shift + P` to bring up the Sublime launcher type **"user global settings** and hit enter. This file is similar to a .vimrc file and holds all of your custom settings. This file won't be written over when you upgrade like **default global settings**. Once you have this file open, add the following line:
 
 `"open_files_in_new_window": false`
 
@@ -70,7 +70,7 @@ Finally, when editing a local file that is linked up in transmit, hit`Command + 
 
 <h2>5. Create your own snippets!</h2>
 
-Its a given that you should have already installed <a title="Zen Coding for Sublime Text" href="http://code.google.com/p/zen-coding/" target="_blank">Zen Coding</a>, but there are always snippets that are developer specific that you use on a daily basis. For me, I use`j + tab  to expand into a jQuery selector $(' '); To setup your own snippets, go to tools->New Snippet. The XML markup is fairly straightforward so I wont go into it. Just plop your code inbetween <!--[CDATA[</code--> and ]]>`. You can even set areas to tab through the snippet as well as defaults.
+It's a given that you should have already installed <a title="Zen Coding for Sublime Text" href="http://code.google.com/p/zen-coding/" target="_blank">Zen Coding</a>, but there are always snippets that are developer specific that you use on a daily basis. For me, I use `j + tab  to expand into a jQuery selector $(' '); To setup your own snippets, go to tools->New Snippet. The XML markup is fairly straightforward so I wont go into it. Just plop your code inbetween <!--[CDATA[</code--> and ]]>`. You can even set areas to tab through the snippet as well as defaults.
 
 Here a basic snippet using the letter j as the tab trigger. When I tab, the cursor will be place inside the jQuery selector, tab again and I'm outside the selector ready to call a method on it.
 
@@ -82,8 +82,8 @@ Here a basic snippet using the letter j as the tab trigger. When I tab, the curs
 </snippet>
 ```
 
-<h3>Thats is!</h3>
+<h3>That's it!</h3>
 
-There is a lot more to Sublime Text 2 and many cool new features such as code folding and Vim support are currently in development. I will go into many more features in coming blog posts. Want to know how to do something? Just ask in the comments below! Be sure to also <a href="http://twitter.com/wesbos">Follow me on Twitter</a>.
+There is a lot more to Sublime Text 2, and many cool new features such as code folding and Vim support are currently in development. I will go into many more features in coming blog posts. Want to know how to do something? Just ask in the comments below! Be sure to also <a href="http://twitter.com/wesbos">Follow me on Twitter</a>.
 
 <a href="https:/SublimeTextBook.com"><img src="facebook-share2.png" /></a>
