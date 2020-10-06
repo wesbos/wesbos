@@ -54,7 +54,7 @@ const NavUl = styled.ul`
 const NavLi = styled.li`
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: start;
+  align-items: center;
   align-content: center;
   grid-gap: 2rem;
   margin: 1rem;
