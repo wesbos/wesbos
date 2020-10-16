@@ -58,8 +58,8 @@ function useTwitter() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setPosts(data);
       });
   }, []);
@@ -70,8 +70,8 @@ function Media({ media, alt }) {
   if (!media) return null;
   const url = media[0].media_url_https;
   const parts = url.split('.');
-  const base = parts.slice(0, parts.length - 1).join('.');
-  const thumb = `${base}?name=thumb&format=jpg`;
+  // const base = parts.slice(0, parts.length - 1).join('.');
+  const thumb = `${url}?name=thumb&format=jpg`;
   return (
     <img
       src={`https://images.weserv.nl/?url=${encodeURIComponent(thumb)}&h=75`}
@@ -102,7 +102,7 @@ export default function Twitter() {
         </span>
       </h3>
       {!tweets.length && <p>brb getting some good tweets...</p>}
-      {tweets.map(tweet => {
+      {tweets.map((tweet) => {
         const { media } = tweet.entities;
         const text = tweet.full_text
           .split('https://t.co')

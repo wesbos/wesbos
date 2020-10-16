@@ -7,7 +7,7 @@ import H from '../components/mdxComponents/Headings';
 import Pagination from '../components/Pagination';
 import { PostMetaTags } from '../components/MetaTags';
 
-const Blog = function({ data, pageContext, path }) {
+const Blog = function ({ data, pageContext, path }) {
   if (!data) return <p>Shooooot! No Post found!</p>;
   return (
     <>
@@ -28,7 +28,7 @@ const Blog = function({ data, pageContext, path }) {
       />
       <PostGrid>
         {data.allMdx &&
-          data.allMdx.edges.map(function({ node: post }) {
+          data.allMdx.edges.map(function ({ node: post }) {
             return (
               <PostGridItem key={post.id}>
                 {post.frontmatter.image &&
@@ -45,7 +45,7 @@ const Blog = function({ data, pageContext, path }) {
                           )}
                         </time>
                         <ul className="categories">
-                          {post.frontmatter.category.map(cat => (
+                          {post.frontmatter.category.map((cat) => (
                             <li key={cat}>{cat}</li>
                           ))}
                         </ul>
