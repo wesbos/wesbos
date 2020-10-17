@@ -8,13 +8,13 @@ date: 2011-09-22T16:54:03
 id: 359
 ---
 
-I'm a long time <a href="http://www.panic.com/coda/" target="_blank">Coda</a> user. A few months ago I, like everyone else, decided to switch over to Vim. I really liked Vim but just couldn't get the hang of it for whatever reason. After shamefully crawling back to Coda, I found myself realizing that Coda fell short in a few areas. It was then I decided to give Sublime Text 2 a shot as it had been touted as the successor to Text Mate.  Its taken me a few weeks to get used to, but I can happily say I'm a Sublime Text 2 user now. Here are a few tips that make switching over easier.
+I'm a long time [Coda](http://www.panic.com/coda/) user. A few months ago I, like everyone else, decided to switch over to Vim. I really liked Vim but just couldn't get the hang of it for whatever reason. After shamefully crawling back to Coda, I found myself realizing that Coda fell short in a few areas. It was then I decided to give Sublime Text 2 a shot as it had been touted as the successor to Text Mate. Its taken me a few weeks to get used to, but I can happily say I'm a Sublime Text 2 user now. Here are a few tips that make switching over easier.
 
 
 
-<h2>1. Install the command line utility</h2>
+## 1. Install the command line utility
 
-<img class="aligncenter size-full wp-image-364" title="Sublime Text 2 Command Line Utility" src="Screen-Shot-2011-09-22-at-4.00.21-PM.png" alt="Sublime Text 2 Command Line Utility" width="634" height="440" />
+![Sublime Text 2 Command Line Utility](Screen-Shot-2011-09-22-at-4.00.21-PM.png "Sublime Text 2 Command Line Utility")
 
 If you do a lot of work in bash, it's helpful to open up a file or entire folder in your editor right from the command line.
 
@@ -40,7 +40,7 @@ The most basic usage is to open the current folder in Sublime Text 2. Simply typ
 
  
 
-<h2>2. Open files in current sublime text window</h2>
+## 2. Open files in current sublime text window
 
 This was one of the biggest annoyances for me when switching over from Coda. Whenever I would drag a file into the sublime dock icon it would open a brand new instance of Sublime when I just wanted to view it along with the rest of my files. Turns out this is a super simple fix.
 
@@ -50,27 +50,27 @@ Hit `Command + Shift + P` to bring up the Sublime launcher type **"user global s
 
  
 
-<h2>3. Get Code Hinting in Sublime Text 2</h2>
+## 3. Get Code Hinting in Sublime Text 2
 
-<img class="alignleft size-full wp-image-368" title="Sublime Text 2 Code Hinting" src="Screen-Shot-2011-09-22-at-4.21.45-PM.png" alt="Sublime Text 2 Code Hinting" width="289" height="159" />One feature that Coda has just slam dunked is their code hinting. I rarely ever have to type entire key words. A solution for getting code completion working in Sublime Text is to install SublimeCodeIntel, a port of the Komodo editor code  completion engine. It isn't perfect, particularly in CSS file, but its pretty good and gets the job done.  <a title="Sublime Code Completion" href="https://github.com/Kronuz/SublimeCodeIntel" target="_blank">Download the repo here </a> and drop it into your packages folder at` ~/Library/Applications/Sublime Text 2/Packages`
-
- 
+![Sublime Text 2 Code Hinting](Screen-Shot-2011-09-22-at-4.21.45-PM.png "Sublime Text 2 Code Hinting")One feature that Coda has just slam dunked is their code hinting. I rarely ever have to type entire key words. A solution for getting code completion working in Sublime Text is to install SublimeCodeIntel, a port of the Komodo editor code  completion engine. It isn't perfect, particularly in CSS file, but its pretty good and gets the job done.  [Download the repo here ](https://github.com/Kronuz/SublimeCodeIntel "Sublime Code Completion") and drop it into your packages folder at` ~/Library/Applications/Sublime Text 2/Packages`
 
  
 
-<h2>4. Upload with Transmit shortcut</h2>
+ 
+
+## 4. Upload with Transmit shortcut
 
 If you are working on a code n' upload project you need to be able to edit a file and quickly FTP it up to your server. Since sublime doesn't have this built in like Coda does, you'll need to use the Transmit FTP client.
 
 First, set up your project folders in transmit.
 
-Next, install <a href="https://github.com/jeffturcotte/sublime_transmit_docksend" target="_blank">Sublime Transmit Docksend</a>, The way this package works is by simulating a docksend (drag and drop a linked local file) to transmit when a key combination is pressed.
+Next, install [Sublime Transmit Docksend](https://github.com/jeffturcotte/sublime_transmit_docksend), The way this package works is by simulating a docksend (drag and drop a linked local file) to transmit when a key combination is pressed.
 
 Finally, when editing a local file that is linked up in transmit, hit`Command + Shift + U` and the file will upload. If you are editing /js/scripts.js locally, the file will be uploaded to /js/scripts.js on your server in split second.
 
-<h2>5. Create your own snippets!</h2>
+## 5. Create your own snippets!
 
-It's a given that you should have already installed <a title="Zen Coding for Sublime Text" href="http://code.google.com/p/zen-coding/" target="_blank">Zen Coding</a>, but there are always snippets that are developer specific that you use on a daily basis. For me, I use `j + tab  to expand into a jQuery selector $(' '); To setup your own snippets, go to tools->New Snippet. The XML markup is fairly straightforward so I wont go into it. Just plop your code inbetween <!--[CDATA[</code--> and ]]>`. You can even set areas to tab through the snippet as well as defaults.
+It's a given that you should have already installed [Zen Coding](http://code.google.com/p/zen-coding/ "Zen Coding for Sublime Text"), but there are always snippets that are developer specific that you use on a daily basis. For me, I use `j + tab  to expand into a jQuery selector $(' '); To setup your own snippets, go to tools->New Snippet. The XML markup is fairly straightforward so I wont go into it. Just plop your code inbetween and ]]>`. You can even set areas to tab through the snippet as well as defaults.
 
 Here a basic snippet using the letter j as the tab trigger. When I tab, the cursor will be place inside the jQuery selector, tab again and I'm outside the selector ready to call a method on it.
 
@@ -82,8 +82,8 @@ Here a basic snippet using the letter j as the tab trigger. When I tab, the curs
 </snippet>
 ```
 
-<h3>That's it!</h3>
+### That's it!
 
-There is a lot more to Sublime Text 2, and many cool new features such as code folding and Vim support are currently in development. I will go into many more features in coming blog posts. Want to know how to do something? Just ask in the comments below! Be sure to also <a href="http://twitter.com/wesbos">Follow me on Twitter</a>.
+There is a lot more to Sublime Text 2, and many cool new features such as code folding and Vim support are currently in development. I will go into many more features in coming blog posts. Want to know how to do something? Just ask in the comments below! Be sure to also [Follow me on Twitter](http://twitter.com/wesbos).
 
-<a href="https:/SublimeTextBook.com"><img src="facebook-share2.png" /></a>
+[![](facebook-share2.png)](https:/SublimeTextBook.com)

@@ -160,7 +160,7 @@ function highlight(strings, ...values) {
 
 That will adjust if there is no value, it will just return a blank string there.
 
-<h3>Tagged Template Usecases</h3>
+### Tagged Template Usecases
 
 What can we actually do with this? Well, we could change this so any value that gets passed in gets wrapped in a `<span>` and we can use CSS to highlight it.
 
@@ -197,7 +197,7 @@ document.body.innerHTML = sentence;
 
 Once you do that, you'll see that the values being highlighted. You can go ahead and add a `contenteditable` to our `<span>` so that if the user didn't like it, they can change the value they actually wanted. Maybe they didn't like that Snickers is a hundred years old, so they could change that value as well. It's kind of a fun way to do it.
 
-<h3>Bring it in, Team</h3>
+### Bring it in, Team
 
 There are much more complicated use cases for that and there are many more in-depth use cases for that, but that is the main idea behind these template tag templates. If you have a string, you pass in the regular string that you want, and then you get all the pieces.
 

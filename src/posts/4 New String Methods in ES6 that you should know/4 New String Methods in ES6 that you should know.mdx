@@ -11,7 +11,7 @@ id: 3917
 
 The String type in ES6 has come with **four new methods** that are really handy, help us write a little bit more readable code, as well as reduce our reliance on using regular expressions, or RegExp, for certain things.
 
-<h3>.startsWith() and .endsWith()</h3>
+### .startsWith() and .endsWith()
 
 So I have a `const variable named course, which has the value of RFB1`, this stands for React for Beginners.
 
@@ -56,7 +56,7 @@ Just like with our `flightNumber, we can use the console to put in accountNumber
 
 Essentially you're just going to take the first 11 numbers of `accountNumber`, ignore the rest, and then see if it ends in RT or whatever else it might be.
 
-<h3>.includes()</h3>
+### .includes()
 
 Then next up we have `.includes() which will just check if that string is anywhere in it. If I wanted to see if my flight number includes the letters AC, then I could use flightNumber.includes('AC'), which is true`.
 
@@ -64,7 +64,7 @@ Again, it is not case sensitive so you cannot use lower case letters here.
 
 `.includes() checks to see if your string has something in it. As a bit of an aside, it was originally supposed to be called .contains()`, but it got changed to includes because of some conflicts with the MooTool libraries and the way that they modified the prototype.
 
-<h3>.repeat() and String Padding</h3>
+### .repeat() and String Padding
 
 Next up we have make, model and colour here:
 
@@ -121,7 +121,7 @@ console.log(leftPad(colour)); // '          Royal Blue'
 
 There we go. See how all these are perfectly right aligned? BMW X5 in royal blue, whereas all of this is however much padding we actually need. That's a nice little use for repeat.
 
-<h3>Very Important</h3>
+### Very Important
 
 Another little funny one that you can do is, we can take an ES6 template string, and inside of that let's do a statement where we take a string and multiply it:
 

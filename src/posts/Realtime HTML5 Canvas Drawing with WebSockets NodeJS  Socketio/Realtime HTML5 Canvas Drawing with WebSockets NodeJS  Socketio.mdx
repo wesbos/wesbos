@@ -14,22 +14,21 @@ Web sockets and Canvas are two really cool features that are currently being imp
 
 
 
-	* <a href="https://github.com/wesbos/websocket-canvas-draw" target="_blank">Download the code on GitHub</a>
-
-	* <a href="http://twitter.com/wesbos">Follow @wesbos on Twitter</a>
-
+	* [Download the code on GitHub](https://github.com/wesbos/websocket-canvas-draw)
+	* [Follow @wesbos on Twitter](http://twitter.com/wesbos)
 
 
-<h3>Quick Screencast detailing tutorial</h3>
+
+### Quick Screencast detailing tutorial
 
 https://youtu.be/n7wQsLu_k00
 
-<h3>Cross Device / Browser compatibility </h3>
+### Cross Device / Browser compatibility 
 
 https://youtu.be/oI9AahO9vDY
 
-<h3>Server Side</h3>
-The first thing we need to do is create a web socket server. For this we will be using <a href="http://nodejs.org/" target="_blank">Node.js</a> and the module <a href="http://socket.io" target="_blank">Socket.io</a>. Socket.io makes its super easy to get a web socket server up and running. It even provides a flash fallback for browsers that don't support native web sockets. In this tutorial we will only be working with browsers that support the canvas element.
+### Server Side
+The first thing we need to do is create a web socket server. For this we will be using [Node.js](http://nodejs.org/) and the module [Socket.io](http://socket.io). Socket.io makes its super easy to get a web socket server up and running. It even provides a flash fallback for browsers that don't support native web sockets. In this tutorial we will only be working with browsers that support the canvas element.
 
 If you don't have Socket.io installed yet, make sure you do so by typing `npm install socket.io` into your terminal.
 
@@ -44,13 +43,13 @@ io.sockets.on 'connection', (socket) ->
 ```
 
 Compile your coffeescript and hop back into your terminal and type `node server.js`. You now have a web socket server running on port 4000.
-<img src="Screen_Shot_2011-08-12_at_7.35.45_PM.png" alt="" />
+![](Screen_Shot_2011-08-12_at_7.35.45_PM.png)
 
 If you go to localhost:4000 you'll see the following:
 
-<img src="Screen_Shot_2011-08-12_at_7.36.08_PM.png" alt="" />
+![](Screen_Shot_2011-08-12_at_7.36.08_PM.png)
 
-<h3>Client Side</h3>
+### Client Side
 First, lets quickly get our `index.html` file up and running. In addition to some bare bones markup, I'm also including jQuery, our Socket.io JS file which is now being served up from our server, a jQuery plugin for drag events, and our own scripts.js file which will hold all the magic.
 
 
@@ -81,7 +80,7 @@ First, lets quickly get our `index.html` file up and running. In addition to som
 
 Now that we have our server up and running, we can write some code which will draw to the canvas. Create a new file called `scripts.coffee`.  All of the following code happens within the App.init() method which we will trigger on the jQuery document ready.
 
-<h4>Create our Canvas Element</h4>
+#### Create our Canvas Element
 
 
 ```js
@@ -119,7 +118,7 @@ App.init = ->
 	return
 
 ```
-<h4>Draw to canvas function</h4>
+#### Draw to canvas function
 Since drawing to canvas involves beginning, moving and closing paths, i've create a short little function that hooks into the jQuery dragstart and drag events.
 
 
@@ -139,7 +138,7 @@ return
 
 ```
 
-<h4>Setup our client side web socket</h4>
+#### Setup our client side web socket
 Since we included our file at `http://localhost:4000/socket.io/socket.io.js` we are able to create an object which we can send our data over. With just a few lines, we create our App.socket object and bind to any incoming web socket events called 'draw'. We will go over this more soon.
 
 
@@ -153,7 +152,7 @@ App.socket.on 'draw', (data) ->
 
 ```
 
-<h4>Canvas Drawing Event</h4>
+#### Canvas Drawing Event
 This is where things gets exciting. Now we want to bind a few events to our canvas element. The way this works is when someone draws on the canvas, we immediately use our draw() function to draw to the current canvas as well as send the x and y ordinates over the web socket with socket.io's `emit`. In just a bit we will take a look at the server side part of this event and see how the server sends out this data to all open windows.
 
 
@@ -176,7 +175,7 @@ $('canvas').live 'drag dragstart dragend', (e) ->
 
 ```
 
-<h3>Jump back to server side</h3>
+### Jump back to server side
 Now that we know we are sending the x, y and type of event over the web socket, we need to do something with that on our server. What we want to do, is take that data and send it back out to everyone else that has a browser open.
 
 Our updated server.coffee file now looks like this. We first wait for a connection event, then wait for a 'drawClick' event to be sent by a browser. When that happens we take the data and send it out to everyone else with a browser open. THe server side script we wrote earlier will then paint the canvas.
@@ -196,12 +195,12 @@ io.sockets.on 'connection', (socket) ->
 
 You'll now need to restart your web socket server as we have made changes to it. Hit control-c to kill it, and node type `node server.js` to restart it.
 
-<h3>Get Drawing!</h3>
-One you fully understand how this all works, open your index.html file in any web browser that supports web sockets and canvas (at the time of writing Chrome, Firefox, Safari, Opera and IE9). Check <a href="http://caniuse.com/#search=canvas" target="_blank">http://caniuse.com/#search=canvas</a> for more support info.
+### Get Drawing!
+One you fully understand how this all works, open your index.html file in any web browser that supports web sockets and canvas (at the time of writing Chrome, Firefox, Safari, Opera and IE9). Check [http://caniuse.com/#search=canvas](http://caniuse.com/#search=canvas) for more support info.
 
-<h4>Limitations</h4>
+#### Limitations
 As this is a very basic demo, there are a few limitations which can easily be solved with a little more code. Currently the canvas only supports one person drawing at a time, if two or more are drawing, the canvas will be painted sporadically. Also, there is definitely a lot of room to add tools such as brushes, colours, erasers and PNG export. If there is interest, I'll expand this tutorial series to cover them.
 
-If you're interested in getting this up and running in the real world and off of your localhost, I was able to get mine running on <a href="http://aws.amazon.com/ec2/" target="_blank">Amazons free micro instance of EC2</a> although this involves installing Node and NPM all over again. Also note you should run your server on port 80 rather than 4000.
+If you're interested in getting this up and running in the real world and off of your localhost, I was able to get mine running on [Amazons free micro instance of EC2](http://aws.amazon.com/ec2/) although this involves installing Node and NPM all over again. Also note you should run your server on port 80 rather than 4000.
 
-Please feel free to download, hack, complain, fork or contribute to the project on <a href="https://github.com/wesbos/websocket-canvas-draw">my github account.</a>
+Please feel free to download, hack, complain, fork or contribute to the project on [my github account.](https://github.com/wesbos/websocket-canvas-draw)

@@ -8,22 +8,15 @@ date: 2013-01-13T23:09:51
 id: 678
 ---
 
-I'm working hard on my Sublime Text Book and have received fantastic response for everything so far - very motivating. The <a href="http://wesbos.com/sublime-text-5-visual-tweaks/" target="_blank">last post</a> was so well received that I've decided to post a few more of my favourite tips.
+I'm working hard on my Sublime Text Book and have received fantastic response for everything so far - very motivating. The [last post](http://wesbos.com/sublime-text-5-visual-tweaks/) was so well received that I've decided to post a few more of my favourite tips.
 
-<h3>1. Save on focus lost</h3>
+### 1\. Save on focus lost
 
-Chronic ⌘+S’er? This tip is particularly helpful when working with CSS/LESS/SASS and switching between your editor and browser. Instead of saving on every tiny little change, tell Sublime to automatically save your files when you tab away from the editor.
-
-I find this is super handy when working with extensions like Live Reload or compiled languages like coffeescript that watch for file saves. Put this in your settings file at `Preferences → Settings - User`
-
-
-```js
-"save_on_focus_lost": true
-```
+Chronic ⌘+S’er? This tip is particularly helpful when working with CSS/LESS/SASS and switching between your editor and browser. Instead of saving on every tiny little change, tell Sublime to automatically save your files when you tab away from the editor. I find this is super handy when working with extensions like Live Reload or compiled languages like coffeescript that watch for file saves. Put this in your settings file at `Preferences → Settings - User` ```js "save_on_focus_lost": true ``` 
 
 If you work with other watch scripts that break and restart a process upon save (like supervisor or forever), this might not be ideal for you. No problem, only enable it for the languages you want - simply place the above setting in /Packages/User/[syntax].sublime-settings. For example, I put the above in `CSS.sublime-settings and LESS.sublime-settings`
 
-<h3>2. Paste and Indent</h3>
+### 2\. Paste and Indent
 
 One of the best tricks I’ve ever learned in Sublime Text is **paste and indent**. If you have ever pulled a piece of code off the Internet and pasted it into your application, you’ll no doubt feel the pain of having it paste in all weird and have to go in and fix it.
 
@@ -31,57 +24,36 @@ Easy fix to this, instead of pressing the normal `cmd + v to paste, simply switc
 
 Like that one? I loved it so I remapped my key combos to paste and indent by default on `cmd + v`
 
-Paste this little snippet into your key bindings file located at `Preferences → Key Bindings - User`
+Paste this little snippet into your key bindings file located at `Preferences → Key Bindings - User` ```js { "keys": ["super+v"], "command": "paste_and_indent" }, { "keys": ["super+shift+v"], "command": "paste" } ```
 
-
-```js
-{ "keys": ["super+v"], "command": "paste_and_indent" },
-{ "keys": ["super+shift+v"], "command": "paste" }
-```
-
-<h3>3. Reindent Keyboard shortcut</h3>
+### 3\. Reindent Keyboard shortcut
 
 Now, if for some reason you end up with either a block of code or an entire file filled with hard to ready, messy, poorly indented code, reindent is your best friend.
 
 To automatically re-indent your code, simply select the code you want to indent and then from the menu `Edit → Line → Reindent`
 
-Sublime doesn’t ship a keyboard shortcut for this. No problem, let’s make our own. Pop this little snippet into the `Preferences → Key Bindings - User` file.
+Sublime doesn’t ship a keyboard shortcut for this. No problem, let’s make our own. Pop this little snippet into the `Preferences → Key Bindings - User` file. ```js { "keys": ["super+shift+r"], "command": "reindent" } ```
 
-
-```js
-{ "keys": ["super+shift+r"],  "command": "reindent" }
-```
-
-<h3>4. Highlight Modified Tab</h3>
+### 4\. Highlight Modified Tab
 
 When making a change in sublime text, by default it changes the **×** to a circle of the same colour.
 
-<figure><img alt="" src="content" /></figure>Make it a little more obvious when you haven’t saved changes to a document by turning on the following:
+<figure>![](content)</figure>
 
+Make it a little more obvious when you haven’t saved changes to a document by turning on the following: ```js "highlight_modified_tabs": true ```
 
-```js
-"highlight_modified_tabs": true
-```
+<figure>![](contet)</figure>
 
-<figure><img alt="" src="contet" /></figure>The exact styling of your modified tabs will vary depending on your theme. It looks fantastic with my <a href="wesbos.com/cobalt2-theme-sublime-text-2/">cobalt2 theme for Sublime Text</a>
+The exact styling of your modified tabs will vary depending on your theme. It looks fantastic with my [cobalt2 theme for Sublime Text](wesbos.com/cobalt2-theme-sublime-text-2/)
 
-I’m an instructor at <a href="http://hackeryou.com/courses/#intro-to-web-development">HackerYou</a> where we use Sublime Text extensively. This is a small, yet common, problem that we run into. Making it visually obvious cuts down on mistakes like this.
+I’m an instructor at [HackerYou](http://hackeryou.com/courses/#intro-to-web-development) where we use Sublime Text extensively. This is a small, yet common, problem that we run into. Making it visually obvious cuts down on mistakes like this.
 
-<h3>5. Proper Fullscreen for Mac Users</h3>
+### 5\. Proper Fullscreen for Mac Users
 
 This one is only for those running Sublime Text on Mac OSX 10.7 or 10.8 with multiple monitors. You have probably realized that apple has really dropped the ball when using fullscreen, rendering the rest of multiple monitors into nothing but a linen backdrop.
 
-If you like to code fullscreen yet still use your other monitors, go ahead and add the following to your preferences file:
+If you like to code fullscreen yet still use your other monitors, go ahead and add the following to your preferences file: ```js "use_simple_full_screen": true ``` You’ll have to restart Sublime Text for this one.
 
+### More?
 
-```js
-"use_simple_full_screen": true
-```
-
-You’ll have to restart Sublime Text for this one.
-
-<h3>More?</h3>
-
-I’ve got plenty more tips as well as in-depth guides on the rest of Sublime Text in my book. If you have a must-use tip or commends on any of the above, please feel free to leave a comment!
-
-<a href="https:/SublimeTextBook.com"><img src="facebook-share2.png" /></a>
+I’ve got plenty more tips as well as in-depth guides on the rest of Sublime Text in my book. If you have a must-use tip or commends on any of the above, please feel free to leave a comment! [![](facebook-share2.png)](https:/SublimeTextBook.com)
