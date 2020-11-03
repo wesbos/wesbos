@@ -8,10 +8,12 @@ date: 2011-03-21T14:44:57
 id: 157
 ---
 
-Every now and then I like to play with the API of a social networking site. <a href="http://burstn.com">Burstn</a> is an photo sharing website that allows users to quick snap photos and upload them to their website. Lucky for me, their API is fairly wide open, allows to easy calling, and returns a super nice JSON response. My idea is to ping the <a href="http://groups.google.com/group/burstn/web/api-documentation">Burstn API</a> for a timeline of public photos, parse the JSON response, and plot them on a Google Map based on their Lat and Long positions.  Sound fun? Lets go!
+Every now and then I like to play with the API of a social networking site. [Burstn](http://burstn.com) is an photo sharing website that allows users to quick snap photos and upload them to their website. Lucky for me, their API is fairly wide open, allows to easy calling, and returns a super nice JSON response. My idea is to ping the [Burstn API](http://groups.google.com/group/burstn/web/api-documentation) for a timeline of public photos, parse the JSON response, and plot them on a Google Map based on their Lat and Long positions.  Sound fun? Lets go!
 
-<a href="http://wesbos.com/demos/burstn-map">View Demo</a> <a href="http://wesbos.com/demos/burstn-map.zip">Download Files</a>
-<h3>Setting up</h3>
+[View Demo](http://wesbos.com/demos/burstn-map) [Download Files](http://wesbos.com/demos/burstn-map.zip)
+
+### Setting up
+
 You'll need three files: index.html, wb.js, and style.css. The bulk of our content will go into wb.js as we are loading everything in via JavaScript.Your index.html file should look like this:
 
 ```php
@@ -30,6 +32,7 @@ You'll need three files: index.html, wb.js, and style.css. The bulk of our conte
 </body>
 </html>
 ```
+
 Getting the data from Burstn API
 
 Pulling the data from Burstn couldn't be easier. A quick look at their documentation shows that we need to make a GET request to http://api.burstn.com/1/timeline/global. Since we want to load quite a few photos, we are going to set our limit to 400. We also need to append &callback=? to the end of our url so we can get around the "Origin null is not allowed by Access-Control-Allow-Origin." browser security.
@@ -41,10 +44,11 @@ Using jQuery's AJAX method, we pull in the JSON data as so:
 		console.log(data);
 	});
 ```
+
 Now if we take a look at our console. we'll see an object that was returned that looks like this:
-<img class="aligncenter size-full wp-image-176" title="Screen shot 2011-03-21 at 2.23.34 PM" src="Screen-shot-2011-03-21-at-2.23.34-PM.png" alt="" width="586" height="317" />
+![](Screen-shot-2011-03-21-at-2.23.34-PM.png "Screen shot 2011-03-21 at 2.23.34 PM")
 This is all the data we need to start plotting it on our map. Using the Google Maps JavaScript 3.0 API, we will now modify the code above to be able to plot these pictures on a map.
-<h3>First, setup your scripts file to populate with a map</h3>
+### First, setup your scripts file to populate with a map
 
 ```js
 // check that the document is ready
@@ -62,7 +66,7 @@ $(function() {
     // setup the info window (the popup bubble that display the info
     var infowindow = new google.maps.InfoWindow();
 ```
-<h3>Next, Pull in data from Burstn and plot on mapa</h3>
+### Next, Pull in data from Burstn and plot on mapa
 You'll see in this chunk of code that we use jQuery's $.each() to loop over each of the results, check for a latitude coordinate, and then plot it on the map.
 
 ```js
@@ -102,7 +106,7 @@ You'll see in this chunk of code that we use jQuery's $.each() to loop over each
 	});
 });
 ```
-<h3>Thats it! Just add some style</h3>
+### Thats it! Just add some style
 Thats it! Just add a quick dash of style to make things look good and we are off to the races.
 
 ```css

@@ -11,9 +11,9 @@ id: 3833
 
 Before you start going absolutely bananas on using arrow functions everywhere, we need to chat. **Arrow functions don't replace regular functions**. Just like Flexbox and floats, pixels and rems and anything else new that comes along, the older thing still retains lots of utility because it works differently than the new thing.
 
-We talked about the benefits of ES6 Arrow Functions in earlier videos and blog posts but let's go through a couple examples of when you probably <em>don't want an arrow function</em>. All of these are just going to boil down to not having the keyword `this`, but they are also different use cases that you'd run into.
+We talked about the benefits of ES6 Arrow Functions in earlier videos and blog posts but let's go through a couple examples of when you probably _don't want an arrow function_. All of these are just going to boil down to not having the keyword `this`, but they are also different use cases that you'd run into.
 
-<h3>#1 — click handlers</h3>
+### #1 — click handlers
 
 First of all, I've got this big button that says 'Push me':
 
@@ -67,7 +67,7 @@ button.addEventListener('click', function() {
 
 In the console, `this` is now our button, and our big yellow button is actually working. The sames rules apply with jQuery, Google Maps or any other DOM Library you are using.
 
-<h3>#2: Object Methods</h3>
+### #2: Object Methods
 
 Now, let's take a look at this next one, when you need a method to bind to an object.
 
@@ -105,7 +105,7 @@ const person = {
 
 There we go. That will actually work, because that's a full on function, and not an arrow function.
 
-<h3>3: Prototype Methods</h3>
+### 3: Prototype Methods
 
 As our third example, we'll talk about when you need to add a prototype method.
 
@@ -167,7 +167,7 @@ Now, if we call `subie.summarize, it says it's a white Subaru, and beemer.summar
 
 Again, you must use a regular function for that.
 
-<h3>4: When you need an arguments Object</h3>
+### 4: When you need an arguments Object
 
 For our last example, this is a little bit different:
 
