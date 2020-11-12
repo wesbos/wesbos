@@ -5,6 +5,9 @@ const LayoutStyles = styled.div`
   min-height: calc(100vh - 40px);
   display: grid;
   grid-template-rows: auto 1fr auto;
+  @media (max-width: 400px) {
+    display: block;
+  }
   &.welcome {
     background: url(${handsome}) no-repeat top center;
     @media (max-width: 650px) {

@@ -30,6 +30,9 @@ const HStyles = styled.h1`
   font-size: ${({ as }) => as && `${headingSizes[as]}rem`};
   /* Visually override if need different font size vs the semantic element */
   font-size: ${({ looksLike }) => looksLike && `${headingSizes[looksLike]}rem`};
+  @media (max-width: 450px) {
+    font-size: 3rem;
+  }
   position: relative;
   &:after {
     position: absolute;

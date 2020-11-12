@@ -61,7 +61,7 @@ const NavLi = styled.li`
   .hideYoSelf {
     visibility: hidden;
   }
-  ${props =>
+  ${(props) =>
     props.row >= 2 &&
     css`
       margin: 0;
