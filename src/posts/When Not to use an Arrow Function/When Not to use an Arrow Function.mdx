@@ -65,7 +65,7 @@ button.addEventListener('click', function() {
 
 ```
 
-In the console, `this` is now our button, and our big yellow button is actually working. The sames rules apply with jQuery, Google Maps or any other DOM Library you are using.
+In the console, `this` is now our button, and our big yellow button is actually working. The same rules apply with jQuery, Google Maps or any other DOM Library you are using.
 
 <h3>#2: Object Methods</h3>
 
@@ -86,7 +86,7 @@ We have our method called `score, and whenever we call person.score, it should a
 
 If we run `person.score();` a few times, we should be at 26 or something.
 
-But if I call `person, points` is still at 23. Why?
+But if I call `person`, `points` is still at 23. Why?
 
 Because it's trying to add points to the window! Remember, when using an arrow function `this` is not bound to anything and it just inherits it from the parent scope which in this case is the window.
 
@@ -193,7 +193,7 @@ For an example, let's type into the console `orderChildren('jill', 'wes', 'jenna
 
 this is because `arguments is a keyword that we have in our orderChildren that's going to give us an Array` or array-ish value of everything that was passed in.
 
-However, you do not get the `arguments` object if you use an arrow function. When you use a regular function, which is going to give us the actual content that we need.
+However, you do not get the `arguments` object if you use an arrow function. Only when you use a regular function, which is going to give us the actual content that we need.
 
 
 ```js
