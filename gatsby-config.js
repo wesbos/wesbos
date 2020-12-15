@@ -1,4 +1,5 @@
 // const mdxFeed = require('gatsby-mdx/feed');
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
@@ -137,5 +138,12 @@ module.exports = {
     // },
     // `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-snipcartv3',
+      options: {
+        apiKey: process.env.GATSBY_SNIPCART_APIKEY,
+        currency: 'usd',
+      },
+    },
   ],
 };

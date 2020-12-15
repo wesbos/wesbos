@@ -30,6 +30,7 @@
     "gatsby-plugin-react-helmet": "^3.3.11",
     "gatsby-plugin-remove-trailing-slashes": "^2.3.12",
     "gatsby-plugin-sharp": "^2.6.36",
+    "gatsby-plugin-snipcartv3": "^2.3.3",
     "gatsby-plugin-styled-components": "^3.3.11",
     "gatsby-plugin-twitter": "^2.3.11",
     "gatsby-remark-autolink-headers": "^2.3.13",
