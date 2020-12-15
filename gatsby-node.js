@@ -7,6 +7,7 @@ process.env.GATSBY_DEPLOY_PRIME_URL = process.env.DEPLOY_PRIME_URL;
 process.env.GATSBY_URL = process.env.URL;
 process.env.GATSBY_COMMIT_REF = process.env.COMMIT_REF;
 process.env.GATSBY_REPOSITORY_URL = process.env.REPOSITORY_URL;
+process.env.GATSBY_DEPLOY_URL = process.env.DEPLOY_URL;
 
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
