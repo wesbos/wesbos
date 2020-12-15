@@ -25,6 +25,8 @@ export default function HomePage({ data, path }) {
         data-item-width="17"
         data-item-shippable="true"
         data-item-max-quantity="49"
+        data-item-size-name="Size"
+        data-item-size-options="small|medium|large|XL"
       >
         Add Pink Shirt
       </button>
