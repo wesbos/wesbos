@@ -9,7 +9,7 @@ const ProductStyles = styled.div`
 export default function Product({ product, buttonAttrs }) {
   const button = (
     <button type="button" className="snipcart-add-item" {...buttonAttrs}>
-      Buy it!
+      Buy it Button!
     </button>
   );
   if (!product) return button;
