@@ -56,7 +56,7 @@ export default function HomePage({ data, path }) {
         buttonAttrs={{
           'data-item-id': 'pink-on-pink-tshirt',
           'data-item-price': '17.00',
-          'data-item-url': `${process.env.GATSBY_DEPLOY_URL}/swag`,
+          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
           'data-item-name': 'Pink on Pink tshirt',
           // grams
           'data-item-weight': '215',
