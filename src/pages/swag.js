@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet';
 import WelcomeStyles from '../assets/styles/WelcomeStyles';
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
-import { useSnipCart } from '../utils/useSnipCart';
+import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
+import Product from '../components/store/Product';
 
 export default function HomePage({ data, path }) {
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
@@ -15,6 +16,8 @@ export default function HomePage({ data, path }) {
       },
     },
   });
+  const { products } = useSnipCartProducts();
+  console.log(products);
   return (
     <div className="welcome">
       <Helmet htmlAttributes={{ lang: 'en' }} title="Wes Bos - Swag" />
@@ -26,7 +29,7 @@ export default function HomePage({ data, path }) {
       <span className="snipcart-items-count" />
       <span className="snipcart-total-price" />
 
-      <button
+      {/* <button
         type="button"
         className="snipcart-add-item"
         data-item-id="pink-on-pink-tshirt"
@@ -45,7 +48,29 @@ export default function HomePage({ data, path }) {
         data-item-custom1-options="small|medium|large|XL"
       >
         Add Pink Shirt
-      </button>
+      </button> */}
+      <Product
+        product={products.find(
+          (product) => product.userDefinedId === 'pink-on-pink-tshirt'
+        )}
+        buttonAttrs={{
+          'data-item-id': 'pink-on-pink-tshirt',
+          'data-item-price': '17.00',
+          'data-item-url': `${process.env.GATSBY_DEPLOY_URL}/swag`,
+          'data-item-name': 'Pink on Pink tshirt',
+          // grams
+          'data-item-weight': '215',
+          // cm
+          'data-item-length': '23',
+          'data-item-height': '5',
+          'data-item-width': '17',
+          'data-item-shippable': 'true',
+          'data-item-max-quantity': '49',
+          'data-item-custom1-name': 'Size',
+          'data-item-custom1-options': 'small|medium|large|XL',
+        }}
+      />
+      <hr />
 
       <button
         type="button"

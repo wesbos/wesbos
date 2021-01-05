@@ -18,6 +18,7 @@ export function useSnipCartEvents() {
 
 export function useSnipCart(initialState) {
   const [store, setStore] = useState(initialState);
+  console.log(store);
 
   useEffect(() => {
     Snipcart.store.subscribe(() => {
@@ -29,4 +30,17 @@ export function useSnipCart(initialState) {
     };
   }, []);
   return { store };
+}
+
+export function useSnipCartProducts() {
+  const [products, setProducts] = useState([]);
+  //
+  useEffect(() => {
+    console.log('Fetching Products');
+    fetch(`${process.env.GATSBY_STORE_BASE}/products`)
+      .then((x) => x.json())
+      .then((response) => setProducts(response))
+      .catch(console.error);
+  }, []);
+  return { products };
 }
