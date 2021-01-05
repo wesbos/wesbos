@@ -77,7 +77,7 @@ export default function HomePage({ data, path }) {
         className="snipcart-add-item"
         data-item-id="5-pack-stickers"
         data-item-price="6.00"
-        data-item-url={`${process.env.GATSBY_DEPLOY_URL}/swag`}
+        data-item-url={`${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`}
         data-item-name="5 Packs of Stickers"
         // grams
         data-item-weight="45"
