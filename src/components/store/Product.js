@@ -7,12 +7,15 @@ const ProductStyles = styled.div`
 `;
 
 export default function Product({ product, buttonAttrs }) {
-  if (!product) return '';
+  const button = (
+    <button type="button" className="snipcart-add-item" {...buttonAttrs}>
+      Buy it!
+    </button>
+  );
+  if (!product) return button;
   return (
     <ProductStyles>
-      <button type="button" className="snipcart-add-item" {...buttonAttrs}>
-        Buy it!
-      </button>
+      {button}
       <p>Product: {product.id}</p>
       <p>ID: {product.userDefinedId}</p>
       <div className="variations">
