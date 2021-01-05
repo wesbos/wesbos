@@ -4,12 +4,27 @@ import { Helmet } from 'react-helmet';
 import WelcomeStyles from '../assets/styles/WelcomeStyles';
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
+import { useSnipCart } from '../utils/useSnipCart';
 
 export default function HomePage({ data, path }) {
+  const { store } = useSnipCart({
+    cart: {
+      items: {
+        count: 0,
+      },
+    },
+  });
   return (
     <div className="welcome">
       <Helmet htmlAttributes={{ lang: 'en' }} title="Wes Bos - Swag" />
       <p>hey</p>
+
+      <button type="button" onClick={window.Snipcart?.api.theme.cart.open}>
+        Open Cart {store.cart.items.count}
+      </button>
+      <span className="snipcart-items-count" />
+      <span className="snipcart-total-price" />
+
       <button
         type="button"
         className="snipcart-add-item"
@@ -25,11 +40,12 @@ export default function HomePage({ data, path }) {
         data-item-width="17"
         data-item-shippable="true"
         data-item-max-quantity="49"
-        data-item-size-name="Size"
-        data-item-size-options="small|medium|large|XL"
+        data-item-custom1-name="Size"
+        data-item-custom1-options="small|medium|large|XL"
       >
         Add Pink Shirt
       </button>
+
       <button
         type="button"
         className="snipcart-add-item"
