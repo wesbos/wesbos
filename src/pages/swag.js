@@ -7,6 +7,7 @@ import { PostMetaTags } from '../components/MetaTags';
 import { useSnipCart } from '../utils/useSnipCart';
 
 export default function HomePage({ data, path }) {
+  const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
   const { store } = useSnipCart({
     cart: {
       items: {
@@ -19,7 +20,7 @@ export default function HomePage({ data, path }) {
       <Helmet htmlAttributes={{ lang: 'en' }} title="Wes Bos - Swag" />
       <p>hey</p>
 
-      <button type="button" onClick={window.Snipcart?.api.theme.cart.open}>
+      <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         Open Cart {store.cart.items.count}
       </button>
       <span className="snipcart-items-count" />

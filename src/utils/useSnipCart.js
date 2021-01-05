@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 
 export function useSnipCartEvents() {
   const [cart, setCart] = useState([]);
+  const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
   useEffect(function () {
-    window.Snipcart?.events.on('item.adding', (parsedCartItem) => {
+    Snipcart?.events.on('item.adding', (parsedCartItem) => {
       console.log('item.adding');
       console.log(parsedCartItem);
       // dispatch(updating(item.id));
