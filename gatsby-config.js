@@ -56,7 +56,6 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        root: __dirname,
         gatsbyRemarkPlugins: [
           `gatsby-remark-embedder`,
           `gatsby-remark-copy-linked-files`,
