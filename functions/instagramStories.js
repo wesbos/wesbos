@@ -19,12 +19,12 @@ async function getPosts() {
       cookie: `sessionid=${process.env.INSTAGRAM_COOKIE}`,
     },
   })
-    .then(x => x.json())
-    .catch(err => console.log(err));
+    .then((x) => x.json())
+    .catch((err) => console.log(err));
   // get ready
   const posts = res.data.user.feed_reels_tray.edge_reels_tray_to_reel.edges
-    .map(edge => edge.node)[0]
-    .items.map(item => ({
+    .map((edge) => edge.node)[0]
+    .items.map((item) => ({
       media_preview: item.media_preview,
       display_url: item.display_url,
     }));
@@ -33,7 +33,7 @@ async function getPosts() {
   return cache.posts;
 }
 
-exports.handler = async function(event, context, callback) {
+exports.handler = async function (event, context, callback) {
   const res = await getPosts();
   callback(null, {
     statusCode: 200,

@@ -11,6 +11,11 @@ const PostGridItem = styled.div`
   grid-gap: 3rem;
   border-block-end: 1px solid var(--yellow);
   padding: 4rem 0;
+  ${(props) =>
+    !props.hasImage &&
+    `
+    grid-template-columns: 1fr;
+  `}
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
   }

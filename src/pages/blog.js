@@ -29,14 +29,17 @@ const Blog = function ({ data, pageContext, path }) {
       <PostGrid>
         {data.allMdx &&
           data.allMdx.edges.map(function ({ node: post }) {
+            const hasImage = !!post.frontmatter.image;
             return (
-              <PostGridItem key={post.id}>
+              <PostGridItem key={post.id} hasImage={hasImage}>
                 {post.frontmatter.image &&
                   post.frontmatter.image.childImageSharp && (
                     <div>
-                      <Link to={post.fields.slug}>
-                        <Img image={post.frontmatter.image} />
-                      </Link>
+                      {hasImage && (
+                        <Link to={post.fields.slug}>
+                          <Img image={post.frontmatter.image} />
+                        </Link>
+                      )}
                       <div className="postMeta">
                         <time dateTime={post.frontmatter.date}>
                           {format(
