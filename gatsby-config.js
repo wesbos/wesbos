@@ -143,6 +143,8 @@ module.exports = {
       options: {
         apiKey: process.env.GATSBY_SNIPCART_APIKEY,
         currency: 'usd',
+        js: `https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.js`,
+        css: `https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.css`,
       },
     },
   ],
