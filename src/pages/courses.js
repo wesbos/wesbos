@@ -120,10 +120,6 @@ export default function CoursesPage({ data, path }) {
             AdvancedReact.com
           </a>
           <p>
-            Note: This course is currently being re-recorded. you should wait
-            until this is out before you take it.
-          </p>
-          <p>
             This is a course that will teach you everything you need to build a
             full stack application with React.js and GraphQL.
           </p>

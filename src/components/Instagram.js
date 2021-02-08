@@ -35,7 +35,7 @@ function converIGtoJPG(base64data) {
   const o = t
     .substring(0, 3)
     .split('')
-    .map(function(e) {
+    .map(function (e) {
       return e.charCodeAt(0);
     });
   const c = atob(jpegtpl).split('');
@@ -50,8 +50,8 @@ function useInstagram() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetch(`/.netlify/functions/instagram`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setPosts(data);
       });
   }, []);
@@ -61,8 +61,8 @@ function useInstagramStories() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetch(`/.netlify/functions/instagramStories`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setPosts(data);
       });
   }, []);
@@ -76,7 +76,7 @@ function Stories() {
     <>
       <h4>Stories</h4>
       <StoriesStyles href="https://www.instagram.com/stories/wesbos/">
-        {stories.map(story => (
+        {stories.map((story) => (
           <img
             className="story"
             key={story.media_preview}
@@ -115,7 +115,7 @@ export default function Instagram() {
       <Stories />
       {gramz.length ? <h4>Posts</h4> : null}
       <InstaStyles>
-        {gramz.map(gram => (
+        {gramz.map((gram) => (
           <a href={gram.url} key={gram.id}>
             <img
               src={`https://images.weserv.nl/?url=${encodeURIComponent(
