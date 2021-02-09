@@ -20,21 +20,6 @@ export default function SwagPage({ data, path }) {
   console.log(products);
   return (
     <div className="welcome">
-      {/* <Helmet title="Wes Bos - Swag">
-        <script
-          key="snipcartJs"
-          src="https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.js"
-          id="snipcart"
-          data-api-key={process.env.GATSBY_SNIPCART_APIKEY}
-          data-currency="usd"
-        />
-        <link
-          key="snipcartStyle"
-          href="https://cdn.snipcart.com/themes/v3.0.28/default/snipcart.css"
-          type="text/css"
-          rel="stylesheet"
-        />
-      </Helmet> */}
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         Open Cart {store.cart.items.count}
       </button>
