@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export function useSnipCartEvents() {
   const [cart, setCart] = useState([]);
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
-  useEffect(function () {
+  useEffect(() => {
     Snipcart?.events.on('item.adding', (parsedCartItem) => {
       console.log('item.adding');
       console.log(parsedCartItem);
@@ -20,15 +20,17 @@ export function useSnipCart(initialState) {
   const [store, setStore] = useState(initialState);
   console.log(store);
 
-  useEffect(() => {
-    Snipcart.store.subscribe(() => {
-      console.log('Store updated!');
-      setStore(Snipcart.store.getState());
-    });
-    return () => {
-      console.log('Clean up subscribe');
-    };
-  }, []);
+  useEffect(
+    () =>
+      // Snipcart.store.subscribe(() => {
+      //   console.log('Store updated!');
+      //   setStore(Snipcart.store.getState());
+      // });
+      () => {
+        console.log('Clean up subscribe');
+      },
+    []
+  );
   return { store };
 }
 

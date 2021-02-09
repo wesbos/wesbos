@@ -19,8 +19,8 @@ export default function Product({ product, buttonAttrs }) {
       <p>Product: {product.id}</p>
       <p>ID: {product.userDefinedId}</p>
       <div className="variations">
-        {product.variants.map((variant) => (
-          <div>
+        {product.variants.map((variant, index) => (
+          <div key={`variant${index}`}>
             <button
               type="button"
               className="snipcart-add-item"
