@@ -74,7 +74,7 @@ export default function CoursesPage({ data, path }) {
         <div className="course">
           <img
             src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GAT/GAT-social-share.png"
-            alt="Beginner JavaScript"
+            alt="Master Gatsby"
           />
           <H as="h3">Master Gatsby</H>
           <PriceTag>Premium</PriceTag>
