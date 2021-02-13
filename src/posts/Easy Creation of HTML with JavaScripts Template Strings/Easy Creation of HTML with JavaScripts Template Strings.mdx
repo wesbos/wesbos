@@ -15,8 +15,8 @@ Previously with regular string we would have escape the new lines like so:
 
 
 ```js
-var text = "hello there, \
- how are you + \
+var text = "hello there, \n
+ how are you + \n
   ";
 ```
 
@@ -37,8 +37,8 @@ const markup = `
     <h2>
         ${person.name}
     </h2>
-    <p class="location">${person.location}
-    <p class="bio">${person.bio}
+    <p class="location">${person.city}</p>
+    <p class="bio">${person.bio}</p>
  </div>
 `;
 ```
@@ -54,8 +54,8 @@ const markup = `
     <h2>
         ${person.name}
     </h2>
-    <p class="location">${person.location}
-    <p class="bio">${person.bio}
+    <p class="location">${person.city}</p>
+    <p class="bio">${person.bio}</p>
  </div>
 `;
 
@@ -140,7 +140,7 @@ const markup = `
             
 `
      ).join('')}
- 
+ </ul>
 `;
 ```
 
