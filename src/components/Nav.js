@@ -209,20 +209,32 @@ export default function Nav({ pageContext }) {
           </Link>
         </NavLi>
         <NavLi row={getRow(5)}>
+          <Link
+            to="/javascript"
+            className={
+              pageContext.collection === 'javascript' ? 'current-parent' : null
+            }
+          >
+            <small className="top">Beginner</small>
+            <H as="span">JavaScript</H>
+            <small className="bottom">Notes</small>
+          </Link>
+        </NavLi>
+        <NavLi row={getRow(6)}>
           <Link to="/speaking-and-training">
             <small className="top">real life</small>
             <H as="span">Speaking</H>{' '}
             <small className="bottom">and training</small>
           </Link>
         </NavLi>
-        <NavLi row={getRow(6)}>
+        <NavLi row={getRow(7)}>
           <Link to="/uses">
             <small className="top">what font?!</small>
             <H as="span">/uses</H>{' '}
             <small className="bottom">what theme!?</small>
           </Link>
         </NavLi>
-        <NavLi row={getRow(7)}>
+        <NavLi row={getRow(8)}>
           <Link to="/contact">
             <small className="top">You want to</small>
             <H as="span">Contact</H>
