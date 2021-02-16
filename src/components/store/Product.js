@@ -18,6 +18,7 @@ export default function Product({ product, buttonAttrs }) {
     <ProductStyles>
       {/* If there are no variants, just show a regular ass button */}
       {!product.variants.length && button}
+      <h3>{buttonAttrs['data-item-name']}</h3>
       <p>ID: {product.userDefinedId}</p>
       <div className="variations">
         {product.variants.map((variant, index) => (
