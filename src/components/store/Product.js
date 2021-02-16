@@ -12,7 +12,6 @@ const ProductStyles = styled.div`
 `;
 
 export default function Product({ product, buttonAttrs }) {
-  console.log({ product, buttonAttrs });
   const button = (
     <button type="button" className="snipcart-add-item" {...buttonAttrs}>
       Buy {buttonAttrs['data-item-name']} - ${buttonAttrs['data-item-price']}

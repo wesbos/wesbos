@@ -5,8 +5,6 @@ export function useSnipCartEvents() {
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
   useEffect(() => {
     Snipcart?.events.on('item.adding', (parsedCartItem) => {
-      console.log('item.adding');
-      console.log(parsedCartItem);
       // dispatch(updating(item.id));
     });
     return function unsubcribe() {};
@@ -20,7 +18,6 @@ export function useSnipCart(initialState) {
   const [store, setStore] = useState(initialState);
   useEffect(() => {
     const unsubscribe = window.Snipcart?.store?.subscribe(() => {
-      console.log('Store updated!');
       setStore(window.Snipcart?.store?.getState());
     });
     return () => {
@@ -36,7 +33,6 @@ export function useSnipCartProducts() {
   //
   useEffect(() => {
     function fetchProducts() {
-      console.log('Fetching Latest Products');
       fetch(`${process.env.GATSBY_STORE_BASE}/products`)
         .then((x) => x.json())
         .then((response) => setProducts(response))
