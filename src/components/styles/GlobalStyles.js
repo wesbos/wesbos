@@ -184,7 +184,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   /* Button Styles */
-  button {
+  button:not(.snipcart button) {
     ${dirty}
     border: 0;
     font-weight: 900;

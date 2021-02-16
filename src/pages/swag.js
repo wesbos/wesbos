@@ -72,7 +72,7 @@ export default function SwagPage({ data, path }) {
           'data-item-height': '5',
           'data-item-width': '17',
           'data-item-shippable': 'true',
-          'data-item-max-quantity': '49',
+          'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': 'small|medium|large|XL',
         }}
@@ -94,7 +94,7 @@ export default function SwagPage({ data, path }) {
           'data-item-height': '5',
           'data-item-width': '17',
           'data-item-shippable': 'true',
-          'data-item-max-quantity': '49',
+          'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': 'small|medium|large|XL',
         }}
