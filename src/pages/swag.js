@@ -19,6 +19,17 @@ export default function SwagPage({ data, path }) {
   const { products } = useSnipCartProducts();
   return (
     <div className="welcome">
+      <h2>Test Store. Not real! Hey Folks!</h2>
+      <p>
+        I need a little help testing out my online store, and more importantly
+        the shipping quotes + fulfillment integration around the world.
+      </p>
+      <p>
+        This is a test store. Can you try and buy 1-5 things from the store
+        using the address of a local public place? Like a coffee shop? I want to
+        record a demo using real data, but addresses I can show on YouTube.
+      </p>
+      <p>For the credit card, use `4242 4242 4242 4242` and `02/22 22222`. </p>
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         Open Cart {store.cart.items.count}
       </button>
@@ -66,7 +77,7 @@ export default function SwagPage({ data, path }) {
         }}
       />
       <hr />
-      <button
+      {/* <button
         type="button"
         className="snipcart-add-item"
         data-item-id="5-pack-stickers"
@@ -83,12 +94,7 @@ export default function SwagPage({ data, path }) {
         data-item-max-quantity="49"
       >
         5 Packs of Stickers
-      </button>
-      {/*
-        Questiosnf or Snipcart:
-        1. How do I limit the amount of products sold? Inventory
-
-      */}
+      </button> */}
     </div>
   );
 }

@@ -15,8 +15,8 @@ export default function Product({ product, buttonAttrs }) {
   if (!product) return button;
   return (
     <ProductStyles>
-      {button}
-      <p>Product: {product.id}</p>
+      {/* If there are no variants, just show a regular ass button */}
+      {!product.variants.length && button}
       <p>ID: {product.userDefinedId}</p>
       <div className="variations">
         {product.variants.map((variant, index) => (
