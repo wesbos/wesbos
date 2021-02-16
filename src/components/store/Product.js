@@ -26,6 +26,7 @@ export default function Product({ product, buttonAttrs }) {
               className="snipcart-add-item"
               {...buttonAttrs}
               data-item-custom1-value={variant.variation[0].option}
+              disabled={variant.stock === 0}
             >
               <span className="variantName">
                 {variant.variation

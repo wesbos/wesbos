@@ -17,7 +17,6 @@ export default function SwagPage({ data, path }) {
     },
   });
   const { products } = useSnipCartProducts();
-  console.log(products);
   return (
     <div className="welcome">
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>

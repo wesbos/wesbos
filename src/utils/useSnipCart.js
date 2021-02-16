@@ -18,15 +18,14 @@ export function useSnipCartEvents() {
 
 export function useSnipCart(initialState) {
   const [store, setStore] = useState(initialState);
-  console.log(store);
-
   useEffect(() => {
-    Snipcart.store.subscribe(() => {
+    const unsubscribe = window.Snipcart?.store?.subscribe(() => {
       console.log('Store updated!');
-      setStore(Snipcart.store.getState());
+      setStore(window.Snipcart?.store?.getState());
     });
     return () => {
-      console.log('Clean up subscribe');
+      // We could also just return the above subscribe call
+      unsubscribe();
     };
   }, []);
   return { store };
@@ -36,11 +35,20 @@ export function useSnipCartProducts() {
   const [products, setProducts] = useState([]);
   //
   useEffect(() => {
-    console.log('Fetching Products');
-    fetch(`${process.env.GATSBY_STORE_BASE}/products`)
-      .then((x) => x.json())
-      .then((response) => setProducts(response))
-      .catch(console.error);
+    function fetchProducts() {
+      console.log('Fetching Latest Products');
+      fetch(`${process.env.GATSBY_STORE_BASE}/products`)
+        .then((x) => x.json())
+        .then((response) => setProducts(response))
+        .catch(console.error);
+    }
+    fetchProducts();
+    // Update the products every 5 seconds
+    const interval = setInterval(fetchProducts, 5000);
+    // Stop fetching on unmount of component
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
   return { products };
 }

@@ -1,5 +1,6 @@
 // const mdxFeed = require('gatsby-mdx/feed');
-require('dotenv').config();
+
+require('dotenv').config({ path: `.env.development` });
 
 module.exports = {
   siteMetadata: {
