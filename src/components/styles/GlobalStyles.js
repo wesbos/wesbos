@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import whiteGrit from '../mdxComponents/whitegrit.png';
 import blackGrit from '../mdxComponents/blackgrit.png';
 import font from '../../assets/fonts/RadnikaNext/RadnikaNext-Black.woff2';
+import dirty from './Dirty';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -180,6 +181,21 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--yellow) ;
     border-radius: 6px;
     border: 3px solid var(--dark);
+  }
+
+  /* Button Styles */
+  button {
+    ${dirty}
+    border: 0;
+    font-weight: 900;
+    padding: 1rem;
+    cursor: pointer;
+    --rotate: -1deg;
+    transform: rotate(var(--rotate));
+    &:hover {
+      --rotate: 0.2deg;
+      background-position: -200px;
+    }
   }
 `;
 export default GlobalStyles;

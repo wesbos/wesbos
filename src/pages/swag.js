@@ -31,10 +31,10 @@ export default function SwagPage({ data, path }) {
       </p>
       <p>For the credit card, use `4242 4242 4242 4242` and `02/22 22222`. </p>
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
-        Open Cart {store.cart.items.count}
+        🛒 Open Cart ({store.cart.items.count} Items -
+        <span className="snipcart-total-price" />)
       </button>
-      <span className="snipcart-items-count" />
-      <span className="snipcart-total-price" />
+
       {/* <button
         type="button"
         className="snipcart-add-item"
@@ -55,6 +55,7 @@ export default function SwagPage({ data, path }) {
       >
         Add Pink Shirt
       </button> */}
+      <hr />
       <Product
         product={products.find(
           (product) => product.userDefinedId === 'pink-on-pink-tshirt'
@@ -64,6 +65,28 @@ export default function SwagPage({ data, path }) {
           'data-item-price': '17.00',
           'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
           'data-item-name': 'Pink on Pink tshirt',
+          // grams
+          'data-item-weight': '215',
+          // cm
+          'data-item-length': '23',
+          'data-item-height': '5',
+          'data-item-width': '17',
+          'data-item-shippable': 'true',
+          'data-item-max-quantity': '49',
+          'data-item-custom1-name': 'Size',
+          'data-item-custom1-options': 'small|medium|large|XL',
+        }}
+      />
+      <hr />
+      <Product
+        product={products.find(
+          (product) => product.userDefinedId === 'pink-on-pink-tshirt'
+        )}
+        buttonAttrs={{
+          'data-item-id': 'black-on-black-tshirt',
+          'data-item-price': '17.00',
+          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
+          'data-item-name': 'Black on Black tshirt',
           // grams
           'data-item-weight': '215',
           // cm
