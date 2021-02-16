@@ -80,7 +80,7 @@ export default function SwagPage({ data, path }) {
       <hr />
       <Product
         product={products.find(
-          (product) => product.userDefinedId === 'pink-on-pink-tshirt'
+          (product) => product.userDefinedId === 'black-on-black-tshirt'
         )}
         buttonAttrs={{
           'data-item-id': 'black-on-black-tshirt',
