@@ -35,9 +35,7 @@ function converIGtoJPG(base64data) {
   const o = t
     .substring(0, 3)
     .split('')
-    .map(function (e) {
-      return e.charCodeAt(0);
-    });
+    .map((e) => e.charCodeAt(0));
   const c = atob(jpegtpl).split('');
   c[162] = String.fromCharCode(o[1]);
   c[160] = String.fromCharCode(o[2]);
@@ -115,16 +113,17 @@ export default function Instagram() {
       <Stories />
       {gramz.length ? <h4>Posts</h4> : null}
       <InstaStyles>
-        {gramz.map((gram) => (
-          <a href={gram.url} key={gram.id}>
-            <img
-              src={`https://images.weserv.nl/?url=${encodeURIComponent(
-                gram.thumbnail
-              )}&w=230`}
-              alt={gram.caption}
-            />
-          </a>
-        ))}
+        {Array.isArray(gramz) &&
+          gramz.map((gram) => (
+            <a href={gram.url} key={gram.id}>
+              <img
+                src={`https://images.weserv.nl/?url=${encodeURIComponent(
+                  gram.thumbnail
+                )}&w=230`}
+                alt={gram.caption}
+              />
+            </a>
+          ))}
       </InstaStyles>
     </div>
   );
