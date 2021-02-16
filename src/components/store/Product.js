@@ -4,6 +4,11 @@ import styled from 'styled-components';
 const ProductStyles = styled.div`
   border: 1px solid var(--dark);
   padding: 20px;
+  .variations {
+    & > div {
+      margin: 0.5rem 0;
+    }
+  }
 `;
 
 export default function Product({ product, buttonAttrs }) {

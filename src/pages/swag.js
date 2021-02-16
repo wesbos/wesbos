@@ -30,6 +30,7 @@ export default function SwagPage({ data, path }) {
         record a demo using real data, but addresses I can show on YouTube.
       </p>
       <p>For the credit card, use `4242 4242 4242 4242` and `02/22 22222`. </p>
+      <p>This isn't the final design, so don't sweat that please :)</p>
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         🛒 Open Cart ({store.cart.items.count} Items -
         <span className="snipcart-total-price" />)
