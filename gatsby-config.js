@@ -137,5 +137,12 @@ module.exports = {
     // },
     // `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        color: '#ffc600',
+        showSpinner: false,
+      },
+    },
   ],
 };
