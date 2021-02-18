@@ -20,6 +20,7 @@
     "gatsby-parallel-runner": "^1.3.0",
     "gatsby-plugin-feed": "^2.13.0",
     "gatsby-plugin-google-analytics": "^2.11.0",
+    "gatsby-plugin-image": "^0.7.1",
     "gatsby-plugin-layout": "^1.10.0",
     "gatsby-plugin-manifest": "^2.12.0",
     "gatsby-plugin-mdx": "^1.10.0",

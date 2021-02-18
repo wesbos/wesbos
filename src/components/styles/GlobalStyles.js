@@ -113,6 +113,10 @@ const GlobalStyles = createGlobalStyle`
   p a:nth-child(4n+3) { --rotate: 0.6deg; }
   p a:nth-child(4n+4) { --rotate: -0.75deg; }
 
+  p.small {
+    font-size: 1.2rem;
+  }
+
   :not(pre) > code {
     background: #f6f6f6;
     border: 1px solid rgba(0,0,0,0.05);

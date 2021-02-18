@@ -1,11 +1,10 @@
+import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { Helmet } from 'react-helmet';
-import WelcomeStyles from '../assets/styles/WelcomeStyles';
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
-import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 import Product from '../components/store/Product';
+import { ProductImages } from '../components/styles/ProductImages';
+import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
 // export default function SwagPageNope() {
 //   return <p>thanks for the tests. Doing a bit of work and will open it again in a bit.</p>
@@ -22,44 +21,29 @@ export default function SwagPage({ data, path }) {
   const { products } = useSnipCartProducts();
   return (
     <div className="welcome">
-      <h2>Test Store. Not real! Hey Folks!</h2>
+      <H as="h2">Merch Store</H>
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: 'Merch!',
+            image: `${
+              process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`
+            }/assets/images/pink-on-pink-2.jpg`,
+          },
+        }}
+      />
+
       <p>
-        I need a little help testing out my online store, and more importantly
-        the shipping quotes + fulfillment integration around the world.
+        Hey - this is my first small run of basic shirts to get the kinks worked
+        out. More designs and cuts will be coming down the road!
       </p>
-      <p>
-        This is a test store. Can you try and buy 1-5 things from the store
-        using the address of a local public place? Like a coffee shop? I want to
-        record a demo using real data, but addresses I can show on YouTube.
-      </p>
-      <p>For the credit card, use `4242 4242 4242 4242` and `02/22 22222`. </p>
-      <p>This isn't the final design, so don't sweat that please :)</p>
+
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         🛒 Open Cart ({store.cart.items.count} Items —{' '}
         <span className="snipcart-total-price" />)
       </button>
 
-      {/* <button
-        type="button"
-        className="snipcart-add-item"
-        data-item-id="pink-on-pink-tshirt"
-        data-item-price="17.00"
-        data-item-url={`${process.env.GATSBY_DEPLOY_URL}/swag`}
-        data-item-name="Pink on Pink tshirt"
-        // grams
-        data-item-weight="215"
-        // cm
-        data-item-length="23"
-        data-item-height="5"
-        data-item-width="17"
-        data-item-shippable="true"
-        data-item-max-quantity="49"
-        data-item-custom1-name="Size"
-        data-item-custom1-options="small|medium|large|XL"
-      >
-        Add Pink Shirt
-      </button> */}
-      <hr />
       <Product
         product={products.find(
           (product) => product.userDefinedId === 'pink-on-pink-tshirt'
@@ -68,7 +52,7 @@ export default function SwagPage({ data, path }) {
           'data-item-id': 'pink-on-pink-tshirt',
           'data-item-price': '17.00',
           'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
-          'data-item-name': 'Pink on Pink tshirt',
+          'data-item-name': 'Tonal Pink Tee',
           // grams
           'data-item-weight': '215',
           // cm
@@ -80,17 +64,57 @@ export default function SwagPage({ data, path }) {
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': 'small|medium|large|XL',
         }}
-      />
-      <hr />
+      >
+        <div>
+          <ul className="features">
+            <li>Small JS Logo</li>
+            <li>100% Cotton</li>
+            <li>Super Soft</li>
+            <li>Water Based Tonal Ink</li>
+            <li>Looks cool</li>
+            <li>Wes' Fav</li>
+          </ul>
+          <ProductImages>
+            <StaticImage
+              src="../assets/images/pink-on-pink.jpg"
+              alt="Black T-Shirt"
+              placeholder="blurred"
+              layout="constrained"
+              width={500}
+              height={550}
+            />
+            <StaticImage
+              src="../assets/images/pink-on-pink-2.jpg"
+              alt="Black T-Shirt"
+              placeholder="blurred"
+              layout="constrained"
+              width={500}
+              height={550}
+            />
+          </ProductImages>
+          <p className="small">
+            Printed on AS colour 5051.
+            <a
+              target="_blank"
+              href="https://ascolour.com/mens-basic-tee-5051/"
+              rel="noopener noreferrer"
+            >
+              [size chart]
+            </a>
+            . Comes with free stickers!
+          </p>
+        </div>
+      </Product>
       <Product
         product={products.find(
           (product) => product.userDefinedId === 'black-on-black-tshirt'
         )}
+        image="../../assets/images/black-on-black.jpg"
         buttonAttrs={{
           'data-item-id': 'black-on-black-tshirt',
           'data-item-price': '17.00',
           'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
-          'data-item-name': 'Black on Black tshirt',
+          'data-item-name': 'Black on Black Tee',
           // grams
           'data-item-weight': '215',
           // cm
@@ -101,9 +125,49 @@ export default function SwagPage({ data, path }) {
           'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': 'small|medium|large|XL',
+          'data-image': '../../assets/images/black-on-black.jpg',
         }}
-      />
-      <hr />
+      >
+        <div>
+          <ul className="features">
+            <li>Black Shirt</li>
+            <li>Black Waterbased Ink</li>
+            <li>Big JS Logo</li>
+            <li>100% Cotton</li>
+            <li>Subtle Flex</li>
+            <li>Makes you a better dev</li>
+          </ul>
+          <ProductImages>
+            <StaticImage
+              src="../assets/images/black-on-black.jpg"
+              alt="Black T-Shirt"
+              placeholder="blurred"
+              layout="constrained"
+              width={500}
+              height={550}
+            />
+            <StaticImage
+              src="../assets/images/black-on-black-2.jpg"
+              alt="Black T-Shirt"
+              placeholder="blurred"
+              layout="constrained"
+              width={500}
+              height={550}
+            />
+          </ProductImages>
+          <p className="small">
+            Printed on AS colour 5051.
+            <a
+              target="_blank"
+              href="https://ascolour.com/mens-basic-tee-5051/"
+              rel="noopener noreferrer"
+            >
+              [size chart]
+            </a>
+            . Comes with free stickers!
+          </p>
+        </div>
+      </Product>
       {/* <button
         type="button"
         className="snipcart-add-item"
@@ -122,6 +186,62 @@ export default function SwagPage({ data, path }) {
       >
         5 Packs of Stickers
       </button> */}
+      <h3>Things You Should Know</h3>
+      <ul>
+        <li>Ships Worldwide. Tracking Provided.</li>
+        <li>
+          <strong>Shipping USA:</strong>Ships USPS, usually pretty quick and
+          affordable
+        </li>
+        <li>
+          <strong>Shipping Canada:</strong>Ships Canada Post, usually pretty
+          quick and affordable
+        </li>
+        <li>
+          <strong>Shipping Worldwide:</strong> I have opted to allow shipping
+          worldwide. Prices and delivery times vary from "eh, not bad" to "wow
+          holy smokes". Most of Europe is pretty good! I'm not delivering these
+          by hand and these are just the prices and times quoted by the company.
+          I unfortunately don't have any control over this.
+        </li>
+        <li>
+          <strong>Duties &amp; Taxes</strong> - Americans and Canadians
+          shouldn't expect any additional charges. Other countries may have to
+          pay import fees on arrival - please check with your local government
+          office for these amounts.
+        </li>
+        <li>
+          <strong>No Refunds</strong>, please check the{' '}
+          <a href="https://ascolour.com/mens-basic-tee-5051/">AS Colour 5051</a>{' '}
+          size guide before buying. They fit TTS. If you are in between a size,
+          size up.
+        </li>
+      </ul>
+
+      <H as="h3">Free Stuff!</H>
+      <p>
+        Each Order comes with 3 packs of 18 stickers, and a pencil or two! I'll
+        sell these stickers on their own again soon, but for now they are free
+        with any order.
+      </p>
+      <ProductImages>
+        <StaticImage
+          src="../assets/images/stickers.jpg"
+          alt="Black T-Shirt"
+          placeholder="blurred"
+          layout="constrained"
+          width={500}
+          height={700}
+        />
+        <StaticImage
+          src="../assets/images/pencils.jpg"
+          alt="Black T-Shirt"
+          placeholder="blurred"
+          layout="constrained"
+          width={500}
+          height={700}
+        />
+      </ProductImages>
     </div>
   );
 }

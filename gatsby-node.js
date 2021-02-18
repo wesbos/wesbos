@@ -183,9 +183,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.onCreatePage = ({ page, actions }) => {
+exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
   const { createPage } = actions;
-
+  if (page.path.match(/swag/)) {
+    page.context.layoutClasses = 'wiiiiiiiiiide';
+  }
   if (page.path.match(/thumbnail/)) {
     page.context.layout = 'thumbnail';
     createPage(page);
