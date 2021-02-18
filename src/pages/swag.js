@@ -4,6 +4,7 @@ import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
 import Product from '../components/store/Product';
 import { ProductImages } from '../components/styles/ProductImages';
+import useImage from '../hooks/useImage';
 import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
 // export default function SwagPageNope() {
@@ -19,6 +20,7 @@ export default function SwagPage({ data, path }) {
     },
   });
   const { products } = useSnipCartProducts();
+  const { getImagePath } = useImage();
   return (
     <div className="welcome">
       <H as="h2">Merch Store</H>
@@ -63,6 +65,7 @@ export default function SwagPage({ data, path }) {
           'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': 'small|medium|large|XL',
+          'data-item-image': getImagePath('pink-on-pink.jpg'),
         }}
       >
         <div>
@@ -125,7 +128,7 @@ export default function SwagPage({ data, path }) {
           'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': 'small|medium|large|XL',
-          'data-image': '../../assets/images/black-on-black.jpg',
+          'data-item-image': getImagePath('black-on-black.jpg'),
         }}
       >
         <div>

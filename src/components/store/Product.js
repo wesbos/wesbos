@@ -60,7 +60,6 @@ export default function Product({ product, buttonAttrs, children }) {
     </button>
   );
   if (!product) return button;
-  console.log(product);
   return (
     <ProductStyles>
       <H as="h3">{buttonAttrs['data-item-name']}</H>
