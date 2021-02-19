@@ -22,12 +22,8 @@ export default function SwagPage({ data, path }) {
   const { products } = useSnipCartProducts();
   const { getImagePath } = useImage();
   return (
-    <div style={{ opacity: 0 }}>
+    <div>
       <H as="h2">Merch Store</H>
-
-      <p>GATSBY_DEPLOY_PRIME_URL: {process.env.GATSBY_DEPLOY_PRIME_URL}</p>
-      <p>GATSBY_CONTEXT: {process.env.GATSBY_CONTEXT}</p>
-      <p>GATSBY_URL: {process.env.GATSBY_URL}</p>
       <PostMetaTags
         post={{
           frontmatter: {
