@@ -57,7 +57,7 @@ export default function SwagPage({ data, path }) {
         buttonAttrs={{
           'data-item-id': 'pink-on-pink-tshirt',
           'data-item-price': '17.00',
-          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`,
+          'data-item-url': `${process.env.GATSBY_URL}/merch`,
           'data-item-name': 'Tonal Pink Tee',
           // grams
           'data-item-weight': '180',
@@ -120,7 +120,7 @@ export default function SwagPage({ data, path }) {
         buttonAttrs={{
           'data-item-id': 'black-on-black-tshirt',
           'data-item-price': '17.00',
-          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`,
+          'data-item-url': `${process.env.GATSBY_URL}/merch`,
           'data-item-name': 'Black on Black Tee',
           // grams
           'data-item-weight': '180',
@@ -180,7 +180,7 @@ export default function SwagPage({ data, path }) {
         className="snipcart-add-item"
         data-item-id="5-pack-stickers"
         data-item-price="6.00"
-        data-item-url={`${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`}
+        data-item-url={`${process.env.GATSBY_URL}/merch`}
         data-item-name="5 Packs of Stickers"
         // grams
         data-item-weight="45"
