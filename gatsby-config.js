@@ -143,7 +143,12 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-snipcartv3',
       options: {
-        apiKey: process.env.GATSBY_SNIPCART_APIKEY,
+        apiKey:
+          process.env.CONTEXT === 'production'
+            ? // Production
+              process.env.GATSBY_SNIPCART_APIKEY
+            : // Development
+              process.env.GATSBY_SNIPCART_APIKEY_PREVIEW,
         currency: 'usd',
         // Upgrade to latest snipcart
         js: `https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.js`,
