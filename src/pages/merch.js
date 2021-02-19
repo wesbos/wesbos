@@ -22,7 +22,7 @@ export default function SwagPage({ data, path }) {
   const { products } = useSnipCartProducts();
   const { getImagePath } = useImage();
   return (
-    <div style={{ opacity: 0 }}>
+    <div>
       <H as="h2">Merch Store</H>
       <PostMetaTags
         post={{
@@ -53,7 +53,7 @@ export default function SwagPage({ data, path }) {
         buttonAttrs={{
           'data-item-id': 'pink-on-pink-tshirt',
           'data-item-price': '17.00',
-          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
+          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`,
           'data-item-name': 'Tonal Pink Tee',
           // grams
           'data-item-weight': '215',
@@ -116,7 +116,7 @@ export default function SwagPage({ data, path }) {
         buttonAttrs={{
           'data-item-id': 'black-on-black-tshirt',
           'data-item-price': '17.00',
-          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`,
+          'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`,
           'data-item-name': 'Black on Black Tee',
           // grams
           'data-item-weight': '215',
@@ -176,7 +176,7 @@ export default function SwagPage({ data, path }) {
         className="snipcart-add-item"
         data-item-id="5-pack-stickers"
         data-item-price="6.00"
-        data-item-url={`${process.env.GATSBY_DEPLOY_PRIME_URL}/swag`}
+        data-item-url={`${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`}
         data-item-name="5 Packs of Stickers"
         // grams
         data-item-weight="45"
