@@ -28,11 +28,12 @@ export function useSnipCart(initialState) {
   return { store };
 }
 
-const BASE = process.env.CONTEXT === 'production'
-  ? // Production
-  process.env.GATSBY_STORE_BASE
-  : // Development
-  process.env.GATSBY_STORE_BASE_PREVIEW,
+const BASE =
+  process.env.CONTEXT === 'production'
+    ? // Production
+      process.env.GATSBY_STORE_BASE
+    : // Development
+      process.env.GATSBY_STORE_BASE_PREVIEW;
 
 export function useSnipCartProducts() {
   const [products, setProducts] = useState([]);
