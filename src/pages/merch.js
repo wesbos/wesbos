@@ -22,7 +22,7 @@ export default function SwagPage({ data, path }) {
   const { products } = useSnipCartProducts();
   const { getImagePath } = useImage();
   return (
-    <div>
+    <div stlye={{ opacity: 0 }}>
       <H as="h2">Merch Store</H>
       <PostMetaTags
         post={{
