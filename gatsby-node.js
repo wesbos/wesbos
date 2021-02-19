@@ -185,7 +185,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
   const { createPage } = actions;
-  if (page.path.match(/swag/)) {
+  if (page.path.match(/merch/)) {
     page.context.layoutClasses = 'wiiiiiiiiiide';
   }
   if (page.path.match(/thumbnail/)) {
