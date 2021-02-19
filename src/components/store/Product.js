@@ -8,6 +8,10 @@ const ProductStyles = styled.div`
   padding: 4rem;
   text-align: center;
   margin: 4rem 0;
+  @media (max-width: 600px) {
+    border-width: 0;
+    padding: 0;
+  }
   .variations {
     margin-top: 2rem;
     display: grid;
