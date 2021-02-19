@@ -29,7 +29,7 @@ export function useSnipCart(initialState) {
 }
 
 const BASE =
-  process.env.CONTEXT === 'production'
+  process.env.GATSBY_CONTEXT === 'production'
     ? // Production
       process.env.GATSBY_STORE_BASE
     : // Development

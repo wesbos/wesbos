@@ -144,7 +144,7 @@ module.exports = {
       resolve: 'gatsby-plugin-snipcartv3',
       options: {
         apiKey:
-          process.env.CONTEXT === 'production'
+          process.env.GATSBY_CONTEXT === 'production'
             ? // Production
               process.env.GATSBY_SNIPCART_APIKEY
             : // Development
