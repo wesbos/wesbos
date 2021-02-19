@@ -43,6 +43,9 @@ const ProductStyles = styled.div`
         display: inline-block;
         color: var(--yellow);
         margin: 0 2rem;
+        @media (max-width: 700px) {
+          display: none;
+        }
       }
       &:last-child:after {
         display: none;
