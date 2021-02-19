@@ -7,6 +7,7 @@ process.env.GATSBY_DEPLOY_PRIME_URL = process.env.DEPLOY_PRIME_URL;
 process.env.GATSBY_URL = process.env.URL;
 process.env.GATSBY_COMMIT_REF = process.env.COMMIT_REF;
 process.env.GATSBY_REPOSITORY_URL = process.env.REPOSITORY_URL;
+process.env.GATSBY_DEPLOY_URL = process.env.DEPLOY_URL;
 
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
@@ -182,9 +183,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.onCreatePage = ({ page, actions }) => {
+exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
   const { createPage } = actions;
-
+  if (page.path.match(/merch/)) {
+    page.context.layoutClasses = 'wiiiiiiiiiide';
+  }
   if (page.path.match(/thumbnail/)) {
     page.context.layout = 'thumbnail';
     createPage(page);

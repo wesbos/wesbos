@@ -14,6 +14,9 @@ const ContentStyles = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
+  &.wiiiiiiiiiide {
+    max-width: 1000px;
+  }
 `;
 
 function Layout({
@@ -36,10 +39,16 @@ function Layout({
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         <meta name="theme-color" content="#ffc600" />
       </Helmet>
-      <LayoutStyles className={location.pathname === '/' ? 'welcome' : null}>
+      <LayoutStyles
+        className={`
+          ${location.pathname === '/' ? 'welcome' : null}
+          ${pageContext.layoutClasses}`}
+      >
         <Nav pageContext={pageContext} />
         <MDXProvider components={mdxComponents}>
-          <ContentStyles>{children}</ContentStyles>
+          <ContentStyles className={pageContext.layoutClasses}>
+            {children}
+          </ContentStyles>
         </MDXProvider>
         <Footer />
       </LayoutStyles>

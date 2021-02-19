@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import whiteGrit from '../mdxComponents/whitegrit.png';
 import blackGrit from '../mdxComponents/blackgrit.png';
 import font from '../../assets/fonts/RadnikaNext/RadnikaNext-Black.woff2';
+import dirty from './Dirty';
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -112,6 +113,10 @@ const GlobalStyles = createGlobalStyle`
   p a:nth-child(4n+3) { --rotate: 0.6deg; }
   p a:nth-child(4n+4) { --rotate: -0.75deg; }
 
+  p.small {
+    font-size: 1.2rem;
+  }
+
   :not(pre) > code {
     background: #f6f6f6;
     border: 1px solid rgba(0,0,0,0.05);
@@ -180,6 +185,21 @@ const GlobalStyles = createGlobalStyle`
     background-color: var(--yellow) ;
     border-radius: 6px;
     border: 3px solid var(--dark);
+  }
+
+  /* Button Styles */
+  button:not(.snipcart button) {
+    ${dirty}
+    border: 0;
+    font-weight: 900;
+    padding: 1rem;
+    cursor: pointer;
+    --rotate: -1deg;
+    transform: rotate(var(--rotate));
+    &:hover {
+      --rotate: 0.2deg;
+      background-position: -200px;
+    }
   }
 `;
 export default GlobalStyles;

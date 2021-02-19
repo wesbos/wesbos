@@ -1,5 +1,7 @@
 // const mdxFeed = require('gatsby-mdx/feed');
 
+require('dotenv').config({ path: `.env.development` });
+
 module.exports = {
   siteMetadata: {
     title: 'Wes Bos',
@@ -8,6 +10,7 @@ module.exports = {
     siteUrl: process.env.DEPLOY_PRIME_URL,
   },
   plugins: [
+    `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-remove-trailing-slashes`,
     // taking this off for a bit because its broken or choking on somthing...
@@ -137,5 +140,20 @@ module.exports = {
     // },
     // `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-snipcartv3',
+      options: {
+        apiKey:
+          process.env.CONTEXT === 'production'
+            ? // Production
+              process.env.GATSBY_SNIPCART_APIKEY
+            : // Development
+              process.env.GATSBY_SNIPCART_APIKEY_PREVIEW,
+        currency: 'usd',
+        // Upgrade to latest snipcart
+        js: `https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.js`,
+        styles: `https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.css`,
+      },
+    },
   ],
 };
