@@ -56,7 +56,7 @@ export default function SwagPage({ data, path }) {
           'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`,
           'data-item-name': 'Tonal Pink Tee',
           // grams
-          'data-item-weight': '215',
+          'data-item-weight': '180',
           // cm
           'data-item-length': '23',
           'data-item-height': '5',
@@ -119,7 +119,7 @@ export default function SwagPage({ data, path }) {
           'data-item-url': `${process.env.GATSBY_DEPLOY_PRIME_URL}/merch`,
           'data-item-name': 'Black on Black Tee',
           // grams
-          'data-item-weight': '215',
+          'data-item-weight': '180',
           // cm
           'data-item-length': '23',
           'data-item-height': '5',
