@@ -151,8 +151,8 @@ module.exports = {
               process.env.GATSBY_SNIPCART_APIKEY_PREVIEW,
         currency: 'usd',
         // Upgrade to latest snipcart
-        js: `https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.js`,
-        styles: `https://cdn.snipcart.com/themes/v3.0.29/default/snipcart.css`,
+        js: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.js`,
+        styles: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.css`,
       },
     },
   ],
