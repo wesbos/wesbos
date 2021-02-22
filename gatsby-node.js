@@ -134,8 +134,6 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
     const prev = javascriptPosts[i - 1];
     const next = javascriptPosts[i + 1];
 
-    console.log(`/javascript${post.node.fields.slug}`);
-
     actions.createPage({
       path: `/javascript${post.node.fields.slug}`,
       component: javascriptPage,
