@@ -246,10 +246,18 @@ export default function SwagPage({ data, path }) {
           <ProductImages>
             <StaticImage
               src="../assets/images/stickers.jpg"
-              alt="Black T-Shirt"
+              alt="Stickers"
               placeholder="blurred"
               layout="constrained"
-              width={500}
+              width={700}
+              height={700}
+            />
+            <StaticImage
+              src="../assets/images/stickers-detail.jpg"
+              alt="Stickers"
+              placeholder="blurred"
+              layout="constrained"
+              width={700}
               height={700}
             />
           </ProductImages>
