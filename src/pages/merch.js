@@ -7,14 +7,12 @@ import { ProductImages } from '../components/styles/ProductImages';
 import useImage from '../hooks/useImage';
 import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
-// export default function SwagPageNope() {
-//   return <p>thanks for the tests. Doing a bit of work and will open it again in a bit.</p>
-// }
 export default function SwagPage({ data, path }) {
   const mens = `XS|small|medium|large|XL|2XL|3XL`;
   const womens = ['XS', 'small', 'medium', 'large', 'XL']
     .map((size) => `Womens ${size}`)
     .join('|');
+
   const sizes = `${mens}|${womens}`;
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
   const { store } = useSnipCart({
@@ -25,6 +23,13 @@ export default function SwagPage({ data, path }) {
     },
   });
   const { products, totalSales } = useSnipCartProducts();
+  const freeStickersLeft = totalSales <= 450;
+  const freeStickersAttrs = freeStickersLeft
+    ? {
+        'data-item-custom2-name': 'Free Stickers?',
+        'data-item-custom2-options': 'Yes|No',
+      }
+    : {};
   const { getImagePath } = useImage();
   return (
     <div>
@@ -72,6 +77,7 @@ export default function SwagPage({ data, path }) {
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': sizes,
           'data-item-image': getImagePath('pink-on-pink.jpg'),
+          ...freeStickersAttrs,
         }}
       >
         <div>
@@ -143,6 +149,7 @@ export default function SwagPage({ data, path }) {
           'data-item-custom1-name': 'Size',
           'data-item-custom1-options': sizes,
           'data-item-image': getImagePath('black-on-black.jpg'),
+          ...freeStickersAttrs,
         }}
       >
         <div>

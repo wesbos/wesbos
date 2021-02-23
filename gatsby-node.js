@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: './.env.development' });
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
