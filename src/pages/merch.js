@@ -13,7 +13,7 @@ import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 export default function SwagPage({ data, path }) {
   const mens = `XS|small|medium|large|XL|2XL|3XL`;
   const womens = ['XS', 'small', 'medium', 'large', 'XL']
-    .map((size) => `Women's ${size}`)
+    .map((size) => `Womens ${size}`)
     .join('|');
   const sizes = `${mens}|${womens}`;
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
@@ -45,6 +45,9 @@ export default function SwagPage({ data, path }) {
         Hey - this is my first small run of basic shirts to get the kinks worked
         out. More designs and cuts will be coming down the road!
       </p>
+      <ul>
+        <li>March</li>
+      </ul>
 
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         🛒 Open Cart ({store.cart.items.count} Items —{' '}

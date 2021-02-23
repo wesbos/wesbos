@@ -67,6 +67,7 @@ export default function Product({ product, buttonAttrs, children }) {
     </button>
   );
   if (!product) return button;
+  console.log(product.variants);
   return (
     <ProductStyles>
       <H as="h3">{buttonAttrs['data-item-name']}</H>
@@ -74,28 +75,31 @@ export default function Product({ product, buttonAttrs, children }) {
       {/* If there are no variants, just show a regular ass button */}
       {!product.variants.length && button}
       <div className="variations">
-        {product.variants.map((variant, index) => (
-          <div className="variant" key={`variant${index}`}>
-            <button
-              type="button"
-              className="snipcart-add-item"
-              {...buttonAttrs}
-              data-item-custom1-value={variant.variation[0].option}
-              disabled={variant.stock <= 0}
-            >
-              <span className="variantName">
-                {variant.variation
-                  .map((singleVariant) => `${singleVariant.option}`)
-                  .join(' x ')}
+        {product.variants.map((variant, index) => {
+          if (variant.stock === null) return null;
+          return (
+            <div className="variant" key={`variant${index}`}>
+              <button
+                type="button"
+                className="snipcart-add-item"
+                {...buttonAttrs}
+                data-item-custom1-value={variant.variation[0].option}
+                disabled={variant.stock <= 0}
+              >
+                <span className="variantName">
+                  {variant.variation
+                    .map((singleVariant) => `${singleVariant.option}`)
+                    .join(' x ')}
+                </span>
+                {' - '}
+                <span className="variantPrice">${product.price}</span>
+              </button>
+              <span className="stock">
+                {variant.stock <= 0 ? 'SOLD OUT' : `${variant.stock} left`}
               </span>
-              {' - '}
-              <span className="variantPrice">${product.price}</span>
-            </button>
-            <span className="stock">
-              {variant.stock <= 0 ? 'SOLD OUT' : `${variant.stock} left`}
-            </span>
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
     </ProductStyles>
   );
