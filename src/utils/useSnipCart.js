@@ -35,6 +35,14 @@ const BASE =
     : // Development
       process.env.GATSBY_STORE_BASE_PREVIEW;
 
+function calculateTotalSales(products) {
+  return products.reduce((acc, product) => {
+    console.log(product.totalStock);
+    if (!product.totalStock) return acc;
+    return acc + product.totalStock * -1;
+  }, 0);
+}
+
 export function useSnipCartProducts() {
   const [products, setProducts] = useState([]);
   const [totalSales, setTotalSales] = useState(0);
@@ -43,15 +51,11 @@ export function useSnipCartProducts() {
     function fetchProducts() {
       fetch(`${BASE}/products`)
         .then((x) => x.json())
-        .then((response) => setProducts(response))
+        .then((response) => {
+          setProducts(response);
+          setTotalSales(calculateTotalSales(response));
+        })
         .catch(console.error);
-      setTotalSales(
-        products.reduce((acc, product) => {
-          console.log(product.totalStock);
-          if (!product.totalStock) return acc;
-          return acc + product.totalStock * -1;
-        }, 0)
-      );
     }
     fetchProducts();
     // Update the products every 5 seconds
