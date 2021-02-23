@@ -17,6 +17,9 @@ const ProductStyles = styled.div`
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   .variant {
     display: grid;
