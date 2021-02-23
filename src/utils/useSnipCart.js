@@ -49,7 +49,7 @@ export function useSnipCartProducts() {
     // Update the products every 5 seconds
     const interval = setInterval(fetchProducts, 10000);
     // Stop fetching on unmount of component
-    return () => {
+    return function unsubscribe() {
       clearInterval(interval);
     };
   }, []);

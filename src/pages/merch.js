@@ -11,6 +11,11 @@ import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 //   return <p>thanks for the tests. Doing a bit of work and will open it again in a bit.</p>
 // }
 export default function SwagPage({ data, path }) {
+  const mens = `XS|small|medium|large|XL|2XL|3XL`;
+  const womens = ['XS', 'small', 'medium', 'large', 'XL']
+    .map((size) => `Women's ${size}`)
+    .join('|');
+  const sizes = `${mens}|${womens}`;
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
   const { store } = useSnipCart({
     cart: {
@@ -52,7 +57,7 @@ export default function SwagPage({ data, path }) {
         )}
         buttonAttrs={{
           'data-item-id': 'pink-on-pink-tshirt',
-          'data-item-price': '17.00',
+          'data-item-price': '22.00',
           'data-item-url': `${process.env.GATSBY_URL}/merch`,
           'data-item-name': 'Tonal Pink Tee',
           // grams
@@ -64,7 +69,7 @@ export default function SwagPage({ data, path }) {
           'data-item-shippable': 'true',
           'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
-          'data-item-custom1-options': 'small|medium|large|XL',
+          'data-item-custom1-options': sizes,
           'data-item-image': getImagePath('pink-on-pink.jpg'),
         }}
       >
@@ -115,7 +120,7 @@ export default function SwagPage({ data, path }) {
         image="../../assets/images/black-on-black.jpg"
         buttonAttrs={{
           'data-item-id': 'black-on-black-tshirt',
-          'data-item-price': '17.00',
+          'data-item-price': '22.00',
           'data-item-url': `${process.env.GATSBY_URL}/merch`,
           'data-item-name': 'Black on Black Tee',
           // grams
@@ -127,7 +132,7 @@ export default function SwagPage({ data, path }) {
           'data-item-shippable': 'true',
           'data-item-max-quantity': '3',
           'data-item-custom1-name': 'Size',
-          'data-item-custom1-options': 'small|medium|large|XL',
+          'data-item-custom1-options': sizes,
           'data-item-image': getImagePath('black-on-black.jpg'),
         }}
       >
@@ -223,21 +228,12 @@ export default function SwagPage({ data, path }) {
 
       <H as="h3">Free Stuff!</H>
       <p>
-        Each Order comes with 3 packs of 18 stickers, and a pencil or two! I'll
-        sell these stickers on their own again soon, but for now they are free
-        with any order.
+        Each Order comes with 1 pack of 18 sticker! I'll sell these stickers on
+        their own again soon, but for now they are free with any order.
       </p>
       <ProductImages>
         <StaticImage
           src="../assets/images/stickers.jpg"
-          alt="Black T-Shirt"
-          placeholder="blurred"
-          layout="constrained"
-          width={500}
-          height={700}
-        />
-        <StaticImage
-          src="../assets/images/pencils.jpg"
           alt="Black T-Shirt"
           placeholder="blurred"
           layout="constrained"
