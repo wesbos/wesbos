@@ -37,6 +37,7 @@ const BASE =
 
 export function useSnipCartProducts() {
   const [products, setProducts] = useState([]);
+  const [totalSales, setTotalSales] = useState(0);
   //
   useEffect(() => {
     function fetchProducts() {
@@ -44,6 +45,13 @@ export function useSnipCartProducts() {
         .then((x) => x.json())
         .then((response) => setProducts(response))
         .catch(console.error);
+      setTotalSales(
+        products.reduce((acc, product) => {
+          console.log(product.totalStock);
+          if (!product.totalStock) return acc;
+          return acc + product.totalStock * -1;
+        }, 0)
+      );
     }
     fetchProducts();
     // Update the products every 5 seconds
@@ -53,5 +61,5 @@ export function useSnipCartProducts() {
       clearInterval(interval);
     };
   }, []);
-  return { products };
+  return { products, totalSales };
 }

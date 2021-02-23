@@ -16,7 +16,7 @@ const ProductStyles = styled.div`
     margin-top: 2rem;
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   .variant {
     display: grid;
@@ -67,10 +67,11 @@ export default function Product({ product, buttonAttrs, children }) {
     </button>
   );
   if (!product) return button;
-  console.log(product.variants);
   return (
     <ProductStyles>
-      <H as="h3">{buttonAttrs['data-item-name']}</H>
+      <H as="h3">
+        {buttonAttrs['data-item-name']} - ${product.price}
+      </H>
       {children}
       {/* If there are no variants, just show a regular ass button */}
       {!product.variants.length && button}
@@ -84,18 +85,28 @@ export default function Product({ product, buttonAttrs, children }) {
                 className="snipcart-add-item"
                 {...buttonAttrs}
                 data-item-custom1-value={variant.variation[0].option}
-                disabled={variant.stock <= 0}
+                disabled={
+                  variant.stock <= 0 && !variant.allowOutOfStockPurchases
+                }
               >
                 <span className="variantName">
                   {variant.variation
                     .map((singleVariant) => `${singleVariant.option}`)
-                    .join(' x ')}
+                    .join(' ')
+                    .replace('Womens', `Women's`)}
                 </span>
-                {' - '}
-                <span className="variantPrice">${product.price}</span>
               </button>
               <span className="stock">
-                {variant.stock <= 0 ? 'SOLD OUT' : `${variant.stock} left`}
+                {/* Some left */}
+                {variant.stock > 0 && `${variant.stock} left`}
+                {/* None left, we can't oversell */}
+                {variant.stock <= 0 &&
+                  !variant.allowOutOfStockPurchases &&
+                  'SOLD OUT'}
+                {/* None left, we can oversell. Show how many */}
+                {variant.stock <= 0 &&
+                  variant.allowOutOfStockPurchases &&
+                  `${variant.stock * -1} SOLD`}
               </span>
             </div>
           );

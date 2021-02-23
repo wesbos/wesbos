@@ -24,7 +24,7 @@ export default function SwagPage({ data, path }) {
       },
     },
   });
-  const { products } = useSnipCartProducts();
+  const { products, totalSales } = useSnipCartProducts();
   const { getImagePath } = useImage();
   return (
     <div>
@@ -40,14 +40,12 @@ export default function SwagPage({ data, path }) {
           },
         }}
       />
-
       <p>
-        Hey - this is my first small run of basic shirts to get the kinks worked
-        out. More designs and cuts will be coming down the road!
+        Woah! The first 100 shirts sold out quick, so I'm taking{' '}
+        <strong>pre-orders</strong> for the next batch! Orders remain open until{' '}
+        <strong>March 3rd</strong>, and then go into production with expected
+        shipping happening on or around <strong>March 20th</strong>.
       </p>
-      <ul>
-        <li>March</li>
-      </ul>
 
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
         🛒 Open Cart ({store.cart.items.count} Items —{' '}
@@ -104,7 +102,7 @@ export default function SwagPage({ data, path }) {
             />
           </ProductImages>
           <p className="small">
-            Printed on AS colour 5051.
+            Men's Printed on AS colour 5051{' '}
             <a
               target="_blank"
               href="https://ascolour.com/mens-basic-tee-5051/"
@@ -112,7 +110,15 @@ export default function SwagPage({ data, path }) {
             >
               [size chart]
             </a>
-            . Comes with free stickers!
+            , Women's on 4051{' '}
+            <a
+              target="_blank"
+              href="https://ascolour.com/wos-basic-tee-4051/"
+              rel="noopener noreferrer"
+            >
+              [size chart]
+            </a>
+            . {totalSales <= 450 && `Comes with free stickers!`}
           </p>
         </div>
       </Product>
@@ -167,7 +173,7 @@ export default function SwagPage({ data, path }) {
             />
           </ProductImages>
           <p className="small">
-            Printed on AS colour 5051.
+            Men's Printed on AS colour 5051{' '}
             <a
               target="_blank"
               href="https://ascolour.com/mens-basic-tee-5051/"
@@ -175,28 +181,18 @@ export default function SwagPage({ data, path }) {
             >
               [size chart]
             </a>
-            . Comes with free stickers!
+            , Women's on 4051{' '}
+            <a
+              target="_blank"
+              href="https://ascolour.com/wos-basic-tee-4051/"
+              rel="noopener noreferrer"
+            >
+              [size chart]
+            </a>
+            . {totalSales <= 450 && `Comes with free stickers!`}
           </p>
         </div>
       </Product>
-      {/* <button
-        type="button"
-        className="snipcart-add-item"
-        data-item-id="5-pack-stickers"
-        data-item-price="6.00"
-        data-item-url={`${process.env.GATSBY_URL}/merch`}
-        data-item-name="5 Packs of Stickers"
-        // grams
-        data-item-weight="45"
-        // cm
-        data-item-length="9"
-        data-item-height="14"
-        data-item-width="2"
-        data-item-shippable="true"
-        data-item-max-quantity="49"
-      >
-        5 Packs of Stickers
-      </button> */}
       <h3>Things You Should Know</h3>
       <ul>
         <li>Ships Worldwide. Tracking Provided.</li>
@@ -222,28 +218,43 @@ export default function SwagPage({ data, path }) {
           office for these amounts.
         </li>
         <li>
-          <strong>No Refunds</strong>, please check the{' '}
+          <strong>No Refunds</strong> (unless it gets lost, of course!). Please
+          check the{' '}
           <a href="https://ascolour.com/mens-basic-tee-5051/">AS Colour 5051</a>{' '}
-          size guide before buying. They fit TTS. If you are in between a size,
-          size up.
+          and <a href="https://ascolour.com/wos-basic-tee-4051">4051</a> size
+          guide before buying. They fit TTS. If you are in between a size, size
+          up.
         </li>
       </ul>
 
       <H as="h3">Free Stuff!</H>
-      <p>
-        Each Order comes with 1 pack of 18 sticker! I'll sell these stickers on
-        their own again soon, but for now they are free with any order.
-      </p>
-      <ProductImages>
-        <StaticImage
-          src="../assets/images/stickers.jpg"
-          alt="Black T-Shirt"
-          placeholder="blurred"
-          layout="constrained"
-          width={500}
-          height={700}
-        />
-      </ProductImages>
+      {totalSales > 450 ? (
+        <div>
+          <p>
+            The Free Stickers are gone! Sorry. There were 450 packs, but they
+            have now run out.{' '}
+          </p>
+        </div>
+      ) : (
+        <div>
+          <p>
+            The <strong>next {450 - totalSales} orders</strong> come with 1 pack
+            of 18 stickers! I'll sell these stickers on their own again soon,
+            but for now they are free with any order. These are first come first
+            serve!
+          </p>
+          <ProductImages>
+            <StaticImage
+              src="../assets/images/stickers.jpg"
+              alt="Black T-Shirt"
+              placeholder="blurred"
+              layout="constrained"
+              width={500}
+              height={700}
+            />
+          </ProductImages>
+        </div>
+      )}
     </div>
   );
 }
