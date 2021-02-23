@@ -215,8 +215,8 @@ export default function SwagPage({ data, path }) {
           <strong>Shipping Worldwide:</strong> I have opted to allow shipping
           worldwide. Prices and delivery times vary from "eh, not bad" to "wow
           holy smokes". Most of Europe is pretty good! I'm not delivering these
-          by hand and these are just the prices and times quoted by the company.
-          I unfortunately don't have any control over this.
+          by hand and these are just the prices and times quoted by the shipping
+          companies. I unfortunately don't have any control over this.
         </li>
         <li>
           <strong>Duties &amp; Taxes</strong> - Americans and Canadians
