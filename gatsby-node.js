@@ -101,7 +101,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
 }
 
 async function makeJavaScriptFromMdx({ graphql, actions }) {
-  const javascriptPage = path.resolve('./src/templates/javascript.js');
+  const javascriptPage = path.resolve('./src/templates/beginner-javascript.js');
   const { errors, data } = await graphql(
     `
       {
