@@ -24,7 +24,7 @@ const winners = ['Hunter Gath', 'Singa Song', 'Imda Bos'];
 
 So Hunter Gath came in first, Singa Song came in second, and Imda Bos came in third.
 
-Ideally for me, I would have an object with `name, with the name of the racer, place` with the place that they came in, and we can use the race variable to say what they won. Something like this:
+Ideally for me, I would have an object with `name`, with the name of the racer, `place` with the place that they came in, and we can use the `race` variable to say what they won. Something like this:
 
 
 ```js
@@ -36,7 +36,7 @@ Ideally for me, I would have an object with `name, with the name of the racer, p
 
 ```
 
-How would we do that? Well, we can actually use `.map() again for that. By the way, map` is not the only function that arrow functions work with. Arrow functions work with anything, and they're particularly useful in these callback situations.
+How would we do that? Well, we can actually use `.map()` again for that. By the way, `map` is not the only function that arrow functions work with. Arrow functions work with anything, and they're particularly useful in these callback situations.
 
 
 ```js
@@ -44,13 +44,13 @@ const win = winners.map((winner, i) => {name: winner, race: race, place: i})
 
 ```
 
-We're going to loop over each winner and return an object for each of the winners here. Our function passes two arguments, the `winner string and i, for our index, and we're going to return our name, race, and place` that the person came in.
+We're going to loop over each winner and return an object for each of the winners here. Our function passes two arguments, the `winner` string and `i`, for our index, and we're going to return our `name`, `race`, and `place` that the person came in.
 
 <h3>Arrow Function Implicit Return an Object Literal</h3>
 
 That should work, where we've got this object here, but it doesn't work, it throws a syntax error: `Unexpected token :`
 
-What's wrong here? Well, earlier we told you that if you take the curly brackets off it's an implicit `return. How do you implicit return`curly brackets when you mean for it to be an **object literal**, not the actual function block?
+What's wrong here? Well, earlier we told you that if you take the curly brackets off it's an implicit `return`. How do you implicit `return` curly brackets when you mean for it to be an **object literal**, not the actual function block?
 
 What we can do is, you just put parentheses around the object literal so that the arrow function knows it's an object and <em>not</em> a a function block.
 
@@ -60,7 +60,7 @@ const win = winners.map((winner, i) => ({name: winner, race: race, place: i + 1}
 
 ```
 
-These parentheses show that you're actually going to return an object literal, and these curly brackets aren't for the actual function block. So `name is winner, race is the race variable we have, and place is going to be set to i + 1`, our index, plus one so that we aren't zero-based.
+These parentheses show that you're actually going to return an object literal, and these curly brackets aren't for the actual function block. So `name` is `winner`, `race` is the `race` variable we have, and `place` is going to be set to `i + 1`, our index, plus one so that we aren't zero-based.
 
 <h3>Viewing our Data</h3>
 
@@ -68,9 +68,9 @@ Now we'll take a look at our data.
 
 <img src="ss-2016-09-07-at-10.50.42-AM.png" alt="" />
 
-A little hot tip, you refresh. You can type `win in the console to see all your objects, but then you got to do all this work on opening them up. What you can actually do is use console.table(win)` and you get a sweet-looking table that will show you all the information.
+A little hot tip, you refresh. You can type `win` in the console to see all your objects, but then you got to do all this work on opening them up. What you can actually do is use `console.table(win)` and you get a sweet-looking table that will show you all the information.
 
-Then the other thing, we haven't learned about this yet, but `race: race in our object looks a little bit redundant. A new feature of ES6 is you can just use race,  which is the same thing as saying, race: race Just say the variable race and the property name race is all named race`. It's going to do it just for us.
+Then the other thing, we haven't learned about this yet, but `race: race` in our object looks a little bit redundant. A new feature of ES6 is you can just use `race`,  which is the same thing as saying, `race: race`. Just say the variable `race` and the property name `race` is all named `race`. It's going to do it just for us.
 
 
 ```js
@@ -98,7 +98,7 @@ const old = ages.filter(age => if(age > 60))...
 
 ```
 
-Since we can pass it a condition that goes to true or false, and filter will return if it's true and it won't return if it's false, we can just say, "Age is greater or equal to 60."
+Since we can pass it a condition that goes to `true` or `false`, and `filter` will return if it's `true` and it won't return if it's `false`, we can just say, "Age is greater or equal to 60."
 
 
 ```js
@@ -106,6 +106,6 @@ const old = ages.filter(age => age >= 60);
 
 ```
 
-That looks like a bit funky because you got an arrow and a greater than, but what that will do is, if the age is greater or equal to 60, it will return `true and thus be put into the old` array.
+That looks like a bit funky because you got an arrow and a greater than, but what that will do is, if the age is greater or equal to 60, it will return `true` and thus be put into the `old` array.
 
 That age is going to be put back into this new old array, and we can use `console.log(old)` to return our filtered array.

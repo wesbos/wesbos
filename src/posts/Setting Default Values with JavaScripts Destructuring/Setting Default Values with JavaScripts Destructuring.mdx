@@ -51,7 +51,7 @@ const speed = mySpeed || 760;
 console.log(speed); // 760!
 ```
 
-Why? Because ES6 destructuring default values only kick in if the value is `undefined`, `null`, `false` and `0` are all still values!
+Why? Because ES6 destructuring default values only kick in if the value is `undefined`. `null`, `false` and `0` are all still values!
 
 
 ```js
@@ -96,9 +96,9 @@ Woah - let's step through that one!
 
 * First we create a new const var called `middleName`.
 
-* Next we look for `person.middle. If there was a person.middle property, it would be put into the middleName` variable.
+* Next we look for `person.middle`. If there was a `person.middle` property, it would be put into the `middleName` variable.
 
-* There isn't a `middle property on our person object, so we fall back to the default of Super Rad`. 
+* There isn't a `middle` property on our `person` object, so we fall back to the default of `Super Rad`. 
 
 
 Cool! Make sure to check out <a href="https://ES6.io">ES6.io</a> for more like this!

@@ -39,7 +39,7 @@ const { first, last } = person;
 
 Curly bracket on the left of the equals sign?! That is not a block. That is not an object. It's the new destructuring syntax.
 
-The above code says, give me a variable called **first**, a variable called **last**, and take it from the `person object. We're taking the first property and the last` property and putting them into two new variables that will be scoped to the parent block (or window!).
+The above code says, give me a variable called **first**, a variable called **last**, and take it from the `person` object. We're taking the `first` property and the `last` property and putting them into two new variables that will be scoped to the parent block (or window!).
 
 
 ```js
@@ -47,7 +47,7 @@ console.log(first); // Wes
 console.log(last); // Bos
 ```
 
-Similarly, if I also wanted twitter, I would just add twitter into that, and I would get a third top level variable inside of my actual scope `const { first, last, twitter } = person;`
+Similarly, if I also wanted `twitter`, I would just add `twitter` into that, and I would get a third top level variable inside of my actual scope `const { first, last, twitter } = person;`
 
 That's really handy in many use cases. This is just one nested level, but for example, in React.js often you want to use destructuring because the data is so deeply nested in props or state.
 
@@ -87,4 +87,4 @@ const { twitter, facebook } = wes.links.social;
 console.log(twitter, facebook); // logs the 2 variables
 ```
 
-Notice how we destructure `wes.links.social and not just wes`? That is important because we are destructuring a few levels deep.
+Notice how we destructure `wes.links.social` and not just `wes`? That is important because we are destructuring a few levels deep.

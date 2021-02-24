@@ -45,7 +45,7 @@ That makes sense to me, but this isn't an arrow function. Let's take a look at h
 
 <h3>Turn it into an Arrow Function</h3>
 
-The first thing you do with an arrow function is, you simply delete the keyword `function and add in what's called a fat arrow. It looks like this: =>`
+The first thing you do with an arrow function is, you simply delete the keyword `function` and add in what's called a fat arrow. It looks like this: `=>`
 
 
 ```js
@@ -59,7 +59,7 @@ console.log(fullNames2); // Wes Bos, Kait Bos, Lux Bos
 
 If you've come from other programming languages, you might have seen that before, but in JavaScript it's the first time we're seeing a fat arrow.
 
-It'll do exactly the same thing as `function. If you console.log` it, there should be no surprises there. We get the exact same thing.
+It'll do exactly the same thing as `function`. If you `console.log` it, there should be no surprises there. We get the exact same thing.
 
 <h3>Removing Parens With Single Params</h3>
 
@@ -83,7 +83,7 @@ What else could I do with this? I can use what's called an **implicit return**.
 
 Hold on — what's a <em>explicit</em> `return`?
 
-That's when you explicitly write `return for what you want to return`. But a lot of these callback functions that we write in JavaScript are just one-liners, where we <em>just return something immediately</em> in one line. We don't need a whole bunch of lines.
+That's when you explicitly write `return` for what you want to `return`. But a lot of these callback functions that we write in JavaScript are just one-liners, where we <em>just return something immediately</em> in one line. We don't need a whole bunch of lines.
 
 **So - if the only purpose of your arrow function is to return something, there is no need for the `return` keyword. **
 
@@ -127,7 +127,7 @@ console.log(fullNames5); // Cool Bos, Cool Bos, Cool Bos
 
 ```
 
-Another pattern you may see is developers using an underscore `_ in place of ()`:
+Another pattern you may see is developers using an underscore `_` in place of `()`:
 
 
 ```js
@@ -135,7 +135,7 @@ names.map(_ => `Cool Bos`);
 
 ```
 
-We call this a <em>throwaway variable</em> because we're actually creating a variable called `_ but not using it. It's important to note that the _` **does not have any significance at all**. I could use any variable name here, we just throw it away.
+We call this a <em>throwaway variable</em> because we're actually creating a variable called `_` but not using it. It's important to note that the `_` **does not have any significance at all**. I could use any variable name here, we just throw it away.
 
 
 ```js
@@ -146,7 +146,7 @@ names.map(do_yaget_the_point => `Cool Bos`);
 
 ```
 
-Personally I prefer to use `() => over _ =>` when there are no params but I'll let you make that decision on your own.
+Personally I prefer to use `() =>` over `_ =>` when there are no params but I'll let you make that decision on your own.
 
 <h3>Arrow Functions are Always Anonymous Functions</h3>
 

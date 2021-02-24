@@ -65,7 +65,7 @@ First, we get an array of all the string pieces:
 After the array of all the 
 , the subsequent arguments will be the values that are being interpolated.
 
-In this case, we're passing `name and age`.
+In this case, we're passing `name` and `age`.
 
 
 ```js
@@ -119,7 +119,7 @@ console.log(sentence)
 
 I'm using `let` here. Why? Because we're going to be appending more strings on to this actual string. If I used `const`, I wouldn't be able to tack onto it.
 
-Then, we want to loop over this first strings array here, tack on `My dog's name is`, and then the first value, and he is and the second value, and then `years old` and then third value, but in this case, we don't have a third value.
+Then, we want to loop over this first strings array here, tack on `My dog's name is`, and then the first value, `and he is` and the second value, and then `years old` and then third value, but in this case, we don't have a third value.
 
 You can use whatever loop or logic you prefer inside of this function. You could even use a `map` and then join it together. I'm going to use `forEach` in my example:
 
@@ -143,9 +143,9 @@ That's going to say, "Give me the first value from the strings and the first val
 
 We're going to hit a little bit of an error here. If we `return str`, the string that we've been tacking things onto, we should now see `"My dog's name is Snickers and he is 100 years oldundefined."`
 
-First of all, remember, that's because the `strings` array is always going to be one larger than the values array. When we hit that last one, it's only going to be a string and there's going to be no value to tack on the end. You could check if values of [i] is `undefined` and, if it is, then don't put it on.
+First of all, remember, that's because the `strings` array is always going to be one larger than the values array. When we hit that last one, it's only going to be a string and there's going to be no value to tack on the end. You could check if values of `[i]` is `undefined` and, if it is, then don't put it on.
 
-A little trick you can do here, is you can use your values of I or just a blank string:
+A little trick you can do here, is you can use your values of `i` or just a blank string:
 
 
 ```js

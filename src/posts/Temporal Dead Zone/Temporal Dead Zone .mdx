@@ -20,7 +20,7 @@ console.log(pizza);
 
 ```
 
-What happens when you try and log `pizza to the console after it's been created? You'll see that we actually get to see 'Deep Dish 🍕🍕🍕'`.
+What happens when you try and log `pizza` to the console after it's been created? You'll see that we actually get to see `'Deep Dish 🍕🍕🍕'`.
 
 No big issue there.
 
@@ -49,10 +49,10 @@ We get `undefined`.  Why?
 
 Because with `var` variables, you can only access them as they are defined. Before they are defined, you cannot access the actual value of them, but **you can access the fact that the variable has been created before**.
 
-However, if I change that to `const or let, you'll now see that pizza` is not defined at all. That's an actual error, and that will **break your code**.
+However, if I change that to `const` or `let`, you'll now see that `pizza` is not defined at all. That's an actual error, and that will **break your code**.
 
 That is called the **temporal dead zone**, where you cannot access a variable before it is defined.
 
-They mean that this is the temporal dead zone between `console.log and a let or const` variable, because you cannot access those kinds of variables before they're created.
+They mean that this is the temporal dead zone between `console.log` and a `let` or `const` variable, because you cannot access those kinds of variables before they're created.
 
 That's all you need to know. Put that in your back pocket, because you'll need it someday!

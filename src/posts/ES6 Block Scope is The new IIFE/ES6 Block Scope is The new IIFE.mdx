@@ -9,7 +9,7 @@ date: 2016-08-31T22:20:16
 id: 3810
 ---
 
-You can probably see where `let and const` are going to be useful: **if you need to scope something to a block**, or **if you want to make a variable that cannot be changed** by accident or on purpose.
+You can probably see where `let` and `const` are going to be useful: **if you need to scope something to a block**, or **if you want to make a variable that cannot be changed** by accident or on purpose.
 
 Let's take a look at a couple of more examples of when it might be useful.
 
@@ -17,7 +17,7 @@ The first one is replacing the **Immediately-Invoked Function Expression**, or *
 
 An IIFE function runs itself immediately, and it creates a scope where nothing is going to leak into the parent scope. In our case, nothing is going to leak into the global scope of the window.
 
-If I have a `var variable: var name = 'wes'`
+If I have a `var` variable: `var name = 'wes'`
 
 You can call that in the console, and that's fine here. However, the window already has a `name` attribute, which is needed when you have a window opening up a another window.
 
@@ -37,13 +37,13 @@ These variables are now scoped to the IIFE function, and because `var` variables
 
 If you try to call `name` in the console now, it's not undefined, it's blank because, like I mentioned, it's just blank because that is a property that lives on the window natively in JavaScript.
 
-If I needed to access our function's `name, obviously, I'd have to do a console.log` inside of the IIFE function, but the important thing is that it's no longer leaking into the global scope.
+If I needed to access our function's `name`, obviously, I'd have to do a `console.log` inside of the IIFE function, but the important thing is that it's no longer leaking into the global scope.
 
-With `let and const` variables, we don't need a function for our variables to be scoped to that.
+With `let` and `const` variables, we don't need a function for our variables to be scoped to that.
 
-Why? Because `let and const` use **block scope**.
+Why? Because `let` and `const` use **block scope**.
 
-Let's start over with a `const instead of a var`
+Let's start over with a `const` instead of a `var`
 
 
 ```js
@@ -62,7 +62,7 @@ const name = 'wes';
 
 ```
 
-Our `const is going to be scoped to that block. If you try to call name in the console, we'll get the window's name, which is blank. But if we add a console.log` to our block:
+Our `const` is going to be scoped to that block. If you try to call name in the console, we'll get the window's `name`, which is blank. But if we add a `console.log` to our block:
 
 
 ```js
@@ -74,4 +74,4 @@ console.log(name);
 
 ```
 
-...we'll get `wes in the console. You don't the IIFE stuff anymore. You're using let and const` because they are going to be scoped to that block.
+...we'll get `wes` in the console. You don't the IIFE stuff anymore. You're using `let` and `const` because they are going to be scoped to that block.
