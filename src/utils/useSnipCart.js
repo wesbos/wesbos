@@ -37,7 +37,6 @@ const BASE =
 
 function calculateTotalSales(products) {
   return products.reduce((acc, product) => {
-    console.log(product.totalStock);
     if (!product.totalStock) return acc;
     return acc + product.totalStock * -1;
   }, 0);
