@@ -124,7 +124,7 @@ export default function SwagPage({ data, path }) {
             >
               [size chart]
             </a>
-            . {totalSales <= 450 && `Comes with free stickers!`}
+            . {freeStickersLeft && `Comes with free stickers!`}
           </p>
         </div>
       </Product>
@@ -234,8 +234,8 @@ export default function SwagPage({ data, path }) {
         </li>
       </ul>
 
-      <H as="h3">Free Stuff!</H>
-      {totalSales > 450 ? (
+      {/* <H as="h3">Free Stuff!</H>
+      {!freeStickersLeft ? (
         <div>
           <p>
             The Free Stickers are gone! Sorry. There were 450 packs, but they
@@ -269,7 +269,7 @@ export default function SwagPage({ data, path }) {
             />
           </ProductImages>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
