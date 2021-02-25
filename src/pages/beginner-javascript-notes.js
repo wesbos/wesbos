@@ -1,26 +1,33 @@
 import { graphql } from 'gatsby';
-import React from 'react';
+import React, { Fragment } from 'react';
+
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
+import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
 export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
   return (
     <>
-      <H>Beginner JavaScript</H>
+      <H>Beginner JavaScript Notes</H>
       <p>
         This is a resource for the Beginner JavaScript course that contains
         notes and extra tidbits.
       </p>
       <H as="h2">Table of Contents</H>
-
       <div>
-        {javascript.nodes.map((item) => (
-          <a
-            key={item.frontmatter.tocTitle}
-            href={`/javascript/${item.frontmatter.slug}`}
-          >
-            <H as="h4">{item.frontmatter.tocTitle}</H>
-          </a>
+        {createSectionedFrontMatter(javascript.nodes).map((section) => (
+          <Fragment key={Object.keys(section)[0]}>
+            <H as="h3">{Object.keys(section)[0]}</H>
+            <ul>
+              {Object.values(section)[0].map((tocItem) => (
+                <li key={tocItem.tocTitle}>
+                  <a href={`/beginner-javascript-notes/${tocItem.slug}`}>
+                    {tocItem.tocTitle}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Fragment>
         ))}
       </div>
 
@@ -46,6 +53,7 @@ export const pageQuery = graphql`
         frontmatter {
           tocTitle
           slug
+          section
         }
       }
     }

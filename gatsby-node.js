@@ -101,7 +101,9 @@ async function makeTipsFromMdx({ graphql, actions }) {
 }
 
 async function makeJavaScriptFromMdx({ graphql, actions }) {
-  const javascriptPage = path.resolve('./src/templates/beginner-javascript.js');
+  const javascriptPage = path.resolve(
+    './src/templates/beginner-javascript-notes.js'
+  );
   const { errors, data } = await graphql(
     `
       {
@@ -135,14 +137,14 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
     const next = javascriptPosts[i + 1];
 
     actions.createPage({
-      path: `/javascript${post.node.fields.slug}`,
+      path: `/beginner-javascript-notes${post.node.fields.slug}`,
       component: javascriptPage,
       context: {
         slug: post.node.fields.slug,
         collection: 'javascript',
         prev,
         next,
-        pathPrefix: '/javascript',
+        pathPrefix: '/beginner-javascript-notes',
       },
     });
   });
@@ -194,8 +196,8 @@ exports.createPages = async ({ graphql, actions }) => {
       graphql,
       actions,
       collection: 'javascript',
-      pathPrefix: '/javascript/',
-      component: path.resolve('./src/pages/javascript.js'),
+      pathPrefix: '/beginner-javascript-notes/',
+      component: path.resolve('./src/pages/beginner-javascript-notes.js'),
     }),
     paginate({
       graphql,
@@ -246,7 +248,7 @@ exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
     page.context.layoutClasses = 'wiiiiiiiiiide';
   }
 
-  if (page.path.match(/javascript\/module/)) {
+  if (page.path.match(/beginner-javascript-notes\/module/)) {
     page.context.layoutClasses = 'ultra-wide';
   }
 

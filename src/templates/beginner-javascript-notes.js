@@ -10,6 +10,7 @@ import PostHeaderStyles from '../components/styles/PostHeaderStyles';
 import EditDialogStyles from '../components/styles/EditDialogStyles';
 import JavaScriptNotesStyles from '../components/styles/JavaScriptNotesStyles';
 import { PostMetaTags } from '../components/MetaTags';
+import TableOfContents from '../components/TableOfContents';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -34,7 +35,7 @@ export const pageQuery = graphql`
   }
 `;
 
-function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
+function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
   if (!post) {
     return <p>No Post Found? This should be a 404</p>;
   }
@@ -44,9 +45,7 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
 
   return (
     <JavaScriptNotesStyles>
-      <div>
-        <p>Replace with Beginner JS TOC</p>
-      </div>
+      <TableOfContents />
       <div>
         <PostHeaderStyles>
           <PostMetaTags post={post} />
@@ -99,4 +98,4 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
   );
 }
 
-export default PostTemplate;
+export default JavaScriptNotesTemplate;

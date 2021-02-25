@@ -210,7 +210,7 @@ export default function Nav({ pageContext }) {
         </NavLi>
         <NavLi row={getRow(5)}>
           <Link
-            to="/javascript"
+            to="/beginner-javascript-notes"
             className={
               pageContext.collection === 'javascript' ? 'current-parent' : null
             }
