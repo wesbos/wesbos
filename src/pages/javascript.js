@@ -21,9 +21,7 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
             <ul>
               {Object.values(section)[0].map((tocItem) => (
                 <li key={tocItem.tocTitle}>
-                  <a href={`/beginner-javascript-notes/${tocItem.slug}`}>
-                    {tocItem.tocTitle}
-                  </a>
+                  <a href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</a>
                 </li>
               ))}
             </ul>
