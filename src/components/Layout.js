@@ -17,6 +17,9 @@ const ContentStyles = styled.div`
   &.wiiiiiiiiiide {
     max-width: 1000px;
   }
+  &.ultra-wide {
+    max-width: 1800px;
+  }
 `;
 
 function Layout({

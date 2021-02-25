@@ -107,7 +107,7 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
       {
         allMdx(
           filter: { fields: { collection: { eq: "javascript" } } }
-          sort: { fields: [frontmatter___date], order: DESC }
+          sort: { fields: frontmatter___tocTitle }
         ) {
           edges {
             node {
@@ -245,6 +245,11 @@ exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
   if (page.path.match(/merch/)) {
     page.context.layoutClasses = 'wiiiiiiiiiide';
   }
+
+  if (page.path.match(/javascript\/module/)) {
+    page.context.layoutClasses = 'ultra-wide';
+  }
+
   if (page.path.match(/thumbnail/)) {
     page.context.layout = 'thumbnail';
     createPage(page);
