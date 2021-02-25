@@ -26,7 +26,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         slug
-        date(formatString: "MMMM DD, YYYY")
         category
       }
       tableOfContents
@@ -51,9 +50,6 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
           <PostMetaTags post={post} />
           <H>{post.frontmatter.title}</H>
           <div className="postMeta">
-            <time dateTime={post.frontmatter.date}>
-              {post.frontmatter.date}
-            </time>
             <span>{post.frontmatter.category.join(', ')}</span>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
               Edit Post <IoLogoGithub />
