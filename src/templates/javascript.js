@@ -5,7 +5,6 @@ import { IoLogoGithub } from 'react-icons/io';
 import { Helmet } from 'react-helmet';
 import H from '../components/mdxComponents/Headings';
 import ContentNav from '../components/ContentNav';
-import AsideTableOfContents from '../components/AsideTableOfContents';
 import PostHeaderStyles from '../components/styles/PostHeaderStyles';
 import EditDialogStyles from '../components/styles/EditDialogStyles';
 import JavaScriptNotesStyles from '../components/styles/JavaScriptNotesStyles';
@@ -28,7 +27,6 @@ export const pageQuery = graphql`
         slug
         category
       }
-      tableOfContents
       body
     }
   }
@@ -89,7 +87,6 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
           </title>
         </Helmet>
       </div>
-      <AsideTableOfContents tableOfContents={post.tableOfContents} />
     </JavaScriptNotesStyles>
   );
 }

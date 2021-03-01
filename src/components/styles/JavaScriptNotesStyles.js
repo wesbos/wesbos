@@ -6,10 +6,10 @@ const JavaScriptNotesStyles = styled.div`
   grid-template-areas: 'post';
 
   @media (min-width: 1600px) {
-    grid-template-columns: minmax(240px, 450px) 60ch 1fr;
+    grid-template-columns: minmax(240px, 450px) 60ch;
     position: relative;
     grid-template-areas: 'toc post aside';
-    gap: 6rem;
+    gap: 20rem;
   }
 `;
 
