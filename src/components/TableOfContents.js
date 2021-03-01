@@ -15,6 +15,7 @@ const StyledTOC = styled.aside`
     align-self: start;
     overflow-y: auto;
     height: calc(100vh - 20px);
+    padding-right: 2rem;
   }
 
   /* Scrollbar Styles */
@@ -32,6 +33,18 @@ const StyledTOC = styled.aside`
     background-color: var(--yellow);
     border-radius: 6px;
     border: 3px solid var(--dark);
+  }
+
+  h4 {
+    margin: 1.8rem;
+  }
+
+  h5 {
+    margin: 1.5rem;
+  }
+
+  li a::before {
+    display: none;
   }
 `;
 
