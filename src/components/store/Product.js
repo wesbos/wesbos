@@ -73,7 +73,7 @@ export default function Product({ product, buttonAttrs, children }) {
   return (
     <ProductStyles>
       <H as="h3">
-        {buttonAttrs['data-item-name']} - ${product.price}
+        {buttonAttrs['data-item-name']} - ${product.price} USD
       </H>
       {children}
       {/* If there are no variants, just show a regular ass button */}
