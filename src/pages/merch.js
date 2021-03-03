@@ -7,7 +7,35 @@ import { ProductImages } from '../components/styles/ProductImages';
 import useImage from '../hooks/useImage';
 import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
-export default function SwagPage({ data, path }) {
+export default function MerchPage({ path }) {
+  return (
+    <div>
+      <H as="h2">Merch Store</H>
+      <PostMetaTags
+        post={{
+          frontmatter: {
+            slug: path,
+            title: 'Merch!',
+            image: `${
+              process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`
+            }/assets/images/pink-on-pink-2.jpg`,
+          },
+        }}
+      />
+      <p>Merch is sold out! The tees are now being printed at the printers.</p>
+
+      <p>
+        If you ordered a tshirt, you'll receive an email with tracking once they
+        have shipped. Expect this on or around March 18th, 2021.
+      </p>
+      <p>
+        I will have more merch and stickers again soon. Keep checking back :)
+      </p>
+    </div>
+  );
+}
+
+function SwagPage({ data, path }) {
   const mens = `XS|small|medium|large|XL|2XL|3XL`;
   const womens = ['XS', 'small', 'medium', 'large', 'XL']
     .map((size) => `Womens ${size}`)
