@@ -6,6 +6,10 @@ import { PostMetaTags } from '../components/MetaTags';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
 export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
+  function createToc() {
+    return Object.entries(createSectionedFrontMatter(javascript.nodes));
+  }
+
   return (
     <>
       <H>Beginner JavaScript Notes</H>
@@ -15,11 +19,11 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
       </p>
       <H as="h2">Table of Contents</H>
       <div>
-        {createSectionedFrontMatter(javascript.nodes).map((section) => (
-          <Fragment key={Object.keys(section)[0]}>
-            <H as="h3">{Object.keys(section)[0]}</H>
+        {createToc().map((section) => (
+          <Fragment key={section[0]}>
+            <H as="h3">{section[0]}</H>
             <ul>
-              {Object.values(section)[0].map((tocItem) => (
+              {section[1].map((tocItem) => (
                 <li key={tocItem.tocTitle}>
                   <a href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</a>
                 </li>

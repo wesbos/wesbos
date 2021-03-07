@@ -13,5 +13,5 @@ export default function createSectionedFrontMatter(nodes) {
     ];
   });
 
-  return [sectionedFrontmatter];
+  return sectionedFrontmatter;
 }
