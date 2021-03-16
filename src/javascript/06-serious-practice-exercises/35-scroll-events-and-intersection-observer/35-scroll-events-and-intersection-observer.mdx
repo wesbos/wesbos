@@ -1,0 +1,433 @@
+---
+tocTitle: 35 - Scroll Events and Intersection Observer
+title: Scroll Events and Intersection Observer
+slug: 06-serious-practice-exercises/scroll-events-and-intersection-observer
+section: Module 6
+category:
+ - JavaScript
+ - Exercises
+---
+
+In this video we will learn about scroll events.
+
+A **scroll event** is when someone goes ahead and scrolls on the page or the inside of an element.
+
+One thing you are likely to encounter in your career as a developer is building a terms and conditions scroll to accept.
+
+That is where the user is forced to scroll all the way to the bottom of the text before the accept button will work.
+
+![](./scroll-terms.gif)
+
+First we are just going to dive into scroll events, and then Wes will show us why a scroll event is maybe not what you want, and there is this newer thing in the browser called **intersection observer** which actually might be what we want.
+
+In the `exercises` directory, find the `35 - Scroll To Accept` folder and open up the HTML page.
+
+You should see "IT WORKS" in the browser.
+
+In the example shown in the gif above, you can see it's not a window or document scroll.
+
+If you want to listen for a window scroll event you just listen for `window.addEventListener()`.
+
+If it's the case of another element that has an overflow scroll set on it, like Wess has done in the following style that is on the `scroll-to-accept.html` 👇
+
+```css
+.terms-and-conditions {
+  overflow: scroll;
+}
+```
+
+Select that element and listen for a scroll on it by selecting the `terms-and-conditions` class
+
+```js
+const terms = document.querySelector('terms-and-conditions');
+```
+
+Add an event listener to terms on the scroll event and just log the event with the handler. 👇
+
+```js
+terms.addEventListener('scroll', function(e) {
+  console.log(e);
+});
+```
+
+If you refresh the page, you will see the following error in your console
+> scroll-to-accept.js:3 Uncaught TypeError: Cannot read property 'addEventListener' of null
+>   at scroll-to-accept.js:3
+
+This is a problem you will run into often. What it means is that the selector is null.
+
+Go ahead and log `terms` to see whether anything is returned for our selector.
+
+```js
+const terms = document.querySelector('terms-and-conditions');
+console.log(terms);
+terms.addEventListener('scroll', function(e) {
+  console.log(e);
+});
+```
+
+![](./1341.png)
+
+As you can see, it did not find anything. When that is the case, your selector is probably wrong.
+
+Another `querySelector` issue you might run into is that it's pretty common to have some JavaScript that only runs on specific pages.
+
+If you were to run this code on your homepage for example, it will break.
+
+What do you do about that?
+
+Wes deals with that scenario like this: he creates a function like `scrollToAccept` and he puts all of his code inside of that function.
+
+Then within that function, after he grabs the selector, he will check if that element exists using a bang, and if it doesn't, he will return so the function exits.
+
+```js
+function scrollToAccept() {
+  const terms = document.querySelector('.terms-and-conditions');
+
+  if(!terms) {
+    return; //quit this there isn't that item on tha page
+  }
+
+  terms.addEventListner('scroll', function(e) {
+    console.log(e);
+  })
+}
+
+scrollToAccept();
+```
+
+What that will do is check whether something is found by the `querySelector`, and if it is, the rest of the code will run as expected and if not, you return from the function which will stop it from running and then it will never run.
+
+If you try screwing up your query selector now, you won't get an error because the function will exit instead of running the code.
+
+Open up the scroll event that you are logging in the console.
+
+![](./1342.png)
+
+The `currentTarget` is `null` at this point but if you were to log it, you would see it.
+
+Previously, to figure out if an element has scrolled all the way to the bottom, we used `e.target` or `e.currentTarget`.
+
+Either of them work in this case because a scroll event does not bubble like a regular click would.  So if you scroll on the terms and conditions element, you are not unintentionally scrolling anything else.
+
+Use `e.currentTarget`, then you can take the `scrollTop` value which is a property on elements that will tell you how far you have scrolled from the top.
+
+```js
+terms.addEventListener('scroll', function(e) {
+  console.log(e.currentTarget.scrollTop);
+});
+```
+
+![](./1343.png)
+
+How do you know if you are scrolled to the bottom? How would you know that 1,828  pixels is the bottom for example?
+
+You need to also grab the `scrollHeight` to figure that out.
+
+The scroll height will tell you how high the scrolling thing is.
+
+```js
+terms.addEventListener('scroll', function(e) {
+  console.log(e.currentTarget.scrollTop);
+  console.log(e.currentTarget.scrollHeight);
+});
+```
+
+![](./1344.png)
+
+Now when you log that, you will see how far from the top you are scrolled and the second number is how high the actual scroll-able div is.
+
+When you reach the very end, you should see the values are close.
+
+![](./1345.png)
+
+They are not perfectly close and that is because the elements have different CSS styles, one of them has margins and padding.
+
+That becomes a pain to work with because you have to work with offset heights and that is a thing of the past.
+
+You do not need to do it that way anymore.
+
+## Intersection Observer
+
+The way to do it now is called **Intersection Observer**. Rather than figuring out how far along the page the user has scrolled, you can use intersection observer to figure out if something is currently viewable on the page.
+
+You can do that with the `terms` div but first let's go over a simple example first to demonstrate how that works.
+
+Inside of the `terms` HTML, between one of the paragraphs, Wes will add a strong tag with a class of `watch`
+
+![](./1346.png)
+
+We want to know when that strong tag is visible on the page.
+
+Grab the watch element at the top of the file.
+
+```js
+const watch = document.querySelector('.watch');
+```
+
+Next we need to create this thing called an **Intersection Observer**. An intersection observer will watch is an element is on or off or partway on or off the page.
+
+```js
+const ob = new IntersectionObserver()
+```
+
+Do not worry about the `new` keyword for now, we will talk about it in future lessons.
+
+The intersection observer is going to take a **callback**, which is a function that gets called at a certain point.
+
+It is different than a click callback or a scroll callback because this callback will be fired every single time that it needs to check if something is running on the page.
+
+```js
+function obCallback(payload) {
+  console.log(payload);
+}
+
+const ob = new IntersectionObserver(obCallback);
+```
+
+Now that is not going to do anything if you refresh the page yet because the intersection observer is just a watcher and we haven't told it to watch any elements yet. It works a bit differently than our click handlers.
+
+Let's get rid of the scroll event listener that you have on this page as well.
+
+Take the observer and call the `observe()` method on it, and then you pass it something to watch for, such as the strong tag.
+
+```js
+function obCallback(payload) {
+  console.log(payload);
+}
+
+const ob = new IntersectionObserver(obCallback);
+ob.observe(watch);
+```
+
+Now, every time we you ahead and scroll, you will notice that you get this IntersectionObserver entity logged.
+
+![](./1347.png)
+
+As you can see, it is full of information about all of the items that have come our way.
+
+You will notice that after a bit of time when you scroll, it doesn't fire every time, it only fires when there is new information to be given to us.
+
+Right on page load, it tells us that the strong tag is off the page. But then as soon as you start to see it, even when it's just peeking out, the intersection observer entry is logged.
+
+If you take a look at what is in there, you will see some interesting things like the time that has passed from when you started observing it. That can be handy for games.
+
+There is also the boolean `isIntersecting` which will tell you if it is on the page or off.
+
+![](./1348.png)
+
+There is other information about the size of the element and what size it is on the page.
+
+That is helpful information in helping us determine whether that thing is on the page or not.
+
+Take that strong tag which is the first thing in the `paylod` because you can watch for multiple items.  👇
+
+```js
+function obCallback(payload) {
+  console.log(payload[0]);
+}
+```
+
+Now if you refresh the page and scroll the strong tag into view, you will see that an **IntersectionObserverEntry** is logged.
+
+![](./1349.png)
+
+On that object there is a property `isIntersecting`, which is a boolean.
+
+Log that properties value,  👇
+
+```js
+function obCallback(payload) {
+  console.log(payload[0].isIntersecting);
+}
+```
+
+![](./intersecting.gif)
+
+As you can see it tells us when it is on or off the page.
+
+What is cool about that is it will also tell us how much on the page it currently is by looking at the `intersectionRatio` property.
+
+```js
+function obCallback(payload) {
+  console.log(payload[0].intersectionRatio);
+}
+```
+
+![](./ratio.gif)
+
+As you can see, the properties value changes based on what percentage of the element that is being watched is visible on the page.
+
+0 means not visible at all and 1 is visible. When it's partially visible it's 0.068402.
+
+You can make use of that ratio to tell you if you have scrolled all the way to the bottom of the terms.
+
+How will you know if you scrolled to the bottom?
+
+Take the terms and conditions and try to find out what the last thing inside of that is, because you want to wait for that element to be 100% on the screen before enabling the button.
+
+That is how you will know if the user has scrolled to the bottom.
+
+Stop watching for the strong tag, and instead watch the last paragraph on the `terms` like so
+
+Replace 👇
+
+```js
+ob.observe(watch);
+```
+
+with 👇
+
+```js
+ob.observe(terms.lastElementChild);
+```
+
+Now you are observing the last paragraph in the terms div.
+
+If you refresh the page and scroll to the bottom of the page with the console open, you should see something like the following 👇
+
+![](./1350.png)
+
+How do you get it to tell us when it is 100% on the page?
+
+You can pass a second argument to our `IntersectionObserver`, which can be an `options` objects and you need to tell it 2 things.
+
+1. that the root of the thing you are scrolling with is the terms and conditions (by default it will be the `body`)
+2. the threshold, which you can either give an array like `threshold: [0, 0.5, 1]` which would then tell you when its off, halfway on and the on, or you can say only tell me when it is fully on the page, like so 👇
+
+```js
+function obCallback(payload) {
+  console.log(payload[0].intersectionRatio);
+}
+
+const ob = new IntersectionObserver(obCallback, {
+  root: terms,
+  threshold: 1,
+});
+
+ob.observe(terms.lastElementChild);
+```
+
+If you refresh and open the console, you will see 0 which tells us it is off the page and if you scroll to the bottom... uh-oh, we have an issue here.
+
+Even when we scroll to the very bottom it's not firing.
+
+![](./1351.png)
+
+If you change the threshold to something like 0.11497, it will fire.
+
+What is happening here is if you give it a threshold of 1, but we are so cramped on the screen because Wes has to fit the browser and editor into one video, what is happening is the paragraph is so tall it's never 100% on the page because by the time you get to the bottom, part of it is already being hidden.
+
+A way to solve that is by putting another element at the bottom of the page like an `hr` or an `image`. Anything that will be small enough to fit even on the smallest scrolling viewport.
+
+```html
+    <hr />
+  </div>
+  <button class="accept" disabled>Accept</button>
+</div>
+```
+
+Set the threshold to 1 and within the `callback`, instead of logging the ratio, add an if statement that checks whether the intersectionRatio is 1.
+
+```js
+function obCallback(payload) {
+  if (payload[0].intersectionRatio === 1) {
+
+  }
+}
+```
+
+At the top of the file and select the button 👇
+
+```js
+const button = document.querySelector('.accept');
+```
+
+Now within that if statement, you can remove the disabled attribute from the button.
+
+![](./1352.png)
+
+```js
+function obCallback(payload) {
+  if (payload[0].intersectionRatio === 1) {
+    button.disabled = false;
+  }
+}
+```
+
+The CSS for the disabled attribute on the button gives it an opacity of 0.1.
+
+You don't have to do anything with pointer events here because HTML will prevent the button from being clickable due to the disabled attribute.
+
+![](./1354.png)
+
+Wes has also put a transition on the button of two seconds so it fades in once you hit it.
+
+Add a log after you disable the button, like so 👇
+
+```js
+if (payload[0].intersectionRatio === 1) {
+  button.disabled = false;
+  console.log('REMOVING DISABLED');
+}
+```
+
+Now if you scroll to the bottom, you will see it runs.
+
+But if you scroll back up and down a couple of times it keeps getting triggered.
+
+That is good for some use cases.
+
+Let's demonstrate by modifying the CSS like so 👇
+
+```css
+button {
+  background: #ff0060;
+  color: white;
+  font-size: 1rem;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+button[disabled] {
+  opacity: 0.1;
+  transform: translateX(-200%) scale(0.5);
+}
+```
+
+Add an if statement to disable the button when it's not fully scrolled.
+
+```js
+function obCallback(payload) {
+  if (payload[0].intersectionRatio === 1) {
+    button.disabled = false;
+    console.log('REMOVING DISABLED');
+  } else {
+    button.disabled = true;
+  }
+}
+```
+
+That might be what you want.
+
+But in our case once it is accepted, we don't care so we will stop observing the button.
+
+```js
+function obCallback(payload) {
+  if (payload[0].intersectionRatio === 1) {
+    button.disabled = false;
+    // stop observing the button
+    ob.unobserve(terms.lastElementChild);
+  }
+}
+```
+
+That will stop it from doing any unnecessary work.
+
+That is scroll to accept.
+
+You don't see the observer pattern too much.
+
+The only 2 ways currently in the browser is `IntersectionObserver` which tells you when something is currently scrolled into view, and another one called `ResizeObserver` which will tell you when an element is resized.
+
+That concludes this lesson!
