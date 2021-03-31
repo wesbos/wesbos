@@ -9,6 +9,7 @@ export default function createSectionedFrontMatter(nodes) {
       {
         tocTitle: tocItem.frontmatter.tocTitle,
         slug: tocItem.frontmatter.slug,
+        tocChild: tocItem?.tableOfContents?.items,
       },
     ];
   });

@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { slug } from 'github-slugger';
 import styled from 'styled-components';
 import H from './mdxComponents/Headings';
+import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
 const StyledTOC = styled.aside`
   display: none;
@@ -46,6 +47,15 @@ const StyledTOC = styled.aside`
   li a::before {
     display: none;
   }
+
+  li a {
+    text-decoration: none;
+  }
+
+  li a:hover,
+  li a:focus {
+    text-decoration: underline;
+  }
 `;
 
 const frontmatter = graphql`
@@ -66,45 +76,30 @@ const frontmatter = graphql`
   }
 `;
 
-function createTOCFrontmatter(nodes) {
-  const sectionedFrontmatter = {};
-
-  nodes.forEach((tocParent) => {
-    const prevFrontmatter =
-      sectionedFrontmatter[tocParent.frontmatter.section] || [];
-
-    sectionedFrontmatter[tocParent.frontmatter.section] = [
-      ...prevFrontmatter,
-      {
-        tocTitle: tocParent.frontmatter.tocTitle,
-        slug: tocParent.frontmatter.slug,
-        tocChild: tocParent.tableOfContents.items,
-      },
-    ];
-  });
-
-  return [sectionedFrontmatter];
-}
-
 function TableOfContents() {
   const {
     allMdx: { nodes },
   } = useStaticQuery(frontmatter);
 
+  function createToc() {
+    return Object.entries(createSectionedFrontMatter(nodes));
+  }
+
   return (
     <StyledTOC>
       <H as="h4">Table of Contents</H>
-      {createTOCFrontmatter(nodes).map((toc) => (
-        <Fragment key={Object.keys(toc)[0]}>
-          <H as="h5">{Object.keys(toc)[0]}</H>
-          <ol>
-            {Object.values(toc)[0].map((tocItem) => (
+      {createToc().map((section) => (
+        <Fragment key={section[0]}>
+          <H as="h5">{section[0]}</H>
+          <ul>
+            {section[1].map((tocItem) => (
               <Fragment key={tocItem.tocTitle}>
                 <li>
                   <a href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</a>
                 </li>
+                {console.log('toc child', tocItem)}
                 {tocItem.tocChild ? (
-                  <ul>
+                  <ol>
                     {tocItem.tocChild.map((toc2ndItem) => (
                       <Fragment key={toc2ndItem.title}>
                         <li>
@@ -135,11 +130,11 @@ function TableOfContents() {
                         ) : null}
                       </Fragment>
                     ))}
-                  </ul>
+                  </ol>
                 ) : null}
               </Fragment>
             ))}
-          </ol>
+          </ul>
         </Fragment>
       ))}
     </StyledTOC>

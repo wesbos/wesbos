@@ -8,7 +8,7 @@ const JavaScriptNotesStyles = styled.div`
   @media (min-width: 1600px) {
     grid-template-columns: minmax(240px, 500px) 60ch;
     position: relative;
-    grid-template-areas: 'toc post aside';
+    grid-template-areas: 'toc post';
     gap: 20rem;
   }
 `;
