@@ -1,5 +1,5 @@
 import React, { Fragment, memo } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { slug } from 'github-slugger';
 import styled from 'styled-components';
 import H from './mdxComponents/Headings';
@@ -85,6 +85,9 @@ function TableOfContents() {
     return Object.entries(createSectionedFrontMatter(nodes));
   }
 
+  console.clear();
+  console.log(nodes);
+
   return (
     <StyledTOC>
       <H as="h4">Table of Contents</H>
@@ -95,7 +98,9 @@ function TableOfContents() {
             {section[1].map((tocItem) => (
               <Fragment key={tocItem.tocTitle}>
                 <li>
-                  <a href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</a>
+                  <Link href={`/javascript/${tocItem.slug}`}>
+                    {tocItem.tocTitle}
+                  </Link>
                 </li>
                 {console.log('toc child', tocItem)}
                 {tocItem.tocChild ? (
@@ -103,14 +108,14 @@ function TableOfContents() {
                     {tocItem.tocChild.map((toc2ndItem) => (
                       <Fragment key={toc2ndItem.title}>
                         <li>
-                          <a
+                          <Link
                             href={`/javascript/${tocItem.slug}/#${slug(
                               toc2ndItem.title,
                               true
                             )}`}
                           >
                             {toc2ndItem.title}
-                          </a>
+                          </Link>
                         </li>
                         {toc2ndItem?.items ? (
                           <ul>
