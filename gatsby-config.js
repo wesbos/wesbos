@@ -48,6 +48,13 @@ module.exports = {
         name: 'tip',
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/javascript`,
+        name: 'javascript',
+      },
+    },
     // Images
     {
       resolve: `gatsby-source-filesystem`,

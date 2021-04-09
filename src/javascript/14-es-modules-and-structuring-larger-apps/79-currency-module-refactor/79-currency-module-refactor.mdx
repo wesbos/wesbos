@@ -1,0 +1,623 @@
+---
+tocTitle: 79 - Currency Module Refactor
+title: Currency Module Refactor
+slug: 14-es-modules-and-structuring-larger-apps/79-currency-module-refactor
+section: Module 14
+category:
+ - JavaScript
+ - ES Modules
+---
+
+In this lesson let's take the currency conversion example we did and convert it into modules.
+
+Feel free to try this one yourself.
+
+Go into our `/exercises` folder and find the folder containing the currency converter we built.
+
+Duplicate that folder within the `/exercises` root and rename it to `79 - Currency Module Refactor`. Within that folder let's get rid of the `money-FINISHED.js` file.
+
+Open `index.html` and add a `type="module"` to the script tag.
+
+`money.js` will be our JavaScript entry point.
+
+Before we start refactoring, let's take a look at the code we are working with. 👇
+
+```js
+const fromSelect = document.querySelector('[name="from_currency"]');
+const fromInput = document.querySelector('[name="from_amount"]');
+const toSelect = document.querySelector('[name="to_currency"]');
+const toEl = document.querySelector(".to_amount");
+const form = document.querySelector(".app form");
+const endpoint = "https://api.exchangeratesapi.io/latest";
+const ratesByBase = {};
+
+const currencies = {
+  USD: "United States Dollar",
+  AUD: "Australian Dollar",
+  BGN: "Bulgarian Lev",
+  BRL: "Brazilian Real",
+  CAD: "Canadian Dollar",
+  CHF: "Swiss Franc",
+  CNY: "Chinese Yuan",
+  CZK: "Czech Republic Koruna",
+  DKK: "Danish Krone",
+  GBP: "British Pound Sterling",
+  HKD: "Hong Kong Dollar",
+  HRK: "Croatian Kuna",
+  HUF: "Hungarian Forint",
+  IDR: "Indonesian Rupiah",
+  ILS: "Israeli New Sheqel",
+  INR: "Indian Rupee",
+  JPY: "Japanese Yen",
+  KRW: "South Korean Won",
+  MXN: "Mexican Peso",
+  MYR: "Malaysian Ringgit",
+  NOK: "Norwegian Krone",
+  NZD: "New Zealand Dollar",
+  PHP: "Philippine Peso",
+  PLN: "Polish Zloty",
+  RON: "Romanian Leu",
+  RUB: "Russian Ruble",
+  SEK: "Swedish Krona",
+  SGD: "Singapore Dollar",
+  THB: "Thai Baht",
+  TRY: "Turkish Lira",
+  ZAR: "South African Rand",
+  EUR: "Euro",
+};
+
+function generateOptions(options) {
+  return Object.entries(options)
+    .map(([currencyCode, currencyName]) =>
+      `<option value="${currencyCode}">${currencyCode} - ${currencyName}</option>`
+    )
+    .join("");
+}
+
+async function fetchRates(base = "USD") {
+  const res = await fetch(`${endpoint}?base=${base}`);
+  const rates = await res.json();
+
+  return rates;
+}
+
+async function convert(amount, from, to) {
+  // first check if we even have the rates to convert from that currency
+  if (!ratesByBase[from]) {
+    console.log(
+      `Oh no, we dont have ${from} to convert to ${to}. So gets go get it!`
+    );
+    const rates = await fetchRates(from);
+    console.log(rates);
+    // store them for next time
+    ratesByBase[from] = rates;
+  }
+
+  // convert that amount that they passed it
+  const rate = ratesByBase[from].rates[to];
+  const convertedAmount = rate * amount;
+  console.log(`${amount} ${from} is ${convertedAmount} in ${to}`);
+  return convertedAmount;
+}
+
+function formatCurrency(amount, currency) {
+  return Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+  }).format(amount);
+}
+
+async function handleInput(e) {
+  const rawAmount = await convert(
+    fromInput.value,
+    fromSelect.value,
+    toSelect.value
+  );
+
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+}
+
+const optionsHTML = generateOptions(currencies);
+
+// populate the options elements
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+
+form.addEventListener("input", handleInput);
+```
+
+Within the file: ...
+
+- Selecting a bunch of elements and have a `ratesByBase` and `currencies` object.
+
+- Have a few functions such as `generateOptions`, `fetchRates` which require the endpoint, and we have a `convert`, `formatCurrency` function plus one handler.
+
+- have **library functions** which are functions that are considered core to our application such as a few handlers, and `generateOptions` which is a helper/utility method, and we also have some data.
+
+For this example, we won't use any folder structure. Instead Wes will show you how to do it with a **flat file structure**.
+
+Within the `79 - Currency Refactor` folder create a file called `currencies.js` and paste the entire `currencies` object within it. It is a big enough object that Wes would give it it's own file.
+
+```js
+// currencies.js
+
+const currencies = {
+  USD: "United States Dollar",
+  AUD: "Australian Dollar",
+  BGN: "Bulgarian Lev",
+  BRL: "Brazilian Real",
+  CAD: "Canadian Dollar",
+  CHF: "Swiss Franc",
+  CNY: "Chinese Yuan",
+  CZK: "Czech Republic Koruna",
+  DKK: "Danish Krone",
+  GBP: "British Pound Sterling",
+  HKD: "Hong Kong Dollar",
+  HRK: "Croatian Kuna",
+  HUF: "Hungarian Forint",
+  IDR: "Indonesian Rupiah",
+  ILS: "Israeli New Sheqel",
+  INR: "Indian Rupee",
+  JPY: "Japanese Yen",
+  KRW: "South Korean Won",
+  MXN: "Mexican Peso",
+  MYR: "Malaysian Ringgit",
+  NOK: "Norwegian Krone",
+  NZD: "New Zealand Dollar",
+  PHP: "Philippine Peso",
+  PLN: "Polish Zloty",
+  RON: "Romanian Leu",
+  RUB: "Russian Ruble",
+  SEK: "Swedish Krona",
+  SGD: "Singapore Dollar",
+  THB: "Thai Baht",
+  TRY: "Turkish Lira",
+  ZAR: "South African Rand",
+  EUR: "Euro",
+};
+
+export default currencies;
+```
+
+Make a new file called `utils.js` and inside of that we will paste our `generateOptions` method and make it a named export.
+
+```js
+// utils.js
+export function generateOptions(options) {
+  return Object.entries(options)
+    .map(([currencyCode, currencyName]) =>
+      `<option value="${currencyCode}">${currencyCode} - ${currencyName}</option>`
+    )
+    .join("");
+}
+```
+
+Next make another file called `lib.js`. Move the `fetchRates` and `convert` functions to that file.
+
+```js
+// lib.js
+export async function fetchRates(base = "USD") {
+  const res = await fetch(`${endpoint}?base=${base}`);
+  const rates = await res.json();
+
+  return rates;
+}
+
+export async function convert(amount, from, to) {
+  // first check if we even have the rates to convert from that currency
+  if (!ratesByBase[from]) {
+    console.log(
+      `Oh no, we don't have ${from} to convert to ${to}. So gets go get it!`
+    );
+    const rates = await fetchRates(from);
+    console.log(rates);
+    // store them for next time
+    ratesByBase[from] = rates;
+  }
+
+  // convert that amount that they passed it
+  const rate = ratesByBase[from].rates[to];
+  const convertedAmount = rate * amount;
+  console.log(`${amount} ${from} is ${convertedAmount} in ${to}`);
+  return convertedAmount;
+}
+```
+
+Take the next function `formatCurrency` and put it in the `utils.js` file like so 👇
+
+```js
+// utils.js
+export function generateOptions(options) {
+  return Object.entries(options)
+    .map(([currencyCode, currencyName]) =>
+      `<option value="${currencyCode}">${currencyCode} - ${currencyName}</option>`
+    )
+    .join("");
+}
+
+export function formatCurrency(amount, currency) {
+  return Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+  }).format(amount);
+}
+```
+
+Next there is `handleInput` which is a handler, so make a new file called `handlers.js` and add that there.
+
+```js
+export async function handleInput(e) {
+  const rawAmount = await convert(
+    fromInput.value,
+    fromSelect.value,
+    toSelect.value
+  );
+
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+}
+```
+
+You should be left with the following code in `money.js`.
+
+```js
+// money.js
+const fromSelect = document.querySelector('[name="from_currency"]');
+const fromInput = document.querySelector('[name="from_amount"]');
+const toSelect = document.querySelector('[name="to_currency"]');
+const toEl = document.querySelector(".to_amount");
+const form = document.querySelector(".app form");
+const endpoint = "https://api.exchangeratesapi.io/latest";
+const ratesByBase = {};
+
+const optionsHTML = generateOptions(currencies);
+// populate the options elements
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+
+form.addEventListener("input", handleInput);
+```
+
+Now the code that is left is only responsible for:
+
+- generating the options and initializing them on page load on page load
+- adding the event listeners
+
+Let's start by going through them one by one and deciding whether or not to move it out of `money.js`.
+
+Open up `index.html` in a VSCode live server and look to see if we have any errors in the console.
+
+![](./1238.png)
+
+It is complaining that `generateOptions` is not defined. Let's import it.
+
+```js
+import { generateOptions } from "./utils.js";
+```
+
+Next we get an error saying `currencies` is not defined.
+
+![](./1239.png)
+
+Import `currencies` so we can pass it to `generateOptions`.
+
+```js
+import { generateOptions } from "./utils.js";
+import { currencies } from "./currencies.js";
+```
+
+WHen the page refreshes, we have yet another error. It is complaining that it cannot find an export named `currencies`.
+
+![](./1240.png)
+
+That is because it is a default export, not a named export, so it doesn't need the curly brackets.
+
+Modify it like so 👇
+
+```js
+import currencies from './currencies.js';
+```
+
+Now the console is complaining that `handleInput` is not defined.
+
+![](./1241.png)
+
+Let's fix that by adding `import { handleInput } from './handlers';`
+
+Finally there are no more errors in the console, until you try to type an amount into the input. When you try this you will see a reference error in the console complaining that `convert` is not defined, and it is happening in `handlers.js` on line 2.
+
+![](./1242.png)
+
+To fix that, import the `convert` function into `handlers`.
+
+```js
+import { convert } from "./lib.js";
+
+export async function handleInput(e) {
+  const rawAmount = await convert(
+    fromInput.value,
+    fromSelect.value,
+    toSelect.value
+  );
+
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+}
+```
+
+![](./1244.png)
+
+Now we get another error that `fromInput` is not defined. Within `handleInput` use the `fromInput`, `fromSelect`, `toSelect` and `toEl` variables.
+
+We also reference the function `formatCurrency` which we haven't imported.
+
+Import it to `handlers.js` like so `import { formatCurrency } from "./utils";`
+
+We need all those elements, and rather than pass them in as an argument to the function, let's put them in their own module.
+
+Create a new file called `elements.js`.
+
+Go into `money.js` and take all the selectors and move them to the new `elements.js` file. Add the export keyword in front of each like so 👇
+
+```js
+// elements.js
+export const fromSelect = document.querySelector('[name="from_currency"]');
+export const fromInput = document.querySelector('[name="from_amount"]');
+export const toSelect = document.querySelector('[name="to_currency"]');
+export const toEl = document.querySelector(".to_amount");
+```
+
+![](./1245.png)
+
+What people will often do is instead of using `document.querySelector` for all of those, they will grab a parent element like the div with a class of `app` in the example above, and then look for the selectors inside of there.
+
+You would have `app.querySelector` for each of those instead which allows you to have multiple on the same page, just like we did with the slider.
+
+The way we are doing it is fine for now.
+
+If you refresh the page, we have an error `fromSelect` is not defined.
+
+![](./1246.png)
+
+Let's first go into `handlers` and import those elements.
+
+```js
+import { convert } from "./lib.js";
+import { formatCurrency } from "./utils.js";
+import { fromInput, fromSelect, toSelect, toEl } from "./elements.js";
+
+export async function handleInput(e) {
+  const rawAmount = await convert(
+    fromInput.value,
+    fromSelect.value,
+    toSelect.value
+  );
+
+  toEl.textContent = formatCurrency(rawAmount, toSelect.value);
+}
+```
+
+Let's tackle the `fromSelect` is not defined issue happening in `money.js` on line 11.
+
+![](./1247.png)
+
+As you can see, `fromSelect` and `toSelect` are also needed from `money.js` on page load. Let's go ahead and import them.
+
+```js
+// money.js
+import { generateOptions } from "./utils.js";
+import currencies from "./currencies.js";
+import { handleInput } from "./handlers.js";
+import { fromSelect, toSelect } from "./elements.js";
+
+const form = document.querySelector(".app form");
+const endpoint = "https://api.exchangeratesapi.io/latest";
+const ratesByBase = {};
+
+const optionsHTML = generateOptions(currencies);
+// populate the options elements
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+
+form.addEventListener("input", handleInput);
+```
+
+When the page is now refreshed, we are getting an error that ratesByBase is not defined.
+
+![](./1248.png)
+
+Our `endpoint` and `ratesByBase` variables need to go in our `lib.js` file.
+
+Copy those over to the lib.js file.
+
+```js
+// lib.js
+const endpoint = "https://api.exchangeratesapi.io/latest";
+const ratesByBase = {};
+
+export async function fetchRates(base = "USD") {
+  const res = await fetch(`${endpoint}?base=${base}`);
+  const rates = await res.json();
+
+  return rates;
+}
+
+export async function convert(amount, from, to) {
+  // first check if we even have the rates to convert from that currency
+  if (!ratesByBase[from]) {
+    console.log(
+      `Oh no, we dont have ${from} to convert to ${to}. So gets go get it!`
+    );
+    const rates = await fetchRates(from);
+    console.log(rates);
+    // store them for next time
+    ratesByBase[from] = rates;
+  }
+
+  // convert that amount that they passed it
+  const rate = ratesByBase[from].rates[to];
+  const convertedAmount = rate * amount;
+  console.log(`${amount} ${from} is ${convertedAmount} in ${to}`);
+  return convertedAmount;
+}
+```
+
+When the page is refreshed, you will see that it is now working! Feel free to play around with the app to test it.
+
+That was simpler than Wes expected -- he thought dealing with the `ratesByBase` variable would be tricky because we are updating it.
+
+However, the beauty of module scope is that inside of the module, we can create the `ratesByBase` object and update it from our `convert` function. Even though we are calling the `convert` from another file, it still knows about the scope of the file (similar to how a closure works), so we can still access it without issues.
+
+The only gotcha about these modules is that if you are on a server, the `ratesByBase` will be shared by every request that comes in which may or may not be what you want.
+
+Wes has ran into an issue where Wes was storing data in one module that was being overwritten by multiple users. If that is the case, you need to get into sessions or scope it to each function but in our case, and most cases ,this is fine.
+
+We have refactored the entire app into modules, which makes it a bit more organized to work with and more modular.
+
+## Bootstrap / App Init Functions
+
+One more thing Wes wants to show us is a situation where we might take the form element and put it into a bootstrap or app init function. What does that mean?
+
+All of this code in `money.js` runs on page load.
+
+```js
+// when the page loads, this code runs
+const form = document.querySelector(".app form");
+
+const optionsHTML = generateOptions(currencies);
+// populate the options elements
+fromSelect.innerHTML = optionsHTML;
+toSelect.innerHTML = optionsHTML;
+
+form.addEventListener("input", handleInput);
+```
+
+Sometimes you might want to delay the running of what happens on page load.
+
+If that is the case, what we would do is take all that logic from `money.js` and go to `lib.js` and make another function like so 👇
+
+```js
+// lib.js
+export function init() {
+  // when the page loads, this code runs
+  const form = document.querySelector(".app form");
+
+  const optionsHTML = generateOptions(currencies);
+  // populate the options elements
+  fromSelect.innerHTML = optionsHTML;
+  toSelect.innerHTML = optionsHTML;
+
+  form.addEventListener("input", handleInput);
+}
+```
+
+We also need to import `fromSelect` and `toSelect`.
+
+Add the following import 👇statement to the other imports at the top of `libs.js`.
+
+```js
+import { fromSelect, toSelect } from "./elements.js";
+```
+
+If you try to play around with the app now, nothing happens because no code has started.
+
+To fix that go back to`money.js`, and import that `init` function and use it to start the app.
+
+```js
+import { generateOptions } from "./utils.js";
+import currencies from "./currencies.js";
+import { handleInput } from "./handlers.js";
+import { fromSelect, toSelect } from "./elements.js";
+import { init } from "./lib.js";
+
+init();
+```
+
+If you refresh the page now, you will see the following error complaining that `generateOptions` is not defined.
+
+![](./1249.png)
+
+We need to go to `lib.js` and import `generateOptions`.
+
+```js
+import { fromSelect, toSelect } from "./elements.js";
+import { generateOptions } from "./utils.js";
+```
+
+Now if we refresh it is complaining about `currencies` not being defined.
+
+![](./1250.png)
+
+What we can do is go to `money.js` and take all our import statements except for the `init` import and move them to `lib.js`.
+
+```js
+import { fromSelect, toSelect } from "./elements.js";
+import { generateOptions } from "./utils.js";
+import currencies from "./currencies.js";
+import { handleInput } from "./handlers.js";
+```
+
+Wes' ESLint is complaining about the `handleInput` import. The error says "Dependency cycle detected".
+
+![](./1251.png)
+
+If you look at our `handlers.js`, we are importing `convert` from there from `lib`. So both files require each other. That could cause you to end up with a situation where they require each other and it gets out of control.
+
+For our purposes, it is working, but let's fix that anyway.
+
+Create one more file called `init.js`
+
+Take the `init` function and all the imports added out of `lib.js` and put it in our `init.js` file instead.
+
+```js
+// init.js
+import { fromSelect, toSelect } from "./elements.js";
+import { generateOptions } from "./utils.js";
+import currencies from "./currencies.js";
+import { handleInput } from "./handlers.js";
+
+export function init() {
+  // when the page loads, this code runs
+  const form = document.querySelector(".app form");
+
+  const optionsHTML = generateOptions(currencies);
+  // populate the options elements
+  fromSelect.innerHTML = optionsHTML;
+  toSelect.innerHTML = optionsHTML;
+
+  form.addEventListener("input", handleInput);
+}
+```
+
+In `money.js`, modify the code to import from `init.js` instead.
+
+```js
+// money.js
+import { init } from "./init.js";
+
+init();
+```
+
+If you refresh the page and play with the app, you will see that it is working!
+
+You could go one step further and not even run the code unless someone clicks a button or hovers over it.
+
+To do that, select the div with class of app within `money.js`.
+
+Pass the event listener to our `init` function to call, and pass it the options object to the event listener to specify we only want it to run once, like so 👇
+
+```js
+import { init } from "./init.js";
+
+const app = document.querySelector(".app");
+
+app.addEventListener("mouseenter", init, { once: true });
+```
+
+When the page loads, it should just say "Select a Currency" until you hover over the form, and then the code initializes and the base currency is switched out to USD.
+
+![](./1252.png)
+
+Now our entry point has almost nothing in it because it is in a separate file.
+
+Is that okay?
+
+Yes, some people like their entry point to have a little code but you could have also left all the code in `money.js` as well and it still would have worked!

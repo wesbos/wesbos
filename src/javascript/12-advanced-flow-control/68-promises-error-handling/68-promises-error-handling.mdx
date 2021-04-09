@@ -1,0 +1,170 @@
+---
+tocTitle: 68 - Promises - Error Handling
+title: Promises - Error Handling
+slug: 12-advanced-flow-control/68-promises-error-handling
+section: Module 12
+category:
+ - JavaScript
+ - Promises
+ - Error Handling
+---
+
+In this lesson we will talk about the opposite of resolving, which is rejecting.
+
+When a promise goes awry, and you want to bail on it, you can call the reject function.
+
+Let's go back to our `makePizza` definition and inside of our promise we need to check whether one of the toppings chosen for the pizza is pineapple.
+
+If it is true, we need to reject the pizza from happening.
+
+For now will only check for lowercase "pineapple" but we will have to try to weed out people who uppercase it as well later. If that condition is met, then we will call reject and pass it "seriously? get out".
+
+To do that we will add the code below.
+
+```js
+if (toppings.includes('pineapple')) {
+  reject("Seriously? Get out 🍍");
+}
+```
+
+Now let's go to the bottom of the script section and comment out the code we added in the previous lesson when we were doing an example on how to run promises concurrently.
+
+Below that commented out code add the following 👇
+
+```js
+makePizza(['cheese','pineapple']).then(pizza => {
+  console.log(pizza);
+})
+```
+
+![](./1037.png)
+
+What does that log "Uncaught (in promise)" mean?
+
+It means that there was an error in one of our promises, but we did not write any code in order to handle that error and try to catch it.
+
+The way you catch an error in a promise is you chain a `.catch()` to it.
+
+Catch will pass you the error as a parameter which we will use to log the error as shown bel;ow.
+
+```js
+makePizza(['cheese','pineapple'])
+  .then(pizza => {
+    console.log(pizza);
+  })
+  .catch(err => {
+    console.log('Oh noooo!!');
+    console.log(err);
+  })
+```
+
+As you see, we no longer get an error logged because we caught and logged the error ourselves.
+
+![](./1038.png)
+
+`.then()` will only run when the promise resolves successfully, and the catch will only run if the promise doesn't go successfully.
+
+Almost always with your promise built functions you must chain a `.then()` and a `.catch()` at the end so that if anything goes wrong, you are able to catch it and display it to the user.
+
+What Wes will usually do is make a function called `handleError` which will take in the error and log it like so 👇
+
+```js
+function handleError(err) {
+  console.log('Oh noooo!');
+  console.log(err);
+}
+```
+
+Now instead of catching the error using the code we had before we can simply replace it as shown below 👇
+
+```js
+makePizza(['cheese', 'pineapple'])
+  .then(pizza => {
+    console.log(pizza);
+  })
+  .catch(handleError);
+```
+
+In the code above we are passing the reference to the function which will then handle the error.
+
+It's important to note that not every single promise needs a catch on the end.
+
+Go back to our pizzas where we chained a bunch of promises together and modify the pizza with no toppings to instead pass the topping of "pineapple",
+
+![](./1040.png)
+
+What happens there is we go through the chain of promises and then as soon as we hit the code where we try to make a pizza with a pineapple we get the "uncaught in promise" error.
+
+![](./1041.png)
+
+So how do we catch the error?
+
+Does it mean we have to add a `catch` after each `then`? That would be annoying.
+Thankfully, the answer is no.
+
+You just need to put one catch at the very end that will be able to handle our error.
+
+![](./1042.png)
+
+The thing about an error happening in a promise chain is that where the error happens, it will then bail out of executing the rest of the promise chain.
+
+If you have 7 or 8 steps in the promise chain and they are all dependent on one another, then that is good because if step 3 in the breaks, you don't want to continue to step 4.
+
+But sometimes you want to continue even if one of the promises fails. If that is the case, then promise chaining is not what you want to use. Instead, you'd want to use some of the other Promise static methods like `Promise.all()` or `Promise.race()`.
+
+Let's do an example. We will start with 2 pizzas.
+
+```js
+const p1 = makePizza(['pep']);
+const p2 = makePizza(['pineapple']);
+```
+
+## Promise.allSettled()
+
+We will use a new API that we haven't learned yet called `Promise.allSettled()`.
+
+Let's start by making a mega promise.
+
+```js
+const dinnerPromise2 = Promise.allSettled([p1, p2]);
+```
+
+Let's just get the results and log them for now.
+
+```js
+dinnerPromise2
+  .then(results => {
+    console.log(results);
+  })
+```
+
+![](./1043.png)
+
+As you can see in our results we can see that the first one was **fulfilled** and the second one was **rejected**.
+Fulfilled is another word they use for resolved.
+
+If we tried that example but with `Promise.all()` like so, you will see that the code will break.
+
+```js
+const dinnerPromise2 = Promise.all([p1, p2]);
+```
+
+![](./1044.png)
+
+That is because `Promise.all` assumes that all of them will go successfully.
+
+If you want to catch any errors that happen in `Promise.all()` you would have to catch them like so 👇
+
+```js
+const dinnerPromise2 = Promise.all([p1, p2]).catch(handleError);
+```
+
+![](./1045.png)
+
+That is probably not what you want because if one of them breaks, you might still want the other one, because those other pizzas are still good.
+
+`Promise.allSettled()` will tell you when all the promises are done, regardless of whether they were rejected or resolved.
+
+There are a few more error handling techniques that we need to use but they do not get introduced until we learn **async/await**.
+
+Let's go back and refactor the last exercise we did to use promises instead of callback hell.

@@ -1,0 +1,841 @@
+---
+tocTitle: 15 - Different Ways to Declare Functions
+title: Different Ways to Declare Functions
+slug: 02-functions/different-ways-to-declare-functions
+section: Module 2
+category:
+ - JavaScript
+ - Functions
+---
+
+One thing you will hear often when getting into JavaScript is that functions are _"first class citizens"_.
+
+JavaScript functions are values in themselves, and they can be stored in variables and passed into other functions.
+
+What _is_ a **value** in JavaScript?
+
+We know that in the examples below 👇 that `true` and `100` are values.
+
+```js
+const age = 100;
+const cool = true;
+```
+
+Those are values that are numbers, or strings or booleans.
+
+What is cool about JavaScript is that functions can be:
+
+- passed into other functions.
+- stored in variables,
+- moved around like any other piece of data in JavaScript
+
+That is not true for every other programming language.
+
+Let's start by looking at how you can put a function into a variable, and then look at the different ways to declare functions.
+
+Create a new file `ways-to-make-a-function.js` in the `/custom-functions` directory.
+
+```html
+<script src="./ways-to-make-a-function.js"></script>
+```
+
+Add a log of "it works!" and go back to the `index.html` file and change the path in the script source attribute as shown above 👆 and refresh the browser to ensure it works.
+
+We already know one way to declare a function and that is using the function keyword, like so 👇
+
+```js
+function doctorize(firstName) {
+  return `Dr. ${firstName}`;
+}
+```
+
+## Anonymous Functions
+
+Let's look at some other options we have when declaring functions, starting with an **anonymous function**, which is a function without a name.
+
+To make `doctorize` an anonymous function, you would modify it like this 👇
+
+```js
+function(firstName) {
+  return `Dr. ${firstName}`;
+}
+```
+
+However, that is not valid JavaScript. If you try running it in the console you will see an error that says 👇
+
+> SyntaxError: Function statements require a function name
+
+![](/1442.png)
+
+Anonymous functions are only valid in some use cases, such as using them in **callbacks** (we will learn more about that later) as well as in an **IIFE (immediately invoked function expression)**. This example was not a valid use case.
+
+Why would you ever want an anonymous function?
+
+## Function Expressions
+
+The next way we will cover to declare a function will help explain that, which is as a **function expression**.
+
+Add a comment above that function specifying that it is an anonymous functions, then copy the function and comment it out.
+
+Paste the copied code below the commented out function.
+
+The next way to declare a function is a **function expression**. A function expression is when you store a function as a value in a variable. 👇
+
+```js
+// function expression
+const doctorize = function (firstName) {
+  return `Dr. ${firstName}`;
+};
+```
+
+In the code above 👆, we have taken the anonymous function and stuck it in a variable.
+
+If you refresh the page, you will see that in the console, we have `doctorize()` available to us, and we can call it like we did in previous videos.
+
+![](/123.png)
+
+Having the ability to create a variable and then store it in a function is what leads people to say functions are _"first class citizens"_.
+
+You may come across developers who say to not use function expressions because they used to give unhelpful errors.
+
+Previously, anonymous function errors would just tell you that it occurred in an anonymous function, without giving you any clue where the error is happening. However, now the dev tool errors are better.
+
+Here is an example that demonstrates what they mean by that 👇
+
+```js
+// function expression
+const doctorize = function (firstName) {
+  doesntExist();
+  return `Dr. ${firstName}`;
+};
+```
+
+![](/125.png)
+
+In our case, it does now tell you it happens inside of doctorize on line 12.
+
+Although the function is technically an anonymous function without a name, the browsers will now infer the name of the function from the variable name and use that in the errors.
+
+### What is the difference between a function declaration and a function expression?
+
+What is the difference between doing a function declaration and a function expression? Why would you want to use one over the other?
+
+## Hoisting
+
+There is only one real difference which is how they operate in something called **hoisting**. We will go over this in detail a future video but for now we will just quickly cover the concept.
+
+Duplicate the `doctorize` function and name it `doctorize2`, like 👇
+
+```js
+const doctorize = function (firstName) {
+  return `Dr. ${firstName}`;
+};
+
+function doctorize2 (firstName) {
+  return `Dr. ${firstName}`;
+}
+```
+
+Let's say right before the first `doctorize` function, we called `doctorize` and passed it the value of "wes", as shown below 👇, do you think the code will run?
+
+If you run a function before you define it, does it work? Refresh the page and look at the console to test it
+
+```js
+doctorize("wes");
+
+const doctorize = function (firstName) {
+  return `Dr. ${firstName}`;
+};
+
+function doctorize2 (firstName) {
+  return `Dr. ${firstName}`;
+}
+```
+
+Did it work?
+
+Nope! You get an error like:
+
+> Uncaught ReferenceError: Cannot access 'doctorize' before initialization
+> at ways-to-make-a-function.js:78
+> (anonymous) @ ways-to-make-a-function.js:78
+
+What about `doctorize2`?
+
+```js
+console.log(doctorize2("wes"));
+
+const doctorize = function (firstName) {
+  return `Dr. ${firstName}`;
+};
+
+function doctorize2 (firstName) {
+  return `Dr. ${firstName}`;
+}
+```
+
+It does work!
+
+Why does a function declaration work if you call it before you define it, but a function expression does not, especially when we created the exact same function in both cases?
+
+Functions that are declared with the **function** keyword are called **hoisted**.
+
+JavaScript will take all functions with the function keyword and and hoist them up, up, up and says "you're a function, you belong at the top of the file". That means anywhere you cal the function, it will be available to you.
+
+JavaScript does **not** hoist variable functions.
+
+Why is that useful?
+
+Very rarely, Wes has never used that in his entire career except tiny use cases.
+
+**Hoisting** is more of an interview question that you may be asked.
+
+Essentially it means that JavaScript will take functions and bring them up to the top of the code before they are called. This gives us the ability to run a function before it is defined.
+
+Remove the `doctorize2` function from the JavaScript file which should leave just the function expression.
+
+## Arrow Functions
+
+The next way to make a function is using an **arrow function**.
+
+Arrow functions themselves have a few different ways of being declared. They are a newer addition to JavaScript, and were added in the last couple of years.
+
+They have a few benefits:
+
+- concise syntax and tend to be shorter. allow for writing one line functions
+- do not have their own scope in reference to the `this` keyword _(we will cover the `this` keyword in future video)_
+
+Arrow functions are also **anonymous functions**, which means there is no way to declare an arrow function the way we do a function declaration `function doctorize() {..}`. You always have to stick it into a variable.
+
+To illustrate this, we will begin by writing a regular function. 👇
+
+```js
+function inchToCM(inches) {
+  const cm = inches * 2.54;
+  return cm;
+}
+```
+
+This function will take in inches and return centimeters.
+
+Let's try it out in the browser.
+
+![](/126.png)
+
+This is a pretty simple function, but it still takes up 4 lines of code.
+
+We can make it a bit shorter by instead of creating a variable and then returning a variable, we can just return the calculation directly.
+
+```js
+function inchToCM(inches) {
+  return inches * 2.54;
+}
+```
+
+![](/128.png)
+
+_Note: You may notice in the above 👆 screenshot that the line of code with `return cm;` is now greyed out. That is because that code will never be reached, since we are returning in the line of code above it. When you return from a function, the function stops running._
+
+Now we can convert it to an anonymous function as a step on the way to making it an arrow function.
+
+```js
+const inchToCM = function (inches) {
+  return inches * 2.54;
+};
+```
+
+Refresh the page to check that it still works, which it should. All we have done if turned it into an anonymous function and stored it in a variable.
+
+### Different Ways to Write Arrow Functions
+
+Let's convert it to an arrow function now, which we can do a few different ways.
+
+Instead of writing the word function, we will delete it like so 👇
+
+```js
+const inchToCM = (inches) {
+  return inches * 2.54;
+}
+```
+
+Now we will go to the right of the parenthesis and add what is called a **fat arrow** `=>`.
+
+In programming, `->` is referred to as a **skinny arrow** and `=>` is referred to as a **fat arrow**.
+
+```js
+const inchToCM = (inches) => {
+  return inches * 2.54;
+};
+```
+
+When you save, you might notice that Prettier modified the function for you and removes the parenthesis, which is not what we want because we are trying to change it to an arrow function in steps. to di To disable that, add `/* eslint-disable */` right above the function.
+
+_The spaces between the parenthesis and the arrow in the following code 👉 `(inches) => {` does not have to be there, this is the same code with different whitespace and 👉 `(inches)=>{` still works, but it's more readable with spaces._
+
+If you refresh the page and run it in the console, you will see that it still works.
+
+### Implicit and Explicit Returns
+
+The next thing we will do is what is called an **implicit return**.
+
+An **explicit return** is when you type the `return` keyword before returning a value such as 👇
+
+```js
+return inches * 2.54;
+```
+
+That is an explicit return meaning that _we explicitly return the value there_.
+
+An **implicit return** is returning it without actually having to type the keyword `return`. Arrow functions allow us to use implicit returns.
+
+Let's start by putting the function on one line, like so 👇
+
+```js
+const inchToCM = (inches) => {
+  return inches * 2.54;
+};
+```
+
+To get rid of the **explicit** return:
+
+- first put the function on one line
+- then delete the curly brackets`{` `}`
+- finally delete the keyword
+
+```js
+const inchToCM = (inches) => inches * 2.54;
+```
+
+Your code should look like the above 👆
+
+What we did there is:
+
+- we made an arrow function `inchToCM` which takes in one argument, `inches`
+- modified the function to implicitly return the value.
+
+The way we can tell this is an implicit return is that:
+
+1. it's all on one line
+2. there is no return keyword
+3. there are no curly brackets
+
+If you refresh in the browser, you will see that it still works.
+
+_To recap: what we did there is we removed the function block, modified the code to be on one line, and removed the explicit return._
+
+Finally, and this is more of a stylistic choice, if there is only ever one parameter for your function, you can actually get rid of the parenthesis around the parameter as well, like so👇
+
+```js
+const inchToCM = (inches) => inches * 2.54;
+```
+
+If there is only one parameter in your arrow function, you can remove them no problem. It is still a valid arrow function.
+
+Let's do another example!
+
+Make a function called `add`, that takes in two parameters `a` and `b`, with the default value of `b` being 3. We will then we make a temporary variable called total which we return.
+
+```js
+function add(a, b = 3) {
+  const total = a + b;
+  return total;
+}
+```
+
+Pause here, try to convert it to an arrow function yourself and then come back once you have tried it.
+
+Let's first see if it works as it originally was.
+
+Save the code from above 👆 and refresh `index.html` in the browser.
+
+Open the console and test the function.
+
+![](/129.png)
+
+You might notice that dev tools is giving us an annotation `?b` in `ƒ(a,?b)` as shown above.
+
+That little question mark in front of `b` is telling us that the argument is optional. `b` if optional because there is a default value to fall back on.
+
+Stick the function in a variable `add` and remove the function name, like so 👇
+
+```js
+const add => function (a, b = 3) {}
+```
+
+Next, convert it to an arrow function. Get rid of the keyword function and add a fat arrow to the right of the parenthesis, as shown below.
+
+```js
+const add = (a, b = 3) => {
+  const total = a + b;
+  return total;
+};
+```
+
+Modify the code to return `a + b` and get rid of the total variable. 👇
+
+```js
+const add = (a, b = 3) => {
+  return a + b;
+};
+```
+
+Put the function on one line.
+
+```
+const add = (a,b = 3) => { return a + b; }
+```
+
+Get rid of the function block and the `return` keyword like so 👇
+
+```js
+const add = (a, b = 3) => a + b;
+```
+
+Now we have a short arrow function!
+
+You may have noticed that we did not get rid of the parentheses, and that is because there is more than one parameter.
+
+### Arrow Function Gotcha's
+
+There are a couple of other gotchas with arrow functions that we need to know about.
+
+Let's go over them now.
+
+#### Returning an object
+
+Let's make a function `makeABaby()`, which will accept a first and last name for the baby.
+
+Inside of the function, create an object `baby` with a `name` and `age` property. 👇
+
+```js
+function makeABaby(first, last) {
+  const baby = {
+    name: `${first} ${last}`,
+    age: 0,
+  };
+
+  return baby;
+}
+```
+
+It works!
+
+![](/130.png)
+
+How could you convert this to an arrow function?
+
+Stick, stick it in a variable, and convert it to an arrow function like so 👇
+
+```js
+const makeABaby = (first, last) => {
+  const baby = {
+    name: `${first} ${last}`,
+    age: 0,
+  };
+
+  return baby;
+};
+```
+
+If your function needs to do some stuff inside of the block, you can leave it as is. This is a perfectly valid arrow function.
+
+If the only thing you're using the arrow for is the ability to type less as well as some of the benefits of not scoping this, this is totally valid.
+
+However we can take it a bit further.
+
+Instead of declaring the `baby` variable we will just return the object directly. 👇
+
+```js
+const makeABaby = (first, last) => {
+  return {
+    name: `${first} ${last}`,
+    age: 0,
+  };
+};
+```
+
+Now the question is... how would we do the implicit return?
+
+We can put it on one line, no problem _(objects can be put on one line)_.
+
+But how would we return it?
+
+Let's try it the way we know.
+
+Put it on one line.
+
+```js
+const makeABaby = (first, last) => {
+  return { name: `${first} ${last}`, age: 0 };
+};
+```
+
+To make it an implicit return, get rid of the curly brackets and the `return` keyword. 👇
+
+```js
+const makeABaby = (first, last) => { name: `${first} ${last}`, age: 0};
+```
+
+![](/131.png)
+
+However, you will see the above 👆 error if you try to run the code like that.
+
+Whats happening there is it thinks that the curly bracket from the baby object is actually the curly object from the block of the function.
+
+Curly brackets in JavaScript can be creation of an object, or a block of code.
+
+What are you options to implicitly return an object then?
+
+If you want to implicitly return an object in JavaScript, you just pop a set of parentheses around the thing that you are returning and then the code will know that it's not the block to the function.
+
+Try it by modifying your code like so 👇
+
+```js
+const makeABaby = (first, last) => ({ name: `${first} ${last}`, age: 0 });
+```
+
+If you try it in the code, it still works.
+
+Now... is there a benefit of having the function this way or how we did it originally? Wes doesn't think so.
+
+You're not really getting much benefit, in fact the way we had it originally was a bit more readable.
+
+There is nothing wrong with doing a regular function, because you want to think about your future self.
+
+Let's say you come back to the code in 6 months, what will be easier for you to read?
+
+Don't always go to making an arrow function by default, and hopefully throughout this course it will become more clear when you should reach for an arrow function (specifically with arrays and doing maps and reduce and filters).
+
+## IIFE
+
+The next way to create a function is using an **IIFE** (pronounced **iffy**).
+
+That is an **immediately invoked function expression**.
+
+We will do an example to demonstrate was an IIFE is.
+
+Comment out all the other JavaScript code, add the code below and then refresh `index.html`. 👇
+
+```js
+function(){
+  console.log('Running the Anon function');
+  return `You are cool`;
+}
+```
+
+Nothing happens when you refresh `index.html` because it's not allowed to run. We talked about how you can stick a function in a variable and that is okay.
+
+Another way to run this function is what is called an **immediately invoked functional expression.**
+
+What you can do is wrap that function in a parentheses, _(parentheses always run first in JavaScript)_, and what that will do is return a function value and you can immediately run that function by putting parentheses on the end like so 👇
+
+```js
+(function () {
+  console.log("Running the Anon function");
+  return `Your are cool`;
+})();
+```
+
+Now, if you refresh the page, you will see the log in the console which means our function expression was immediately invoked. It was immediately run.
+
+What is the benefit of doing something like that?
+
+It used to be very popular before we had modules and block scope.
+
+When we get into scoping, you will learn that a function declares its own scope and its often handy to even declare functions of them, and it will provide us a sheltered space where the variables can't leak inside. We will go over that later in the course.
+
+For now, just know that it's an immediate invoked function.
+
+One last thing is what if the function took an age? You would pass it like so 👇
+
+```js
+(function (age) {
+  console.log("Running the Anon function");
+  return `Your are cool and ${age}`;
+})(age);
+```
+
+That isn't something you will be using that often, but it does come up when you need to create something like a **closure** _(which will be explained in future video)._
+
+## Methods
+
+Next type of function we will learn about are referred to as **methods**.
+
+A method is simply a function that lives inside of an object.
+
+_(Wes has so far sort of been saying that methods and functions are the same thing and we have a video coming up that focused entirely on creating your own methods that will make that clearer)._
+
+So far Wes has been telling us that `console.log()` is a function.
+
+If we take a look at the function `console.log` in the browser, we will see that he has been lying to us.
+
+`log()` is actually the function that lives inside of `console`, and `console` is actually an object.
+
+If you type `console` into the console and expand it, you will see that there are all kinds of things within it. 👇
+
+![](/134.png)
+
+Scroll down to log, and the little ƒ you see means that it's actually a function 👉![](/135.png)
+
+So `console` is the object and `log()`, `count()` or any of the other functions listed under the console object are the functions.
+
+We have a special word to describe functions that live inside of an object and we call those **methods**.
+
+So you can actually do something like this.. 👇
+
+```js
+const wes = {
+  name: "Wes Bos",
+  sayHi: function () {
+    console.log("Hey wes!");
+    return "Hey Wes!";
+  },
+};
+```
+
+Try it in the browser.
+
+First type `wes` and hit enter.
+Next, type `wes.sayHi()` and hit Enter.
+
+You should see the following 👇
+
+![](/136.png)
+
+`wes.sayHi()` is a **method**. You make it a property on your object and you set it to a function.
+
+Those functions can also have names, for example sometimes you will see something like this 👇
+
+```js
+const wes = {
+  name: "Wes Bos",
+  sayHi: function sayHi() {
+    console.log("Hey wes!");
+    return "Hey Wes!";
+  },
+};
+```
+
+Wes doesn't see the point of doing that, but it is technically allowed.
+
+There is also a new shorthand method. 👇
+
+```js
+const wes = {
+  name: "Wes Bos",
+  // Method!
+  sayHi: function sayHi() {
+    console.log("Hey Wes!");
+    return "Hey Wes!";
+  },
+  //Short hand Method
+  yellHi() {
+    console.log("HEY WESSSSS");
+  },
+};
+```
+
+If you refresh the browser and type `wes.yellHi()`, it will work.
+
+What we did there is instead of writing `sayHi: function()` _(which does work)_, we can get rid of the `function` keyword and the `;`. bThat makes it into a property, `yellHi()`, which set to the function `yellHi`.
+
+It's just a shorthand way to write methods inside of an object.
+
+There is another way, which is an arrow function. 👇
+
+```js
+const wes = {
+  name: 'Wes Bos',
+  // Method!
+  sayHi: function sayHi() {
+    console.log('Hey Wes!');
+    return 'Hey Wes!';
+  },
+  // Short hand Method
+  yellHi() {
+    console.log('HEY WESSSSS');
+  }
+  // Arrow functino
+   whisperHi: () => {
+     console.log('hiii wess im a mouse');
+   }
+};
+```
+
+`whisperHi()` is an arrow function that doesn't take any arguments, but it could take in arguments if you wanted.
+
+Those are 3 different ways to do methods and the short hand is the most common way.
+
+## Preview of this
+
+The only reason you would do an arrow function is because you don't want to access `this`.
+
+We will go over that in detail when we get to objects but really quickly Wes will show us.
+
+Modify the `sayHi()` method to add `console.log(this);` and run it in the browser 👇
+
+```js
+ sayHi: function sayHi() {
+    console.log(this);
+```
+
+You will see that on the line in our code that we logged, like `50`, the value of `this` has been returned.
+
+![](/137.png)
+
+((`this`)) is equal to the object that it was called against.
+
+That is cool because you could actually do something like this 👇
+
+```js
+const wes = {
+  name: 'Westopher Bos',
+  // Method!
+  sayHi: function sayHi() {
+    console.log(`Hey ${this.name}`);
+    console.log('Hey Wes!');
+    return 'Hey Wes!';
+  }
+```
+
+You would see it immediately fills the value of the name property. 👇
+
+![](/138.png)
+
+That will not work in an arrow function because they take the parent scope of `this`. We will explain that in the future.
+
+## Callback Functions
+
+The final thing Wes wants to talk to us is something called **callback functions**.
+
+So a callback function is just a regular function, but we use that name for something that will happen after something is done.
+
+The easiest way to define a callback function is either when someone clicks something, run this. Or when this amount of time has passed, run this.
+
+Let's look at both of those examples.
+
+### Click Callback
+
+We will do a click callback.
+
+Go into `index.html` and add a button with a class of `clickMe` and text of "Click Me!" 👇
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../base.css" />
+  </head>
+
+  <body>
+    <button class="clickMe">Click Me!</button>
+    <script src="./ways-to-make-a-function.js"></script>
+  </body>
+</html>
+```
+
+Back in the JavaScript file, let's select the element like so 👇
+_(we will cover the DOM in more depth later)_
+
+```js
+const button = document.querySelector(".clickMe");
+console.log(button);
+```
+
+Refresh the page and open the console to see that it works.
+
+![](/139.png)
+
+Next, listen for a click on that button as shown below
+
+```js
+const button = document.querySelector(".clickMe");
+button.addEventListener("click", wes.yellHi());
+```
+
+When that click happens, we can pass it to any function that we want. in this case, we chose `sayHi()` from our `wes` object from a previous example.
+
+Now, every time you click it, it will say "HEY WESSSS" 👇
+
+![](/140.png)
+
+What is happening there is that `.addEventListener()` is an **event listener** that we are listening for a click on, and the callback function is `wes.sayHi()`.
+
+It's a function that we give it access to.
+
+Notice that we are not running it there, we are just saying here is the function, when someone clicks the button, please call it.
+
+That is what is referred to as a callback function.
+
+Callback functions can be declared outside of the handler, like so 👇
+
+```js
+function handleClick() {
+  console.log("Great clicking!!");
+}
+button.addEventListener("click", handleClick);
+```
+
+That tells the browser that when the element with a class of `.clickMe` is pressed, run the `handleClick` function. The other option, which is half as common, is to define the function outside and then pass in the reference to the function.
+
+Another thing you can do is just pass it an anonymous function, as shown below.
+
+```js
+button.addEventListener("click", function () {
+  console.log("nice Job!");
+});
+```
+
+![](/141.png)
+
+And it works just fine when you press it.
+
+We have What we have done there is we have passed it an anonymous function as a value directly, and the browser will know to call this function itself. _(There are upsides and downsides of doing it that way which we will get into another time.)_
+
+What you need to know is that a **callback function is a function that gets passed into another function and then it is called by the browser at a later point in time.**
+
+### Timer Callback
+
+The other example we have is a timer callback.
+
+There are a couple way to do timers _(we will go over all of them in the future)_ but the simplest is `setTimeout()`.
+
+```js
+setTimeout();
+```
+
+It takes two things:
+
+1. a function to call after a certain amount of time
+2. a duration in milliseconds (after how long should I run this)
+
+So let's do `1000` milliseconds which is one second later.
+
+```js
+setTimeout(wes.yellHi(), 1000);
+```
+
+If we refresh the page, after one second, it will log HEY WES.
+
+You can also pass it an anonymous function.
+
+```js
+setTimeout(function () {
+  console.log("DONE TIME TO EAT");
+}, 1000);
+```
+
+After a second that will log "DONE TIME TO EAT".
+
+You can pass those as arrow functions as well.
+
+```js
+setTimeout(() => {
+  console.log("DONE TIME TO EAT");
+}, 1000);
+```
+
+That will work the same!

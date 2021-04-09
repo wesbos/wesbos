@@ -100,6 +100,54 @@ async function makeTipsFromMdx({ graphql, actions }) {
   });
 }
 
+async function makeJavaScriptFromMdx({ graphql, actions }) {
+  const javascriptPage = path.resolve('./src/templates/javascript.js');
+  const { errors, data } = await graphql(
+    `
+      {
+        allMdx(
+          filter: { fields: { collection: { eq: "javascript" } } }
+          sort: { fields: frontmatter___tocTitle }
+        ) {
+          edges {
+            node {
+              body
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+            }
+          }
+        }
+      }
+    `
+  );
+  if (errors) {
+    console.log(errors);
+    throw new Error('There was an error');
+  }
+  const javascriptPosts = data.allMdx.edges;
+
+  javascriptPosts.forEach((post, i) => {
+    const prev = javascriptPosts[i - 1];
+    const next = javascriptPosts[i + 1];
+
+    actions.createPage({
+      path: `/javascript${post.node.fields.slug}`,
+      component: javascriptPage,
+      context: {
+        slug: post.node.fields.slug,
+        collection: 'javascript',
+        prev,
+        next,
+        pathPrefix: '/javascript',
+      },
+    });
+  });
+}
+
 async function paginate({
   graphql,
   actions,
@@ -141,6 +189,14 @@ exports.createPages = async ({ graphql, actions }) => {
   await Promise.all([
     makePostsFromMdx({ graphql, actions }),
     makeTipsFromMdx({ graphql, actions }),
+    makeJavaScriptFromMdx({ graphql, actions }),
+    paginate({
+      graphql,
+      actions,
+      collection: 'javascript',
+      pathPrefix: '/javascript/',
+      component: path.resolve('./src/pages/javascript.js'),
+    }),
     paginate({
       graphql,
       actions,
@@ -189,6 +245,11 @@ exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
   if (page.path.match(/merch/)) {
     page.context.layoutClasses = 'wiiiiiiiiiide';
   }
+
+  if (page.path.match(/javascript/)) {
+    page.context.layoutClasses = 'ultra-wide';
+  }
+
   if (page.path.match(/thumbnail/)) {
     page.context.layout = 'thumbnail';
     createPage(page);
