@@ -6,8 +6,6 @@ import H from './mdxComponents/Headings';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
 const StyledTOC = styled.aside`
-  display: none;
-
   @media (min-width: 1600px) {
     display: flex;
     flex-direction: column;
@@ -41,9 +39,97 @@ const StyledTOC = styled.aside`
   }
 
   h5 {
-    margin: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  ol,
+  ul {
+    padding-left: 3rem;
   }
 
+  a {
+    padding: 5px 0;
+    display: inline-block;
+  }
+
+  .videoNumber {
+    font-size: 1rem;
+    background: #f3f3f3;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-left: 5px;
+    /* position: absolute; */
+    /* left: 0; */
+    /* transform: translateX(-160%); */
+    font-feature-settings: 'tnum';
+    font-variant-numeric: tabular-nums;
+  }
+
+  & > ul {
+    padding-left: 20px;
+    font-size: 1.2rem;
+    border-left: 2px solid var(--yellow);
+    /* Level 1 */
+    list-style: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: 0;
+    padding-left: 1rem;
+    padding-top: 0;
+    font-weight: 700;
+    margin-left: 1rem;
+    margin-bottom: 5rem;
+    & > li {
+      margin-bottom: 1rem;
+    }
+    & > li > a {
+      display: block;
+      &:before {
+        --size: 10px;
+        height: var(--size);
+        width: var(--size);
+        background: white;
+        display: block;
+        border: 1px solid var(--yellow);
+        border-radius: 50%;
+        z-index: 1;
+        content: '';
+        bottom: 0;
+        position: relative;
+        transform: translateX(-16px) translateY(15px);
+      }
+    }
+    ol {
+      padding-left: 0;
+      margin-left: 3px;
+      & > li {
+        /* padding-bottom: 1rem; */
+        list-style: none;
+        a {
+          display: block;
+          &:before {
+            content: '#';
+            display: inline-block;
+            color: var(--yellow);
+            margin-right: 0.5rem;
+            position: relative;
+            height: auto;
+            transform: none;
+            background: none;
+            width: auto;
+            bottom: auto;
+            font-weight: 600;
+          }
+        }
+      }
+      ul {
+        padding-left: 1.5rem;
+        list-style: none;
+        a {
+          padding: 2px 0;
+        }
+      }
+    }
+  }
   li a::before {
     display: none;
   }
@@ -85,60 +171,68 @@ function TableOfContents() {
     return Object.entries(createSectionedFrontMatter(nodes));
   }
 
-  console.clear();
-  console.log(nodes);
-
   return (
     <StyledTOC>
       <H as="h4">Table of Contents</H>
-      {createToc().map((section) => (
-        <Fragment key={section[0]}>
-          <H as="h5">{section[0]}</H>
+      {createToc().map(([moduleName, moduleChildren]) => (
+        <Fragment key={moduleName}>
+          <H as="h5">Module {moduleName}</H>
           <ul>
-            {section[1].map((tocItem) => (
-              <Fragment key={tocItem.tocTitle}>
-                <li>
-                  <Link href={`/javascript/${tocItem.slug}`}>
-                    {tocItem.tocTitle}
-                  </Link>
-                </li>
-                {console.log('toc child', tocItem)}
-                {tocItem.tocChild ? (
-                  <ol>
-                    {tocItem.tocChild.map((toc2ndItem) => (
-                      <Fragment key={toc2ndItem.title}>
-                        <li>
-                          <Link
-                            href={`/javascript/${tocItem.slug}/#${slug(
-                              toc2ndItem.title,
-                              true
-                            )}`}
-                          >
-                            {toc2ndItem.title}
-                          </Link>
-                        </li>
-                        {toc2ndItem?.items ? (
-                          <ul>
-                            {toc2ndItem.items.map((toc3rdItem) => (
-                              <li key={toc3rdItem.title}>
-                                <a
-                                  href={`/javascript/${tocItem.slug}/#${slug(
-                                    toc3rdItem.title,
-                                    true
-                                  )}`}
-                                >
-                                  {toc3rdItem.title}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </Fragment>
-                    ))}
-                  </ol>
-                ) : null}
-              </Fragment>
-            ))}
+            {moduleChildren.map((tocItem, i) => {
+              const [videoNumber, ...videoTitleParts] = tocItem.tocTitle.split(
+                ' - '
+              );
+              const videoTitle = videoTitleParts.join(' - ');
+              return (
+                <Fragment key={`${tocItem.tocTitle}-${i}`}>
+                  <li>
+                    <Link to={`/javascript/${tocItem.slug}`}>
+                      {videoTitle}
+                      <span className="videoNumber">Part {videoNumber}</span>
+                    </Link>
+
+                    {tocItem.tocChild ? (
+                      <ol>
+                        {tocItem.tocChild.map((toc2ndItem, secondIndex) => (
+                          <Fragment key={`${toc2ndItem.title}-${secondIndex}`}>
+                            <li>
+                              <Link
+                                to={`/javascript/${tocItem.slug}/#${slug(
+                                  toc2ndItem.title,
+                                  true
+                                )}`}
+                              >
+                                {toc2ndItem.title}
+                              </Link>
+
+                              {toc2ndItem?.items ? (
+                                <ul>
+                                  {toc2ndItem.items.map(
+                                    (toc3rdItem, thirdIndex) => (
+                                      <li
+                                        key={`${toc3rdItem.title}-${thirdIndex}`}
+                                      >
+                                        <Link
+                                          to={`/javascript/${
+                                            tocItem.slug
+                                          }/#${slug(toc3rdItem.title, true)}`}
+                                        >
+                                          {toc3rdItem.title}
+                                        </Link>
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              ) : null}
+                            </li>
+                          </Fragment>
+                        ))}
+                      </ol>
+                    ) : null}
+                  </li>
+                </Fragment>
+              );
+            })}
           </ul>
         </Fragment>
       ))}
