@@ -97,7 +97,6 @@ function TableOfContents() {
                 <li>
                   <a href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</a>
                 </li>
-                {console.log('toc child', tocItem)}
                 {tocItem.tocChild ? (
                   <ol>
                     {tocItem.tocChild.map((toc2ndItem) => (
