@@ -2,6 +2,7 @@ import React, { Fragment, memo } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { slug } from 'github-slugger';
 import styled from 'styled-components';
+import { IoLogoGoogleplus } from 'react-icons/io';
 import H from './mdxComponents/Headings';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
@@ -47,8 +48,26 @@ const StyledTOC = styled.aside`
   }
 
   a {
-    padding: 5px 0;
-    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    background: transparent;
+    transition: background 0.05s;
+    &[aria-current='location'] {
+      font-weight: 900;
+      background: var(--yellow);
+      &:before {
+        color: black;
+      }
+    }
+    &.currentSection {
+    }
+    &.currentPage {
+      /* background: red; */
+    }
+    &.currentModule {
+      /* background: green; */
+    }
   }
 
   .videoNumber {
@@ -82,13 +101,11 @@ const StyledTOC = styled.aside`
       margin-bottom: 1rem;
     }
     & > li > a {
-      display: block;
       &:before {
         --size: 10px;
         height: var(--size);
         width: var(--size);
         background: white;
-        display: block;
         border: 1px solid var(--yellow);
         border-radius: 50%;
         z-index: 1;
@@ -102,14 +119,14 @@ const StyledTOC = styled.aside`
       padding-left: 0;
       margin-left: 3px;
       & > li {
-        /* padding-bottom: 1rem; */
         list-style: none;
         a {
-          display: block;
+          display: inline-block;
           &:before {
             content: '#';
             display: inline-block;
             color: var(--yellow);
+            z-index: 2;
             margin-right: 0.5rem;
             position: relative;
             height: auto;
@@ -124,9 +141,6 @@ const StyledTOC = styled.aside`
       ul {
         padding-left: 1.5rem;
         list-style: none;
-        a {
-          padding: 2px 0;
-        }
       }
     }
   }
@@ -162,19 +176,36 @@ const frontmatter = graphql`
   }
 `;
 
-function TableOfContents() {
+function isActive({ isCurrent, isPartiallyCurrent, href, location }) {
+  // console.log({ href, isCurrent, isPartiallyCurrent, location });
+  const [, , module, pageName] = href.split('/');
+  const { hash, pathname } = location;
+  const currentUrl = `${pathname}${hash}`;
+  const classNames = [];
+  // console.log({
+  //   module,
+  //   pageName,
+  // });
+  // is this the current module?
+  if (pathname.includes(module)) classNames.push('currentModule');
+  // is this the current page?
+  if (pathname.includes(pageName)) classNames.push('currentPage');
+  // is this the current section?
+  if (currentUrl === href) classNames.push('currentSection');
+
+  return { className: classNames.join(' ') };
+}
+
+function TableOfContents({ activeId }) {
   const {
     allMdx: { nodes },
   } = useStaticQuery(frontmatter);
 
-  function createToc() {
-    return Object.entries(createSectionedFrontMatter(nodes));
-  }
-
+  const toc = Object.entries(createSectionedFrontMatter(nodes));
   return (
     <StyledTOC>
       <H as="h4">Table of Contents</H>
-      {createToc().map(([moduleName, moduleChildren]) => (
+      {toc.map(([moduleName, moduleChildren]) => (
         <Fragment key={moduleName}>
           <H as="h5">Module {moduleName}</H>
           <ul>
@@ -186,7 +217,10 @@ function TableOfContents() {
               return (
                 <Fragment key={`${tocItem.tocTitle}-${i}`}>
                   <li>
-                    <Link to={`/javascript/${tocItem.slug}`}>
+                    <Link
+                      getProps={isActive}
+                      to={`/javascript/${tocItem.slug}`}
+                    >
                       {videoTitle}
                       <span className="videoNumber">Part {videoNumber}</span>
                     </Link>
@@ -197,10 +231,16 @@ function TableOfContents() {
                           <Fragment key={`${toc2ndItem.title}-${secondIndex}`}>
                             <li>
                               <Link
+                                getProps={isActive}
                                 to={`/javascript/${tocItem.slug}/#${slug(
                                   toc2ndItem.title,
-                                  true
+                                  false
                                 )}`}
+                                aria-current={
+                                  toc2ndItem.url === `#${activeId}`
+                                    ? 'location'
+                                    : ''
+                                }
                               >
                                 {toc2ndItem.title}
                               </Link>
@@ -213,9 +253,15 @@ function TableOfContents() {
                                         key={`${toc3rdItem.title}-${thirdIndex}`}
                                       >
                                         <Link
+                                          getProps={isActive}
                                           to={`/javascript/${
                                             tocItem.slug
-                                          }/#${slug(toc3rdItem.title, true)}`}
+                                          }/#${slug(toc3rdItem.title, false)}`}
+                                          aria-current={
+                                            toc3rdItem.url === `#${activeId}`
+                                              ? 'location'
+                                              : ''
+                                          }
                                         >
                                           {toc3rdItem.title}
                                         </Link>

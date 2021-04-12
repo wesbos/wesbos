@@ -10,6 +10,8 @@ import EditDialogStyles from '../components/styles/EditDialogStyles';
 import JavaScriptNotesStyles from '../components/styles/JavaScriptNotesStyles';
 import { PostMetaTags } from '../components/MetaTags';
 import TableOfContents from '../components/TableOfContents';
+import { getIds } from '../utils/getIds';
+import { useActiveId } from '../hooks/useActiveId';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -28,21 +30,25 @@ export const pageQuery = graphql`
         category
       }
       body
+      tableOfContents(maxDepth: 10)
     }
   }
 `;
 
 function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
+  const activeId = useActiveId(getIds(post.tableOfContents.items));
+
   if (!post) {
     return <p>No Post Found? This should be a 404</p>;
   }
+
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
     post.fileAbsolutePath.split('/src/')[1]
   }`;
 
   return (
     <JavaScriptNotesStyles>
-      <TableOfContents />
+      <TableOfContents activeId={activeId} />
       <div>
         <PostHeaderStyles>
           <PostMetaTags post={post} />
