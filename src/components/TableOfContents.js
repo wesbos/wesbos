@@ -1,5 +1,5 @@
 import React, { Fragment, memo } from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql, Link, useScrollRestoration } from 'gatsby';
 import { slug } from 'github-slugger';
 import styled from 'styled-components';
 import { IoLogoGoogleplus } from 'react-icons/io';
@@ -24,15 +24,15 @@ const StyledTOC = styled.aside`
   }
   & {
     scrollbar-width: thin;
-    scrollbar-color: var(--yellow) var(--dark);
+    scrollbar-color: var(--yellow) var(--light);
   }
   &::-webkit-scrollbar-track {
-    background: var(--dark);
+    background: var(--light);
   }
   &::-webkit-scrollbar-thumb {
     background-color: var(--yellow);
     border-radius: 6px;
-    border: 3px solid var(--dark);
+    border: 3px solid var(--light);
   }
 
   h4 {
@@ -56,6 +56,8 @@ const StyledTOC = styled.aside`
     &[aria-current='location'] {
       font-weight: 900;
       background: var(--yellow);
+      padding-left: 10px;
+      padding-right: 10px;
       &:before {
         color: black;
       }
@@ -76,31 +78,39 @@ const StyledTOC = styled.aside`
     padding: 2px 5px;
     border-radius: 3px;
     margin-left: 5px;
-    /* position: absolute; */
-    /* left: 0; */
-    /* transform: translateX(-160%); */
     font-feature-settings: 'tnum';
     font-variant-numeric: tabular-nums;
   }
 
   & > ul {
-    padding-left: 20px;
     font-size: 1.2rem;
-    border-left: 2px solid var(--yellow);
+    /* border-left: 2px solid var(--yellow); */
     /* Level 1 */
     list-style: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
       Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-top: 0;
-    padding-left: 1rem;
+    padding-left: 0rem;
     padding-top: 0;
     font-weight: 700;
-    margin-left: 1rem;
     margin-bottom: 5rem;
+    padding-left: 2px;
     & > li {
-      margin-bottom: 1rem;
+      margin-left: 3px;
+      padding-left: 10px;
+      border-left: 2px solid var(--lightGrey);
+      padding-bottom: 1rem;
+      &.currentPage {
+        border-color: var(--dark);
+      }
+      &:hover {
+        border-color: var(--yellow);
+      }
     }
     & > li > a {
+      display: inline-block;
+      transform: translateY(-12px);
+      /* Page Circle */
       &:before {
         --size: 10px;
         height: var(--size);
@@ -110,18 +120,20 @@ const StyledTOC = styled.aside`
         border-radius: 50%;
         z-index: 1;
         content: '';
-        bottom: 0;
         position: relative;
-        transform: translateX(-16px) translateY(15px);
+        transform: translateX(-21px) translateY(-12px);
+        display: inline-block;
+        position: absolute;
       }
     }
     ol {
-      padding-left: 0;
-      margin-left: 3px;
+      padding-left: 5px;
+      margin-top: -15px;
       & > li {
         list-style: none;
         a {
           display: inline-block;
+          padding: 5px 0;
           &:before {
             content: '#';
             display: inline-block;
@@ -196,14 +208,16 @@ function isActive({ isCurrent, isPartiallyCurrent, href, location }) {
   return { className: classNames.join(' ') };
 }
 
-function TableOfContents({ activeId }) {
+function TableOfContents({ activeId, currentPage }) {
   const {
     allMdx: { nodes },
   } = useStaticQuery(frontmatter);
 
+  const scrollRestoration = useScrollRestoration(`toc`);
+
   const toc = Object.entries(createSectionedFrontMatter(nodes));
   return (
-    <StyledTOC>
+    <StyledTOC {...scrollRestoration}>
       <H as="h4">Table of Contents</H>
       {toc.map(([moduleName, moduleChildren]) => (
         <Fragment key={moduleName}>
@@ -216,7 +230,11 @@ function TableOfContents({ activeId }) {
               const videoTitle = videoTitleParts.join(' - ');
               return (
                 <Fragment key={`${tocItem.tocTitle}-${i}`}>
-                  <li>
+                  <li
+                    className={
+                      currentPage === `/${tocItem.slug}/` ? 'currentPage' : ''
+                    }
+                  >
                     <Link
                       getProps={isActive}
                       to={`/javascript/${tocItem.slug}`}

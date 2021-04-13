@@ -48,7 +48,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
 
   return (
     <JavaScriptNotesStyles>
-      <TableOfContents activeId={activeId} />
+      <TableOfContents activeId={activeId} currentPage={pageContext.slug} />
       <div>
         <PostHeaderStyles>
           <PostMetaTags post={post} />
