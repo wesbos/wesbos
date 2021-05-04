@@ -46,14 +46,21 @@ function converIGtoJPG(base64data) {
 
 function useInstagram() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     fetch(`/.netlify/functions/instagram`)
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false);
         setPosts(data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setPosts([]);
       });
   }, []);
-  return posts;
+  return { posts, loading };
 }
 function useInstagramStories() {
   const [posts, setPosts] = useState([]);
@@ -62,6 +69,9 @@ function useInstagramStories() {
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
+      })
+      .catch((err) => {
+        setPosts([]);
       });
   }, []);
   return posts;
@@ -93,7 +103,7 @@ function Stories() {
 }
 
 export default function Instagram() {
-  const gramz = useInstagram();
+  const { loading, posts: gramz } = useInstagram();
   return (
     <div>
       <h3>
@@ -109,7 +119,7 @@ export default function Instagram() {
           Instant Grams
         </span>
       </h3>
-      {!gramz.length && <p>One sec, getting the gramz...</p>}
+      {loading && <p>One sec, getting the gramz...</p>}
       <Stories />
       {gramz.length ? <h4>Posts</h4> : null}
       <InstaStyles>
