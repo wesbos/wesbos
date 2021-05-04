@@ -21,7 +21,6 @@ function slimUpPosts(response) {
 }
 
 async function getPosts() {
-  throw new Error('shit');
   // first see if we have a cache in 30 mins
   const timeSinceLastFetch = Date.now() - cache.lastFetch;
   if (timeSinceLastFetch <= 1800000) {
