@@ -7,6 +7,10 @@ import H from './mdxComponents/Headings';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
 const StyledTOC = styled.aside`
+  position: sticky;
+  height: 100vh;
+  top: 0;
+  overflow: auto;
   @media (min-width: 1600px) {
     display: flex;
     flex-direction: column;
@@ -194,10 +198,6 @@ function isActive({ isCurrent, isPartiallyCurrent, href, location }) {
   const { hash, pathname } = location;
   const currentUrl = `${pathname}${hash}`;
   const classNames = [];
-  // console.log({
-  //   module,
-  //   pageName,
-  // });
   // is this the current module?
   if (pathname.includes(module)) classNames.push('currentModule');
   // is this the current page?
@@ -218,7 +218,6 @@ function TableOfContents({ activeId, currentPage }) {
   const toc = Object.entries(createSectionedFrontMatter(nodes));
   return (
     <StyledTOC {...scrollRestoration}>
-      <H as="h4">Table of Contents</H>
       {toc.map(([moduleName, moduleChildren]) => (
         <Fragment key={moduleName}>
           <H as="h5">Module {moduleName}</H>

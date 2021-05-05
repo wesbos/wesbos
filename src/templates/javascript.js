@@ -49,7 +49,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
   return (
     <JavaScriptNotesStyles>
       <TableOfContents activeId={activeId} currentPage={pageContext.slug} />
-      <div>
+      <article>
         <PostHeaderStyles>
           <PostMetaTags post={post} />
           <H>{post.frontmatter.title}</H>
@@ -92,7 +92,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
             {post.frontmatter.title} - Beginner JavaScript - Wes Bos
           </title>
         </Helmet>
-      </div>
+      </article>
     </JavaScriptNotesStyles>
   );
 }
