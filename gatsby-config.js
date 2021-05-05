@@ -3,6 +3,9 @@
 require('dotenv').config({ path: `.env.development` });
 
 module.exports = {
+  flags: {
+    FAST_DEV: true
+  },
   siteMetadata: {
     title: 'Wes Bos',
     author: 'Wes Bos',
