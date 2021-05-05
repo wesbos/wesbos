@@ -61,7 +61,8 @@ function useTwitter() {
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
-      });
+      })
+      .catch(console.log)
   }, []);
   return posts;
 }
