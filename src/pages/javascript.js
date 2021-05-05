@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import React, { Fragment } from 'react';
 
 import H from '../components/mdxComponents/Headings';
@@ -31,7 +31,7 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
             <ul>
               {section[1].map((tocItem) => (
                 <li key={tocItem.tocTitle}>
-                  <a href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</a>
+                  <Link to={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</Link>
                 </li>
               ))}
             </ul>
