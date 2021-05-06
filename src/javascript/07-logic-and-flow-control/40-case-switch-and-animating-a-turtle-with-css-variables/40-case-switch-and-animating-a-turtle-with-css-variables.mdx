@@ -33,7 +33,7 @@ It's a bit big so add `width="200"` to the image element.
 
 You should see the following when you load the HTML page 👇
 
-![](./422.png)
+![rendered page showing a turtle](./422.png)
 
 In this exercise, we want to make this turtle walk, and also flip around when you hit the arrow keys.
 
@@ -128,7 +128,7 @@ After the switch, log the values of x and y and refresh the HTML page.
 
 Open the console and hit some of the arrow keys.
 
-![](./423.png)
+![rendered page showing a turtle and browser console showing outputs of key pressing events](./423.png)
 
 Oops! We made a mistake.
 
@@ -147,7 +147,7 @@ Modify the switch statements and try again.
 
 Now when you hit the up, down, left, and right keys you should see the `x` and `y` variables changing in the console.
 
-![](./424.png)
+![browser console showing x and y changes](./424.png)
 
 Now you need to convey the `x` and `y` values to the turtle somehow.
 
@@ -170,7 +170,7 @@ Grab the turtle class and add the following 👇
 
 In the dev tools, if you manipulate the values of `translateX` and `translateY`, you will see that the turtle moves.
 
-![](./425.png)
+![browser dev tools showing how to edit translateX and Y in the styles tab](./425.png)
 
 Now take those variables and put them into their own CSS variables like so 👇
 
@@ -187,7 +187,7 @@ Now take those variables and put them into their own CSS variables like so 👇
 
 Now if you modify the `x` or `y` variable values in the console, you will see that the turtle moves fine.
 
-![](./426.png)
+![browser dev tools zoomed in on the style tab showing how to edit --x positions](./426.png)
 
 Next we are going to update the `x` and `y` CSS variables with JavaScript.
 
@@ -199,7 +199,7 @@ turtle.style.background = 'red';
 
 If you refresh the page and hit an arrow, you should see the following 👇
 
-![](./427.png)
+![rendered page showing turtle on red background](./427.png)
 
 So if you want to apply a variable, you can't just do `turtle.style--x`.
 
@@ -320,7 +320,7 @@ Modify the transform to move the `rotateY` to the end of the transform. The orde
 
 Now when you hit the left arrow, the turtle should look left like so 👇
 
-![](./428.png)
+![rendered page showing turtle now facing left](./428.png)
 
 We could also rotate the turtle up and down.
 
