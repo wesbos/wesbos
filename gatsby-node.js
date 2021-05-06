@@ -11,7 +11,9 @@ process.env.GATSBY_DEPLOY_URL = process.env.DEPLOY_URL;
 process.env.GATSBY_CONTEXT = process.env.CONTEXT;
 
 // We don't want to pass the entire blog post because this can be really big, but something we need to for the tips. So this passes only the data required in ContentNav.js
-function getOnlyTheDataWeNeed({ node } = {}) {
+function getOnlyTheDataWeNeed(node) {
+  return node;
+  // TODO fix this
   // possible there is no next/prev
   if(!node) {
     return;
