@@ -16,14 +16,15 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-remove-trailing-slashes`,
-    {
-      resolve: `gatsby-plugin-prettier-build`,
-      options: {
-        types: ['html'],
-        concurrency: 20,
-        verbose: true,
-      },
-    },
+    // Removed during dev as its slow to build
+    // {
+    //   resolve: `gatsby-plugin-prettier-build`,
+    //   options: {
+    //     types: ['html'],
+    //     concurrency: 20,
+    //     verbose: true,
+    //   },
+    // },
     {
       // This tells us where the plugin lives
       // this one is in our node_modules
