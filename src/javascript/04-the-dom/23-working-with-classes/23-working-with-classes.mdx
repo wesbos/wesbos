@@ -23,7 +23,7 @@ Duplicate one of the image tags and add it right after the opening body tag, and
 <img class="nice" src="https://picsum.photos/500" />
 ```
 
-![](./1443.png)
+![screenshot showing webpage with multiple images on it](./1443.png)
 
 Within `the-dom.js`, add the following code to select the element using the class of `nice`, and then we will log the `classList` attribute of the element.
 
@@ -32,7 +32,7 @@ const pic = document.querySelector('.nice');
 console.log(pic.classList)
 ```
 
-![](./237.png)
+![browser console showing the output of classList showing only one class in the output](./237.png)
 
 In the console we get a **DOMTokenList** which is kind of like an array of all the classes that are on that image.
 
@@ -40,7 +40,7 @@ In the HTML file, add a class of `cool` to the image as well.
 
 When you refresh the page, you will see that we get both of them as well as a value of all of the classes.  👇
 
-![](./238.png)
+![browser console showing the output of classList showing multiple classes in the output](./238.png)
 
 If you look into the **prototype** _(we haven't learned what that is yet)_, you can see which methods are available to call against the thing we have.
 
@@ -54,13 +54,13 @@ To name a few, there is
 
 A lot of those are methods for working with classes which is exactly what we are going to do.
 
-![](./239.png)
+![broswer console showing the prototype methods for classList output](./239.png)
 
-![](./240.png)
+![broswer console showing the prototype methods for classList output focused on the forEach method](./240.png)
 
 Within VS Code, as you type, you may have noticed that you get a dropdown of methods available to you. 👇
 
-![](./241.png)
+![editor showing dropdown of classList methods names when typing](./241.png)
 
 ## Adding a class
 
@@ -84,7 +84,7 @@ You could do that with the following code 👇
 pic.classList.remove('cool');
 ```
 
-![](./242.png)
+![screenshot of html output showing image with no class name 'cool'](./242.png)
 
 ## Toggling a class
 
@@ -110,7 +110,7 @@ pic.classList.add('round');
 
 Now the element has the class of round and makes the image circular.
 
-![](./1444.png)
+![screenshot of rendered webpage showing image in a circle format](./1444.png)
 
 We can add and remove that class either by pasting it into the console or on click.
 
@@ -126,7 +126,7 @@ pic.classList.toggle('round');
 
 If you copy and paste that line of code into the console, you will see that the class is being added and then removed.
 
-![](./round.gif)
+![animated git showing an image being formatted as a circle then removed back to square](./round.gif)
 
 If we go into our CSS and add a transition all for .2 seconds, that will give us an animation when the class is toggled.
 
@@ -142,7 +142,7 @@ img {
 }
 ```
 
-![](./round-transition.gif)
+![animated git showing an image being formatted as a circle then removed back to square with an animated transition](./round-transition.gif)
 
 Quick peak ahead _(we will be learning about events later)_, you can do something like the following 👇
 
@@ -167,7 +167,7 @@ You can add the following styles to the `.round` class also for a rotation trans
 
 The CSS added 👆 above will give you the transition shown below 👇
 
-![](./transition1.gif)
+![animated git showing an image being formatted as a circle then removed back to square with an animated rotating 20 degrees transition](./transition1.gif)
 
 ```css
 .round {
@@ -178,7 +178,7 @@ The CSS added 👆 above will give you the transition shown below 👇
 
 To get the transition effect below 👇 add the code shown above 👆
 
-![](./transition2.gif)
+![animated git showing an image being formatted as a circle then removed back to square with an animated rotating 2000 degrees transition](./transition2.gif)
 
 ```css
 .round {
@@ -189,7 +189,7 @@ To get the transition effect below 👇 add the code shown above 👆
 
 The code above 👆 gives you the effect below 👇
 
-![](./transition3.gif)
+![animated git showing an image being formatted as a circle then removed back to square with an animated rotating and scale transition](./transition3.gif)
 
 A lot of JavaScript interaction is just adding and removing classes at different points in time. That allows JavaScript developers to use CSS to add and remove transitions.
 
