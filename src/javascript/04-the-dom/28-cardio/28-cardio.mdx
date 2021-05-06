@@ -45,7 +45,7 @@ Then, append it to the body 👇
 document.body.appendChild(div);
 ```
 
-![Screenshot of rendered page showing empty div](./297.png)
+![rendered page showing empty div](./297.png)
 
 As you can see, the works!
 
@@ -190,7 +190,7 @@ You could try using `insertAdjacentHTML()`.
 ulElement.insertAdjacentHTML("beforebegin", myHTML);
 ```
 
-![Screenshot of rendered page with multiple paragaphs above list](./303.png)
+![rendered page with multiple paragaphs above list](./303.png)
 
 That works great! You could have also done `createRange()` and then added it as a document fragment.
 
@@ -207,7 +207,7 @@ If we look at the HTML in the dev tools, you will see the following code 👇
 </div>
 ```
 
-![Screenshot of rendered html](./304.png)
+![rendered html](./304.png)
 
 Select the first div within the `wrapper` using `querySelector`, like so 👇
 
@@ -222,7 +222,7 @@ const myDiv = div.firstElementChild;
 console.log(myDiv);
 ```
 
-![Screenshot of rendered page with dom elements being highlighted because they are selected in the browser console](./305.png)
+![rendered page with dom elements being highlighted because they are selected in the browser console](./305.png)
 
 That is working, however, let's not use that because if you were to insert anything else, the div could no longer be the first element child, which makes it a pretty unstable solution.
 
@@ -273,7 +273,7 @@ Then, remove the first paragraph like so 👇
 myDiv.firstElementChild.remove();
 ```
 
-![Screenshot of rendered page no longer showing paragraph one](./1449.png)
+![rendered page no longer showing paragraph one](./1449.png)
 
 Next you need to create a function, `generatePlayerCard` that takes in 3 arguments:
 - name
@@ -446,7 +446,7 @@ div.insertAdjacentElement('beforebegin', cards);
 
 If you refresh the HTML page you should see the following 👇
 
-![Screenshot of rendered page showing a list of cards as text](./311.png)
+![rendered page showing a list of cards as text](./311.png)
 
 Really quickly, we will add some styles in the HTML page.
 
@@ -476,7 +476,7 @@ Add the following: 👇
 </body>
 ```
 
-![Screenshot of rendered page showing a list of cards wrapped in white boxes](./312.png)
+![rendered page showing a list of cards wrapped in white boxes](./312.png)
 
 The bonus step in the exercise involves putting a delete button on each card so when you click it, it is removed.
 
@@ -495,7 +495,7 @@ const html = `
 `;
 ```
 
-![Screenshot of rendered page showing a list of cards wrapped in white boxes with delete buttons](./313.png)
+![rendered page showing a list of cards wrapped in white boxes with delete buttons](./313.png)
 
 When that button is clicked, we want to delete the card.
 

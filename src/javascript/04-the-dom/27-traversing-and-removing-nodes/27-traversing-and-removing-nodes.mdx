@@ -135,7 +135,7 @@ $0.previousElementSibling
 
 👆 That will give you the item that is before it.
 
-![Screenshot of brower console showing output from using $0.previousElementSibling](./288.png)
+![brower console showing output from using $0.previousElementSibling](./288.png)
 
 We were on `item2`, and the previous element sibling is the first item. In the code we wrote in our JavaScript file, we selected the first item, which has no previous sibling, thus it returned null.
 
@@ -147,7 +147,7 @@ And then there is `parentElement` which will go up and give you the parent eleme
 
 If you take an element that is really low in the document like one of our image elements, you can chain calls to `.parentElement` like so 👇
 
-![Screenshot of browser console as user is typing a chained call .parentElement](./289.png)
+![browser console as user is typing a chained call .parentElement](./289.png)
 
 How high can you chain?
 
@@ -160,7 +160,7 @@ In the elments tab in the dev tools, select the span within `item2`, and in the 
 
 Now you can go down again using `.children[1]` to select the paragraph with a class of `pizza`. We will talk about the **square bracket notation**(`[]`) shortly, but essentially that is how you reference items that are indexed.
 
-![Screenshot of browser console as user is selection children by square bracket notation](./294.png)
+![browser console as user is selection children by square bracket notation](./294.png)
 
 In the code above, we strted with the `span` in `item2`, we went up, up, over down and selected the second element.
 
@@ -191,7 +191,7 @@ Let's do it from the dev tools.
 
 Grab the `h2` by clicking the element in the element pane and then in the console write `$0.remove()`
 
-![Screenshot of broswer console as user uses .remove](./295.png)
+![broswer console as user uses .remove](./295.png)
 
 That removes the element completely from the DOM.
 
@@ -210,7 +210,7 @@ If you open the index file in the browser, you won't see the `p` tag because we 
 
 The question now is what if you log `p` after you call `remove()`, will it be null, `undefined`?
 
-![Screenshot of browser console showing a logged out p tag](./296.png)
+![browser console showing a logged out p tag](./296.png)
 
 It is still there!
 
