@@ -68,7 +68,7 @@ What is going to happen when the code above runs? 👆 Are we going to log "star
 
 Let's refresh the HTML page and see.
 
-![](./429.png)
+![browser console output showing timeout logs](./429.png)
 
 So what is happening there?
 
@@ -98,7 +98,7 @@ To run `buzzer` every 100 milliseconds you would write the following 👇
 setInterval(buzzer, 100);
 ```
 
-![](./430.png)
+![browser console output showing ENNGGGGGGG with a 51 count](./430.png)
 
 That will result in the interval running every 100 milliseconds.
 
@@ -176,7 +176,7 @@ Now we mentioned earlier that you might be a bit confused about where `funcToRun
 
 We have gone over this before but it's a big tripping point for people so we will go over it again.
 
-![](./433.png)
+![code snippet showing setImmediateInterval code](./433.png)
 
 In this scenario, you made a function (`setImmediateInterval()`) which takes a parameter of another function.
 
@@ -184,7 +184,7 @@ If you have a function and one of the arguments you pass is a function, it works
 
 So in this instance, you just take the function that was passed in as an argument and you call it.
 
-![](./434.png)
+![code snippet showing setImmediateIntervale being called with buzzer passed in](./434.png)
 
 In the line of code above, you are passing the function buzzer as an argument to `setImmediateInterval`.
 
@@ -202,7 +202,7 @@ setImmediateInterval(sayHi, 200);
 
 If you refresh the HTML page and open the console, you will see something like this 👇
 
-![](./435.png)
+![browser console output showing various outputs](./435.png)
 
 So in both examples, Wes is passing a function and whenever it's called, it gets transformed into the parameter called `funcToRun`. That gives us access to either run it, or pass it even one level further down into our `setInterval()`.
 
@@ -232,7 +232,7 @@ setTimeout(destroy, 2000);
 
 If you refresh the page, you will see the text "DESTROYED" displayed after 2 seconds.
 
-![](./436.png)
+![rendered page text saying DESTORYED](./436.png)
 
 Now that is obviously not that interesting, but you can imagine some scenario where something like this might happen like you have to hit the save button within an allotted period of time.
 
@@ -257,7 +257,7 @@ const bombTimer = setTimeout(destroy, 5000);
 
 If you were to log `bombTimer`, what are you going to get?
 
-![](./437.png)
+![browser console showing the ouput from bombTimer](./437.png)
 
 You will see 2 in the console.
 
@@ -273,7 +273,7 @@ If you were to look at the `typeof` when logging our reference to `bombTimer` as
 console.log(typeof bombTimer);
 ```
 
-![](./438.png)
+![browser console showing output from typeof bopmbTimer](./438.png)
 
 But if you save reference to that timer number in a variable, you can later call `clearTimeout()` and pass it a reference to that timer and what that will do is it will stop the timer from running.
 
@@ -308,7 +308,7 @@ setInterval(function() {
 
 If you refresh the HTML page and look at the console, you will see tons of logs.
 
-![](./439.png)
+![browser console showing various outputs of Hehehe and poo emojis](./439.png)
 
 To clear that, you could save reference to it and then call `clearInterval()` and pass it the reference, like so 👇
 
