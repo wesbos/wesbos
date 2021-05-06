@@ -10,6 +10,31 @@ process.env.GATSBY_REPOSITORY_URL = process.env.REPOSITORY_URL;
 process.env.GATSBY_DEPLOY_URL = process.env.DEPLOY_URL;
 process.env.GATSBY_CONTEXT = process.env.CONTEXT;
 
+// We don't want to pass the entire blog post because this can be really big, but something we need to for the tips. So this passes only the data required in ContentNav.js
+function getOnlyTheDataWeNeed({ node } = {}) {
+  // possible there is no next/prev
+  if(!node) {
+    return;
+  }
+  // possible we have the title we need
+  if(node.frontmatter) {
+    return {
+      node: {
+        fields: {
+          slug: node.fields.slug
+        },
+        frontmatter: {
+          title: node.frontmatter.title
+        }
+      }
+    }
+  }
+  // otherwise we need the body (usually a tip)
+  return {
+    body: node.body
+  }
+}
+
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
   const { errors, data } = await graphql(
@@ -48,8 +73,8 @@ async function makePostsFromMdx({ graphql, actions }) {
       context: {
         slug: post.node.fields.slug,
         collection: 'post',
-        prev,
-        next,
+        prev: getOnlyTheDataWeNeed(prev),
+        next: getOnlyTheDataWeNeed(next),
         pathPrefix: '',
       },
     });
@@ -91,9 +116,9 @@ async function makeTipsFromMdx({ graphql, actions }) {
       component: tipTemplate,
       context: {
         slug: tip.node.fields.slug,
-        prev,
+        prev: getOnlyTheDataWeNeed(prev),
         collection: 'tip',
-        next,
+        next: getOnlyTheDataWeNeed(next),
         pathPrefix: '/tip',
       },
     });
@@ -140,8 +165,8 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
       context: {
         slug: post.node.fields.slug,
         collection: 'javascript',
-        prev,
-        next,
+        prev: getOnlyTheDataWeNeed(prev),
+        next: getOnlyTheDataWeNeed(next),
         pathPrefix: '/javascript',
       },
     });

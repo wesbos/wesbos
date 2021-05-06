@@ -39,7 +39,8 @@ export function useActiveId(itemIds) {
 
     return () => {
       itemIds.forEach((id) => {
-        observer.unobserve(document.getElementById(id));
+        const el = document.getElementById(id);
+        if(el) observer.unobserve(el);
       });
     };
   }, [itemIds]);

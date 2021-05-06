@@ -85,7 +85,7 @@ If you were to make that change, save the file and then refresh `type.html`, you
 
 > Unexpected identifier
 
-![](/unexpected-identified-apostrophe.png)
+![Console showing unexpected apostrophe](/unexpected-identified-apostrophe.png)
 
 In that case, there are a few things we can do.
 
@@ -158,7 +158,7 @@ I like\
 pizza';
 ```
 
-![](/i-like-pizza-console.png)
+![Variable being logged to the console](/i-like-pizza-console.png)
 
 The benefit to using backticks is you can have multi-line strings and they maintain the line breaks inside of them.
 
@@ -171,7 +171,7 @@ I like
 pizza`;
 ```
 
-![](/i-like-pizza-backticks-console.png)
+![Multi line console log](/i-like-pizza-backticks-console.png)
 
 Sometimes the console will return the value like `"Ohhh↵↵ya↵↵I like↵pizza"`. Those arrows indicate a new line.
 
@@ -236,7 +236,7 @@ But if you do `"1" + "1"`, it will evaluate to `"11"`.
 
 If you do `"1"` + `1`, it will also evaluate to `"11"`.
 
-![](/addition-with-strings-and-numbers.png)
+![Console showing string concatenation](/addition-with-strings-and-numbers.png)
 
 That is ripe for bugs, so that is where backticks come in with a much nicer solution.
 
@@ -276,7 +276,7 @@ const html = `
 
 Now we have all of this html that we have made, and if you add a `console.log(html);` and reload `types.html`, you will see 👇
 
-![](/interpolated-html-string.png)
+![Generated HTML in the console](/interpolated-html-string.png)
 
 We can actually do something like this with the html we just created _(we will discuss what this code does in future videos)_.
 
@@ -288,6 +288,6 @@ document.body.innerHTML = html;
 
 When you refresh `types.html` you should see something like the following in your browser 👇
 
-![](/interpolated-html-string-browser.png)
+![Interpolated values being shown in HTML](/interpolated-html-string-browser.png)
 
 We have just made some HTML! If you inspect the html using the browser dev tools, you will see it's regular html.

@@ -1,9 +1,29 @@
 import { graphql, Link } from 'gatsby';
 import React, { Fragment } from 'react';
+import styled from 'styled-components';
 
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
+
+const TOC = styled.section`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 2rem;
+
+  ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+  }
+  li {
+    a {
+      &:before {
+        display: none;
+      }
+    }
+  }
+`;
 
 export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
   function createToc() {
@@ -23,21 +43,20 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
       <p>
         Did I miss something? Think you could add a better example? Find a spelling mistake? All the notes are open source and and edits are greatly appreciated!
       </p>
-      <H as="h2">Table of Contents</H>
-      <div>
-        {createToc().map((section) => (
-          <Fragment key={section[0]}>
-            <H as="h3">{section[0]}</H>
+      <TOC>
+        {createToc().map(([title, items]) => (
+          <div key={title}>
+            <H as="h3">{title}</H>
             <ul>
-              {section[1].map((tocItem) => (
+              {items.map((tocItem) => console.log(tocItem) || (
                 <li key={tocItem.tocTitle}>
                   <Link to={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</Link>
                 </li>
               ))}
             </ul>
-          </Fragment>
+          </div>
         ))}
-      </div>
+      </TOC>
 
       <PostMetaTags
         post={{
