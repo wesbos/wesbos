@@ -20,7 +20,7 @@ const name = "wes";
 
 Open `types.html` in the browser and then open the console and type `typeof age` and hit enter. The console should return to you "number".
 
-![typeof values shown in the console](/1438.png)
+![typeof values shown in the console](/typeof-operator-in-console.png)
 
 **typeof** is a keyword in JavaScript that allows you to check the type of a value.
 
@@ -45,7 +45,7 @@ const b = 10;
 
 You can perform the following calculations in the browser 👇
 
-![simple math in the console](/55.png)
+![simple math in the console](/arithmetic-calculations-in-console.png)
 
 The only thing to be aware of is when you are mixing types.
 
@@ -57,13 +57,13 @@ If you try to do math with strings, it will convert them for you if you are doin
 
 Whenever we are doing math, we need to make sure we are dealing with true numbers and not mixing types.
 
-![strings of 10 and 10 can be multiplied](/57.png)
+![strings of 10 and 10 can be multiplied](/string-multiplication.png)
 
 Along with numbers we also have what we call helper methods.
 
 If you go into the browser console and type `Math.`, you will see a lot of built in helper methods.
 
-![autocompletion of the Math static methods](/58.png)
+![autocompletion of the Math static methods](/autocompletion-of-methods-in-console.png)
 
 ## Helper Methods
 
@@ -78,19 +78,19 @@ Let's go through each one, starting with `Math.round()`.
 
 To use `Math.round()`, you pass a value in between the parenthesis `()` _(that is referred to as passing a value, which we will go over in a future video)._ It will return to you the number that was passed in, rounded up or down depending on the number.
 
-![Console rouning 20.5 up to 21 and 20.2 down to 20](/59.png)
+![Console rouning 20.5 up to 21 and 20.2 down to 20](/math-round-in-console.png)
 
 There is also `Math.floor()` which will give you the lower end of that number.
 
-![console showing 20.2 and 20.999999 rounded down to 20](/60.png)
+![console showing 20.2 and 20.999999 rounded down to 20](/math-floor-in-console.png)
 
 We have `Math.ceil()` and that will give you the upper number.
 
-![console showing 20.2 and 20.999999 rounded up to 21](/61.png)
+![console showing 20.2 and 20.999999 rounded up to 21](/math-ceil-in-console.png)
 
 Then there is `Math.random()` which will give you a random number every time between 0 and 1 (in a future video we will go over how to get a random number between 1 and 10).
 
-![Console showing Math.random() returning a random number each time](/62.png)
+![Console showing Math.random() returning a random number each time](/math-random-in-console.png)
 
 ## Modulo and Power Operators
 
@@ -107,7 +107,7 @@ console.log(`Each kid gets ${eachKidGets}`);
 
 In the console, that evaluates to `Each kid gets 6.66666666667` 👇
 
-![Each kid gets 6.66666666667 in the console](/63.png)
+![Each kid gets 6.66666666667 in the console](/each-kids-gets-6-dot-66666666667-in-console.png)
 
 That is obviously not going to work because you aren't going to split a smartie into a 0.6666.
 
@@ -121,7 +121,7 @@ const eachKidGets = Math.floor(smarties / kids);
 
 Now in the console you should see that each kid gets six.
 
-![Each kid gets 6 smarties int he console](/64.png)
+![Each kid gets 6 smarties int he console](/each-kid-gets-6-in-console.png)
 
 Now how many smarties do we have left over?
 
@@ -137,7 +137,7 @@ smarties % kids;
 
 and you should see the value 2 returned. 👇
 
-![Modulo Operator returning 2](/65.png)
+![Modulo Operator returning 2](/modulo-operator-in-console.png)
 
 After the smarties have been evenly distributed between the kids, there are 2 smarties left over. The modulo operator `%` will tell you how many are left after you evenly divide them.
 
@@ -191,11 +191,11 @@ We will go over an example.
 
 If you do `10 **`, the double `**` actually means _"to the power of"_. So `10 ** 2` returns 100 and `1000 ** 2` returns 1000000.
 
-![A calculation returning infinity](/70.png)
+![A calculation returning infinity](/infinity-calculation-in-console.png)
 
 Negative infinity is also a number. Wes has never run into this in his programming, unless you have goofed something up.
 
-![typeof Infinity returning a number](/71.png)
+![typeof Infinity returning a number](/typeof-infinity-returning-a-number-in-console.png)
 
 ### Not a Number
 
@@ -207,10 +207,10 @@ If you try to do something like below, it would return NaN 👇
 10 / "dog"; // Return NaN
 ```
 
-![NaN in console](/72.png)
+![NaN in console](/nan-in-console.png)
 
 **NaN** is a type of "number", which is confusing since it means not a number.
 
-![typeof NaN is a number](/73.png)
+![typeof NaN is a number](/typeof-number-in-console.png)
 
 That is something you will run into if you try to do math with something that is not a number. Instead of erroring out, it will just return NaN.
