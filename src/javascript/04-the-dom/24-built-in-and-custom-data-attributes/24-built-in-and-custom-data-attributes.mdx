@@ -22,7 +22,7 @@ _TIP: When adding alt attributes to images, the value of the alt text should des
 
 Although we did not add the alt attribute when we authored the element, when we added it via JavaScript, you can now see it on the element.
 
-![](./243.png)
+![rendered html showing image with an alt tag of cute pup](./243.png)
 
 We can also set the width of the image this way, by adding the code below 👇
 
@@ -45,11 +45,11 @@ If you add the code below, we get zero 👇
 console.log(pic.naturalWidth);
 ```
 
-![](./244.png)
+![browser console output showing 0](./244.png)
 
 However, if you copy and paste that in the console and run it, you get a value of 600 back.
 
-![](./245.png)
+![browser console showing output of pic.naturalWidth as 600](./245.png)
 
 Why is it zero when we log it from the JavaScript file, but running the code in the console returns 600?
 
@@ -111,7 +111,7 @@ You can use `getAttribute` like so 👇
 console.log(pic.getAttribute('alt'));
 ```
 
-![](./1445.png)
+![browser console showing the output of .getAttribute](./1445.png)
 
 You can use `setAttribute` like so 👇
 
@@ -119,7 +119,7 @@ You can use `setAttribute` like so 👇
 pic.setAttribute('alt', 'REALLY CUTE PUP');
 ```
 
-![](./1446.png)
+![browser console showing the output of .getAttrvute after setting via .setAttribute](./1446.png)
 
 And there is `hasAttribute` which will return true or false based on whether that attribute is set on an element or not.
 
@@ -141,7 +141,7 @@ For example, 👇
 pic.setAttribute('wes-is-cool', 'REALLY CUTE PUP');
 ```
 
-![](./246.png)
+![rendered html showing custom attirbute on the img element](./246.png)
 
 You should not go making your own attributes whenever you want because it is possible that in the future, an HTML standard attribute will be introduced with the same name as one of your custom attributes.
 
@@ -169,7 +169,7 @@ For example: `data-dog`, `data-name`, `data-description` are all valid data attr
 
 That will allow you to attach metadata to an element.
 
-![](./247.png)
+![rendered html showing data-name attributes on img elements](./247.png)
 
 Let's say we wanted to grab the image with the class of `custom` and access the data attributes on that image.
 
@@ -189,7 +189,7 @@ const custom = document.querySelector('.custom');
 console.log(custom.dataset);
 ```
 
-![](./248.png)
+![browser console showing output of .dataset](./248.png)
 
 That gives us an object that is full of all the property values that you have.
 
@@ -199,7 +199,7 @@ That gives us an object that is full of all the property values that you have.
 <img class="custom" data-name="wes" data-last="bos" src="https://picsum.photos/200" />
 ```
 
-![](./249.png)
+![browser console showing a img element's custom datasets object](./249.png)
 
 Why would this be useful?
 
@@ -215,7 +215,7 @@ custom.addEventListener('click', function(){
 
 If you add that, and then click on the image, you would get an alert, similar to the one shown below.
 
-![](./250.png)
+![an active alert on the webpage showing welcome wes bos](./250.png)
 
 Wes loves using data attributes when coding **vanilla JavaScript**.
 
