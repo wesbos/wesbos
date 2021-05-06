@@ -35,11 +35,11 @@ const wes = document.querySelector('.wes');
 console.log(wes);
 ```
 
-![](./276.png)
+![browser console showing the output of querySelector .wes](./276.png)
 
 If instead you log `wes.children`, it will return a collection of one thing in the console, which is the `em` tag we just added.
 
-![](./277.png)
+![browser console showing the output of .children on a .querySelector](./277.png)
 
 If you log `wes.childNodes` instead, you will see that it returns a NodeList of three things:
 - text
@@ -48,27 +48,27 @@ If you log `wes.childNodes` instead, you will see that it returns a NodeList of 
 
 In the HTML collection, only the `em` element was returned.
 
-![](./278.png)
+![browser console showing the output of .childNodes on a .querySelector](./278.png)
 
 If you hover over the nodes in the console one at a time, you will see it highlighting the corresponding node on the HTML page.
 
 This is the first `text` node.
 
-![](./279.png)
+![Screenshot showing that when you hover on an text node in the browser console output it will highlight on the html page](./279.png)
 
 Then the `emphasis` node.
 
-![](./280.png)
+![Screenshot showing that when you hover on an emphasis node in the browser console output it will highlight on the html page](./280.png)
 
 Then the rest of the text.
 
-![](./281.png)
+![Screenshot showing that when you hover on the rest of the text node in the browser console output it will highlight on the html page](./281.png)
 
 Everything in our `NodeList` in the console is a `Node`, and if it is wrapped in a `tag`, it is also an `element`, but it doesn't work the other way around.
 
 If you only select elements, you won't have nodes returned. But if you select the nodes, you get all of the three different pieces.
 
-![](./282.png)
+![Browser console showing output of a p tag when click on](./282.png)
 
 _VS Code TIP: You can do multi-cursor in VS Code. The way you use that is you hold down command or control and click wherever you want the cursors to go. In this video Wes used multicursor by selecting an element and then doing command + D to grab other occurences_
 
@@ -89,7 +89,7 @@ console.log(wes.childNode);
 
 Here is the result when you refresh the index.html page.
 
-![](./283.png) 3:59
+![Screenshot showing the output of various console logs on a querySelector of .wes](./283.png) 3:59
 
 `children` gives you the children.
 
@@ -107,13 +107,13 @@ If you refresh that page, you should get the following results:
 1. `lastChildElement` returns the strong element.
 1. `previousElementSibling` is null.
 
-![](./284.png)
+![browser console output showing results of using .firstChildElement, .lastChildElement and .previousElementSibling](./284.png)
 
 Why is `previousElementSibling` null?
 
 If you look at the HTML page, you will see that a few elements with the class of `item` are next to each other.
 
-![](./287.png)
+![Screenshot showing rendered html highlighting multiple divs with the class item](./287.png)
 
 If we were to grab the second item by clicking it in our developer tools and then using `$0` to reference it in the console, we can take it and run the following code in the console:
 
@@ -135,7 +135,7 @@ $0.previousElementSibling
 
 👆 That will give you the item that is before it.
 
-![](./288.png)
+![Screenshot of brower console showing output from using $0.previousElementSibling](./288.png)
 
 We were on `item2`, and the previous element sibling is the first item. In the code we wrote in our JavaScript file, we selected the first item, which has no previous sibling, thus it returned null.
 
@@ -147,7 +147,7 @@ And then there is `parentElement` which will go up and give you the parent eleme
 
 If you take an element that is really low in the document like one of our image elements, you can chain calls to `.parentElement` like so 👇
 
-![](./289.png)
+![Screenshot of browser console as user is typing a chained call .parentElement](./289.png)
 
 How high can you chain?
 
@@ -160,7 +160,7 @@ In the elments tab in the dev tools, select the span within `item2`, and in the 
 
 Now you can go down again using `.children[1]` to select the paragraph with a class of `pizza`. We will talk about the **square bracket notation**(`[]`) shortly, but essentially that is how you reference items that are indexed.
 
-![](./294.png)
+![Screenshot of browser console as user is selection children by square bracket notation](./294.png)
 
 In the code above, we strted with the `span` in `item2`, we went up, up, over down and selected the second element.
 
@@ -191,7 +191,7 @@ Let's do it from the dev tools.
 
 Grab the `h2` by clicking the element in the element pane and then in the console write `$0.remove()`
 
-![](./295.png)
+![Screenshot of broswer console as user uses .remove](./295.png)
 
 That removes the element completely from the DOM.
 
@@ -210,7 +210,7 @@ If you open the index file in the browser, you won't see the `p` tag because we 
 
 The question now is what if you log `p` after you call `remove()`, will it be null, `undefined`?
 
-![](./296.png)
+![Screenshot of browser console showing a logged out p tag](./296.png)
 
 It is still there!
 
