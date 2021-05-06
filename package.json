@@ -98,6 +98,7 @@
     "develop": "gatsby develop",
     "start": "npm run develop",
     "build": "gatsby-parallel-runner",
+    "build-gatsby": "gatsby build",
     "netlify": "netlify dev",
     "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
     "prebuild": "netlify-lambda install",
