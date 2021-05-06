@@ -12,7 +12,7 @@ Now that we know how to select elements, let's go over what we can do with them.
 
 Start by selecting an `h2` element from the page and logging it. 👇
 
-![screenshot showing how to select and log to the browser console a h2 element](./229.png)
+![how to select and log to the browser console a h2 element](./229.png)
 
 Although in the console it looks like the `heading` variable is the actual element, in reality it is an object that has a lot of properties and methods inside of it.
 
@@ -84,7 +84,7 @@ Let's say you have the following code 👇
 
 `textContent` will return the "I am hidden!" text, however `innerText` will not.
 
-![screenshot showing outputs in the browser console when using textContent and innerText on elements](./230.png)
+![outputs in the browser console when using textContent and innerText on elements](./230.png)
 
 We have a set of properties when working with HTML. If we were to log the `innerHTML` of the `h2`, you would see 👇
 
@@ -160,15 +160,15 @@ If you were to try  👇
 pizzaList.insertAdjacentText('beforebegin','🍕');
 ```
 
-![screenshot showing html output of the pizza emoji being added into the p element before the p element itself](./233.png)
+![html output of the pizza emoji being added into the p element before the p element itself](./233.png)
 
 That will put the pizza emoji before the paragraph entirely, it's not inside of that element. We would want to use `afterbegin` to add the pizza in front of the text.
 
-![screenshot showing html output of the pizza emoji being added into the p element just before its first child ](./234.png)
+![html output of the pizza emoji being added into the p element just before its first child ](./234.png)
 
 The browser actually knows that the pizza emoji was added later, because the text is split up between what we used to have and what we inserted.
 
-![screenshot showing html output clearly indicating that the html element has two strings inside of it](./235.png)
+![html output clearly indicating that the html element has two strings inside of it](./235.png)
 
 That is actually the difference between elements and nodes.
 
