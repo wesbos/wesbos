@@ -16,7 +16,7 @@ One thing you are likely to encounter in your career as a developer is building 
 
 That is where the user is forced to scroll all the way to the bottom of the text before the accept button will work.
 
-![](./scroll-terms.gif)
+![scrolling to the bottom of a page to enable an accept button](./scroll-terms.gif)
 
 First we are just going to dive into scroll events, and then Wes will show us why a scroll event is maybe not what you want, and there is this newer thing in the browser called **intersection observer** which actually might be what we want.
 
@@ -66,7 +66,7 @@ terms.addEventListener('scroll', function(e) {
 });
 ```
 
-![](./1341.png)
+![console showing an Uncaught TypeError: Cannot read property 'addEventListener' of null](./1341.png)
 
 As you can see, it did not find anything. When that is the case, your selector is probably wrong.
 
@@ -102,7 +102,7 @@ If you try screwing up your query selector now, you won't get an error because t
 
 Open up the scroll event that you are logging in the console.
 
-![](./1342.png)
+![console showing logged Event object](./1342.png)
 
 The `currentTarget` is `null` at this point but if you were to log it, you would see it.
 
@@ -118,7 +118,7 @@ terms.addEventListener('scroll', function(e) {
 });
 ```
 
-![](./1343.png)
+![console showing logs of event.currentTarget.scrollTop values](./1343.png)
 
 How do you know if you are scrolled to the bottom? How would you know that 1,828  pixels is the bottom for example?
 
@@ -133,13 +133,13 @@ terms.addEventListener('scroll', function(e) {
 });
 ```
 
-![](./1344.png)
+![screenshot with console showing logs from scroll handler and editor showing code](./1344.png)
 
 Now when you log that, you will see how far from the top you are scrolled and the second number is how high the actual scroll-able div is.
 
 When you reach the very end, you should see the values are close.
 
-![](./1345.png)
+![console showing logs scroll event handler](./1345.png)
 
 They are not perfectly close and that is because the elements have different CSS styles, one of them has margins and padding.
 
@@ -155,7 +155,7 @@ You can do that with the `terms` div but first let's go over a simple example fi
 
 Inside of the `terms` HTML, between one of the paragraphs, Wes will add a strong tag with a class of `watch`
 
-![](./1346.png)
+![editor showing a high;ighted strong element with a classname watch](./1346.png)
 
 We want to know when that strong tag is visible on the page.
 
@@ -202,7 +202,7 @@ ob.observe(watch);
 
 Now, every time we you ahead and scroll, you will notice that you get this IntersectionObserver entity logged.
 
-![](./1347.png)
+![console showing array of IntersectionObserverEntry object](./1347.png)
 
 As you can see, it is full of information about all of the items that have come our way.
 
@@ -214,7 +214,7 @@ If you take a look at what is in there, you will see some interesting things lik
 
 There is also the boolean `isIntersecting` which will tell you if it is on the page or off.
 
-![](./1348.png)
+![console showing logs of an arrays of IntersectionObserverEntry object](./1348.png)
 
 There is other information about the size of the element and what size it is on the page.
 
@@ -230,7 +230,7 @@ function obCallback(payload) {
 
 Now if you refresh the page and scroll the strong tag into view, you will see that an **IntersectionObserverEntry** is logged.
 
-![](./1349.png)
+![console showing logged IntersectionObserverEntry object with isIntersecting property highlighted](./1349.png)
 
 On that object there is a property `isIntersecting`, which is a boolean.
 
@@ -242,7 +242,7 @@ function obCallback(payload) {
 }
 ```
 
-![](./intersecting.gif)
+![screenshot with console showing logs on scroll and editor showing code](./intersecting.gif)
 
 As you can see it tells us when it is on or off the page.
 
@@ -254,7 +254,7 @@ function obCallback(payload) {
 }
 ```
 
-![](./ratio.gif)
+![console showing scroll intersectionRatio logs](./ratio.gif)
 
 As you can see, the properties value changes based on what percentage of the element that is being watched is visible on the page.
 
@@ -286,7 +286,7 @@ Now you are observing the last paragraph in the terms div.
 
 If you refresh the page and scroll to the bottom of the page with the console open, you should see something like the following 👇
 
-![](./1350.png)
+![console showing scroll intersectionRatio logs](./1350.png)
 
 How do you get it to tell us when it is 100% on the page?
 
@@ -312,7 +312,7 @@ If you refresh and open the console, you will see 0 which tells us it is off the
 
 Even when we scroll to the very bottom it's not firing.
 
-![](./1351.png)
+![screenshot with console showing scroll intersectionRatio logs and editor showing threshold option updated to 0.1](./1351.png)
 
 If you change the threshold to something like 0.11497, it will fire.
 
@@ -345,7 +345,7 @@ const button = document.querySelector('.accept');
 
 Now within that if statement, you can remove the disabled attribute from the button.
 
-![](./1352.png)
+![editor showing button disabled attribute highlighted](./1352.png)
 
 ```js
 function obCallback(payload) {
@@ -359,7 +359,7 @@ The CSS for the disabled attribute on the button gives it an opacity of 0.1.
 
 You don't have to do anything with pointer events here because HTML will prevent the button from being clickable due to the disabled attribute.
 
-![](./1354.png)
+![editor showing CSS code for button element](./1354.png)
 
 Wes has also put a transition on the button of two seconds so it fades in once you hit it.
 
