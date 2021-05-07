@@ -75,13 +75,13 @@ console.log(burg);
 
 Let's refresh the HTML page, open the console and see how this works.
 
-![](./580.png)
+![browser console showing object comment attribute containing burg](./580.png)
 
 As you can see it returned a comment "Love the burgs".
 
 So what is this part we have highlighted in this image below?
 
-![](./581.png)
+![code snippet highlighted that checks for each rating comment containing term burg](./581.png)
 
 It is a function.
 
@@ -128,7 +128,7 @@ function findBurgRating(singleFeedback) {
 }
 ```
 
-![](./582.png)
+![browser console showing all feedback array element](./582.png)
 
 Now when we run this, you see that every comment is logged in our console.
 
@@ -143,7 +143,7 @@ function findBurgRating(singleFeedback) {
 
 What will happen then is it will only every log the first one, and then it will stop.
 
-![](./583.png)
+![browser console showing first element from feedback array](./583.png)
 
 As soon as you return true from the callback function, it thinks you have found the thing you are looking for, and it will then return the item in the array.
 
@@ -163,7 +163,7 @@ function findBurgRating(singleFeedback) {
 
 Now when you refresh, you should see the following logged in the console 👇
 
-![](./584.png)
+![browser console showing feedback element containing burg](./584.png)
 
 It looped over and found the first item to contain "burg" in the `feedback` array.
 
@@ -297,7 +297,7 @@ To demonstrate this, open the console and clear everything.
 
 Try running `findByWord('burg')` and see what is returned in the console.
 
-![](./585.png)
+![browser console showing findByWord() function](./585.png)
 
 As you see, when you run the `findByWord` burg function, it returns to us another function that is then setup to find the word burg in it.
 
@@ -321,11 +321,11 @@ const goodReviews = feedback.filter(singleFeedback => {
 console.table(goodReviews);
 ```
 
-![](./586.png)
+![browser console showing feedback array elements which rating is greater or equal to 2](./586.png)
 
 As you can see, this also returns an item with a rating of 2 so let's actually change our filter from greater than or equal to 2 to just greater than 2. Now we only get 3 items returned.
 
-![](./587.png)
+![browser console showing feedback array elements which rating is greater to 2](./587.png)
 
 How can we make this function better? We have done this a few times now so you can feel free to do it yourself.
 
@@ -373,7 +373,7 @@ Now we can change our filter to take any items with a rating over 4 like so:
 const goodReviews = feedback.filter(filterByMinRating(4));
 ```
 
-![](./588.png)
+![browser console showing feedback element which rating is filtered by filterByMinRating() method](./588.png)
 
 The next exercise asks use to find all the ratings that talk about a burger using `filter`.
 
@@ -389,7 +389,7 @@ const burgRatings = feedback.filter(findByWord('burg'));
 console.table(burgRatings);
 ```
 
-![](./589.png)
+![browser console showing filtered feedback array elements containing burg](./589.png)
 
 If you refresh the page, you will see that it still works.
 
@@ -401,7 +401,7 @@ The next exercise is to remove the 1 star rating, however we like.
 
 Let's take a look at the one star rating.
 
-![](./590.png)
+![code snippet of feedback array](./590.png)
 
 So there is a few ways we could find the one star rating. We could filter out comments that are done in all caps, or filter ratings that are equal to 1. Let's go  with the second approach.
 
@@ -412,7 +412,7 @@ console.log(legitRatings);
 
 Note: notice this time we didn't name the variable that represents each instance we are looping `singleFeedback`? Wes named it `single` instead just to demonstrate that this variable name could be anything you choose (as long as it's a valid variable name).
 
-![](./592.png)
+![browser console showing feedback array element  which rating is 1](./592.png)
 
 As you can see above, that gives us the 1 star rating. However we want everything but the one star rating.
 
@@ -425,7 +425,7 @@ const legitRatings = feedback.filter(single => single.rating !== 1);
 console.log(legitRatings);
 ```
 
-![](./593.png)
+![browser console showing feedback array elements which rating is NOT 1](./593.png)
 
 That has given us everything else but the 1 star rating.
 We are not going to create a function for this one because we can do it in a simle one liner, so why not.
@@ -438,7 +438,7 @@ What does `some` do? Let's take a look at MDN.
 
 Let's take a look at `meats`.
 
-![](./594.png)
+![code snippet of meats object](./594.png)
 
 As you can see, it's an object. All of the stuff we have been learning about is arrays.
 
@@ -460,13 +460,13 @@ const isThereEnoughOfAtLeastOneMeat = Object.values(meats).some(meatValue => mea
 
 When we converted the `meats` object into an array of values, it returned the following 👇
 
-![](./595.png)
+![browser console showing meats object converted to array](./595.png)
 
 Next, we check if at least one of the values in that array is greater than or equal to 5.
 
 Log the value of `isThereEnoughOfAtLeastOneMeat`, which should return true.
 
-![](./596.png)
+![browser console showing check if any elements of meat array is greater or equal to 5](./596.png)
 
 The next exercise is to make sure we have at least 3 of every meat with `every()`.
 
@@ -497,7 +497,7 @@ So let's say we have an array of numbers and we call sort on it, like so 👇
 
 We are returning the following 👇
 
-![](./597.png)
+![browser console showing number array sorted as strings](./597.png)
 
 If we try adding a few more numbers to the array and then calling sort, we get the following:
 
