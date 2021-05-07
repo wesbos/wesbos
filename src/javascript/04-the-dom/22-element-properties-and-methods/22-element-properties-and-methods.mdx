@@ -12,7 +12,7 @@ Now that we know how to select elements, let's go over what we can do with them.
 
 Start by selecting an `h2` element from the page and logging it. 👇
 
-![](./229.png)
+![how to select and log to the browser console a h2 element](./229.png)
 
 Although in the console it looks like the `heading` variable is the actual element, in reality it is an object that has a lot of properties and methods inside of it.
 
@@ -84,15 +84,15 @@ Let's say you have the following code 👇
 
 `textContent` will return the "I am hidden!" text, however `innerText` will not.
 
-![](./230.png)
+![outputs in the browser console when using textContent and innerText on elements](./230.png)
 
 We have a set of properties when working with HTML. If we were to log the `innerHTML` of the `h2`, you would see 👇
 
-![](./231.png)
+![browser console output for the selected h2 innerHTML](./231.png)
 
 There is also `outerHTML`, which should include the `h2` tag and whitespace that goes inside of it.
 
-![](./232.png)
+![browser console output for the selected h2 outerHTML](./232.png)
 
 If you ever want to add text onto something is another useful thing to learn.
 
@@ -160,15 +160,15 @@ If you were to try  👇
 pizzaList.insertAdjacentText('beforebegin','🍕');
 ```
 
-![](./233.png)
+![html output of the pizza emoji being added into the p element before the p element itself](./233.png)
 
 That will put the pizza emoji before the paragraph entirely, it's not inside of that element. We would want to use `afterbegin` to add the pizza in front of the text.
 
-![](./234.png)
+![html output of the pizza emoji being added into the p element just before its first child ](./234.png)
 
 The browser actually knows that the pizza emoji was added later, because the text is split up between what we used to have and what we inserted.
 
-![](./235.png)
+![html output clearly indicating that the html element has two strings inside of it](./235.png)
 
 That is actually the difference between elements and nodes.
 
@@ -180,6 +180,6 @@ If you are wondering what all the possible methods are, we will stumble upon dif
 
 You can go to the MDN docs and go to element, it will tell us what all the properties are of elements.
 
-![](./236.png)
+![mdn website screenshot showing Element information page](./236.png)
 
 That wraps up elements. We covered how to get properties from an element, how to set properties on an element and how to use more powerful methods on each of our elements or nodes.

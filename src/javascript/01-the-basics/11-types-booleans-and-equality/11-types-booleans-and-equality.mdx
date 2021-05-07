@@ -38,7 +38,7 @@ const ofAge = age > 19;
 console.log(ofAge);
 ```
 
-![](/78.png)
+![comparing age as 18 greater than ofAge as 19 results in false](/boolean-false-in-console.png)
 
 Sometimes values are calculated, like for `ofAge`.
 
@@ -60,7 +60,7 @@ There are some edge cases where you can use double equals, but almost all the ti
 
 If you take the age variable in the console and do the following
 
-![](/79.png)
+![use of triple equal operator to compare age with 100](/triple-equals-comparison-in-console.png)
 
 * `age === 100` will return true
 * `age === 10` will return false
@@ -73,13 +73,13 @@ Add `let age2 = 100;` in `types.js`, and refresh the HTML page in the browser.
 
 Now you can do `age === age2` which will return true. 👇
 
-![](/80.png)
+![comparing two variables age with age2 using triple equal operator](/triple-equal-operator-comparison-between-variables-in-console.png)
 
 What is happening there is the browser is checking the value of the first variable and then it checks the value of the second one, to make sure they are exactly the same.
 
 What would happen if instead we did `10 == 10`, with a double equals? It would return true. 👇
 
-![](/81.png)
+![comparing double equals with triple equals in console for numbers](/comparing-double-equals-with-tripple-in-console.png)
 
 Why are there two different ways to check for equality?
 
@@ -97,7 +97,7 @@ Because the value is the same, but the types are not.
 
 If you did `"10" === 10`, it would return false. 👇
 
-![](/82.png)
+![comparing string as 10 and number as 10 using double equalto with returns true while triple equals to does not](/string-and-number-comparison-using-two-ways.png)
 
 This is one of the examples where you can get into hot water by mixing strings and numbers when doing addition.
 
