@@ -16,7 +16,7 @@ Wes has added some fun things to it, for example the line is a rainbow gradient 
 
 Another thing to note is whenever you reload the page, it picks a random spot to begin.
 
-![](./396.png)
+![A rainbow gradient line on a canvas](./396.png)
 
 Topics we will be covering in this video include DOM elements and keyboard events.
 
@@ -134,7 +134,7 @@ Rectangles, circles, drawing, lines, borders, different fill colors, all of thos
 
 If you inspect the canvas element in dev tools, you will see that it's just a regular old canvas element. 👇
 
-![](./398.png)
+![inspecting a canvas element in dev tools](./398.png)
 
 Grab the canvas.
 
@@ -191,7 +191,7 @@ Type in `ctx` so you can have a look at our ctx.
 
 You will see we get this `CanvasRenderingContext2D`.
 
-![](./399.png)
+![console showing CanvasRenderingContext2D object](./399.png)
 
 This is our context object.
 
@@ -226,7 +226,7 @@ ctx.stroke();
 
 Now if you refresh the page, you will see a dot 200 pixels over and 200 pixels down.
 
-![](./400.png)
+![a blank canvas](./400.png)
 
 What is cool about an Etch-a-Sketch is that it can start in a random spot.
 
@@ -246,7 +246,7 @@ You will get 600 and 1000 which are the actual height and weight of the canvas, 
 
 You might notice that when you save the JavaScript file, Prettier modifies the variable declarations for width and height like so 👇
 
-![](./401.png)
+![Editor showing canvas height and width declarations using object destructing](./401.png)
 
 Prettier is doing **destructing** for us.
 
@@ -285,7 +285,7 @@ You may have seen that we have **Math.random()**.
 
 If you type that into the console, you will see that it gives us a random number that seems to always be underneath one.
 
-![](./402.png)
+![console showing Math.random() outputs](./402.png)
 
 Can we just pass a random number?
 
@@ -293,7 +293,7 @@ Could we do something like `Math.random(100)`? No, that doesn't do anything.
 
 Let's look at the docs!
 
-![](./403.png)
+![screenshot of MDN documentation for Math.random](./403.png)
 
 `Math.random` returns a floating-point (that means it contains decimals), pseudo-random number in the range of 0 to 1, inclusive of 0 but not 1.
 
@@ -303,11 +303,11 @@ It doesn't take any arguments or anything like that.
 
 What you can do is take the `Math.random` value that it gives you and multiply it by 100, you are going to get a random number between zero and 99.99999.
 
-![](./404.png)
+![console showing Math.random() outputs multiplied by 100](./404.png)
 
 Then what you can do is run `Math.floor(Math.random() * 100))`, which should give us a number between 0 and 99.
 
-![](./405.png)
+![console showing Math.floor(Math.random() * 100)) output](./405.png)
 
 So that is exactly what we are going to use.
 
@@ -343,7 +343,7 @@ For now, whenever you refresh the page you get a random x and y value that moves
 
 If you change `ctx.lineCap="round";` to `ctx.lineCap = "square";` it looks like this 👇
 
-![](./406.png)
+![canvas showing a black square dot](./406.png)
 
 But switch it back to round because we want to use round.
 
@@ -395,7 +395,7 @@ Now, if you were to press any key, you would see it logged in the console.
 
 We only really care about the arrow keys so what we can is check whether the key value has the word arrow in it.
 
-![](./407.png)
+![console showing the type arrow key pressed](./407.png)
 
 Add an **if statement**, which we haven't learned about before, but if conditions check if something is true (whether it evaluates to boolean true or false), and then runs a block of code based on that condition.
 
@@ -480,7 +480,7 @@ function draw({ key }) {
 
 This gives us a top level variable called key that you can use directly.
 
-![](./408.png)
+![Editor showing object destructing](./408.png)
 
 So this curly bracket above 👆 is called **object destructuring**, where you can take properties and rename them into proper variables and it allows you to have shorter variable names.
 
@@ -651,7 +651,7 @@ You have only implemented the case for ArrowUp.
 
 If you refresh the page and hit the arrow up key, you should see a line being drawn!
 
-![](./409.png)
+![canvas showing a vertical black line](./409.png)
 
 Now, let's add the rest.
 
@@ -686,11 +686,11 @@ _Note: if you get an error about the x being a const, that is likely the result 
 
 Now refresh the page and let's try it!
 
-![](./410.png)
+![canvas showing a black line shape](./410.png)
 
 Now what you want to do is modify the code so the colour of the line changes as you go along.
 
-![](./411.png)
+![canvas showing a random gradient line](./411.png)
 
 That is actually very simple to do, you just have to change the HSL values.
 
@@ -704,7 +704,7 @@ If you just hover over the gradient, you will see the H value goes from zero to 
 
 Tou can use that value, every time you move the cursor, increment the H value (hue) by 1.
 
-![](./412.png)
+![screenshot of https://mothereffinghsl.com homepage](./412.png)
 
 Above the `draw()` function, make a new variable called `hue` and set it to 0.
 
@@ -751,7 +751,7 @@ ctx.strokeStyle = `hsl(${Math.random() * 360}, 100%, 50%);
 
 That will give you cool effects like these 👇
 
-![](./413.png)
+![canvas showing a line with random colors](./413.png)
 
 You can have a lot of fun with HSL.
 
@@ -776,7 +776,7 @@ Now, when you refresh the HTML page and run `clearCanvas()` in the console, you 
 
 That is because the class of `shake` is applied to it.  Wes has written some CSS to create that effect in this code 👇
 
-![](./414.png)
+![Editor showing CSS code](./414.png)
 
 ```css
 canvas.shake {
@@ -819,7 +819,7 @@ Now if you refresh the page and run `clearCanvas()`, you should see the console 
 
 However if you run it again and again from the console, you will notice that "done the shake" is being called many times 👇
 
-![](./415.png)
+![console showing multiple clearCanvas function calls](./415.png)
 
 You may be wondering what is going on.
 
@@ -833,11 +833,11 @@ The number of times you ran `clearCanvas()` in the console was the number of eve
 
 If you click on the canvas element in the dev tools and then select the "Event Listeners" tab 👇
 
-![](./416.png)
+![inspecting canvas element in dev tools](./416.png)
 
 You will see that you are listening for the animationend event every time we run it 👇
 
-![](./417.png)
+![dev tools showing animationend events attached to canvas element](./417.png)
 
 That is obviously not what you want.
 
@@ -898,11 +898,11 @@ ctx.clearRect(0, 0, 500, 500);
 
 Now refresh the page and draw across the canvas.
 
-![](./419.png)
+![canvas showing a multi color snake like line](./419.png)
 
 Now click the Shake! button.
 
-![](./420.png)
+![canvas showing a multi color snake like line with some area cleared](./420.png)
 
 You should notice only a rectangle that is 500 by 500 pixels from the top left corner is cleared.
 
