@@ -21,7 +21,7 @@ Let's look up the MDN docs for arrays.
 
 When you open it, you will see all the array methods in the documentation, along the sidebar.
 
-![](./530.png)
+![MDN documentation page showing Array section](./530.png)
 
 Instead of Wes going through each one, we are going to work with the data Wes has provided and use the methods to add, remove and sort items.
 
@@ -39,7 +39,7 @@ We are going to start off with the static methods.
 
 Open up `array-methods-START.html`, which will give you a starting version with data and commented out instructions.
 
-![](./532.png)
+![MDN documentation page on Array methods](./532.png)
 
 If you look at the sidebar of the array documentation, you will see there are three methods:
 - `Array.from()`
@@ -59,7 +59,7 @@ const numbers = [1, 2, 3, 4, 5];
 
 Using this array, we can pop numbers out, push numbers in, etc.
 
-![](./533.png)
+![brower console showing numbers array demoing .push() and .pop() method](./533.png)
 
 Whenever you create an array, you get what is referred to as the array prototype.
 
@@ -85,7 +85,7 @@ For example you could pass it the arguments of 'wes' and 'kait' and it would cre
 Array.of('wes', 'kait');
 ```
 
-![](./534.png)
+![browser console showing array creation using Array.of](./534.png)
 
 Wes has never used that in his career, ever, mainly because it's shorter and simpler to create an array using an array literal.
 
@@ -98,7 +98,7 @@ We have already covered how when you have something, you can spread it into an a
 Array.of(...'wes');
 ```
 
-![](./535.png)
+![browser console showing array creation using spread operator](./535.png)
 
 What the `...` does in the example above is it takes an **iterable**, meaning something that has a length, _("wes" is something that has a length because strings have a length)_, and you can sperad each of the items of that iterable into the surrounding array.
 
@@ -118,7 +118,7 @@ Array.from({ length: 10 })
 
 What that will do is it returns an array from that iterable with that many empty slots.  So in the example above, you are saying you want 10 spots, and that returns to us an array with 10 empty spots.
 
-![](./537.png)
+![browser console showing an iteratable array of 10 undefined elements](./537.png)
 
 That is really handy because Wes often wants to make an array of numbers 1 through 10 and loop over them and display each items or something like that.
 
@@ -146,7 +146,7 @@ const range = Array.from({ length: 10 }, function() {
 
 If you refresh the page, and open the console you should see that all 10 items have a value of "wes".
 
-![](./538.png)
+![browser console showing range array filled with 10 string elements](./538.png)
 
 This callback function will give you the actual item that is in the slot as an argument, as well as the index.
 
@@ -160,7 +160,7 @@ const range = Array.from({ length: 10 }, function(item, index) {
 
 What that code above does is it gives you an array where each number is the index that you have.
 
-![](./539.png)
+![browser console showing range array filled with 10 int elements](./539.png)
 
 Use this to make a little function that takes in 2 arguments, `start` and `end`, like so 👇
 
@@ -199,7 +199,7 @@ createRange(3, 7)
 
 You should see the following 👇
 
-![](./540.png)
+![browser console showing createRange function output undefined](./540.png)
 
 Oops! You forgot to return the range.
 
@@ -217,7 +217,7 @@ function createRange(start, end) {
 }
 ```
 
-![](./541.png)
+![browser console showing createRange fuction with proper output](./541.png)
 
 You started at 3 and went to 7, which gave us 4 spots.
 
@@ -235,7 +235,7 @@ function createRange(start, end) {
 }
 ```
 
-![](./542.png)
+![browser console showing createRange function with inclusive of starting number](./542.png)
 
 If you wanted this to be inclusive of 7, you could add 1 to where you set the length of array.
 
@@ -259,7 +259,7 @@ Let's try to the following `createRange(3,734223423)`.
 
 If you try that, you should get an error like so 👇
 
-![](./543.png)
+![browser console showing error. integer limitation](./543.png)
 
 There is a limit to how big your arrays can be. They are very, very, very large.
 
@@ -271,7 +271,7 @@ Let's refresh the page, open the console and try with a smaller number as shown 
 createRange(3, 7342);
 ```
 
-![](./544.png)
+![browser console showing createRange function sample starting at 3, to 7342](./544.png)
 
 You can see that runs nice and quickly.
 
@@ -283,7 +283,7 @@ console.log(Array.isArray(myRange));
 
 You should see "true" logged.
 
-![](./545.png)
+![browser console showing boolean output, true](./545.png)
 
 That is a pretty common thing you will need to do because if you try to use `typeof` with an array, it will return "object" because an array isn't a real type.
 
@@ -320,7 +320,7 @@ You use `Object.entries()` when you want to put both the keys and values into an
 console.log(Object.entries(meats));
 ```
 
-![](./546.png)
+![browser console showing meats object turned into array using Object.entries() method](./546.png)
 
 
 Add the following code below the line where you are logging the entries array.
@@ -331,7 +331,7 @@ console.log(Object.keys(meats));
 console.log(Object.values(meats));
 ```
 
-![](./547.png)
+![browser console showing meats array key entries using Object.keys() method](./547.png)
 
 As you can see, `keys()` is going to give us an array of all the object keys, `values()` will give us an array of all the values and `entries()` is going to give us an array where each item is then a nested second array inside of it where the first item in the nested array is the key and the second item is the value.
 
@@ -351,7 +351,7 @@ Object.values(meats).forEach(qty => {
 
 If you refresh the HTML page and look at the console you should see the following 👇
 
-![](./548.png)
+![browser console showing array value entries using forEach](./548.png)
 
 That is a pretty common thing to do it you want to like loop over and add up how much inventory you have or you want to add up all the numbers, lets look at how you can use `reduce()` to do that.
 
@@ -363,7 +363,7 @@ Object.keys(meats).forEach(qty => {
 });
 ```
 
-![](./1467.png)
+![browser console showing array quantity entries using forEach](./1467.png)
 
 Now entries 👇
 
@@ -373,7 +373,7 @@ Object.entries(meats).forEach(entry => {
 });
 ```
 
-![](./1468.png)
+![browser console showing array entries using forEach](./1468.png)
 
 For each one, you get an array with 2 items.
 
@@ -387,7 +387,7 @@ const value = entry[1];
 console.log(key, value);
 ```
 
-![](./1469.png)
+![browser console showing console.log of key value pair on split variable](./1469.png)
 
 Something that we have talked about that is very useful in this scenario is **destructuring**.
 
