@@ -16,7 +16,7 @@ Wes just wants to have a video specifically dedicated to it so you can come back
 
 Let's continue from the example in our previous lesson, where we created a `cleanPeople` array, which we will work with in this example.
 
-![](./657.png)
+![cleanPeople array having random persons with their name and age](./657.png)
 
 Very often you will find yourself in a situation where you either need to find one person in an array or you want to filter the list down to be a subset of it.
 
@@ -42,7 +42,7 @@ console.table(over40);
 
 That is the verbose way to write it, which Wes is using just to show us how it works.
 
-![](./659.png)
+![creating subset of cleanPeople array by filtering out persons whose age is greater than 40](./659.png)
 
 As you can see, we now have only a subset of the original array.
 
@@ -84,7 +84,7 @@ const over40 = cleanPeople.filter(person => person.age > 40);
 
 If there ever is a situation where we call this filter method on an array with no people over 40 in it, it will just return to us an empty array.
 
-![](./660.png)
+![filtering out persons whose age is greater than 40](./660.png)
 
 If you wanted to check if there were any people over 40 in this case you could use the following code 👇
 
@@ -175,7 +175,7 @@ const student = students.find(stud => stud.id === '565a');
 console.log(student);
 ```
 
-![](./661.png)
+![finding a student from array of students having id 565a](./661.png)
 
 As you can see, the correct student record is returned.
 
@@ -183,7 +183,7 @@ If that didn't match anything, what would we find?
 
 We would get `undefined`. You always want to check if something got found.
 
-![](./662.png)
+![undefined gets returned when there is no match for student with id 565a in students array](./662.png)
 
 As you may have noticed, the `find` method did not return an array of students to us, it returns to us an object which is the student itself.
 
@@ -194,7 +194,7 @@ const student = students.filter(stud => stud.id === '565a');
 console.log(student);
 ```
 
-![](./663.png)
+![using filter instead of find method to get a student with id 565a](./663.png)
 
 As you can see, that returns to us an array of one item.
 That is the different between `.filter()` and `.find()`, everything else is exactly the same.
@@ -232,7 +232,7 @@ const student = students.find(findById('56a'));
 
 `findById('56a')` will generate a new function that is coded to find the id that we are looking for (56a).
 
-![](./664.png)
+![using higher order function named findById to find a student with id 56a from the list of array](./664.png)
 
 It still finds the right person, it's just a little bit more flexible
 
@@ -273,24 +273,24 @@ console.log(student);
 console.log(student2);
 ```
 
-![](./666.png)
+![findByProp method to find the student from students array using one of their properties like id and first_name](./666.png)
 
 Let's go over the function one more time.
 
 The `findByProp` function takes in a prop as the first parameter and `propWeAreLookingFor` as the second parameter.
 What that means is the first parameter takes in the key, and the second parameter takes in the value we are matching the property against.
 
-![](./667.png)
+![findByProp method takes property as first parameter](./667.png)
 
 In the image above, the text that is selected is the property `last_name`. It is the property key.
 
-![](./668.png)
+![findByProp method takes the value we are looking for as second parameter](./668.png)
 
 The property value for the `last_name` property for the student shown above is `Aizikowitz`.
 
 So our function takes in a property and a value, and then it will look in each object for whatever property you specified is equal to whatever value you specified.
 
-![](./669.png)
+![comparing the property value with the value specified for the item of array](./669.png)
 
 The reason we have to use square brackets and not the dot notation in the code highlighted in the image above is because the property that we are looking for is being passed in as an argument to the function.
 
