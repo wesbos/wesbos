@@ -114,7 +114,7 @@ If you run that in the console, what would you see?
 
 You should see "in your seventies".
 
-![](./373.png)
+![browser console showing in your seventies](./373.png)
 
 Even though that the rest of the conditions are true, because the first condition is true, none of the other conditions are evaluated or run.
 
@@ -226,7 +226,7 @@ We talked briefly about the different equal signs (`=`, `==`, `===`).
 
 As a refresher, if you open the html page in the browser and try to type `age = 100;` in the console, you will get an error like the following 👇
 
-![](./374.png)
+![browser console showing error: Uncaught TypeError: Assignment to constant variable.](./374.png)
 
 The code is erroring out because the single value will set the value of the variable, and `age` is a const variable, so you cannot do that.
 
@@ -242,7 +242,7 @@ The gotcha with the double equal signs is that if you were comparing it against 
 
 Using `===` will check if both the type AND the value of the `age` match `100`.
 
-![](./375.png)
+![browser console showing outputs from various typeof checks](./375.png)
 
 Because of that, you should almost always use `===`.
 
@@ -335,7 +335,7 @@ if (name === 'scott' || (name === 'wes' && last === 'bos')) {
 
 What this code will do is it will check the parenthesis. Name must equal "scott" and last name must equal "bos" for the statement to return true.
 
-![](./376.png)
+![browser console output of various compassion checks](./376.png)
 
 When you use the and operator, if any one of the conditions is false, then the entire thing will evaluate to false.
 
@@ -364,7 +364,7 @@ if ('awesome'.includes(name)) {
 }
 ```
 
-![](./1466.png)
+![browser console output of various .includes checks](./1466.png)
 
 Pretty often you have methods that return true or false and often you can use those directly inside an if statement.
 
@@ -462,7 +462,7 @@ if (score) {
 
 If you refresh the HTML page, you should see "no score yet" in the console. Why? Because 0 equates to false.
 
-![](./378.png)
+![browser console output showing No Score Yet](./378.png)
 
 `1` (the number one) is a truthy value.
 
@@ -486,7 +486,7 @@ _Note: We needed to modify the score variable from a const to a let to make it u
 
 A variable set to "hello" - 10 which would evaluate to **NaN** (**not a number**).
 
-![](./380.png)
+![browser console output show NaN](./380.png)
 
 Would it be truthy or falsy?  It will be falsy, meaning that NaN is falsy.
 
@@ -515,7 +515,7 @@ let score = [1, 3, 6];
 
 Would that be truthy or falsy?
 
-![](./382.png)
+![browser console showing output; There is a score already](./382.png)
 
 The array with values is truthy.
 
@@ -525,7 +525,7 @@ What about an array of nothing? Will the code below be truthy or falsy?
 let score = [];
 ```
 
-![](./384.png)
+![browser console showing output; There is a score already](./384.png)
 
 An array with no values is truthy.
 
@@ -565,7 +565,7 @@ values.forEach(value => {
 console.groupEnd('');
 ```
 
-![](./386.png)
+![browser console output logs for forEach loop](./386.png)
 
 Then within the `forEach` block we will add the following 👇
 
@@ -577,4 +577,4 @@ if (value) {
 }
 ```
 
-![](./388.png)
+![browser console output logs for forEach descriptive loop](./388.png)
