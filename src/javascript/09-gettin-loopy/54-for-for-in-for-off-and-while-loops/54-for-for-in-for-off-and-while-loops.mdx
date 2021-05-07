@@ -26,7 +26,7 @@ Let's start with the for loop. The way it works is you type `for` with parenthes
 
 Let's look at the for loop docs really quickly.
 
-![](./703.png)
+![loops and iteration documentation](./703.png)
 
 The for loop requires three things:
 1. an initial expression
@@ -52,7 +52,7 @@ What we did above is:
 
 If you open up the page in a browser and look at the console, you should see 0 through 10 logged, just like in the image below.
 
-![](./704.png)
+![for loop from 0 to 10 in console](./704.png)
 
 What has happened in the code is we looped from 0 to 10, so we looped 11 times over, and logged what the `i` variable equals.
 
@@ -76,7 +76,7 @@ In this example, we are taking `i`, which we have set to 0, and incrementing it 
 
 You might be wondering why we made the `i` variable a `let` instead of a `const`.
 
-![](./705.png)
+![uncaught type error: assignment to constant variable](./705.png)
 
 As you can see, it logs 0 then returns an error.
 
@@ -104,7 +104,7 @@ for (let i = 100; i < 120; i += 2) {
 }
 ```
 
-![](./706.png)
+![for loop starting at 100, go until i is greater than or equal to 120 and increment by 2](./706.png)
 
 As you can see, this loop is fairly flexible in incrementing the way that we want.
 
@@ -133,7 +133,7 @@ for (var i = 0; i <= 120; i += 2) {
 console.log(i);
 ```
 
-![](./707.png)
+![logged console from 100-120 with a strange 122 value at the end](./707.png)
 
 Our code logged 100-120 but then suddenly we see 22.
 
@@ -151,7 +151,7 @@ for (let i = 0; i < numbers.length; i++) {
 }
 ```
 
-![](./708.png)
+![for loop logged 0 to 11 because there are 12 numbers](./708.png)
 
 As you can see, it logged 0 to 11 because there are 12 numbers in our `numbers` array (you can check the length by typing `numbers.length` in the console).
 
@@ -163,7 +163,7 @@ for (let i = 0; i < numbers.length; i++) {
 }
 ```
 
-![](./709.png)
+![to access the individual number, use index to retrieve it using square brackets](./709.png)
 
 That is the way loops used to be done. It is much easier now with a `foreach` and `map` and `reduce` methods. If you do see the old way, maybe ask yourself can I refactor that?
 
@@ -171,7 +171,7 @@ Another place that `for` loops are useful is when you are working with canvas.
 
 If you remember back to our Etch-a-Sketch exercise, the canvas element actually has a method on it called `getImageData` that will allow us to pull the stuff out of that canvas.
 
-![](./710.png)
+![html5 canvas with getImageData function](./710.png)
 
 If you open the `etch-a-sketch.html` html file, draw in the top left hand corner of the etch-a-sketch and then inspect the canvas, if you click on the canvas element in the inspector and then flip to the console and type `$0`, you should get the canvas element returned.
 
@@ -179,17 +179,17 @@ You should be able to access `ctx` which is the canvas context in the console. C
 
 That returns a data array with a lot of items, 40000 in our case.
 
-![](./711.png)
+![console displaying image data as object](./711.png)
 
 It is a special kind of array called a **ClampedArray** which is used when you have very, very, very large arrays.
 
 The contents of the array are numbers like 255, 0, 119, and they represent RGBA values.
 
-![](./712.png)
+![contents of the array representing RGBA values](./712.png)
 
 What that code did is it pulled the raw data from the canvas element, and for each pixel on the canvas, it is returning 4 values.
 
-![](./713.png)
+![for each pixel on the canvas returning 4 values](./713.png)
 
 The red is 255, the green is 0, the blue is 119, and then it returns to us an alpha channel which is if it's transparent or not. 255 would be totally not transparent and then 0 is totally transparent.
 
@@ -217,21 +217,21 @@ for (const letter of name) {
 }
 ```
 
-![](./714.png)
+![splitting the string into an array and using forEach](./714.png)
 
 Why would that be better than splitting the string into an array and using `forEach` like we have learned in a previous exercise?
 
 One thing is it can handle emojis.
 
-![](./715.png)
+![using emojis with name](./715.png)
 
 For the family emoji, if you log it, you will see we get the family emoji and then the modifier, which is peach skin.
 
-![](./716.png)
+![family emoji with modifier with peach skin](./716.png)
 
 If you tried that with `name.split('')`, you would see something similar to the image below.
 
-![](./717.png)
+![splitting the name with split function](./717.png)
 
 As you can see, it doesn't know how to handle the emojis.
 
@@ -241,7 +241,7 @@ Another way you could do it is using the spread operator like so:
 [...name]
 ```
 
-![](./718.png)
+![splitting the name using spread operator](./718.png)
 
 That is one use case.
 
@@ -261,7 +261,7 @@ for (const number of numbers) {
 }
 ```
 
-![](./719.png)
+![using for of loop to iterate over an array](./719.png)
 
 The downside of the `for of` loop compared to a `forEach` loo is that it doesn't give us the index. It just gives us the raw value. It also doesn't allow us to filter or anything like that.
 
@@ -277,7 +277,7 @@ for (const number in numbers) {
 }
 ```
 
-![](./720.png)
+![using for in loop to looping over keys of an array](./720.png)
 
 As you can see, we get 0 through 11.
 
@@ -303,7 +303,7 @@ for (const prop in wes) {
 }
 ```
 
-![](./721.png)
+![use of for in loop with object](./721.png)
 
 You might be asking, how is that better than using `Object.entries`, `Object.key` or `Object.values`?
 
@@ -342,7 +342,7 @@ If you go ahead and take a look at `wes2` by refreshing the page and typing it i
 
 If you were to try typing in  `wes2.arms`, however, you would get `undefined`.
 
-![](./723.png)
+![accessing non existing property of an object returning undefined](./723.png)
 
 However if we take the `Human` function and set the prototype to be the `baseHumanStats` like so 👇
 
@@ -353,7 +353,7 @@ const wes2 = new Human('wes');
 
 If we take a look at `wes2`, it still looks the same, but if you were to look at `wes2.feet` or `wes2.arms`, you will see that it is referencing the values from the prototype.
 
-![](./724.png)
+![defining prototype for an object](./724.png)
 
 What does that mean?
 
@@ -361,7 +361,7 @@ What happens with a prototype is that when you try to access a property, it firs
 
 It will say "okay that is not on here, but maybe the thing that created me has a prototype that has that value", and it will look it up.
 
-![](./725.png)
+![__proto__ property inside an object](./725.png)
 
 In our case this prototype has some sort of base values that it will pull it from.
 
@@ -371,7 +371,7 @@ What would happen if you call log `Object.keys(wes2)`?
 Will it log the `name` property only?
 Or will it also log the properties that are on the prototype (feet, arms, eyes, head)?
 
-![](./726.png)
+![logging out Object.keys(wes2)](./726.png)
 
 We only get `name`.
 
@@ -381,7 +381,7 @@ Let's try entries.
 console.log(Object.entries(wes2));
 ```
 
-![](./727.png)
+![logging out Object.entries(wes2)](./727.png)
 
 We only get the `name` property and value returned to us as you can see above.
 
@@ -393,7 +393,7 @@ for (const prop in wes2) {
 }
 ```
 
-![](./728.png)
+![looping over the properties of wes2 object](./728.png)
 
 As you can see, it does grab the properties from the prototype that it was made from.
 
@@ -430,7 +430,7 @@ while (cool === true) {
 }
 ```
 
-![](./729.png)
+![infinite while loop in console](./729.png)
 
 As you can see, that log is happening all the time, just constantly running in the infinite loop we created.
 
@@ -452,7 +452,7 @@ while (cool === true) {
 
 What should happen is after this loop has run 100 times, `cool` will be set to false, and then the condition will evaluate to false and the loop will no longer run.
 
-![](./730.png)
+![controlling the while loop execution with if condition](./730.png)
 
 As you can see, it ran 100 times before exiting.
 
