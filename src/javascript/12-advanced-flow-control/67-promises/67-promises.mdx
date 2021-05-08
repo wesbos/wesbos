@@ -81,7 +81,7 @@ console.log(pizza);
 
 Now if we refresh the page, what do you think we will get in the console? Will we get the pizza or something else, like a promise?
 
-![](./1020.png)
+![resolved promise in console](./1020.png)
 
 If you refresh the page, you should see the promise.
 
@@ -106,7 +106,7 @@ const canadianPromise = makePizza(['pepperoni', 'mushroom', 'onions'])
 console.log(pepperoniPromise, canadianPromise);
 ```
 
-![](./1021.png)
+![two resolved promises in console wrapping the data in console](./1021.png)
 
 As you can see, we get our 2 promises. But how do we get the actual pizza itself?
 
@@ -125,7 +125,7 @@ pepperoniPromise.then(function(pizza) {
 
 Now when you refresh the page you should see the logs below.
 
-![](./1022.png)
+![resolved promises with the actual data logged in console](./1022.png)
 
 At this stage, you might be wondering "why are you doing it like this Wes? this seems like a much harder way to just return data".
 
@@ -158,7 +158,7 @@ pepperoniPromise.then(function(pizza) {
 
 If you refresh the page, you will see in the console that we get our promise immediately and then a second after we actually have access to our pizza.
 
-![](./1023.png)
+![on refreshing the page, promise and its data is resolved](./1023.png)
 
 That is a great example of how we sometimes have to wait.
 
@@ -177,7 +177,7 @@ function makePizza(toppings) {
 }
 ```
 
-![](./1024.png)
+![creating a new promise and resolving it after a second](./1024.png)
 
 The logic to how a Promise gets resolved is always inside of the Promise body, which in the example is the code below
 
@@ -192,7 +192,7 @@ function(resolve, reject) {
   }
 ```
 
-![](./1025.png)
+![the logic of resolving a promise](./1025.png)
 
 That function will resolve or reject whenever it feels ready. In our case, we feel like the pizza is ready after one second.
 
@@ -211,7 +211,7 @@ console.log('finishing');
 
 When you refresh the page you will see that we get "Starting" then "finishing" then the "I got it" message.
 
-![](./1026.png)
+![starting, finishing and data of promise in console as logs](./1026.png)
 
 We will look at how we can use `async/await` to actually do that sequentially if we would like to, but for now we know we can chain a `.then()` onto it.
 
@@ -241,7 +241,7 @@ makePizza(['pepperoni', 'ham'])
 
 As you can see first we get one pizza and then after a second we see the other pizza logged to the console.
 
-![](./1027.png)
+![first we get one pizza and then after a second we see the other pizza logged to the console](./1027.png)
 
 You can chain as many as you want.
 
@@ -286,13 +286,13 @@ makePizza(['pepperoni', 'ham'])
 console.log('Right after');
 ```
 
-![](./1028.png)
+![promise chaining example in console](./1028.png)
 
 We will look at how we can use async/await to get around that.
 
 If you look at the call stack, what we know is that it first runs the function `makePizza(['pepperoni'])` (highlighted in the image below), which immediately returns a promise.
 
-![](./1029.png)
+![promise chaining in javascript code](./1029.png)
 
 Then it runs the bottom log, before jumping back up to the first `then()` we have when the promise is resolved, and then it keeps going down the promise chain.
 
@@ -329,7 +329,7 @@ function makePizza(toppings = []) {
 }
 ```
 
-![](./1030.png)
+![sequence of resolved promise is ham and cheese logged to the console faster than the pizza with 3 toppings](./1030.png)
 
 When we refresh the page and the above code is executed, what should happen is ham and cheese should be logged to the console faster than the pizza with 3 toppings.
 
@@ -378,7 +378,7 @@ const pizzaPromise3 = makePizza(['ham', 'cheese']);
 
 So how do we know when all of those promises are done? We could do `.then()` on each of them like so 👇
 
-![](./1031.png)
+![multiple promises executing simultaneously in code](./1031.png)
 
 But those are going to pop into the console in whatever order they are done, which isn't what we want. We can instead make it into a "mega promise" that we then wait upon.
 
@@ -402,7 +402,7 @@ dinnerPromise.then(pizzas => {
 
 Now we wait for all 3 to be finished, and we get an array of all 3 of them.
 
-![](./1032.png)
+![multiple promises logging in an array in console](./1032.png)
 
 If you wanted the first pizza it would be `pizza[0]`.
 
@@ -422,7 +422,7 @@ dinnerPromise.then(function (pizzas) {
 });
 ```
 
-![](./1033.png)
+![array destructuring and printing the resolved promise in console](./1033.png)
 
 You do not have to destructure those variables in the body of the function, you can destructure the argument directly with square brackets.
 
@@ -459,7 +459,7 @@ firstPizzaPromise.then(pizza => {
 
 TO reiterate, `Promise.race()` will wait for the first one to finish rendering.
 
-![](./1035.png)
+![promise.race() output in console](./1035.png)
 
 There are also a couple of other ones which we will get into when we talk about error handling.
 
