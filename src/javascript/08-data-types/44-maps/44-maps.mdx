@@ -43,13 +43,13 @@ myMap.set('name', 'wes');
 console.log(myMap);
 ```
 
-![](./489.png)
+![browser console output showing myMap Map instance](./489.png)
 
 As you can see in the console, we have our map and it gives us our entries, entries are the actual values in the map.
 
 Now if you were to use the object notation that we are used to, something like `myMap.age = 100;`, you will notice that it's not actually added in the same spot.
 
-![](./491.png)
+![browser console output showing myMap Map instance with manually added attribute age](./491.png)
 
 It is in the map, but it is a property on the map, not an actual entry in our map.
 
@@ -61,7 +61,7 @@ One big benefit of a map is the keys can be any type other than just using a str
 
 So instead of passing name as the key when we called `.set()` on `myMap`, we could pass a number like `myMap.set(100, 'This is a number');`
 
-![](./492.png)
+![browser console output showing new map entry using .set() method](./492.png)
 
 As you can see, the entry has a key of 100.
 
@@ -97,7 +97,7 @@ myMap.set(person1, 'Really cool');
 console.log(myMap);
 ```
 
-![](./494.png)
+![browser console output showing person1 object added as new myMap entry](./494.png)
 
 Now if you open up our map, you will see that the key is actually an object and the value is really cool.
 
@@ -107,7 +107,7 @@ That is useful because let's say at a later point in time we wanted to look that
 myMap.get(person1);
 ```
 
-![](./495.png)
+![browser console output showing myMap entry person1 using .get() method](./495.png)
 
 What you have done there is instead of putting a unique string, or an ID or something else, you simply use the reference to the object as the key in the map to store the additional information.
 
@@ -142,7 +142,7 @@ console.log('you win a ${prizes.get(score)}`);
 
 Now if you refresh the page, you will see the following in the console 👇
 
-![](./496.png)
+![browser console output showing console.log() of winning prize](./496.png)
 
 In a lot of the real world exercises we will build, we will pause and go over whether or not it makes sense to use an object or a map for our situation, so you can get used to when to reach for one versus the other.
 
@@ -185,7 +185,7 @@ prizes.forEach(entry => {
 
 If you refresh the page and look at the console, you will see Bear, Duck and Car, in that order.
 
-![](./497.png)
+![browser console output showing prizes Map instance iterited through using forEach method](./497.png)
 
 However, that only gives you the value. If you want to return the key and value, you can use the `for of` loop.
 
@@ -200,7 +200,7 @@ for(const prize of prizes){
 
 This is getting a bit ahead of ourselves with the looping but just know that you are looping over all the entires in the map, one by one, and for each one you are going to create a temporary variable `prize` and then log it.
 
-![](./498.png)
+![browser console output showing prizes Map instace iterated through using for of method](./498.png)
 
 Now as you see, you get an array and that array's first item will be the key and the second item will be the values.
 
@@ -210,7 +210,7 @@ Modify the log like so 👇
 console.log(prize[0], prize[1]);
 ```
 
-![](./499.png)
+![browser console output showing prizes index 0 and 1 using console.log()](./499.png)
 
 You can go further and **destructure** the array.
 
@@ -239,7 +239,7 @@ for (const [points, prize] of prizes) {
 
 Now when you refresh the page, you should see the following 👇
 
-![](./500.png)
+![browser output showing prizes entries](./500.png)
 
 When do you use a map over an object?
 
@@ -259,7 +259,7 @@ new Map([ [1,2], [3,4] ]);
 
 If you type that in the console you will see the following 👇
 
-![](./501.png)
+![browser console output showing creation of new map with an array of arrays](./501.png)
 
 As you can see there, we have created a map.
 
@@ -275,7 +275,7 @@ Wes didn't show us delete.
 
 In the console, if you still haven't refreshed from our previous example, type `myMap.delete('name')`.
 
-![](./502.png)
+![browser console output showing map entry deletion using .delete method](./502.png)
 
 If you type `myMap`, you will notice that the name `entry` is gone.
 
@@ -310,7 +310,7 @@ It takes the object and converts it into a string, which you can send very easil
 JSON.parse(`{ "name": "wes", "age": "100" }`);
 ```
 
-![](./503.png)
+![browser console output showing json object turned to string using JSON.stringify() method](./503.png)
 
 JSON stands for **JavaScript Object Notation**. However it has been implemented by every single language out there.
 
@@ -318,7 +318,7 @@ JSON is amazing, however, if you have a map, currently JSON does not handle maps
 
 If you try `JSON.stringify(myMap)` you will see the following error and get an empty object because it is not aware of maps yet.
 
-![](./504.png)
+![browser console output showing stringified map instance causing error. Awaiting on JSON 5 :)](./504.png)
 
 There is this thing called **JSON 5** which is trying to improve JSON but until that is ready, if you want to send your map content you have to convert it to an object currently.
 
@@ -328,4 +328,4 @@ However, you will see if you use any of the benefits of a map, it falls apart wh
 
 We will try to use both of them in our examples but Wes personally uses objects much more frequently, but he thinks map will start to catch on in the next couple of years.
 
-![](./505.png)
+![browser console output of myMap using .fromEntries() method](./505.png)
