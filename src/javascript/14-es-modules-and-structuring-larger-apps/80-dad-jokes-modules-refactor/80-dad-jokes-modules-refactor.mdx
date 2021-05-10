@@ -101,7 +101,7 @@ Within that new folder, create a file `index.js` which will contain all of the l
 
 Copy and cut the `fetchJoke` function into the `index.js` file.
 
-![](./1253.png)
+![copy and cut fetchJooke function into the index.js](./1253.png)
 
 Once you do that, you may notice that in your VS Code that the loader variable within `fetchJokes` is underlined as red. VS Code is complaining because the function requires the loader, but we have not passed it a reference to the loader in this file. Due to modules have their own scope, we are no longer able to reference the `loader` variable from the `jokes.js` module.
 
@@ -210,7 +210,7 @@ Wes approaches it either by going through the errors in the console, or by ESLin
 
 If you open the console, the first error you should see in the console is a reference error warning that `handleClick` is not defined.
 
-![](./1254.png)
+![reference error - handleClick is not defined](./1254.png)
 
 Earlier we moved `handleClick` into our `handlers.js` module. Now if we need to access the function in another file, we must first import it, like so 👇
 
@@ -228,9 +228,9 @@ jokeButton.addEventListener("click", handleClick);
 
 When the page refreshes now, the console is not showing any errors but if you click the button, you should see an error logged complaining that `fetchJoke` is not defined.
 
-![](./1255.png)
+![uncaught reference error - fetchJoke is not defined](./1255.png)
 
-![](./1256.png)
+![exporting handleClick function as named export](./1256.png)
 
 As you can see above, the `fetchJoke` function is used within `handleClick`. How do we make it available within `handleClick`?
 
@@ -269,7 +269,7 @@ async function handleClick() {
 }
 ```
 
-![](./1257.png)
+![uncaught reference error - loader is not defined](./1257.png)
 
 The next error is complaining that loader is not defined within `handlers.js`.
 
@@ -289,7 +289,7 @@ const loader = document.querySelector(".loader");
 jokeButton.addEventListener("click", () => handleClick(loader));
 ```
 
-![](./1258.png)
+![uncaught reference error - loader is not defined](./1258.png)
 
 However, the console is still complaining that it loader.
 
@@ -310,7 +310,7 @@ async function handleClick(loader) {
 }
 ```
 
-![](./1259.png)
+![uncaught reference error - jokeHolder is not defined](./1259.png)
 
 The loader is showing up now!
 
@@ -328,7 +328,7 @@ jokeButton.addEventListener("click", function () {
 
 Sometimes you have to pass things around like we are with the `loader`. We selected it in `jokes.js`, passed it to `handleClick`, and then from `handleClick` we passed it to `fetchJoke`. We could have also selected it right inside of `handleClick` as well, it is up to you to choose an approach.
 
-![](./1260.png)
+![uncaught reference error - jokeHolder is not defined](./1260.png)
 
 Now that the loader is showing up, let's move onto the next error.
 
@@ -384,7 +384,7 @@ export async function handleClick() {
 
 Now when you press the button, it will fetch a joke and display it but we get another error in the console.
 
-![](./1261.png)
+![uncaught reference error - randomItemFromArray is not defined](./1261.png)
 
 Now it's complaining that `randomItemFromArray` is not defined in `handlers.js`. Import it from `utils.js`. 👇
 
@@ -406,7 +406,7 @@ export async function handleClick() {
 
 When the page refreshes, if you try it again, you will see another error ,this time about `buttonText` not being defined. Import `buttonText` 👇
 
-![](./1262.png)
+![uncaught reference error - buttonText is not defined](./1262.png)
 
 ```js
 // handlers.js
