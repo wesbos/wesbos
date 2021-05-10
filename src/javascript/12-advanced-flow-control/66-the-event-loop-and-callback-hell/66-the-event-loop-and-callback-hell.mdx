@@ -28,7 +28,7 @@ console.log('Starting');
 console.log('ending');
 ```
 
-![](./993.png)
+![starting and ending logs in console](./993.png)
 
 No one is surprised by that.
 
@@ -48,7 +48,7 @@ Now if you refresh the page, what will you see?
 
 You might expect to see starting, running, ending, but instead we get Starting, ending, and then running.
 
-![](./994.png)
+![starting, ending and running log in console](./994.png)
 
 Why is that not in the order that we coded it in? Shouldn't the timeout cause the code to pause for two seconds, log running and then log ending?
 
@@ -70,7 +70,7 @@ https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
 Philip Roberts also built this cool little tool called _loupe_ which will help us visualize the callstack.
 
-![](./995.png)
+![a tool loupe which will help us visualize the callstack](./995.png)
 
 We have already looked at the callstack in JavaScript and we have seen when you click something, it gives you a trail of what functions were called up to then.
 
@@ -78,7 +78,7 @@ However we know that the call stack can only ever run one function at a time.
 
 So what happens in a scenario like our example where you have two logs between a `setTimeout`?
 
-![](./996.png)
+![setTimeout function that logs running in console](./996.png)
 
 JavaScript is asynchronous.
 
@@ -92,27 +92,27 @@ _Note: at the time Wes is recording the video, the tool is a bit outdated and do
 
 _(Wes is going to modify his timeout to 7 seconds instead of 4 so he can talk to us. Feel free to choose a shorter one for your example)_
 
-![](./998.png)
+![write same code in loupe](./998.png)
 
 Once you have done that click save and run.
 
-![](./loupe-gif.gif)
+![running code on loupe visualize gif](./loupe-gif.gif)
 
 The first thing that it runs our log.
 
-![](./1003.png)
+![first thing that it runs our log](./1003.png)
 
 Next it runs our time out function.
 
-![](./1004.png)
+![runs our time out function](./1004.png)
 
 It sees that there is a callback so it puts that in our Web Apis.
 
-![](./1005.png)
+![if there is a callback so it puts that in our Web Apis](./1005.png)
 
 When the callback is done waiting, it will stick it into the callback queue.
 
-![](./1006.png)
+![anonymous function in webapis](./1006.png)
 
 If the call stack has nothing else to do at the time, it will reach into the queue and grab the next thing.
 
@@ -122,25 +122,25 @@ When something happens in the Web Api (like the click of a button or a timer tha
 
 Let's say after the `setTimeout` we wanted to add an interval that logs BOOP every 100 milliseconds. Name the function `boop` so we can visualize it more easily.
 
-![](./1007.png)
+![added interval that prints boop in console every 100 milliseconds](./1007.png)
 
 The first log and `setTimeout` behave just like they did before. When it gets to `setInterval`, we already have a callback for `setTimeout` in the web apis.
 
-![](./1008.png)
+![setInterval function in the call stack](./1008.png)
 
 Then it logs "ending".
 
-![](./1009.png)
+![statement log ending in console](./1009.png)
 
 Next ,`setInterval` runs.
 
-![](./1010.png)
+![turn of boop print in console](./1010.png)
 
 Now every second you can see that it keeps going back to the `boop` function.
 
-![](./1011.png)
+![every second boop is printed out](./1011.png)
 
-![](./loupe-gif.gif)
+![visualize the flow of process using gif](./loupe-gif.gif)
 
 One thing Wes wants to show us is that even if the `setTimeout` duration was set to 0, you would still get the logs returned in the order of "Starting, Ending, Running".
 
@@ -158,13 +158,13 @@ If you refresh the page and look at the console, you will see that we still get 
 > ending
 > Running
 
-![](./1012.png)
+![console having starting, ending and running](./1012.png)
 
 Even though the timeout happens after 0 seconds, what happens is JavaScript runs the first line, then runs the `setTimeout` and queues up the callback to happen after 0 seconds, then it runs the next line and even though the timeout is 0 seconds, it still adds it to the web api which in turn adds it to the callback queue. Because the browser was already busy with the log, it runs the callback after.
 
 Let's demo that in loupe.
 
-![](./loupe-0-timer.gif)
+![demo in loupe using gif](./loupe-0-timer.gif)
 
 It logs, runs `setTimeout`, puts running in the web api which puts it in the call back queue, and then when the "ending" log is finished executing, JavaScript grabs from the callback queue and runs it.
 
@@ -178,16 +178,16 @@ The example is in jQuery but it's the same idea.
 
 When you click a button, we set a timer for 2 seconds that says you clicked me, then it logs "hi" then another timer is set for 5 seconds, and then it logs welcome to loupe.
 
-![](./1013.png)
+![running the same example using jQuery on loupe](./1013.png)
 
-![](./loupe-0-timer.gif)
+![loupe timer visualization of code written using javascript](./loupe-0-timer.gif)
 
 How that works is first the click listener goes on the call stack and gets put into the web apis, then the event listener is added. The hi is run and logged, and after that the timer also gets put in the web apis, and then it logs welcome to loupe.
 Once the timer is finished, it will get moved to the callback queue.
 
 Now every time we click the button, it sticks an event handler in the queue and you can see the callstack is reaching in and grabbing the next callback to handle itself.
 
-![](./1014.png)
+![click on button results in putting event handler in queue](./1014.png)
 
 So how do we deal with a scenario in JavaScript where we do actually want to wait for something?
 
@@ -225,7 +225,7 @@ go.addEventListener('click', function(e) {
 })
 ```
 
-![](./1015.png)
+![click me div in console](./1015.png)
 
 As you can see, we have the div.
 
@@ -242,7 +242,7 @@ Let's add some default styling there. Add style tag on the page with some stylin
 
 Now when you refresh the page, your button should look like this:
 
-![](./1016.png)
+![after adding styles button and ui in browser looks like this](./1016.png)
 
 Next we have to make it a circle after two seconds. We can do that by adding a `setTimeout`.
 
@@ -265,7 +265,7 @@ Now back in the style tag, let's add a border radius of 50% for the class circle
 }
 ```
 
-![](./1017.png)
+![add a border radius of 50% for the class circle](./1017.png)
 
 If you refresh the page you will see that the div style changes to a circle after 2 seconds.
 
@@ -277,7 +277,7 @@ el.textContent = 'GO!';
 
 Let's put a height on the go CSS style class as well so that it is square.
 
-![](./1018.png)
+![put a height on the go CSS style class as well so that it is square](./1018.png)
 
 We can add a transition on there too.
 
@@ -323,7 +323,7 @@ Let's add the follow css styles to the css class red and to purple.
 }
 ```
 
-![](./1019.png)
+![added css styles to make circle red and background blue](./1019.png)
 
 Now after 0.25 seconds we need to make it a square.
 
@@ -407,7 +407,7 @@ Add this style now 👇
 }
 ```
 
-![](./loop-animation.gif)
+![loop animation visualize using gif](./loop-animation.gif)
 
 That was a really simple animation, but look if you look at the code the way it is now, that is what is referred to as **callback hell**.
 

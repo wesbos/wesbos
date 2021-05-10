@@ -8,7 +8,7 @@ category:
  - Async/Await
 ---
 
-![](./typer.gif)
+![gif illustrating the effect of someone typing at different speeds](./typer.gif)
 
 In this video we will using **async/await** and **recursion** to create the effect of someone typing at different speeds.
 
@@ -34,7 +34,7 @@ Next we need a function that will return us a random number between a max and mi
 
 We already know that you can calculate a random number using a combination of `Math.floor` and `Math.random` like `Math.floor(Math.random() * 3)`.
 
-![](./1109.png)
+![generate a random number with combination of Math.floor and Math.random in console](./1109.png)
 
 But what if you want a number between 10 and 15, how would we do that?
 
@@ -68,7 +68,7 @@ function getRandomBetween(min = 20, max = 150, randomNumber) {
 }
 ```
 
-![](./1110.png)
+![getRandomBetween function in console](./1110.png)
 
 This way, when you pass the arguments to the function, we will always get the same value returned.
 
@@ -210,7 +210,7 @@ async function drawLetter() {
 
 For a quick refresher of how slice works: you pass it a starting and ending index and it will return the charactres inbetween like so.
 
-![](./1111.png)
+![produce subtring of a name using slice method](./1111.png)
 
 ```js
 function draw(el) {
@@ -272,7 +272,7 @@ This is the recursive part, meaning that part of the logic of `drawLetter` is to
 
 When Wes ran the code he got the following error..
 
-![](./1112.png)
+![uncaught in promise - RangeError: maximum call stack exceeded](./1112.png)
 
 Remember when we discussed the call stack previously?
 

@@ -41,7 +41,7 @@ this.slices = 10;
 
 Now if you take a look at the pizza, you will see that there are 10 slices in that pizza.
 
-![](./945.png)
+![10 slice of pizza in console](./945.png)
 
 If we needed to make a method of the pizza like `eat()`, which takes away slices one at a time, you might think you could do something like below.
 
@@ -56,7 +56,7 @@ Now if you refresh the page and go to the console and call `eat()` on one of the
 
 If you look at how many slices there are, you would get 9.
 
-![](./946.png)
+![remaining 9 slice pizza after eating one](./946.png)
 
 If you run it again, you will see we have 8.
 
@@ -78,13 +78,13 @@ It might also be a good idea to return the new number of slices from the functio
 
 If you call that a bunch of times in the console, you should see that it now works.
 
-![](./947.png)
+![calling eat function a bunch of times](./947.png)
 
 That works very well, however there is a downside to this which is that we are actually creating the `eat()` function once for every single pizza that is made.
 
 If you compared whether `pepperoniPizza.eat` and `canadianPizza.eat` are the same function, you would get false even though they look identical.
 
-![](./948.png)
+![comparing pepperoniPizza's eat method and canadianPizza's eat method](./948.png)
 
 What is happening there is we are duplicating the functionality of the function once from every single pizza.
 
@@ -104,7 +104,7 @@ Let's pause on that for a second and look at some of the built-in prototypes tha
 
 We have our `names` array which we have already declared and we will create a new array named `numbers`.
 
-![](./949.png)
+![names and number array in console](./949.png)
 
 Both of those arrays with have methods on them like `filter` for example. Every single time you make an array, the browser does not copy and paste the functionality inside of each one.
 
@@ -112,7 +112,7 @@ Instead, the method actually lives in something called a **prototype**, which al
 
 If you checked for the equality of the `filter` method of `numbers` and `names`, you would get true because they are the exact same function. They don't just have the same functionality, _they are the same function._
 
-![](./951.png)
+![comparing the filter method of both names and number array](./951.png)
 
 Take the `eat` function, copy it and then remove those lines of code. Go further down the file, right below the Pizza function and then modify it as shown below.
 
@@ -133,7 +133,7 @@ Let's test that it still works by calling `canadianPizza.eat()` in the console m
 
 However, if you log `pepperoniPizza` and look inside, you will see  `customer`, `id`, `toppings` (all of which are instance properties). But there is no `eat` functionality. However, if you open up the prototype, you will see it there.
 
-![](./952.png)
+![adding eat function to the pepperoniPizza's prototype](./952.png)
 
 That is what is referred to as the **prototype lookup**. If you put something on the prototype, and it doesn't exist on the instance, it will look for it in the mamma.
 
@@ -153,11 +153,11 @@ Pizza.prototype.size = 'Large';
 
 Now if you go to `pepperoniPizza` and look for the size, it will tell you "Large".
 
-![](./953.png)
+![log of date in console](./953.png)
 
 However, if you were to go into the `Pizza` function and add `this.size = "Medium";`, you will get "Medium".
 
-![](./954.png)
+![pepperoniPizza's size as medium in console](./954.png)
 
 It first checks for a property on the instance and if it doesn't exist, it will go to the prototype and look that up.
 
@@ -167,7 +167,7 @@ Now if we look at our `name` array by typing `name.` in the console, you will se
 
 If you log `String.prototype` you will also see the methods are available to us every single time that we create a new string.
 
-![](./955.png)
+![console log of String.prototype](./955.png)
 
 All of the methods that you see already there are what are referred to as **built in functions**, meaning they just come with the language. You can actually add your own, but warning -- you should never do this. Wes is just demoing it to show us how that works.
 
@@ -179,7 +179,7 @@ String.prototype.toUpperCase = function() {
 
 Now if you run `name.toUpperCase()` in the console, it will return to us 'YELLING'.
 
-![](./956.png)
+![console log of name and name.toUpperCase()](./956.png)
 
 That is because we overwrote the existing `toUpperCase` functionality on the prototype.
 
@@ -203,7 +203,7 @@ String.prototype.sarcastic = function() {
 
 Now if we refresh the page and open the console, let's try using that function.
 
-![](./957.png)
+![calling name.sarcastic() we have added in the String.prototypes](./957.png)
 
 As you can see, it logged `this` which is a string of "wes".
 
@@ -227,7 +227,7 @@ If it's an even character, we uppercase the letter, if it's an odd character, we
 
 Let's test if it works in the console. If you create a variable with a string and then call `.sarcastic()` on it, it will return the name with mixed case.
 
-![](./958.png)
+![calling the modified sarcastic prototype method on name](./958.png)
 
 By adding a method to the prototype, it is then available on every instance of. Whether that is something that is built in, like a string, or something your own like pizza, you can add methods to the prototype of the pizza and every single one will get it.
 
@@ -253,8 +253,8 @@ Pizza.prototype.describe = function() {
 
 Refresh the page and now in the console run `canadianPizza.describe()`. You should see the following 👇
 
-![](./959.png)
+![calling describe method on the canadianPizza object](./959.png)
 
 Now if you run `canadianPizza.eat()` a few times in the console and then call `describe`, you should see that you now have less slices left.
 
-![](./960.png)
+![console describing the remaining pizza left as its description](./960.png)
