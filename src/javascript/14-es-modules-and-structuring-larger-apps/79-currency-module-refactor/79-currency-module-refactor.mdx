@@ -286,7 +286,7 @@ Let's start by going through them one by one and deciding whether or not to move
 
 Open up `index.html` in a VSCode live server and look to see if we have any errors in the console.
 
-![](./1238.png)
+![uncaught reference error - generateOptions is not defined](./1238.png)
 
 It is complaining that `generateOptions` is not defined. Let's import it.
 
@@ -296,7 +296,7 @@ import { generateOptions } from "./utils.js";
 
 Next we get an error saying `currencies` is not defined.
 
-![](./1239.png)
+![uncaught reference error - currencies is not defined](./1239.png)
 
 Import `currencies` so we can pass it to `generateOptions`.
 
@@ -307,7 +307,7 @@ import { currencies } from "./currencies.js";
 
 WHen the page refreshes, we have yet another error. It is complaining that it cannot find an export named `currencies`.
 
-![](./1240.png)
+![uncaught syntax error - requested module does not provide an export named currencies](./1240.png)
 
 That is because it is a default export, not a named export, so it doesn't need the curly brackets.
 
@@ -319,13 +319,13 @@ import currencies from './currencies.js';
 
 Now the console is complaining that `handleInput` is not defined.
 
-![](./1241.png)
+![uncaught reference error - handleInput is not defined](./1241.png)
 
 Let's fix that by adding `import { handleInput } from './handlers';`
 
 Finally there are no more errors in the console, until you try to type an amount into the input. When you try this you will see a reference error in the console complaining that `convert` is not defined, and it is happening in `handlers.js` on line 2.
 
-![](./1242.png)
+![uncaught reference error - convert is not defined](./1242.png)
 
 To fix that, import the `convert` function into `handlers`.
 
@@ -343,7 +343,7 @@ export async function handleInput(e) {
 }
 ```
 
-![](./1244.png)
+![uncaught reference error - fromInput is not defined](./1244.png)
 
 Now we get another error that `fromInput` is not defined. Within `handleInput` use the `fromInput`, `fromSelect`, `toSelect` and `toEl` variables.
 
@@ -365,7 +365,7 @@ export const toSelect = document.querySelector('[name="to_currency"]');
 export const toEl = document.querySelector(".to_amount");
 ```
 
-![](./1245.png)
+![div with class app in elements tab](./1245.png)
 
 What people will often do is instead of using `document.querySelector` for all of those, they will grab a parent element like the div with a class of `app` in the example above, and then look for the selectors inside of there.
 
@@ -375,7 +375,7 @@ The way we are doing it is fine for now.
 
 If you refresh the page, we have an error `fromSelect` is not defined.
 
-![](./1246.png)
+![uncaught reference error - fromSelect is not defined](./1246.png)
 
 Let's first go into `handlers` and import those elements.
 
@@ -397,7 +397,7 @@ export async function handleInput(e) {
 
 Let's tackle the `fromSelect` is not defined issue happening in `money.js` on line 11.
 
-![](./1247.png)
+![setting the innerHTML using html](./1247.png)
 
 As you can see, `fromSelect` and `toSelect` are also needed from `money.js` on page load. Let's go ahead and import them.
 
@@ -422,7 +422,7 @@ form.addEventListener("input", handleInput);
 
 When the page is now refreshed, we are getting an error that ratesByBase is not defined.
 
-![](./1248.png)
+![uncaught reference error - ratesByBase is not defined](./1248.png)
 
 Our `endpoint` and `ratesByBase` variables need to go in our `lib.js` file.
 
@@ -533,7 +533,7 @@ init();
 
 If you refresh the page now, you will see the following error complaining that `generateOptions` is not defined.
 
-![](./1249.png)
+![uncaught reference error - generateOptions is not defined](./1249.png)
 
 We need to go to `lib.js` and import `generateOptions`.
 
@@ -544,7 +544,7 @@ import { generateOptions } from "./utils.js";
 
 Now if we refresh it is complaining about `currencies` not being defined.
 
-![](./1250.png)
+![uncaught reference error - currencies is not defined](./1250.png)
 
 What we can do is go to `money.js` and take all our import statements except for the `init` import and move them to `lib.js`.
 
@@ -557,7 +557,7 @@ import { handleInput } from "./handlers.js";
 
 Wes' ESLint is complaining about the `handleInput` import. The error says "Dependency cycle detected".
 
-![](./1251.png)
+![dependency cycle detected eslint warning in code](./1251.png)
 
 If you look at our `handlers.js`, we are importing `convert` from there from `lib`. So both files require each other. That could cause you to end up with a situation where they require each other and it gets out of control.
 
@@ -614,7 +614,7 @@ app.addEventListener("mouseenter", init, { once: true });
 
 When the page loads, it should just say "Select a Currency" until you hover over the form, and then the code initializes and the base currency is switched out to USD.
 
-![](./1252.png)
+![select a currency and on hovering over the form, currency is switched out to usd](./1252.png)
 
 Now our entry point has almost nothing in it because it is in a separate file.
 
