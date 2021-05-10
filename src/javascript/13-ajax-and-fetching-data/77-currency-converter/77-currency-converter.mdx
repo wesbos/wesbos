@@ -10,7 +10,7 @@ category:
 
 In this video we will build a currency conversion app.
 
-![](./1179.png)
+![rendered html of a currency convertor](./1179.png)
 
 The app allows you to enter an amount to convert, specify it's currency and then specify which currency to convert it to.
 
@@ -51,7 +51,7 @@ We have a script source tag right before the closing body tag.
 
 If you open up `money.js`, you will see that Wes has already given us just a list of currencies, which is the currency code translated to their English version.
 
-![](./1180.png)
+![list of currencies and their currency code](./1180.png)
 
 Let's start by converting those currencies so we can populate them.
 
@@ -83,7 +83,7 @@ function generateOptions(options) {
 
 If you refresh the page, you will see that gives us an array, where each item inside of the array is another array, the first time of which is the currency code and the second item being the label.
 
-![](./1182.png)
+![browser console showing currency array output ](./1182.png)
 
 Let's take that array and map over it so we get the nested array, and then log it. 👇
 
@@ -95,7 +95,7 @@ function generateOptions(options) {
 }
 ```
 
-![](./1183.png)
+![browser console showing nested currency array output](./1183.png)
 
 We can destructure each sub-array to two variables:
 
@@ -110,7 +110,7 @@ function generateOptions(options) {
 }
 ```
 
-![](./1185.png)
+![browser console output showing currencys](./1185.png)
 
 As you can see, it is looking good, except the array is undefined because we are not returning anything, so let's change that and return some HTML using backticks.
 
@@ -122,7 +122,7 @@ function generateOptions(options) {
 }
 ```
 
-![](./1186.png)
+![browser console showing outputs for currency form option tags](./1186.png)
 
 Now the `optionsHTML` variable contains an array of HTML options.
 
@@ -159,7 +159,7 @@ We are populating both options with the exact same list. That is why we put `opt
 
 Now when you refresh, you will see that each option has a dropdown. 👇
 
-![](./1187.png)
+![rendered page showing currency selection dropdown](./1187.png)
 
 Let's switch to working on some of the functionality before we continue coding the UI any further.
 
@@ -175,7 +175,7 @@ const endpoint = "https://api.exchangeratesapi.io/latest";
 
 The way this endpoint works is we need to pass it a query parameter of our base currency, as shown in the image below.
 
-![](./1188.png)
+![api example for getting currency rates](./1188.png)
 
 That will return the exchange rates to us as well as the base currency.
 
@@ -189,11 +189,11 @@ async function fetchRates(base = "USD") {
 
 If you open the browser and try to run `fetchRates()` from the console, it will return to us a promise immediately because it is an async function, and then it will resolve and log our rates.
 
-![](./1189.png)
+![browser console showing output from fetchRates endpoint using USD](./1189.png)
 
 You can try passing the base currency as "CAD" and it should still work.
 
-![](./1190.png)
+![browser console showing output from fetchRates endpoint using CAD](./1190.png)
 
 Let's wrap that function up by returning `rates` from it.
 
@@ -229,7 +229,7 @@ We could fetch the rates each time, but that could be a bit slow, because every 
 
 In the demo, you can see that the conversion is happening almost instantaneously.
 
-![](./rates.gif)
+![demo of the conversion form](./rates.gif)
 
 If we had to fetch the rates every single time someone typed into the box, for the number 57887 alone, we would be fetch the rate 5 times unnecessarily, and often APIs will rate limit you.
 
@@ -243,7 +243,7 @@ const ratesByBase = {};
 
 We will store all of the rates within that object/ Every time a currency is selected to be converted, we will check whether we already have the rates within our `ratesByBase` object. If we do not, we will fetch it and save it to our object.
 
-![](./1191.png)
+![code snippet of ratesByBase const](./1191.png)
 
 If we were to cycle through all the currencies, our `ratesByBase` object would be massive because it will contain all of the rates by their from value. So by default we start with nothing because we have nothing.
 
@@ -264,7 +264,7 @@ function convert(amount, from, to) {
 
 If you refresh the page, you can try running what we have so far from the console.
 
-![](./1192.png)
+![browser console output showing no conversion available log](./1192.png)
 
 Back to our `convert` function, we want to mark it as `async` because we will need to fetch the rate if it does not already exist.
 
@@ -287,13 +287,13 @@ Let's demo step by step how that works.
 
  Start by logging `ratesByBase` in the console, which you will see is an empty object.
 
-![](./1193.png)
+![browser console showing empty ratesByBase object](./1193.png)
 
 If we run `convert(100, 'CAD', 'USD')` in the console, we will see the message stating we don't have it but are fetching it.
 
 Now if we check the `ratesByBase` object, we will see those rate values within the object. If you were to run the same convert function again, you will see it does not refetch them because the values already exist within `ratesByBase`.
 
-![](./1194.png)
+![browser console showing output from ratesByBase](./1194.png)
 
 As soon as you refresh the page, they will be gone. You could use local storage to save those but we will just do page load for this exercise.
 
@@ -327,7 +327,7 @@ Inside of that, we need to grab the rates and the find the rate that they are co
 
 But because those property keys are variables within our function, we need to use square brackets to access those object properties.
 
-![](./1195.png)
+![browser output showing output from ratesByBase.CAD.rates](./1195.png)
 
 Now we will take that `rate` and calculate the `convertedAmount` like so 👇
 
@@ -351,7 +351,7 @@ function convert(amount, from, to) {
 
 If you refresh the page and try that, you should see something like the following..
 
-![](./1197.png)
+![browser console showing successful conversion from CAD to USD](./1197.png)
 
 At this point, we have built the main functionality of the app so at this point we can start hooking it up to our UI.
 
@@ -386,7 +386,7 @@ function handleInput(e) {
 }
 ```
 
-![](./1198.png)
+![browser console output showing results from event](./1198.png)
 
 If you refresh the page and try typing into the amount input or selecting an item from the drop downs, you will see that `e.target` is changing every time but `e.currentTarget` which is the form stays the same.
 
@@ -422,14 +422,14 @@ async function handleInput(e) {
 }
 ```
 
-![](./1199.png)
+![browser console showing raw amount values of the rates data](./1199.png)
 
 If you refresh the page and try entering an amount into the "from_amount" input, you should see something like shown above 👆 logged in the console.
 
 Now we need to actually show that amount in the `to_amount` paragraph tag.
 
 
-![](./1200.png)
+![rendered page with the amount being highlighted by dev tools](./1200.png)
 
 Let's go back to the top of our page and select that element and name it `toEl`.
 
@@ -458,7 +458,7 @@ If you refresh the page and test it out, you should see the `to_amount` value up
 
 Try changing the "to currency" and the "from currency" to ensure the value is still updating.
 
-![](./1201.png)
+![rendered page showing returned values of the api](./1201.png)
 
 ### Formatting Currency using Number Format API
 
@@ -478,7 +478,7 @@ And as the second argument you pass it an options object.
 
 Within that object we will pass a value for the `style` property which will be `'currency'`, since we want to format the amount as a currency, and then we need to pass the currency argument which we can do using the shorthand since both the property and value have identical names.
 
-![](./1202.png)
+![code snippet of formatCurrency](./1202.png)
 
 The code highlighted above is the "formatter", and then the method is just a `.format()` method on the formatted to which you pass your amount like so:
 
@@ -507,7 +507,7 @@ async function handleInput(e) {
 
 Refresh the page and check whether that works.
 
-![](./1203.png)
+![rendered page showing form](./1203.png)
 
 Unfortunately that does not seem to be working. Let's look at the console to debug.
 
@@ -515,7 +515,7 @@ When Wes runs into a problem like this, when there are many things calling each 
 
 Lets start by testing `formatCurrency` in the console.
 
-![](./1204.png)
+![browser console showing the result from formatCurrency](./1204.png)
 
 We do not get the formatted amount back. Try manually passing the locale to `Intl.NumberFormat` method.
 
@@ -532,4 +532,4 @@ function formatCurrency(amount, currency) {
 
 Now if you refresh it, it should be working.
 
-![](./1205.png)
+![rendered page showing form fully finished](./1205.png)
