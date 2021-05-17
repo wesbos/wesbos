@@ -142,20 +142,20 @@ module.exports = {
     // },
     // `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: 'gatsby-plugin-snipcartv3',
-      options: {
-        apiKey:
-          process.env.CONTEXT === 'production'
-            ? // Production
-              process.env.GATSBY_SNIPCART_APIKEY
-            : // Development
-              process.env.GATSBY_SNIPCART_APIKEY_PREVIEW,
-        currency: 'usd',
-        // Upgrade to latest snipcart
-        js: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.js`,
-        styles: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.css`,
-      },
-    },
+    // {
+    //   resolve: 'gatsby-plugin-snipcartv3',
+    //   options: {
+    //     apiKey:
+    //       process.env.CONTEXT === 'production'
+    //         ? // Production
+    //           process.env.GATSBY_SNIPCART_APIKEY
+    //         : // Development
+    //           process.env.GATSBY_SNIPCART_APIKEY_PREVIEW,
+    //     currency: 'usd',
+    //     // Upgrade to latest snipcart
+    //     js: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.js`,
+    //     styles: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.css`,
+    //   },
+    // },
   ],
 };

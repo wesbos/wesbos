@@ -5,7 +5,7 @@ import { PostMetaTags } from '../components/MetaTags';
 import Product from '../components/store/Product';
 import { ProductImages } from '../components/styles/ProductImages';
 import useImage from '../hooks/useImage';
-import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
+// import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
 export default function MerchPage({ path }) {
   return (
