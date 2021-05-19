@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
     --lightGray: var(--lightGrey);
     --imGoingToFaint: #fbfbfb;
     --maxWidth: 1200px;
+    --baseFont: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   html {
     --size: 40px;
@@ -24,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
       --size: 20px;
     }
     --borderSize: calc(var(--size) / 2);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: var(--baseFont);
     box-sizing: border-box;
     border: var(--borderSize) solid var(--dark);
     border-color: var(--dark);

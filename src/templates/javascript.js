@@ -12,6 +12,7 @@ import { PostMetaTags } from '../components/MetaTags';
 import TableOfContents from '../components/TableOfContents';
 import { getIds } from '../utils/getIds';
 import { useActiveId } from '../hooks/useActiveId';
+import { BeginnerJavaScript } from '../components/beginnerJavaScript';
 
 export const pageQuery = graphql`
   query($slug: String!) {
@@ -45,7 +46,6 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
     post.fileAbsolutePath.split('/src/')[1]
   }`;
-
   return (
     <JavaScriptNotesStyles>
       <TableOfContents activeId={activeId} currentPage={pageContext.slug} />
@@ -53,6 +53,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
         <PostHeaderStyles>
           <PostMetaTags post={post} />
           <H>{post.frontmatter.title}</H>
+          <BeginnerJavaScript/>
           <div className="postMeta">
             <span>{post.frontmatter.category.join(', ')}</span>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
