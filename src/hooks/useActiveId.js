@@ -14,7 +14,6 @@ export function useActiveId(itemIds) {
             setActiveId(entry.target.id);
             // when we vist a new page, scroll the TOC current item into view
             if (isNewPage) {
-              console.log({ isNewPage });
               setIsNewPage(false);
               const tableOfContentsLink = document.querySelector(
                 `a[href*="${entry.target.id}"]`
@@ -24,7 +23,6 @@ export function useActiveId(itemIds) {
                   block: 'center',
                 });
               }
-              console.log(entry.target.id);
             }
           }
         });

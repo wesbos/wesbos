@@ -10,6 +10,5 @@ export default function WhyDoINeedToMakeThisComponent({ image, ...theRest }) {
   if (image.extension === 'gif') {
     return <img src={image.publicURL} {...theRest} />;
   }
-  console.log(theRest);
   return <Img fluid={image.childImageSharp.fluid} {...theRest} />;
 }

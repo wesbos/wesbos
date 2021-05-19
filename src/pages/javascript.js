@@ -48,7 +48,7 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
           <div key={title}>
             <H as="h3">{title}</H>
             <ul>
-              {items.map((tocItem) => console.log(tocItem) || (
+              {items.map((tocItem) => (
                 <li key={tocItem.tocTitle}>
                   <Link to={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</Link>
                 </li>
