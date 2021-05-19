@@ -1,0 +1,76 @@
+---
+tocTitle: 10 - Types - Null and Undefined
+title: Types - Null and Undefined
+slug: 01-the-basics/types-null-and-undefined
+section: 1 - The Basics
+category:
+ - JavaScript
+ - Types
+ - Undefined
+---
+
+There are two ways to sort of express "nothing" in JavaScript, and that is with `undefined` and `null`.
+
+## undefined
+
+If you create a variable and don't set anything to it, it will be `undefined`. 👇
+
+```js
+let dog;
+console.log(dog);
+```
+
+![not assigning a variable anything results as undefined variable](/undefined-variable-in-console.png)
+
+**undefined** is something that has been created (a variable), but has not yet been defined (given a value).
+
+The same thing goes for properties on an object. If you type in the console `person.dog` it will return undefined.
+
+Why? Because there is nothing there. That is what undefined is.
+
+It comes about when you try to access a variable that has been created but not given a value.
+
+If you typed in the console `wes`, you would see an error message returned that said _'wes is not defined'_ which means that you didn't create a variable called `wes`.
+
+With the dog example we used above, we have created the variable but we have not set a value. That is the difference.
+
+## null
+
+Now we will discuss the **null** type.
+
+Null is a value of nothing, whereas undefined is a variable that has not yet had a value set to it.
+
+We will go over some examples to demonstrate.
+
+In `types.js` add the following 👇
+
+```js
+let somethingUndefined;
+const somethingNull = null;
+```
+
+_NOTE: you cannot use a const variable without setting a value._
+
+`somethingUndefined` is undefined because it does not have a value set, whereas `somethingNull` has the value of null, which is nothing. They are both nothing, but in different ways.
+
+Let's say for example we have Cher and Teller (both of who are real people), who we will represent in objects like so 👇
+
+```js
+const cher = {
+  first: "Cher",
+};
+
+const teller = {
+  first: "Raymond",
+  last: "Teller",
+};
+
+teller.first = "Teller";
+teller.last = null;
+```
+
+In this example, Cher never had a last name, so she does not have the last property in her object.
+
+Teller on the other hand, got rid of his last name, so we are explicitly setting it to null.
+
+In the console, if you type `cher.last` you will see the value of undefined returned. When you try `teller.last`, the value of null wil be returned.

@@ -1,0 +1,195 @@
+---
+tocTitle: 13 - Functions - Custom
+title: Functions - Custom
+slug: 02-functions/functions-custom
+section: 2 - Functions
+category:
+ - JavaScript
+ - Functions
+---
+
+In this video we will get into making our own custom functions.
+
+A function can do anything, and the real power of JavaScript comes when you define your own functions.
+
+Functions group together a set of instructions, often taking in values (we talked about **arguments** earlier), doing some work and then returning value or set of values back to what requested it.
+
+For this lesson, you need to make a new folder `/custom-functions` inside of `/playground`. Within that folder, create two files `index.html` and `cf.js`. Add a log of "it works!" in the js file, and add the HTML base snippet to the HTML page.
+
+We will need to modify the `base.css` path because we made a folder so the path should now be `../../base.css` _(because we have to go up two levels to get to it)_.
+
+Right before the closing body tag, add a script source tag like so 👇 and you should see "It works!" in the console.
+
+```html
+<script src="./cf.js">
+```
+
+![running the script named cf in console printing it works](/running-script-in-console.png)
+
+In this lesson, we are going to create a function called "Calculate Bill".
+
+You can think of "Calculate Bill" (said in southern american accent) as a western gentlemen who is very good at going to restaurants and calculating what the bill would be regarding what the bill was, how much tip was, how much tax is. That is what our function will be responsible for doing.
+
+There are going to be a few buzzwords as we go through, which we will explain as we go, starting .
+
+The first one is that **functions are created or defined**, and they are later **called**.
+
+When you make a function, when you author what it does, that is called a **function definition**.
+
+Later on, when you want to **run** that function, that is called **calling** or **running** of a function.
+
+### Defining a Function
+
+There are a few ways to define a function. We are going to go over all the different approaches in the next videos but for now, we will go over the basic.
+
+First you type `function` and then the name of the function. Function naming follows the exact same rules as variable naming which we went over in a previous video.
+
+We are going to call it `calculateBill` 👇
+
+```js
+function calculateBill() {
+  // this is a function body
+}
+```
+
+What we have done is defined it, given it parenthesis and then you open and close a function block.
+Anything that goes inside the function block is called the **function body**, and is part of the function.
+
+In the function body, add 👇
+
+```js
+console.log("Running Calculate Bill!!!");
+```
+
+Open `index.html` and in the browser and open the console. Try typing `calculateBill` in the console and hitting enter.
+
+![run calculateBill bill function in console by typing calculateBill and pressing enter](/running-calculate-bill-function-in-console.png)
+
+A function works just like a variable in that you can call them by the name of it. However, when you put just the name of the function, you see the entire code, as shown 👆 above.
+
+Now if we want to run the function we would have to enter into the console `calculateBill()`, which will log `Running Calculate Bill!!!!` in the console.
+
+Add the following to `cf.js` to run the function right from our JavaScript. 👇
+
+```js
+// function definition
+function calculateBill() {
+  // this is the function body
+  console.log("Running Calculate Bill!!");
+}
+
+// function call or function invocation
+calculateBill();
+```
+
+### Returning Values
+
+When we called `calculateBill()` in the console, it returned undefined.
+
+![calculateBill function returned undefined as we did not returned anything from it](/calculate-bill-function-returning-undefined-in-console.png)
+
+It does the work we asked it to do, and then it returns undefined. Often, functions will do a bunch of work and then return to you the result.
+
+What we are going to do in our function is we will take in the following arguments, and it will return to us the total value:
+
+- how much the dinner was
+- the tax rate
+- how much you want to tip
+
+The way that works is we will assume the meal is 100 dollars, and we will multiply it by 1.13 because in Ontario the tax rate is 13%.
+
+Now we can log the total value to the console.
+
+```js
+// function definition
+function calculateBill() {
+  // this is the function body
+  console.log("Running Calculate Bill!!");
+  const total = 100 * 1.13;
+  console.log(total);
+}
+
+// function call or function invocation
+calculateBill();
+```
+
+![calculateBill function calculate the total by multiplying 100 and 1.13 and prints in console](/calculate-bill-function-logging-bill-in-console.png)
+
+_(👆 This is a perfect example of the issue with floating point numbers mentioned in a previous video)_
+
+You might be thinking "oh, now I have this nice total variable which I can just quickly access". However, if you type `total` in the console, it will return undefined.
+
+Try that by adding the following code to `cf.js` below the `calculateBill` function definition, refresh the page and look at the error in the console.
+
+```js
+console.log(total);
+```
+
+You should see an error
+
+> total is not defined
+
+![printing total variable outside calculateBill function throws not defined error](/total-not-defined-error-in-console.png)
+
+In VSCode, you may notice that ESLint is yelling at us as well that total is not defined.
+
+This is something that we will get into called **scope**.
+
+Variables that are created inside of a function are only available within that function, which is called block scoping _(we will cover block in more detail in the future)_. It is not available outside of it.
+
+So how do we store the result of the calculation so we can access it using a variable? With returning!
+
+When we called `calculateBill()` earlier, we got undefined returned in the console. To fix that, we need to return total.
+
+`return` is a keyword in JavaScript.
+
+```js
+  const total = 100 * 1.13;
+  console.log(total);
+  return total;
+}
+
+// function call or function invocation
+calculateBill();
+```
+
+Now when you call it in the console, you will see it returns the value.
+
+![returning total variable from calculateBill function prints the returned value ](/printing-returned-value-from-function-in-console.png)
+
+### Storing a Value Returned from A Function
+
+How can we store that value?
+
+The total variable is still not available to us. That is because we need to **capture** (another buzz word) the result of the function or capture the returned value of the function into a variable.
+
+Modify the line of JavaScript with `calculateBill()` like so 👇
+
+```js
+const myTotal = calculateBill();
+console.log(myTotal);
+```
+
+In the console, you can now access the variable `myTotal`. Modify the log like so 👇
+
+```js
+console.log($`Your total is $${myTotal}`);
+```
+
+That will print out the value and message in the console.
+
+You may be wondering why we have two variables to hold the same value, `total` within `calculateBill()` and `myTotal` below the function.
+
+The reason is that `total` variable is a **temporary variable**.
+
+Since `total` is created inside of the function, it is only ever available inside of `calculateBill` and when the function is done running, that variable is **cleaned up** (or what is called **garbage collected** in JavaScript and it's no longer needed).
+
+If you ever want to capture the value returned from `calculateBill()`, you have to stick it into a variable before you can go ahead and display it.
+
+Another cool thing you can do with **interpolation** strings is you can actually run the function from within the log statement.
+
+JavaScript is going to run the function first, and then whatever the return result is it will immediately be interpolated into that string.
+
+```js
+console.log(`Your total is $${calculateBill()}`);
+```
