@@ -41,7 +41,7 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
         The code written in these notes is available in the <a href="https://github.com/wesbos/beginner-javascript"> Beginner JavaScript repo</a> on github.
       </p>
       <p>
-        Did I miss something? Think you could add a better example? Find a spelling mistake? All the notes are open source and and edits are greatly appreciated!
+        Did I miss something? Think you could add a better example? Find a spelling mistake? All the notes are open source and edits are greatly appreciated!
       </p>
       <TOC>
         {createToc().map(([title, items]) => (
