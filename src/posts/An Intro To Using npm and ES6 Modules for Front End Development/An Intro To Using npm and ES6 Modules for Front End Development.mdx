@@ -30,7 +30,7 @@ For example, many of us learned jQuery. It included methods for doing absolutely
 
 This article will take a look at using `npm` and ES6 Modules. There are other registries (e.g. <a href="http://bower.io/">Bower</a>) and other module loaders (e.g. <a href="https://nodejs.org/docs/latest/api/modules.html">CommonJS</a> and <a href="http://requirejs.org/docs/whyamd.html">AMD</a>), but there are plenty of articles already on those topics.
 
-Whether you are doing Node or front end development, I believe that ES6 modules and `npm are the way forward. If you look at any of the popular open source projects today, such as <a href="https://facebook.github.io/react/">React</a> or <a href="https://lodash.com/">lodash</a>, you'll see they have also adopted ES6 modules + npm`.
+Whether you are doing Node or front end development, I believe that ES6 modules and `npm` are the way forward. If you look at any of the popular open source projects today, such as <a href="https://facebook.github.io/react/">React</a> or <a href="https://lodash.com/">lodash</a>, you'll see they have also adopted ES6 modules + `npm`.
 
 <h3>Current workflow</h3>
 
@@ -60,7 +60,7 @@ This type of workflow has worked fairly well for years, but not without its issu
 
 
 
-The idea of writing JavaScript modules isn't new, but with the arrival of ES6 and the industry settling on `npm as the preferred package manager for JavaScript, we're starting to see many devs migrate away from the above workflow and standardizing on using ES6 and npm`.
+The idea of writing JavaScript modules isn't new, but with the arrival of ES6 and the industry settling on `npm` as the preferred package manager for JavaScript, we're starting to see many devs migrate away from the above workflow and standardizing on using ES6 and `npm`.
 
 <h3>Hold on. `npm`? Isn't that for Node?</h3>
 
@@ -68,7 +68,7 @@ Many moons ago, `npm` began as the package manager for Node.js, but it has since
 
 
 
-* Install our dependency from `npm, e.g.:  npm install lodash --save`
+* Install our dependency from `npm`, e.g.:  `npm install lodash --save`
 
 * Import it into the file where we need that dependency, e.g.:
 
@@ -90,7 +90,7 @@ Getting everything working in current browsers requires a bundle step. We'll tal
 
 <h2>Creating your own Modules</h2>
 
-Let's say we are building an online store app and we need a file to hold all of our helper functions. We can create a module called `helpers.js that contains a number of handy helper functions — formatPrice(price), addTax(price) and discountPrice(price, percentage)`, as well as some variables about the online store itself.
+Let's say we are building an online store app and we need a file to hold all of our helper functions. We can create a module called `helpers.js` that contains a number of handy helper functions — `formatPrice(price)`, `addTax(price)` and `discountPrice(price, percentage)`, as well as some variables about the online store itself.
 
 Our `helpers.js` file would look like this:
 
@@ -163,32 +163,36 @@ As mentioned before, there are two ways that you can export from a module — na
 
 The other type of export is the default export. Use named exports when your module needs to export multiple variables/functions, and use a default export when your module only needs to export one variable/function. While you can use both default exports and named exports within a single module, I'd advise you to pick only one style per module.
 
-Examples of default exports may be a single `StorePicker React Component or an array of data. For example, if we have the following array of data that we need to make available to other components, we can use export default` to export it.
-
+Examples of default exports may be a single `StorePicker` React Component or an array of data. For example, if we have the following array of data that we need to make available to other components, we can use `export default` to export it.
 
 ```js
 // people.js
-const fullNames = ['Drew Minns', 'Heather Payne', 'Kristen Spencer', 'Wes Bos', 'Ryan Christiani'];
+const fullNames = [
+  "Drew Minns",
+  "Heather Payne",
+  "Kristen Spencer",
+  "Wes Bos",
+  "Ryan Christiani",
+];
 
-const firstNames = fullNames.map(name => name.split(' ').shift());
+const firstNames = fullNames.map((name) => name.split(" ").shift());
 
 export default firstNames; // ["Drew", "Heather", "Kristen", "Wes", "Ryan"]
-
 ```
 
 Just like above, you can append the `export default` in front of a function you wish to export as well:
 
-
 ```js
-export default function yell(name) { return `HEY ${name.toUpperCase()}!!` }
-
+export default function yell(name) {
+  return `HEY ${name.toUpperCase()}!!`;
+}
 ```
 
 <h2>Importing your own modules</h2>
 
 Now that we have separated our code into little modules and exported pieces that we need, we can go ahead an import parts or all of those modules into other parts of our application.
 
-To import modules that are part of our codebase, we use an `import statement and then point to a file's location relative to the current module — just like you are used to in any HTML src path or CSS background image. You'll notice that we leave off the .js` extension as it's not required.
+To import modules that are part of our codebase, we use an `import` statement and then point to a file's location relative to the current module — just like you are used to in any HTML src path or CSS background image. You'll notice that we leave off the `.js` extension as it's not required.
 
 It's important to note that we don't import modules once and have them available to the entire application as globals. Whenever one of your modules has a dependency on another module — say our above code needed a lodash method — we <em>must</em> `import` it into that module. If we require the same lodash function in 5 of our modules, then we import it 5 times. This helps keep a sane scope as well as makes our modules very portable and reusable.
 
@@ -240,7 +244,7 @@ const theNames = stuff.default
 
 <h2>Importing modules from `npm`</h2>
 
-Many of the modules we will use come from `npm. Whether we need a full library like jQuery, a few utility functions from lodash, or something to perform Ajax requests like the superagent library, we can use npm` to install them.
+Many of the modules we will use come from `npm`. Whether we need a full library like jQuery, a few utility functions from lodash, or something to perform Ajax requests like the superagent library, we can use `npm` to install them.
 
 
 ```js
@@ -252,7 +256,7 @@ npm i jquery lodash superagent -S
 
 ```
 
-Once these packages are in our `node_modules/ directory, we can import them into our code. By default, Babel transpiles ES6 import statements to CommonJS. Therefore, by using a bundler that understands this module syntax (like webpack or browserify) you can leverage the node_modules/ directory. So our import statements only need to include the name of the Node module. Other bundlers may require a plugin or configuration to pull from your node_modules/` folder.
+Once these packages are in our `node_modules/` directory, we can import them into our code. By default, Babel transpiles ES6 import statements to CommonJS. Therefore, by using a bundler that understands this module syntax (like webpack or browserify) you can leverage the `node_modules/` directory. So our import statements only need to include the name of the Node module. Other bundlers may require a plugin or configuration to pull from your `node_modules/` folder.
 
 
 ```js
@@ -326,7 +330,7 @@ bitHound integrates with GitHub and BitBucket and has also rolled out automatic 
 
 bitHound also has branch status on Pull Requests -  set up pass/fail criteria and bitHound will post the status right to GitHub or Bitbucket.
 
-Another tool that works well with bitHound is called <a href="https://www.npmjs.com/package/npm-check-updates">npm-check-updates</a>. Install globally on your development machine with `npm install npm-check-updates -g and then run ncu. To quickly check if your packages have any available updates. If they do, you can run ncu --upgradeAll to automatically update all packages in your package.json. Make sure to run a npm install` after doing this to fetch the latest code from NPM.
+Another tool that works well with bitHound is called <a href="https://www.npmjs.com/package/npm-check-updates">npm-check-updates</a>. Install globally on your development machine with `npm install npm-check-updates -g` and then run `ncu`. To quickly check if your packages have any available updates. If they do, you can run `ncu --upgradeAll` to automatically update all packages in your package.json. Make sure to run a `npm install` after doing this to fetch the latest code from NPM.
 
 <h2>The Bundle Process</h2>
 
@@ -411,4 +415,4 @@ Hopefully this was a nice introduction to using `npm` and ES6 Modules. There is 
 
 A huge thanks to <a href="https://github.com/smargh">Stephen Margheim</a>, <a href="http://kentcdodds.com/">Kent C. Dodds</a>, <a href="http://mikechen.io/">Mike Chen</a>, <a href="https://github.com/rivertam">Ben Berman</a>, and <a href="https://about.me/jpoo90">Juan Pablo Osorio Ospina</a> for reviewing and providing excellent feedback on this article.
 
-If you have any suggestions, code samples, technical updates or clarifications you would like to add to this, please send on over a <a href="https://github.com/wesbos/javascript-modules">pull request</a>.
+If you have any suggestions, code samples, technical updates or clarifications you would like to add to this, please send on over a <a href="https://github.com/wesbos/wesbos">pull request</a>.
