@@ -312,7 +312,7 @@ function isCool(name) {
 
 So what is going on here is we have one scope, which is the **function scope** (`function isCool(name){...}`).
 
-One thing that can get confusing is that a function also has a block, so any `let`, `var` of `const` variables are automatically scoped to a function, because regardless, if its a function or a block, it's a set of curly brackets so it's scoped to that.
+One thing that can get confusing is that a function also has a block, so any `let`, `var` or `const` variables are automatically scoped to a function, because regardless, if its a function or a block, it's a set of curly brackets so it's scoped to that.
 
 And then we have **block scope** which is within the `if (name === 'wes') {...}`.
 
@@ -346,7 +346,7 @@ function isCool(name) {
 }
 ```
 
-Although we went over how to solve the fact that variables are blocked scope, in most cases that is not something you need fixed, and it is actually really nice to have blocked scope because you don't have variables leaking out of it.
+Although we went over how to access variables that are block scoped, in most cases that is not something you need to get fixed, and it is actually really nice to have block scope because you don't have variables leaking out of it.
 
 In the past, we have had for loops such as the following:
 
@@ -420,7 +420,7 @@ When we call the `logDog()` function, is it going to log Sunny or Snickers?
 
 You may think it will log Sunny because we declare the dog in the function scope, so when the function runs, shouldn't it look in it's own scope for that?
 
-Or you might think it may log Snickers because the function is declared within a `dog` variable inside of it so it will look up for that variable.
+Or you might think it may log Snickers because the function is declared within a scope, having `dog` variable inside of it so it will look up for that variable.
 
 What does it log? Snickers!
 
@@ -430,7 +430,7 @@ Even though we ran the `logDog()` function within the `go()` function and that f
 
 ## Lexical and Static Scoping
 
-That is because javascript is what is referred to as **lexical scoping** or **static scoping** _(those are buzz words in javascript)_.
+That is because javascript has what is referred to as **lexical scoping** or **static scoping** _(those are buzz words in javascript)_.
 
 What that means is the way that variable look-up or scope look-up happens, is where the functions are defined, not where they are run.
 
