@@ -460,7 +460,7 @@ That would allow us to do many layers deep.
 It is often the case that we have to write code like this to safely check for the existence of a nested property 👇
 
 ```js
-if (wes && wes.jobs ** wes.jobs.first) {
+if (wes && wes.jobs && wes.jobs.first) {
 
 }
 ```
