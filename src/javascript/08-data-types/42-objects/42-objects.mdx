@@ -290,7 +290,9 @@ Add the following code at the bottom of the script tag 👇
 const wesFroze = Object.freeze(wes);
 ```
 
-That won't freeze the original object `wes`, but what it will do is return a new object, called `wesFroze` and that can never be changed.
+That will freeze the original object `wes`, and return it. In this case, `wes` and `wesFroze` are exact same objects. 
+
+`freeze()` returns the exact same object that was passed into the function. It does not create a copy.
 
 To demonstrate this, refresh the HTML page and then type `wesFroze` in the console. That should return the object.
 
