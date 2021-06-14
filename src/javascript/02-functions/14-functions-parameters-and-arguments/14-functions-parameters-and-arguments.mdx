@@ -35,7 +35,7 @@ This will work, but that is not the best way to do it. Why?
 
 `calculateBill` is relying on something called **global variables** _(which will be explained in future videos)_.
 
-For right now, what you need to know is that `calculateBill` needs needs some data. When it is not passed data, it is instead reaching outside of the function in order to look up that data in a higher **scope**.
+For right now, what you need to know is that `calculateBill` needs some data. When it is not passed data, it is instead reaching outside of the function in order to look up that data in a higher **scope**.
 
 That is not great practice _(reaching outside of a function in order to get your data)_.
 
@@ -66,7 +66,7 @@ _(Note: you need to change the `bill` variable that is declared in `cf.js` to a 
 
 If you refresh it, now it works.
 
-However, we have been changing the variable by modifying out code each time we want to run it with different values. This is bad practice and it is how you get very brittle applications.
+However, we have been changing the variable by modifying our code each time we want to run it with different values. This is bad practice and it is how you get very brittle applications.
 
 What we want to do is instead of reaching out, we will pass the data that we need into our functions.
 
@@ -88,7 +88,7 @@ const myTotal = calculateBill();
 
 Now we want to take the variables bill and tax rate and we want to make them into something called **parameters** or **params** for your function.
 
-When you define your function, you add params which let's you know that the function expects to be passed some data. Wes likes to think of params as placeholders.
+When you define your function, you add params which let you know that the function expects to be passed some data. Wes likes to think of params as placeholders.
 
 ```js
 function calculateBill(billAmount, taxRate)
@@ -99,7 +99,7 @@ Inside of the function body, we will have access to the two variables that were 
 - `billAmount`
 - `taxRate`
 
-It's can be confusing because there is no "creation of the param variables", but Wes will do his best to explain it.
+It can be confusing because there is no "creation of the param variables", but Wes will do his best to explain it.
 
 ```js
 // function definition
@@ -114,7 +114,7 @@ const myTotal = calculateBill(100, 0.13);
 console.log(myTotal);
 ```
 
-That will give you $100.13.
+That will give you $113.
 
 But now we are able to make a `myTotal2` really quickly 👇
 
@@ -134,7 +134,7 @@ Here is a quick cheatsheet Wes has put together that explains the parts of a fun
 
 When we define the function, we use what are called **parameters**. Parameters can be thought of as placeholders (we will talk about **default values** for parameters shortly).
 
-When you **call**, **run** or **invoke** (all 3 mean the same thing), and you actually pass it the data, that will take place of the variables (for example `meal` will be `100` and `taxRate` will be `10.13`), those will be called **arguments**.
+When you **call**, **run** or **invoke** (all 3 mean the same thing), and you actually pass it the data, that will take place of the variables (for example `meal` will be `100` and `taxRate` will be `0.13`), those will be called **arguments**.
 
 People incorrectly use those terms interchangeably. One way to remember is that _parameters are placeholders_. The actual values that you pass in when calling a function are what are called **arguments**.
 
@@ -156,10 +156,10 @@ function calculateBill(billAmount, taxRate) {
   return total;
 }
 
-const myTotal = calculateBill(100, 0.15);
+const myTotal = calculateBill(100, 0.13);
 ```
 
-![calculateBill function computes the bill using scoped arguments as 100 for billAmount and 0.15 for taxRate](/calling-function-with-arguments-in-console.png)
+![calculateBill function computes the bill using scoped arguments as 100 for billAmount and 0.13 for taxRate](/calling-function-with-arguments-in-console.png)
 
 We can run that function from the console but pass it different values for the arguments, it will console log the values of the arguments that we passed, like so 👇
 
@@ -191,13 +191,13 @@ Will it even work if you pass in a variable that does not have the same name as 
 
 _**You should see it works just fine!**_
 
-To review, when you run a function in JavaScript, what happens is JavaScript takes in whatever you have pass it, whether you have passed it that value directly _(as a number or string for example)_, or if you pass it in via reference _(meaning that you just passed a reference to a variable which in turn will hold a value)_.
+To review, when you run a function in JavaScript, what happens is JavaScript takes in whatever you have passed it, whether you have passed it that value directly _(as a number or string for example)_, or if you pass it in via reference _(meaning that you just passed a reference to a variable which in turn will hold a value)_.
 
 At the end of the day we are still passing values, whether you pass it directly or whether you pass it a reference to a variable that holds a value. JavaScript doesn't care about how you are passing them in, whether as a value directly or as a variable.
 
 In this function, JavaScript will take whatever was passed in the first argument and make it into a temporary variable `billAmount` that is available inside of the confines of the curly brackets.
 
-When the function is running, it does not care about anything else that is going outside of this function. It just knows it's doing it's job, it's been passed in the 2 little pieces of data that it needs, it does the math and returns it's value from within the function.
+When the function is running, it does not care about anything else that is going outside of this function. It just knows it's doing its job, it's been passed in the 2 little pieces of data that it needs, it does the math and returns its value from within the function.
 
 When values get passed into a function, they sort of get renamed into whatever it is that you have defined your function parameters as.
 
@@ -218,11 +218,11 @@ const greeting = sayHiTo();
 console.log(greeting);
 ```
 
-Run the code as is, even though it will break, to see why. In the console you should see an reference error in the console.
+Run the code as is, even though it will break, to see why. In the console you should see a reference error in the console.
 
 ![sayHiTo function throws not defined error as firstName is not defined anywhere](/firstName-is-not-defined-error-in-console.png)
 
-What happens is this function, first it looks inside of it's own function scope, and it will look for a variable `firstName` that has been passed in. If there is not, it will start to do is go up to a high level of scope and look there.
+What happens is this function, first it looks inside of its own function scope, and it will look for a variable `firstName` that has been passed in. If there is not, it will start to do is go up to a high level of scope and look there.
 
 Let's say there was a firstName variable like so 👇
 
@@ -255,11 +255,11 @@ console.log(greeting);
 This makes the function nice and reusable, and we can use it to print out any first name like so 👇
 ![reusing same function named sayHiTo by passing different first name](/reusing-functions-in-console.png)
 
-As long as we pass in an argument (in this case "Wes"), it is going to have a variable inside of that function that is referenced to whateer the person has passed in.
+As long as we pass in an argument (in this case "Wes"), it is going to have a variable inside of that function that is referenced to whatever the person has passed in.
 
 If we don't run it with anything, you will see... 👇
 
-![without passing an argument to sayHiTo function which accept a parameter prints undefined](/calling-function-without-any-argument.png)
+![without passing an argument to sayHiTo function which accepts a parameter prints undefined](/calling-function-without-any-argument.png)
 
 The reason that happens is when a function runs, it will create the variable for us (`firstName`) and set it to whatever was passed in.
 
@@ -285,7 +285,7 @@ const myTotal3 = calculateBill(20 + 20 + 30 + 20, 0.15);
 
 Is that going to work?
 
-If you load `index.html` in the broswer you will see `103.4999999999`.
+If you load `index.html` in the browser you will see `103.4999999999`.
 
 _(If you followed Wes too closely, you may have gotten the value of 90.5. If that is the case, the line of code that calculates the total within `calculateBill`. It should be `const total = billAmount * ( 1 + taxRate);`. This is because of `bedmas`, we need the parenthesis)._
 
@@ -330,7 +330,7 @@ function yell(name) {
 
 You might have noticed that both functions are using the variable `name`.
 
-While it's not okay to reuse variables in the same scope multiple time, it is okay to reuse parameters.
+While it's not okay to reuse variables in the same scope multiple times, it is okay to reuse parameters.
 
 Why? Because when arguments are passed in, the parameters are only available within that function so you will never run into a collision where the name that you pass into one function is going to overwrite it in the other function. That will not happen because _parameters are scoped to the confines of their own functions._
 
@@ -338,7 +338,7 @@ The `name` parameter that is used in the `doctorize()` method will never collide
 
 Let's go ahead and run it in the console. 👇
 
-![reusing same name as paraeters across different functions never collide with each other](/reusing-same-named-paraeters-in-different-functions.png)
+![reusing same name as parameters across different functions never collide with each other](/reusing-same-named-paraeters-in-different-functions.png)
 
 Let's pass the output of `doctorize()` into `yell` by typing the following into the console 👇
 
@@ -363,7 +363,7 @@ If we were to take our `yell` function and instead of passing it "Wes", we do no
 
 ![yell function without argument results in error](/calling-yell-function-without-an-argument-produces-error.png)
 
-What is happening is that the `toUpperCase()` function (it's technically a method), it's trying to run it against something that didn't get passed in. This means that is someone forgets to pass a value to the `yell` function, our code will break.
+What is happening is that the `toUpperCase()` function (it's technically a method), it's trying to run it against something that didn't get passed in. This means that if someone forgets to pass a value to the `yell` function, our code will break.
 
 What we can do is we can set something called **defaults**. When you define your function, inside of your function definition, you can set a default by saying name is equal to 'Silly Goose', as shown below.
 
@@ -375,7 +375,7 @@ function yell(name = "Silly Goose") {
 
 If you run it and pass an argument, it will still work.
 
-However when you run it without an argument, the function will no longer error out and instead will fall back to the default value for the parameter and output `HEY SILLY GOOSE`.
+However, when you run it without an argument, the function will no longer error out and instead will fall back to the default value for the parameter and output `HEY SILLY GOOSE`.
 
 So as you define your function, you can specify if someone does not pass this parameter `name`, use the default.
 
@@ -459,7 +459,7 @@ If you try to just leave the argument empty and use two commas like shown above 
 
 So the only thing that you can pass into a function to cause it to use the default is **undefined**. A function will only ever fall back to the defaults if nothing is passed.
 
-Remember when a variable is not set to anything, it's value is `undefined`. So you cannot go ahead and pass zero here and expect it to false back to the default.
+Remember when a variable is not set to anything, its value is `undefined`. So you cannot go ahead and pass zero here and expect it to false back to the default.
 
 ```js
 const myBill4 = calculateBill(100, undefined, 0.2);
