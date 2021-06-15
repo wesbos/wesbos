@@ -8,7 +8,7 @@ category:
  - Functions
 ---
 
-One thing you will hear often when getting into JavaScript is that functions are _"first class citizens"_.
+One thing you will hear often when getting into JavaScript is that functions are _"first-class citizens"_.
 
 JavaScript functions are values in themselves, and they can be stored in variables and passed into other functions.
 
@@ -77,7 +77,7 @@ The next way we will cover to declare a function will help explain that, which i
 
 Add a comment above that function specifying that it is an anonymous function, then copy the function and comment it out.
 
-Paste the copied code below the commented out function.
+Paste the copied code below the commented-out function.
 
 The next way to declare a function is a **function expression**. A function expression is when you store a function as a value in a variable. 👇
 
@@ -94,11 +94,11 @@ If you refresh the page, you will see that in the console, we have `doctorize()`
 
 ![assigning function to a variable makes function as anonymous](/assigning-function-to-a-variable.png)
 
-Having the ability to store a function in a variable is what leads people to say functions are _"first class citizens"_.
+Having the ability to store a function in a variable is what leads people to say functions are _"first-class citizens"_.
 
 You may come across developers who say to not use function expressions because they used to give unhelpful errors.
 
-Previously, anonymous function errors would just tell you that it occurred in an anonymous function, without giving you any clue where the error is happening. However, now the dev tool errors are better.
+Previously, anonymous function errors would just tell you that they occurred in an anonymous function, without giving you any clue where the error is happening. However, now the dev tool errors are better.
 
 Here is an example that demonstrates what they mean by that 👇
 
@@ -186,7 +186,7 @@ JavaScript does **not** hoist variable functions.
 
 Why is that useful?
 
-Very rarely, Wes has never used that in his entire career except tiny use cases.
+Very rarely, Wes has never used that in his entire career except for tiny use cases.
 
 **Hoisting** is more of an interview question that you may be asked.
 
@@ -300,7 +300,7 @@ To get rid of the **explicit** return:
 
 - first put the function on one line
 - then delete the curly brackets`{` `}`
-- finally delete the ```return``` keyword
+- finally, delete the ```return``` keyword
 
 ```js
 const inchToCM = (inches) => inches * 2.54;
@@ -420,11 +420,11 @@ function makeABaby(first, last) {
 
 It works!
 
-![makeABaby acccepting first and last name and returning a baby object having name and age properties](/function-accepting-first-last-name-with-returning-object.png)
+![makeABaby accepting first and last name and returning a baby object having name and age properties](/function-accepting-first-last-name-with-returning-object.png)
 
 How could you convert this to an arrow function?
 
-Stick, stick it in a variable, and convert it to an arrow function like so 👇
+Stick it in a variable and convert it to an arrow function like so 👇
 
 ```js
 const makeABaby = (first, last) => {
@@ -441,9 +441,9 @@ If your function needs to do some stuff inside of the block, you can leave it as
 
 If the only thing you're using the arrow for is the ability to type less as well as some of the benefits of not scoping this, this is totally valid.
 
-However we can take it a bit further.
+However, we can take it a bit further.
 
-Instead of declaring the `baby` variable we will just return the object directly. 👇
+Instead of declaring the `baby` variable, we will just return the object directly. 👇
 
 ```js
 const makeABaby = (first, last) => {
@@ -480,11 +480,11 @@ const makeABaby = (first, last) => { name: `${first} ${last}`, age: 0};
 
 However, you will see the above 👆 error if you try to run the code like that.
 
-Whats happening there is it thinks that the curly bracket from the baby object is actually the curly bracket from the block of the function.
+What's happening there is it thinks that the curly bracket from the baby object is actually the curly bracket from the block of the function.
 
-Curly brackets in JavaScript can be creation of an object, or a block of code.
+Curly brackets in JavaScript can be the creation of an object, or a block of code.
 
-What are you options to implicitly return an object then?
+What are your options to implicitly return an object then?
 
 If you want to implicitly return an object in JavaScript, you just pop a set of parentheses around the thing that you are returning and then the code will know that it's not the block to the function.
 
@@ -542,7 +542,7 @@ What is the benefit of doing something like that?
 
 It used to be very popular before we had modules and block scope.
 
-When we get into scoping, you will learn that a function declares its own scope and its often handy to even declare functions of them, and it will provide us a sheltered space where the variables can't leak inside. We will go over that later in the course.
+When we get into scoping, you will learn that a function declares its own scope, and it's often handy to even declare functions of them, and it will provide us a sheltered space where the variables can't leak inside. We will go over that later in the course.
 
 For now, just know that it's an immediately invoked function.
 
@@ -559,7 +559,7 @@ That isn't something you will be using that often, but it does come up when you 
 
 ## Methods
 
-Next type of function we will learn about are referred to as **methods**.
+The next type of functions we will learn about are referred to as **methods**.
 
 A method is simply a function that lives inside of an object.
 
@@ -595,7 +595,7 @@ const wes = {
 
 Try it in the browser.
 
-First type `wes` and hit enter.
+First, type `wes` and hit enter.
 Next, type `wes.sayHi()` and hit Enter.
 
 You should see the following 👇
@@ -664,7 +664,7 @@ const wes = {
 
 `whisperHi()` is an arrow function that doesn't take any arguments, but it could take in arguments if you wanted.
 
-Those are 3 different ways to do methods and the short hand is the most common way.
+Those are 3 different ways to do methods and the shorthand is the most common way.
 
 ## Preview of this
 
@@ -706,7 +706,7 @@ That will not work in an arrow function because they take the parent scope of `t
 
 ## Callback Functions
 
-The final thing Wes wants to talk to us is something called **callback functions**.
+The final thing Wes wants to talk to us about is something called **callback functions**.
 
 So a callback function is just a regular function, but we use that name for something that will happen after something is done.
 
@@ -801,7 +801,7 @@ What you need to know is that a **callback function is a function that gets pass
 
 The other example we have is a timer callback.
 
-There are a couple ways to do timers _(we will go over all of them in the future)_ but the simplest is `setTimeout()`.
+There are a couple of ways to do timers _(we will go over all of them in the future)_ but the simplest is `setTimeout()`.
 
 ```js
 setTimeout();
