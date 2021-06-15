@@ -637,7 +637,7 @@ const wes = {
 
 If you refresh the browser and type `wes.yellHi()`, it will work.
 
-What we did there is instead of writing `sayHi: function()` _(which does work)_, we can get rid of the `function` keyword and the `:`. That makes it into a property, `yellHi()`, which is set to the function `yellHi`.
+What we did here is instead of writing `sayHi: function()` _(which does work)_, we can get rid of the `function` keyword and the `:`. That makes it into a property, `yellHi()`, which is set to the function `yellHi`.
 
 It's just a shorthand way to write methods inside of an object.
 
@@ -654,11 +654,11 @@ const wes = {
   // Short hand Method
   yellHi() {
     console.log('HEY WESSSSS');
-  }
-  // Arrow functino
-   whisperHi: () => {
+  },
+  // Arrow function
+  whisperHi: () => {
      console.log('hiii wess im a mouse');
-   }
+  }
 };
 ```
 
@@ -753,7 +753,7 @@ Next, listen for a click on that button as shown below
 
 ```js
 const button = document.querySelector(".clickMe");
-button.addEventListener("click", wes.sayHi());
+button.addEventListener("click", wes.sayHi);
 ```
 
 When that click happens, we can pass it to any function that we want. in this case, we chose `sayHi()` from our `wes` object from a previous example.
@@ -815,7 +815,7 @@ It takes two things:
 So let's do `1000` milliseconds which is one second later.
 
 ```js
-setTimeout(wes.yellHi(), 1000);
+setTimeout(wes.yellHi, 1000);
 ```
 
 If we refresh the page, after one second, it will log HEY WES.

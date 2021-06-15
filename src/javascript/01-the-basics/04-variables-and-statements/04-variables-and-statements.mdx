@@ -106,7 +106,7 @@ When you are done writing your statement, you add a semi-colon to the end of the
 ```js
 var first = "wes"; // variable declaration statement
 let age = 300;
-let cool = true;
+const cool = true;
 console.log(first); // function call statement
 ```
 
@@ -152,7 +152,7 @@ Remove all the extra JavaScript code within `variables.html` except for:
 <script>
   var first = "wes";
   let age = 300;
-  let cool = true;
+  const cool = true;
 </script>
 ```
 
@@ -179,7 +179,7 @@ Notice that we do not have to redeclare the variable. We did _not_ have to do so
 ```js
 var first = "wes";
 let age = 300;
-let cool = true;
+const cool = true;
 
 var first = "westernhoff";
 ```
@@ -216,7 +216,7 @@ If you put this code in the script tag, refresh `variables.html` and write `dog`
 <script>
   // var first = 'wes';
   // let age = 300;
-  // let cool = true;
+  // const cool = true;
 
   // first = 'westerhoff';
   // cool = false;
@@ -229,7 +229,7 @@ We made a variable even though we did not use `var`, `let`, or `const`.
 
 What is going on? How can that happen?
 
-Now if we go to the top of our opening script tag, and add `use strict;` and then refresh the page, we will see this error:
+Now if we go to the top of our opening script tag, and add `"use strict";` and then refresh the page, we will see this error:
 
 > dog is not defined
 
