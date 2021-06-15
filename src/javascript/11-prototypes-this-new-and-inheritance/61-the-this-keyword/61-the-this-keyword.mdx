@@ -11,7 +11,7 @@ category:
 
 We will discuss the `this` keyword in this video and the next video which is about **prototypes** and **prototypal inheritance**.
 
-The `this` keyword in JavaScript refers to the instance of an object that a function is bound.
+The `this` keyword in JavaScript refers to the instance of an object that a function is bound to.
 
 So what does that mean?
 
@@ -47,7 +47,7 @@ Now we can call that an instance. Why?
 
 Because `button1` and `button2` are simply instances of the mama Button that exists in the browser.
 
-Whenever you make a new button, whether via HTML or it gets rendered to the DOM, or whether you use `document.createElement` it will create an new instance of the HTML button that is in the browser.
+Whenever you make a new button, whether via HTML or it gets rendered to the DOM, or whether you use `document.createElement` it will create a new instance of the HTML button that is in the browser.
 
 The `this` keyword in our example is equal to the thing that is left of the dot. The method that was called was `addEventListener()` and the thing to the left of it was either `button1` or `button2` in our example.
 
@@ -69,7 +69,7 @@ Now when you click the buttons, you will see the `Window` logged not the button.
 
 The value of the `this` keyword does not change when you use an arrow function. The `this` keyword will be equal to whatever it was at a higher level function. (If there is no higher level function, it will be equal to the Window).
 
-One use case for this is, lets say we bring `tellMeAboutTheButton` back to a regular function, and let's say after one second we want to update the text of the button to say something like "Good job". We can use `setTimeout()` to do that.
+One use case for this is, let's say we bring `tellMeAboutTheButton` back to a regular function, and let's say after one second we want to update the text of the button to say something like "Good job". We can use `setTimeout()` to do that.
 
 The first argument of `setTimeout` is a callback function and the second argument is how long the timeout should be.
 
@@ -168,7 +168,7 @@ If you refresh the page and open up the console, you will see our two pizzas wit
 
 The `this` keyword, when you are creating an object, is used to store information about that instance.
 
-This is a perfect example because `pepperoniPizza` is an instance of Pizza, and it has it's own unique data that needs to stay with that pizza, like toppings, customer and id. The same thing goes for the `canadianPizza`, it is another instance with it's own information that stays with that pizza.
+This is a perfect example because `pepperoniPizza` is an instance of Pizza, and it has its own unique data that needs to stay with that pizza, like toppings, customer and id. The same thing goes for the `canadianPizza`, it is another instance with its own information that stays with that pizza.
 
 `this` is used for storing data and functionality on each of the instances.
 
