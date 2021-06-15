@@ -190,6 +190,7 @@ That would look different if we actually made another function that called go in
 ```js
 function bootstrap() {
   console.log('starting the app!');
+  go();
 }
 ```
 
@@ -207,7 +208,7 @@ Go ahead and comment out the `bootstrap()` call now.
 
 Next we will learn about the grabbing of elements.
 
-This is a handy tip that Wes' uses often. If you're on a website, and you're inspecting it, and focusing on an element such as this input from Mozilla's website by clicking on it in the element inspector, if you flip over to the console and type `$0`, it will return to you whatever element you had currently selected in the elements tab.
+This is a handy tip that Wes uses often. If you're on a website, and you're inspecting it, and focusing on an element such as this input from Mozilla's website by clicking on it in the element inspector, if you flip over to the console and type `$0`, it will return to you whatever element you had currently selected in the elements tab.
 
 ![select the html element clicking on inspect in browser](/selecting-the-element-in-inspect-mode.png)
 
@@ -218,7 +219,7 @@ That is very useful because now you could do something like call `$0.value()` ag
 
 ![to view the value of grabbed element type $0.value()](/view-value-inside-element-in-console.png)
 
-You might be wondering, what does `0` int the `$0` mean.
+You might be wondering, what does `0` in the `$0` mean.
 
 It means the last element that was clicked.
 
