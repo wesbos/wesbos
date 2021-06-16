@@ -9,17 +9,17 @@ category:
  - New Keyword
 ---
 
-This is the lesson on classes, prototypes, and then the keywords `this` and `new`.
+This lesson is on classes, prototypes, and the keywords `this` and `new`.
 
-We are grouping these things together because they are all connected and are the foundation for what is often called **object-oriented programming** and another popular version is **functional programming**.
+We are grouping these things together because they are all connected and are the foundations for what is often called **object-oriented programming** and another popular paradigm **functional programming**.
 
-Let's get started with the `new` keyword and understanding how that works.
+Let's get started with the `new` keyword and understanding how it works.
 
 Create a new file `new-this.html` in the playground directory.
 
-Inside of the file we want to add our HTML base, and change the title to "New, This, Prototypes and Classes".
+Inside the file we want to add our HTML base, and change the title to "New, This, Prototypes and Classes".
 
-Add a script tag within the body tag with a log of "it works" and open the HTML page to ensure it is working.
+Add a script tag within the body tag with a log - "it works" and open the HTML page to ensure it is working.
 
 So what is the **`new`** keyword?
 
@@ -48,7 +48,7 @@ The same thing when we create an array, we automatically have all these new meth
 
 That is because when you create a date, an object, an array, a string, a number or any of those things, we are essentially creating a new object in JavaScript that is extended off the constructor, or as Wes likes to refer to it as, the momma object.
 
-If we take a look at all of the types that we have by entering them into the console, such as `Array`, `Object`, `Date`, `Number`  you will see that they are all just functions which once they are run with the new keyword in front of it, will return to you an object.
+If we take a look at all of the types that we have by entering them into the console, such as `Array`, `Object`, `Date`, `Number` you will see that they are all just functions, which if run with the new keyword in front of it, will return a new object.
 
 ![log of functions run with the new keyword](./906.png)
 
@@ -92,7 +92,7 @@ Some other things like dates don't have a literal syntax, which is why we have t
 It's the same thing when you create an element.
 
 ```js
-const span = dcument.createElement('span');
+const span = document.createElement('span');
 console.log(span);
 ```
 
