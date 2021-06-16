@@ -109,11 +109,11 @@ console.log(p);
 
 In the example above 👆 we have selected something with a `p`.
 
-Both `querySelector()` and `querySelectorAll()` take one argument, which is the CSS selector. Those are almost the exact same selectors that use in CSS.
+Both `querySelector()` and `querySelectorAll()` take one argument, which is the CSS selector. Those are almost the exact same selectors used in CSS.
 
 ![querySelector being called with the selector 'p'](./225.png)
 
-If you open up the `index.html` in the browser, you will see we have grabbed a paragraph tag. When we loga it, you will see we have the item there.
+If you open up the `index.html` in the browser, you will see we have grabbed a paragraph tag. When we log it, you will see we have the item there.
 
 `querySelectorAll()` will give you multiple elements, whereas `querySelector()` will give you the first matching one.
 
@@ -141,7 +141,7 @@ If you hover over the NodeList in the console, you will see that it is grabbing 
 
 ![broswer console showing an expanded nodeList from querySelectorAll query when hovering over result in browser console](./227.png)
 
-You can get more specifc than using elements as selectors.
+You can get more specific than using elements as selectors.
 
 ```js
 document.querySelectorAll('.item');
@@ -160,7 +160,7 @@ You can also do parent child selectors.
 If you only wanted to grab an image inside of an `item` div, you could achieve that using the code below.  👇
 
 ```js
-const divs = document.querySelectorALl('.item img');
+const divs = document.querySelectorAll('.item img');
 ```
 
 If you wanted to just select the first `item` and then the image inside of it, you could add the code below instead, which will return the first match. 👇
