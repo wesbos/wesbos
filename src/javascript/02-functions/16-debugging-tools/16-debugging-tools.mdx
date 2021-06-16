@@ -46,7 +46,7 @@ people.forEach((person, index) => {
 });
 ```
 
-There is `console.info(person.name)` which usually gives you a little eye and cirlce beside the console output but it doesn't seem to be there right now.
+There is `console.info(person.name)` which usually gives you a little eye and circle beside the console output but it doesn't seem to be there right now.
 
 There is `console.error(person.name)`.
 
@@ -144,12 +144,12 @@ people.forEach((person, index) => {
 As you can see, it nicely organizes the people into their separate collapsible section. 👆
 
 ```js
-console.groupCollapse();
+console.groupCollapsed();
 ```
 
-You can actually also use the `.groupCollapse()` method shown above 👆 which will by default collapse all the groups, as shown below 👇.
+You can actually also use the `.groupCollapsed()` method shown above 👆 which will by default collapse all the groups, as shown below 👇.
 
-![use console groupCollapse to collapse all the groups by default](/console-group-collapse-in-console.png)
+![use console groupCollapsed to collapse all the groups by default](/console-group-collapse-in-console.png)
 
 Those are the main console methods that Wes uses to debug something.
 
@@ -165,9 +165,9 @@ There is a lot going on in the code.
 
 ![stack trace gives us a sequence of functions that were called, helping in the debugging](/multiple-functions-definition.png)
 
-You will notice that inside of `greet()` we have this function that doesn't exist, and that wil cause an error. If we try to run that from the console, you will see an uncaught reference error.
+You will notice that inside of `greet()` we have this function that doesn't exist, and that will cause an error. If we try to run that from the console, you will see an uncaught reference error.
 
-If you expand the error, you should see a few message below, which are often ignored by new developers but are actually very useful in debugging.
+If you expand the error, you should see a few messages below, which are often ignored by new developers but are actually very useful in debugging.
 
 If you want to know what went wrong, you have to get good at reading the call stacks. It's pretty simple!
 
