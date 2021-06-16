@@ -132,7 +132,7 @@ console.log(hair);
 1. When we `console.log(age)`, is it going to be 100?
 1. When we `console.log('hair')`, will it be blonde?
 
-![console showing logged value for defined variable and throws a refe] error for undefined variable](/194.png)
+![console showing logged value for defined variable and throws a reference error for undefined variable](/194.png)
 
 Age returns 100, but hair throws a reference error.
 
@@ -179,7 +179,7 @@ Now if we added as the first line of the `go()` function, `const age = 200;` and
 
 Is that going to be 200 or 100?
 
-It's will be 200.
+It will be 200.
 
 Two things:
 
@@ -403,7 +403,7 @@ function logDog() {
 
 function go() {
   const dog = 'sunny';
-  logDog('sunny');
+  logDog();
 }
 
 go();
