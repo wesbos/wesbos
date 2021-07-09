@@ -68,10 +68,11 @@ Add the condition below.
 this.eat = function() {
   if (this.slices > 0) {
     this.slices = this.slices - 1;
-    console.log(`CHOMP you have ${this.slices} left!`);
+    console.log(`CHOMP you now have ${this.slices} left!`);
   } else {
     console.log('Sorry! No slices left');
   }
+}
 ```
 
 It might also be a good idea to return the new number of slices from the function. Similar to how `Array.prototype.push` returns the number of items in an array after we add them, you would just add `return this.slices;`.
@@ -82,13 +83,13 @@ If you call that a bunch of times in the console, you should see that it now wor
 
 That works very well, however there is a downside to this which is that we are actually creating the `eat()` function once for every single pizza that is made.
 
-If you compared whether `pepperoniPizza.eat` and `canadianPizza.eat` are the same function, you would get false even though they look identical.
+If you compare whether `pepperoniPizza.eat` and `canadianPizza.eat` are the same function, you would get false even though they look identical.
 
 ![comparing pepperoniPizza's eat method and canadianPizza's eat method](./948.png)
 
-What is happening there is we are duplicating the functionality of the function once from every single pizza.
+What is happening here is we are duplicating the functionality of the function once for every single pizza.
 
-That functionality looks identical for every single pizza so there is no need to be generating one per instance.
+That functionality looks identical for every single pizza so there is no need to generate it for every instance.
 
 It does need to maintain it's own slice count, toppings, customer, etc, but the functionality to eat a piece of pizza is the same for every single pizza that is out there.
 
