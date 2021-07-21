@@ -134,7 +134,7 @@ You might think you could do something as shown below 👇
 ```js
 //QS Example
 
-const $ = document.querySelector();
+const $ = document.querySelector;
 ```
 
 Now if you refresh the page, open the dev tools console and type `$` you will see that it is the `querySelector` function.
@@ -164,7 +164,7 @@ Let's demonstrate the reason for that with an example.
 Now let's say we grabbed the wrapper and did the following 👇
 
 ```html
-const wrapper = document.querySelector('wrapper');
+const wrapper = document.querySelector('.wrapper');
 const p = wrapper.querySelector('p');
 console.log(p);
 ```
