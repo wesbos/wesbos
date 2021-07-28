@@ -160,7 +160,7 @@ const response = await fetch("http://icanhazdadjoke.com", {
 
 ![browser network tab showing the api response](./1164.png)
 
-Now if we change that to text/plain (it is fine to have two, the one further down will overwrite the earlier ones, we will a similar error about unexpected token W). If you look at the response, it says "Unexpected W" because it returned to us text and our application was expecting JSON.
+Now if we change that to text/plain (it is fine to have two, the one further down will overwrite the earlier ones, we will see a similar error about unexpected token W). If you look at the response, it says "Unexpected W" because it returned to us text and our application was expecting JSON.
 
 This shows us that we can accept HTML, plain text or JSON, not because we changed the accept headers, but because we are sending a request to a server that offers up those three kinds of response formats.
 
@@ -324,7 +324,7 @@ Let's make a CSS loader.
 
 In the HTML, right before our paragraph tag that will contain our dad jokes, add the following div `<div class="loader"></div>`.
 
-LGoogle "CSS loader" and select `loading.io`.
+Google "CSS loader" and select `loading.io`.
 
 ![google results for css loader search](./1171.png)
 

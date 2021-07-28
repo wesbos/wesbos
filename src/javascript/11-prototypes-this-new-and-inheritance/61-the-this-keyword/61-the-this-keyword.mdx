@@ -45,7 +45,7 @@ Now when we go and click on each button, the `this` keyword will be equal to eac
 
 Now we can call that an instance. Why?
 
-Because `button1` and `button2` are simply instances of the mama Button that exists in the browser.
+Because `button1` and `button2` are simply instances of the momma Button that exists in the browser.
 
 Whenever you make a new button, whether via HTML or it gets rendered to the DOM, or whether you use `document.createElement` it will create a new instance of the HTML button that is in the browser.
 
@@ -76,7 +76,7 @@ The first argument of `setTimeout` is a callback function and the second argumen
 Within the timeout we will set the `textContent` of the button to be equal to "You Clicked Me".
 
 ```js
-const tellMeAboutTheButton = () => {
+function tellMeAboutTheButton() {
   console.log(this);
   setTimeout(function() {
     console.log(this);
@@ -155,7 +155,7 @@ Now when you refresh the page, you will see that in our pizza there is a bunch o
 
 ![console log the contents of pizza function](./926.png)
 
-The `toppings` and `customers` are empty and `undefined` because we haven't passed them in so let's update `pepperoniPizza` to add some toppings and a customer and then add another pizza as shown below 👇
+The `toppings` and `customers` are empty and `undefined` because we haven't passed them in. So let's update `pepperoniPizza` to add some toppings and a customer and then add another pizza as shown below 👇
 
 ```js
 const pepperoniPizza = new Pizza(['pepperoni'], 'Wes Bos');
