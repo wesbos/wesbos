@@ -139,7 +139,7 @@ coolButton.addEventListener('click', handleClick);
 
 Now it doesn't matter which button you click, both of them are referring to that same function.
 
-If instead of re-using the `handleClick` function we wanted to create anonymous functions and pass it two both event listeners separately, that would still work,but if you think of scaling that up to a whole bunch of buttons, then you have to make sure you reference every one of the buttons which is not very **DRY** (**don't repeat yourself**).
+If instead of re-using the `handleClick` function we wanted to create anonymous functions and pass it to both event listeners separately, that would still work,but if you think of scaling that up to a whole bunch of buttons, then you have to make sure you reference every one of the buttons which is not very **DRY** (**don't repeat yourself**).
 
 So the first benefit is that it makes the code more **DRY**.
 
@@ -292,7 +292,7 @@ We haven't learned about loops just yet, but we should be able to do this.
 
 You may have noticed that in the `buyButtons` prototype, there was a method called `forEach`. That is going to allow us to loop over each of the items.
 
-_Note: Wes often takes all the selectors are the top of the file rather than anywhere in the code. For this example, we are going to keep it within the middle of the file. Both methods work, putting it at the top is just a personal preference of Wes'._
+_Note: Wes often places all the selectors at the top of the file instead of placing them throughout the code. For this example, we are going to keep it within the middle of the file. Both methods work, putting it at the top is just a personal preference of Wes'._
 
 We will take the `buyButtons` and call the `forEach()` method on them.
 
@@ -300,7 +300,7 @@ We will take the `buyButtons` and call the `forEach()` method on them.
 
 We can pass it an anonymous function, which is common when we are looping since we don't have the same limitations as we did in event listeners.
 
-`forEach` function will give you an argument that is the each of the individual buttons, and we can name it whatever we want.
+`forEach` function will give you an argument that is each of the individual buttons, and we can name it whatever we want.
 
 We will call it `buyButton`. It is just a parameter (aka a placeholder) and the browser will pass us a variable called `buyButton` when it runs it for us.
 
