@@ -292,7 +292,7 @@ We can add a transition on there too.
 }
 ```
 
-After 0.5 seconds we need to make it run. Let's add another `setTimeout` to do that.
+After 0.5 seconds we need to make it red. Let's add another `setTimeout` to do that.
 
 ```js
 go.addEventListener('click', function(e) {
@@ -310,16 +310,11 @@ go.addEventListener('click', function(e) {
 });
 ```
 
-Let's add the follow css styles to the css class red and to purple.
+Let's add the following css styles to the css class red.
 
 ```css
 .go.red {
   background: red;
-}
-
-.go.purple {
-  background: purple;
-  color: white;
 }
 ```
 
@@ -340,10 +335,10 @@ go.addEventListener("click", function(e) {
     setTimeout(function() {
       el.classList.add("red");
 
-      // 3. make it square after 0.3
+      // 3. make it square after 0.25
       setTimeout(function() {
         el.classList.remove("circle");
-      }, 300);
+      }, 250);
 
     }, 500);
 
@@ -351,7 +346,7 @@ go.addEventListener("click", function(e) {
 });
 ```
 
-Now we need to make it purple after 0.3 seconds.
+Now we need to make it purple after 0.3 seconds, and finally fade out after another 0.3 seconds.
 
 Add these styles 👇
 
@@ -359,6 +354,10 @@ Add these styles 👇
 .go.purple {
   background: purple;
   color: white;
+}
+
+.go.fadeOut {
+  opacity: 0;
 }
 ```
 
@@ -382,29 +381,21 @@ go.addEventListener("click", function(e) {
         // 4. make it purple after 0.3s
         setTimeout(function() {
           el.classList.remove("red");
-          el.classList.remove("purple");
+          el.classList.add("purple");
 
-          // 5. fade out after 0.5 seconds
+          // 5. fade out after 0.3 seconds
           setTimeout(function() {
             el.classList.add('fadeOut');
-          })
+          }, 300)
 
         }, 300);
 
-      }, 300);
+      }, 250);
 
     }, 500);
 
   }, 2000);
 });
-```
-
-Add this style now 👇
-
-```css
-.go.fadeOut {
-  opacity: 0;
-}
 ```
 
 ![loop animation visualize using gif](./loop-animation.gif)
