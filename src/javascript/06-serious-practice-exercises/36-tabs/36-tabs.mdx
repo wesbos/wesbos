@@ -112,7 +112,7 @@ To grab the tab buttons, you will look inside of tabs instead of the document be
 ```js
 const tabs = document.querySelector('.tabs');
 const tabButtons = tabs.querySelectorAll('[role="tab"]');
-const tabPanels = tabs.querySelectorAll('[role="tab"]');
+const tabPanels = tabs.querySelectorAll('[role="tabpanel"]');
 ```
 
 Next, loop over the buttons using a `foreach` and add a click event listener to each.
@@ -124,7 +124,7 @@ Pass it a function `handleTabClick`, like so 👇
 ```js
 const tabs = document.querySelector('.tabs');
 const tabButtons = tabs.querySelectorAll('[role="tab"]');
-const tabPanels = tabs.querySelectorAll('[role="tab"]');
+const tabPanels = tabs.querySelectorAll('[role="tabpanel"]');
 
 tabButtons.forEach(button => button.addEventListener('click', handleTabClick));
 ```
@@ -134,7 +134,7 @@ Add the `handleTabClick` function, like so 👇
 ```js
 const tabs = document.querySelector('.tabs');
 const tabButtons = tabs.querySelectorAll('[role="tab"]');
-const tabPanels = tabs.querySelectorAll('[role="tab"]');
+const tabPanels = tabs.querySelectorAll('[role="tabpanel"]');
 
 function handleTabClick(event) {
   console.log(event);
