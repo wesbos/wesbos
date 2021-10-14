@@ -8,7 +8,11 @@ const JavaScriptNotesStyles = styled.div`
     grid-template-columns: 25% 1fr;
   }
   @media (max-width: 800px) {
+    display: block;
     grid-template-columns: 1fr;
+    h2, code {
+      overflow-wrap: break-word;
+    }
     aside {
       display: none;
     }
