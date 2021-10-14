@@ -8,9 +8,14 @@ const JavaScriptNotesStyles = styled.div`
     grid-template-columns: 25% 1fr;
   }
   @media (max-width: 800px) {
+    display: block;
     grid-template-columns: 1fr;
     aside {
       display: none;
+    }
+    code, 
+    h2 {
+      overflow-wrap: break-word;
     }
   }
   /* Overriding the build in styles, it's too large but I want to keep the 1500px for blog posts. So stupid it just might work */
