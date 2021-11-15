@@ -18,7 +18,7 @@ const ContentStyles = styled.div`
     max-width: 1000px;
   }
   &.ultra-wide {
-    max-width: 1800px;
+    max-width: 930px;
   }
 `;
 
