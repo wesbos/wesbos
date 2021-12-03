@@ -70,16 +70,22 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         root: __dirname,
+        remarkPlugins: [
+          [require('gatsby-remark-vscode').remarkPlugin, {
+              theme: `Cobalt2`,
+              extensions: [`theme-cobalt2`],
+          }]
+        ],
         gatsbyRemarkPlugins: [
           `gatsby-remark-embedder`,
           `gatsby-remark-copy-linked-files`,
-          {
-            resolve: 'gatsby-remark-vscode',
-            options: {
-              theme: `Cobalt2`,
-              extensions: [`theme-cobalt2`],
-            },
-          },
+          // {
+          //   resolve: 'gatsby-remark-vscode',
+          //   options: {
+          //     theme: `Cobalt2`,
+          //     extensions: [`theme-cobalt2`],
+          //   },
+          // },
           {
             resolve: 'gatsby-remark-images',
             options: {
