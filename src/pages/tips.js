@@ -42,7 +42,7 @@ export default function TipsPage({
                 ))}
               {tip.frontmatter.images &&
                 tip.frontmatter.images.map((image, i) => (
-                  <Img image={image} key={`image${i}`} />
+                  <Img image={image} key={`image${i}`} alt={tip.body} />
                 ))}
             </Link>
             <div className="tipContent">

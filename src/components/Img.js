@@ -1,7 +1,7 @@
 /* eslint react/jsx-props-no-spreading: 0 */
 /* eslint jsx-a11y/alt-text: 0 */
 import React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export default function WhyDoINeedToMakeThisComponent({ image, ...theRest }) {
   if (!image) {
@@ -10,5 +10,5 @@ export default function WhyDoINeedToMakeThisComponent({ image, ...theRest }) {
   if (image.extension === 'gif') {
     return <img src={image.publicURL} {...theRest} />;
   }
-  return <Img fluid={image.childImageSharp.fluid} {...theRest} />;
+  return <GatsbyImage image={image.childImageSharp.gatsbyImageData} {...theRest} />;
 }

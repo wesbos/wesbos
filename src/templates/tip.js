@@ -51,7 +51,7 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
           ))}
         {tip.frontmatter.images &&
           tip.frontmatter.images.map(image => (
-            <Img key={image.id} image={image} />
+            <Img key={image.id} image={image} alt={tip.body} />
           ))}
       </div>
       <ContentNav
