@@ -361,7 +361,7 @@ Call the  move   function from the event listener handlers and pass `'back'` to 
 // Event Listeners
 
 prevButton.addEventListener('click', ()=> move('back'));
-nextButton.addEventListeners('click', move);
+nextButton.addEventListener('click', move);
 ```
 
 If you need to pass an argument to a function, you need to use an arrow function here. Or, you use **call and apply** which you will learn about in the next video.
