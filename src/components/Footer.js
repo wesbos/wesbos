@@ -86,7 +86,7 @@ const FooterStyles = styled.footer`
       margin-right: 3px;
     }
   }
-  a {
+  a.terms {
     color: white;
     text-decoration: none;
     font-size: 10px;
@@ -124,8 +124,13 @@ export default function Footer() {
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
           <p>
-            <Link to="/terms">Terms</Link> &times;{' '}
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link className="terms" to="/terms">
+              Terms
+            </Link>{' '}
+            &times;{' '}
+            <Link className="terms" to="/privacy">
+              Privacy Policy
+            </Link>
           </p>
           {/* <p>
             <small>
