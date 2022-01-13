@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
+import { Link } from 'gatsby';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
 import Podcast from './Podcast';
@@ -85,6 +86,14 @@ const FooterStyles = styled.footer`
       margin-right: 3px;
     }
   }
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    &:before {
+      display: none;
+    }
+  }
 `;
 export default function Footer() {
   return (
@@ -114,6 +123,10 @@ export default function Footer() {
             <IoLogoGithub /> GitHub
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
+          <p>
+            <Link to="/terms">Terms</Link> &times;{' '}
+            <Link to="/privacy">Privacy Policy</Link>
+          </p>
           {/* <p>
             <small>
               Baked Fresh from commit <a href={process.env.REPOSITORY_URL} />
