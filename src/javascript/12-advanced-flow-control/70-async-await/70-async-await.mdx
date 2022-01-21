@@ -78,9 +78,9 @@ async function go() {
 }
 ```
 
-Now if you go ahead and save the function and then refresh, we will getting "starting" logged to the console and then two seconds later we will get "ending".
+Now if you go ahead and save the function and then refresh, we will get "starting" logged to the console and then two seconds later we will get "ending".
 
-That is beautiful because we achieved that without chaining a bunch of `.then()` .
+That is beautiful because we achieved that without chaining a bunch of `.then()`.
 
 If we wanted to wait for another period of time in the same function before executing something else, we can.
 
@@ -89,7 +89,7 @@ async function go() {
   console.log('Starting');
   await wait(2000);
   console.log('running');
-  await wait(200);
+  await wait(2000);
   console.log('ending');
 }
 ```
