@@ -173,13 +173,13 @@ If you want to know what went wrong, you have to get good at reading the call st
 
 ![doesnt function not defined error](/does-not-exist-not-defined-error-in-console.png)
 
-In the error log above, the console it letting us know that the error happened at the `greet()` function, which is on line 47 of `debugging.js`. This is where the actual error happened.
+In the error log above, the console is letting us know that the error happened at the `greet()` function, which is on line 47 of `debugging.js`. This is where the actual error happened.
 
 That is good, but errors aren't always that easy.
 
 You might need to know where the `greet()` function was called from.
 
-To figure that out, you would go to the next line which tells you that it was was called by `go()` on line 52.
+To figure that out, you would go to the next line which tells you that it was called by `go()` on line 52.
 
 And then it says `at <anonymous>:1:1`. What does that mean?
 
@@ -229,7 +229,7 @@ If you were to go back to the elements tab, select another element like a button
 
 You can keep going forever, if you click another element, it will remember the order in which they were clicked.
 
-Another cool thing you do is the use the `$` and `$$` symbol in the console.
+Another cool thing you can do is to use the `$` and `$$` symbol in the console.
 You cannot use these things in your code, it only works in the console. Also, if jQuery is loaded on the page, that won't work.
 
 ![use $ and $$ symbols if jQuery is not loaded on the page](/symbols-$-and-$$-in-console.png)
