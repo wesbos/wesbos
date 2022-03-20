@@ -192,7 +192,7 @@ To get the actual data, we must chain on another `.then()` and then we can log t
 
 When the page refreshes, after a split second, you should see that we have the full object logged to the console. There is no need to run `JSON.parse()` on the data because `response.json()` will take care of that.
 
-Remember: When using `fetch`, you need to use a double promise to actually get the data. The first promise gets the response and the second one takes the response and converts it into JSON.
+Remember: When using `fetch`, you need to use a double promise to actually get the data. The first promise gets the response and the second one takes this response stream and parses the body as JSON into a JavaScript object.
 
 Now we can log information from the data we fetched.
 
