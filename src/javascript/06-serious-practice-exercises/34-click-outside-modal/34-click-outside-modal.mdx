@@ -191,7 +191,7 @@ We will work on clicking the button on each card now, starting by selecting them
 Then we will loop over each of the buttons and add an on click event listener to each one and pass a function as the handler called `handleCardButtonClick`.
 
 ```js
-const cardButton = document.querySelectorAll('.card button');
+const cardButtons = document.querySelectorAll('.card button');
 cardButtons.forEach(button => button.addEventListener('click', handleCardButtonClick))
 ```
 
@@ -204,7 +204,7 @@ function handleCardButtonClick() {
   console.log('YA CLICKED IT');
 }
 
-const cardButton = document.querySelectorAll('.card button');
+const cardButtons = document.querySelectorAll('.card button');
 cardButtons.forEach(button => button.addEventListener('click', handleCardButtonClick))
 ```
 
@@ -430,7 +430,7 @@ That gives us a nice boolean we can use like so, 👇
 
 ```js
 modalOuter.addEventListener('click', function(event) {
-  const isOutside = event.target.closest('.modal-inner');
+  const isOutside = !event.target.closest('.modal-inner');
   if (isOutside) {
     closeModal();
   }
