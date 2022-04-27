@@ -223,7 +223,7 @@ That is the easiest way to get the inputs off a form.
 However you could have also done something like below 👇
 
 ```js
-event.currentTarget.querySelector('name="email"]');
+event.currentTarget.querySelector('[name="email"]');
 ```
 
 However there is no reason to actually run `querySelector` if you are using proper names.
@@ -284,7 +284,7 @@ This logs the `keydown` event and the `keyup` event.
 
 The keydown event will tell us what the user had in the input, whereas the `keyup` event will tell us what the value is.
 
-There is also also have `focus` and `blur`.
+There is also `focus` and `blur`.
 
 Those are events that happen when you focus into an input and when you focus out of it.
 
