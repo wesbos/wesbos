@@ -33,7 +33,7 @@ export function PostMetaTags({ post }) {
     <Helmet>
       <link rel="canonical" href={canonical} />
       <meta name="generator" content="Wes Bos on Gatsby!" />
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@wesbos" />
       <meta name="twitter:creator" content="@wesbos" />
       <meta name="twitter:url" content={url} />
@@ -81,7 +81,7 @@ export function TipsMetaTags({ post }) {
     <Helmet>
       <link rel="canonical" href={canonical} />
       <meta name="generator" content="Wes Bos on Gatsby!" />
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@wesbos" />
       <meta name="twitter:creator" content="@wesbos" />
       <meta name="twitter:url" content={url} />
