@@ -32,7 +32,7 @@ export default function HomePage({ data, path }) {
         <p>I'm a full Stack JavaScript developer from Canada 🇨🇦.</p>
         <p>
           I create <Link to="/courses">free + premium courses</Link> and do a{' '}
-          <a href="https://syntax.fm">twice-weekly podcast</a> called Syntax.
+          <a href="https://syntax.fm">tri-weekly podcast</a> called Syntax.
         </p>
         <p>
           You can <Link to="/about">read more about me here</Link>, but stick
