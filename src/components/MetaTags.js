@@ -28,6 +28,7 @@ export function PostMetaTags({ post }) {
   ).toString();
 
   const ogImage = `${baseURL}/.netlify/functions/ogimage?${thumbnailQuery}`;
+
   return (
     <Helmet>
       <link rel="canonical" href={canonical} />
@@ -67,6 +68,7 @@ export function TipsMetaTags({ post }) {
     title: post.excerpt,
     url,
     thumbnail: post.frontmatter.images?.[0]?.publicURL,
+    cache: 'busta',
   };
   const thumbnailQuery = new URLSearchParams(
     Object.fromEntries(
