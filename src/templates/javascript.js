@@ -36,7 +36,11 @@ export const pageQuery = graphql`
   }
 `;
 
-function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
+function JavaScriptNotesTemplate({
+  data: { mdx: post },
+  children,
+  pageContext,
+}) {
   const activeId = useActiveId(getIds(post.tableOfContents.items));
 
   if (!post) {
@@ -61,13 +65,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
             </a>
           </div>
         </PostHeaderStyles>
-        <MDXRenderer
-          scope={{
-            ...scope,
-          }}
-        >
-          {post.body}
-        </MDXRenderer>
+        {children}
         <EditDialogStyles>
           <p>
             Find an issue with this post? Think you could clarify, update or add

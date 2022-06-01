@@ -14,6 +14,7 @@ export default function TipsPage({
   data: { allMdx: tips },
   pageContext,
   path,
+  children,
 }) {
   return (
     <>
@@ -47,7 +48,7 @@ export default function TipsPage({
             </Link>
             <div className="tipContent">
               <TipMeta tip={tip} />
-              <MDXRenderer>{tip.body}</MDXRenderer>
+              {children}
             </div>
           </TipStyles>
         ))}

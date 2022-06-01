@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MDXProvider } from '@mdx-js/react';
 import YouTube from 'react-youtube';
 import { Helmet } from 'react-helmet';
 import { IoLogoGithub } from 'react-icons/io';
@@ -37,7 +37,7 @@ export const pageQuery = graphql`
     }
   }
 `;
-function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
+function PostTemplate({ data: { mdx: post }, pageContext, children }) {
   if (!post) {
     return <p>No Post Found? This should be a 404</p>;
   }
@@ -59,14 +59,13 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
           </a>
         </div>
       </PostHeaderStyles>
-      <MDXRenderer
-        scope={{
+      <MDXProvider
+        components={{
           YouTube,
-          ...scope,
         }}
       >
-        {post.body}
-      </MDXRenderer>
+        {children}
+      </MDXProvider>
       <EditDialogStyles>
         <p>
           Find an issue with this post? Think you could clarify, update or add

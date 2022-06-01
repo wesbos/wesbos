@@ -19,7 +19,6 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      excerpt
       frontmatter {
         title
         slug
@@ -35,7 +34,11 @@ export const pageQuery = graphql`
   }
 `;
 
-export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
+export default function TipTemplate({
+  data: { mdx: tip },
+  children,
+  pageContext,
+}) {
   return (
     <>
       <div>
@@ -44,7 +47,7 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
           <H>Hot Tip</H>
           <TipMeta tip={tip} />
         </Grid>
-        <MDXRenderer>{tip.body}</MDXRenderer>
+        {children}
         {tip.frontmatter.videos &&
           tip.frontmatter.videos.map(url => (
             <video key={url} src={url} autoPlay mute loop />

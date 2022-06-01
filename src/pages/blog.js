@@ -94,7 +94,6 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          excerpt
           fields {
             collection
             slug

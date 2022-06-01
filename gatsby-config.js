@@ -69,16 +69,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        root: __dirname,
-        remarkPlugins: [
-          [require('gatsby-remark-vscode').remarkPlugin, {
-              theme: `Cobalt2`,
-              extensions: [`theme-cobalt2`],
-          }]
-        ],
+        mdxOptions:{
+          remarkPlugins: [
+            [require('gatsby-remark-vscode').remarkPlugin, {
+                theme: `Cobalt2`,
+                extensions: [`theme-cobalt2`],
+            }]
+          ]
+        },
         gatsbyRemarkPlugins: [
           `gatsby-remark-embedder`,
           `gatsby-remark-copy-linked-files`,
+          // This is broken with Gatsby v4?
+          // See: https://github.com/andrewbranch/gatsby-remark-vscode/issues/174
           // {
           //   resolve: 'gatsby-remark-vscode',
           //   options: {

@@ -52,7 +52,7 @@ export default function ContentNav({ prev, next, pathPrefix }) {
           {prev.node.frontmatter ? (
             <p>{prev.node.frontmatter.title}</p>
           ) : (
-            <MDXRenderer>{prev.node.body}</MDXRenderer>
+            prev.node.body
           )}
         </Link>
       )}
@@ -62,7 +62,7 @@ export default function ContentNav({ prev, next, pathPrefix }) {
           {next.node.frontmatter ? (
             <p>{next.node.frontmatter.title}</p>
           ) : (
-            <MDXRenderer>{next.node.body}</MDXRenderer>
+            next.node.body
           )}
         </Link>
       )}

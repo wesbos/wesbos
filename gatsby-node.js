@@ -281,4 +281,39 @@ exports.onCreatePage = async ({ page, actions, loadNodeContent, ...rest }) => {
     page.context.layout = 'thumbnail';
     createPage(page);
   }
-};
+}
+
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    Mdx: {
+      excerpt: {
+        type: "String",
+        resolve(source, args, context, info) {
+          return source.rawBody
+        },
+      },
+      body: {
+        type: "String",
+        resolve(source, args, context, info) {
+          return source.rawBody
+        },
+      },
+      fileAbsolutePath: {
+        type: "String",
+        resolve(source, args, context, info) {
+          return "/dev/null"
+        },
+      },
+      tableOfContents: {
+        type: "String",
+        args: {
+          maxDepth: "Float",
+        },
+        resolve(source, args, context, info) {
+          return "@todo"
+        },
+      },
+    },
+  }
+  createResolvers(resolvers)
+}
