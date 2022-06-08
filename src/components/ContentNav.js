@@ -52,7 +52,7 @@ export default function ContentNav({ prev, next, pathPrefix }) {
           {prev.node.frontmatter ? (
             <p>{prev.node.frontmatter.title}</p>
           ) : (
-            prev.node.body
+            prev.node.excerpt
           )}
         </Link>
       )}
@@ -62,7 +62,7 @@ export default function ContentNav({ prev, next, pathPrefix }) {
           {next.node.frontmatter ? (
             <p>{next.node.frontmatter.title}</p>
           ) : (
-            next.node.body
+            next.node.excerpt
           )}
         </Link>
       )}

@@ -24,14 +24,18 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      fileAbsolutePath
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         slug
         category
       }
-      body
-      tableOfContents(maxDepth: 10)
+      # tableOfContents(maxDepth: 10)
+      tableOfContents
     }
   }
 `;

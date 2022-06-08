@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from "gatsby"
 import { MDXProvider } from '@mdx-js/react';
-import YouTube from 'react-youtube';
-import { Helmet } from 'react-helmet';
-import { IoLogoGithub } from 'react-icons/io';
-import Layout from '../components/Layout';
+import YouTube from "react-youtube"
+import { IoLogoGithub } from "react-icons/io"
 import Img from '../components/Img';
 import H from '../components/mdxComponents/Headings';
 import ContentNav from '../components/ContentNav';
@@ -23,7 +21,11 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt
-      fileAbsolutePath
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         slug
@@ -33,7 +35,6 @@ export const pageQuery = graphql`
         }
         category
       }
-      body
     }
   }
 `;

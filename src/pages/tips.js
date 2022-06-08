@@ -1,9 +1,7 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { graphql, Link } from "gatsby"
 import { Helmet } from 'react-helmet';
-import Img from '../components/Img';
-import Layout from '../components/Layout';
+import Img from "../components/Img"
 import H from '../components/mdxComponents/Headings';
 import TipStyles from '../components/styles/TipStyles';
 import Pagination from '../components/Pagination';
@@ -43,12 +41,12 @@ export default function TipsPage({
                 ))}
               {tip.frontmatter.images &&
                 tip.frontmatter.images.map((image, i) => (
-                  <Img image={image} key={`image${i}`} alt={tip.body} />
+                  <Img image={image} key={`image${i}`} alt={tip.excerpt} />
                 ))}
             </Link>
             <div className="tipContent">
               <TipMeta tip={tip} />
-              {children}
+              {tip.excerpt}
             </div>
           </TipStyles>
         ))}
@@ -87,9 +85,9 @@ export const pageQuery = graphql`
             }
             videos
           }
-          body
+          excerpt
         }
       }
     }
   }
-`;
+`

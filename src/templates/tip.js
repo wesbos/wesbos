@@ -1,8 +1,6 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import Img from '../components/Img';
-import Layout from '../components/Layout';
+import { graphql } from "gatsby"
+import Img from "../components/Img"
 import ContentNav from '../components/ContentNav';
 import H from '../components/mdxComponents/Headings';
 import TipMeta from '../components/TipMeta';
@@ -29,7 +27,6 @@ export const pageQuery = graphql`
         }
         videos
       }
-      body
     }
   }
 `;
