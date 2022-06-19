@@ -257,7 +257,7 @@ We can abuse it by using `isAdmin && showAdminBar();`
 
 JavaScript will say, this is a condition so check if the first is true, and if it is true, we will go ahead and do the next one. However if it is false, it won't run `showAdminBar()`.
 
-This is abusing the condition chaining, meaning that if the first condition is true, the second will never run.
+This is abusing the condition chaining, meaning that if the first condition is false, the second will never run.
 
 You see that sort of thing in React because it's a bit hard to do if statements in React.
 
