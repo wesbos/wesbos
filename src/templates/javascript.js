@@ -1,6 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { graphql } from "gatsby"
 import { IoLogoGithub } from 'react-icons/io';
 import { Helmet } from 'react-helmet';
 import H from '../components/mdxComponents/Headings';
@@ -34,8 +33,7 @@ export const pageQuery = graphql`
         slug
         category
       }
-      # tableOfContents(maxDepth: 10)
-      tableOfContents
+      tableOfContents(maxDepth: 10)
     }
   }
 `;

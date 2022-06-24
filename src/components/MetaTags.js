@@ -101,7 +101,7 @@ export function TipsMetaTags({ post }) {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_CA" />
-      <title>{post.frontmatter.title} - Wes Bos</title>
+      <title>{post.frontmatter.title || post.frontmatter.slug} - Wes Bos</title>
     </Helmet>
   );
 }

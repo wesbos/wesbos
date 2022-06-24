@@ -17,6 +17,7 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
+      excerpt
       frontmatter {
         title
         slug

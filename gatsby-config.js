@@ -67,15 +67,18 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-mdx',
+      resolve: "gatsby-plugin-mdx",
       options: {
-        mdxOptions:{
+        mdxOptions: {
           remarkPlugins: [
-            [require('gatsby-remark-vscode').remarkPlugin, {
+            [
+              require("gatsby-remark-vscode").remarkPlugin,
+              {
                 theme: `Cobalt2`,
                 extensions: [`theme-cobalt2`],
-            }]
-          ]
+              },
+            ],
+          ],
         },
         gatsbyRemarkPlugins: [
           `gatsby-remark-embedder`,

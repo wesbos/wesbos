@@ -55,6 +55,11 @@ async function makePostsFromMdx({ graphql, actions }) {
               frontmatter {
                 title
               }
+              parent {
+                ... on File {
+                  absolutePath
+                }
+              }
             }
           }
         }
@@ -71,7 +76,7 @@ async function makePostsFromMdx({ graphql, actions }) {
     const next = posts[i + 1];
     actions.createPage({
       path: post.node.fields.slug,
-      component: blogPost,
+      component: `${blogPost}?__mdxPath=${post.node.parent.absolutePath}`,
       context: {
         slug: post.node.fields.slug,
         collection: 'post',
@@ -98,6 +103,11 @@ async function makeTipsFromMdx({ graphql, actions }) {
               fields {
                 slug
               }
+              parent {
+                ... on File {
+                  absolutePath
+                }
+              }
             }
           }
         }
@@ -115,7 +125,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
     const next = tips[i + 1];
     actions.createPage({
       path: `/tip${tip.node.fields.slug}`,
-      component: tipTemplate,
+      component: `${tipTemplate}?__mdxPath=${tip.node.parent.absolutePath}`,
       context: {
         slug: tip.node.fields.slug,
         prev: getOnlyTheDataWeNeed(prev),
@@ -145,6 +155,11 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
               frontmatter {
                 title
               }
+              parent {
+                ... on File {
+                  absolutePath
+                }
+              }
             }
           }
         }
@@ -163,7 +178,7 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
 
     actions.createPage({
       path: `/javascript${post.node.fields.slug}`,
-      component: javascriptPage,
+      component: `${javascriptPage}?__mdxPath=${post.node.parent.absolutePath}`,
       context: {
         slug: post.node.fields.slug,
         collection: 'javascript',
