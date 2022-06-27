@@ -43,7 +43,7 @@ function PostTemplate({ data: { mdx: post }, pageContext, children }) {
     return <p>No Post Found? This should be a 404</p>;
   }
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`;
 
   return (

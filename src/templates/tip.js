@@ -32,11 +32,7 @@ export const pageQuery = graphql`
   }
 `;
 
-export default function TipTemplate({
-  data: { mdx: tip },
-  children,
-  pageContext,
-}) {
+function TipTemplate({ data: { mdx: tip }, children, pageContext }) {
   return (
     <>
       <div>
@@ -63,3 +59,5 @@ export default function TipTemplate({
     </>
   );
 }
+
+export default TipTemplate
