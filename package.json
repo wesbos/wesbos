@@ -80,6 +80,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "expand-url": "^0.1.3",
+    "gatsby-plugin-gatsby-cloud": "^4.17.0",
     "gh-pages": "^3.2.3",
     "glob": "^7.2.0",
     "prettier": "^2.5.0",
