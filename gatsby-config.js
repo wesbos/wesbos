@@ -13,6 +13,7 @@ module.exports = {
     siteUrl: process.env.DEPLOY_PRIME_URL,
   },
   plugins: [
+    `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-remove-trailing-slashes`,
