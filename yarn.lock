@@ -7777,10 +7777,10 @@ gatsby-plugin-manifest@^4.3.0:
     semver "^7.3.5"
     sharp "^0.29.2"
 
-gatsby-plugin-mdx@3.18.0-alpha-mdx-v2.63:
-  version "3.18.0-alpha-mdx-v2.63"
-  resolved "https://registry.npmjs.org/gatsby-plugin-mdx/-/gatsby-plugin-mdx-3.18.0-alpha-mdx-v2.63.tgz"
-  integrity sha512-RP6bbKKJmR3CaXVkyPB9cCr5rqas+Xu8CY1sqnR0qaSsvbgl7nNwwUo/glwKwqNwfP3ZpvsDAQcYBesMNqifDg==
+gatsby-plugin-mdx@^3.18.0-alpha-mdx-v2.64:
+  version "3.18.0-alpha-mdx-v2.64"
+  resolved "https://registry.npmjs.org/gatsby-plugin-mdx/-/gatsby-plugin-mdx-3.18.0-alpha-mdx-v2.64.tgz#382f616812104aafa80b3ca88a4de92fd13b061e"
+  integrity sha512-WV1i23rHQR13EE0XcBE8Kz2OV90OepEgNbr+rBANUOc7ODBu5IenGZ+ZWSqwv71RSktMx1PKKzfilSztko4GpQ==
   dependencies:
     "@mdx-js/mdx" "^2.1.1"
     acorn "^8.7.1"
@@ -7950,10 +7950,10 @@ gatsby-react-router-scroll@5.18.0-next.1:
     "@babel/runtime" "^7.15.4"
     prop-types "^15.8.1"
 
-gatsby-remark-autolink-headers@5.18.0-alpha-mdx-v2.63:
-  version "5.18.0-alpha-mdx-v2.63"
-  resolved "https://registry.npmjs.org/gatsby-remark-autolink-headers/-/gatsby-remark-autolink-headers-5.18.0-alpha-mdx-v2.63.tgz"
-  integrity sha512-8n26p8DcsovRzo/SfsMU42YCjNeaRyz+sK/x/3K8y2lBzFtIXsYbAMczhZn471jl8lw2xI5E6YDM4osnrNkLzw==
+gatsby-remark-autolink-headers@^5.18.0-alpha-mdx-v2.64:
+  version "5.18.0-alpha-mdx-v2.64"
+  resolved "https://registry.npmjs.org/gatsby-remark-autolink-headers/-/gatsby-remark-autolink-headers-5.18.0-alpha-mdx-v2.64.tgz#ad374fcb8754bbb68abf36ebcf456f66288ace92"
+  integrity sha512-/fPSFRHgpGZLArq0cOmJGyFApWJgegowiIBwSA7efL3UswUFhQra8TRnsYfMHIFWBEUdHvYESpN92oIO3BfT/Q==
   dependencies:
     "@babel/runtime" "^7.15.4"
     github-slugger "^1.3.0"
@@ -8168,10 +8168,10 @@ gatsby-worker@1.18.0-next.1:
     "@babel/core" "^7.15.5"
     "@babel/runtime" "^7.15.4"
 
-gatsby@4.18.0-alpha-mdx-v2.60:
-  version "4.18.0-alpha-mdx-v2.60"
-  resolved "https://registry.npmjs.org/gatsby/-/gatsby-4.18.0-alpha-mdx-v2.60.tgz"
-  integrity sha512-+BPIKo1nEzw6qbfH5wzGZtYw9BYnW2Ud0o6ootCpA81xsddRjrL6d92Kqdv1HhBgeyj5b6u4sEOBsGoWulFwwQ==
+gatsby@^4.18.0-alpha-mdx-v2.61:
+  version "4.18.0-alpha-mdx-v2.61"
+  resolved "https://registry.npmjs.org/gatsby/-/gatsby-4.18.0-alpha-mdx-v2.61.tgz#f79191fa97406d03b41fe8b50dc9ae8bc3b5a134"
+  integrity sha512-BdCr2cSAzwAPx0/jnxyWmjYCEta61PAo5rCMJmtYgW3GmHBoIs23P5lArDeTXpl04/3b9LLB51Qn8k/jLVHxhg==
   dependencies:
     "@babel/code-frame" "^7.14.0"
     "@babel/core" "^7.15.5"
