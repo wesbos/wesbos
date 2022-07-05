@@ -272,7 +272,9 @@ The setting above 👆 is responsible for turning off formatting on save for Jav
 This setting below is responsible for telling the ESLint plugin to run on save. 👇
 
 ```json
-"eslint.autoFixOnSave": true
+"editor.codeActionsOnSave": {
+    "source.fixAll": true
+},
 ```
 
 You need to do that to prevent other built-in plugins in VS Code from clashing with our ESLint plugin.
