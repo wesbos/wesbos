@@ -367,7 +367,7 @@ console.log('Right after');
 
 Let's say we have a big oven and we can make all the pizzas at once. You could run them all **concurrently**, instead of one after another like we are doing (which is referred to as **sequentially**).
 
-If you have 10 employees and an oven big enough to cook them all at once, you can do it like so 👇
+If you have 10 employees and an oven big enough to cook all the pizzas at once, you can do it like so 👇
 
 ```js
 // Run them concurrently
@@ -382,7 +382,7 @@ So how do we know when all of those promises are done? We could do `.then()` on 
 
 But those are going to pop into the console in whatever order they are done, which isn't what we want. We can instead make it into a "mega promise" that we then wait upon.
 
-If you have a few promises and all you care about is when all 3 of them are finished, you can make a mega promises, which we will call a `dinnerPromise`.
+If you have a few promises and all you care about is when all 3 of them are finished, you can make a mega promise, which we will call a `dinnerPromise`.
 
 ```js
 const dinnerPromise = Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]);
@@ -457,7 +457,7 @@ firstPizzaPromise.then(pizza => {
 })
 ```
 
-TO reiterate, `Promise.race()` will wait for the first one to finish rendering.
+To reiterate, `Promise.race()` will wait for the first one to finish rendering.
 
 ![promise.race() output in console](./1035.png)
 
