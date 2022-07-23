@@ -82,7 +82,7 @@ So what happens in a scenario like our example where you have two logs between a
 
 JavaScript is asynchronous.
 
-What that means is that JavaScript won't stop running that code, instead if will put it off in what we call the web API, and when that comes back after two seconds, it is going to stick it in the **callback queue**.
+What that means is that JavaScript won't stop running that code, instead it will put it off in what we call the web API, and when that comes back after two seconds, it is going to stick it in the **callback queue**.
 
 When the call stack has a free second, when it's not currently running anything, it is going to reach into the callback queue, grab the callback and run it for us.
 
@@ -166,7 +166,7 @@ Let's demo that in loupe.
 
 ![demo in loupe using gif](./loupe-0-timer.gif)
 
-It logs, runs `setTimeout`, puts running in the web api which puts it in the call back queue, and then when the "ending" log is finished executing, JavaScript grabs from the callback queue and runs it.
+It logs, runs `setTimeout`, puts running in the web api which puts it in the callback queue, and then when the "ending" log is finished executing, JavaScript grabs from the callback queue and runs it.
 
 As a beginner and intermediate web developer you don't have to understand all the nitty gritty of the call stack and event loop.
 
