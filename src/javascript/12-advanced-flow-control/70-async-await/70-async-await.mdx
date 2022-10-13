@@ -126,7 +126,7 @@ window.addEventListener('click', async function() {
 })
 ```
 
-You cam also make methods async.
+You can also make methods async.
 
 ```js
 const person = {
@@ -236,7 +236,7 @@ This is what is referred to as a **foot gun** in the industry, when you give som
 
 What that means is if you are making a pepperoni and a mushroom pizza, the way we have coded it, you have to wait for the pepperoni pizza to be created, baked and taken out before we even start making the next pizza.
 
-It is likely that we could be making the pizza's concurrently, so what we can do is instead of waiting for one, then moving onto the next line and making the next one, we will remove the await from both of them, make them both into promises and then make one big promise which we can await.
+It is likely that we could be making the pizzas concurrently, so what we can do is instead of waiting for one, then moving onto the next line and making the next one, we will remove the await from both of them, make them both into promises and then make one big promise which we can await.
 
 ```js
 async function makeDinner() {
