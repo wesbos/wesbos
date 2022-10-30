@@ -29,7 +29,7 @@ export default function HomePage({ data, path }) {
           </span>
         </H>
 
-        <p>I'm a full Stack JavaScript developer from Canada 🇨🇦.</p>
+        <p>I'm a full Stack JavaScript developer from Ontario, Canada.</p>
         <p>
           I create <Link to="/courses">free + premium courses</Link> and do a{' '}
           <a href="https://syntax.fm">tri-weekly podcast</a> called Syntax.
