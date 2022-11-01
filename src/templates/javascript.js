@@ -48,7 +48,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
   }
 
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`;
   return (
     <JavaScriptNotesStyles>
