@@ -1,4 +1,5 @@
-const chrome = require('chrome-aws-lambda');
+// const chrome = require('chrome-aws-lambda');
+const chrome = require('@sparticuz/chromium');
 const puppeteer = require('puppeteer-core');
 const wait = require('waait');
 
