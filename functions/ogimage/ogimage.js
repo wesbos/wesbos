@@ -56,6 +56,7 @@ exports.handler = async (event, context) => {
     // !process.env.NETLIFY
     process.env.URL.includes('http://localhost')
   );
+  console.log('x');
   return {
     statusCode: 200,
     body: photoBuffer,
