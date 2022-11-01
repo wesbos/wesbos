@@ -1,6 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "echo hi"
   functions = "functions/"
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
-
+[functions]
+  node_bundler = "esbuild"
+[functions.ogimage]
+  # included_files = ["!node_modules/devtools-protocol/**/*"]
+  external_node_modules = ["chrome-aws-lambda"]

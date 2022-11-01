@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sparticuz/chromium": "^106.0.2",
-    "puppeteer-core": "^19.2.0",
+    "chrome-aws-lambda": "^v2.1.1",
+    "puppeteer-core": "^2.1.0",
     "waait": "^1.0.5"
   }
 }
