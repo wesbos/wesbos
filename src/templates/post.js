@@ -13,7 +13,7 @@ import EditDialogStyles from '../components/styles/EditDialogStyles';
 import { PostMetaTags } from '../components/MetaTags';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     site {
       siteMetadata {
         title
@@ -23,7 +23,11 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt
-      fileAbsolutePath
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         slug
@@ -42,7 +46,7 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
     return <p>No Post Found? This should be a 404</p>;
   }
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
+    post.parent.absolutePath.split('/src/')[1]
   }`;
 
   return (

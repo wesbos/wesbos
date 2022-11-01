@@ -15,7 +15,7 @@ import { useActiveId } from '../hooks/useActiveId';
 import { BeginnerJavaScript } from '../components/beginnerJavaScript';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     site {
       siteMetadata {
         title
@@ -24,7 +24,11 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      fileAbsolutePath
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         slug
@@ -53,7 +57,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
         <PostHeaderStyles>
           <PostMetaTags post={post} />
           <H>{post.frontmatter.title}</H>
-          <BeginnerJavaScript/>
+          <BeginnerJavaScript />
           <div className="postMeta">
             <span>{post.frontmatter.category.join(', ')}</span>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
