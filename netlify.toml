@@ -1,10 +1,11 @@
 [build]
   command = "npm run build"
+  # command = "echo skipping gatsby build"
   functions = "functions/"
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
 [functions]
   node_bundler = "esbuild"
-[functions.ogimage]
+[functions.ogimage2]
   # included_files = ["!node_modules/devtools-protocol/**/*"]
-  external_node_modules = ["chrome-aws-lambda"]
+  external_node_modules = ["@sparticuz/chromium"]

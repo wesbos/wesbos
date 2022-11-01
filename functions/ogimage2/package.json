@@ -1,0 +1,16 @@
+{
+  "name": "ogimage2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ogimage2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer-core": "^17.1.0",
+    "waait": "^1.0.5",
+    "@sparticuz/chromium": "^106.0.0"
+  }
+}
