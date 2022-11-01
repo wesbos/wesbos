@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@sparticuz/chromium": "^106.0.2",
-    "chrome-aws-lambda": "^10.1.0",
     "puppeteer-core": "^19.2.0",
     "waait": "^1.0.5"
   }
