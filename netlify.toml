@@ -4,8 +4,8 @@
   functions = "functions/"
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
-[functions]
-  node_bundler = "esbuild"
-  external_node_modules = ["chrome-aws-lambda", "lambdafs"]
-[functions.ogimage2]
-  external_node_modules = ["@sparticuz/chromium"]
+# [functions]
+#   node_bundler = "esbuild"
+#   external_node_modules = ["chrome-aws-lambda", "lambdafs"]
+# [functions.ogimage2]
+#   external_node_modules = ["@sparticuz/chromium"]
