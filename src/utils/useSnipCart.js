@@ -31,8 +31,10 @@ export function useSnipCart(initialState) {
 const BASE =
   process.env.GATSBY_CONTEXT === 'production'
     ? // Production
+      // https://merch-wesbos.vercel.app/api
       process.env.GATSBY_STORE_BASE
     : // Development
+      // https://chit-chats-snipcart-integration.wesbos.vercel.app/api
       process.env.GATSBY_STORE_BASE_PREVIEW;
 
 function calculateTotalSales(products) {
