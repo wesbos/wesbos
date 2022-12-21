@@ -52,11 +52,8 @@ export default function ContactPage({ path }) {
         <strong>I will absolutely take your free stuff</strong>. If you want to
         send me a sticker, tshirt (large), hot sauce or honda civic. I can't
         promise I'll share or talk about your thing, but if it's cool I likely
-        will!
+        will! Contact me for my PO Box address. 
       </p>
-      <pre>
-        📫 7-2 King Street West, PO Box #57016, Hamilton, Ontario L8P 4W9 Canada
-      </pre>
 
       <p>
         <strong>You did it!</strong> For everything else including{' '}
