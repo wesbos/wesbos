@@ -100,7 +100,7 @@ function makePizza(toppings) {
   return pizzaPromise;
 }
 
-const pepperoniPromise = makePizza('[pepperoni]');
+const pepperoniPromise = makePizza(['pepperoni']);
 const canadianPromise = makePizza(['pepperoni', 'mushroom', 'onions'])
 
 console.log(pepperoniPromise, canadianPromise);
