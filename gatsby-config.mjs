@@ -12,6 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default {
   flags: {
     FAST_DEV: true,
+    PARALLEL_SOURCING: true, // Experimental
   },
   siteMetadata: {
     title: 'Wes Bos',

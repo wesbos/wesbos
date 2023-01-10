@@ -15,15 +15,7 @@ data:text/html,<h1>hey</h1>
 
 Any file works, like a 25x25 purple semi-transparent png. Check the src or click this file:
 
-<a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAKElEQVR42mP05XpZz0BjwDhqyaglo5aMWjJqyaglo5aMWjJqCV0sAQD7VivB1DwbtgAAAABJRU5ErkJggg==">
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAAKElEQVR42mP05XpZz0BjwDhqyaglo5aMWjJqyaglo5aMWjJqCV0sAQD7VivB1DwbtgAAAABJRU5ErkJggg==" />
-</a>
-
 Now copy + paste this into your browser's address bar:
-
-```
-data:text/html,%3Ccanvas%20id%3D%22a%22%2F%3E%3Cscript%3E(()%3D%3E%7B%5Ba.width%2Ca.height%5D%3D%5B750%2C500%5D%3Bconst%20e%3Da.getContext(%222d%22)%2Cl%3D%5B%7Bx%3A295%2Cy%3A250%2Cc%3A%22%23fff%22%2Ci%3A1%7D%5D%3Bfor(let%20t%3D6%3B--t%3B)for(let%20a%3Dt%3Ba--%3B)l.push(%7Bx%3A400%2B25*t%2Cy%3A259%2B25*(a-t%2F2)%2Cc%3A%22blue%22%7D)%3Brect%3D((t%2Ca%2Cl%2Ci%2Cx)%3D%3E%7Be.beginPath()%2Ce.fillStyle%3Dx%2Ce.fillRect(t%2Ca%2Cl%2Ci)%7D)%3Blet%20i%3Dma%3Dt%3Dlt%3D0%3Bconst%20x%3D%7Bd%3A0%7D%3BsetInterval(y%3D%3E%7Ba.width%3Da.width%2Crect(100%2C100%2C550%2C300%2C%22%23841%22)%2Crect(125%2C125%2C500%2C250%2C%22lime%22)%3Bfor(let%20t%3D6%3Bt--%3B)e.beginPath()%2Ce.arc(125%2Bt%253*250%2C125%2B250*(t%2F3%3E%3E0)%2C20%2C0%2C7)%2Ce.fillStyle%3D%22%23000%22%2Ce.fill()%3Bl.map((t%2Ca)%3D%3E%7Bt.vx%7C%7C(t.vx%3Dt.vy%3D0)%2Ct.x%2B%3Dt.vx%2Ct.y%2B%3Dt.vy%2Ct.vx*%3D.99%2Ct.vy*%3D.99%2C(t.x%3E615%7C%7Ct.x%3C135)%26%26(t.vx*%3D-1)%2C(t.y%3E365%7C%7Ct.y%3C135)%26%26(t.vy*%3D-1)%2CMath.hypot(250*((t.x-125)%2F250%2B.5%7C0)-t.x%2B125%2C250*((t.y-125)%2F250%2B.5%7C0)-t.y%2B125)%3C25%26%26l.splice(a%2C1)%26%26i%2B%2B%2Cl.map(a%3D%3E%7Bconst%20e%3DMath.hypot(t.x-a.x%2Ct.y-a.y)%3Bif(t!%3Da%26%26e%3C20)%7Bconst%20e%3DMath.atan2(a.y-t.y%2Ca.x-t.x)%2Cl%3DMath.sin(e)%2Ci%3DMath.cos(e)%3Bt.vx-%3Di%2Ct.vy-%3Dl%2Ca.vx%2B%3Di%2Ca.vy%2B%3Dl%7D%7D)%2Ce.beginPath()%2Ce.arc(t.x%2Ct.y%2C10%2C0%2C7)%2Ce.fillStyle%3Dt.c%2Ce.fill()%7D)%2Cma%3DMath.atan2(x.y-l%5B0%5D.y%2Cx.x-l%5B0%5D.x)%2B3%2Cstp%3DMath.hypot(l%5B0%5D.vx%2Cl%5B0%5D.vy)%3C.03%2Cstp%26%26(e.save()%2Ce.translate(l%5B0%5D.x%2Cl%5B0%5D.y)%2Ce.rotate(ma)%2Ce.translate(x.d%3F-30%2F(lt-t)-30%3A5*Math.sin(t%2F10)%2C0)%2Crect(-135%2C0%2C120%2C5%2C%22%23952%22)%2Ce.restore())%2Ce.font%3D%223em%20a%22%2Ce.fillStyle%3D%22%23000%22%2Cl%5B1%5D%7C%7Ce.fillText(%22Winner!%22%2C250%2C260)%2Cl%5B0%5D.i%7C%7Ce.fillText(%22Game%20Over%22%2C250%2C260)%2Ce.fillText(i%2C360%2C70)%2Ct%2B%2B%7D%2C16)%2Conmousedown%3D(a%3D%3E%7B%2B%2Bx.d%2Clt%3Dt%7D)%2Conmouseup%3D(t%3D%3E%7B--x.d%2Cstp%26%26(l%5B0%5D.vx%3D10*Math.cos(ma)%2Cl%5B0%5D.vy%3D10*Math.sin(ma))%7D)%2Conmousemove%3D(t%3D%3E%7Bx.x%3Dt.clientX%2Cx.y%3Dt.clientY%7D)%7D)()%3B%3C%2Fscript%3E
-```
 
 You need to copy + paste it. You probably also shouldn't copy + paste random strings of obfuscated code from the internet.
 
