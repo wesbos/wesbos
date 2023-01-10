@@ -70,8 +70,7 @@ const HStyles = styled.h1`
     z-index: 0;
     --translate: -0.5rem;
     --rotate: 0deg;
-    transform: translateX(var(--translate)) translateY(var(--translate))
-      rotate(var(--rotate));
+    transform: translateX(var(--translate)) translateY(var(--translate)) rotate(var(--rotate));
     ${({ as }) => as === 'span' && `visibility: hidden;`};
   }
   &:hover:before {
@@ -91,7 +90,7 @@ const HStyles = styled.h1`
     opacity: 1;
   }
 `;
-
+/* eslint-disable react/destructuring-assignment */
 export default function H(props) {
   return (
     <HStyles {...props}>

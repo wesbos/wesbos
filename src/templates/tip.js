@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from '../components/Img';
-import Layout from '../components/Layout';
 import ContentNav from '../components/ContentNav';
 import H from '../components/mdxComponents/Headings';
 import TipMeta from '../components/TipMeta';
@@ -10,7 +9,7 @@ import { Grid } from '../components/styles/Grid';
 import { TipsMetaTags } from '../components/MetaTags';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     site {
       siteMetadata {
         title
@@ -35,6 +34,7 @@ export const pageQuery = graphql`
   }
 `;
 
+/* eslint-disable jsx-a11y/media-has-caption */
 export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
   return (
     <>
@@ -45,20 +45,10 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
           <TipMeta tip={tip} />
         </Grid>
         <MDXRenderer>{tip.body}</MDXRenderer>
-        {tip.frontmatter.videos &&
-          tip.frontmatter.videos.map(url => (
-            <video key={url} src={url} autoPlay mute loop />
-          ))}
-        {tip.frontmatter.images &&
-          tip.frontmatter.images.map(image => (
-            <Img key={image.id} image={image} alt={tip.body} />
-          ))}
+        {tip.frontmatter.videos && tip.frontmatter.videos.map((url) => <video key={url} src={url} autoPlay muted loop />)}
+        {tip.frontmatter.images && tip.frontmatter.images.map((image) => <Img key={image.id} image={image} alt={tip.body} />)}
       </div>
-      <ContentNav
-        pathPrefix={pageContext.pathPrefix}
-        prev={pageContext.prev}
-        next={pageContext.next}
-      />
+      <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} />
     </>
   );
 }

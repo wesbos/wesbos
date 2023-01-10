@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
-import logo from '../assets/images/logo.png';
 import H from './mdxComponents/Headings';
 import useRowFinder from '../utils/useRowFinder';
 
@@ -98,8 +97,7 @@ const NavLi = styled.li`
     small {
       font-size: 1.3rem;
       display: block;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-weight: 400;
       text-align: right;
       line-height: 10px;
@@ -151,11 +149,7 @@ export default function Nav({ pageContext }) {
     <NavStyles>
       <h1>
         <Link to="/">
-          <img
-            width="200"
-            src={data.logo.childImageSharp.resize.src}
-            alt="Wes Bos"
-          />
+          <img width="200" src={data.logo.childImageSharp.resize.src} alt="Wes Bos" />
         </Link>
       </h1>
       <NavUl ref={ref}>
@@ -169,8 +163,7 @@ export default function Nav({ pageContext }) {
         <NavLi row={getRow(1)}>
           <a href="https://syntax.fm" target="_blank" rel="noreferrer noopener">
             <small className="top">The Syntax</small>
-            <H as="span">Podcast</H>{' '}
-            <small className="bottom">Web Development</small>
+            <H as="span">Podcast</H> <small className="bottom">Web Development</small>
           </a>
         </NavLi>
         <NavLi row={getRow(2)}>
@@ -182,39 +175,21 @@ export default function Nav({ pageContext }) {
         </NavLi>
 
         <NavLi row={getRow(3)}>
-          <Link
-            to="/blog"
-            className={
-              pageContext.collection === 'post' &&
-              !pageContext.slug.includes('uses')
-                ? 'current-parent'
-                : null
-            }
-          >
+          <Link to="/blog" className={pageContext.collection === 'post' && !pageContext.slug.includes('uses') ? 'current-parent' : null}>
             <small className="top">the</small>
             <H as="span">Blog</H>
             <small className="bottom hideYoSelf">x</small>
           </Link>
         </NavLi>
         <NavLi row={getRow(4)}>
-          <Link
-            to="/tips"
-            className={
-              pageContext.collection === 'tip' ? 'current-parent' : null
-            }
-          >
+          <Link to="/tips" className={pageContext.collection === 'tip' ? 'current-parent' : null}>
             <small className="top">🔥</small>
             <H as="span">Tips</H>
             <small className="bottom">real spicy</small>
           </Link>
         </NavLi>
         <NavLi row={getRow(5)}>
-          <Link
-            to="/javascript"
-            className={
-              pageContext.collection === 'javascript' ? 'current-parent' : null
-            }
-          >
+          <Link to="/javascript" className={pageContext.collection === 'javascript' ? 'current-parent' : null}>
             <small className="top">Beginner</small>
             <H as="span">JavaScript</H>
             <small className="bottom">Notes</small>
@@ -223,15 +198,13 @@ export default function Nav({ pageContext }) {
         <NavLi row={getRow(6)}>
           <Link to="/speaking-and-training">
             <small className="top">real life</small>
-            <H as="span">Speaking</H>{' '}
-            <small className="bottom">and training</small>
+            <H as="span">Speaking</H> <small className="bottom">and training</small>
           </Link>
         </NavLi>
         <NavLi row={getRow(7)}>
           <Link to="/uses">
             <small className="top">what font?!</small>
-            <H as="span">/uses</H>{' '}
-            <small className="bottom">what theme!?</small>
+            <H as="span">/uses</H> <small className="bottom">what theme!?</small>
           </Link>
         </NavLi>
         <NavLi row={getRow(8)}>

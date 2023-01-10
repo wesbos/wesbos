@@ -13,8 +13,8 @@ const TOC = styled.section`
 
   ul {
     list-style: none;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
   }
   li {
     a {
@@ -72,10 +72,7 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
 
 export const pageQuery = graphql`
   query JavaScript {
-    allMdx(
-      filter: { fields: { collection: { eq: "javascript" } } }
-      sort: { fields: frontmatter___tocTitle }
-    ) {
+    allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { fields: frontmatter___tocTitle }) {
       nodes {
         frontmatter {
           tocTitle

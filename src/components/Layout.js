@@ -22,15 +22,7 @@ const ContentStyles = styled.div`
   }
 `;
 
-function Layout({
-  location,
-  title,
-  children,
-  className,
-  pageContext,
-  path,
-  ...rest
-}) {
+function Layout({ location, title, children, className, pageContext, path, ...rest }) {
   if (pageContext.layout === 'thumbnail') return children;
   return (
     <>
@@ -49,9 +41,7 @@ function Layout({
       >
         <Nav pageContext={pageContext} />
         <MDXProvider components={mdxComponents}>
-          <ContentStyles className={pageContext.layoutClasses}>
-            {children}
-          </ContentStyles>
+          <ContentStyles className={pageContext.layoutClasses}>{children}</ContentStyles>
         </MDXProvider>
         <Footer />
       </LayoutStyles>

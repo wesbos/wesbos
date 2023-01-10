@@ -47,9 +47,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
     return <p>No Post Found? This should be a 404</p>;
   }
 
-  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
-    post.parent.absolutePath.split('/src/')[1]
-  }`;
+  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${post.parent.absolutePath.split('/src/')[1]}`;
   return (
     <JavaScriptNotesStyles>
       <TableOfContents activeId={activeId} currentPage={pageContext.slug} />
@@ -73,29 +71,17 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
           {post.body}
         </MDXRenderer>
         <EditDialogStyles>
-          <p>
-            Find an issue with this post? Think you could clarify, update or add
-            something?
-          </p>
-          <p>
-            All my posts are available to edit on Github. Any fix, little or
-            small, is appreciated!
-          </p>
+          <p>Find an issue with this post? Think you could clarify, update or add something?</p>
+          <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
           <p>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
               <IoLogoGithub /> Edit on Github
             </a>
           </p>
         </EditDialogStyles>
-        <ContentNav
-          pathPrefix={pageContext.pathPrefix}
-          prev={pageContext.prev}
-          next={pageContext.next}
-        />
+        <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} />
         <Helmet>
-          <title>
-            {post.frontmatter.title} - Beginner JavaScript - Wes Bos
-          </title>
+          <title>{post.frontmatter.title} - Beginner JavaScript - Wes Bos</title>
         </Helmet>
       </article>
     </JavaScriptNotesStyles>

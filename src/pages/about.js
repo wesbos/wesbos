@@ -31,7 +31,7 @@ function TimeSinceStarting() {
 }
 
 export default function AboutPage({ data, path }) {
-  const { age, ageAsYears, timeSinceStarting, timeAsYears } = useOldGuy({
+  const { age, ageAsYears, timeAsYears } = useOldGuy({
     update: 60000,
   });
   return (

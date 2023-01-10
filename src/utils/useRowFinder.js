@@ -24,10 +24,7 @@ export default function useRowFinder() {
     let row = 0;
     const rowData = {};
     items.forEach((item, i) => {
-      if (
-        !item.previousElementSibling ||
-        item.offsetLeft < item.previousElementSibling.offsetLeft
-      ) {
+      if (!item.previousElementSibling || item.offsetLeft < item.previousElementSibling.offsetLeft) {
         row += 1;
       }
       rowData[i] = row;
@@ -41,17 +38,14 @@ export default function useRowFinder() {
     previous.current.width = width;
   }
 
-  useEffect(
-    function() {
-      const observer = new ResizeObserver(callback);
-      const el = ref.current;
-      observer.observe(el);
-      return function() {
-        observer.unobserve(el);
-      };
-    },
-    [ref]
-  );
+  useEffect(() => {
+    const observer = new ResizeObserver(callback);
+    const el = ref.current;
+    observer.observe(el);
+    return function () {
+      observer.unobserve(el);
+    };
+  }, [ref]);
 
   function getRow(index) {
     return rows[index];

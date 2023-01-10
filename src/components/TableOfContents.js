@@ -2,7 +2,6 @@ import React, { Fragment, memo } from 'react';
 import { useStaticQuery, graphql, Link, useScrollRestoration } from 'gatsby';
 import { slug } from 'github-slugger';
 import styled from 'styled-components';
-import { IoLogoGoogleplus } from 'react-icons/io';
 import H from './mdxComponents/Headings';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
@@ -91,8 +90,7 @@ const StyledTOC = styled.aside`
     /* border-left: 2px solid var(--yellow); */
     /* Level 1 */
     list-style: none;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-top: 0;
     padding-left: 0rem;
     padding-top: 0;
@@ -176,10 +174,7 @@ const StyledTOC = styled.aside`
 
 const frontmatter = graphql`
   query Frontmatter {
-    allMdx(
-      filter: { fields: { collection: { eq: "javascript" } } }
-      sort: { fields: frontmatter___tocTitle }
-    ) {
+    allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { fields: frontmatter___tocTitle }) {
       nodes {
         frontmatter {
           tocTitle
@@ -192,8 +187,7 @@ const frontmatter = graphql`
   }
 `;
 
-function isActive({ isCurrent, isPartiallyCurrent, href, location }) {
-  // console.log({ href, isCurrent, isPartiallyCurrent, location });
+function isActive({ href, location }) {
   const [, , module, pageName] = href.split('/');
   const { hash, pathname } = location;
   const currentUrl = `${pathname}${hash}`;
@@ -223,21 +217,12 @@ function TableOfContents({ activeId, currentPage }) {
           <H as="h5">Module {moduleName}</H>
           <ul>
             {moduleChildren.map((tocItem, i) => {
-              const [videoNumber, ...videoTitleParts] = tocItem.tocTitle.split(
-                ' - '
-              );
+              const [videoNumber, ...videoTitleParts] = tocItem.tocTitle.split(' - ');
               const videoTitle = videoTitleParts.join(' - ');
               return (
                 <Fragment key={`${tocItem.tocTitle}-${i}`}>
-                  <li
-                    className={
-                      currentPage === `/${tocItem.slug}/` ? 'currentPage' : ''
-                    }
-                  >
-                    <Link
-                      getProps={isActive}
-                      to={`/javascript/${tocItem.slug}`}
-                    >
+                  <li className={currentPage === `/${tocItem.slug}/` ? 'currentPage' : ''}>
+                    <Link getProps={isActive} to={`/javascript/${tocItem.slug}`}>
                       {videoTitle}
                       <span className="videoNumber">Part {videoNumber}</span>
                     </Link>
@@ -247,44 +232,19 @@ function TableOfContents({ activeId, currentPage }) {
                         {tocItem.tocChild.map((toc2ndItem, secondIndex) => (
                           <Fragment key={`${toc2ndItem.title}-${secondIndex}`}>
                             <li>
-                              <Link
-                                getProps={isActive}
-                                to={`/javascript/${tocItem.slug}/#${slug(
-                                  toc2ndItem.title,
-                                  false
-                                )}`}
-                                aria-current={
-                                  toc2ndItem.url === `#${activeId}`
-                                    ? 'location'
-                                    : ''
-                                }
-                              >
+                              <Link getProps={isActive} to={`/javascript/${tocItem.slug}/#${slug(toc2ndItem.title, false)}`} aria-current={toc2ndItem.url === `#${activeId}` ? 'location' : ''}>
                                 {toc2ndItem.title}
                               </Link>
 
                               {toc2ndItem?.items ? (
                                 <ul>
-                                  {toc2ndItem.items.map(
-                                    (toc3rdItem, thirdIndex) => (
-                                      <li
-                                        key={`${toc3rdItem.title}-${thirdIndex}`}
-                                      >
-                                        <Link
-                                          getProps={isActive}
-                                          to={`/javascript/${
-                                            tocItem.slug
-                                          }/#${slug(toc3rdItem.title, false)}`}
-                                          aria-current={
-                                            toc3rdItem.url === `#${activeId}`
-                                              ? 'location'
-                                              : ''
-                                          }
-                                        >
-                                          {toc3rdItem.title}
-                                        </Link>
-                                      </li>
-                                    )
-                                  )}
+                                  {toc2ndItem.items.map((toc3rdItem, thirdIndex) => (
+                                    <li key={`${toc3rdItem.title}-${thirdIndex}`}>
+                                      <Link getProps={isActive} to={`/javascript/${tocItem.slug}/#${slug(toc3rdItem.title, false)}`} aria-current={toc3rdItem.url === `#${activeId}` ? 'location' : ''}>
+                                        {toc3rdItem.title}
+                                      </Link>
+                                    </li>
+                                  ))}
                                 </ul>
                               ) : null}
                             </li>
