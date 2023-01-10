@@ -11,23 +11,22 @@ export default function useImage() {
   /**
    * @returns string[]
    */
-  const { images } = useStaticQuery(graphql`{
-  images: allFile(filter: {dir: {regex: "/assets/images/"}}) {
-    edges {
-      node {
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+  const { images } = useStaticQuery(graphql`
+    {
+      images: allFile(filter: { dir: { regex: "/assets/images/" } }) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+            }
+          }
         }
       }
     }
-  }
-}
-`);
+  `);
   return {
     getImagePath(fileName) {
-      return images.edges
-        .map((x) => x.node.childImageSharp.gatsbyImageData.src)
-        .find((path) => path.endsWith(fileName));
+      return images.edges.map((x) => x.node.childImageSharp.gatsbyImageData.src).find((path) => path.endsWith(fileName));
     },
   };
 }

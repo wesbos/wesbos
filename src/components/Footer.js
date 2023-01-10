@@ -105,21 +105,11 @@ export default function Footer() {
         <LatestCourse />
         <div className="bottom">
           I post videos on{' '}
-          <a
-            href="https://youtube.com/wesbos?sub_confirmation=1"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="socialLink"
-          >
+          <a href="https://youtube.com/wesbos?sub_confirmation=1" target="_blank" rel="noreferrer noopener" className="socialLink">
             <IoLogoYoutube /> YouTube
           </a>{' '}
           and code on{' '}
-          <a
-            href="https://github.com/wesbos"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="socialLink"
-          >
+          <a href="https://github.com/wesbos" target="_blank" rel="noreferrer noopener" className="socialLink">
             <IoLogoGithub /> GitHub
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>

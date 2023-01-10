@@ -1,10 +1,17 @@
-// const mdxFeed = require('gatsby-mdx/feed');
+import { config } from 'dotenv';
+import remarkVSCode from 'gatsby-remark-vscode';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
-require('dotenv').config({ path: `.env.development` });
+const { remarkPlugin } = remarkVSCode;
 
-module.exports = {
+config({ path: `.env.development` });
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default {
   flags: {
-    FAST_DEV: true
+    FAST_DEV: true,
   },
   siteMetadata: {
     title: 'Wes Bos',
@@ -71,10 +78,13 @@ module.exports = {
       options: {
         root: __dirname,
         remarkPlugins: [
-          [require('gatsby-remark-vscode').remarkPlugin, {
+          [
+            remarkPlugin,
+            {
               theme: `Cobalt2`,
               extensions: [`theme-cobalt2`],
-          }]
+            },
+          ],
         ],
         gatsbyRemarkPlugins: [
           `gatsby-remark-embedder`,

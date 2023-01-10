@@ -1,4 +1,4 @@
-exports.handler = async (event, context) => ({
+exports.handler = async () => ({
   statusCode: 200,
   body: JSON.stringify({
     NETLIFY: process.env.NETLIFY,

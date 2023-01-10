@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
 import styled from 'styled-components';
 
@@ -62,26 +62,18 @@ function useTwitter() {
       .then((data) => {
         setPosts(data);
       })
-      .catch(console.log)
+      .catch(console.log);
   }, []);
   return posts;
 }
 
 function Media({ media, alt }) {
   if (!media) return null;
-  const url = media[0].media_url_https;
-  const parts = url.split('.');
+  // const url = media[0].media_url_https;
+  // const parts = url.split('.');
   // const base = parts.slice(0, parts.length - 1).join('.');
   const thumb = `${url}?name=thumb&format=jpg`;
-  return (
-    <img
-      src={`https://images.weserv.nl/?url=${encodeURIComponent(thumb)}&h=75`}
-      alt={alt}
-      className="media"
-      width="75"
-      height="75"
-    />
-  );
+  return <img src={`https://images.weserv.nl/?url=${encodeURIComponent(thumb)}&h=75`} alt={alt} className="media" width="75" height="75" />;
 }
 
 export default function Twitter() {
@@ -92,11 +84,7 @@ export default function Twitter() {
       <h3>
         <span className="highlight">
           <IoLogoTwitter />
-          <a
-            href="https://twitter.com/wesbos"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://twitter.com/wesbos" target="_blank" rel="noopener noreferrer">
             @wesbos{' '}
           </a>
           Tweets
@@ -105,19 +93,11 @@ export default function Twitter() {
       {!tweets.length && <p>brb getting some good tweets...</p>}
       {tweets.map((tweet) => {
         const { media } = tweet.entities;
-        const text = tweet.full_text
-          .split('https://t.co')
-          .shift()
-          .slice(0, 100);
+        const text = tweet.full_text.split('https://t.co').shift().slice(0, 100);
         return (
           <div key={tweet.id_str}>
             <p>
-              <a
-                className="tweet-link"
-                rel="noopener noreferrer"
-                target="_blank"
-                href={`https://twitter.com/wesbos/status/${tweet.id_str}`}
-              >
+              <a className="tweet-link" rel="noopener noreferrer" target="_blank" href={`https://twitter.com/wesbos/status/${tweet.id_str}`}>
                 <Media media={media} alt={text} />
                 {text}…
               </a>

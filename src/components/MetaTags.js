@@ -21,11 +21,8 @@ export function PostMetaTags({ post }) {
     url,
     thumbnail: post.frontmatter.image?.publicURL,
   };
-  const thumbnailQuery = new URLSearchParams(
-    Object.fromEntries(
-      Object.entries(thumbnailData).filter(([key, val]) => val !== undefined)
-    )
-  ).toString();
+  /* eslint no-unused-vars: ["error", { "destructuredArrayIgnorePattern": "^_" }] */
+  const thumbnailQuery = new URLSearchParams(Object.fromEntries(Object.entries(thumbnailData).filter(([_key, val]) => val !== undefined))).toString();
 
   const ogImage = `${baseURL}/.netlify/functions/ogimage?${thumbnailQuery}`;
 
@@ -44,12 +41,7 @@ export function PostMetaTags({ post }) {
       <meta property="og:title" content={post.frontmatter.title} />
       <meta property="og:url" content={url} />
       <meta property="og:description" content={post.excerpt} />
-      {post.frontmatter.date ? (
-        <meta
-          property="article:published_time"
-          content={new Date(post.frontmatter.date).toISOString()}
-        />
-      ) : null}
+      {post.frontmatter.date ? <meta property="article:published_time" content={new Date(post.frontmatter.date).toISOString()} /> : null}
 
       <meta property="og:site_name" content="Wes Bos" />
       <meta property="og:image" content={ogImage} />
@@ -70,11 +62,8 @@ export function TipsMetaTags({ post }) {
     thumbnail: post.frontmatter.images?.[0]?.publicURL,
     cache: 'busta',
   };
-  const thumbnailQuery = new URLSearchParams(
-    Object.fromEntries(
-      Object.entries(thumbnailData).filter(([key, val]) => val !== undefined)
-    )
-  ).toString();
+  /* eslint no-unused-vars: ["error", { "destructuredArrayIgnorePattern": "^_" }] */
+  const thumbnailQuery = new URLSearchParams(Object.fromEntries(Object.entries(thumbnailData).filter(([_key, val]) => val !== undefined))).toString();
 
   const ogImage = `${baseURL}/.netlify/functions/ogimage?${thumbnailQuery}`;
   return (
@@ -92,10 +81,7 @@ export function TipsMetaTags({ post }) {
       <meta property="og:title" content={post.frontmatter.title} />
       <meta property="og:url" content={url} />
       <meta property="og:description" content={post.excerpt} />
-      <meta
-        property="article:published_time"
-        content={new Date(post.frontmatter.date).toISOString()}
-      />
+      <meta property="article:published_time" content={new Date(post.frontmatter.date).toISOString()} />
       <meta property="og:site_name" content="Wes Bos" />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />

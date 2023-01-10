@@ -1,7 +1,7 @@
 /* eslint react/jsx-props-no-spreading: 0 */
 /* eslint jsx-a11y/alt-text: 0 */
 import React from 'react';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 export default function WhyDoINeedToMakeThisComponent({ image, ...theRest }) {
   if (!image) {

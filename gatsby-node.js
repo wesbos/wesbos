@@ -14,27 +14,28 @@ process.env.GATSBY_CONTEXT = process.env.CONTEXT;
 function getOnlyTheDataWeNeed(node) {
   return node;
   // TODO fix this
-  // possible there is no next/prev
-  if(!node) {
+  /* eslint-disable no-unreachable */
+  if (!node) {
     return;
   }
   // possible we have the title we need
-  if(node.frontmatter) {
+  if (node.frontmatter) {
     return {
       node: {
         fields: {
-          slug: node.fields.slug
+          slug: node.fields.slug,
         },
         frontmatter: {
-          title: node.frontmatter.title
-        }
-      }
-    }
+          title: node.frontmatter.title,
+        },
+      },
+    };
   }
   // otherwise we need the body (usually a tip)
   return {
-    body: node.body
-  }
+    body: node.body,
+  };
+  /* eslint-enable no-unreachable */
 }
 
 async function makePostsFromMdx({ graphql, actions }) {
@@ -42,10 +43,7 @@ async function makePostsFromMdx({ graphql, actions }) {
   const { errors, data } = await graphql(
     `
       {
-        allMdx(
-          filter: { fields: { collection: { eq: "post" } } }
-          sort: { fields: [frontmatter___date], order: DESC }
-        ) {
+        allMdx(filter: { fields: { collection: { eq: "post" } } }, sort: { fields: [frontmatter___date], order: DESC }) {
           edges {
             node {
               body
@@ -88,10 +86,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
   const { errors, data } = await graphql(
     `
       {
-        allMdx(
-          filter: { fields: { collection: { eq: "tip" } } }
-          sort: { fields: [frontmatter___date], order: DESC }
-        ) {
+        allMdx(filter: { fields: { collection: { eq: "tip" } } }, sort: { fields: [frontmatter___date], order: DESC }) {
           edges {
             node {
               body
@@ -132,10 +127,7 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
   const { errors, data } = await graphql(
     `
       {
-        allMdx(
-          filter: { fields: { collection: { eq: "javascript" } } }
-          sort: { fields: frontmatter___tocTitle }
-        ) {
+        allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { fields: frontmatter___tocTitle }) {
           edges {
             node {
               body
@@ -175,13 +167,7 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
   });
 }
 
-async function paginate({
-  graphql,
-  actions,
-  collection,
-  pathPrefix,
-  component,
-}) {
+async function paginate({ graphql, actions, collection, pathPrefix, component }) {
   const { errors, data } = await graphql(
     `
       {
@@ -212,7 +198,6 @@ async function paginate({
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
   await Promise.all([
     makePostsFromMdx({ graphql, actions }),
     makeTipsFromMdx({ graphql, actions }),
@@ -253,9 +238,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: node.frontmatter.slug
-        ? `/${node.frontmatter.slug}/`
-        : generatedSlug,
+      value: node.frontmatter.slug ? `/${node.frontmatter.slug}/` : generatedSlug,
     });
 
     // Add it to a collection

@@ -15,7 +15,7 @@ import { useActiveId } from '../hooks/useActiveId';
 import { BeginnerJavaScript } from '../components/beginnerJavaScript';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     site {
       siteMetadata {
         title
@@ -24,7 +24,11 @@ export const pageQuery = graphql`
     }
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      fileAbsolutePath
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
       frontmatter {
         title
         slug
@@ -43,9 +47,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
     return <p>No Post Found? This should be a 404</p>;
   }
 
-  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
-  }`;
+  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${post.parent.absolutePath.split('/src/')[1]}`;
   return (
     <JavaScriptNotesStyles>
       <TableOfContents activeId={activeId} currentPage={pageContext.slug} />
@@ -53,7 +55,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
         <PostHeaderStyles>
           <PostMetaTags post={post} />
           <H>{post.frontmatter.title}</H>
-          <BeginnerJavaScript/>
+          <BeginnerJavaScript />
           <div className="postMeta">
             <span>{post.frontmatter.category.join(', ')}</span>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
@@ -69,29 +71,17 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
           {post.body}
         </MDXRenderer>
         <EditDialogStyles>
-          <p>
-            Find an issue with this post? Think you could clarify, update or add
-            something?
-          </p>
-          <p>
-            All my posts are available to edit on Github. Any fix, little or
-            small, is appreciated!
-          </p>
+          <p>Find an issue with this post? Think you could clarify, update or add something?</p>
+          <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
           <p>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
               <IoLogoGithub /> Edit on Github
             </a>
           </p>
         </EditDialogStyles>
-        <ContentNav
-          pathPrefix={pageContext.pathPrefix}
-          prev={pageContext.prev}
-          next={pageContext.next}
-        />
+        <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} />
         <Helmet>
-          <title>
-            {post.frontmatter.title} - Beginner JavaScript - Wes Bos
-          </title>
+          <title>{post.frontmatter.title} - Beginner JavaScript - Wes Bos</title>
         </Helmet>
       </article>
     </JavaScriptNotesStyles>

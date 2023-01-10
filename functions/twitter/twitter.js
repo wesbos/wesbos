@@ -34,7 +34,7 @@ async function getTweets() {
 
   cache.tweets = tweets
     .filter(
-      tweet =>
+      (tweet) =>
         // filter out any BOMBS. Show only tweets that have more than 5 RTs or 10 hearts
         tweet.retweet_count > 5 || tweet.favorite_count > 10
     )
@@ -43,7 +43,7 @@ async function getTweets() {
   return cache.tweets;
 }
 
-exports.handler = async function(event, context, callback) {
+exports.handler = async function (event, context, callback) {
   const tweets = await getTweets();
   callback(null, {
     statusCode: 200,
