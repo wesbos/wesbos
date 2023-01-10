@@ -14,7 +14,7 @@ process.env.GATSBY_CONTEXT = process.env.CONTEXT;
 function getOnlyTheDataWeNeed(node) {
   return node;
   // TODO fix this
-  /* eslint-disable no-unreachable */
+  // possible there is no next/prev
   if (!node) {
     return;
   }
@@ -40,25 +40,23 @@ function getOnlyTheDataWeNeed(node) {
 
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
-  const { errors, data } = await graphql(
-    `
-      {
-        allMdx(filter: { fields: { collection: { eq: "post" } } }, sort: { fields: [frontmatter___date], order: DESC }) {
-          edges {
-            node {
-              body
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+  const { errors, data } = await graphql(/* GraphQL */ `
+    {
+      allMdx(filter: { fields: { collection: { eq: "post" } } }, sort: { frontmatter: { date: DESC } }) {
+        edges {
+          node {
+            body
+            fields {
+              slug
+            }
+            frontmatter {
+              title
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
   if (errors) {
     console.log(errors);
     throw new Error('There was an error');
@@ -83,22 +81,20 @@ async function makePostsFromMdx({ graphql, actions }) {
 
 async function makeTipsFromMdx({ graphql, actions }) {
   const tipTemplate = path.resolve('./src/templates/tip.js');
-  const { errors, data } = await graphql(
-    `
-      {
-        allMdx(filter: { fields: { collection: { eq: "tip" } } }, sort: { fields: [frontmatter___date], order: DESC }) {
-          edges {
-            node {
-              body
-              fields {
-                slug
-              }
+  const { errors, data } = await graphql(/* graphql */ `
+    {
+      allMdx(filter: { fields: { collection: { eq: "tip" } } }, sort: { frontmatter: { date: DESC } }) {
+        edges {
+          node {
+            body
+            fields {
+              slug
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
   if (errors) {
     console.log(errors);
     throw new Error('There was an error');
@@ -124,25 +120,23 @@ async function makeTipsFromMdx({ graphql, actions }) {
 
 async function makeJavaScriptFromMdx({ graphql, actions }) {
   const javascriptPage = path.resolve('./src/templates/javascript.js');
-  const { errors, data } = await graphql(
-    `
-      {
-        allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { fields: frontmatter___tocTitle }) {
-          edges {
-            node {
-              body
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
+  const { errors, data } = await graphql(/* GraphQL */ `
+    {
+      allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { frontmatter: { tocTitle: ASC } }) {
+        edges {
+          node {
+            body
+            fields {
+              slug
+            }
+            frontmatter {
+              title
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
   if (errors) {
     console.log(errors);
     throw new Error('There was an error');

@@ -68,7 +68,7 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMdx(filter: { fields: { collection: { eq: "post" } } }, sort: { fields: [frontmatter___date], order: DESC }, limit: 10, skip: $skip) {
+    allMdx(filter: { fields: { collection: { eq: "post" } } }, sort: { frontmatter: { date: DESC } }, limit: 10, skip: $skip) {
       totalCount
       edges {
         node {

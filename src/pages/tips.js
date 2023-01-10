@@ -9,7 +9,6 @@ import Pagination from '../components/Pagination';
 import TipMeta from '../components/TipMeta';
 import { PostMetaTags } from '../components/MetaTags';
 
-/* eslint-disable jsx-a11y/media-has-caption */
 export default function TipsPage({ data: { allMdx: tips }, pageContext, path }) {
   return (
     <>
@@ -49,7 +48,7 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext, path }) 
 
 export const pageQuery = graphql`
   query Tips($skip: Int! = 0) {
-    allMdx(filter: { fields: { collection: { eq: "tip" } } }, sort: { fields: [frontmatter___date], order: DESC }, limit: 10, skip: $skip) {
+    allMdx(filter: { fields: { collection: { eq: "tip" } } }, sort: { frontmatter: { date: DESC } }, limit: 10, skip: $skip) {
       totalCount
       edges {
         node {
