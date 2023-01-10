@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { Helmet } from 'react-helmet';
 import Img from '../components/Img';
 import H from '../components/mdxComponents/Headings';
@@ -9,7 +8,7 @@ import Pagination from '../components/Pagination';
 import TipMeta from '../components/TipMeta';
 import { PostMetaTags } from '../components/MetaTags';
 
-export default function TipsPage({ data: { allMdx: tips }, pageContext, path }) {
+export default function TipsPage({ data: { allMdx: tips }, pageContext, path, children }) {
   return (
     <>
       <Helmet>
@@ -29,7 +28,7 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext, path }) 
             </Link>
             <div className="tipContent">
               <TipMeta tip={tip} />
-              <MDXRenderer>{tip.body}</MDXRenderer>
+              {children}
             </div>
           </TipStyles>
         ))}

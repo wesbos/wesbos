@@ -1,6 +1,6 @@
 {
   "name": "wes-bos-blog",
-  "description": "Wesssss Site",
+  "description": "Wes Bos Site",
   "version": "1.0.0",
   "author": "Wes Bos <wesbos@gmail.com>",
   "engines": {
@@ -27,11 +27,9 @@
     "gatsby-plugin-offline": "^6.4.0",
     "gatsby-plugin-prettier-build": "^0.4.4",
     "gatsby-plugin-react-helmet": "^6.4.0",
-    "gatsby-plugin-remove-trailing-slashes": "^4.3.0",
     "gatsby-plugin-sharp": "^5.4.0",
     "gatsby-plugin-snipcartv3": "^2.3.3",
     "gatsby-plugin-styled-components": "^6.4.0",
-    "gatsby-plugin-twitter": "^5.4.0",
     "gatsby-remark-autolink-headers": "^6.4.0",
     "gatsby-remark-copy-linked-files": "^6.4.0",
     "gatsby-remark-embedder": "^6.0.1",

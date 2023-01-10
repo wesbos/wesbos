@@ -1,4 +1,5 @@
 import React from 'react';
+import { StaticImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
 import H from './mdxComponents/Headings';
@@ -134,22 +135,11 @@ const NavLi = styled.li`
 `;
 export default function Nav({ pageContext }) {
   const { ref, getRow } = useRowFinder();
-  const data = useStaticQuery(graphql`
-    query {
-      logo: file(relativePath: { eq: "logo.png" }) {
-        childImageSharp {
-          resize(width: 400) {
-            src
-          }
-        }
-      }
-    }
-  `);
   return (
     <NavStyles>
       <h1>
         <Link to="/">
-          <img width="200" src={data.logo.childImageSharp.resize.src} alt="Wes Bos" />
+          <StaticImage width={200} src="../assets/images/logo.png" alt="Wes Bos" />
         </Link>
       </h1>
       <NavUl ref={ref}>

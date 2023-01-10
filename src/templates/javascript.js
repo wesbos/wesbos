@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { IoLogoGithub } from 'react-icons/io';
 import { Helmet } from 'react-helmet';
 import H from '../components/mdxComponents/Headings';
@@ -40,7 +39,7 @@ export const pageQuery = graphql`
   }
 `;
 
-function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
+function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext, children }) {
   const activeId = useActiveId(getIds(post.tableOfContents.items));
 
   if (!post) {
@@ -63,13 +62,7 @@ function JavaScriptNotesTemplate({ data: { mdx: post }, scope, pageContext }) {
             </a>
           </div>
         </PostHeaderStyles>
-        <MDXRenderer
-          scope={{
-            ...scope,
-          }}
-        >
-          {post.body}
-        </MDXRenderer>
+        {children}
         <EditDialogStyles>
           <p>Find an issue with this post? Think you could clarify, update or add something?</p>
           <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
