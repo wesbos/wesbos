@@ -1,8 +1,6 @@
 /* eslint-disable */
 import fetch from 'isomorphic-fetch';
 import { promises as fs } from 'fs';
-import { Html5Entities } from 'html-entities';
-import replaceAll from 'string.prototype.replaceall';
 import jsdom, { JSDOM } from 'jsdom';
 import FileType from 'file-type';
 import getSlug from 'speakingurl';
