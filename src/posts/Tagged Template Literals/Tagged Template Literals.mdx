@@ -3,11 +3,12 @@ title: Tagged Template Literals
 slug: tagged-template-literals
 image: tagged-templates.png
 category:
- - ES6
- - JavaScript
+  - ES6
+  - JavaScript
 date: 2016-10-25T10:04:22
 id: 3890
 ---
+
 One feature that comes along with template literals, or template strings, is the ability to **tag** them.
 
 That means we can run a template string through a function, and rather than have the browser immediately assign that value to a variable, we can have control over how this actual string is made.
@@ -18,13 +19,13 @@ The way the tag template works is you simply make a function, and you take the n
 
 ```js
 function highlight() {
-    // do something
+  // do something
 }
 
 const name = 'Snickers';
 const age = '100';
 const sentence = highlight`My dog's name is ${name} and he is ${age} years old`;
-console.log(sentence)
+console.log(sentence);
 ```
 
 This tags it with a function name. What will happen is the browser will run this function, it will provide it with all the information about the string, all the pieces that the person typed, as well as the variables that get passed in. Whatever we return from this function is what `sentence` actually is going to be.
@@ -33,7 +34,7 @@ It acts like a step in between. Before this function actually gets put into `sen
 
 ```js
 function highlight() {
-    return 'cool';
+  return 'cool';
 }
 ```
 
@@ -48,17 +49,17 @@ Obviously, that's not what we want to do,but this function will take in a few ar
 
 First, we get an array of all the string pieces:
 
-* My dog's name is
-* and he is
-* years old
+- My dog's name is
+- and he is
+- years old
 
-After the array of all the , the subsequent arguments will be the values that are being interpolated.
+After the array of all the string pieces, the subsequent arguments will be the values that are being interpolated.
 
 In this case, we're passing `name and age`.
 
 ```js
 function highlight(strings, name, age) {
-    return 'cool';
+  return 'cool';
 }
 ```
 
@@ -68,15 +69,15 @@ For this, We can use ES6 rest operator, which is three dots. We're going to go i
 
 ```js
 function highlight(strings, ...values) {
-    return 'cool';
+  return 'cool';
 }
 ```
 
 What's `strings?` `Strings` is an array of three things:
 
-* `"My dog's name is "`
-* `"and he is "`
-* `"years old "`
+- `"My dog's name is "`
+- `"and he is "`
+- `"years old "`
 
 As you can see, it breaks up the string into the biggest pieces it can until a variable interrupts it.
 
@@ -88,13 +89,13 @@ So - the whole point of the tagged template is so that we can create the string 
 
 ```js
 function highlight() {
-   let str = ''; 
+  let str = '';
 }
 
 const name = 'Snickers';
 const age = '100';
 const sentence = highlight`My dog's name is ${name} and he is ${age} years old`;
-console.log(sentence)
+console.log(sentence);
 ```
 
 I'm using `let` here. Why? Because we're going to be appending more strings on to this actual string. If I used `const`, I wouldn't be able to tack onto it.
@@ -105,17 +106,17 @@ You can use whatever loop or logic you prefer inside of this function. You could
 
 ```js
 function highlight(strings, ...values) {
-   let str = '';
-   strings.forEach((string, i) => {
-       str += string + values[i];
-   });
-   return str;
+  let str = '';
+  strings.forEach((string, i) => {
+    str += string + values[i];
+  });
+  return str;
 }
 
 const name = 'Snickers';
 const age = '100';
 const sentence = highlight`My dog's name is ${name} and he is ${age} years old`;
-console.log(sentence)
+console.log(sentence);
 ```
 
 That's going to say, "Give me the first value from the strings and the first value from our values array and tack them on."
@@ -128,11 +129,11 @@ A little trick you can do here, is you can use your values of I or just a blank 
 
 ```js
 function highlight(strings, ...values) {
-   let str = '';
-   strings.forEach((string, i) => {
-       str += string + (values[i] || '');
-   });
-   return str;
+  let str = '';
+  strings.forEach((string, i) => {
+    str += string + (values[i] || '');
+  });
+  return str;
 }
 ```
 
@@ -146,11 +147,11 @@ You maybe want to show your user which pieces of the string were variables or wh
 
 ```js
 function highlight(strings, ...values) {
-   let str = '';
-   strings.forEach((string, i) => {
-       str += `${string} <span class='hl'>${values[i] || ''}</span>`;
-   });
-   return str;
+  let str = '';
+  strings.forEach((string, i) => {
+    str += `${string} <span class='hl'>${values[i] || ''}</span>`;
+  });
+  return str;
 }
 ```
 
@@ -158,9 +159,9 @@ Now with our `<span>`, let's see what our sentence looks like here. There we go.
 
 ```html
 <style>
-.hl {
-background: #ffc600
-}
+  .hl {
+    background: #ffc600;
+  }
 </style>
 ```
 
