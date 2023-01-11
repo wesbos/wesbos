@@ -24,6 +24,9 @@ export const pageQuery = graphql`
           absolutePath
         }
       }
+      fields {
+        slug
+      }
       frontmatter {
         title
         slug

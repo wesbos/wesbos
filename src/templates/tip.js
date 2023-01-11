@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Img from '../components/Img';
 import ContentNav from '../components/ContentNav';
 import H from '../components/mdxComponents/Headings';
@@ -19,6 +18,9 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt
+      fields {
+        slug
+      }
       frontmatter {
         title
         slug
@@ -35,7 +37,7 @@ export const pageQuery = graphql`
 `;
 
 /* eslint-disable jsx-a11y/media-has-caption */
-export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
+export default function TipTemplate({ data: { mdx: tip }, pageContext, children }) {
   return (
     <>
       <div>
@@ -44,7 +46,7 @@ export default function TipTemplate({ data: { mdx: tip }, pageContext }) {
           <H>Hot Tip</H>
           <TipMeta tip={tip} />
         </Grid>
-        <MDXRenderer>{tip.body}</MDXRenderer>
+        {children}
         {tip.frontmatter.videos && tip.frontmatter.videos.map((url) => <video key={url} src={url} autoPlay muted loop />)}
         {tip.frontmatter.images && tip.frontmatter.images.map((image) => <Img key={image.id} image={image} alt={tip.body} />)}
       </div>

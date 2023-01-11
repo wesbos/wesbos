@@ -2,7 +2,7 @@ import React from 'react';
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
 
-export default function ContactPage({ path }) {
+export default function ContactPage({ location }) {
   return (
     <>
       <H>Contact</H>
@@ -50,7 +50,7 @@ export default function ContactPage({ path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: `Contact`,
           },
         }}

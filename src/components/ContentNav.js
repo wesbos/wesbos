@@ -49,13 +49,13 @@ export default function ContentNav({ prev, next, pathPrefix }) {
       {prev && (
         <Link to={`${pathPrefix}${prev.node.fields.slug}`}>
           <strong>← Prev</strong>
-          {prev.node.frontmatter ? <p>{prev.node.frontmatter.title}</p> : <MDXRenderer>{prev.node.body}</MDXRenderer>}
+          {prev.node.frontmatter ? <p>{prev.node.frontmatter.title}</p> : <p>{prev.node.body}</p>}
         </Link>
       )}
       {next && (
         <Link to={`${pathPrefix}${next.node.fields.slug}`}>
           <strong>Next →</strong>
-          {next.node.frontmatter ? <p>{next.node.frontmatter.title}</p> : <MDXRenderer>{next.node.body}</MDXRenderer>}
+          {next.node.frontmatter ? <p>{next.node.frontmatter.title}</p> : <p>{next.node.body}</p>}
         </Link>
       )}
     </ContentNavStyles>

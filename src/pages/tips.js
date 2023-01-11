@@ -8,7 +8,7 @@ import Pagination from '../components/Pagination';
 import TipMeta from '../components/TipMeta';
 import { PostMetaTags } from '../components/MetaTags';
 
-export default function TipsPage({ data: { allMdx: tips }, pageContext, path, children }) {
+export default function TipsPage({ data: { allMdx: tips }, pageContext, location, children }) {
   return (
     <>
       <Helmet>
@@ -36,7 +36,7 @@ export default function TipsPage({ data: { allMdx: tips }, pageContext, path, ch
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: `🔥 Hot Tips ${pageContext.currentPage ? `- Page ${pageContext.currentPage}` : ''}`,
           },
         }}
@@ -51,6 +51,9 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             slug
             date

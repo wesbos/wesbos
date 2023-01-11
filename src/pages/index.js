@@ -5,13 +5,13 @@ import WelcomeStyles from '../assets/styles/WelcomeStyles';
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
 
-export default function HomePage({ path }) {
+export default function HomePage({ location }) {
   return (
     <div className="welcome">
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Wes Bos',
           },
         }}

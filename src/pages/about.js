@@ -31,7 +31,7 @@ function TimeSinceStarting() {
   return timeSinceStarting;
 }
 
-export default function AboutPage({ data, path }) {
+export default function AboutPage({ data, location }) {
   const { age, ageAsYears, timeAsYears } = useOldGuy({
     update: 60000,
   });
@@ -40,7 +40,7 @@ export default function AboutPage({ data, path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'About',
             image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}${data.wes.childImageSharp.gatsbyImageData.src}`,
           },

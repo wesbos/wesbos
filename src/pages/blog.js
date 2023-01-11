@@ -7,15 +7,18 @@ import H from '../components/mdxComponents/Headings';
 import Pagination from '../components/Pagination';
 import { PostMetaTags } from '../components/MetaTags';
 
-const Blog = function ({ data, pageContext, path }) {
+export default function Blog({ data, pageContext, location }) {
   if (!data) return <p>Shooooot! No Post found!</p>;
   return (
     <>
       <Pagination currentPage={pageContext.currentPage} totalCount={data.allMdx.totalCount} pathPrefix="/blog/" />
       <PostMetaTags
         post={{
+          fields: {
+            slug: location.pathname, // TODO: TEST
+          },
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: `Blog ${pageContext.currentPage ? `- Page ${pageContext.currentPage}` : ''}`,
           },
         }}
@@ -56,9 +59,7 @@ const Blog = function ({ data, pageContext, path }) {
       <Pagination currentPage={pageContext.currentPage} totalCount={data.allMdx.totalCount} pathPrefix="/blog/" />
     </>
   );
-};
-
-export default Blog;
+}
 
 export const pageQuery = graphql`
   query blogPosts($skip: Int! = 0) {
@@ -81,6 +82,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             date
+            slug
             category
             image {
               ...ImageFields

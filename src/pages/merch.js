@@ -7,14 +7,14 @@ import { ProductImages } from '../components/styles/ProductImages';
 import useImage from '../hooks/useImage';
 // import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
-export default function MerchPage({ path }) {
+export default function MerchPage({ location }) {
   return (
     <div>
       <H as="h2">Merch Store</H>
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Merch!',
             image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}/assets/images/pink-on-pink-2.jpg`,
           },
@@ -29,7 +29,7 @@ export default function MerchPage({ path }) {
 }
 
 /* eslint-disable */
-function SwagPage({ data, path }) {
+function SwagPage({ data, location }) {
   return;
   const mens = `XS|small|medium|large|XL|2XL|3XL`;
   const womens = ['XS', 'small', 'medium', 'large', 'XL'].map((size) => `Womens ${size}`).join('|');
@@ -58,7 +58,7 @@ function SwagPage({ data, path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Merch!',
             image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}/assets/images/pink-on-pink-2.jpg`,
           },
