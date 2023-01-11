@@ -30,7 +30,7 @@ function wait(ms = 0) {
 
 Now if we want to use the `async await` syntax there are a few things that need to happen.
 
-First of all, you can only use `async await` inside of a function that is marked as `async`.
+First of all, you can only use `await` inside of a function that is marked as `async`.
 
 Make a function `go()` which logs "starting", and "ending". In order to make it wait for two seconds between the logs, you would add the following code 👇
 
@@ -78,9 +78,9 @@ async function go() {
 }
 ```
 
-Now if you go ahead and save the function and then refresh, we will getting "starting" logged to the console and then two seconds later we will get "ending".
+Now if you go ahead and save the function and then refresh, we will get "starting" logged to the console and then two seconds later we will get "ending".
 
-That is beautiful because we achieved that without chaining a bunch of `.then()` .
+That is beautiful because we achieved that without chaining a bunch of `.then()`.
 
 If we wanted to wait for another period of time in the same function before executing something else, we can.
 
@@ -89,7 +89,7 @@ async function go() {
   console.log('Starting');
   await wait(2000);
   console.log('running');
-  await wait(200);
+  await wait(2000);
   console.log('ending');
 }
 ```
@@ -126,7 +126,7 @@ window.addEventListener('click', async function() {
 })
 ```
 
-You cam also make methods async.
+You can also make methods async.
 
 ```js
 const person = {
@@ -236,7 +236,7 @@ This is what is referred to as a **foot gun** in the industry, when you give som
 
 What that means is if you are making a pepperoni and a mushroom pizza, the way we have coded it, you have to wait for the pepperoni pizza to be created, baked and taken out before we even start making the next pizza.
 
-It is likely that we could be making the pizza's concurrently, so what we can do is instead of waiting for one, then moving onto the next line and making the next one, we will remove the await from both of them, make them both into promises and then make one big promise which we can await.
+It is likely that we could be making the pizzas concurrently, so what we can do is instead of waiting for one, then moving onto the next line and making the next one, we will remove the await from both of them, make them both into promises and then make one big promise which we can await.
 
 ```js
 async function makeDinner() {

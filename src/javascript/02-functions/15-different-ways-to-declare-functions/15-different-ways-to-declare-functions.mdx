@@ -184,7 +184,7 @@ JavaScript will take all functions with the function keyword and hoist them up, 
 
 JavaScript does **not** hoist variable functions.
 
-Why is that useful?
+When is that useful?
 
 Very rarely, Wes has never used that in his entire career except for tiny use cases.
 
@@ -202,7 +202,8 @@ Arrow functions themselves have a few different ways of being declared. They are
 
 They have a few benefits:
 
-- concise syntax and tend to be shorter. allow for writing one line functions
+- concise syntax and tend to be shorter 
+- allow for writing one line functions
 - do not have their own scope in reference to the `this` keyword _(we will cover the `this` keyword in a future video)_
 
 Arrow functions are also **anonymous functions**, which means there is no way to declare an arrow function the way we do a function declaration `function doctorize() {..}`. You always have to stick it into a variable.
@@ -333,7 +334,7 @@ If there is only one parameter in your arrow function, you can remove them no pr
 
 Let's do another example!
 
-Make a function called `add`, that takes in two parameters `a` and `b`, with the default value of `b` being 3. We will then make a temporary variable called total which we return.
+Make a function called `add`, that takes in two parameters `a` and `b`, with the default value of `b` being 3. We will then make a temporary variable called `total` which we return.
 
 ```js
 function add(a, b = 3) {
@@ -595,7 +596,7 @@ const wes = {
 
 Try it in the browser.
 
-First, type `wes` and hit enter.
+First, type `wes` and hit Enter.
 Next, type `wes.sayHi()` and hit Enter.
 
 You should see the following 👇

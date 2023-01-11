@@ -23,9 +23,7 @@ async function getPosts() {
     .catch((err) => console.log(err));
 
   // Filter out stories that aren't mine. This only happens when I don't post a story, then it returns the stories of people I follow
-  const wesEdge = res.data.user.feed_reels_tray.edge_reels_tray_to_reel.edges
-    .map((edge) => edge.node)
-    .find((edge) => edge.user.username === 'wesbos');
+  const wesEdge = res.data.user.feed_reels_tray.edge_reels_tray_to_reel.edges.map((edge) => edge.node).find((edge) => edge.user.username === 'wesbos');
 
   // no Stories
   if (!wesEdge) return {};

@@ -18,7 +18,7 @@ For example, sometimes you are working on a `button` and need to select the pare
 
 There are lots of properties for that, and they all revolve around node and elements.
 
-## The difference between an Node and an Element
+## The difference between a Node and an Element
 
 We will do an example to demonstrate the difference.
 
@@ -83,8 +83,8 @@ console.log(wes.firstElementChild);
 console.log(wes.lastElementChild);
 console.log(wes.previousElementSibling);
 console.log(wes.nextElementSibling);
-console.log(wes.parenteElement);
-console.log(wes.childNode);
+console.log(wes.parentElement);
+console.log(wes.children);
 ```
 
 Here is the result when you refresh the index.html page.
@@ -162,7 +162,7 @@ Now you can go down again using `.children[1]` to select the paragraph with a cl
 
 ![browser console as user is selection children by square bracket notation](./294.png)
 
-In the code above, we strted with the `span` in `item2`, we went up, up, over down and selected the second element.
+In the code above, we started with the `span` in `item2`, we went up, up, over down and selected the second element.
 
 That is probably not something you would do because assuming that the structure of the HTML is the best way to move around elements is probably not a good idea because if someone adds an extra `div`, then everything is ruined.
 
@@ -173,8 +173,8 @@ We also have a bunch of different properties for Nodes as well.
 ```js
 el.childNodes
 el.firstChild
-el.lastElementChild
-el.previousElementSibling
+el.lastChild
+el.previousSibling
 el.nextSibling
 el.parentNode
 ```

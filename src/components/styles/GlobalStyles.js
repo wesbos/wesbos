@@ -1,14 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 import whiteGrit from '../mdxComponents/whitegrit.png';
 import blackGrit from '../mdxComponents/blackgrit.png';
-import font from '../../assets/fonts/RadnikaNext/RadnikaNext-Black.woff2';
 import dirty from './Dirty';
 
 const GlobalStyles = createGlobalStyle`
-  @font-face {
-    font-family: radnika;
-    src: url(${font});
-  }
   :root {
     --yellow: #ffc600;
     --light: #ffffff;

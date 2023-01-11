@@ -54,7 +54,7 @@ The `sayHi` method will give us the object it was run against. This is no differ
 Now , what if you were to take the `sayHi` method and put it in it's own variable, as shown below 👇?
 
 ```js
-const sayHi = person1.sayHi;
+const sayHi = person.sayHi;
 ```
 
 When you run that, we will just see "hey " with no name.
@@ -74,7 +74,7 @@ We can use the `bind` keyword to change where the `this` keyword is equal to or 
 Let's try that by binding the `sayHi` method back to the original person.
 
 ```js
-const sayHi = person1.sayHi.bind(person);
+const sayHi = person.sayHi.bind(person);
 ```
 
 The code above tells JavaScript to call a function `sayHi` and when it's called, it's `this` keyword is equal to whatever we pass to the `bind()` method.

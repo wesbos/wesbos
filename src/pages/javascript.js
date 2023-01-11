@@ -13,8 +13,8 @@ const TOC = styled.section`
 
   ul {
     list-style: none;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
   }
   li {
     a {
@@ -25,7 +25,7 @@ const TOC = styled.section`
   }
 `;
 
-export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
+export default function JavaScriptPage({ data: { allMdx: javascript }, location }) {
   function createToc() {
     return Object.entries(createSectionedFrontMatter(javascript.nodes));
   }
@@ -61,7 +61,7 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: `Beginner JavaScript Notes`,
           },
         }}
@@ -72,11 +72,11 @@ export default function JavaScriptPage({ data: { allMdx: javascript }, path }) {
 
 export const pageQuery = graphql`
   query JavaScript {
-    allMdx(
-      filter: { fields: { collection: { eq: "javascript" } } }
-      sort: { fields: frontmatter___tocTitle }
-    ) {
+    allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { frontmatter: { tocTitle: ASC } }) {
       nodes {
+        fields {
+          slug
+        }
         frontmatter {
           tocTitle
           slug

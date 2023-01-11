@@ -21,7 +21,7 @@ if (10 > 2) {
 
 The code above is saying if 10 is greater than 2, log "Yep" to the console.
 
-The entire if statement is `if (10 > 2) { console.log('Yep`); }`
+The entire if statement is `if (10 > 2) { console.log('Yep'); }`
 
 The code within the parenthesis following the if statement, `(10 > 2)`, is what is referred to as the **condition**.
 
@@ -127,7 +127,7 @@ Now let's discuss if statements inside of a function, which is likely something 
 ```js
 function slugify(sentence, lowercase) {
   if (lowercase) {
-    return sentence.replace(/\s/g, '-').toLowercase();
+    return sentence.replace(/\s/g, '-').toLowerCase();
   } else {
     return sentence.replace(/\s/g, '-');
   }
@@ -139,7 +139,7 @@ We have this `slugify` function shown above 👆, which takes in a sentence and 
 You may be wondering about this line of code 👇
 
 ```js
-sentence.replace(/\s/g, '-').toLowercase();
+sentence.replace(/\s/g, '-').toLowerCase();
 ```
 
 This is a **regex**, which stands for **regular expression**.
@@ -150,7 +150,7 @@ In our case, we want to pass the space character which is `\s`.
 
 `g` stands for global, which means find them all, not just the first one.
 
-Then we replace it with the dash and call `toLowercase`.
+Then we replace it with the dash and call `toLowerCase`.
 
 ```js
 slugify('I am very cool');
@@ -169,7 +169,7 @@ What you can do is simplify the code by getting rid of the else statement and ru
 ```js
 function slugify(sentence, lowercase) {
   if (lowercase) {
-    return sentence.replace(/\s/g, '-').toLowercase();
+    return sentence.replace(/\s/g, '-').toLowerCase();
   }
 
   return sentence.replace(/\s/g, '-');
@@ -195,7 +195,7 @@ function slugify(sentence, lowercase) {
   let slug  = sentence.replace(/\s/g, '-');
 
   if (lowercase) {
-    slug = slug.toLowercase();
+    slug = slug.toLowerCase();
   }
 
   return slug;
@@ -211,7 +211,7 @@ function slugify(sentence, lowercase) {
   let slug  = sentence.replace(/\s/g, '-');
 
   if (lowercase) {
-    return slug.toLowercase();
+    return slug.toLowerCase();
   }
 
   return slug;
@@ -313,7 +313,7 @@ The `or` operator is comprised of two **pipes** like so: `||`.
 
 You would read that code like so:
 
-If the name is equal to wes, OR the name is equal to scott, log "cool name".
+If the name is equal to wes, OR the name is equal to scott, log "Cool name!".
 
 Now let's say you also wanted to check if the first name was "wes" and the last name was "bos".
 
@@ -321,7 +321,7 @@ In that cause, you wouldn't use the or operator `||`, you would use the and oper
 
 ```js
 if (name === 'wes' && last === 'bos') {
-  console.log("cool name);
+  console.log("Cool name!");
 }
 ```
 
@@ -329,7 +329,7 @@ You can also use **BEDMAS** here, like so 👇
 
 ```js
 if (name === 'scott' || (name === 'wes' && last === 'bos')) {
-  console.log('Cool name!);
+  console.log('Cool name!');
 }
 ```
 
@@ -350,7 +350,7 @@ Next we will talk about using functions with if statements. This is fairly commo
 If you had a string like `'awesome'` and you wanted to check if it contains the word wes you could use the code above which would return true.
 
 ```js
-'awesome'.includes('scott')`
+'awesome'.includes('scott')
 ```
 You could also run the code above 👆 which would return false.
 
@@ -418,7 +418,7 @@ const dog = '';
 
 However, if you were to change the `dog` variable declaration to leave it empty as shown above 👆,what would happen?
 
-You would see "you don't have a dog"!
+You would see "You don't have a dog"!
 
 Why is that?
 
@@ -470,7 +470,7 @@ If you refresh the HTML page, you should see "no score yet" in the console. Why?
 const score = 1;
 ```
 
-If we were to change the `score` variable from the example to be 1 as shown above 👆, you will see "there is a score already" in the console.
+If we were to change the `score` variable from the example to be 1 as shown above 👆, you will see "There is a score already" in the console.
 
 -10 (negative 10) is truthy.
 
@@ -537,7 +537,7 @@ let score = {};
 
 The last one is an empty object as shown above 👆. An empty object is still truthy.
 
-If you want to check if there is anything in the object, you can use something called `Object.keys({})` which will turn it into an array and then you can chain `.length` on it like so
+If you want to check if there is anything in the object, you can use something called `Object.keys({})` which will turn it into an array and then you can chain `.length` on it like so 👇
 
 ```js
 Object.keys({}).length
@@ -550,7 +550,7 @@ Now let's make an array with all of these different values and types and loop ov
 We haven't gone over arrays yet, but an **array** is a list of things.
 
 ```js
-const values = [[], [], -10, 1, 0, "", "full string", " ", undefined, NaN, null];
+const values = [[], {}, -10, 1, 0, "", "full string", " ", undefined, NaN, null];
 ```
 
 Call `forEach` on each item, like we did when we were working with DOM nodes.

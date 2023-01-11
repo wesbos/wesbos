@@ -18,19 +18,11 @@ const ContentStyles = styled.div`
     max-width: 1000px;
   }
   &.ultra-wide {
-    max-width: 1800px;
+    max-width: 1400px;
   }
 `;
 
-function Layout({
-  location,
-  title,
-  children,
-  className,
-  pageContext,
-  path,
-  ...rest
-}) {
+function Layout({ location, title, children, className, pageContext, path, ...rest }) {
   if (pageContext.layout === 'thumbnail') return children;
   return (
     <>
@@ -49,9 +41,7 @@ function Layout({
       >
         <Nav pageContext={pageContext} />
         <MDXProvider components={mdxComponents}>
-          <ContentStyles className={pageContext.layoutClasses}>
-            {children}
-          </ContentStyles>
+          <ContentStyles className={pageContext.layoutClasses}>{children}</ContentStyles>
         </MDXProvider>
         <Footer />
       </LayoutStyles>
