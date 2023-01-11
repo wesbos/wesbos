@@ -7,36 +7,31 @@ category:
 date: 2014-08-18T10:28:37
 id: 3205
 ---
-
 I posted this simple tip to twitter and it was instantly popular with developers from all around the world. It's a small improvement that makes a big visual difference in your applications.
 
 https://twitter.com/wesbos/status/499245255703949312
 
 Since a tweet is only 140 characters, I thought I would expand on best practices a little bit in a post.
 
-<h3>Using UTF-8</h3>
+### Using UTF-8
 
 A few mentioned that you can just go ahead and use the unicode × instead of the HTML entity `×. As long as your document is setup for UTF-8, go ahead. I personally rather use the HTML entity × because I can remember and type that, whereas ×` needs to be copy and pasted from a blog post like this.
 
-<h3>Accessibility</h3>
+### Accessibility
 
-If a visually impaired user uses a screenreader like JAWS to access your website, this will read **multiplication**  to them. So, it is <em>very important</em> that you use proper aria attributes. Something like this will work great:
-
+If a visually impaired user uses a screenreader like JAWS to access your website, this will read **multiplication** to them. So, it is _very important_ that you use proper aria attributes. Something like this will work great:
 
 ```js
 <a href="#" aria-label="Close Account Info Modal Box">×</a>
-
 ```
 
 or better yet:
 
-
 ```js
 <button aria-label="Close Account Info Modal Box">×</button>
-
 ```
 
-<h3>Other Appropriate Characters</h3>
+### Other Appropriate Characters
 
 A few more mentioned that it would be better to use `❌ and ❎` as they are real × characters rather than just the multiplication sign. While these are great, they are 1) Not supported on many systems. I'm on osx 10.9.4 and Chrome Canary and they are just boxes. ❌ ❎ 2) twitter and the iPhone swap them out with goofy looking emojis.
 

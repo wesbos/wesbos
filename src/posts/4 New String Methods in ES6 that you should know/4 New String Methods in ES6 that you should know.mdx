@@ -11,10 +11,9 @@ id: 3917
 
 The String type in ES6 has come with **four new methods** that are really handy, help us write a little bit more readable code, as well as reduce our reliance on using regular expressions, or RegExp, for certain things.
 
-<h3>.startsWith() and .endsWith()</h3>
+### .startsWith() and .endsWith()
 
 So I have a `const variable named course, which has the value of RFB1`, this stands for React for Beginners.
-
 
 ```js
 const course = 'RFB1';
@@ -26,8 +25,7 @@ Here, `RFB means React for Beginners, I need to know if the string starts with i
 
 If I did `rfb, in lowercase letters, it says, false`, because there is no way to make this case insensitive. If you do need case sensitivity you must still use a Regular Expression.
 
-One other thing that `.startsWith()`  will do is it'll allow you to skip a certain number of characters and start looking at a set point.
-
+One other thing that `.startsWith()` will do is it'll allow you to skip a certain number of characters and start looking at a set point.
 
 ```js
 const flightNumber = '20-AC2018-jz';
@@ -40,7 +38,6 @@ What you can do is you can use `flightNumber.startsWith('AC', 3);, which says st
 `EndsWith works fairly similar. Here is an example where we have jz at the end of the flightNumber, and I want to know if it's an Air Canada Jazz flight. We can say flightNumber.endsWith('jz'), which will be true`, obviously, because it ends with it.
 
 There's another option that we can pass `.endsWith()`, and I'm going to use an account number variable as an example here:
-
 
 ```js
 const accountNumber = '825242631RT0001';
@@ -56,7 +53,7 @@ Just like with our `flightNumber, we can use the console to put in accountNumber
 
 Essentially you're just going to take the first 11 numbers of `accountNumber`, ignore the rest, and then see if it ends in RT or whatever else it might be.
 
-<h3>.includes()</h3>
+### .includes()
 
 Then next up we have `.includes() which will just check if that string is anywhere in it. If I wanted to see if my flight number includes the letters AC, then I could use flightNumber.includes('AC'), which is true`.
 
@@ -64,10 +61,9 @@ Again, it is not case sensitive so you cannot use lower case letters here.
 
 `.includes() checks to see if your string has something in it. As a bit of an aside, it was originally supposed to be called .contains()`, but it got changed to includes because of some conflicts with the MooTool libraries and the way that they modified the prototype.
 
-<h3>.repeat() and String Padding</h3>
+### .repeat() and String Padding
 
 Next up we have make, model and colour here:
-
 
 ```js
 const make = 'BMW';
@@ -79,7 +75,6 @@ I'm going to show you where that would be useful for using `.repeat(), which all
 
 Where is that useful? Sometimes we have some words here. I'm going to take my `BMW, x5 and royal blue`, and if I wanted to display the variables in a terminal or something, but I want to right align them. How would that work? I'd have to just put a whole bunch of padding in, depending on how long this was and how much space will be used, kind of like this:
 
-
 ```js
                  BMW
                   x5
@@ -89,7 +84,6 @@ Where is that useful? Sometimes we have some words here. I'm going to take my `B
 What we can do, instead of hitting the space bar each time, we can use a left pad function, and you can use `.repeat()`to code a nice little left padding function.
 
 Here we can `return` a string, and we need to then pad it with however many characters we need. We'll take a space and repeat it 10 times.
-
 
 ```js
 leftPad = function(str, length = 10){
@@ -103,7 +97,6 @@ console.log(leftPad(colour)); // '          Royal Blue'
 
 However, if we want it right aligned, we'll need to subtract however many characters are in the string, so we subtract `str.length here before we return the actual string itself in ${str}`;
 
-
 ```js
 leftPad = function(str, length = 20){
     return `${' '.repeat(Math.max(length - str.length,0))}${str}`;
@@ -111,7 +104,6 @@ leftPad = function(str, length = 20){
 ```
 
 I can take make, model, and color, put them in here. It's going to console.log each one of them out. I'm going to leave out the length because we're going to default it to 20, and it should just pass in the make, model, and color.
-
 
 ```js
 console.log(leftPad(make));   // '                 BMW'
@@ -121,17 +113,15 @@ console.log(leftPad(colour)); // '          Royal Blue'
 
 There we go. See how all these are perfectly right aligned? BMW X5 in royal blue, whereas all of this is however much padding we actually need. That's a nice little use for repeat.
 
-<h3>Very Important</h3>
+### Very Important
 
 Another little funny one that you can do is, we can take an ES6 template string, and inside of that let's do a statement where we take a string and multiply it:
-
 
 ```js
 ${'woof' * 5}
 ```
 
 What happens when you take a string and multiply it by a number? You get `NaN`. Let's call repeat on that 10 times, and then tack on 'Batman!'.
-
 
 ```js
 `${'woof' * 5}`.repeat(10) + " Batman!";
