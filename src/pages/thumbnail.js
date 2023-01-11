@@ -100,16 +100,10 @@ export default function ThumbNail({ location }) {
       <div className="main">
         <div className="title">
           <H1>{title}</H1>
-          {thumbnail && (
-            <img className="thumbnail" src={thumbnail} alt={title} />
-          )}
+          {thumbnail && <img className="thumbnail" src={thumbnail} alt={title} />}
         </div>
         <div className="lower">
-          <img
-            src="https://pbs.twimg.com/profile_images/877525007185858562/7G9vGTca_400x400.jpg"
-            alt="Wes Bos"
-            className="handsome"
-          />
+          <img src="https://pbs.twimg.com/profile_images/877525007185858562/7G9vGTca_400x400.jpg" alt="Wes Bos" className="handsome" />
           <div>
             <p className="authorName">Wes Bos.com</p>
             <p className="link">

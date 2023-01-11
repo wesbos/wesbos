@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { Link, graphql } from 'gatsby';
+import React from 'react';
 import H from '../components/mdxComponents/Headings';
-import Img from '../components/Img';
-import useInterval from '../utils/useInterval';
-import { PostMetaTags } from '../components/MetaTags';
 
-export default function OptOut({ data, path }) {
+export default function OptOut() {
   return (
     <div>
       <H>No Sweat!</H>

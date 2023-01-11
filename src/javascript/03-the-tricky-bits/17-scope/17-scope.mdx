@@ -146,7 +146,7 @@ This is the next type of scope which is called **function scope**.
 
 What function scope is, is when variables are created inside of a function, those variables are only ever available inside of that function.
 
-That means that anything we create inside of the `go()` function, is not available outside of that function, unless we were to explicitly return it and put it into it's own variable when that function is run.
+That means that anything we create inside of the `go()` function, is not available outside of that function, unless we were to explicitly return it and put it into its own variable when that function is run.
 
 If you modify the `console.log(hair)` to be within the `go()` function, it will log. 👇
 
@@ -273,7 +273,7 @@ What is happening there is whenever you have a set of curly brackets like in the
 
 You can think of those brackets are gates. Those gates keep variables in.
 
-Anytime something that was created inside of these gates, they are not allowed to leave the gates. If you need to access a variable that was created inside of the gates, outside of the gates, you are not allowed to do it.
+Anytime something is created inside of these gates, they are not allowed to leave the gates. If you need to access a variable outside of the gates that was originally created inside of the gates, you are not allowed to do so.
 
 There are a few solutions to that because every now and then you run into a situation where you do need a variable to be available outside of a block.
 
@@ -291,7 +291,7 @@ In that example, we have declared a variable `cool` without assigning anything t
 
 On the line that previously had `let cool = true;`, we do not declare the cool variable, we simply update it with `cool = true`.
 
-What that does it creates it's in the higher scope _(in this example it is a global variable but if this was created inside of a function it would be function scoped)_.
+What that does is it creates the variable in the higher scope _(in this example it is a global variable but if this was created inside of a function it would be function scoped)_.
 
 Then, we update the variable, and then it's available to us outside of the function.
 

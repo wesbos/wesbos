@@ -7,39 +7,32 @@ import { ProductImages } from '../components/styles/ProductImages';
 import useImage from '../hooks/useImage';
 // import { useSnipCart, useSnipCartProducts } from '../utils/useSnipCart';
 
-export default function MerchPage({ path }) {
+export default function MerchPage({ location }) {
   return (
     <div>
       <H as="h2">Merch Store</H>
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Merch!',
-            image: `${
-              process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`
-            }/assets/images/pink-on-pink-2.jpg`,
+            image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}/assets/images/pink-on-pink-2.jpg`,
           },
         }}
       />
       <p>Merch is sold out! The tees are now being printed at the printers.</p>
 
-      <p>
-        If you ordered a tshirt, you'll receive an email with tracking once they
-        have shipped. Expect this on or around March 18th, 2021.
-      </p>
-      <p>
-        I will have more merch and stickers again soon. Keep checking back :)
-      </p>
+      <p>If you ordered a tshirt, you'll receive an email with tracking once they have shipped. Expect this on or around March 18th, 2021.</p>
+      <p>I will have more merch and stickers again soon. Keep checking back :)</p>
     </div>
   );
 }
 
-function SwagPage({ data, path }) {
+/* eslint-disable */
+function SwagPage({ data, location }) {
+  return;
   const mens = `XS|small|medium|large|XL|2XL|3XL`;
-  const womens = ['XS', 'small', 'medium', 'large', 'XL']
-    .map((size) => `Womens ${size}`)
-    .join('|');
+  const womens = ['XS', 'small', 'medium', 'large', 'XL'].map((size) => `Womens ${size}`).join('|');
 
   const sizes = `${mens}|${womens}`;
   const Snipcart = typeof window === 'undefined' ? undefined : window.Snipcart;
@@ -65,30 +58,22 @@ function SwagPage({ data, path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Merch!',
-            image: `${
-              process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`
-            }/assets/images/pink-on-pink-2.jpg`,
+            image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}/assets/images/pink-on-pink-2.jpg`,
           },
         }}
       />
       <p>
-        Woah! The first 100 shirts sold out quick, so I'm taking{' '}
-        <strong>pre-orders</strong> for the next batch! Orders remain open until{' '}
-        <strong>March 3rd</strong>, and then go into production with expected
-        shipping happening on or around <strong>March 20th</strong>.
+        Woah! The first 100 shirts sold out quick, so I'm taking <strong>pre-orders</strong> for the next batch! Orders remain open until <strong>March 3rd</strong>, and then go into production with expected shipping happening on or around <strong>March 20th</strong>.
       </p>
 
       <button type="button" onClick={Snipcart?.api.theme.cart.open}>
-        🛒 Open Cart ({store.cart.items.count} Items —{' '}
-        <span className="snipcart-total-price" />)
+        🛒 Open Cart ({store.cart.items.count} Items — <span className="snipcart-total-price" />)
       </button>
 
       <Product
-        product={products.find(
-          (product) => product.userDefinedId === 'pink-on-pink-tshirt'
-        )}
+        product={products.find((product) => product.userDefinedId === 'pink-on-pink-tshirt')}
         buttonAttrs={{
           'data-item-id': 'pink-on-pink-tshirt',
           'data-item-price': '22.00',
@@ -118,38 +103,16 @@ function SwagPage({ data, path }) {
             <li>Wes' Fav</li>
           </ul>
           <ProductImages>
-            <StaticImage
-              src="../assets/images/pink-on-pink.jpg"
-              alt="Black T-Shirt"
-              placeholder="blurred"
-              layout="constrained"
-              width={500}
-              height={550}
-            />
-            <StaticImage
-              src="../assets/images/pink-on-pink-2.jpg"
-              alt="Black T-Shirt"
-              placeholder="blurred"
-              layout="constrained"
-              width={500}
-              height={550}
-            />
+            <StaticImage src="../assets/images/pink-on-pink.jpg" alt="Black T-Shirt" placeholder="blurred" layout="constrained" width={500} height={550} />
+            <StaticImage src="../assets/images/pink-on-pink-2.jpg" alt="Black T-Shirt" placeholder="blurred" layout="constrained" width={500} height={550} />
           </ProductImages>
           <p className="small">
             Men's Printed on AS colour 5051{' '}
-            <a
-              target="_blank"
-              href="https://ascolour.com/mens-basic-tee-5051/"
-              rel="noopener noreferrer"
-            >
+            <a target="_blank" href="https://ascolour.com/mens-basic-tee-5051/" rel="noopener noreferrer">
               [size chart]
             </a>
             , Women's on 4051{' '}
-            <a
-              target="_blank"
-              href="https://ascolour.com/wos-basic-tee-4051/"
-              rel="noopener noreferrer"
-            >
+            <a target="_blank" href="https://ascolour.com/wos-basic-tee-4051/" rel="noopener noreferrer">
               [size chart]
             </a>
             . {freeStickersLeft && `Comes with free stickers!`}
@@ -157,9 +120,7 @@ function SwagPage({ data, path }) {
         </div>
       </Product>
       <Product
-        product={products.find(
-          (product) => product.userDefinedId === 'black-on-black-tshirt'
-        )}
+        product={products.find((product) => product.userDefinedId === 'black-on-black-tshirt')}
         image="../../assets/images/black-on-black.jpg"
         buttonAttrs={{
           'data-item-id': 'black-on-black-tshirt',
@@ -190,38 +151,16 @@ function SwagPage({ data, path }) {
             <li>Makes you a better dev</li>
           </ul>
           <ProductImages>
-            <StaticImage
-              src="../assets/images/black-on-black.jpg"
-              alt="Black T-Shirt"
-              placeholder="blurred"
-              layout="constrained"
-              width={500}
-              height={550}
-            />
-            <StaticImage
-              src="../assets/images/black-on-black-2.jpg"
-              alt="Black T-Shirt"
-              placeholder="blurred"
-              layout="constrained"
-              width={500}
-              height={550}
-            />
+            <StaticImage src="../assets/images/black-on-black.jpg" alt="Black T-Shirt" placeholder="blurred" layout="constrained" width={500} height={550} />
+            <StaticImage src="../assets/images/black-on-black-2.jpg" alt="Black T-Shirt" placeholder="blurred" layout="constrained" width={500} height={550} />
           </ProductImages>
           <p className="small">
             Men's Printed on AS colour 5051{' '}
-            <a
-              target="_blank"
-              href="https://ascolour.com/mens-basic-tee-5051/"
-              rel="noopener noreferrer"
-            >
+            <a target="_blank" href="https://ascolour.com/mens-basic-tee-5051/" rel="noopener noreferrer">
               [size chart]
             </a>
             , Women's on 4051{' '}
-            <a
-              target="_blank"
-              href="https://ascolour.com/wos-basic-tee-4051/"
-              rel="noopener noreferrer"
-            >
+            <a target="_blank" href="https://ascolour.com/wos-basic-tee-4051/" rel="noopener noreferrer">
               [size chart]
             </a>
             . {totalSales <= 450 && `Comes with free stickers!`}
@@ -232,33 +171,19 @@ function SwagPage({ data, path }) {
       <ul>
         <li>Ships Worldwide. Tracking Provided.</li>
         <li>
-          <strong>Shipping USA:</strong>Ships USPS, usually pretty quick and
-          affordable
+          <strong>Shipping USA:</strong>Ships USPS, usually pretty quick and affordable
         </li>
         <li>
-          <strong>Shipping Canada:</strong>Ships Canada Post, usually pretty
-          quick and affordable
+          <strong>Shipping Canada:</strong>Ships Canada Post, usually pretty quick and affordable
         </li>
         <li>
-          <strong>Shipping Worldwide:</strong> I have opted to allow shipping
-          worldwide. Prices and delivery times vary from "eh, not bad" to "wow
-          holy smokes". Most of Europe is pretty good! I'm not delivering these
-          by hand and these are just the prices and times quoted by the shipping
-          companies. I unfortunately don't have any control over this.
+          <strong>Shipping Worldwide:</strong> I have opted to allow shipping worldwide. Prices and delivery times vary from "eh, not bad" to "wow holy smokes". Most of Europe is pretty good! I'm not delivering these by hand and these are just the prices and times quoted by the shipping companies. I unfortunately don't have any control over this.
         </li>
         <li>
-          <strong>Duties &amp; Taxes</strong> - Americans and Canadians
-          shouldn't expect any additional charges. Other countries may have to
-          pay import fees on arrival - please check with your local government
-          office for these amounts.
+          <strong>Duties &amp; Taxes</strong> - Americans and Canadians shouldn't expect any additional charges. Other countries may have to pay import fees on arrival - please check with your local government office for these amounts.
         </li>
         <li>
-          <strong>No Refunds</strong> (unless it gets lost, of course!). Please
-          check the{' '}
-          <a href="https://ascolour.com/mens-basic-tee-5051/">AS Colour 5051</a>{' '}
-          and <a href="https://ascolour.com/wos-basic-tee-4051">4051</a> size
-          guide before buying. They fit TTS. If you are in between a size, size
-          up.
+          <strong>No Refunds</strong> (unless it gets lost, of course!). Please check the <a href="https://ascolour.com/mens-basic-tee-5051/">AS Colour 5051</a> and <a href="https://ascolour.com/wos-basic-tee-4051">4051</a> size guide before buying. They fit TTS. If you are in between a size, size up.
         </li>
       </ul>
 

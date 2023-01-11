@@ -1,4 +1,3 @@
-import { StaticImage } from 'gatsby-plugin-image';
 import React from 'react';
 import styled from 'styled-components';
 import H from '../mdxComponents/Headings';
@@ -83,15 +82,7 @@ export default function Product({ product, buttonAttrs, children }) {
           if (variant.stock === null) return null;
           return (
             <div className="variant" key={`variant${index}`}>
-              <button
-                type="button"
-                className="snipcart-add-item"
-                {...buttonAttrs}
-                data-item-custom1-value={variant.variation[0].option}
-                disabled={
-                  variant.stock <= 0 && !variant.allowOutOfStockPurchases
-                }
-              >
+              <button type="button" className="snipcart-add-item" {...buttonAttrs} data-item-custom1-value={variant.variation[0].option} disabled={variant.stock <= 0 && !variant.allowOutOfStockPurchases}>
                 <span className="variantName">
                   {variant.variation
                     .map((singleVariant) => `${singleVariant.option}`)
@@ -103,13 +94,9 @@ export default function Product({ product, buttonAttrs, children }) {
                 {/* Some left */}
                 {variant.stock > 0 && `${variant.stock} left`}
                 {/* None left, we can't oversell */}
-                {variant.stock <= 0 &&
-                  !variant.allowOutOfStockPurchases &&
-                  'SOLD OUT'}
+                {variant.stock <= 0 && !variant.allowOutOfStockPurchases && 'SOLD OUT'}
                 {/* None left, we can oversell. Show how many */}
-                {variant.stock <= 0 &&
-                  variant.allowOutOfStockPurchases &&
-                  `${variant.stock * -1} SOLD`}
+                {variant.stock <= 0 && variant.allowOutOfStockPurchases && `${variant.stock * -1} SOLD`}
               </span>
             </div>
           );

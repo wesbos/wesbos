@@ -123,7 +123,7 @@ Normally within function like `handleError` you would want to display the error 
 
 In our case, we are just logging "Oh no!" and get the error.
 
-What we can do is now chain a `.catch()` to the end of our `makePizza` call from within our async `go` function and pass it reference to `handleError`.
+What we can do is now chain a `.catch()` to the end of our `makePizza` call from within our async `go` function and pass its reference to `handleError`.
 
 ```js
 async function go() {
@@ -256,7 +256,7 @@ goGo().catch(handleError);
 
 ![chaining catch block after the async function](./1073.png)
 
-As you can seem by chaining a `.catch()` onto it, we handle the error.
+As you can see by chaining a `.catch()` onto it, we handle the error.
 
 You can nest promises as deep as you want and it is pretty common to have a good number of your functions marked as `async` and sort of have promises happening inside of promises. We will get into a lot more examples of that, so that might be a little confusing to you.
 
@@ -276,7 +276,7 @@ That is useful if you need to do something with the error inside the function li
 
 ## Handling Errors with Higher Order Functions
 
-The last way to handle an error with async/await is called a **higher order function**.We have talked about this a couple of times now.
+The last way to handle an error with async/await is called a **higher order function**. We have talked about this a couple of times now.
 
 A higher order function is a function that returns another function.
 

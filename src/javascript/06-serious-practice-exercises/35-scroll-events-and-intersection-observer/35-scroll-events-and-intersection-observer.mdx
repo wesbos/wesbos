@@ -165,7 +165,7 @@ Grab the watch element at the top of the file.
 const watch = document.querySelector('.watch');
 ```
 
-Next we need to create this thing called an **Intersection Observer**. An intersection observer will watch is an element is on or off or partway on or off the page.
+Next we need to create this thing called an **Intersection Observer**. An intersection observer will watch if an element is on or off or partway on or off the page.
 
 ```js
 const ob = new IntersectionObserver()
@@ -200,7 +200,7 @@ const ob = new IntersectionObserver(obCallback);
 ob.observe(watch);
 ```
 
-Now, every time we you ahead and scroll, you will notice that you get this IntersectionObserver entity logged.
+Now, every time we go ahead and scroll, you will notice that you get this IntersectionObserver entity logged.
 
 ![console showing array of IntersectionObserverEntry object](./1347.png)
 
@@ -220,7 +220,7 @@ There is other information about the size of the element and what size it is on 
 
 That is helpful information in helping us determine whether that thing is on the page or not.
 
-Take that strong tag which is the first thing in the `paylod` because you can watch for multiple items.  👇
+Take that strong tag which is the first thing in the `payload` because you can watch for multiple items.  👇
 
 ```js
 function obCallback(payload) {

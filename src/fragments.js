@@ -6,9 +6,7 @@ export const ImageFields = graphql`
     id
     extension
     childImageSharp {
-      fluid(maxWidth: 700) {
-        ...GatsbyImageSharpFluid
-      }
+      gatsbyImageData(width: 700, layout: CONSTRAINED)
     }
   }
 `;

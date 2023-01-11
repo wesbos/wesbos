@@ -8,15 +8,13 @@ category:
 date: 2016-09-10T04:38:37
 id: 3833
 ---
-
 Before you start going absolutely bananas on using arrow functions everywhere, we need to chat. **Arrow functions don't replace regular functions**. Just like Flexbox and floats, pixels and rems and anything else new that comes along, the older thing still retains lots of utility because it works differently than the new thing.
 
-We talked about the benefits of ES6 Arrow Functions in earlier videos and blog posts but let's go through a couple examples of when you probably <em>don't want an arrow function</em>. All of these are just going to boil down to not having the keyword `this`, but they are also different use cases that you'd run into.
+We talked about the benefits of ES6 Arrow Functions in earlier videos and blog posts but let's go through a couple examples of when you probably _don't want an arrow function_. All of these are just going to boil down to not having the keyword `this`, but they are also different use cases that you'd run into.
 
-<h3>#1 — click handlers</h3>
+### #1 — click handlers
 
 First of all, I've got this big button that says 'Push me':
-
 
 ```html
 <style>
@@ -25,24 +23,20 @@ button {font-size: 100px; }
 </style>
 
 <button id="pushy">Push me</button>
-
 ```
 
 When someone pushes or clicks that button, I want to toggle the class of `on` which should turn it yellow. When someone clicks that button, I'm going to run this following function:
-
 
 ```js
 const button = document.querySelector('#pushy');
 button.addEventListener('click', () => {
     this.classList.toggle('on');
 });
-
 ```
 
 But if we click it, we get an error in the console: `TypeError, cannot read property 'toggle' of undefined`
 
 What does that mean? Well, if we remember from earlier, it's the browser's `window attribute, right? We can use console.log` to confirm it:
-
 
 ```js
 const button = document.querySelector('#pushy');
@@ -50,11 +44,9 @@ button.addEventListener('click', () => {
     console.log(this); // Window!
     this.classList.toggle('on');
 });
-
 ```
 
 Remember: we talked about that if you use an arrow function, the keyword `this is not bound to that element. If we use a regular function, the keyword this` will be bound to the element we clicked!
-
 
 ```js
 const button = document.querySelector('#pushy');
@@ -62,15 +54,13 @@ button.addEventListener('click', function() {
     console.log(this);
     this.classList.toggle('on');
 });
-
 ```
 
 In the console, `this` is now our button, and our big yellow button is actually working. The same rules apply with jQuery, Google Maps or any other DOM Library you are using.
 
-<h3>#2: Object Methods</h3>
+### #2: Object Methods
 
 Now, let's take a look at this next one, when you need a method to bind to an object.
-
 
 ```js
 const person = {
@@ -79,7 +69,6 @@ const person = {
         this.points++;
     }
 }
-
 ```
 
 We have our method called `score, and whenever we call person.score, it should add one to our points`, which is currently 23.
@@ -92,7 +81,6 @@ Because it's trying to add points to the window! Remember, when using an arrow f
 
 So let's do the same thing with an OG function:
 
-
 ```js
 const person = {
     points: 23,
@@ -100,15 +88,13 @@ const person = {
         this.points++;
     }
 }
-
 ```
 
 There we go. That will actually work, because that's a full on function, and not an arrow function.
 
-<h3>3: Prototype Methods</h3>
+### 3: Prototype Methods
 
 As our third example, we'll talk about when you need to add a prototype method.
-
 
 ```js
 class Car {
@@ -117,7 +103,6 @@ class Car {
         this.colour = colour;
     }
 }
-
 ```
 
 Here, I've got a `class`. We haven't learned about classes yet, but just know that this is a way for us to make new cars.
@@ -126,23 +111,19 @@ I have a `class constructor where, when you call new Car we pass it the type of 
 
 I can say `beemer is a BMW that is blue, and the subie is a Subaru that is white`:
 
-
 ```js
 const beemer = new Car('BMW', 'blue');
 const subie = new Car('Subaru', 'white');
-
 ```
 
 Let's go ahead and look at them by calling them in the console, you'll see that `subie comes back as Car {make: "Subaru", colour: "white"}, and beemer will come back as Car {make: "BMW", colour: "blue"}`, which is what we'd expect.
 
 Now, after the fact, I added on this prototype method:
 
-
 ```js
 Car.prototype.summarize = () => {
     return `This car is a ${this.make} in the colour ${this.colour}`;  
 };
-
 ```
 
 ...and what that allows us to do is that, even after these things have been created, we can add methods onto all of them. So our `Car.prototype.summarize method is set, so let's type into the console: subie.summarize`.
@@ -155,22 +136,19 @@ However, with our example, `this.car is undefined and the colour is undefined`. 
 
 It's because we try to be cool. We try to be a bit of a hot shot here by using an arrow function. Again, why don't we use an arrow function here? Because we explicitly need the keyword `this` so you have to use a regular function:
 
-
 ```js
 Car.prototype.summarize = function() {
     return `This car is a ${this.make} in the colour ${this.colour}`;  
 };
-
 ```
 
 Now, if we call `subie.summarize, it says it's a white Subaru, and beemer.summarize`, we get BMW in blue.
 
 Again, you must use a regular function for that.
 
-<h3>4: When you need an arguments Object</h3>
+### 4: When you need an arguments Object
 
 For our last example, this is a little bit different:
-
 
 ```js
 const orderChildren = () => {
@@ -180,7 +158,6 @@ const orderChildren = () => {
     })
     console.log(arguments);
 }
-
 ```
 
 It doesn't have to do with the keyword "this," but we don't have access to the `arguments` object when you use an arrow function.
@@ -195,7 +172,6 @@ this is because `arguments is a keyword that we have in our orderChildren that's
 
 However, you do not get the `arguments` object if you use an arrow function. Only when you use a regular function, which is going to give us the actual content that we need.
 
-
 ```js
 const orderChildren = function() {
     const children = Array.from(arguments);
@@ -204,7 +180,6 @@ const orderChildren = function() {
     })
     console.log(arguments);
 }
-
 ```
 
 **Note:** Another fix for this is to use a `...rest` param to collect all the arguments into an array. We will learn all about that in the rest videos and blog posts!
