@@ -295,13 +295,13 @@ async function getAudio() {
 
 Within `drawTimeData` we will log the `timeData` array, and we will make the function call itself as soon as possible. To do that, we will use `requestAnimationFrame`.
 
-We will use that method to tell the browser to run the `drawTimeData` function again the next time it is possible to paint the screen. To do that we will use an array function like so:
+We will use that method to tell the browser to run the `drawTimeData` function again the next time it is possible to paint the screen. To do that we will use an arrow function like so:
 
 ```js
 function drawTimeData(timeData) {
   console.log(timeData);
   // call itself as soon as possible
-  requestAnimationFrame(() => drawTimeData(time));
+  requestAnimationFrame(() => drawTimeData(timeData));
 }
 ```
 
