@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Wes Bos <wesbos@gmail.com>",
   "engines": {
-    "node": ">=16.13.1"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@mdx-js/loader": "2.1.5",
