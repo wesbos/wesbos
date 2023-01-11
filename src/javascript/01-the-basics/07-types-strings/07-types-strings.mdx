@@ -146,7 +146,7 @@ pizza';
 
 You can see that the editor is complaining about the string not being closed properly. How do you do multi-line strings?
 
-If you want to, you have to put a forward slash at the end of every single line, and that will allow you to put a string on multiple lines.
+If you want to, you have to put a backslash at the end of every single line, and that will allow you to put a string on multiple lines.
 
 ```js
 const song = 'Ohhh\
@@ -254,7 +254,7 @@ The `${}` syntax can only ever be used in backticks. It is the easiest way to po
 Almost anything can go between the curly brackets `{}` in that syntax. For example, you can do math. 👇
 
 ```js
-const hello = `hello my name is ${name}. Nice to meet you. I am ${1 + 100} years old';
+const hello = `hello my name is ${name}. Nice to meet you. I am ${1 + 100} years old`;
 ```
 
 JavaScript will run whatever is inside of the curly brackets in that syntax (whether it is a variable or an actual statement) and it will return the value that's inside of it.

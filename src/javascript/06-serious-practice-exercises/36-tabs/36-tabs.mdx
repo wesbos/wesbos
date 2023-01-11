@@ -61,7 +61,7 @@ That div also has an `aria-label="Programming languages"` attribute. That is for
 
 Inside of the `tablist` there are 3 buttons. Each of those buttons has a role of tab and an id that contains the name of the programming language.
 
-One of the buttons also has an `aria-select="true"` attribute.
+One of the buttons also has an `aria-selected="true"` attribute.
 
 That is how you are going to maintain whether the tab is currently active.
 
@@ -124,7 +124,7 @@ Pass it a function `handleTabClick`, like so 👇
 ```js
 const tabs = document.querySelector('.tabs');
 const tabButtons = tabs.querySelectorAll('[role="tab"]');
-const tabPanels = tabs.querySelectorAll('[role="tab"]');
+const tabPanels = tabs.querySelectorAll('[role="tabpanel"]');
 
 tabButtons.forEach(button => button.addEventListener('click', handleTabClick));
 ```

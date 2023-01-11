@@ -24,7 +24,7 @@ Why might someone use a bundler over a regular module?
 There are a few benefits.
 
 - a bundler is able to compress all your code.
-- bundler will minify all the code. The way **minification** works is longer variables are replaces with shorter ones to save space. For example `options` would be replaced with `o`.
+- bundler will minify all the code. The way **minification** works is longer variables are replaced with shorter ones to save space. For example `options` would be replaced with `o`.
 - make your code as small as possible.
 - **dead-code elimination** - if you have a function that is never used, it will detect that and remove that.
 
@@ -294,7 +294,7 @@ If we were to change some of our files, like adding a `console.log('hey')` at th
 
 ![if we add a log statement at the bottom of jokes.js and re run the build we see number in the jokes javascript file have changed](./1277.png)
 
-Parcel is able to detect when your files have changed and it will only rerun the build on those files. The random keys that you see in the file name is usd to bust ay caches that your users might have of previous builds.
+Parcel is able to detect when your files have changed and it will only rerun the build on those files. The random keys that you see in the file name are used to bust any caches that your users might have of previous builds.
 
 That wraps up Parcel. It is very simple to use and the only one Wes reaches for these days.
 

@@ -7,16 +7,15 @@ category:
 date: 2014-03-16T13:14:57
 id: 1447
 ---
+At my [jQueryTO talk](https://wesbos.github.io/Sublime-Text-Power-User-Talk) I showed a new Sublime Text Package called GutterColor that allows you to view your CSS colours in your gutter.
 
-At my <a href="https://wesbos.github.io/Sublime-Text-Power-User-Talk">jQueryTO talk</a> I showed a new Sublime Text Package called GutterColor that allows you to view your CSS colours in your gutter.
-
-<img src="gutter-colour.gif" alt="" />
+![](gutter-colour.gif)
 
 Amazing! It works with plain CSS, SASS, Stylus or LESS. If you are any sort of front end developer, you probably want this right away! Unfortunately the install process is a little klunky as it relies on a lower-level program called ImageMagick to be installed on your computer. It's easy to do, just requires a handful of steps to get up and running.
 
 **TL;DR**: brew or port install ImageMagick and set the path of your convert script in your GutterColor prefs.
 
-<h2>Installing ImageMagick on OSX</h2>
+## Installing ImageMagick on OSX
 
 So, we need ImageMagic to be installed on our computer. The easiest way to do this is with a package manager for your mac. If you already have homebrew or macports installed, you can simply type one of the following into your terminal:
 
@@ -26,7 +25,8 @@ or
 
 sudo port install ImageMagick
 
-No idea what brew or macports is? You'll need to install that first before you can install ImageMagick. I recommend using <a href="http://brew.sh/">HomeBrew</a>. Simply open your terminal window (found in applications → Utilities → Terminal) and paste the following code in and hit enter:
+No idea what brew or macports is? You'll need to install that first before you can install ImageMagick. I recommend using [HomeBrew](http://brew.sh/). Simply open your terminal window (found in applications → Utilities → Terminal) and paste the following code in and hit enter:
+
 
 ```zsh
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
@@ -46,27 +46,28 @@ which convert
 
 This will return the location of your imagemagick `convert` script. Remember this. Skip the windows part and jump down to **Setting up Sublime Text**
 
-<img src="content" alt="" />
+![](content)
 
-<h2>Installing on Windows</h2>
+## Installing on Windows
 
-Head on over to the <a href="http://www.imagemagick.org/script/binary-releases.php#windows">ImageMagick website</a> and download/install the option that works with your computer. If you download the wrong version, no worries, just try another version.
+Head on over to the [ImageMagick website](http://www.imagemagick.org/script/binary-releases.php#windows) and download/install the option that works with your computer. If you download the wrong version, no worries, just try another version.
 
 When installing, take note on the install path. You will need it later.
 
-<img src="content" alt="" />
+![](content)
 
 Once you have that installed, check if it worked by opening up the command prompt (start->cmd) and type `convert`. You should see a few hundred lines scroll across your screen.
 
 Now, you need to find the path that it was installed to. Open windows exporer and find where it was installed to. This is probably something like `c:/Program Files/ImageMagick-6.x.x.x We want to find the convert.exe` file as below:
 
-<img src="convert" alt="" />
+![](convert)
 
-<h3>Setting up Sublime Text</h3>
+### Setting up Sublime Text
 
 First we need to go ahead and install the GutterColor package. You can do this via Package Control (Tools → Command Palette → Type install → Search for GutterColor and hit enter).
 
 As of right now, this package requires you to tell SublimeText where the `convert script lives on your computer. Go to Sublime Text → Preferences → Package Settings → GutterColor → Preferences - User and paste the following code in there. Make sure to swap out the path if your which convert` command returned something different.
+
 
 ```json
 {
