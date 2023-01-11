@@ -24,7 +24,7 @@ const FooterStyles = styled.footer`
     max-width: var(--maxWidth);
     margin: 0 auto;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       grid-template-columns: 1fr 1fr;
     }
     @media (max-width: 575px) {
