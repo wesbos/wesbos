@@ -53,7 +53,7 @@ export default function Pagination({ totalCount, currentPage = 1, pathPrefix }) 
   const prevPage = currentPage - 1;
   return (
     <PaginationStyles>
-      <Link disabled={prevPage <= 0 ? true : null} to={`${pathPrefix}${prevPage}`}>
+      <Link disabled={prevPage <= 0 ? true : null} to={prevPage <= 0 ? '' : `${pathPrefix}${prevPage}`}>
         ← Prev 10 please
       </Link>
       <p>
