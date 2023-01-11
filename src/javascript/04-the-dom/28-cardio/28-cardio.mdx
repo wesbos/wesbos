@@ -395,7 +395,7 @@ But how do we keep tacking onto that?
 We could change `const cardsHTML` to `let cardsHTML` and then do something like the following 👇
 
 ```js
-const cardsHTML = generatePlayerCards('wes', 12, 150);
+let cardsHTML = generatePlayerCards('wes', 12, 150);
 cardsHTML = cardsHTML + generatePlayerCard('scott', 12, 150);
 cardsHTML = cardsHTML + generatePlayerCard('kait', 12, 150);
 cardsHTML = cardsHTML + generatePlayerCard('snickers', 12, 150);
@@ -405,7 +405,7 @@ console.log(cardsHTML);
 _NOTE: if you save the code above, Prettier might re-format that to use the shorthand code below which is fine because the 2 ways of typing it out are equivalent._
 
 ```js
-const cardsHTML = generatePlayerCards("wes", 12, 150);
+let cardsHTML = generatePlayerCards("wes", 12, 150);
 cardsHTML += generatePlayerCard("scott", 12, 150);
 cardsHTML += generatePlayerCard("kait", 12, 150);
 cardsHTML += generatePlayerCard("snickers", 12, 150);
