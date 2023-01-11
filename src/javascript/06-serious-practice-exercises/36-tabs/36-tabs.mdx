@@ -124,7 +124,7 @@ Pass it a function `handleTabClick`, like so 👇
 ```js
 const tabs = document.querySelector('.tabs');
 const tabButtons = tabs.querySelectorAll('[role="tab"]');
-const tabPanels = tabs.querySelectorAll('[role="tab"]');
+const tabPanels = tabs.querySelectorAll('[role="tabpanel"]');
 
 tabButtons.forEach(button => button.addEventListener('click', handleTabClick));
 ```
