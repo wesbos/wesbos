@@ -4,9 +4,9 @@ title: Looping and Iterating - Reduce
 slug: 09-gettin-loopy/52-looping-and-iterating-reduce
 section: 9 - Loops
 category:
- - JavaScript
- - Iterating
- - Reduce
+  - JavaScript
+  - Iterating
+  - Reduce
 ---
 
 Let's add a `console.clear()` to the bottom of the script section in the HTML page we have been using for the last few examples.
@@ -34,9 +34,9 @@ One way you could approach it is to set a let variable to 0 and then use a `forE
 ```js
 let total = 0;
 
-orderTotals.forEach(singleTotal => {
+orderTotals.forEach((singleTotal) => {
   total = total + singleTotal;
-})
+});
 
 console.log(total);
 ```
@@ -134,8 +134,8 @@ Modify the `tallyNumbers` function by adding `return 'WES IS COOL'` as shown bel
 function tallyNumbers(tally, currentTotal) {
   console.log(`The current tally is ${tally}`);
   console.log(`The current total is ${currentTotal}`);
-  console.log("----------");
-  return "WES IS COOL";
+  console.log('----------');
+  return 'WES IS COOL';
 }
 
 const allOrders = orderTotals.reduce(tallyNumbers, 0);
@@ -151,7 +151,7 @@ So what we really want to do is return the current tally + the current order's t
 function tallyNumbers(tally, currentTotal) {
   console.log(`The current tally is ${tally}`);
   console.log(`The current total is ${currentTotal}`);
-  console.log("----------");
+  console.log('----------');
   return tally + currentTotal;
 }
 
@@ -176,13 +176,13 @@ For the next example, let's look at the `inventory` variable.
 
 ```js
 const inventory = [
-  { type: "shirt", price: 4000 },
-  { type: "pants", price: 4532 },
-  { type: "socks", price: 234 },
-  { type: "shirt", price: 2343 },
-  { type: "pants", price: 2343 },
-  { type: "socks", price: 542 },
-  { type: "pants", price: 123 },
+  { type: 'shirt', price: 4000 },
+  { type: 'pants', price: 4532 },
+  { type: 'socks', price: 234 },
+  { type: 'shirt', price: 2343 },
+  { type: 'pants', price: 2343 },
+  { type: 'socks', price: 542 },
+  { type: 'pants', price: 123 },
 ];
 ```
 
@@ -199,9 +199,7 @@ Let's add some code.
 Make a function called `inventoryReducer` which we will pass to `.reduce()` when we call it.
 
 ```js
-function inventoryReducer() {
-
-}
+function inventoryReducer() {}
 
 const inventoryCounts = inventory.reduce(inventoryReducer, {});
 ```
@@ -223,9 +221,9 @@ We could pass an object like this 👇
 
 ```js
 const inventoryCounts = inventory.reduce(inventoryReducer, {
-  shirts:0,
+  shirts: 0,
   pants: 0,
-  socks: 0
+  socks: 0,
 });
 ```
 
@@ -312,7 +310,7 @@ It's a bit harder to read which in a lot of cases isn't ideal, but it is nice to
 Shown below is yet another way 👇
 
 ```js
-totals.shirt ? totals.shirt + 1 : totals.shirt = 1;
+totals.shirt ? (totals.shirt += 1) : (totals.shirt = 1);
 ```
 
 We are checking if `totals.shirt` exists, if it does, we increment it by 1, if it doesn't we create the property and set it to 1.
