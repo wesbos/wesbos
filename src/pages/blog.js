@@ -2,10 +2,10 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import format from 'date-fns/format';
 import Img from '../components/Img';
-import PostGrid, { PostGridItem } from '../styles/PostGrid';
 import H from '../components/mdxComponents/Headings';
 import Pagination from '../components/Pagination';
 import { PostMetaTags } from '../components/MetaTags';
+import PostGrid, { PostGridItem } from '../assets/styles/PostGrid';
 
 export default function Blog({ data, pageContext, location }) {
   if (!data) return <p>Shooooot! No Post found!</p>;
