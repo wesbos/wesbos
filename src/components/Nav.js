@@ -76,8 +76,9 @@ const NavLi = styled.li`
     `}
   &:after {
     content: '×';
-    display: block;
     color: var(--yellow);
+    display: flex;
+    align-items: center;
   }
   &:last-child:after {
     display: none;
