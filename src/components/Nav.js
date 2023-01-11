@@ -139,7 +139,7 @@ export default function Nav({ pageContext }) {
     <NavStyles>
       <h1>
         <Link to="/">
-          <StaticImage width={200} src="../assets/images/logo.png" alt="Wes Bos" />
+          <StaticImage placeholder="none" width={200} src="../assets/images/logo.png" alt="Wes Bos" />
         </Link>
       </h1>
       <NavUl ref={ref}>
