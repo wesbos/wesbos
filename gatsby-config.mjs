@@ -1,12 +1,19 @@
-// const mdxFeed = require('gatsby-mdx/feed');
+import { config } from 'dotenv';
+import remarkVSCode from 'gatsby-remark-vscode';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
-require('dotenv').config({ path: `.env.development` });
-const { remarkPlugin } = require('gatsby-remark-vscode');
+const { remarkPlugin } = remarkVSCode;
 
-module.exports = {
+config({ path: `.env.development` });
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default {
   flags: {
     FAST_DEV: true,
   },
+  trailingSlash: 'never',
   siteMetadata: {
     title: 'Wes Bos',
     author: 'Wes Bos',
@@ -16,7 +23,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-remove-trailing-slashes`,
     // Removed during dev as its slow to build
     // {
     //   resolve: `gatsby-plugin-prettier-build`,
@@ -26,17 +32,14 @@ module.exports = {
     //     verbose: true,
     //   },
     // },
+    // Pages
     {
-      // This tells us where the plugin lives
-      // this one is in our node_modules
       resolve: `gatsby-source-filesystem`,
-      // these are plugin-specific options - see docs for each plugin if you want to know what the options are
       options: {
         path: `${__dirname}/src/pages`,
         name: 'page',
       },
     },
-    `gatsby-plugin-twitter`,
     // Posts
     {
       resolve: `gatsby-source-filesystem`,
@@ -45,6 +48,7 @@ module.exports = {
         name: 'post',
       },
     },
+    // Tips
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -52,6 +56,7 @@ module.exports = {
         name: 'tip',
       },
     },
+    // beginner javascript Guide
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -70,18 +75,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        root: __dirname,
-        remarkPlugins: [
-          [
-            remarkPlugin,
-            {
-              theme: `Cobalt2`,
-              extensions: [`theme-cobalt2`],
-            },
+        mdxOptions: {
+          remarkPlugins: [
+            [
+              remarkPlugin,
+              {
+                theme: `Cobalt2`,
+                extensions: [`theme-cobalt2`],
+              },
+            ],
           ],
-        ],
+        },
         gatsbyRemarkPlugins: [
-          `gatsby-remark-embedder`,
+          // `gatsby-remark-embedder`,
           `gatsby-remark-copy-linked-files`,
           // {
           //   resolve: 'gatsby-remark-vscode',
@@ -114,7 +120,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          `gatsby-remark-embedder`,
+          // `gatsby-remark-embedder`,
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -140,40 +146,7 @@ module.exports = {
         trackingId: `UA-176517-1`,
       },
     },
-    // RSS Feed
-    // Broke wit 1.x
-    // {
-    //   resolve: `gatsby-plugin-feed`,
-    //   options: mdxFeed
-    // },
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `Gatsby Starter Blog`,
-    //     short_name: `GatsbyJS`,
-    //     start_url: `/`,
-    //     background_color: `#ffffff`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icon: `src/assets/gatsby-icon.png`,
-    //   },
-    // },
-    // `gatsby-plugin-offline`,
+
     `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: 'gatsby-plugin-snipcartv3',
-    //   options: {
-    //     apiKey:
-    //       process.env.CONTEXT === 'production'
-    //         ? // Production
-    //           process.env.GATSBY_SNIPCART_APIKEY
-    //         : // Development
-    //           process.env.GATSBY_SNIPCART_APIKEY_PREVIEW,
-    //     currency: 'usd',
-    //     // Upgrade to latest snipcart
-    //     js: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.js`,
-    //     styles: `https://cdn.snipcart.com/themes/v3.0.30/default/snipcart.css`,
-    //   },
-    // },
   ],
 };

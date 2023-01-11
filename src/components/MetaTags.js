@@ -14,8 +14,14 @@ function getBaseURL() {
 const baseURL = getBaseURL();
 
 export function PostMetaTags({ post }) {
-  const canonical = pathJoin('https://wesbos.com', post.frontmatter.slug);
-  const url = pathJoin(baseURL, post.frontmatter.slug);
+  // TODO: We should be using post.fields.slug, but in some pages it's passed in as "frontmatter". It should be fixed
+  const slug = post.fields?.slug || post.frontmatter?.slug;
+  if (!slug) {
+    console.log('No slug found for post', { post });
+    throw new Error('No slug found for post', { post });
+  }
+  const canonical = pathJoin('https://wesbos.com', slug);
+  const url = pathJoin(baseURL, slug);
   const thumbnailData = {
     title: post.frontmatter.title,
     url,
@@ -25,11 +31,10 @@ export function PostMetaTags({ post }) {
   const thumbnailQuery = new URLSearchParams(Object.fromEntries(Object.entries(thumbnailData).filter(([_key, val]) => val !== undefined))).toString();
 
   const ogImage = `${baseURL}/.netlify/functions/ogimage?${thumbnailQuery}`;
-
   return (
     <Helmet>
-      <link rel="canonical" href={canonical} />
       <meta name="generator" content="Wes Bos on Gatsby!" />
+      <link rel="canonical" href={canonical} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@wesbos" />
       <meta name="twitter:creator" content="@wesbos" />
@@ -48,14 +53,15 @@ export function PostMetaTags({ post }) {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_CA" />
-      <title>{post.frontmatter.title} - Wes Bos</title>
+      <title>{`${post.frontmatter.title} - Wes Bos`}</title>
     </Helmet>
   );
 }
 
 export function TipsMetaTags({ post }) {
-  const canonical = `https://wesbos.com/tip/${post.frontmatter.slug}`;
-  const url = `${baseURL}/tip/${post.frontmatter.slug}`;
+  const slug = post.fields?.slug || post.frontmatter?.slug;
+  const canonical = pathJoin('https://wesbos.com/tip/', slug);
+  const url = pathJoin(baseURL, '/tip/', slug);
   const thumbnailData = {
     title: post.excerpt,
     url,
@@ -87,7 +93,7 @@ export function TipsMetaTags({ post }) {
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:locale" content="en_CA" />
-      <title>{post.frontmatter.title} - Wes Bos</title>
+      <title>{`${post.frontmatter.title} - Wes Bos`}</title>
     </Helmet>
   );
 }

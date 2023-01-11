@@ -51,7 +51,7 @@ const PriceTag = styled.span`
   }
 `;
 
-export default function CoursesPage({ path }) {
+export default function CoursesPage({ location }) {
   return (
     <>
       <p>
@@ -197,7 +197,7 @@ export default function CoursesPage({ path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Courses',
           },
         }}

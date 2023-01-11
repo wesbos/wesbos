@@ -3,13 +3,13 @@ import React from 'react';
 import H from '../components/mdxComponents/Headings';
 import { PostMetaTags } from '../components/MetaTags';
 
-export default function AboutPage({ path }) {
+export default function AboutPage({ location }) {
   return (
     <>
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'Privacy Policy',
           },
         }}

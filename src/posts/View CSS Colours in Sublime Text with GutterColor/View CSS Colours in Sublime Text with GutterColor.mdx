@@ -3,7 +3,7 @@ title: View CSS Colours in Sublime Text with GutterColor
 slug: css-gutter-color-sublime-text
 image: gutter.png
 category:
- - Sublime Text
+  - Sublime Text
 date: 2014-03-16T13:14:57
 id: 1447
 ---
@@ -28,7 +28,9 @@ sudo port install ImageMagick
 
 No idea what brew or macports is? You'll need to install that first before you can install ImageMagick. I recommend using <a href="http://brew.sh/">HomeBrew</a>. Simply open your terminal window (found in applications → Utilities → Terminal) and paste the following code in and hit enter:
 
+```zsh
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+```
 
 That will ask you for your computer's password and then take a few minutes to install homebrew.
 
@@ -66,10 +68,10 @@ First we need to go ahead and install the GutterColor package. You can do this v
 
 As of right now, this package requires you to tell SublimeText where the `convert script lives on your computer. Go to Sublime Text → Preferences → Package Settings → GutterColor → Preferences - User and paste the following code in there. Make sure to swap out the path if your which convert` command returned something different.
 
+```json
 {
-"convert_path" : "/usr/local/bin/convert"
+  "convert_path": "/usr/local/bin/convert"
 }
+```
 
 In my experience, sublime required a few restarts before it started to work totally. If you see red squares in your gutter, it's helpful to look in the Sublime Console (view → Show Console) to see if you can make sense of the errors.
-
-<a href="https://sublimetextbook.com/?utm_source=guttercolor&utm_medium=banner&utm_campaign=product"><img src="facebook-share2.png" /></a>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, graphql } from 'gatsby';
+import { StaticImage } from 'gatsby-plugin-image';
 import H from '../components/mdxComponents/Headings';
 import Img from '../components/Img';
 import useInterval from '../utils/useInterval';
@@ -30,7 +31,7 @@ function TimeSinceStarting() {
   return timeSinceStarting;
 }
 
-export default function AboutPage({ data, path }) {
+export default function AboutPage({ data, location }) {
   const { age, ageAsYears, timeAsYears } = useOldGuy({
     update: 60000,
   });
@@ -39,7 +40,7 @@ export default function AboutPage({ data, path }) {
       <PostMetaTags
         post={{
           frontmatter: {
-            slug: path,
+            slug: location.pathname,
             title: 'About',
             image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}${data.wes.childImageSharp.gatsbyImageData.src}`,
           },
@@ -108,7 +109,7 @@ export const query = graphql`
   {
     wes: file(relativePath: { eq: "wes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: CONSTRAINED)
       }
     }
     wesandscott: file(relativePath: { eq: "wes-and-scott.jpg" }) {
@@ -118,7 +119,7 @@ export const query = graphql`
     }
     family: file(relativePath: { eq: "bos-family.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+        gatsbyImageData(layout: CONSTRAINED)
       }
     }
   }

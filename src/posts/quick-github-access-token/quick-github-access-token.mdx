@@ -2,7 +2,7 @@
 title: Get a repo-scoped GitHub Access Token quickly
 slug: scoped-github-access-token
 category:
- - JavaScript
+  - JavaScript
 date: 2020-11-12T11:00:00
 image: github-apps.png
 ---
@@ -11,9 +11,9 @@ Today I need an access token for github so that I could commit show transcripts 
 
 Has three options:
 
-* Personal access token
-* oAuth access token
-* Apps access token
+- Personal access token
+- oAuth access token
+- Apps access token
 
 The first two give full access to all your repos - public and private. Kinda scary.
 
@@ -24,7 +24,7 @@ Here is how to to do it quickly:
 1. [Create a new Github App](https://github.com/settings/apps/new). Select the permissions this access token will need. In my case it was just "Read + Write Contents". I also selected "Only on this account" as I only needed the token for myself.
 2. Once created, it will prompt you to make a public key. Download this.
 3. There will be a button to "Install App", click that.
-4. Select which repos you want it to access. You can always change this at <https://github.com/settings/installations> - find your app and click "configure".
+4. Select which repos you want it to access. You can always change this at [https://github.com/settings/installations](https://github.com/settings/installations) - find your app and click "configure".
 5. Note the "Installation Id" - we will need this.
 6. Note the App ID. Again, find this at the above link.
 7. Make a new directory, `npm init`, and then `npm install github-app-installation-token`. This is handy package to do it all quickly.
@@ -37,7 +37,7 @@ async function go() {
   const res = await getToken({
     appId: 'from-earlier',
     installationId: 'from-earlier',
-    privateKey: `Paste the contents of your private key in here. Use backticks because it's multi-line`
+    privateKey: `Paste the contents of your private key in here. Use backticks because it's multi-line`,
   });
   console.log(res); // your token will be here
 }
