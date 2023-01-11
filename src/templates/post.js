@@ -1,10 +1,6 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import YouTube from 'react-youtube';
-import { Helmet } from 'react-helmet';
+import { graphql } from 'gatsby';
 import { IoLogoGithub } from 'react-icons/io';
-import Layout from '../components/Layout';
 import Img from '../components/Img';
 import H from '../components/mdxComponents/Headings';
 import ContentNav from '../components/ContentNav';
@@ -13,7 +9,7 @@ import EditDialogStyles from '../components/styles/EditDialogStyles';
 import { PostMetaTags } from '../components/MetaTags';
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     site {
       siteMetadata {
         title
@@ -23,7 +19,14 @@ export const pageQuery = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       id
       excerpt
-      fileAbsolutePath
+      parent {
+        ... on File {
+          absolutePath
+        }
+      }
+      fields {
+        slug
+      }
       frontmatter {
         title
         slug
@@ -37,13 +40,11 @@ export const pageQuery = graphql`
     }
   }
 `;
-function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
+function PostTemplate({ data: { mdx: post }, scope, pageContext, children }) {
   if (!post) {
     return <p>No Post Found? This should be a 404</p>;
   }
-  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${
-    post.fileAbsolutePath.split('/src/')[1]
-  }`;
+  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/${post.parent.absolutePath.split('/src/')[1]}`;
 
   return (
     <>
@@ -59,34 +60,17 @@ function PostTemplate({ data: { mdx: post }, scope, pageContext }) {
           </a>
         </div>
       </PostHeaderStyles>
-      <MDXRenderer
-        scope={{
-          YouTube,
-          ...scope,
-        }}
-      >
-        {post.body}
-      </MDXRenderer>
+      {children}
       <EditDialogStyles>
-        <p>
-          Find an issue with this post? Think you could clarify, update or add
-          something?
-        </p>
-        <p>
-          All my posts are available to edit on Github. Any fix, little or
-          small, is appreciated!
-        </p>
+        <p>Find an issue with this post? Think you could clarify, update or add something?</p>
+        <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
         <p>
           <a rel="noopener noreferrer" target="_blank" href={editURL}>
             <IoLogoGithub /> Edit on Github
           </a>
         </p>
       </EditDialogStyles>
-      <ContentNav
-        pathPrefix={pageContext.pathPrefix}
-        prev={pageContext.prev}
-        next={pageContext.next}
-      />
+      <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} />
     </>
   );
 }

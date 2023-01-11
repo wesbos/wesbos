@@ -22,7 +22,7 @@ The first thing is that JavaScript is totally public. What does that mean?
 
 We already know this, because if you open up your dev tools, and go to the sources or network tab, you are able to see all of the code that is related to your website. You are shipping all of your code off to the browser and telling the browser to run it, which means that your source code is not safe.
 
-You **should not** put sensitive information in your client-side JavaScript, because even if you obfuscate it, and try to hide it in a whole bunch of ways,or encrypt is, if the browser can read it, it can be reverse engineered.
+You **should not** put sensitive information in your client-side JavaScript, because even if you obfuscate it, and try to hide it in a whole bunch of ways,or encrypt it, if the browser can read it, it can be reverse engineered.
 
 An example of that is API keys.
 
@@ -30,7 +30,7 @@ Sometimes it is okay to put API keys in the browser (we will look at an example 
 
 Generally, when it is not okay to put API keys in the browser, they will usually restrict you via CORS.
 
-Something like a google maps API key, it is completely find to put it into your client-side JavaScript because Google will limit those per domain, or per visitor so you don't have to worry about that.
+Something like a google maps API key, it is completely fine to put it into your client-side JavaScript because Google will limit those per domain, or per visitor so you don't have to worry about that.
 
 Another example is links to private downloads.
 

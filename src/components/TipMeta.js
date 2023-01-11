@@ -8,13 +8,13 @@ import { TipMetaStyles } from './styles/TipStyles';
 export default function TipMeta({ tip }) {
   return (
     <TipMetaStyles className="tipMeta">
-      <Link to={`/tip/${tip.frontmatter.slug}`} title="View Tip Details">
+      <Link to={`/tip/${tip.fields.slug}`} title="View Tip Details">
         <IoIosLink /> Deets
       </Link>
       <Helmet>
         <title>{tip.excerpt}</title>
       </Helmet>
-      <Link to={`/tip/${tip.frontmatter.slug}`} title="View Tip Details">
+      <Link to={`/tip/${tip.fields.slug}`} title="View Tip Details">
         <time dateTime={tip.frontmatter.date}>
           {formatDistance(new Date(tip.frontmatter.date), new Date(), {
             addSuffix: true,

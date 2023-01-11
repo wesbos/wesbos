@@ -18,8 +18,8 @@ function useLatestPodcast() {
   const [podcast, setPodcast] = useState();
   useEffect(() => {
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setPodcast(data);
       });
   }, []);
@@ -36,7 +36,7 @@ export default function Instagram() {
         </h3>
         <p>Hold on — I'm grabbin' the last one.</p>
         <a href="https://syntax.fm/">Listen Now → </a>
-        <StaticImage alt="Syntax Podcast" src="../assets/images/syntax-logo.jpg"></StaticImage>
+        <StaticImage alt="Syntax Podcast" src="../assets/images/syntax-logo.jpg" />
       </PodStyles>
     );
   return (
@@ -44,7 +44,7 @@ export default function Instagram() {
       <h3>
         <span className="highlight">Syntax Podcast: #{podcast.number}</span>
       </h3>
-      <StaticImage alt="Syntax Podcast" src="../assets/images/syntax-logo.jpg"></StaticImage>
+      <StaticImage alt="Syntax Podcast" src="../assets/images/syntax-logo.jpg" />
       <time>{podcast.displayDate}</time>
       <p>{podcast.title}</p>
       <a href={`https://syntax.fm${podcast.slug}`}>Listen Now → </a>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
+import { Link } from 'gatsby';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
 import Podcast from './Podcast';
@@ -85,6 +86,14 @@ const FooterStyles = styled.footer`
       margin-right: 3px;
     }
   }
+  a.terms {
+    color: white;
+    text-decoration: none;
+    font-size: 10px;
+    &:before {
+      display: none;
+    }
+  }
 `;
 export default function Footer() {
   return (
@@ -96,24 +105,23 @@ export default function Footer() {
         <LatestCourse />
         <div className="bottom">
           I post videos on{' '}
-          <a
-            href="https://youtube.com/wesbos?sub_confirmation=1"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="socialLink"
-          >
+          <a href="https://youtube.com/wesbos?sub_confirmation=1" target="_blank" rel="noreferrer noopener" className="socialLink">
             <IoLogoYoutube /> YouTube
           </a>{' '}
           and code on{' '}
-          <a
-            href="https://github.com/wesbos"
-            target="_blank"
-            rel="noreferrer noopener"
-            className="socialLink"
-          >
+          <a href="https://github.com/wesbos" target="_blank" rel="noreferrer noopener" className="socialLink">
             <IoLogoGithub /> GitHub
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
+          <p>
+            <Link className="terms" to="/terms">
+              Terms
+            </Link>{' '}
+            &times;{' '}
+            <Link className="terms" to="/privacy">
+              Privacy Policy
+            </Link>
+          </p>
           {/* <p>
             <small>
               Baked Fresh from commit <a href={process.env.REPOSITORY_URL} />

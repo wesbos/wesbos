@@ -8,7 +8,7 @@ const JavaScriptNotesStyles = styled.div`
     grid-template-columns: 25% 1fr;
   }
   @media (max-width: 800px) {
-    grid-template-columns: 1fr;
+    display: block;
     aside {
       display: none;
     }

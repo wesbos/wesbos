@@ -15,52 +15,53 @@ function getOnlyTheDataWeNeed(node) {
   return node;
   // TODO fix this
   // possible there is no next/prev
-  if(!node) {
+  if (!node) {
     return;
   }
   // possible we have the title we need
-  if(node.frontmatter) {
+  if (node.frontmatter) {
     return {
       node: {
         fields: {
-          slug: node.fields.slug
+          slug: node.fields.slug,
         },
         frontmatter: {
-          title: node.frontmatter.title
-        }
-      }
-    }
+          title: node.frontmatter.title,
+        },
+      },
+    };
   }
   // otherwise we need the body (usually a tip)
   return {
-    body: node.body
-  }
+    body: node.body,
+  };
+  /* eslint-enable no-unreachable */
 }
 
 async function makePostsFromMdx({ graphql, actions }) {
   const blogPost = path.resolve('./src/templates/post.js');
-  const { errors, data } = await graphql(
-    `
-      {
-        allMdx(
-          filter: { fields: { collection: { eq: "post" } } }
-          sort: { fields: [frontmatter___date], order: DESC }
-        ) {
-          edges {
-            node {
-              body
-              fields {
-                slug
-              }
-              frontmatter {
-                title
+  const { errors, data } = await graphql(/* GraphQL */ `
+    {
+      allMdx(filter: { fields: { collection: { eq: "post" } } }, sort: { frontmatter: { date: DESC } }) {
+        edges {
+          node {
+            body
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+            parent {
+              ... on File {
+                absolutePath
               }
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
   if (errors) {
     console.log(errors);
     throw new Error('There was an error');
@@ -71,7 +72,7 @@ async function makePostsFromMdx({ graphql, actions }) {
     const next = posts[i + 1];
     actions.createPage({
       path: post.node.fields.slug,
-      component: blogPost,
+      component: `${blogPost}?__contentFilePath=${post.node.parent.absolutePath}`,
       context: {
         slug: post.node.fields.slug,
         collection: 'post',
@@ -85,25 +86,25 @@ async function makePostsFromMdx({ graphql, actions }) {
 
 async function makeTipsFromMdx({ graphql, actions }) {
   const tipTemplate = path.resolve('./src/templates/tip.js');
-  const { errors, data } = await graphql(
-    `
-      {
-        allMdx(
-          filter: { fields: { collection: { eq: "tip" } } }
-          sort: { fields: [frontmatter___date], order: DESC }
-        ) {
-          edges {
-            node {
-              body
-              fields {
-                slug
+  const { errors, data } = await graphql(/* graphql */ `
+    {
+      allMdx(filter: { fields: { collection: { eq: "tip" } } }, sort: { frontmatter: { date: DESC } }) {
+        edges {
+          node {
+            body
+            fields {
+              slug
+            }
+            parent {
+              ... on File {
+                absolutePath
               }
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
   if (errors) {
     console.log(errors);
     throw new Error('There was an error');
@@ -115,7 +116,7 @@ async function makeTipsFromMdx({ graphql, actions }) {
     const next = tips[i + 1];
     actions.createPage({
       path: `/tip${tip.node.fields.slug}`,
-      component: tipTemplate,
+      component: `${tipTemplate}?__contentFilePath=${tip.node.parent.absolutePath}`,
       context: {
         slug: tip.node.fields.slug,
         prev: getOnlyTheDataWeNeed(prev),
@@ -129,28 +130,28 @@ async function makeTipsFromMdx({ graphql, actions }) {
 
 async function makeJavaScriptFromMdx({ graphql, actions }) {
   const javascriptPage = path.resolve('./src/templates/javascript.js');
-  const { errors, data } = await graphql(
-    `
-      {
-        allMdx(
-          filter: { fields: { collection: { eq: "javascript" } } }
-          sort: { fields: frontmatter___tocTitle }
-        ) {
-          edges {
-            node {
-              body
-              fields {
-                slug
-              }
-              frontmatter {
-                title
+  const { errors, data } = await graphql(/* GraphQL */ `
+    {
+      allMdx(filter: { fields: { collection: { eq: "javascript" } } }, sort: { frontmatter: { tocTitle: ASC } }) {
+        edges {
+          node {
+            body
+            fields {
+              slug
+            }
+            frontmatter {
+              title
+            }
+            parent {
+              ... on File {
+                absolutePath
               }
             }
           }
         }
       }
-    `
-  );
+    }
+  `);
   if (errors) {
     console.log(errors);
     throw new Error('There was an error');
@@ -163,7 +164,7 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
 
     actions.createPage({
       path: `/javascript${post.node.fields.slug}`,
-      component: javascriptPage,
+      component: `${javascriptPage}?__contentFilePath=${post.node.parent.absolutePath}`,
       context: {
         slug: post.node.fields.slug,
         collection: 'javascript',
@@ -175,13 +176,7 @@ async function makeJavaScriptFromMdx({ graphql, actions }) {
   });
 }
 
-async function paginate({
-  graphql,
-  actions,
-  collection,
-  pathPrefix,
-  component,
-}) {
+async function paginate({ graphql, actions, collection, pathPrefix, component }) {
   const { errors, data } = await graphql(
     `
       {
@@ -212,7 +207,6 @@ async function paginate({
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
   await Promise.all([
     makePostsFromMdx({ graphql, actions }),
     makeTipsFromMdx({ graphql, actions }),
@@ -253,9 +247,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: node.frontmatter.slug
-        ? `/${node.frontmatter.slug}/`
-        : generatedSlug,
+      value: node.frontmatter.slug ? `/${node.frontmatter.slug}/` : generatedSlug,
     });
 
     // Add it to a collection
