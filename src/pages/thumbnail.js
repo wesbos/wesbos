@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import GlobalStyles from '../components/styles/GlobalStyles';
 import H from '../components/mdxComponents/Headings';
 import logo from '../assets/images/logo.png';
+import Fonts from '../components/Fonts';
 
 function getFontSize(length) {
   if (length > 55) {
@@ -97,6 +98,7 @@ export default function ThumbNail({ location }) {
     <>
       <GlobalStyles />
       <ThumbStyles />
+      <Fonts />
       <div className="main">
         <div className="title">
           <H1>{title}</H1>
