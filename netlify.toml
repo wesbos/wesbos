@@ -9,3 +9,7 @@
 #   external_node_modules = ["chrome-aws-lambda", "lambdafs"]
 # [functions.ogimage2]
 #   external_node_modules = ["@sparticuz/chromium"]
+[dev]
+  command = "gatsby develop"
+  port = 8888
+  targetPort = 8000

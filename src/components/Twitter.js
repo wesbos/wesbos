@@ -7,6 +7,7 @@ const url = `/.netlify/functions/twitter`;
 const TweetStyles = styled.div`
   a.tweet-link {
     display: block;
+    overflow: hidden;
     &:before {
       display: none;
     }
@@ -69,10 +70,11 @@ function useTwitter() {
 
 function Media({ media, alt }) {
   if (!media) return null;
-  // const url = media[0].media_url_https;
+  console.log(media);
+  const mediaUrl = media[0].media_url_https;
   // const parts = url.split('.');
   // const base = parts.slice(0, parts.length - 1).join('.');
-  const thumb = `${url}?name=thumb&format=jpg`;
+  const thumb = `${mediaUrl}?name=thumb&format=jpg`;
   return <img src={`https://images.weserv.nl/?url=${encodeURIComponent(thumb)}&h=75`} alt={alt} className="media" width="75" height="75" />;
 }
 
