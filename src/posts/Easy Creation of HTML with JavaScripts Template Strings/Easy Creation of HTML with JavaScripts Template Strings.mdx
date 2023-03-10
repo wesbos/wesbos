@@ -111,7 +111,7 @@ But we have that comma in there, so how do you get rid of that? We know that `ma
 ```js
 const markup = `
 <ul class="dogs">
-    ${dogs.map(dog => * ${dog.name} is ${dog.age * 7}
+    ${dogs.map(dog => `* ${dog.name} is ${dog.age * 7}
 `).join('')}
 
 `;
