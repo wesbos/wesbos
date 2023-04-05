@@ -51,7 +51,7 @@ export default function AboutPage({ data, location }) {
       <Img image={data.wes} alt="Wes Bos sits at a table in the direct sunlight pretending to be on his computer" />
 
       <H as="h3">The Skinny&hellip;</H>
-      <p>
+      <p suppressHydrationWarning={true}>
         I'm a web developer, teacher and speaker from Hamilton, Ontario 🇨🇦. I'm <span title={`That's ${age} ms!`}>{ageAsYears}</span> years old and I've been{' '}
         <a target="_blank" rel="noopener noreferrer" href="http://web.archive.org/web/20040608163410/http://www.wesbos.com/">
           making websites
