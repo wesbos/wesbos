@@ -1,6 +1,6 @@
-const chrome = require('chrome-aws-lambda');
+// const chrome = require('chrome-aws-lambda');
 // Switch to this, re: https://answers.netlify.com/t/netlify-function-with-puppeteer-breaks-if-i-make-any-changes/76924/8
-// const chrome = require('@sparticuz/chromium');
+const chrome = require('@sparticuz/chromium');
 const puppeteer = require('puppeteer-core');
 const wait = require('waait');
 
@@ -41,6 +41,7 @@ async function getScreenshot(url, isDev) {
   const buffer = await page.screenshot({ type: 'png' });
   const base64Image = buffer.toString('base64');
   cached.set(url, base64Image);
+  console.log(base64Image);
   return base64Image;
 }
 
