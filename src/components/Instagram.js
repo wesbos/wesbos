@@ -110,7 +110,6 @@ export default function Instagram() {
           Instant Grams
         </span>
       </h3>
-      <p>The gram is down, but here are some codes! W24FI 8N34Q 7XBIB FNZV4 5HFHX</p>
       {loading && <p>One sec, getting the gramz...</p>}
       <Stories />
       {gramz.length ? <h4>Posts</h4> : null}
