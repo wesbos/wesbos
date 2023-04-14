@@ -41,6 +41,7 @@ async function getScreenshot(url, isDev) {
   const buffer = await page.screenshot({ type: 'png' });
   const base64Image = buffer.toString('base64');
   cached.set(url, base64Image);
+  console.log(base64Image);
   return base64Image;
 }
 
