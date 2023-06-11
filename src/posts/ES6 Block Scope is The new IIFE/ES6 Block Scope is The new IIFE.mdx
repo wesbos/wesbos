@@ -21,7 +21,7 @@ If I have a `var variable: var name = 'wes'`
 
 You can call that in the console, and that's fine here. However, the window already has a `name` attribute, which is needed when you have a window opening up a another window.
 
-That could something that some third-party JavaScript relies on in order for it to run, or maybe another script is using a variable called `name` and you accidentally overwrite that. It can get a little bit messy.
+That could be something that some third-party JavaScript relies on in order for it to run, or maybe another script is using a variable called `name` and you accidentally overwrite that. It can get a little bit messy.
 
 The way the IIFE fixes that is that the function runs immediately and you put your variables inside of that:
 
@@ -64,4 +64,4 @@ Our `const is going to be scoped to that block. If you try to call name in the c
 }
 ```
 
-...we'll get `wes in the console. You don't the IIFE stuff anymore. You're using let and const` because they are going to be scoped to that block.
+...we'll get `wes in the console. You don't need the IIFE stuff anymore. You're using let and const` because they are going to be scoped to that block.
