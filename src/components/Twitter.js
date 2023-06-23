@@ -93,31 +93,32 @@ export default function Twitter() {
         </span>
       </h3>
       {!tweets.length && <p>brb getting some good tweets...</p>}
-      {tweets.map((tweet) => {
-        const { media } = tweet.entities;
-        const text = tweet.full_text.split('https://t.co').shift().slice(0, 100);
-        return (
-          <div key={tweet.id_str}>
-            <p>
-              <a className="tweet-link" rel="noopener noreferrer" target="_blank" href={`https://twitter.com/wesbos/status/${tweet.id_str}`}>
-                <Media media={media} alt={text} />
-                {text}…
-              </a>
-            </p>
-            <TweetMeta>
-              <span title={`${tweet.retweet_count} Retweets`}>
-                <IoIosRepeat />
-                {tweet.retweet_count}
-              </span>
-              <span className="lilguy" />
-              <span title={`${tweet.favorite_count} Hearts`}>
-                <IoIosHeart className="heart" />
-                {tweet.favorite_count}
-              </span>
-            </TweetMeta>
-          </div>
-        );
-      })}
+      {Array.isArray(tweets) &&
+        tweets.map((tweet) => {
+          const { media } = tweet.entities;
+          const text = tweet.full_text.split('https://t.co').shift().slice(0, 100);
+          return (
+            <div key={tweet.id_str}>
+              <p>
+                <a className="tweet-link" rel="noopener noreferrer" target="_blank" href={`https://twitter.com/wesbos/status/${tweet.id_str}`}>
+                  <Media media={media} alt={text} />
+                  {text}…
+                </a>
+              </p>
+              <TweetMeta>
+                <span title={`${tweet.retweet_count} Retweets`}>
+                  <IoIosRepeat />
+                  {tweet.retweet_count}
+                </span>
+                <span className="lilguy" />
+                <span title={`${tweet.favorite_count} Hearts`}>
+                  <IoIosHeart className="heart" />
+                  {tweet.favorite_count}
+                </span>
+              </TweetMeta>
+            </div>
+          );
+        })}
     </TweetStyles>
   );
 }
