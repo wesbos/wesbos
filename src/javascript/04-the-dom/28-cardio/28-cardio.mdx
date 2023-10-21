@@ -395,7 +395,7 @@ But how do we keep tacking onto that?
 We could change `const cardsHTML` to `let cardsHTML` and then do something like the following 👇
 
 ```js
-let cardsHTML = generatePlayerCards('wes', 12, 150);
+let cardsHTML = generatePlayerCard('wes', 12, 150);
 cardsHTML = cardsHTML + generatePlayerCard('scott', 12, 150);
 cardsHTML = cardsHTML + generatePlayerCard('kait', 12, 150);
 cardsHTML = cardsHTML + generatePlayerCard('snickers', 12, 150);
@@ -405,7 +405,7 @@ console.log(cardsHTML);
 _NOTE: if you save the code above, Prettier might re-format that to use the shorthand code below which is fine because the 2 ways of typing it out are equivalent._
 
 ```js
-let cardsHTML = generatePlayerCards("wes", 12, 150);
+let cardsHTML = generatePlayerCard("wes", 12, 150);
 cardsHTML += generatePlayerCard("scott", 12, 150);
 cardsHTML += generatePlayerCard("kait", 12, 150);
 cardsHTML += generatePlayerCard("snickers", 12, 150);
@@ -424,7 +424,7 @@ Another way is you could take the `cards` div and call the following method on i
 cards.insertAdjacentHTML('afterbegin', generatePlayerCard("snickers", 12, 150));
 ```
 
-And then you could just call that multiple times, but passing different arguments to `generatePlayerCards`.
+And then you could just call that multiple times, but passing different arguments to `generatePlayerCard`.
 
 Let's stick with the method you already have.
 
