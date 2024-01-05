@@ -73,3 +73,4 @@ yarn-error.log
 # Local Netlify folder
 .netlify
 .now
+.next
