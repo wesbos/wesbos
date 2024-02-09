@@ -1,11 +1,12 @@
-import H from '../components/mdxComponents/Headings';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import H from '../components/mdxComponents/Headings';
 
-export const meta: Metadata = {
-  title: "Wes Bos - Full Stack Developer"
-};
-export default function HomePage({ location }) {
+// TODO: Meta tags
+// export const meta: Metadata = {
+//   title: "Wes Bos - Full Stack Developer"
+// };
+export default function HomePage() {
   return (
     <div className="welcome">
       {/* TODO <PostMetaTags

@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link, useScrollRestoration } from 'gatsby';
 import { slug } from 'github-slugger';
 import styled from 'styled-components';
 import H from '@/components/mdxComponents/Headings';
-import createSectionedFrontMatter from '../lib/utils/createSectionedFrontmatter';
+import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
 const StyledTOC = styled.aside`
   position: sticky;

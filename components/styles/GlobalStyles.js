@@ -1,9 +1,9 @@
-"use client";
+'use client';
+
 import { createGlobalStyle } from 'styled-components';
 import whiteGrit from '@/components/mdxComponents/whitegrit.png';
 import blackGrit from '@/components/mdxComponents/blackgrit.png';
 import dirty from './Dirty';
-
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -200,5 +200,24 @@ const GlobalStyles = createGlobalStyle`
       background-position: -200px;
     }
   }
+
+  /* <Pre> */
+  pre::selection {
+    background: #0050a4;
+  }
+
+  /* Table */
+  table {
+    border: 1px solid var(--lightGrey);
+    border-radius: 3px;
+    padding: 1rem;
+    border-collapse: collapse;
+  td,
+  th {
+    border: 1px solid var(--lightGrey);
+    padding: 10px;
+  }
+  }
 `;
+
 export default GlobalStyles;

@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import blackGrit from './blackgrit.png';
@@ -93,8 +94,9 @@ const HStyles = styled.h1`
 `;
 /* eslint-disable react/destructuring-assignment */
 export default function H(props) {
+  const { looksLike, ...forwardedProps } = props;
   return (
-    <HStyles {...props}>
+    <HStyles {...forwardedProps}>
       <span className="grit">{props.children}</span>
     </HStyles>
   );

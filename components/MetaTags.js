@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { pathJoin } from '../lib/utils/path-join';
+import { pathJoin } from '../utils/path-join';
 
 function getBaseURL() {
   const url = process.env.GATSBY_URL;

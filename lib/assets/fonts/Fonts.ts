@@ -10,25 +10,24 @@ export const operatorMono = localFont({
     {
       path: './operator/OperatorMono-Book_Web.woff2',
       weight: '400',
-      style: 'normal'
+      style: 'normal',
     },
     {
       path: './operator/OperatorMono-BookItalic_Web.woff2',
       weight: '400',
-      style: 'italic'
+      style: 'italic',
     },
     {
       path: './operator/OperatorMono-BoldItalic_Web.woff2',
       weight: '700',
-      style: 'italic'
+      style: 'italic',
     },
 
     {
       path: './operator/OperatorMono-Bold_Web.woff2',
       weight: '700',
-      style: 'normal'
+      style: 'normal',
     },
   ],
   variable: '--operator-mono',
 });
-

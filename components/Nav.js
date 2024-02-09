@@ -1,10 +1,11 @@
-"use client";
+'use client';
+
 import React from 'react';
-import H from '@/components/mdxComponents/Headings';
-import useRowFinder from '@/lib/utils/useRowFinder';
-import { NavLi, NavStyles, NavUl } from './styles/NavStyles';
 import Link from 'next/link';
 import Image from 'next/image';
+import H from '@/components/mdxComponents/Headings';
+import useRowFinder from '@/utils/useRowFinder';
+import { NavLi, NavStyles, NavUl } from './styles/NavStyles';
 
 export default function Nav() {
   const { ref, getRow } = useRowFinder();
@@ -12,7 +13,7 @@ export default function Nav() {
     <NavStyles>
       <h1>
         <Link href="/">
-          <Image height={164} width={200} src="/images/logo.png" alt="Wes Bos" />
+          <Image height={164} width={200} priority src="/images/logo.png" alt="Wes Bos" />
         </Link>
       </h1>
       <NavUl ref={ref}>

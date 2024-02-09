@@ -16,6 +16,7 @@ function slimUpPosts(response) {
 }
 
 export async function getInstagramPosts() {
+  return [];
   // first see if we have a cache in 30 mins
   const timeSinceLastFetch = Date.now() - cache.lastFetch;
   if (timeSinceLastFetch <= 1800000) {
