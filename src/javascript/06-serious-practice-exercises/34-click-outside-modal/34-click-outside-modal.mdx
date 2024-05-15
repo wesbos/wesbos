@@ -8,7 +8,7 @@ category:
  - Exercises
 ---
 
-In this lesson we are going to learn how to check whether you clicked outside an element, which kind of tough.
+In this lesson we are going to learn how to check whether you clicked outside an element, which is kind of tough.
 
 Let's look at the HTML we will be working with.
 
@@ -92,7 +92,7 @@ Moving onto the modal, add some dummy content inside of it so when we style it w
 </div>
 ```
 
-As you can see, there are two nested divs each with a class of`modal-inner` or `modal-outer`.
+As you can see, there are two nested divs each with a class of `modal-inner` or `modal-outer`.
 
 Go ahead and style the modal in the on position and then we will turn it off with CSS. 👇
 
@@ -127,7 +127,7 @@ Let's just do a really quick example to demonstrate how this works.
 
 We need to hide the modal by default.
 
-There are LOTS of different ways you could do that, such as `display: none`, `visibility: hidden`, or something that Wes likes to do is give it an `opacity:0`, which won't cut it in our case.
+There are LOTS of different ways you could do that, such as `display: none`, `visibility: hidden`, or something that Wes likes to do is give it an `opacity: 0`, which won't cut it in our case.
 
 That is because even if you did give the modal an opacity of 0, you will see that the modal will prevent the other elements from being clicked like that buttons.
 
@@ -152,7 +152,7 @@ What you can do is give `modal-outer` a pointer event of none like so 👇
 }
 ```
 
-That tells the browser to just ignore that any events that come to that and to not capture them.
+That tells the browser to just ignore any events that come to that and to not capture them.
 
 That is an example of where JavaScript and CSS work together.
 
@@ -224,7 +224,7 @@ const button = event.currentTarget
 
 Now you need to find the card that is associated with the button.
 
-You could do `button.parentElement`, but if the button were to ever more or be nested inside of something, that wouldn't work that well.
+You could do `button.parentElement`, but if the button were to ever move or be nested inside of something, that wouldn't work that well.
 
 What you can do is take the button and run the `.closest` method and search.
 
