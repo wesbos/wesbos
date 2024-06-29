@@ -87,7 +87,7 @@ export default function AboutPage({ data, location }) {
       </p>
 
       <p>
-        <strong>I live</strong> in a really cool city called Hamilton with my <a href="http://kaitbos.com/">wife Kaitlin</a>, two girls, one boy and a pup named Snickers. We spend our summers at our cottage up in beautiful Northern Ontario.
+        <strong>I live</strong> in a really cool city called Hamilton with my <a href="http://kaitbos.com/">wife Kaitlin</a>, two girls, two boys and a pup named Snickers. We spend our summers at our cottage up in beautiful Northern Ontario.
       </p>
 
       <p>
