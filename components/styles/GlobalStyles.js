@@ -121,7 +121,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0 3.5px;
   }
 
-  pre[data-language] {
+  [data-language] pre {
     border-radius: 0;
     padding: 3rem;
     width: 110%;

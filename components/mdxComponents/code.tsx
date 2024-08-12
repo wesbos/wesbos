@@ -4,6 +4,7 @@ interface CodeProps extends React.ComponentPropsWithoutRef<'code'> {
 
 export const Code = ({ children, ...props }: CodeProps) => (
   <code
+    className="inline-code"
     style={{
       background: '#f9f7fb',
       border: '1px solid #ede7f3',

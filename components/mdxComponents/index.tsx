@@ -4,6 +4,7 @@ import H from './Headings';
 // import Heading from "../heading";
 // import Blockquote from './blockquote';
 import { Code } from './code';
+import { HighlightedCode } from './HighlightedCode';
 
 /* eslint-disable */
 const mdxComponents: MDXComponents = {
@@ -14,7 +15,7 @@ const mdxComponents: MDXComponents = {
   h5: props => <H as="h5" {...props} />,
   h6: props => <H as="h6" {...props} />,
   inlineCode: props => <Code {...props} />,
-  // code: props => <Code {...props} />,
+  pre: HighlightedCode,
   // blockquote: Blockquote,
   // TODO add `a`
   // TODO add `img`

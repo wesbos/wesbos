@@ -2,8 +2,15 @@ import fg from 'fast-glob';
 import { readFile, readdir } from 'fs/promises';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeInferDescriptionMeta from 'rehype-infer-description-meta';
-import { compileMDX } from 'next-mdx-remote/rsc';
+import { MDXRemoteProps, compileMDX } from 'next-mdx-remote/rsc';
 import { slug } from 'github-slugger';
+import { type Plugin } from 'unified';
+// import { type Root } from 'mdast';
+import { visit } from 'unist-util-visit';
+// import { toString } from 'mdast-util-to-string';
+import path from 'path';
+import rehypeShiki from '@shikijs/rehype';
+import { Frontmatter } from './types';
 
 // const gatsbyConfig = {
 //   resolve: 'gatsby-plugin-mdx',
@@ -50,13 +57,6 @@ import { slug } from 'github-slugger';
 //       },
 // },
 
-import { type Plugin } from 'unified';
-import { type Root } from 'mdast';
-import { visit } from 'unist-util-visit';
-import { toString } from 'mdast-util-to-string';
-import path from 'path';
-import { Frontmatter } from './types';
-
 type HeadingTocItem = {
   value: string;
   url: string;
@@ -65,16 +65,17 @@ type HeadingTocItem = {
   level?: number[];
 };
 
-export const nextMdxOptions = {
+export const nextMdxOptions: MDXRemoteProps['options'] = {
   parseFrontmatter: true,
   mdxOptions: {
     rehypePlugins: [
-      [
-        rehypeInferDescriptionMeta({
-          truncateSize: 100,
-          inferDescriptionHast: true,
-        }),
-      ],
+      // [
+      //   rehypeInferDescriptionMeta({
+      //     truncateSize: 100,
+      //     inferDescriptionHast: true,
+      //   }),
+      // ],
+      // [rehypeShiki, { theme: 'ayu-dark' }],
     ],
   },
 };
@@ -110,26 +111,26 @@ export async function getPosts() {
 
   const toc = [];
 
-  const xxx = await compileMDX({
-    source: data[1],
-    options: {
-      parseFrontmatter: true,
-      scope: { toc: [] },
-      mdxOptions: {
-        remarkPlugins: [[remarkTocHeadings, { exportRef: toc }]],
-        rehypePlugins: [
-          rehypeInferDescriptionMeta({
-            inferDescriptionHast: true,
-          }),
-        ],
-        format: 'mdx',
-      },
-    },
-    // scope: {},
-    // mdxOptions: {
-    //   rehypePlugins: [rehypeInferDescriptionMeta()],
-    // },
-  });
+  // const xxx = await compileMDX({
+  //   source: data[1],
+  //   options: {
+  //     parseFrontmatter: true,
+  //     scope: { toc: [] },
+  //     mdxOptions: {
+  //       remarkPlugins: [[remarkTocHeadings, { exportRef: toc }]],
+  //       rehypePlugins: [
+  //         rehypeInferDescriptionMeta({
+  //           inferDescriptionHast: true,
+  //         }),
+  //       ],
+  //       format: 'mdx',
+  //     },
+  //   },
+  //   // scope: {},
+  //   // mdxOptions: {
+  //   //   rehypePlugins: [rehypeInferDescriptionMeta()],
+  //   // },
+  // });
   // console.log({ toc }, xxx);
   // parse the frontmatter from the posts
   const parsed = await Promise.all(data.map((post: string) => serialize<undefined, Frontmatter>(post, nextMdxOptions)));
