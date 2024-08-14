@@ -1,11 +1,8 @@
 "use client";
-import styled from 'styled-components';
-import blackGrit from '@/components/mdxComponents/blackgrit.png';
-import whiteGrit from '@/components/mdxComponents/whitegrit.png';
-import dirty from '@/components/styles/Dirty';
+import { styled } from '@/styled-system/jsx';
 
 export const FooterStyles = styled.footer`
-  background: var(--dark) url(${whiteGrit.src});
+  background: var(--dark) var(--whiteGrit);
   background-size: 500px;
   padding-top: 180px;
   padding-bottom: 80px;
@@ -33,7 +30,7 @@ export const FooterStyles = styled.footer`
     }
     & > * {
       padding: 2rem;
-      background: var(--light) url(${blackGrit.src});
+      background: var(--light) var(--blackGrit);
       background-size: 500px;
       h3 {
         margin: 0;
@@ -41,7 +38,7 @@ export const FooterStyles = styled.footer`
         margin-bottom: 2rem;
         text-align: center;
         margin-top: -30px;
-        ${dirty}
+        /* TODO dirty */
         background: none;
         svg {
           position: relative;

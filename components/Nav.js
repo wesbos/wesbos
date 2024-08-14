@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import H from '@/components/mdxComponents/Headings';
 import useRowFinder from '@/utils/useRowFinder';
-import { NavLi, NavStyles, NavUl } from './styles/NavStyles';
+import { NavLi, NavLink, NavSmall, NavStyles, NavUl } from './styles/NavStyles';
 
 export default function Nav() {
   const { ref, getRow } = useRowFinder();
@@ -17,65 +17,81 @@ export default function Nav() {
         </Link>
       </h1>
       <NavUl ref={ref}>
-        <NavLi className={getRow(0) > 1 ? 'row2' : ''}>
-          <Link href="/courses">
-            <small className="top">free + premium</small>
-            <H as="span">Courses</H>
-            <small className="bottom hideYoSelf">x</small>
-          </Link>
-        </NavLi>
+          <NavLi className={getRow(0) > 1 ? 'row2' : ''}>
+            <Link href="/courses" passHref legacyBehavior>
+              <NavLink>
+                <NavSmall className="top">free + premium</NavSmall>
+                <H as="span">Courses</H>
+                <NavSmall className="bottom hideYoSelf">x</NavSmall>
+              </NavLink>
+            </Link>
+          </NavLi>
         <NavLi className={getRow(1) > 1 ? 'row2' : ''}>
-          <a href="https://syntax.fm" target="_blank" rel="noreferrer noopener">
-            <small className="top">The Syntax</small>
-            <H as="span">Podcast</H> <small className="bottom">Web Development</small>
-          </a>
+          <NavLink href="https://syntax.fm" target="_blank" rel="noreferrer noopener">
+            <NavSmall className="top">The Syntax</NavSmall>
+            <H as="span">Podcast</H> <NavSmall className="bottom">Web Development</NavSmall>
+          </NavLink>
         </NavLi>
         <NavLi className={getRow(2) > 1 ? 'row2' : ''}>
-          <Link href="/about">
-            <small className="top">more</small>
-            <H as="span">About</H>
-            <small className="bottom">me</small>
+          <Link href="/about" passHref legacyBehavior>
+            <NavLink>
+              <NavSmall className="top">more</NavSmall>
+              <H as="span">About</H>
+              <NavSmall className="bottom">me</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
 
         <NavLi className={getRow(3) > 1 ? 'row2' : ''}>
-          <Link href="/blog" /* TODO className={pageContext.collection === 'post' && !pageContext.slug.includes('uses') ? 'current-parent' : null} */>
-            <small className="top">the</small>
-            <H as="span">Blog</H>
-            <small className="bottom hideYoSelf">x</small>
+          <Link href="/blog" /* TODO className={pageContext.collection === 'post' && !pageContext.slug.includes('uses') ? 'current-parent' : null} */ passHref legacyBehavior>
+            <NavLink>
+              <NavSmall className="top">the</NavSmall>
+              <H as="span">Blog</H>
+              <NavSmall className="bottom hideYoSelf">x</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
         <NavLi className={getRow(4) > 1 ? 'row2' : ''}>
-          <Link href="/tips" /* className={pageContext.collection === 'tip' ? 'current-parent' : null} */>
-            <small className="top">🔥</small>
-            <H as="span">Tips</H>
-            <small className="bottom">real spicy</small>
+          <Link passHref legacyBehavior href="/tips" /* className={pageContext.collection === 'tip' ? 'current-parent' : null} */>
+            <NavLink>
+              <NavSmall className="top">🔥</NavSmall>
+              <H as="span">Tips</H>
+              <NavSmall className="bottom">real spicy</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
         <NavLi className={getRow(5) > 1 ? 'row2' : ''}>
-          <Link href="/javascript" /* className={pageContext.collection === 'javascript' ? 'current-parent' : null} */>
-            <small className="top">Beginner</small>
-            <H as="span">JavaScript</H>
-            <small className="bottom">Notes</small>
+          <Link passHref legacyBehavior href="/javascript" /* className={pageContext.collection === 'javascript' ? 'current-parent' : null} */>
+            <NavLink>
+              <NavSmall className="top">Beginner</NavSmall>
+              <H as="span">JavaScript</H>
+              <NavSmall className="bottom">Notes</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
         <NavLi className={getRow(6) > 1 ? 'row2' : ''}>
-          <Link href="/speaking-and-training">
-            <small className="top">real life</small>
-            <H as="span">Speaking</H> <small className="bottom">and training</small>
+          <Link passHref legacyBehavior href="/speaking-and-training">
+            <NavLink>
+              <NavSmall className="top">real life</NavSmall>
+              <H as="span">Speaking</H> <NavSmall className="bottom">and training</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
         <NavLi className={getRow(7) > 1 ? 'row2' : ''}>
-          <Link href="/uses">
-            <small className="top">what font?!</small>
-            <H as="span">/uses</H> <small className="bottom">what theme!?</small>
+          <Link passHref legacyBehavior href="/uses">
+            <NavLink>
+              <NavSmall className="top">what font?!</NavSmall>
+              <H as="span">/uses</H> <NavSmall className="bottom">what theme!?</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
         <NavLi className={getRow(8) > 1 ? 'row2' : ''}>
-          <Link href="/contact">
-            <small className="top">You want to</small>
-            <H as="span">Contact</H>
-            <small className="bottom">me</small>
+          <Link passHref legacyBehavior href="/contact">
+            <NavLink>
+              <NavSmall className="top">You want to</NavSmall>
+              <H as="span">Contact</H>
+              <NavSmall className="bottom">me</NavSmall>
+            </NavLink>
           </Link>
         </NavLi>
       </NavUl>

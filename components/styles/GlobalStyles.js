@@ -26,7 +26,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     border: var(--borderSize) solid var(--dark);
     border-color: var(--dark);
-    border-image: url(${whiteGrit.src}) 200 round;
+    border-image: var(--whiteGrit) 200 round;
     font-size: 10px;
     font-family: var(--operator-mono), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     position: relative;
@@ -55,7 +55,7 @@ const GlobalStyles = createGlobalStyle`
       left: calc(var(--size) * -0.5);
       z-index: -1;
       border: var(--size) solid transparent;
-      border-image: url(${blackGrit.src}) 250 round;
+      border-image: var(--blackGrit) 250 round;
       background-size: 250px; */
     }
   }
@@ -161,7 +161,7 @@ const GlobalStyles = createGlobalStyle`
     height: auto;
   }
   .highlight {
-    background-image: url(${blackGrit.src});
+    background-image: var(--blackGrit);
     background-color: var(--yellow);
     background-size: 500px;
     padding: 5px;
@@ -188,7 +188,7 @@ const GlobalStyles = createGlobalStyle`
 
   /* Button Styles */
   button:not(.snipcart button) {
-    ${dirty}
+    /* TODO ${dirty} */
     border: 0;
     font-weight: 900;
     padding: 1rem;

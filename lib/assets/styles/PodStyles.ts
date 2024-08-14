@@ -1,5 +1,5 @@
 "use client";
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 export const PodStyles = styled.div`
   time {

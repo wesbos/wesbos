@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 const EditDialogStyles = styled.div`
   background: red;

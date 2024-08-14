@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 import blackgrit from '@/components/mdxComponents/blackgrit.png';
 import whitegrit from '@/components/mdxComponents/whitegrit.png';
 
@@ -14,7 +14,7 @@ const TipStyles = styled.div`
   position: relative;
   padding: 2rem;
   grid-gap: 2rem;
-  background: url(${blackgrit.src});
+  background: var(--blackGrit);
   background-size: 550px;
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
@@ -44,7 +44,7 @@ const TipMetaStyles = styled.div`
   border-top: 0;
   border-bottom: 0;
   right: 2rem;
-  background: var(--yellow) url(${blackgrit.src});
+  background: var(--yellow) var(--blackGrit);
   background-size: 550px;
   transform: rotate(-1deg);
   &:after {
@@ -53,7 +53,7 @@ const TipMetaStyles = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    background: url(${whiteGrit.src}) top left, url(${whiteGrit.src}) bottom right;
+    background: var(--whiteGrit) top left, var(--whiteGrit) bottom right;
     background-size: 550px;
     pointer-events: none;
   }

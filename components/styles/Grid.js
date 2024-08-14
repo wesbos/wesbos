@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 export const Grid = styled.div`
   display: grid;

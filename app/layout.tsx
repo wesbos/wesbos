@@ -1,4 +1,5 @@
 import 'normalize.css';
+import '@/components/styles/index.css';
 import React from 'react';
 import { Metadata } from 'next';
 import GlobalStyles from '@/components/styles/GlobalStyles';
@@ -22,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" content="#ffc600" />
       <body>
         <StyledComponentsRegistry>
-          <GlobalStyles />
           <LayoutStyles
           /* className={ TODO We need the current page `
           ${location.pathname === '/' ? 'welcome' : null}

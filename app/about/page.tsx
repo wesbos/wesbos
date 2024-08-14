@@ -2,6 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import H from '../../components/mdxComponents/Headings';
 import { TimeSince } from './TimeSinceStarting';
+import { styled } from '@/styled-system/jsx';
+
+
 
 export default function AboutPage() {
   return (

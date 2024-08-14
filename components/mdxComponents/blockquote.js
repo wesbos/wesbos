@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 const blockquote = styled.blockquote`
   border-left: 3px solid var(--yellow);

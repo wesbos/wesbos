@@ -1,5 +1,4 @@
-"use client";
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 export const NavStyles = styled.nav`
   border-bottom: 5px solid var(--yellow);
@@ -32,6 +31,34 @@ export const NavStyles = styled.nav`
   }
 `;
 
+export const NavLink = styled.a`
+    font-family: var(--radnika);
+    color: var(--dark);
+    text-decoration: none;
+    line-height: 1;
+    &[aria-current='page'],
+    &.current-parent {
+      .grit {
+        text-decoration: underline;
+        text-decoration-color: var(--yellow);
+      }
+    }
+  `
+
+export const NavSmall = styled.small`
+  font-size: 1.3rem;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  text-align: right;
+  line-height: 10px;
+  position: relative;
+  pointer-events: none;
+  .row2 & {
+    display: none;
+  }
+`;
+
 export const NavUl = styled.ul`
   background: var(--light);
   display: flex;
@@ -57,15 +84,12 @@ export const NavLi = styled.li`
   .hideYoSelf {
     visibility: hidden;
   }
+
   &.row2 {
     margin: 0;
     & > *,
     span {
       transform: scale(0.55);
-    }
-    small.top,
-    small.bottom {
-      display: none;
     }
   }
   &:after {
@@ -77,30 +101,7 @@ export const NavLi = styled.li`
   &:last-child:after {
     display: none;
   }
-  a {
-    font-size: 3.2rem;
-    font-family: var(--radnika);
-    color: var(--dark);
-    text-decoration: none;
-    line-height: 1;
-    &[aria-current='page'],
-    &.current-parent {
-      .grit {
-        text-decoration: underline;
-        text-decoration-color: var(--yellow);
-      }
-    }
-    small {
-      font-size: 1.3rem;
-      display: block;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-weight: 400;
-      text-align: right;
-      line-height: 10px;
-      position: relative;
-      pointer-events: none;
-    }
-  }
+
   @media (max-width: 550px) {
     grid-template-columns: 1fr;
     margin: 0;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 import dirty from './styles/Dirty';
 
 const PaginationStyles = styled.div`
@@ -11,7 +11,7 @@ const PaginationStyles = styled.div`
   background: var(--yellow);
   justify-items: center;
   align-items: center;
-  ${dirty}
+  /* TODO ${dirty} */
   --rotate: 0.243deg;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -19,7 +19,7 @@ const PaginationStyles = styled.div`
   }
   & > * {
     display: inline;
-    ${dirty}
+    /* TODO ${dirty} */
     background-color: var(--light);
     text-decoration: none;
     padding: 4px;

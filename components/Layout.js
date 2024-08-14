@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
 import { Helmet } from 'react-helmet';
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 import Nav from './Nav';
 import mdxComponents from '@/components/mdxComponents';
 import 'normalize.css';

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 const PostHeaderStyles = styled.header`
   h1 {

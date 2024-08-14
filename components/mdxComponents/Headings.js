@@ -1,19 +1,6 @@
-'use client';
-
+import { styled } from '@/styled-system/jsx';
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import blackGrit from './blackgrit.png';
-import whiteGrit from './whitegrit.png';
-
-const gritty = keyframes`
-  from {
-    background-position: 0;
-  }
-
-  to {
-    background-position: -600px;
-  }
-`;
+// import styled, { keyframes } from 'styled-components';
 
 const headingSizes = {
   h1: 5,
@@ -26,12 +13,6 @@ const headingSizes = {
 };
 
 const HStyles = styled.h1`
-  /* Default h1 */
-  font-size: ${headingSizes.h1}rem;
-  /* Default allow to change */
-  font-size: ${({ as }) => as && `${headingSizes[as]}rem`};
-  /* Visually override if need different font size vs the semantic element */
-  font-size: ${({ looksLike }) => looksLike && `${headingSizes[looksLike]}rem`};
   @media (max-width: 450px) {
     font-size: 3rem;
   }
@@ -40,7 +21,7 @@ const HStyles = styled.h1`
     position: absolute;
     z-index: 2;
     content: '';
-    background: url(${whiteGrit.src});
+    background: var(--whiteGrit);
     background-size: 700px;
     background-repeat: repeat;
     background-position: center;
@@ -50,16 +31,7 @@ const HStyles = styled.h1`
     left: 0;
     pointer-events: none;
   }
-  span.grit {
-    background: url(${blackGrit.src});
-    background-size: 600px;
-    padding: 2rem 2rem 2rem 0;
-    position: relative;
-    ${({ as }) => as === 'span' && `margin-right: -2rem;`};
-    &:hover {
-      animation: ${gritty} 2s steps(10) infinite;
-    }
-  }
+
 
   &:before {
     /* Yellow square is using ems so it scales up/down with the font size */
@@ -73,7 +45,6 @@ const HStyles = styled.h1`
     --translate: -0.5rem;
     --rotate: 0deg;
     transform: translateX(var(--translate)) translateY(var(--translate)) rotate(var(--rotate));
-    ${({ as }) => as === 'span' && `visibility: hidden;`};
   }
   &:hover:before {
     visibility: visible;
@@ -94,12 +65,10 @@ const HStyles = styled.h1`
 `;
 /* eslint-disable react/destructuring-assignment */
 export default function H(props) {
-  const { looksLike, ...forwardedProps } = props;
+  const { looksLike, className, as, ...forwardedProps } = props;
   return (
-    <HStyles {...forwardedProps}>
+    <HStyles {...forwardedProps} className={`${className ?? ''} ${as}`} as={as}>
       <span className="grit">{props.children}</span>
     </HStyles>
   );
 }
-
-export { gritty };

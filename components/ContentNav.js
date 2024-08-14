@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Link from 'next/link';
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 
 const ContentNavStyles = styled.div`
   --borderColor: var(--lightGrey);

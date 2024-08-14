@@ -1,7 +1,7 @@
 import React, { Fragment, memo } from 'react';
 import { useStaticQuery, graphql, Link, useScrollRestoration } from 'gatsby';
 import { slug } from 'github-slugger';
-import styled from 'styled-components';
+import { styled } from '@/styled-system/jsx';
 import H from '@/components/mdxComponents/Headings';
 import createSectionedFrontMatter from '../utils/createSectionedFrontmatter';
 
