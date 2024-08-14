@@ -1,6 +1,6 @@
 import { getInstagramPosts } from '@/functions/instagram';
 import { getInstagramStories } from '@/functions/instagramStories';
-import { InstaStyles } from '@/lib/assets/styles/FooterStyles';
+import { FooterBlock, FooterHeading, InstaStyles } from '@/lib/assets/styles/FooterStyles';
 import { FaInstagram } from 'react-icons/fa';
 
 function converIGtoJPG(base64data) {
@@ -43,8 +43,8 @@ async function Stories() {
 export default async function Instagram() {
   const [gramz, stories] = await Promise.all([getInstagramPosts()]);
   return (
-    <div>
-      <h3>
+    <div className={FooterBlock}>
+      <h3 className={FooterHeading}>
         <span className="highlight">
           <a href="https://instagram.com/wesbos" target="_blank" rel="noopener noreferrer">
             <FaInstagram style={{ strokeWidth: 15 }} />

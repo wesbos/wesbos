@@ -1,4 +1,4 @@
-import { TweetMeta, TweetStyles } from '@/lib/assets/styles/FooterStyles';
+import { FooterBlock, FooterHeading, TweetMeta, TweetStyles } from '@/lib/assets/styles/FooterStyles';
 import React, { useState, useEffect } from 'react';
 import { IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
 
@@ -19,8 +19,8 @@ export default function Twitter() {
   const tweets = [];
 
   return (
-    <TweetStyles>
-      <h3>
+    <div className={[FooterBlock, TweetStyles]}>
+      <h3 className={FooterHeading}>
         <span className="highlight">
           <IoLogoTwitter />
           <a href="https://twitter.com/wesbos" target="_blank" rel="noopener noreferrer">
@@ -29,7 +29,11 @@ export default function Twitter() {
           Tweets
         </span>
       </h3>
-      {!tweets.length && <p><strike>twitter</strike> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.</p>}
+      {!tweets.length && (
+        <p>
+          <strike>twitter</strike> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
+        </p>
+      )}
       {Array.isArray(tweets) &&
         tweets.map((tweet) => {
           const { media } = tweet.entities;
@@ -56,6 +60,6 @@ export default function Twitter() {
             </div>
           );
         })}
-    </TweetStyles>
+    </div>
   );
 }

@@ -1,9 +1,6 @@
-import 'normalize.css';
 import '@/components/styles/index.css';
 import React from 'react';
 import { Metadata } from 'next';
-import GlobalStyles from '@/components/styles/GlobalStyles';
-import StyledComponentsRegistry from '@/lib/registry';
 import { ContentStyles } from '@/lib/assets/styles/ContentStyles';
 import LayoutStyles from '@/lib/assets/styles/LayoutStyles';
 import Footer from '@/components/Footer';
@@ -22,17 +19,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${radnika.variable} ${operatorMono.variable}`}>
       <meta name="theme-color" content="#ffc600" />
       <body>
-        <StyledComponentsRegistry>
-          <LayoutStyles
+        <LayoutStyles
+          className="welcomex"
           /* className={ TODO We need the current page `
           ${location.pathname === '/' ? 'welcome' : null}
           ${pageContext.layoutClasses}`  } */
-          >
-            <Nav />
-            <ContentStyles /* className={ TODO: pageContext.layoutClasses } */>{children}</ContentStyles>
-            <Footer />
-          </LayoutStyles>
-        </StyledComponentsRegistry>
+        >
+          <Nav />
+          <ContentStyles /* className={ TODO: pageContext.layoutClasses } */>{children}</ContentStyles>
+          <Footer />
+        </LayoutStyles>
       </body>
     </html>
   );

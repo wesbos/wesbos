@@ -5,17 +5,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import H from '@/components/mdxComponents/Headings';
 import useRowFinder from '@/utils/useRowFinder';
-import { NavLi, NavLink, NavSmall, NavStyles, NavUl } from './styles/NavStyles';
+import { LogoStyles, NavLi, NavLink, NavSmall, NavStyles, NavUl } from './styles/NavStyles';
 
 export default function Nav() {
   const { ref, getRow } = useRowFinder();
   return (
     <NavStyles>
-      <h1>
+      <LogoStyles>
         <Link href="/">
           <Image height={164} width={200} priority src="/images/logo.png" alt="Wes Bos" />
         </Link>
-      </h1>
+      </LogoStyles>
       <NavUl ref={ref}>
           <NavLi className={getRow(0) > 1 ? 'row2' : ''}>
             <Link href="/courses" passHref legacyBehavior>

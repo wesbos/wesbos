@@ -1,14 +1,9 @@
 "use client";
+import { css } from '@/styled-system/css';
 import { styled } from '@/styled-system/jsx';
 
-export const FooterStyles = styled.footer`
-  background: var(--dark) var(--whiteGrit);
-  background-size: 500px;
-  padding-top: 180px;
-  padding-bottom: 80px;
-  clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
-  overflow: hidden;
-  & > div {
+
+export const FooterInner = styled.div`
     width: 100%;
     color: var(--dark);
     display: grid;
@@ -22,39 +17,22 @@ export const FooterStyles = styled.footer`
       grid-template-columns: 1fr;
     }
     grid-gap: 3rem;
-    .bottom {
+    & .bottom {
       grid-column: 1 / -1;
       text-align: center;
       background: none;
       color: var(--light);
     }
-    & > * {
-      padding: 2rem;
-      background: var(--light) var(--blackGrit);
-      background-size: 500px;
-      h3 {
-        margin: 0;
-        padding: 2px;
-        margin-bottom: 2rem;
-        text-align: center;
-        margin-top: -30px;
-        /* TODO dirty */
-        background: none;
-        svg {
-          position: relative;
-          top: 3.5px;
-          margin-right: 3px;
-        }
-        a {
-          text-decoration: none;
-        }
-      }
-      p {
-        font-size: 1.6rem;
-      }
-    }
-  }
-  a.socialLink {
+`;
+export const FooterStyles = styled.footer`
+  background: var(--dark) var(--whiteGrit);
+  background-size: 500px;
+  padding-top: 180px;
+  padding-bottom: 80px;
+  clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
+  overflow: hidden;
+
+  & a.socialLink {
     background: var(--dark);
     padding: 2px 6px;
     border-radius: 4px;
@@ -73,11 +51,11 @@ export const FooterStyles = styled.footer`
       background: var(--light);
       color: var(--dark);
     }
-    svg {
+    & svg {
       margin-right: 3px;
     }
   }
-  a.terms {
+  & a.terms {
     color: white;
     text-decoration: none;
     font-size: 10px;
@@ -87,6 +65,35 @@ export const FooterStyles = styled.footer`
   }
 `;
 
+export const FooterHeading = css`
+    margin: 0;
+    padding: 2px;
+    margin-bottom: 2rem;
+    text-align: center;
+    margin-top: -30px;
+    /* TODO dirty */
+    background: none;
+    & svg {
+      position: relative;
+      margin-right: 3px;
+      display: inline;
+    }
+    & a {
+      text-decoration: none;
+    }
+`;
+
+export const FooterBlock = css`
+  padding: 2rem;
+  background-color: var(--light);
+  background-image: var(--blackGrit);
+  background-size: 500px;
+
+  & p {
+    font-size: 1.6rem;
+  }
+`
+
 // Instagram Widget Styles
 export const InstaStyles = styled.div`
   display: grid;
@@ -94,7 +101,7 @@ export const InstaStyles = styled.div`
   grid-gap: 1rem;
   @media (max-width: 320px) {
     grid-template-columns: 1fr;
-    img {
+    & img {
       width: 100%;
     }
   }
@@ -104,7 +111,7 @@ export const StoriesStyles = styled.a`
   font-size: 0;
   display: flex;
   flex-wrap: wrap;
-  .story {
+  & .story {
     width: 30px;
     height: 89px1;
     background-size: cover;
@@ -114,7 +121,7 @@ export const StoriesStyles = styled.a`
 `;
 
 // Twitter Styles
-export const TweetStyles = styled.div`
+export const TweetStyles = css`
   a.tweet-link {
     display: block;
     overflow: hidden;

@@ -67,7 +67,7 @@ const HStyles = styled.h1`
 export default function H(props) {
   const { looksLike, className, as, ...forwardedProps } = props;
   return (
-    <HStyles {...forwardedProps} className={`${className ?? ''} ${as}`} as={as}>
+    <HStyles {...forwardedProps} className={`${className ?? ''} ${looksLike || as || ''}`} as={as}>
       <span className="grit">{props.children}</span>
     </HStyles>
   );

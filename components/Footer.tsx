@@ -5,14 +5,14 @@ import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import Podcast from './Podcast';
 import LatestCourse from './LatestCourse';
 import Link from 'next/link';
-import { FooterStyles } from '@/lib/assets/styles/FooterStyles';
+import { FooterInner, FooterStyles } from '@/lib/assets/styles/FooterStyles';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
 
 export default function Footer() {
   return (
     <FooterStyles>
-      <div>
+      <FooterInner>
         <Podcast />
         <Twitter />
         <Instagram />
@@ -36,15 +36,8 @@ export default function Footer() {
               Privacy Policy
             </Link>
           </p>
-          {/* <p>
-            <small>
-              Baked Fresh from commit <a href={process.env.REPOSITORY_URL} />
-              {process.env.COMMIT_REF}
-            </small>
-          </p>
-          */}
         </div>
-      </div>
+      </FooterInner>
     </FooterStyles>
   );
 }

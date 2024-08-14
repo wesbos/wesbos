@@ -1,15 +1,16 @@
 import { styled } from '@/styled-system/jsx';
 
-export const NavStyles = styled.nav`
-  border-bottom: 5px solid var(--yellow);
-  display: grid;
-  grid-template-columns: 1fr;
-  h1 {
+export const LogoStyles = styled.h1`
     display: grid;
     justify-items: center;
     margin-bottom: -4rem;
     z-index: 2;
-  }
+`;
+
+export const NavStyles = styled.nav`
+  border-bottom: 5px solid var(--yellow);
+  display: grid;
+  grid-template-columns: 1fr;
   @media (max-width: 550px) {
     ul {
       padding: 2.5rem 1rem 0;
@@ -48,7 +49,7 @@ export const NavLink = styled.a`
 export const NavSmall = styled.small`
   font-size: 1.3rem;
   display: block;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--baseFont);
   font-weight: 400;
   text-align: right;
   line-height: 10px;
