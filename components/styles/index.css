@@ -38,6 +38,7 @@
       'Open Sans',
       'Helvetica Neue',
       sans-serif;
+    line-height: 1.15;
     position: relative;
     color: var(--dark);
     &:after {
@@ -266,6 +267,12 @@
       background-size: 550px;
       pointer-events: none;
     }
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
   }
 }
 /* Keyframes */

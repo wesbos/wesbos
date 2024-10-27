@@ -2,6 +2,7 @@ import fg from 'fast-glob';
 import { readFile, readdir } from 'fs/promises';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeInferDescriptionMeta from 'rehype-infer-description-meta';
+import rehypeMdxImportMedia from 'rehype-mdx-import-media'
 import { MDXRemoteProps, compileMDX } from 'next-mdx-remote/rsc';
 import { slug } from 'github-slugger';
 import { type Plugin } from 'unified';
@@ -10,7 +11,7 @@ import { visit } from 'unist-util-visit';
 // import { toString } from 'mdast-util-to-string';
 import path from 'path';
 import rehypeShiki from '@shikijs/rehype';
-import { Frontmatter } from './types';
+import { ContentType, Frontmatter } from './types';
 
 // const gatsbyConfig = {
 //   resolve: 'gatsby-plugin-mdx',
@@ -69,6 +70,8 @@ export const nextMdxOptions: MDXRemoteProps['options'] = {
   parseFrontmatter: true,
   mdxOptions: {
     rehypePlugins: [
+      [rehypeMdxImportMedia]
+
       // [
       //   rehypeInferDescriptionMeta({
       //     truncateSize: 100,
@@ -96,9 +99,24 @@ const remarkTocHeadings: Plugin<[{ exportRef: HeadingTocItem[] }], Root> = funct
     });
 };
 
-export async function getPosts() {
+
+
+const PER_PAGE = 10;
+type PostFilterArgs = {
+  page?: number;
+  skip?: number;
+  limit?: number;
+  type?: ContentType
+}
+
+let cachedPosts: Frontmatter[] = [];
+async function parsePosts() {
+  if(cachedPosts.length) {
+    return cachedPosts;
+  }
   // Read the posts from the file system
-  const mdxPosts = await fg('./posts/**/*.mdx');
+  const mdxPosts = await fg(['./content/**/*.mdx']);
+  console.log(`Found ${mdxPosts.length} posts`);
   // Read the posts from the file system using fs/promises
   const data = await Promise.all(mdxPosts.map(async (post) => readFile(post, 'utf-8'))).catch((err) => {
     console.log(`Error reading posts from the file system`);
@@ -110,28 +128,6 @@ export async function getPosts() {
   }
 
   const toc = [];
-
-  // const xxx = await compileMDX({
-  //   source: data[1],
-  //   options: {
-  //     parseFrontmatter: true,
-  //     scope: { toc: [] },
-  //     mdxOptions: {
-  //       remarkPlugins: [[remarkTocHeadings, { exportRef: toc }]],
-  //       rehypePlugins: [
-  //         rehypeInferDescriptionMeta({
-  //           inferDescriptionHast: true,
-  //         }),
-  //       ],
-  //       format: 'mdx',
-  //     },
-  //   },
-  //   // scope: {},
-  //   // mdxOptions: {
-  //   //   rehypePlugins: [rehypeInferDescriptionMeta()],
-  //   // },
-  // });
-  // console.log({ toc }, xxx);
   // parse the frontmatter from the posts
   const parsed = await Promise.all(data.map((post: string) => serialize<undefined, Frontmatter>(post, nextMdxOptions)));
 
@@ -139,8 +135,6 @@ export async function getPosts() {
   parsed.forEach((post, index) => {
     post.rawSource = data[index];
   });
-
-  // console.log(parsed.at(1));
 
   // Sort by date
   const posts = parsed
@@ -151,10 +145,51 @@ export async function getPosts() {
       if (!post.frontmatter.slug) {
         post.frontmatter.slug = slug(filename);
       }
+      post.frontmatter.filename = fPath;
+      post.frontmatter.folder = path.dirname(fPath);
+      if(post.frontmatter.image) {
+        post.frontmatter.imagePath = `/${path.join(path.dirname(fPath), post.frontmatter.image) }`;
+      }
+
+      return post;
+    })
+    .map((post) => {
+      // Also tag each one with a post type based on its folder
+      if(post.frontmatter.filename.startsWith('./content/tips')) {
+        post.frontmatter.type = 'tip';
+      } else if(post.frontmatter.filename.startsWith('./content/javascript')) {
+        post.frontmatter.type = 'javascript';
+      } else {
+        post.frontmatter.type = 'blog';
+      }
       return post;
     })
     .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+  // cache them
+  cachedPosts = posts;
   return posts;
+}
+
+export async function getPostBySlug(slug: string) {
+  const posts = await parsePosts();
+  return posts.find((post) => post.frontmatter.slug === slug);
+}
+
+export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_PAGE }: PostFilterArgs = {}) {
+  const posts = (await parsePosts()).filter((post) => post.frontmatter.type === type);
+  // Return the posts for this page
+  const start = (page - 1) * limit;
+  const end = start + limit;
+
+  console.log(`Returning posts for page ${page} from ${start} to ${end}`);
+  const postsForPage = posts.slice(start, end);
+
+  const returnedPosts =  {
+    posts: postsForPage,
+    total: posts.length,
+    pages: Math.ceil(posts.length / PER_PAGE),
+  };
+  return returnedPosts;
 }
 
 getPosts();

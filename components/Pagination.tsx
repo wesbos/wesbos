@@ -8,10 +8,10 @@ const PaginationStyles = styled.div`
   grid-template-columns: auto 1fr auto;
   text-align: center;
   margin: 2rem 0;
-  background: var(--yellow);
+  background-color: var(--yellow);
   justify-items: center;
   align-items: center;
-  /* TODO ${dirty} */
+  /* TODO dirty*/
   --rotate: 0.243deg;
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -19,7 +19,7 @@ const PaginationStyles = styled.div`
   }
   & > * {
     display: inline;
-    /* TODO ${dirty} */
+    /* TODO dirty */
     background-color: var(--light);
     text-decoration: none;
     padding: 4px;
@@ -40,26 +40,31 @@ const PaginationStyles = styled.div`
       --scale: 1.1;
     }
   }
-  a[disabled] {
+  & a[disabled] {
     /* opacity: 0.5; */
     pointer-events: none;
     text-decoration: line-through;
   }
 `;
 
-export default function Pagination({ totalCount, currentPage = 1, pathPrefix }) {
-  const totalPages = Math.ceil(totalCount / 10);
+export default function Pagination({ totalCount, currentPage = 1, totalPages,  pathPrefix }: {
+  totalCount: number;
+  currentPage: number;
+  totalPages: number;
+  pathPrefix: string;
+}) {
+
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
   return (
-    <PaginationStyles>
-      <Link disabled={prevPage <= 0 ? true : null} to={prevPage <= 0 ? '' : `${pathPrefix}${prevPage}`}>
+    <PaginationStyles className="dirty">
+      <Link className="dirty" disabled={prevPage <= 0 ? true : null} href={prevPage <= 0 ? '' : `${pathPrefix}${prevPage === 1 ? '' : prevPage}`}>
         ← Prev 10 please
       </Link>
-      <p>
+      <p className="dirty">
         Page {currentPage} of {totalPages}
       </p>
-      <Link disabled={nextPage > totalPages ? true : null} to={nextPage > totalPages ? null : `${pathPrefix}${nextPage}`}>
+      <Link className="dirty" disabled={nextPage > totalPages ? true : null} href={nextPage > totalPages ? '' : `${pathPrefix}${nextPage}`}>
         {nextPage > totalPages ? `That's all Folks` : `10 More please →`}
       </Link>
     </PaginationStyles>

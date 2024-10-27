@@ -1,37 +1,45 @@
 import React from 'react';
 import { format } from 'date-fns';
-import { readdir } from 'fs/promises';
 import Link from 'next/link';
-import Image from 'next/image';
 import PostGrid, { PostGridItem } from '@/lib/assets/styles/PostGrid';
 import { getPosts } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
+import Pagination from '@/components/Pagination';
 
-export default async function Blog() {
-  const posts = await getPosts();
+export default async function Blog({ params }: { params: { pageNumber: string } }) {
+  const currentPage = parseInt(params.pageNumber, 10) || 1;
+  const { posts, total, pages } = await getPosts({
+    page: currentPage
+  });
   return (
-    <PostGrid>
-      <h2>Blog</h2>
-      {posts.map((post) => (
-        <PostGridItem key={`post-${post.frontmatter.slug}`}>
-          {/* <div>{post.frontmatter.image && <Image fill src={`/${post.frontmatter.image}`} />}</div> */}
-          <div>
-            <H as="h3">
-              <Link href={post.frontmatter.slug}>{post.frontmatter.title}</Link>
-            </H>
-            <div className="postMeta">
-              <time dateTime={post.frontmatter.date.toString()}>{format(post.frontmatter.date, 'MMMM d, yyyy')}</time>
-              <ul className="categories">
-                {post.frontmatter.category.map((cat) => (
-                  <li key={cat}>{cat}</li>
-                ))}
-              </ul>
+    <>
+      <Pagination currentPage={currentPage} totalPages={pages} totalCount={total} pathPrefix="/blog/" />
+      <PostGrid>
+        {posts.map((post) => (
+          <PostGridItem key={`post-${post.frontmatter.slug}`}>
+            {/* <div>{post.frontmatter.image && <Image fill src={`${post.frontmatter.imagePath}`} />}</div> */}
+            <div>
+              <H as="h3">
+                <pre style={{
+                  fontSize: 12
+                }}>{JSON.stringify(post.frontmatter, null, ' ')}</pre>
+                <Link href={`/${post.frontmatter.slug}`}>{post.frontmatter.title}</Link>
+              </H>
+              <div className="postMeta">
+                <time dateTime={post.frontmatter.date.toString()}>{format(post.frontmatter.date, 'MMMM d, yyyy')}</time>
+                <ul className="categories">
+                  {post.frontmatter.category.map((cat) => (
+                    <li key={cat}>{cat}</li>
+                  ))}
+                </ul>
+              </div>
+              <p>TODO EXCERPT</p>
             </div>
-            <p>TODO EXCERPT</p>
-          </div>
-        </PostGridItem>
-      ))}
-    </PostGrid>
+          </PostGridItem>
+        ))}
+      </PostGrid>
+      <Pagination currentPage={currentPage} totalPages={pages} totalCount={total} pathPrefix="/blog/" />
+    </>
   );
 }
 
@@ -56,7 +64,7 @@ function BlogOld({ data, pageContext, location }) {
           data.allMdx.edges.map(({ node: post }) => {
             const hasImage = !!post.frontmatter.image;
             return (
-              <PostGridItem key={post.id} hasImage={hasImage}>
+              <PostGridItem key={post.id}>
                 {post.frontmatter.image && post.frontmatter.image.childImageSharp && (
                   <div>
                     {hasImage && (
