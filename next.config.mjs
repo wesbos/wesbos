@@ -4,14 +4,15 @@ import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 
 const withMDX = withMDX_({
   options: {
-    rehypePlugins: [rehypeMdxImportMedia],
+    /* webpackExclude: /\.noimport\.json$/ */
+    // rehypePlugins: [rehypeMdxImportMedia],
   }
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  transpilePackages: ['next-mdx-remote'],
+  // pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  // transpilePackages: ['next-mdx-remote'],
   compiler: {
     styledComponents: true,
   },

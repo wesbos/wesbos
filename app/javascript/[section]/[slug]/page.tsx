@@ -23,7 +23,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
   // Webpack Dynamic Imports makes a module of everything in `../..` - which was my project root!
   // const { default: MDXContent } = await import(`../../${filePath}`);
   // Tell webpack about the folder where I am dynamically pulling from, fixed it:
-  const { default: MDXContent } = await import(`../../../../content/${filePath}`);
+  const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `../../../../content/${filePath}`);
   // const COM = import(`../../posts/${post.frontmatter.filename}`);
   if (!post) {
     return <p>Post not found</p>;
