@@ -28,7 +28,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
       <h2>{post.frontmatter.title}</h2>
       <MDXContent
         components={{
-          imgxxx: (props) => {
+          img: (props) => {
             console.log(props);
             return <Image sizes="100vw" width="100" height="100" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
           },
