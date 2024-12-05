@@ -4,9 +4,9 @@ title: Arrays
 slug: 08-data-types/arrays
 section: 8 - Data Types
 category:
- - JavaScript
- - Data Types
- - Arrays
+  - JavaScript
+  - Data Types
+  - Arrays
 ---
 
 In this video we will be learning about arrays: how to create them, how to add items how to remove items, things like that.
@@ -29,7 +29,7 @@ Add a script tag inside the body tag (if it's not already there).
 
 We will use an example of a list of names to demonstrate how to create an array.
 
-Whereas curly brackets are for an object, square brackets `[]` are used for noting you are creating an array or an *array literal**.
+Whereas curly brackets are for an object, square brackets `[]` are used for noting you are creating an array or an \*array literal\*\*.
 
 ```js
 const name = [];
@@ -69,10 +69,10 @@ If you recall one of the earlier videos where we went over all the types, you sh
 
 An array is actually just an object at the end of the day, meaning that it can hold data and have a bunch of methods living inside of it.
 
-If you do need to check whether something is an array, you can do that like so  👇
+If you do need to check whether something is an array, you can do that like so 👇
 
 ```js
-Array.isArray(names)
+Array.isArray(names);
 ```
 
 That will return true or false depending on whether whatever you pass it (in this case `names`, is an array or not).
@@ -89,7 +89,7 @@ console.log(names[1]);
 
 Do you think that will return the first item in the array?
 
-If you guess yes, you are wrong!  If you refresh, you will see  "kait".
+If you guess yes, you are wrong! If you refresh, you will see "kait".
 
 Why?
 
@@ -152,7 +152,7 @@ The Array prototype is full of useful methods for adding, removing and finding t
 Update the names array to only contain 3 names again.
 
 ```js
-const names = ["wes", "kait", "snickers"];
+const names = ['wes', 'kait', 'snickers'];
 ```
 
 If you refresh the page and take a look at the `names` array in the console, you should see something like 👇
@@ -385,13 +385,9 @@ There is no method to insert an item at a specific index and have the rest push 
 Create a new array, then use the spread operator in combination with slice like so 👇
 
 ```js
-const bikes = ["bianchi", "miele", "panasonic", "miyata"];
+const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
 
-const newBikes = [
-  ...bikes.slice(0, 2),
-  "benotto",
-  ...bikes.slice(2)
-];
+const newBikes = [...bikes.slice(0, 2), 'benotto', ...bikes.slice(2)];
 
 console.log(newBikes);
 ```
@@ -407,10 +403,7 @@ What if you want to remove an item, like panasonic, from the array?
 Create a new array and use slice like so 👇
 
 ```js
-const newBikes2 = [
-  ...newBikes.slice(0, 3),
-  ...newBikes.slice(4)
-];
+const newBikes2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
 
 console.log(newBikes2);
 ```
@@ -429,11 +422,11 @@ Let's do an example like that where you have a bunch of comments, and each item 
 
 ```js
 const comments = [
-  { text: "Cool Beans", id: 123 },
-  { text: "Love this", id: 133 },
-  { text: "Neato", id: 233 },
-  { text: "good bikes", id: 333 },
-  { text: "so good", id: 433 }
+  { text: 'Cool Beans', id: 123 },
+  { text: 'Love this', id: 133 },
+  { text: 'Neato', id: 233 },
+  { text: 'good bikes', id: 333 },
+  { text: 'so good', id: 433 },
 ];
 ```
 
@@ -467,13 +460,13 @@ If that is the case, you will do something very similar to a loop.
 For example 👇
 
 ```js
-const kaitIndex = names.findIndex(name => {
+const kaitIndex = names.findIndex((name) => {
   if (name === 'kait') {
     return true;
   } else {
     return false;
   }
-})
+});
 
 console.log(kaitIndex);
 console.log(names[kaitIndex]);
@@ -500,9 +493,9 @@ The if statement also returns true or false itself so there is no real need for 
 Thus, the other way you can do it is just by return the condition, which will be true of false like this 👇
 
 ```js
-const kaitindex = names.findIndex(name => {
+const kaitindex = names.findIndex((name) => {
   return name === 'kait';
-})
+});
 ```
 
 If you refresh the page, you will see that it still works.
@@ -512,7 +505,7 @@ You can even go one step further and use an implicit return.
 Get rid of the curly brackets, put it all on one line, and get rid of the semi-colon and the keyword return like so 👇
 
 ```js
-const kaitIndex = names.findIndex(name => name === 'kait');
+const kaitIndex = names.findIndex((name) => name === 'kait');
 console.log(kaitIndex);
 ```
 
@@ -523,7 +516,7 @@ const newNamesWithOutKait = [
   // get everything up to the kait index
   names.slice(0, kaitIndex),
   // everything after
-  names.slice(kaitIndex + 1)
+  names.slice(kaitIndex + 1),
 ];
 
 console.log(newNamesWithOutKait);
@@ -544,7 +537,7 @@ const newNamesWithOutKait = [
   // get everything up to the kait index
   ...names.slice(0, kaitIndex),
   // everything after
-  ...names.slice(kaitIndex + 1)
+  ...names.slice(kaitIndex + 1),
 ];
 
 console.log(newNamesWithOutKait);
@@ -556,7 +549,7 @@ There is a new method in JavaScript called `.flat()`.
 
 If you call it directly on `newNamesWithOutKait` it wouldn't work because it's immutable.
 
-![](./527.png)
+{/* TODO: where did this image go? ![](./527.png) */}
 
 We would have to return it like so 👇
 
@@ -576,7 +569,7 @@ const newNamesWithOutKait = [
   // get everything up to the kait index
   names.slice(0, kaitIndex),
   // everything after
-  names.slice(kaitIndex + 1)
+  names.slice(kaitIndex + 1),
 ].flat();
 ```
 
@@ -589,16 +582,13 @@ Now we will go back to our `deleteComment` example and create the function.
 First, find the index. That is a bit different because this time you are looking for an object where it's ID property matches.
 
 ```js
-const commentIndex = comments.findIndex(comment => comment.id === id);
+const commentIndex = comments.findIndex((comment) => comment.id === id);
 ```
 
 Next, return a new array using slice. Get everything before the comment and then everything after the comment.
 
 ```js
-return [
-  ...comments.slice(0, commentIndex),
-  ...comments.slice(commentIndex + 1)
-];
+return [...comments.slice(0, commentIndex), ...comments.slice(commentIndex + 1)];
 ```
 
 Here is the entire method 👇
@@ -606,12 +596,9 @@ Here is the entire method 👇
 ```js
 function deleteComment(id, comments) {
   // first find the index of the item in the array
-  const commentIndex = comments.findIndex(comment => comment.id === id);
+  const commentIndex = comments.findIndex((comment) => comment.id === id);
   // make a new array without that item in it
-  return [
-    ...comments.slice(0, commentIndex),
-    ...comments.slice(commentIndex + 1)
-  ];
+  return [...comments.slice(0, commentIndex), ...comments.slice(commentIndex + 1)];
   // return our new array
 }
 ```

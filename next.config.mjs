@@ -1,21 +1,28 @@
-import withMDX_ from '@next/mdx';
+import createMDX from '@next/mdx';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 
 
-const withMDX = withMDX_({
+const withMDX = createMDX({
   options: {
     /* webpackExclude: /\.noimport\.json$/ */
-    // rehypePlugins: [rehypeMdxImportMedia],
-  }
+    rehypePlugins: [[
+      'rehype-mdx-import-media', {
+        strict: true, throwOnError: true
+      }
+    ]],
+  },
 });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   // transpilePackages: ['next-mdx-remote'],
-  compiler: {
-    styledComponents: true,
+  experimental: {
+    mdxRs: false /* Turned off as it doesnt work with rehype plugins */,
   },
+  // compiler: {
+  //   styledComponents: true,
+  // },
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -28,7 +28,8 @@ const TOC = styled.section`
 export default async function JavaScriptPage(/* { data: { allMdx: javascript }, location } */ ) {
   const { posts } = await getPosts({ type: 'javascript', limit: 1000 });
   console.log(`found ${posts.length} javascript posts`);
-  const toc = Object.entries(createSectionedFrontMatter(posts));
+  const toc = createSectionedFrontMatter(posts);
+  console.log(toc);
   return (
     <>
       <H>JavaScript Notes &amp; Reference</H>
@@ -47,9 +48,9 @@ export default async function JavaScriptPage(/* { data: { allMdx: javascript }, 
           <div key={title}>
             <H as="h3">{title}</H>
             <ul>
-              {items.map((tocItem) => (
-                <li key={tocItem.tocTitle}>
-                  <Link href={`/javascript/${tocItem.slug}`}>{tocItem.tocTitle}</Link>
+              {(items || []).map((item) => (
+                <li key={item.frontmatter.tocTitle}>
+                  <Link href={`/javascript/${item.frontmatter.slug}`}>{item.frontmatter.tocTitle}</Link>
                 </li>
               ))}
             </ul>

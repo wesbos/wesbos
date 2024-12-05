@@ -1,30 +1,23 @@
 // import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getPostBySlug, getPosts, mdxOptions, nextMdxOptions } from '@/lib/getPosts';
+import { getPostBySlug } from '@/lib/getPosts';
 import mdxComponents from '@/components/mdxComponents';
-import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-
-import { compile, evaluate, run } from '@mdx-js/mdx';
-import * as runtime from 'react/jsx-runtime';
-import remarkGfm from 'remark-gfm';
 import Image, { ImageProps } from 'next/image';
 
-export default async function JavaScriptNotesPage({ params }: { params: { slug: string, section: string } }) {
-  const post = await getPostBySlug(`${params.section}/${params.slug}`);
-  if(!post) {
+export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
+  const { slug, section } = await params;
+  const post = await getPostBySlug(`${section}/${slug}`);
+  if (!post) {
     return (
       <p>
-        Post not found for <code>{params.slug}</code>
+        Post not found for <code>{slug}</code>
       </p>
     );
   }
-  console.log(post);
   const filePath = `${post.frontmatter.filename.replace('./', '')}`;
   console.log('importing', filePath);
-  // Webpack Dynamic Imports makes a module of everything in `../..` - which was my project root!
-  // const { default: MDXContent } = await import(`../../${filePath}`);
-  // Tell webpack about the folder where I am dynamically pulling from, fixed it:
-  const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `../../../../content/${filePath}`);
-  // const COM = import(`../../posts/${post.frontmatter.filename}`);
+  // const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${makePathDynamicallyImportable(filePath)}.mdx`);
+  const { default: MDXContent } = await import(`@/content/javascript/01-the-basics/01-welcome/01-welcome.mdx`);
+  console.log(MDXContent.toString());
   if (!post) {
     return <p>Post not found</p>;
   }
@@ -35,8 +28,9 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
       <h2>{post.frontmatter.title}</h2>
       <MDXContent
         components={{
-          img: (props) => {
-            return <Image sizes="100vw" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
+          imgxxx: (props) => {
+            console.log(props);
+            return <Image sizes="100vw" width="100" height="100" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
           },
         }}
       />
@@ -48,3 +42,4 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
 //   const { posts } = await getPosts();
 //   return posts.map((post) => ({ slug: post.frontmatter.slug }));
 // }
+export const dynamicParams = false;

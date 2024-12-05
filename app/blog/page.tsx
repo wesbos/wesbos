@@ -7,7 +7,8 @@ import H from '@/components/mdxComponents/Headings';
 import Pagination from '@/components/Pagination';
 
 export default async function Blog({ params }: { params: { pageNumber: string } }) {
-  const currentPage = parseInt(params.pageNumber, 10) || 1;
+  const paramz = await params;
+  const currentPage = parseInt(paramz.pageNumber, 10) || 1;
   const { posts, total, pages } = await getPosts({
     page: currentPage
   });

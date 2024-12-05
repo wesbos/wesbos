@@ -3,7 +3,7 @@ import { readFile, readdir } from 'fs/promises';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeInferDescriptionMeta from 'rehype-infer-description-meta';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media'
-import { MDXRemoteProps, compileMDX } from 'next-mdx-remote/rsc';
+import { MDXRemoteProps, MDXRemoteSerializeResult, compileMDX } from 'next-mdx-remote/rsc';
 import { slug } from 'github-slugger';
 import { type Plugin } from 'unified';
 // import { type Root } from 'mdast';
@@ -12,6 +12,7 @@ import { visit } from 'unist-util-visit';
 import path from 'path';
 import rehypeShiki from '@shikijs/rehype';
 import { ContentType, Frontmatter } from './types';
+import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
 
 // const gatsbyConfig = {
 //   resolve: 'gatsby-plugin-mdx',
@@ -99,8 +100,6 @@ const remarkTocHeadings: Plugin<[{ exportRef: HeadingTocItem[] }], Root> = funct
     });
 };
 
-
-
 const PER_PAGE = 10;
 type PostFilterArgs = {
   page?: number;
@@ -109,7 +108,7 @@ type PostFilterArgs = {
   type?: ContentType
 }
 
-let cachedPosts: Frontmatter[] = [];
+let cachedPosts: MDXRemoteSerializeResult<undefined, Frontmatter>[] = [];
 async function parsePosts() {
   if(cachedPosts.length) {
     return cachedPosts;
@@ -136,7 +135,7 @@ async function parsePosts() {
     post.rawSource = data[index];
   });
 
-  // Sort by date
+
   const posts = parsed
     // Add slug if one doesn't exist
     .map((post, index) => {
@@ -159,15 +158,30 @@ async function parsePosts() {
         post.frontmatter.type = 'tip';
       } else if(post.frontmatter.filename.startsWith('./content/javascript')) {
         post.frontmatter.type = 'javascript';
+        const sectionNumber = parseNumberFromTitle(post.frontmatter.section);
+        const postNumber = parseNumberFromTitle(post.frontmatter.tocTitle);
+        post.frontmatter.sectionNumber = sectionNumber;
+        post.frontmatter.postNumber = postNumber;
+        // JS Notes need their section and content number attached to them
       } else {
         post.frontmatter.type = 'blog';
       }
       return post;
     })
+    // Attach the
     .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
   // cache them
   cachedPosts = posts;
   return posts;
+}
+
+export function makePathDynamicallyImportable(filePath: string) {
+  // Due to the waay dybamic imports work in webpack, we need to make sure the path is statically analyzable, so we need to make sure the path is a string literal. This function removes the `content/` prefix and the `.mdx` suffix from the file path
+  const prefix = 'content/';
+  const suffix = '.mdx';
+  const filePathWithoutPrefix = filePath.replace(prefix, '');
+  const filePathWithoutSuffix = filePathWithoutPrefix.replace(suffix, '');
+  return filePathWithoutSuffix;
 }
 
 export async function getPostBySlug(slug: string) {

@@ -1,5 +1,5 @@
 import { FooterBlock, FooterHeading, TweetMeta, TweetStyles } from '@/lib/assets/styles/FooterStyles';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
 
 const url = `/.netlify/functions/twitter`;

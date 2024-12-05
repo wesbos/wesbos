@@ -58,7 +58,7 @@ Let's look up `find()` on MDN.
 
 >T he find() method returns the value of the first element in the provided array that satisfies the provided testing function.
 
-![](./579.png)
+{/* TODO: where did this image go? ![](./579.png) */}
 
 As you can see, the `find()` function takes a callback as it's argument. It takes in the nested arguments of `element`, `index` and `array`, which are optional.
 
@@ -501,13 +501,13 @@ We are returning the following 👇
 
 If we try adding a few more numbers to the array and then calling sort, we get the following:
 
-![](./598.png)
+{/* TODO: where did this image go? ![](./598.png) */}
 
 What is going on there?
 
 Let's look up the docs on MDN.
 
-![](./599.png)
+{/* TODO: where did this image go? ![](./599.png) */}
 
 > The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
 
@@ -526,7 +526,7 @@ console.log(numbersSorted);
 
 First log to see what it looks like when we call `.sort()` directly one it.
 
-![](./600.png)
+{/* TODO: where did this image go? ![](./600.png) */}
 
 That is clearly not what we want.
 
@@ -536,7 +536,7 @@ So basically we are going to loop over the array and it will give us the first i
 
 So, what do you return?
 
-![](./601.png)
+{/* TODO: where did this image go? ![](./601.png) */}
 
 If you return less than 0, it will go before it. If you return 0, it will be unchanged, and if you return greater than 0 it will go ahead of it.
 
@@ -550,7 +550,7 @@ const numbersSorted = numbers.sort(function(firstItem, secondItem) {
 console.log(numbersSorted);
 ```
 
-![](./602.png)
+{/* TODO: where did this image go? ![](./602.png) */}
 
 As you can see we get 2 items each time.
 
@@ -580,7 +580,7 @@ console.log(numbersSorted);
 
 Let's refresh the page to see how that works.
 
-![](./603.png)
+{/* TODO: where did this image go? ![](./603.png) */}
 
 So that works, but it's pretty verbose and we don't have to return 1, -1 or zero. You can return any zero, negative number or positive number.
 
@@ -594,7 +594,7 @@ const numbersSorted = numbers.sort(function(firstItem, secondItem) {
 console.log(numbersSorted);
 ```
 
-![](./604.png)
+{/* TODO: where did this image go? ![](./604.png) */}
 
 Oops, that returns it in the wrong order. It should be `firstItem - secondItem`.
 
@@ -610,7 +610,7 @@ So by default, it will sort itself on strings. So if you did have strings like �
 
 It will sort it easily, like so 👇
 
-![](./605.png)
+{/* TODO: where did this image go? ![](./605.png) */}
 
 But if you have numbers or nested elements, then you have to use a callback like we did.
 
@@ -623,7 +623,7 @@ console.log(numbersSorted);
 
 If you refresh the HTML page, you will see it still works 👇
 
-![](./606.png)
+{/* TODO: where did this image go? ![](./606.png) */}
 
 So now back to our exercise about sorting the toppings alphabetically using `sort()`.
 
@@ -633,11 +633,11 @@ That is easy. We just need to do add the following code 👇
 console.log(toppings.sort());
 ```
 
-![](./607.png)
+{/* TODO: where did this image go? ![](./607.png) */}
 
 The next exercise is sorting the order totals from most expensive to leat with `.sort()`.
 
-![](./608.png)
+{/* TODO: where did this image go? ![](./608.png) */}
 
 So this is just an array of numbers.
 We can do the same thing we did before, or we can make a function called `numbersSort` like so:
@@ -654,13 +654,13 @@ Now we can call `sort` and just pass in that function like so 👇
 console.log(orderTotals.sort(numbersSort))
 ```
 
-![](./609.png)
+{/* TODO: where did this image go? ![](./609.png) */}
 
 As you can see, that worked.
 
 Next we need to sort the prices with sort.
 
-![](./610.png)
+{/* TODO: where did this image go? ![](./610.png) */}
 
 Since `prices` is an object, how would we sort them?
 
@@ -674,7 +674,7 @@ const productsSortedByPrice = Object.entries(prices);
 
 As you can see, that gives us an array where each item is an array.
 
-![](./611.png)
+{/* TODO: where did this image go? ![](./611.png) */}
 
 Now, what we can do is sort over each of them. We will use a regular function for that which takes in 2 parameters, the first item and the second item which we will represent with the variables `a` and `b`.
 
@@ -688,15 +688,15 @@ const productsSortedByPrice = Object.entries(prices).sort(function(a, b) {
 
 If you refresh HTMl page, the debugger will popup. You should see something like the following 👇
 
-![](./612.png)
+{/* TODO: where did this image go? ![](./612.png) */}
 
 The important part is the local scope, meaning that what are these `a` and `b` variables equal to?
 
-![](./613.png)
+{/* TODO: where did this image go? ![](./613.png) */}
 
 It tells us that `a` is equal to burger and `b` is equal to hotdog.
 
-![](./614.png)
+{/* TODO: where did this image go? ![](./614.png) */}
 
 It says they are both arrays.
 
@@ -706,7 +706,7 @@ const bPrice = b[1];
 debugger;
 ```
 
-![](./615.png)
+{/* TODO: where did this image go? ![](./615.png) */}
 
 ```js
 const productsSortedByPrice = Object.entries(prices).sort(function(a, b) {
@@ -720,7 +720,7 @@ console.table(productsSortedByPrice);
 
 As you can see, we return the most expensive to the least expensive.
 
-![](./617.png)
+{/* TODO: where did this image go? ![](./617.png) */}
 
 If we wanted to turn that back into an object we can simply wrap it in `Object.fromEntries()`.
 
@@ -728,7 +728,7 @@ If we wanted to turn that back into an object we can simply wrap it in `Object.f
 Object.fromEntries(productsSortedByPrice);
 ```
 
-![](./618.png)
+{/* TODO: where did this image go? ![](./618.png) */}
 
 What that does is it takes a nested array, like we have here, and turns it back into a regular objects.
 
