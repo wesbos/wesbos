@@ -24,7 +24,7 @@ The simplest is to open up your browser dev tools and go to your console.
 
 If you want to run some JavaScript to see how it works, like here Wes has typed `1 + 1` and hit enter and the console returned `2`.
 
-![browser console showing the calculation of 1 + 1](/browser-console.png)
+![browser console showing the calculation of 1 + 1](./browser-console.png)
 
 This right here is a JavaScript console and it's a nice way to quickly noodle on some JavaScript
 
@@ -37,7 +37,7 @@ document.querySelectorAll("p");
 ```
 _(Don't worry about what document.querySelectorAll() does, we will cover that in a future video)._
 
-![browser console showing the output of document.querySelectorAll('p') which is all of the paragraphs on the website](/console-showing-queryselector.png)
+![browser console showing the output of document.querySelectorAll('p') which is all of the paragraphs on the website](./console-showing-queryselector.png)
 
 The code that runs in your dev tools console is running in the context of the page that is loaded in your browser tab.
 
@@ -53,7 +53,7 @@ What that will do is when the HTML is loaded, it's going to say "OH! This is a s
 
 If you go ahead and open the `running-js.html` file in the browser, and open the console, you will see that it says "hey".
 
-![browser console output that says hey](/console-hey-message.png)
+![browser console output that says hey](./console-hey-message.png)
 _Don't sweat this too much, we will be explaining what console.log() and everything does shortly._
 
 ## Run scripts before closing body tag
@@ -72,11 +72,11 @@ So if we were to modify `running-js.html` to include a paragraph tag that says H
 </body>
 ```
 
-![console output showing a paragraph element with the text content of Hey](/console-paragraph-output.png)
+![console output showing a paragraph element with the text content of Hey](./console-paragraph-output.png)
 
 If you were to move the script tag above the paragraph element (or move the paragraph element below the script tag), and refresh the page, the console will show `null` because that means it found nothing.
 
-![a script tag before the paragraph element that is being selected](/body-with-paragraph-after-script-tag.png)
+![a script tag before the paragraph element that is being selected](./body-with-paragraph-after-script-tag.png)
 
 In order for your script tag to access the elements on the page, the elements must first be on the page before you select them. If we try to select something that doesn't yet exist (because it gets created later), we won't have access to it.
 
@@ -109,15 +109,15 @@ In our case, it's in the same folder so `./some.js` is the relative path to our 
 
 Now if you run that, it will say in the console `I'm in another file`, and it will even show you which file and line number of where that JavaScript had been run. 👇
 
-![browser console showing the filename and line number where the console statement was defined](/somejs-filename-and-line.png)
+![browser console showing the filename and line number where the console statement was defined](./somejs-filename-and-line.png)
 
 Again, if you were to put the script inside the `head` element, it will still work.
 
-![html markup showing the some.js file linked in the head element](/somejs-script-in-head.png)
+![html markup showing the some.js file linked in the head element](./somejs-script-in-head.png)
 
 However, if you were to try to select some things on the page, such as the paragraph tag, you will get `null`.
 
-![html markup showing the some.js file in the head element and a paragraph element in the body](/somejs-script-in-head-with-paragraph.png)
+![html markup showing the some.js file in the head element and a paragraph element in the body](./somejs-script-in-head-with-paragraph.png)
 
 Why? Because of the same reason, the script will run before the actual HTML is finished building on the page. Leave the script tag right before the closing body tag for the best performance and to save yourself future debugging headaches.
 
@@ -129,7 +129,7 @@ That is a quirk with the script tag. It cannot be self closed.
 
 You also cannot add extra JavaScript between the script tag like so: 👇
 
-![script tag that has a src attribute and inline code](/script-tag-with-inline-code.png)
+![script tag that has a src attribute and inline code](./script-tag-with-inline-code.png)
 _That will not work._
 
 You can have multiple script tags in an HTML file, if you like.
@@ -158,7 +158,7 @@ node node-example.js
 
 That will run whatever code is in the script file, and once it's done, it will exit out of node and return you to the terminal.
 
-![the terminal showing the node command and the output from the javascript file](/node-terminal-output.png)
+![the terminal showing the node command and the output from the javascript file](./node-terminal-output.png)
 
 That's the short of how to load JavaScript.
 

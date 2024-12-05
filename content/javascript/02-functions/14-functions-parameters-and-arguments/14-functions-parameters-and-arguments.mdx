@@ -130,7 +130,7 @@ When you call the function, you pass it arguments.
 
 Here is a quick cheatsheet Wes has put together that explains the parts of a function.
 
-![function definition includes function keyword, name, paraeters, default value, body, return value and scoping](/defining-and-calling-a-function.png)
+![function definition includes function keyword, name, paraeters, default value, body, return value and scoping](./defining-and-calling-a-function.png)
 
 When we define the function, we use what are called **parameters**. Parameters can be thought of as placeholders (we will talk about **default values** for parameters shortly).
 
@@ -159,11 +159,11 @@ function calculateBill(billAmount, taxRate) {
 const myTotal = calculateBill(100, 0.13);
 ```
 
-![calculateBill function computes the bill using scoped arguments as 100 for billAmount and 0.13 for taxRate](/calling-function-with-arguments-in-console.png)
+![calculateBill function computes the bill using scoped arguments as 100 for billAmount and 0.13 for taxRate](./calling-function-with-arguments-in-console.png)
 
 We can run that function from the console but pass it different values for the arguments, it will console log the values of the arguments that we passed, like so 👇
 
-![calling calculateBill function again by passing different arguments](/calling-function-again-by-passing-arguments-in-console.png)
+![calling calculateBill function again by passing different arguments](./calling-function-again-by-passing-arguments-in-console.png)
 
 Why?
 
@@ -220,7 +220,7 @@ console.log(greeting);
 
 Run the code as is, even though it will break, to see why. In the console you should see a reference error in the console.
 
-![sayHiTo function throws not defined error as firstName is not defined anywhere](/firstName-is-not-defined-error-in-console.png)
+![sayHiTo function throws not defined error as firstName is not defined anywhere](./firstName-is-not-defined-error-in-console.png)
 
 What happens is this function, first it looks inside of its own function scope, and it will look for a variable `firstName` that has been passed in. If there is not, it will start to do is go up to a high level of scope and look there.
 
@@ -253,13 +253,13 @@ console.log(greeting);
 ```
 
 This makes the function nice and reusable, and we can use it to print out any first name like so 👇
-![reusing same function named sayHiTo by passing different first name](/reusing-functions-in-console.png)
+![reusing same function named sayHiTo by passing different first name](./reusing-functions-in-console.png)
 
 As long as we pass in an argument (in this case "Wes"), it is going to have a variable inside of that function that is referenced to whatever the person has passed in.
 
 If we don't run it with anything, you will see... 👇
 
-![without passing an argument to sayHiTo function which accepts a parameter prints undefined](/calling-function-without-any-argument.png)
+![without passing an argument to sayHiTo function which accepts a parameter prints undefined](./calling-function-without-any-argument.png)
 
 The reason that happens is when a function runs, it will create the variable for us (`firstName`) and set it to whatever was passed in.
 
@@ -338,7 +338,7 @@ The `name` parameter that is used in the `doctorize()` method will never collide
 
 Let's go ahead and run it in the console. 👇
 
-![reusing same name as parameters across different functions never collide with each other](/reusing-same-named-paraeters-in-different-functions.png)
+![reusing same name as parameters across different functions never collide with each other](./reusing-same-named-paraeters-in-different-functions.png)
 
 Let's pass the output of `doctorize()` into `yell` by typing the following into the console 👇
 
@@ -346,7 +346,7 @@ Let's pass the output of `doctorize()` into `yell` by typing the following into 
 yell(doctorize('wes'))
 ```
 
-![in nesting of functions calls inner function gets executed first, followed by outer function](/nested-calling-function-in-console.png)
+![in nesting of functions calls inner function gets executed first, followed by outer function](./nested-calling-function-in-console.png)
 
 How that works is:
 
@@ -361,7 +361,7 @@ Now, let's talk about **default values**.
 
 If we were to take our `yell` function and instead of passing it "Wes", we do not pass an argument, it will error out.
 
-![yell function without argument results in error](/calling-yell-function-without-an-argument-produces-error.png)
+![yell function without argument results in error](./calling-yell-function-without-an-argument-produces-error.png)
 
 What is happening is that the `toUpperCase()` function (it's technically a method), it's trying to run it against something that didn't get passed in. This means that if someone forgets to pass a value to the `yell` function, our code will break.
 
@@ -395,7 +395,7 @@ function calculateBill(billAmount, taxRate = 0.13) {
 
 What that allows us to do is call `calculateBill(100)` and only pass the value for the `billAmount`.
 
-![by giving taxRate as default value we can omit taxRate argument in function call](/tax-rate-parameter-with-default-value.png)
+![by giving taxRate as default value we can omit taxRate argument in function call](./tax-rate-parameter-with-default-value.png)
 
 Wes often likes to set default values when he is creating functions. Even just adding a default value for a string variable of an empty string.
 
@@ -407,7 +407,7 @@ function yell(name = "") {
 
 That will make sure the function doesn't error out, it just won't show a name like so 👇
 
-![setting default values to function parameters ensures no errors when no actual argument is passed](/calling-yell-function-without-any-argument-in-console.png)
+![setting default values to function parameters ensures no errors when no actual argument is passed](./calling-yell-function-without-any-argument-in-console.png)
 
 That is just a safeguard.
 
@@ -435,11 +435,11 @@ You may notice that as you save the file, Prettier will remove the parenthesis i
 
 BEFORE SAVING 👉
 
-![parenthesis included before saving without prettier](/before-saving-without-prettier.png)
+![parenthesis included before saving without prettier](./before-saving-without-prettier.png)
 
 AFTER SAVING WITH PRETTIER 👉
 
-![parenthesis gets removed after saving with prettier](/after-saving-with-prettier.png)
+![parenthesis gets removed after saving with prettier](./after-saving-with-prettier.png)
 
 If we run `calculateBill` and pass it 100 dollars, it will return 128.
 
@@ -453,7 +453,7 @@ const myBill4 = calculateBill(100, , 0.2);
 
 If you try to just leave the argument empty and use two commas like shown above 👆, it will break.
 
-![leaving the second argument empty results in breaking the code](/leaving-an-argument-empty-error.png)
+![leaving the second argument empty results in breaking the code](./leaving-an-argument-empty-error.png)
 
 👆 The error is complaining about an unexpected token `,`.
 

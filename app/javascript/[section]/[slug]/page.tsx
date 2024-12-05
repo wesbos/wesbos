@@ -1,5 +1,5 @@
 // import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getPostBySlug } from '@/lib/getPosts';
+import { getPostBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
 import mdxComponents from '@/components/mdxComponents';
 import Image, { ImageProps } from 'next/image';
 
@@ -15,8 +15,9 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
   }
   const filePath = `${post.frontmatter.filename.replace('./', '')}`;
   console.log('importing', filePath);
-  // const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${makePathDynamicallyImportable(filePath)}.mdx`);
-  const { default: MDXContent } = await import(`@/content/javascript/01-the-basics/01-welcome/01-welcome.mdx`);
+  const importPath = makePathDynamicallyImportable(filePath);
+  const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${importPath}.mdx`);
+  // const { default: MDXContent } = await import(`@/content/javascript/01-the-basics/01-welcome/01-welcome.mdx`);
   console.log(MDXContent.toString());
   if (!post) {
     return <p>Post not found</p>;

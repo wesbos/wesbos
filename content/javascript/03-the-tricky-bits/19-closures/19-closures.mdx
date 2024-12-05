@@ -77,7 +77,7 @@ Now, let's try calling `inner()` from within `outer()`, and open the browser and
 
 You should see both the inner and outer variables.
 
-![console showing logs 'hey I am an inner var' followed by 'Hey I am the outer Var'](/210.png)
+![console showing logs 'hey I am an inner var' followed by 'Hey I am the outer Var'](./210.png)
 
 The same thing would happen if you called it from within the html script tag like so 👇
 
@@ -148,7 +148,7 @@ What we are doing there is:
 
 In the console, when you type `innerFn` it will return the `inner` function like so 👇
 
-![console showing inner function snippet](/212.png)
+![console showing inner function snippet](./212.png)
 
 The question is, if you were to run `innerFn()` right below the function expression, is the `outerVar` still going to be accessible or will it be `undefined`?
 
@@ -175,7 +175,7 @@ Is that still going to be available to us or will it be `undefined`?
 
 If you try that code, you will see that they both work.
 
-![console showing logs](/213.png)
+![console showing logs](./213.png)
 
 What you can do is stick a function into a variable, and then at a later point in time, you can have access to that function. A closure comes into play because you can access the function even though the outer function is done.
 
@@ -232,17 +232,17 @@ console.log(sayHey('kait'));
 
 If you refresh you will see the following in the console 👇
 
-![console showing logs 'HELLO wes', 'HELLO kait' and 'HEY kait'](/214.png)
+![console showing logs 'HELLO wes', 'HELLO kait' and 'HEY kait'](./214.png)
 
 What is happening here is that when we create the outer function `createGreeting(){...}`, we had created a variable inside of that function, which is then accessed at a lower scope.
 
 We've got inner scope here 👇
 
-![Editor showing highlighted inner scope](/215.png)
+![Editor showing highlighted inner scope](./215.png)
 
 And we have outer scope here 👇
 
-![Editor showing highlighted outer scope](/216.png)
+![Editor showing highlighted outer scope](./216.png)
 
 Since our inner scope references a variable that was created in our outer scope, that is what is referred to as **closure**.
 
@@ -281,7 +281,7 @@ _(Note: if you forget to add the `return` keyword that is in front of the `win()
 
 Now, whenever we run the hockey game function, a message will be logged in the console showing the incrementing score.
 
-![console showing logs with gameName as Hockey and score ranging from 1 to 4](/217.png)
+![console showing logs with gameName as Hockey and score ranging from 1 to 4](./217.png)
 
 What is happening there is the function that we create is called `win()`, and we are using a `score` variable.
 
@@ -301,9 +301,9 @@ const soccerGame = createGame('Soccer');
 
 Now we can do this in the console 👇
 
-![console showing logs from multiple games](/218.png)
+![console showing logs from multiple games](./218.png)
 
-![Editor showing scope type as number](/219.png)
+![Editor showing scope type as number](./219.png)
 
 Even though the `score` variable 👆 is the same variable name, because we have created two separate `win()` functions by using the `createGame()` function, they each have their own private variable score.
 
