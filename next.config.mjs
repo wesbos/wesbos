@@ -1,7 +1,6 @@
 import createMDX from '@next/mdx';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 
-
 const withMDX = createMDX({
   options: {
     /* webpackExclude: /\.noimport\.json$/ */
@@ -19,6 +18,7 @@ const nextConfig = {
   // transpilePackages: ['next-mdx-remote'],
   experimental: {
     mdxRs: false /* Turned off as it doesnt work with rehype plugins */,
+    dynamicIO: false,
   },
   // compiler: {
   //   styledComponents: true,

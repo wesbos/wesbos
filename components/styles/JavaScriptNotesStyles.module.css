@@ -1,7 +1,7 @@
-import { styled } from '@/styled-system/jsx';
-
-export const JavaScriptNotesStyles = styled.div`
+/* This can be deleted */
+.JavaScriptNotesStyles {
   display: grid;
+  background: palegoldenrod;
   grid-template-columns: minmax(200px, 350px) 1fr;
   gap: 5rem;
   @media (max-width: 1100px) {
@@ -34,8 +34,8 @@ export const JavaScriptNotesStyles = styled.div`
   article {
     max-width: 1000px;
   }
-`;
+}
 
-export function Red({ children }) {
-  return <div>{children}</div>;
+.red {
+  background: green;
 }

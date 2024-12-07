@@ -2,9 +2,9 @@ import React from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 // import Instagram from './Instagram';
 // import Twitter from './Twitter';
+import Link from 'next/link';
 import Podcast from './Podcast';
 import LatestCourse from './LatestCourse';
-import Link from 'next/link';
 import { FooterInner, FooterStyles } from '@/lib/assets/styles/FooterStyles';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
@@ -26,7 +26,7 @@ export default function Footer() {
           <a href="https://github.com/wesbos" target="_blank" rel="noreferrer noopener" className="socialLink">
             <IoLogoGithub /> GitHub
           </a>
-          <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
+          {/* TODO DynamicIO Is whining about this <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p> */}
           <p>
             <Link className="terms" href="/terms">
               Terms

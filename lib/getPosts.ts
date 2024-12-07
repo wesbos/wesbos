@@ -2,7 +2,7 @@ import fg from 'fast-glob';
 import { readFile, readdir } from 'fs/promises';
 import { serialize } from 'next-mdx-remote/serialize';
 import rehypeInferDescriptionMeta from 'rehype-infer-description-meta';
-import rehypeMdxImportMedia from 'rehype-mdx-import-media'
+import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 import { MDXRemoteProps, MDXRemoteSerializeResult, compileMDX } from 'next-mdx-remote/rsc';
 import { slug } from 'github-slugger';
 import { type Plugin } from 'unified';
@@ -11,8 +11,13 @@ import { visit } from 'unist-util-visit';
 // import { toString } from 'mdast-util-to-string';
 import path from 'path';
 import rehypeShiki from '@shikijs/rehype';
-import { ContentType, Frontmatter } from './types';
+import { ContentType, Frontmatter, MDXResult } from './types';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
+
+// Add this near the top of the file, before the first usage
+declare global {
+  var cachedPosts: MDXResult[];
+}
 
 // const gatsbyConfig = {
 //   resolve: 'gatsby-plugin-mdx',
@@ -71,7 +76,7 @@ export const nextMdxOptions: MDXRemoteProps['options'] = {
   parseFrontmatter: true,
   mdxOptions: {
     rehypePlugins: [
-      [rehypeMdxImportMedia]
+      [rehypeMdxImportMedia],
 
       // [
       //   rehypeInferDescriptionMeta({
@@ -105,17 +110,19 @@ type PostFilterArgs = {
   page?: number;
   skip?: number;
   limit?: number;
-  type?: ContentType
-}
+  type?: ContentType;
+};
 
-let cachedPosts: MDXRemoteSerializeResult<undefined, Frontmatter>[] = [];
-async function parsePosts() {
-  if(cachedPosts.length) {
-    return cachedPosts;
+// globalThis.cachedPosts = [] as MDXResult[];
+
+async function parsePosts(): Promise<MDXResult[]> {
+  if (globalThis.cachedPosts?.length) {
+    console.log('🔍 Returning cached posts...');
+    return globalThis.cachedPosts;
   }
-  // Read the posts from the file system
+  console.log('🔍 Not cached, parsing posts...');
+  // Get a list of all the mdx files in the content folder
   const mdxPosts = await fg(['./content/**/*.mdx']);
-  console.log(`Found ${mdxPosts.length} posts`);
   // Read the posts from the file system using fs/promises
   const data = await Promise.all(mdxPosts.map(async (post) => readFile(post, 'utf-8'))).catch((err) => {
     console.log(`Error reading posts from the file system`);
@@ -126,15 +133,14 @@ async function parsePosts() {
     throw new Error('No Content Found?!?');
   }
 
-  const toc = [];
   // parse the frontmatter from the posts
   const parsed = await Promise.all(data.map((post: string) => serialize<undefined, Frontmatter>(post, nextMdxOptions)));
 
   // attach raw source to the parsed mdx
-  parsed.forEach((post, index) => {
-    post.rawSource = data[index];
-  });
-
+  // TODO: I don't think we're using this
+  // parsed.forEach((post, index) => {
+  //   post.rawSource = data[index];
+  // });
 
   const posts = parsed
     // Add slug if one doesn't exist
@@ -146,20 +152,20 @@ async function parsePosts() {
       }
       post.frontmatter.filename = fPath;
       post.frontmatter.folder = path.dirname(fPath);
-      if(post.frontmatter.image) {
-        post.frontmatter.imagePath = `/${path.join(path.dirname(fPath), post.frontmatter.image) }`;
+      if (post.frontmatter.image) {
+        post.frontmatter.imagePath = `/${path.join(path.dirname(fPath), post.frontmatter.image)}`;
       }
 
       return post;
     })
     .map((post) => {
       // Also tag each one with a post type based on its folder
-      if(post.frontmatter.filename.startsWith('./content/tips')) {
+      if (post.frontmatter.filename.startsWith('./content/tips')) {
         post.frontmatter.type = 'tip';
-      } else if(post.frontmatter.filename.startsWith('./content/javascript')) {
+      } else if (post.frontmatter.filename.startsWith('./content/javascript')) {
         post.frontmatter.type = 'javascript';
-        const sectionNumber = parseNumberFromTitle(post.frontmatter.section);
-        const postNumber = parseNumberFromTitle(post.frontmatter.tocTitle);
+        const sectionNumber = parseNumberFromTitle(post.frontmatter.section || '');
+        const postNumber = parseNumberFromTitle(post.frontmatter.tocTitle || '');
         post.frontmatter.sectionNumber = sectionNumber;
         post.frontmatter.postNumber = postNumber;
         // JS Notes need their section and content number attached to them
@@ -171,7 +177,8 @@ async function parsePosts() {
     // Attach the
     .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
   // cache them
-  cachedPosts = posts;
+  console.log(`📝 Caching ${posts.length} pieces of content...`);
+  globalThis.cachedPosts = posts;
   return posts;
 }
 
@@ -184,9 +191,9 @@ export function makePathDynamicallyImportable(filePath: string) {
   return filePathWithoutSuffix;
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(postSlug: string) {
   const posts = await parsePosts();
-  return posts.find((post) => post.frontmatter.slug === slug);
+  return posts.find((post) => post.frontmatter.slug === postSlug);
 }
 
 export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_PAGE }: PostFilterArgs = {}) {
@@ -198,12 +205,10 @@ export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_
   console.log(`Returning posts for page ${page} from ${start} to ${end}`);
   const postsForPage = posts.slice(start, end);
 
-  const returnedPosts =  {
+  const returnedPosts = {
     posts: postsForPage,
     total: posts.length,
     pages: Math.ceil(posts.length / PER_PAGE),
   };
   return returnedPosts;
 }
-
-getPosts();

@@ -1,0 +1,15 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "reactTsScss.autoComplete": true,
+  "reactTsScss.definition": true,
+  "reactTsScss.peekProperties": true,
+  "reactTsScss.cssAutoComplete": true,
+  "reactTsScss.cssDefinitions": true,
+  "reactTsScss.diagnostics": true,
+  "reactTsScss.baseDir": ".",
+  "reactTsScss.cssSyntaxColor": true,
+  "reactTsScss.tsCleanUpDefs": true,
+  "reactTsScss.cleanUpDefs": ["*.module.css", "*.module.scss", "*.module.sass", "*.module.less", "*.module.styl"],
+  "reactTsScss.references": true,
+  "reactTsScss.codelens": false
+}
