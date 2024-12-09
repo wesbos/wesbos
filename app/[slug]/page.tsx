@@ -1,44 +1,59 @@
-// import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getPostBySlug, getPosts, mdxOptions, nextMdxOptions } from '@/lib/getPosts';
+import ContentNav from '@/components/ContentNav';
 import mdxComponents from '@/components/mdxComponents';
-import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-
-import { compile, evaluate, run } from '@mdx-js/mdx';
-import * as runtime from 'react/jsx-runtime';
-import remarkGfm from 'remark-gfm';
+import H from '@/components/mdxComponents/Headings';
+import { EditDialog } from '@/components/styles/EditDialog.module.css';
+import { getPostBySlug, getPosts, makePathDynamicallyImportable } from '@/lib/getPosts';
+import { postMeta } from '@/styles/PostMeta.module.css';
 import Image, { ImageProps } from 'next/image';
-import path from 'path';
-import { importPost } from '../../importPost'
+import { IoLogoGithub } from 'react-icons/io';
 
-export default async function BlogPost({ params }: { params: { slug: string, section: string } }) {
+export default async function BlogPost({ params, children }: { params: { slug: string, section: string }, children: React.ReactNode }) {
   const { slug, section } = await params;
-  const post = await getPostBySlug(`${section}/${slug}`);
-  console.log(post.frontmatter.filename);
-  const filePath = `${post.frontmatter.filename.replace('./', '').replace('posts/', '')}`;
-  console.log(filePath);
-  return <div>just wait...</div>
-  // // Webpack Dynamic Imports makes a module of everything in `../..` - which was my project root!
-  // // const { default: MDXContent } = await import(`../../${filePath}`);
-  // // Tell webpack about the folder where I am dynamically pulling from, fixed it:
-  // const { default: MDXContent } = await import(`../../posts/${filePath}`);
-  // // const COM = import(`../../posts/${post.frontmatter.filename}`);
-  // if (!post) {
-  //   return <p>Post not found</p>;
-  // }
+  const post = await getPostBySlug(slug);
+  if (!post) {
+    return <p>Post not found</p>;
+  }
+  const importPath = makePathDynamicallyImportable(post.frontmatter.filename);
+  const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${importPath}.mdx`);
 
-  // return (
-  //   <div>
-  //     <p>{filePath}</p>
-  //     <h2>{post.frontmatter.title}</h2>
-  //     <MDXContent
-  //       components={{
-  //         img: (props) => {
-  //           return <Image sizes="100vw" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
-  //         },
-  //       }}
-  //     />
-  //   </div>
-  // );
+
+    const editURL = `https://github.com/wesbos/wesbos/tree/master/src/TODO`;
+
+    return (
+      <>
+        {/* <Img image={post.frontmatter.image} alt={post.frontmatter.title} /> */}
+        <div>
+          {/* <PostMetaTags post={post} /> */}
+          <H>{post.frontmatter.title}</H>
+          <div className={postMeta}>
+            <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+            <span>{post.frontmatter.category.join(', ')}</span>
+            <a rel="noopener noreferrer" target="_blank" href={editURL}>
+              Edit Post <IoLogoGithub className='inline' />
+            </a>
+          </div>
+        </div>
+              <MDXContent
+        components={{
+          img: (props) => {
+            return <Image sizes="100vw" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
+          },
+          ...mdxComponents
+        }}
+      />
+        <div className={EditDialog}>
+          <p>Find an issue with this post? Think you could clarify, update or add something?</p>
+          <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
+          <p>
+            <a target="_blank" href={editURL}>
+              <IoLogoGithub /> Edit on Github
+            </a>
+          </p>
+        </div>
+        {/* TODO <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} /> */}
+      </>
+    );
+
 }
 // This is what we need to pre-gen all the posts
 export async function generateStaticParams() {

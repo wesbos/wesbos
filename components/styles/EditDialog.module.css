@@ -1,6 +1,4 @@
-import { styled } from '@/styled-system/jsx';
-
-const EditDialogStyles = styled.div`
+.EditDialog {
   border-left: 2px solid var(--yellow);
   font-size: 1.5rem;
   padding: 1rem 2rem;
@@ -9,6 +7,4 @@ const EditDialogStyles = styled.div`
   p:first-child {
     margin-top: 0;
   }
-`;
-
-export default EditDialogStyles;
+}

@@ -1,13 +1,11 @@
 import Image, { ImageProps } from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
 import { getPostBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
-import mdxComponents from '@/components/mdxComponents';
 import { JavaScriptNotesStyles } from '@/components/styles/JavaScriptNotesStyles';
-import TableOfContents from '@/components/TableOfContents';
-import PostHeaderStyles from '@/components/styles/PostHeaderStyles';
 import H from '@/components/mdxComponents/Headings';
 import EditDialogStyles from '@/components/styles/EditDialog';
 import { postMeta } from '@/styles/PostMeta.module.css';
+import { BeginnerJavaScript } from '@/components/beginnerJavaScript';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -19,9 +17,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
       </p>
     );
   }
-
-  const filePath = `${post.frontmatter.filename.replace('./', '')}`;
-  const importPath = makePathDynamicallyImportable(filePath);
+  const importPath = makePathDynamicallyImportable(post.frontmatter.filename);
   const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${importPath}.mdx`);
   const editURL = `https://github.com/wesbos/beginner-javascript/edit/main/content/TODOOOOOx`;
   if (!post) {
@@ -37,7 +33,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
         <div>
           {/* <PostMetaTags post={post} /> */}
           <H>{post.frontmatter.title}</H>
-          {/* <BeginnerJavaScript /> */}
+          <BeginnerJavaScript />
           <div className={postMeta}>
             <span>{post.frontmatter.category.join(', ')}</span>
             <a target="_blank" href={editURL} rel="noreferrer">
@@ -67,13 +63,6 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
         </Helmet> */}
       </article>
     </JavaScriptNotesStyles>
-  );
-
-  return (
-    <div>
-      <p>{filePath}</p>
-      <h2>{post.frontmatter.title}</h2>
-    </div>
   );
 }
 // This is what we need to pre-gen all the posts

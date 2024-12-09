@@ -16,7 +16,6 @@ const mdxComponents: MDXComponents = {
   h6: props => <H as="h6" {...props} />,
   inlineCode: props => <Code {...props} />,
   pre: HighlightedCode,
-  // blockquote: Blockquote,
   // TODO add `a`
   // TODO add `img`
   // TODO add `ul`

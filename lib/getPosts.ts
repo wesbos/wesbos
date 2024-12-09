@@ -184,7 +184,7 @@ async function parsePosts(): Promise<MDXResult[]> {
 
 export function makePathDynamicallyImportable(filePath: string) {
   // Due to the waay dybamic imports work in webpack, we need to make sure the path is statically analyzable, so we need to make sure the path is a string literal. This function removes the `content/` prefix and the `.mdx` suffix from the file path
-  const prefix = 'content/';
+  const prefix = './content/';
   const suffix = '.mdx';
   const filePathWithoutPrefix = filePath.replace(prefix, '');
   const filePathWithoutSuffix = filePathWithoutPrefix.replace(suffix, '');

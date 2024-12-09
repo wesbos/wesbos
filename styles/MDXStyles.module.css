@@ -1,18 +1,4 @@
-import { styled } from '@/styled-system/jsx';
-import React from 'react';
-// import styled, { keyframes } from 'styled-components';
-
-const headingSizes = {
-  h1: 5,
-  h2: 4,
-  h3: 3,
-  h4: 2.5,
-  h5: 2,
-  h6: 1.8,
-  span: 3.2,
-};
-
-const HStyles = styled.h1`
+.heading {
   @media (max-width: 450px) {
     font-size: 3rem;
   }
@@ -62,13 +48,4 @@ const HStyles = styled.h1`
   &:hover .hash-anchor {
     opacity: 1;
   }
-`;
-/* eslint-disable react/destructuring-assignment */
-export default function H(props) {
-  const { looksLike, className, as, ...forwardedProps } = props;
-  return (
-    <HStyles {...forwardedProps} className={`${className ?? ''} ${looksLike || as || ''}`} as={as}>
-      <span className="grit">{props.children}</span>
-    </HStyles>
-  );
 }

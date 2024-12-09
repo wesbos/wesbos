@@ -1,43 +1,8 @@
+import { BannerStyles } from '@/styles/BannerStyles.module.css';
 import React from 'react';
-import { styled } from '@/styled-system/jsx';
-
-const BannerStyles = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  font-size: 12px;
-  gap: 1rem;
-  align-items: stretch;
-  background: #1a69d0;
-  color: white;
-  margin: 2rem 0;
-  font-family: var(--baseFont);
-  p {
-    margin: 5px 0;
-  }
-  a {
-    text-decoration-color: var(--yellow);
-    color: white;
-  }
-  strong {
-    color: var(--yellow);
-  }
-  img {
-    height: 100%;
-    align-self: stretch;
-    width: 220px;
-    object-fit: contain;
-    @media (max-width: 600px) {
-      display: none;
-    }
-  }
-  .text {
-    padding: 0 1rem;
-  }
-`;
-
 export function BeginnerJavaScript() {
   return (
-    <BannerStyles>
+    <div className={BannerStyles}>
       <div>
         <img src="https://images.wesbos.com/upload/w_700,q_auto,f_auto/v1621453897/wesbos.com/bjs.png" alt="Beginner JavaScript" />
       </div>
@@ -62,6 +27,6 @@ export function BeginnerJavaScript() {
           </a>
         </p>
       </div>
-    </BannerStyles>
+    </div>
   );
 }

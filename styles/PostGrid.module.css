@@ -1,13 +1,9 @@
-'use client';
-
-import { styled } from '@/styled-system/jsx';
-
-const PostGrid = styled.div`
+.PostGrid {
   display: grid;
   grid-template-columns: 1fr;
-`;
+}
 
-const PostGridItem = styled.div`
+.PostGridItem {
   display: grid;
   grid-gap: 3rem;
   grid-template-columns: 1fr;
@@ -43,7 +39,4 @@ const PostGridItem = styled.div`
       }
     }
   }
-`;
-
-export { PostGridItem };
-export default PostGrid;
+}
