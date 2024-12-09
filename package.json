@@ -45,7 +45,6 @@
     "waait": "^1.0.5"
   },
   "devDependencies": {
-    "@pandacss/dev": "^0.45.0",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -77,7 +76,6 @@
     }
   },
   "scripts": {
-    "prepare": "panda codegen",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "lint:fix": "eslint --ext .js,.jsx --ignore-pattern public . --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
