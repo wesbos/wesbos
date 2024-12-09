@@ -1,8 +1,4 @@
-'use client';
-
-import { styled } from '@/styled-system/jsx';
-
-export const ContentStyles = styled.div`
+.ContentStyles {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
@@ -14,4 +10,4 @@ export const ContentStyles = styled.div`
   &:has(> .ultra-wide) {
     max-width: 1400px;
   }
-`;
+}

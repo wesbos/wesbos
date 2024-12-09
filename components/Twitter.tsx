@@ -1,4 +1,5 @@
-import { FooterBlock, FooterHeading, TweetMeta, TweetStyles } from '@/lib/assets/styles/FooterStyles';
+import { FooterBlock, FooterHeading, TweetStyles } from '@/styles/FooterStyles.module.css';
+import clsx from 'clsx';
 import React from 'react';
 import { IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
 
@@ -19,7 +20,7 @@ export default function Twitter() {
   const tweets = [];
 
   return (
-    <div className={[FooterBlock, TweetStyles]}>
+    <div className={clsx([FooterBlock, TweetStyles])}>
       <h3 className={FooterHeading}>
         <span className="highlight">
           <IoLogoTwitter />

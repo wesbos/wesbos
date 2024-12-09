@@ -1,30 +1,26 @@
-"use client";
-import { css } from '@/styled-system/css';
-import { styled } from '@/styled-system/jsx';
+.FooterInner {
+  width: 100%;
+  color: var(--dark);
+  display: grid;
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+  grid-gap: 3rem;
+  & .bottom {
+    grid-column: 1 / -1;
+    text-align: center;
+    background: none;
+    color: var(--light);
+  }
+}
 
-
-export const FooterInner = styled.div`
-    width: 100%;
-    color: var(--dark);
-    display: grid;
-    max-width: var(--maxWidth);
-    margin: 0 auto;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    @media (max-width: 1200px) {
-      grid-template-columns: 1fr 1fr;
-    }
-    @media (max-width: 575px) {
-      grid-template-columns: 1fr;
-    }
-    grid-gap: 3rem;
-    & .bottom {
-      grid-column: 1 / -1;
-      text-align: center;
-      background: none;
-      color: var(--light);
-    }
-`;
-export const FooterStyles = styled.footer`
+.FooterStyles {
   background: var(--dark) var(--whiteGrit);
   background-size: 500px;
   padding-top: 180px;
@@ -63,27 +59,27 @@ export const FooterStyles = styled.footer`
       display: none;
     }
   }
-`;
+}
 
-export const FooterHeading = css`
-    margin: 0;
-    padding: 2px;
-    margin-bottom: 2rem;
-    text-align: center;
-    margin-top: -30px;
-    /* TODO dirty */
-    background: none;
-    & svg {
-      position: relative;
-      margin-right: 3px;
-      display: inline;
-    }
-    & a {
-      text-decoration: none;
-    }
-`;
+.FooterHeading {
+  margin: 0;
+  padding: 2px;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin-top: -30px;
+  /* TODO dirty */
+  background: none;
+  & svg {
+    position: relative;
+    margin-right: 3px;
+    display: inline;
+  }
+  & a {
+    text-decoration: none;
+  }
+}
 
-export const FooterBlock = css`
+.FooterBlock {
   padding: 2rem;
   background-color: var(--light);
   background-image: var(--blackGrit);
@@ -92,10 +88,10 @@ export const FooterBlock = css`
   & p {
     font-size: 1.6rem;
   }
-`
+}
 
-// Instagram Widget Styles
-export const InstaStyles = styled.div`
+/* Instagram Widget Styles */
+.InstaStyles {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
@@ -105,9 +101,10 @@ export const InstaStyles = styled.div`
       width: 100%;
     }
   }
-`;
+}
 
-export const StoriesStyles = styled.a`
+.StoriesStyles {
+  /* a */
   font-size: 0;
   display: flex;
   flex-wrap: wrap;
@@ -118,10 +115,10 @@ export const StoriesStyles = styled.a`
     font-size: 0;
     display: block;
   }
-`;
+}
 
-// Twitter Styles
-export const TweetStyles = css`
+/* Twitter Styles */
+.TweetStyles {
   a.tweet-link {
     display: block;
     overflow: hidden;
@@ -140,9 +137,9 @@ export const TweetStyles = css`
     position: relative;
     top: 1rem;
   }
-`;
+}
 
-export const TweetMeta = styled.div`
+.TweetMeta {
   display: grid;
   grid-template-columns: 1fr auto 15px auto 1fr;
   justify-items: center;
@@ -170,4 +167,4 @@ export const TweetMeta = styled.div`
   .media {
     font-size: 0;
   }
-`;
+}

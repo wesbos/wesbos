@@ -1,11 +1,11 @@
 import '@/components/styles/index.css';
 import React from 'react';
 import { Metadata } from 'next';
-import { ContentStyles } from '@/lib/assets/styles/ContentStyles';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import { operatorMono, radnika } from '@/lib/assets/fonts/Fonts';
 import { LayoutStyles } from '@/styles/LayoutStyles.module.css';
+import { ContentStyles } from '@/styles/ContentStyles.module.css';
 
 // import mdxComponents from '@/components/mdxComponents';
 
@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           ${pageContext.layoutClasses}`  } */
         >
           <Nav />
-          <ContentStyles /* className={ TODO: pageContext.layoutClasses } */>{children}</ContentStyles>
+          <div className={ContentStyles} /* className={ TODO: pageContext.layoutClasses } */>{children}</div>
           <Footer />
         </div>
       </body>

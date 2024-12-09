@@ -1,4 +1,4 @@
-import { FooterBlock, FooterHeading } from "@/lib/assets/styles/FooterStyles";
+import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
 
 export default function LatestCourse() {
   return (

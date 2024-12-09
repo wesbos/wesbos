@@ -1,8 +1,8 @@
 import Image from 'next/image'
 const url = `https://syntax.fm/api/shows/latest`;
 import logo from '@/public/images/syntax-logo.jpg';
-import { FooterBlock, FooterHeading } from '@/lib/assets/styles/FooterStyles';
 import { css } from '@/styled-system/css';
+import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
 
 export default async function Podcast() {
   const podcast = await fetch(url).then((res) => res.json());

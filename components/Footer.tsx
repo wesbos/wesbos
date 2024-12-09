@@ -1,18 +1,16 @@
 import React from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
-// import Instagram from './Instagram';
-// import Twitter from './Twitter';
 import Link from 'next/link';
 import Podcast from './Podcast';
 import LatestCourse from './LatestCourse';
-import { FooterInner, FooterStyles } from '@/lib/assets/styles/FooterStyles';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
+import { FooterInner, FooterStyles } from '@/styles/FooterStyles.module.css';
 
 export default function Footer() {
   return (
-    <FooterStyles>
-      <FooterInner>
+    <footer className={FooterStyles}>
+      <div className={FooterInner}>
         <Podcast />
         <Twitter />
         <Instagram />
@@ -37,7 +35,7 @@ export default function Footer() {
             </Link>
           </p>
         </div>
-      </FooterInner>
-    </FooterStyles>
+      </div>
+    </footer>
   );
 }

@@ -65,7 +65,7 @@
   "keywords": [
     "wesbos"
   ],
-  "eslintConfig": {
+  "eslintConfigxx": {
     "extends": [
       "wesbos/typescript"
     ],
