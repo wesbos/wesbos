@@ -7,6 +7,7 @@ import TableOfContents from '@/components/TableOfContents';
 import PostHeaderStyles from '@/components/styles/PostHeaderStyles';
 import H from '@/components/mdxComponents/Headings';
 import EditDialogStyles from '@/components/styles/EditDialog';
+import { postMeta } from '@/styles/PostMeta.module.css';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -39,8 +40,8 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
           {/* <BeginnerJavaScript /> */}
           <div className={postMeta}>
             <span>{post.frontmatter.category.join(', ')}</span>
-            <a rel="noopener noreferrer" target="_blank" href={editURL}>
-              Edit Post <IoLogoGithub />
+            <a target="_blank" href={editURL} rel="noreferrer">
+              Edit Post <IoLogoGithub className="inline" />
             </a>
           </div>
         </div>

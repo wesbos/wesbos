@@ -21,11 +21,11 @@
     }
     --borderSize: calc(var(--size) / 2);
     font-family: var(--baseFont);
-    box-sizing: border-box;
     border: var(--borderSize) solid var(--dark);
     border-color: var(--dark);
     border-image: var(--whiteGrit) 200 round;
     font-size: 10px;
+    box-sizing: border-box;
     font-family:
       var(--operator-mono),
       -apple-system,
@@ -317,5 +317,8 @@ span.grit {
   }
   .span {
     font-size: 3.2rem;
+  }
+  .inline {
+    display: inline;
   }
 }

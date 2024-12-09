@@ -1,13 +1,11 @@
-import { styled } from '@/styled-system/jsx';
+.LogoStyles {
+  display: grid;
+  justify-items: center;
+  margin-bottom: -4rem;
+  z-index: 2;
+}
 
-export const LogoStyles = styled.h1`
-    display: grid;
-    justify-items: center;
-    margin-bottom: -4rem;
-    z-index: 2;
-`;
-
-export const NavStyles = styled.nav`
+.NavStyles {
   border-bottom: 5px solid var(--yellow);
   display: grid;
   grid-template-columns: 1fr;
@@ -30,23 +28,23 @@ export const NavStyles = styled.nav`
       }
     }
   }
-`;
+}
 
-export const NavLink = styled.a`
-    font-family: var(--radnika);
-    color: var(--dark);
-    text-decoration: none;
-    line-height: 1;
-    &[aria-current='page'],
-    &.current-parent {
-      .grit {
-        text-decoration: underline;
-        text-decoration-color: var(--yellow);
-      }
+.NavLink {
+  font-family: var(--radnika);
+  color: var(--dark);
+  text-decoration: none;
+  line-height: 1;
+  &[aria-current='page'],
+  &.current-parent {
+    .grit {
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
     }
-  `
+  }
+}
 
-export const NavSmall = styled.small`
+.NavSmall {
   font-size: 1.3rem;
   display: block;
   font-family: var(--baseFont);
@@ -58,9 +56,9 @@ export const NavSmall = styled.small`
   .row2 & {
     display: none;
   }
-`;
+}
 
-export const NavUl = styled.ul`
+.NavUl {
   background: var(--light);
   display: flex;
   flex-wrap: wrap;
@@ -73,9 +71,9 @@ export const NavUl = styled.ul`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
-`;
+}
 
-export const NavLi = styled.li`
+.NavLi {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: start;
@@ -129,4 +127,4 @@ export const NavLi = styled.li`
       padding: 0;
     }
   }
-`;
+}

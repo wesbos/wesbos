@@ -1,3 +1,5 @@
+'use server';
+
 // This is a function that creates a file with every .module.css file imported into it.
 // I do this so that Next.js knows about all the css files in the project, and the auto-imports work.
 import watch from 'glob-watcher';

@@ -5,13 +5,17 @@
   grid-gap: 1rem;
   grid-auto-flow: column;
   justify-content: start;
+
   & > * {
-    :not(:last-child):after {
+    &:after {
       content: '×';
       margin-left: 1rem;
       color: var(--yellow);
       font-weight: 600;
       font-style: normal;
+    }
+    &:last-child:after {
+      display: none;
     }
   }
 }

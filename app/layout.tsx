@@ -2,10 +2,10 @@ import '@/components/styles/index.css';
 import React from 'react';
 import { Metadata } from 'next';
 import { ContentStyles } from '@/lib/assets/styles/ContentStyles';
-import LayoutStyles from '@/lib/assets/styles/LayoutStyles';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import { operatorMono, radnika } from '@/lib/assets/fonts/Fonts';
+import { LayoutStyles } from '@/styles/LayoutStyles.module.css';
 
 // import mdxComponents from '@/components/mdxComponents';
 
@@ -19,8 +19,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${radnika.variable} ${operatorMono.variable}`}>
       <meta name="theme-color" content="#ffc600" />
       <body>
-        <LayoutStyles
-          className="welcomex"
+        <div
+          className={LayoutStyles}
           /* className={ TODO We need the current page `
           ${location.pathname === '/' ? 'welcome' : null}
           ${pageContext.layoutClasses}`  } */
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Nav />
           <ContentStyles /* className={ TODO: pageContext.layoutClasses } */>{children}</ContentStyles>
           <Footer />
-        </LayoutStyles>
+        </div>
       </body>
     </html>
   );
