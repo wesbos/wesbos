@@ -1,55 +1,6 @@
-import React from 'react';
-import { styled } from '@/styled-system/jsx';
-import H from '../../components/mdxComponents/Headings';
+import H from '@/components/mdxComponents/Headings';
 import { PostMetaTags } from '../../components/MetaTags';
-
-const CourseListStyles = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 2rem;
-  & > * {
-    padding: 2rem;
-    border: 1px solid var(--lightGray);
-    h3 {
-      margin: 0;
-    }
-    h3 + p {
-      margin-top: 0;
-    }
-    img {
-      max-width: 300px;
-      float: left;
-      margin-right: 2rem;
-      @media (max-width: 800px) {
-        margin-right: 0;
-      }
-    }
-    @media (max-width: 450px) {
-      padding: 0;
-      border: 0;
-      border-top: 2px solid var(--yellow);
-      padding-top: 4rem;
-      img {
-        width: 100%;
-      }
-      a {
-        font-size: 1.5rem;
-      }
-    }
-  }
-`;
-
-const PriceTag = styled.span`
-  text-transform: uppercase;
-  display: block;
-  font-size: 1.1rem;
-  color: black;
-  &:before {
-    content: '$ ';
-    color: var(--yellow);
-    font-weight: bold;
-  }
-`;
+import { CourseListStyles, PriceTag } from '@/styles/CourseStyles.module.css';
 
 export default function CoursesPage({ location }) {
   return (
@@ -61,11 +12,11 @@ export default function CoursesPage({ location }) {
       </p>
       <p>Ready to learn and up your game as a web developer? Here is a listing of all the courses I've put out. Some of them are paid and some of them are free.</p>
       <p>I'm delivering a few new courses every year, so sign up for any of these courses and you'll hear when I announce new ones!</p>
-      <CourseListStyles>
+      <div className={CourseListStyles}>
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GAT/GAT-social-share.png" alt="Master Gatsby" />
           <H as="h3">Master Gatsby</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://MasterGatsby.com" target="_blank" rel="noreferrer">
             MasterGatsby.com
           </a>
@@ -75,7 +26,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/BJS/BJS-Social-Share.png" alt="Beginner JavaScript" />
           <H as="h3">Beginner JavaScript</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://BeginnerJavaScript.com" target="_blank" rel="noreferrer">
             BeginnerJavaScript.com
           </a>
@@ -84,7 +35,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/ARG/arg-facebook-share.png" alt="Advanced React" />
           <H as="h3">Fullstack Advanced React and GraphQL</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://AdvancedReact.com" target="_blank" rel="noreferrer">
             AdvancedReact.com
           </a>
@@ -97,7 +48,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/es6-facebook-share.png" alt="ES6 for Everyone" />
           <H as="h3">ES6 for Everyone</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://ES6.io" target="_blank" rel="noreferrer">
             ES6.io
           </a>
@@ -106,7 +57,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/JS3-social-share.png" alt="JavaScript30" />
           <H as="h3">JavaScript30</H>
-          <PriceTag>Free</PriceTag>
+          <span className={PriceTag}>Free</span>
           <a href="https://JavaScript30.com" target="_blank" rel="noreferrer">
             JavaScript30.com
           </a>
@@ -115,7 +66,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share.png" alt="React for Beginners" />
           <H as="h3">React For Beginners</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://ReactForBeginners.com" target="_blank" rel="noreferrer">
             ReactForBeginners.com
           </a>
@@ -125,7 +76,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GRID-social-share.png" alt="CSS Grid" />
           <H as="h3">CSS Grid</H>
-          <PriceTag>Free</PriceTag>
+          <span className={PriceTag}>Free</span>
           <a href="https://CSSGrid.io" target="_blank" rel="noreferrer">
             CSSGrid.io
           </a>
@@ -135,7 +86,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/NODE/node-facebook-share.jpg" alt="Learn Node" />
           <H as="h3">Learn Node</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://LearnNode.com" target="_blank" rel="noreferrer">
             LearnNode.com
           </a>
@@ -144,7 +95,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share2.png" alt="Sublime Text Power User" />
           <H as="h3">Sublime Text Power User</H>
-          <PriceTag>Premium</PriceTag>
+          <span className={PriceTag}>Premium</span>
           <a href="https://SublimeTextBook.com" target="_blank" rel="noreferrer">
             SublimeTextBook.com
           </a>
@@ -155,7 +106,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/WTF/share.png" alt="What The Flexbox?!" />
           <H as="h3">What The Flexbox?!</H>
-          <PriceTag>Free</PriceTag>
+          <span className={PriceTag}>Free</span>
           <a href="http://Flexbox.io" target="_blank" rel="noreferrer">
             Flexbox.io
           </a>
@@ -165,7 +116,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/CLPU/share.png" alt="Command Line Power User" />
           <H as="h3">Command Line Power User</H>
-          <PriceTag>Free</PriceTag>
+          <span className={PriceTag}>Free</span>
           <a href="http://CommandLinePowerUser.com" target="_blank" rel="noreferrer">
             CommandLinePowerUser.com
           </a>
@@ -175,7 +126,7 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/RDX/share.png" alt="Learn Redux" />
           <H as="h3">Learn Redux</H>
-          <PriceTag>Free</PriceTag>
+          <span className={PriceTag}>Free</span>
           <a href="https://LearnRedux.com" target="_blank" rel="noreferrer">
             LearnRedux.com
           </a>
@@ -187,21 +138,21 @@ export default function CoursesPage({ location }) {
         <div className="course">
           <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/MMD/share.png" alt="Mastering Markdown" />
           <H as="h3">Mastering Markdown</H>
-          <PriceTag>Free</PriceTag>
+          <span className={PriceTag}>Free</span>
           <a href="http://MasteringMarkdown.com" target="_blank" rel="noreferrer">
             MasteringMarkdown.com
           </a>
           <p>A quick 34 minute mini course for anyone who is looking to learn markdown for the first time, or fill in any gaps along the way. Markdown is a very simple language and can be easily mastered in under an hour.</p>
         </div>
-      </CourseListStyles>
-      <PostMetaTags
+      </div>
+      {/* TODO <PostMetaTags
         post={{
           frontmatter: {
             slug: location.pathname,
             title: 'Courses',
           },
         }}
-      />
+      /> */}
     </>
   );
 }

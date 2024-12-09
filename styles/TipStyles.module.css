@@ -1,8 +1,4 @@
-import { styled } from '@/styled-system/jsx';
-import blackgrit from '@/components/mdxComponents/blackgrit.png';
-import whitegrit from '@/components/mdxComponents/whitegrit.png';
-
-const TipStyles = styled.div`
+.TipStyles {
   border-bottom: 2px solid var(--yellow);
   padding-bottom: 2rem;
   margin-bottom: 2rem;
@@ -34,9 +30,9 @@ const TipStyles = styled.div`
       margin-top: -20px;
     }
   }
-`;
+}
 
-const TipMetaStyles = styled.div`
+.TipMetaStyles {
   font-size: 1.5rem;
   font-style: italic;
   display: flex;
@@ -78,7 +74,4 @@ const TipMetaStyles = styled.div`
   .twitter {
     fill: #1da1f2;
   }
-`;
-
-export default TipStyles;
-export { TipMetaStyles };
+}

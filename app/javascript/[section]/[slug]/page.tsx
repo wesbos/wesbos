@@ -1,11 +1,12 @@
 import Image, { ImageProps } from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
 import { getPostBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
-import { JavaScriptNotesStyles } from '@/components/styles/JavaScriptNotesStyles';
 import H from '@/components/mdxComponents/Headings';
-import EditDialogStyles from '@/components/styles/EditDialog';
 import { postMeta } from '@/styles/PostMeta.module.css';
 import { BeginnerJavaScript } from '@/components/beginnerJavaScript';
+import clsx from 'clsx';
+import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
+import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -24,7 +25,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
     return <p>Post not found</p>;
   }
   return (
-    <JavaScriptNotesStyles className="ultra-wide">
+    <div className={clsx('ultra-wide', JavaScriptNotesStyles)}>
       <div>
         <aside>TOC Goes here</aside>
         {/* <TableOfContents activeId={activeId} currentPage={pageContext.slug} /> */}
@@ -48,7 +49,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
           }}
         />
 
-        <EditDialogStyles>
+        <div className={EditDialogStyles}>
           <p>Find an issue with this post? Think you could clarify, update or add something?</p>
           <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
           <p>
@@ -56,13 +57,13 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
               <IoLogoGithub /> Edit on Github
             </a>
           </p>
-        </EditDialogStyles>
+        </div>
         {/* <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} /> */}
         {/* <Helmet>
           <title>{post.frontmatter.title} - Beginner JavaScript - Wes Bos</title>
         </Helmet> */}
       </article>
-    </JavaScriptNotesStyles>
+    </div>
   );
 }
 // This is what we need to pre-gen all the posts
