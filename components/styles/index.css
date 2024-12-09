@@ -217,7 +217,7 @@
   }
 
   /* Button Styles */
-  button:not(.snipcart button) {
+  button {
     border: 0;
     font-weight: 900;
     padding: 1rem;
@@ -249,7 +249,7 @@
   }
 
   .dirty,
-  button:not(.snipcart button) {
+  button {
     --rotate: -1deg;
     --scale: 1;
     background: var(--yellow) var(--blackGrit);
