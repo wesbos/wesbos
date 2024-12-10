@@ -17,7 +17,7 @@ const withMDX = createMDX({
         },
       ],
       ['rehype-slug'],
-      // ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
+      ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
       ['@stefanprobst/rehype-extract-toc/mdx', { name: 'toc' }],
       // [mdxToc, { name: 'toc' }],
       // [rehypeWesBosMdx, { name: 'wesbos' }],
