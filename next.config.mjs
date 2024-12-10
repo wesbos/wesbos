@@ -3,7 +3,9 @@ import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 // import { mdxToc, tocAttacher } from './lib/rehype-toc';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-// import { rehypeWesBosMdx } from './lib/rehype-wesbos';
+import { rehypeWesBosMdx } from './lib/rehype-wesbos.mjs';
+import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
+import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
 const withMDX = createMDX({
   options: {
     /* webpackExclude: /\.noimport\.json$/ */
@@ -17,10 +19,10 @@ const withMDX = createMDX({
         },
       ],
       ['rehype-slug'],
-      ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
-      ['@stefanprobst/rehype-extract-toc/mdx', { name: 'toc' }],
+      [rehypeExtractToc, { name: 'toc' }],
+      [rehypeExtractTocMdx, { name: 'toc' }],
       // [mdxToc, { name: 'toc' }],
-      // [rehypeWesBosMdx, { name: 'wesbos' }],
+      [rehypeWesBosMdx, { name: 'wesbos' }],
     ],
   },
 });
