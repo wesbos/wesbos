@@ -41,9 +41,15 @@ importers:
       estree-util-is-identifier-name:
         specifier: ^3.0.0
         version: 3.0.0
+      estree-util-scope:
+        specifier: ^1.0.0
+        version: 1.0.0
       estree-util-value-to-estree:
         specifier: ^3.2.1
         version: 3.2.1
+      estree-walker:
+        specifier: ^3.0.3
+        version: 3.0.3
       fast-glob:
         specifier: ^3.3.2
         version: 3.3.2
@@ -1604,6 +1610,9 @@ packages:
 
   estree-util-is-identifier-name@3.0.0:
     resolution: {integrity: sha512-hFtqIDZTIUZ9BXLb8y4pYGyk6+wekIivNVTcmvk8NoOh+VeRn5y6cEHzbURrWbfp1fIqdVipilzj+lfaadNZmg==}
+
+  estree-util-scope@1.0.0:
+    resolution: {integrity: sha512-2CAASclonf+JFWBNJPndcOpA8EMJwa0Q8LUFJEKqXLW6+qBvbFZuF5gItbQOs/umBUkjviCSDCbBwU2cXbmrhQ==}
 
   estree-util-to-js@2.0.0:
     resolution: {integrity: sha512-WDF+xj5rRWmD5tj6bIqRi6CkLIXbbNQUcxQHzGysQzvHmdYG2G7p/Tf0J0gpxGgkeMZNTIjT/AoSvC9Xehcgdg==}
@@ -5020,6 +5029,11 @@ snapshots:
   estree-util-is-identifier-name@2.1.0: {}
 
   estree-util-is-identifier-name@3.0.0: {}
+
+  estree-util-scope@1.0.0:
+    dependencies:
+      '@types/estree': 1.0.5
+      devlop: 1.1.0
 
   estree-util-to-js@2.0.0:
     dependencies:

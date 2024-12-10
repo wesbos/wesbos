@@ -1,7 +1,10 @@
+import { parseContent } from '@/lib/getPosts';
 import * as all from './test.mdx';
 
-export default function HotTips() {
+export default async function HotTips() {
   console.log(all);
+  const allParsed = await parseContent(all);
+  console.log(allParsed);
   const Content = all.default;
   return (
     <div>

@@ -18,7 +18,9 @@
     "dotenv": "^16.4.5",
     "eslint-config-next": "^15.0.4",
     "estree-util-is-identifier-name": "^3.0.0",
+    "estree-util-scope": "^1.0.0",
     "estree-util-value-to-estree": "^3.2.1",
+    "estree-walker": "^3.0.3",
     "fast-glob": "^3.3.2",
     "file-type": "^19.4.0",
     "github-slugger": "^2.0.0",
@@ -96,7 +98,7 @@
     "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
     "xxprebuild": "netlify-lambda install",
     "scrape": "NODE_OPTIONS='--inspect=localhost:4444' node scrape-tips.js",
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start"
   },

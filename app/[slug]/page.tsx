@@ -14,6 +14,8 @@ export default async function BlogPost({ params, children }: { params: { slug: s
     return <p>Post not found</p>;
   }
   const importPath = makePathDynamicallyImportable(post.frontmatter.filename);
+  const importPathMade = `@/content/${importPath}.mdx`;
+  console.log(importPath);
   const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${importPath}.mdx`);
 
 

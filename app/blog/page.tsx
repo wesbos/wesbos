@@ -29,7 +29,7 @@ export default async function Blog({ params }: { params: { pageNumber: string } 
               <div className="postMeta">
                 <time dateTime={post.frontmatter.date.toString()}>{format(post.frontmatter.date, 'MMMM d, yyyy')}</time>
                 <ul className="categories">
-                  {post.frontmatter.category.map((cat) => (
+                  {(post.frontmatter.category || []).map((cat) => (
                     <li key={cat}>{cat}</li>
                   ))}
                 </ul>
