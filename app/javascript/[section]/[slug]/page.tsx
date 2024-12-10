@@ -7,6 +7,8 @@ import { BeginnerJavaScript } from '@/components/beginnerJavaScript';
 import clsx from 'clsx';
 import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
+import { TableOfContents } from '@/components/TableOfContentsNew';
+import mdxComponents from '@/components/mdxComponents';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -27,7 +29,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
   return (
     <div className={clsx('ultra-wide', JavaScriptNotesStyles)}>
       <div>
-        <aside>TOC Goes here</aside>
+        <TableOfContents />
         {/* <TableOfContents activeId={activeId} currentPage={pageContext.slug} /> */}
       </div>
       <article>
@@ -46,6 +48,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
         <MDXContent
           components={{
             img: (props) => <Image sizes="100vw" width="100" height="100" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />,
+            ...mdxComponents
           }}
         />
 

@@ -20,8 +20,8 @@ export async function HighlightedCode({ children, ...props }: { children: React.
     const className = children.props.className || '';
     const lang = getLanguageFromClassName(className);
     // TODO: Add custom theme
-    console.log(codeToHtml);
-    console.log(children.props.children);
+    // console.log(codeToHtml);
+    // console.log(children.props.children);
     const html = await codeToHtml(children.props.children, {
       lang: 'javascript',
       theme: 'aurora-x',

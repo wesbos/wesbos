@@ -1,6 +1,5 @@
 .JavaScriptNotesStyles {
   display: grid;
-  background: palegoldenrod;
   grid-template-columns: minmax(200px, 350px) 1fr;
   gap: 5rem;
   @media (max-width: 1100px) {

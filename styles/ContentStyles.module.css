@@ -9,5 +9,6 @@
   &.ultra-wide,
   &:has(> .ultra-wide) {
     max-width: 1400px;
+    background: red;
   }
 }

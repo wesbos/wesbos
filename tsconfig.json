@@ -29,6 +29,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".next/types/**/*.ts", "next.config.js", "postcss.config.cjs", "postcss.config.cjs", "**/*.module.css"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", ".next/types/**/*.ts", "next.config.js", "postcss.config.cjs", "postcss.config.cjs", "**/*.module.css", "lib/rehype-toc.mjs"],
   "exclude": ["node_modules"]
 }
