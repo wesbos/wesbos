@@ -1,7 +1,6 @@
-import ContentNav from '@/components/ContentNav';
 import mdxComponents from '@/components/mdxComponents';
 import H from '@/components/mdxComponents/Headings';
-import { getPostBySlug, getPosts, makePathDynamicallyImportable } from '@/lib/getPosts';
+import { getPostBySlug, getPosts } from '@/lib/getPosts';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
 import Image, { ImageProps } from 'next/image';
@@ -13,13 +12,9 @@ export default async function BlogPost({ params, children }: { params: { slug: s
   if (!post) {
     return <p>Post not found</p>;
   }
-  const importPath = makePathDynamicallyImportable(post.frontmatter.filename);
-  const importPathMade = `@/content/${importPath}.mdx`;
-  console.log(importPath);
-  const { default: MDXContent } = await import(/* webpackExclude: /\.mp4$/ */ `@/content/${importPath}.mdx`);
+  const { default: MDXContent } = post;
 
-
-    const editURL = `https://github.com/wesbos/wesbos/tree/master/src/TODO`;
+  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/TODO`;
 
     return (
       <>

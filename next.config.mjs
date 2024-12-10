@@ -1,9 +1,9 @@
 import createMDX from '@next/mdx';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-import { mdxToc, tocAttacher } from './lib/rehype-toc';
+// import { mdxToc, tocAttacher } from './lib/rehype-toc';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import { rehypeWesBosMdx } from './lib/rehype-wesbos';
+// import { rehypeWesBosMdx } from './lib/rehype-wesbos';
 const withMDX = createMDX({
   options: {
     /* webpackExclude: /\.noimport\.json$/ */
@@ -17,9 +17,10 @@ const withMDX = createMDX({
         },
       ],
       ['rehype-slug'],
-      [tocAttacher, { name: 'toc' }],
-      [mdxToc, { name: 'toc' }],
-      [rehypeWesBosMdx, { name: 'wesbos' }],
+      // ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
+      ['@stefanprobst/rehype-extract-toc/mdx', { name: 'toc' }],
+      // [mdxToc, { name: 'toc' }],
+      // [rehypeWesBosMdx, { name: 'wesbos' }],
     ],
   },
 });
