@@ -28,9 +28,9 @@ export function parseContent(post: MDXResult): Promise<MDXResult> {
     post.frontmatter.imagePath = `/${path.join(path.dirname(post.filePath), post.frontmatter.image)}`;
   }
   // Also tag each one with a post type based on its folder
-  if (post.frontmatter.filename.startsWith('./content/tips')) {
+  if (post.frontmatter.filename.includes('content/tips/')) {
     post.frontmatter.type = 'tip';
-  } else if (post.frontmatter.filename.startsWith('./content/javascript')) {
+  } else if (post.frontmatter.filename.includes('content/javascript/')) {
     post.frontmatter.type = 'javascript';
     // JS Notes need their section and content number attached to them
     const sectionNumber = parseNumberFromTitle(post.frontmatter.section || '');
@@ -78,7 +78,9 @@ export async function getPostBySlug(postSlug: string) {
 }
 
 export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_PAGE }: PostFilterArgs = {}) {
-  const posts = (await parsePosts()).filter((post) => post.frontmatter.type === type);
+  const allPosts = await parsePosts();
+  console.log(allPosts.at(2));
+  const posts = allPosts.filter((post) => post.frontmatter.type === type);
   // Return the posts for this page
   const start = (page - 1) * limit;
   const end = start + limit;
