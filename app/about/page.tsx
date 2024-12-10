@@ -2,7 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import H from '../../components/mdxComponents/Headings';
 import { TimeSince } from './TimeSinceStarting';
-
+import wes from '@/public/images/wes.jpg';
+import wesAndScott from '@/public/images/wes-and-scott.jpg';
+import bosFamily from '@/public/images/bos-family.jpg';
 export default function AboutPage() {
   return (
     <>
@@ -17,7 +19,7 @@ export default function AboutPage() {
       /> */}
       <H>About</H>
       <p>Hey, I'm Wes Bos.</p>
-      <Image width="800" height="400" src="/public/images/wes.jpg" alt="Wes Bos sits at a table in the direct sunlight pretending to be on his computer" />
+      <Image width="800" height="400" src={wes} alt="Wes Bos sits at a table in the direct sunlight pretending to be on his computer" />
 
       <H as="h3">The Skinny&hellip;</H>
 
@@ -34,7 +36,7 @@ export default function AboutPage() {
         <strong>I've been in love with web development</strong> for over half my life. Seems weird, right? It's a space of constant improvement and new &amp; exciting technology. I consider myself a hacker in that I'm always using technology to solve my life's problems and ambitions.
       </p>
 
-      <Image width="800" height="400" src="/@/public/wes-and-scott.jpg" alt="Wes and Scott meet for the very first time" />
+      <Image width="800" height="400" src={wesAndScott} alt="Wes and Scott meet for the very first time" />
       <p>
         📻 Listen to <a href="https://syntax.fm/show/008/wes-bos-origin-story">my origin story</a> if you want a little more info.
       </p>
@@ -58,7 +60,7 @@ export default function AboutPage() {
       <p>
         <strong>I have a few hobbies. </strong>I've rebuilt hundreds of vintage road racing bikes. I fancy myself as a good cook, enjoyer of cast iron, smoking meat on my Big Green Egg and have been known to make some pretty killer pulled pork. I love tools and I'll try fix anything - appliances, electronics, kids toys and things around the house.
       </p>
-      <Image width="800" height="400" src="/@/public/bos-family.jpg" alt="My beautiful Family" />
+      <Image width="800" height="400" src={bosFamily} alt="My beautiful Family" />
 
       <H as="h3">Bio</H>
 

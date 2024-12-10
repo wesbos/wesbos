@@ -1,7 +1,5 @@
+import H from '@/components/mdxComponents/Headings';
 import React from 'react';
-import H from '../../components/mdxComponents/Headings';
-import { PostMetaTags } from '../../components/MetaTags';
-
 export default function ContactPage({ location }) {
   return (
     <>
@@ -47,14 +45,14 @@ export default function ContactPage({ location }) {
 
       <p>Thanks, have a great day!</p>
 
-      <PostMetaTags
+      {/* TODO <PostMetaTags
         post={{
           frontmatter: {
             slug: location.pathname,
             title: `Contact`,
           },
         }}
-      />
+      /> */}
     </>
   );
 }
