@@ -5,6 +5,9 @@ import Pagination from '@/components/Pagination';
 import { TipStyles } from '@/styles/TipStyles.module.css';
 import Link from 'next/link';
 import TipMeta from '@/components/TipMeta';
+import Image from 'next/image';
+import mdxComponents from '@/components/mdxComponents';
+import { Tip } from '@/components/Tip';
 
 // export default async function HotTips() {
 //   console.log(all);
@@ -25,27 +28,20 @@ export default async function HotTips({ params }: { params: { pageNumber: string
     page: currentPage,
     type: 'tip'
   });
+  console.log(posts);
   return (
     <>
       <H>🔥 There are {total} Hot Tips</H>
       <p>
         Hot tips are spicy lil' nuggets related to web development and tooling that I share on <a href="https://twitter.com/wesbos">my twitter account</a>. I've logged them here to make them easier to find.
       </p>
-      {/* <Pagination currentPage={pageContext.currentPage} totalCount={tips.totalCount} pathPrefix="/tips/" /> */}
+      <Pagination currentPage={currentPage} totalCount={total} totalPages={pages} pathPrefix="/tips/" />
       <div>
-        {posts.map((tip, i) => (
-          <div className={TipStyles} key={`${tip.frontmatter.slug}-${i}`}>
-            <Link href={`/tip/${tip.frontmatter.slug}`}>
-              {/* {tip.frontmatter.videos && tip.frontmatter.videos.map((url) => <video src={url} key={url} autoPlay muted loop />)} */}
-              {/* TODO IMAGES {tip.frontmatter.images && tip.frontmatter.images.map((image, idx) => <Img image={image} key={`image${idx}`} alt={tip.body} />)} */}
-            </Link>
-            <div className="tipContent">
-              <TipMeta tip={tip} />
-              <tip.default />
-            </div>
-          </div>
-        ))}
+        {posts.map((tip, i) => {
+          return <Tip key={`${tip.frontmatter.slug}-${i}`} tip={tip} />;
+        })}
       </div>
+      <Pagination currentPage={currentPage} totalCount={total} totalPages={pages} pathPrefix="/tips/" />
       {/* <PostMetaTags
         post={{
           frontmatter: {

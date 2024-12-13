@@ -6,6 +6,7 @@ import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { rehypeWesBosMdx } from './lib/rehype-wesbos.mjs';
 import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
 import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
+import { rehypeHotTips, rehypeMdxTitle } from './lib/rehype-hot-tips.mjs';
 const withMDX = createMDX({
   options: {
     /* webpackExclude: /\.noimport\.json$/ */
@@ -23,6 +24,8 @@ const withMDX = createMDX({
       [rehypeExtractTocMdx, { name: 'toc' }],
       // [mdxToc, { name: 'toc' }],
       [rehypeWesBosMdx, { name: 'wesbos' }],
+      [rehypeMdxTitle],
+      [rehypeHotTips],
     ],
   },
 });

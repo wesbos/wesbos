@@ -1,29 +1,32 @@
-import { compile } from '@mdx-js/mdx';
-import { type Fragment, type Jsx, run } from '@mdx-js/mdx';
-import * as runtime_ from 'react/jsx-runtime';
-
-import Testttt from '../../posts/transfer-usd-out-of-paypal/paypal.mdx';
-import Image, { ImageProps } from 'next/image';
-const txt = `
-# Hello World
-This is a markdown file.
-`;
-
+import { TweetVideo } from '@/components/TweetVideo';
+import * as tip from '../../content/tips/css-grid-stacking/css-grid-stacking.mdx';
+import { Tip } from '@/components/Tip';
+import { isSocialLink, parseSocialLink } from '@/utils/parseSocialLinks';
+import { fetchTweetDetails } from '@/lib/twitter-fetcher';
 
 export default async function Test() {
-
-const result = await compile(txt, { baseUrl: import.meta.url });
+  console.log(tip);
+  // See if there is a twitter link in the tip
+  const twitterLink = (tip.frontmatter.links || []).find(link => isSocialLink(link, 'twitter'));
+  const socialLink = parseSocialLink(twitterLink);
+  const tweetDetails = await fetchTweetDetails(socialLink.postId);
+  console.log(tweetDetails);
   return (
     <div>
-      <Testttt
-        components={{
-          img: (props) => {
-            console.log(props);
-            return <Image width="200" height="200" sizes="100vw" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
-          },
-        }}
-      />
-      <h1>test</h1>
+      <Tip tip={tip} />
+      {/* <blockquote
+        className="twitter-tweet"
+        data-media-max-width="560"
+      >
+        <p lang="en" dir="ltr">
+          Are you using position: absolute; to overlap elements?<br />
+          <br />
+          It&#39;s almost always better to Use CSS Grid instead!{' '}
+          <a href="https://t.co/hmpbExR88Q">pic.twitter.com/hmpbExR88Q</a>
+        </p>
+        &mdash; Wes Bos (@wesbos) <a href="https://twitter.com/wesbos/status/1834242925401694490?ref_src=twsrc%5Etfw">September 12, 2024</a>
+      </blockquote>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> */}
     </div>
   );
 }
