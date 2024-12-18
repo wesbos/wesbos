@@ -43,16 +43,24 @@ export function parseContent(post: MDXResult): Promise<MDXResult> {
   return post;
 }
 
+const mdxPosts = await fg(['./content/**/*.mdx']);
+
+let postCache: MDXResult[] = [];
+
 async function parsePosts(): Promise<MDXResult[]> {
-  // Get a list of all the mdx files in the content folder
-  const mdxPosts = await fg(['./content/**/*.mdx']);
+  if(postCache.length > 0) {
+    console.log(`Returning ${postCache.length} posts from cache`);
+    return postCache;
+  }
   console.time('🕧 Importing posts');
-  const importPromises = mdxPosts.map((post) => import(`../content/${makePathDynamicallyImportable(post)}.mdx`))
-  console.timeEnd('🕧 Importing posts');
+  // Get a list of all the mdx files in the content folder
+  const importPromises = mdxPosts.map((post) => import(`../content/${makePathDynamicallyImportable(post)}.mdx`));
+  console.timeLog('🕧 Importing posts', `Importing ${importPromises.length} posts`);
   const imported = await Promise.all(importPromises).catch((err) => {
     console.log(`Error reading posts from the file system`);
     console.error(err);
   });
+  console.timeEnd('🕧 Importing posts');
 
   if(!imported) {
     throw new Error('No Content Found?!?');
@@ -67,7 +75,7 @@ async function parsePosts(): Promise<MDXResult[]> {
       // Otherwise sort by date descending
       return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
     });
-
+  postCache = posts;
   return posts;
 }
 
@@ -92,14 +100,12 @@ export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_
   // Return the posts for this page
   const start = (page - 1) * limit;
   const end = start + limit;
-
-  console.log(`Returning posts for page ${page} from ${start} to ${end}`);
   const postsForPage = posts.slice(start, end);
 
   const returnedPosts = {
     posts: postsForPage,
     total: posts.length,
-    pages: Math.ceil(posts.length / PER_PAGE),
+    pages: Math.ceil(posts.length / limit),
   };
   return returnedPosts;
 }

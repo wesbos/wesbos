@@ -18,6 +18,7 @@ export async function fetchTweetDetails(tweetId: string) {
   }
   // console.log('Not found in the DB, fetching from the API');
   const freshResult = await fetchTweetDetailsFromApi(tweetId);
+  if(!freshResult) return; // The API returned nothing or was rate limited
   const returnedFreshResult = await db.insert(postsTable).values({
     type: 'tweet',
     url: `https://twitter.com/i/web/status/${tweetId}`,
@@ -32,7 +33,7 @@ export async function fetchTweetDetailsFromApi(tweetId: string) {
   const postDetails = await fetcher
     .request<ITweetDetailsResponse>(EResourceType.TWEET_DETAILS, { id: tweetId })
     .catch((err) => {
-      console.dir(err, { depth: null });
+      console.log(`Error fetching tweet details for ${tweetId}`, err.message);
     });
   const result = postDetails?.data?.tweetResult?.result;
   if (!result) {
