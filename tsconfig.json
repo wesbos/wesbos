@@ -7,7 +7,7 @@
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "Node16",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,

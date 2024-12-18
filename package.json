@@ -18,6 +18,7 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.38.1",
+    "enquirer": "^2.3.6",
     "eslint-config-next": "^15.1.1",
     "estree-util-is-identifier-name": "^3.0.0",
     "estree-util-scope": "^1.0.0",
@@ -56,18 +57,18 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.1",
     "rettiwt-api": "^4.1.4",
+    "server-only": "^0.0.1",
     "shiki": "^1.12.1",
     "speakingurl": "^14.0.1",
     "styled-components": "^6.1.12",
     "theme-cobalt2": "^2.4.3",
+    "tsx": "^3.12.7",
     "typescript-plugin-css-modules": "^5.1.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "unist-util-visit-parents": "^6.0.1",
     "vitest": "^2.1.8",
-    "waait": "^1.0.5",
-    "enquirer": "^2.3.6",
-    "tsx": "^3.12.7"
+    "waait": "^1.0.5"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^0.2.1",
@@ -125,7 +126,7 @@
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "tip": "tsx utils/createTip.ts"
+    "tip": "tsx --conditions=react-server ./createTip.ts"
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
 }

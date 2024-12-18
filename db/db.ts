@@ -1,3 +1,4 @@
+import 'server-only';
 import { drizzle } from 'drizzle-orm/d1';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import * as schema from '@/db/schema';
