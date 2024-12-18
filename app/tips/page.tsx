@@ -1,25 +1,7 @@
-import { getPosts, parseContent } from '@/lib/getPosts';
-import * as all from './test.mdx';
+import { getPosts } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
 import Pagination from '@/components/Pagination';
-import { TipStyles } from '@/styles/TipStyles.module.css';
-import Link from 'next/link';
-import TipMeta from '@/components/TipMeta';
-import Image from 'next/image';
-import mdxComponents from '@/components/mdxComponents';
 import { Tip } from '@/components/Tip';
-
-// export default async function HotTips() {
-//   console.log(all);
-//   const allParsed = await parseContent(all);
-//   console.log(allParsed);
-//   const Content = all.default;
-//   return (
-//     <div>
-//       <p>TIPS GO HERE</p>
-//     </div>
-//   );
-// }
 
 export default async function HotTips({ params }: { params: { pageNumber: string } }) {
   const paramz = await params;
@@ -27,7 +9,7 @@ export default async function HotTips({ params }: { params: { pageNumber: string
   const { posts, total, pages } = await getPosts({
     page: currentPage,
     type: 'tip',
-    limit: 2
+    limit: 10
   });
   return (
     <>

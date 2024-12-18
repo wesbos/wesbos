@@ -65,7 +65,9 @@
     "unist-util-visit": "^5.0.0",
     "unist-util-visit-parents": "^6.0.1",
     "vitest": "^2.1.8",
-    "waait": "^1.0.5"
+    "waait": "^1.0.5",
+    "enquirer": "^2.3.6",
+    "tsx": "^3.12.7"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^0.2.1",
@@ -111,7 +113,7 @@
     "deploy": "gatsby-parallel-runner --prefix-paths && gh-pages -d public",
     "xxprebuild": "netlify-lambda install",
     "scrape": "NODE_OPTIONS='--inspect=localhost:4444' node scrape-tips.js",
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "build:worker": "cloudflare",
@@ -122,7 +124,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "tip": "tsx utils/createTip.ts"
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
 }

@@ -7,7 +7,6 @@ export default async function TipPage({ params }: { params: { slug: string } }) 
   if (!post) {
     return <div>Post not found</div>;
   }
-  console.log(post);
   return <div>
     <Tip tip={post} />
   </div>;

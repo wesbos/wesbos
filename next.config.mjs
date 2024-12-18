@@ -1,12 +1,9 @@
 import createMDX from '@next/mdx';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import path from 'path';
-// ;
+
 const withMDX = createMDX({
   options: {
-    /* webpackExclude: /\.noimport\.json$/ */
-    remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+    remarkPlugins: [[`remark-frontmatter`], [`remark-mdx-frontmatter`]],
     rehypePlugins: [
       [
         'rehype-mdx-import-media',
@@ -16,12 +13,8 @@ const withMDX = createMDX({
         },
       ],
       ['rehype-slug'],
-      // [rehypeExtractToc, { name: 'toc' }],
       ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
-      // [rehypeExtractTocMdx, { name: 'toc' }],
       ['@stefanprobst/rehype-extract-toc/mdx', { name: 'toc' }],
-      // [rehypeWesBosMdx],
-      // ['@/lib/rehype-wesbos.mjs'],
       [path.resolve(import.meta.dirname, './lib/rehype-wesbos.mjs')],
       [`rehype-mdx-title`],
       [path.resolve(import.meta.dirname, './lib/rehype-hot-tips.mjs')],

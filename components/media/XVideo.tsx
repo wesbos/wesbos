@@ -2,53 +2,36 @@
 import { MediaController, MediaControlBar, MediaTimeRange, MediaTimeDisplay, MediaVolumeRange, MediaPlayButton, MediaSeekBackwardButton, MediaSeekForwardButton, MediaMuteButton, MediaPlaybackRateButton } from 'media-chrome/react';
 import 'hls-video-element';
 import 'media-chrome/menu';
-import { MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu, MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem } from 'media-chrome/menu';
+// import { MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu, MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem } from 'media-chrome/menu';
 import HLSVideoElement from 'hls-video-element';
 import { XVideoVariant } from '@/lib/twitter-fetcher';
-
-// https://stackoverflow.com/questions/61015445/using-web-components-within-preact-and-typescript
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'hls-video': React.HTMLAttributes<HLSVideoElement>;
-      'media-settings-menu': MediaSettingsMenu;
-      'media-settings-menu-item': MediaSettingsMenuItem;
-      'media-playback-rate-menu': MediaPlaybackRateMenu;
-      'media-rendition-menu': MediaRenditionMenu;
-      'media-captions-menu': MediaCaptionsMenu;
-      'media-settings-menu-button': MediaSettingsMenuButton;
-    }
-  }
-}
-
-export function XVideoPlayer({ url, contentType }: { url: string; contentType: XVideoVariant['content_type'] }) {
+import { MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem, MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu } from 'media-chrome/react/menu';
+export function XVideoPlayer({ url, contentType, style }: { url: string; contentType: XVideoVariant['content_type']; style: React.CSSProperties }) {
   return (
-    <div>
+    <div style={style}>
       <MediaController>
         {contentType === 'application/x-mpegURL' ? (
-          <hls-video loop src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></hls-video>
+          <hls-video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></hls-video>
         ) : (
-          <video loop src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></video>
+          <video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></video>
         )}
-        <media-settings-menu hidden anchor="auto">
-          <media-settings-menu-item>
+        <MediaSettingsMenu hidden anchor="auto">
+          <MediaSettingsMenuItem>
             Quality
-            <media-rendition-menu slot="submenu" hidden>
+            <MediaRenditionMenu slot="submenu" hidden>
               <div slot="title">Quality</div>
-            </media-rendition-menu>
-          </media-settings-menu-item>
-        </media-settings-menu>
+            </MediaRenditionMenu>
+          </MediaSettingsMenuItem>
+        </MediaSettingsMenu>
 
         <MediaControlBar>
           <MediaPlayButton></MediaPlayButton>
-          <MediaSeekBackwardButton></MediaSeekBackwardButton>
-          <MediaSeekForwardButton></MediaSeekForwardButton>
           <MediaTimeRange></MediaTimeRange>
           <MediaTimeDisplay showDuration></MediaTimeDisplay>
           <MediaMuteButton></MediaMuteButton>
           <MediaVolumeRange></MediaVolumeRange>
           <MediaPlaybackRateButton></MediaPlaybackRateButton>
-          <media-settings-menu-button></media-settings-menu-button>
+          <MediaSettingsMenuButton></MediaSettingsMenuButton>
         </MediaControlBar>
       </MediaController>
     </div>
