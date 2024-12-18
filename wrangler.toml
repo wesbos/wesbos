@@ -1,0 +1,11 @@
+main = ".worker-next/index.mjs"
+name = "my-app"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+assets = { directory = ".worker-next/assets", binding = "ASSETS" }
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "wes-bos-social-cache"
+database_id = "7a07786d-8f53-4578-86a4-933d939c16bb"
+migrations_dir = "migrations"

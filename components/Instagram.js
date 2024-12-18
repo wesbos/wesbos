@@ -1,6 +1,6 @@
 import { FaInstagram } from 'react-icons/fa';
-import { getInstagramPosts } from '@/functions/instagram';
-import { getInstagramStories } from '@/functions/instagramStories';
+import { getInstagramPosts } from '@/lib/functions/instagram';
+import { getInstagramStories } from '@/lib/functions/instagramStories';
 import { FooterBlock, FooterHeading, InstaStyles } from '@/styles/FooterStyles.module.css';
 
 function converIGtoJPG(base64data) {

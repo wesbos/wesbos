@@ -58,7 +58,18 @@ async function parsePosts(): Promise<MDXResult[]> {
   console.log(`Going to parse ${imported.length} posts`);
   const posts = imported
     .map(parseContent)
-    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+    .toSorted((a, b) => {
+      // If either post doesn't have a date, put it at the end
+      if (!a.frontmatter.date) return 1;
+      if (!b.frontmatter.date) return -1;
+      // Otherwise sort by date descending
+      return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
+    });
+
+  const missingSlots = posts.map((post, i) => post?.frontmatter?.date ? null : {message: `Missing date for post ${i}`, post: post}).filter(Boolean);
+  console.log(missingSlots);
+  const dates = posts.map((post) => post.frontmatter.date);
+  // console.log(dates);
   return posts;
 }
 
@@ -78,8 +89,8 @@ export async function getPostBySlug(postSlug: string) {
 }
 
 export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_PAGE }: PostFilterArgs = {}) {
+  console.log({ page, skip, type, limit });
   const allPosts = await parsePosts();
-  console.log(allPosts.at(2));
   const posts = allPosts.filter((post) => post.frontmatter.type === type);
   // Return the posts for this page
   const start = (page - 1) * limit;

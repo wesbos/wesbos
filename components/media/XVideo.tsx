@@ -4,6 +4,7 @@ import 'hls-video-element';
 import 'media-chrome/menu';
 import { MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu, MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem } from 'media-chrome/menu';
 import HLSVideoElement from 'hls-video-element';
+import { XVideoVariant } from '@/lib/twitter-fetcher';
 
 // https://stackoverflow.com/questions/61015445/using-web-components-within-preact-and-typescript
 declare global {
@@ -20,30 +21,34 @@ declare global {
   }
 }
 
-export const TweetVideo = () => {
+export function XVideoPlayer({ url, contentType }: { url: string; contentType: XVideoVariant['content_type'] }) {
   return (
     <div>
       <MediaController>
-        <hls-video src="https://video.twimg.com/ext_tw_video/1834242444856012800/pu/pl/30Vb7LTxvLw4AxuN.m3u8" slot="media" crossOrigin="anonymous" tabIndex={-1}></hls-video>
+        {contentType === 'application/x-mpegURL' ? (
+          <hls-video loop src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></hls-video>
+        ) : (
+          <video loop src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></video>
+        )}
         <media-settings-menu hidden anchor="auto">
-        <media-settings-menu-item>
-          Quality
-          <media-rendition-menu slot="submenu" hidden>
-            <div slot="title">Quality</div>
-          </media-rendition-menu>
-        </media-settings-menu-item>
-      </media-settings-menu>
+          <media-settings-menu-item>
+            Quality
+            <media-rendition-menu slot="submenu" hidden>
+              <div slot="title">Quality</div>
+            </media-rendition-menu>
+          </media-settings-menu-item>
+        </media-settings-menu>
 
-      <MediaControlBar>
-        <MediaPlayButton></MediaPlayButton>
-        <MediaSeekBackwardButton></MediaSeekBackwardButton>
-        <MediaSeekForwardButton></MediaSeekForwardButton>
-        <MediaTimeRange></MediaTimeRange>
-        <MediaTimeDisplay showDuration></MediaTimeDisplay>
-        <MediaMuteButton></MediaMuteButton>
-        <MediaVolumeRange></MediaVolumeRange>
-        <MediaPlaybackRateButton></MediaPlaybackRateButton>
-        <media-settings-menu-button></media-settings-menu-button>
+        <MediaControlBar>
+          <MediaPlayButton></MediaPlayButton>
+          <MediaSeekBackwardButton></MediaSeekBackwardButton>
+          <MediaSeekForwardButton></MediaSeekForwardButton>
+          <MediaTimeRange></MediaTimeRange>
+          <MediaTimeDisplay showDuration></MediaTimeDisplay>
+          <MediaMuteButton></MediaMuteButton>
+          <MediaVolumeRange></MediaVolumeRange>
+          <MediaPlaybackRateButton></MediaPlaybackRateButton>
+          <media-settings-menu-button></media-settings-menu-button>
         </MediaControlBar>
       </MediaController>
     </div>

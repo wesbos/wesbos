@@ -13,6 +13,7 @@
     "@stefanprobst/rehype-extract-toc": "^2.2.0",
     "@types/glob-watcher": "^5.0.5",
     "@types/mdx": "^2.0.13",
+    "better-sqlite3": "^11.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
@@ -66,6 +67,7 @@
     "waait": "^1.0.5"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^0.2.1",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -80,7 +82,8 @@
     "expand-url": "^0.1.3",
     "postcss": "^8",
     "prettier": "^3.3.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^3.95.0"
   },
   "homepage": "https://wesbos.com",
   "keywords": [
@@ -109,7 +112,16 @@
     "scrape": "NODE_OPTIONS='--inspect=localhost:4444' node scrape-tips.js",
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:worker": "cloudflare",
+    "dev:worker": "wrangler dev --port 8771",
+    "preview:worker": "pnpm run build:worker && pnpm run dev:worker",
+    "deploy:worker": "pnpm run build:worker && wrangler deploy",
+    "types:worker": "wrangler types --experimental-include-runtime",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push"
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
 }

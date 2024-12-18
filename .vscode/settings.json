@@ -1,15 +1,25 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "reactTsScss.autoComplete": true,
-  "reactTsScss.definition": true,
-  "reactTsScss.peekProperties": true,
-  "reactTsScss.cssAutoComplete": true,
-  "reactTsScss.cssDefinitions": true,
-  "reactTsScss.diagnostics": true,
-  "reactTsScss.baseDir": ".",
-  "reactTsScss.cssSyntaxColor": true,
-  "reactTsScss.tsCleanUpDefs": true,
-  "reactTsScss.cleanUpDefs": ["*.module.css", "*.module.scss", "*.module.sass", "*.module.less", "*.module.styl"],
-  "reactTsScss.references": true,
-  "reactTsScss.codelens": false
+  "typescript.preferences.autoImportFileExcludePatterns": ["**/dist/", "**/build/", "drizzle-orm/pg-core", "drizzle-orm/mysql-core", "drizzle-orm/singlestore-core", "@radix-ui/*", "node:test"],
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/[[]*[]]/[[]*[]]/page.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • page",
+    "**/app/**/[[]*[]]/page.tsx": "${dirname(1)}/${dirname} • page",
+    "**/app/**/page.tsx": "${dirname}/page",
+
+    "**/app/**/[[]*[]]/[[]*[]]/default.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • default",
+    "**/app/**/[[]*[]]/default.tsx": "${dirname(1)}/${dirname} • default",
+    "**/app/**/default.tsx": "${dirname} • default",
+
+    "**/app/**/[[]*[]]/[[]*[]]/layout.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • layout",
+    "**/app/**/[[]*[]]/layout.tsx": "${dirname(1)}/${dirname} • layout",
+    "**/app/**/layout.tsx": "${dirname} • layout",
+
+    "**/app/**/[[]*[]]/[[]*[]]/template.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • template",
+    "**/app/**/[[]*[]]/template.tsx": "${dirname(1)}/${dirname} • template",
+    "**/app/**/template.tsx": "${dirname} • template",
+
+    "**/app/**/[[]*[]]/[[]*[]]/error.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • error",
+    "**/app/**/[[]*[]]/error.tsx": "${dirname(1)}/${dirname} • error",
+    "**/app/**/error.tsx": "${dirname} • error"
+  }
 }

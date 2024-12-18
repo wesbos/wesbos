@@ -26,12 +26,12 @@ export default async function HotTips({ params }: { params: { pageNumber: string
   const currentPage = parseInt(paramz.pageNumber, 10) || 1;
   const { posts, total, pages } = await getPosts({
     page: currentPage,
-    type: 'tip'
+    type: 'tip',
+    limit: 2
   });
-  console.log(posts);
   return (
     <>
-      <H>🔥 There are {total} Hot Tips</H>
+      <H>🔥 There are {total} Hot Tips!!</H>
       <p>
         Hot tips are spicy lil' nuggets related to web development and tooling that I share on <a href="https://twitter.com/wesbos">my twitter account</a>. I've logged them here to make them easier to find.
       </p>

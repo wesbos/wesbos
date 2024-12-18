@@ -1,6 +1,6 @@
-type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'linkedin' | 'threads';
+export type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'linkedin' | 'threads';
 
-type SocialLink = {
+export type SocialLink = {
   url: string;
   type: SocialLinkType;
   handle?: string;
@@ -17,6 +17,7 @@ const hostNames: Record<SocialLinkType, string[]> = {
 };
 
 export function isSocialLink(link: string, type?: SocialLinkType): boolean {
+  if (!link) return false;
   const url = new URL(link);
   if (type) {
     return hostNames[type]?.includes(url.hostname);
@@ -24,7 +25,8 @@ export function isSocialLink(link: string, type?: SocialLinkType): boolean {
   return Object.values(hostNames).some(hostnames => hostnames.includes(url.hostname));
 }
 
-export function parseSocialLink(link: string): SocialLink {
+export function parseSocialLink(link: string): SocialLink | undefined {
+  if (!link) return;
   const url = new URL(link);
   const pathname = url.pathname;
 
