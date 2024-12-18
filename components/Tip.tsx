@@ -11,10 +11,8 @@ import { getDb } from '@/db/db';
 
 export async function Tip({ tip }) {
   const twitterLink = (tip.frontmatter.links || []).find((link: string) => isSocialLink(link, 'twitter')) || tip.frontmatter.tweetURL;
-  const db = await getDb();
   const socialLink = parseSocialLink(twitterLink);
   const tweetDetails = socialLink ? await fetchTweetDetails(socialLink.postId) : null;
-  console.log(tweetDetails);
   const Content = tip.default;
   return (
     <div className={TipStyles}>

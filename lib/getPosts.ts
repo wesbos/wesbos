@@ -46,7 +46,9 @@ export function parseContent(post: MDXResult): Promise<MDXResult> {
 async function parsePosts(): Promise<MDXResult[]> {
   // Get a list of all the mdx files in the content folder
   const mdxPosts = await fg(['./content/**/*.mdx']);
+  console.time('🕧 Importing posts');
   const importPromises = mdxPosts.map((post) => import(`../content/${makePathDynamicallyImportable(post)}.mdx`))
+  console.timeEnd('🕧 Importing posts');
   const imported = await Promise.all(importPromises).catch((err) => {
     console.log(`Error reading posts from the file system`);
     console.error(err);
@@ -66,10 +68,6 @@ async function parsePosts(): Promise<MDXResult[]> {
       return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
     });
 
-  const missingSlots = posts.map((post, i) => post?.frontmatter?.date ? null : {message: `Missing date for post ${i}`, post: post}).filter(Boolean);
-  console.log(missingSlots);
-  const dates = posts.map((post) => post.frontmatter.date);
-  // console.log(dates);
   return posts;
 }
 
@@ -89,7 +87,6 @@ export async function getPostBySlug(postSlug: string) {
 }
 
 export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_PAGE }: PostFilterArgs = {}) {
-  console.log({ page, skip, type, limit });
   const allPosts = await parsePosts();
   const posts = allPosts.filter((post) => post.frontmatter.type === type);
   // Return the posts for this page

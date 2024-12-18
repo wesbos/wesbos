@@ -1,12 +1,8 @@
 import createMDX from '@next/mdx';
-import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-// import { mdxToc, tocAttacher } from './lib/rehype-toc';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import { rehypeWesBosMdx } from './lib/rehype-wesbos.mjs';
-import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
-import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
-import { rehypeHotTips, rehypeMdxTitle } from './lib/rehype-hot-tips.mjs';
+import path from 'path';
+// ;
 const withMDX = createMDX({
   options: {
     /* webpackExclude: /\.noimport\.json$/ */
@@ -20,12 +16,15 @@ const withMDX = createMDX({
         },
       ],
       ['rehype-slug'],
-      [rehypeExtractToc, { name: 'toc' }],
-      [rehypeExtractTocMdx, { name: 'toc' }],
-      // [mdxToc, { name: 'toc' }],
-      [rehypeWesBosMdx, { name: 'wesbos' }],
-      [rehypeMdxTitle],
-      [rehypeHotTips],
+      // [rehypeExtractToc, { name: 'toc' }],
+      ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
+      // [rehypeExtractTocMdx, { name: 'toc' }],
+      ['@stefanprobst/rehype-extract-toc/mdx', { name: 'toc' }],
+      // [rehypeWesBosMdx],
+      // ['@/lib/rehype-wesbos.mjs'],
+      [path.resolve(import.meta.dirname, './lib/rehype-wesbos.mjs')],
+      [`rehype-mdx-title`],
+      [path.resolve(import.meta.dirname, './lib/rehype-hot-tips.mjs')],
     ],
   },
 });
