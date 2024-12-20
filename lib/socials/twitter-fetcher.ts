@@ -1,43 +1,18 @@
-import { desc, eq } from 'drizzle-orm';
-import { getDb } from '@/db/db';
-import { postsTable } from '@/db/schema';
+"use server";
 import { FetcherService, EResourceType, ITweetDetailsResponse } from 'rettiwt-api';
 
 const fetcher = new FetcherService({ apiKey: process.env.TWITTER_API_KEY });
 
-export async function fetchTweetDetails(tweetId: string) {
-  // console.log('Checking the DB first', { tweetId });
-  const db = await getDb();
-  const result = await db.query.postsTable.findFirst({
-    where: eq(postsTable.postId, tweetId),
-    orderBy: desc(postsTable.createdAt),
-  });
-  if (result) {
-    // console.log('Found in the DB');
-    return result;
-  }
-  // console.log('Not found in the DB, fetching from the API');
-  const freshResult = await fetchTweetDetailsFromApi(tweetId);
-  if(!freshResult) return; // The API returned nothing or was rate limited
-  const returnedFreshResult = await db.insert(postsTable).values({
-    type: 'twitter',
-    url: `https://twitter.com/i/web/status/${tweetId}`,
-    postId: tweetId,
-    postData: freshResult,
-  }).returning();
-  return returnedFreshResult[0];
-}
-
-export async function fetchTweetDetailsFromApi(tweetId: string) {
+export async function fetchTweetDetailsFromApi({ postId }: { postId: string }) {
   // Fetching the details of the given user
   const postDetails = await fetcher
-    .request<ITweetDetailsResponse>(EResourceType.TWEET_DETAILS, { id: tweetId })
+    .request<ITweetDetailsResponse>(EResourceType.TWEET_DETAILS, { id: postId })
     .catch((err) => {
-      console.log(`Error fetching tweet details for ${tweetId}`, err.message);
+      console.log(`Error fetching tweet details for ${postId}`, err.message);
     });
   const result = postDetails?.data?.tweetResult?.result;
   if (!result) {
-    console.log(`No tweet details found for ${tweetId}`);
+    console.log(`No tweet details found for ${postId}`);
     return; // nothing to return
   }
   // Otherwise we slim it up to the essentials

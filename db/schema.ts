@@ -1,5 +1,5 @@
 import { TiktokDetails } from '@/lib/socials/tiktokFetcherTypes';
-import { TweetDetails } from '@/lib/twitter-fetcher';
+import { TweetDetails } from '@/lib/socials/twitter-fetcher';
 import { SocialLinkType } from '@/utils/parseSocialLinks';
 import { sql } from 'drizzle-orm';
 import { index, int, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
@@ -18,3 +18,5 @@ export const postsTable = sqliteTable("posts", {
     postIdIdx: index('post_id_idx').on(table.postId),
   })
 );
+
+export type Post = typeof postsTable.$inferSelect;

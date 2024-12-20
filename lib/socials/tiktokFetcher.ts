@@ -1,32 +1,6 @@
 "use server";
-import { desc, eq } from 'drizzle-orm';
-import { getDb } from '@/db/db';
-import { postsTable } from '@/db/schema';
 import { parseHTML } from 'linkedom';
-import { TiktokDetails, TikTokResponse } from './tiktokFetcherTypes';
-
-export async function fetchTiktokDetails(postId: string) {
-  console.log('Tiktok: Checking the DB first');
-  const db = await getDb();
-  const result = await db.query.postsTable.findFirst({
-    where: eq(postsTable.postId, postId),
-    orderBy: desc(postsTable.createdAt),
-  });
-  if (result) {
-    console.log('Tiktok: Found in the DB');
-    return result;
-  }
-  console.log('Tiktok: Not found in the DB, fetching from the API');
-  const freshResult = await fetchTiktokDetailsFromApi({ postId });
-  if(!freshResult) return; // The API returned nothing or was rate limited
-  const returnedFreshResult = await db.insert(postsTable).values({
-    type: 'tiktok',
-    url: `https://tiktok.com/@wesbos/video/${postId}`,
-    postId: postId,
-    postData: freshResult,
-  }).returning();
-  return returnedFreshResult[0];
-}
+import { TikTokResponse } from './tiktokFetcherTypes';
 
 const headers = {
   "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",

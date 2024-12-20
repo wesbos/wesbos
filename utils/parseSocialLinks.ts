@@ -1,3 +1,6 @@
+import { Post } from '@/db/schema';
+import { fetchSocialDetails } from '@/lib/socials/fetchers';
+
 export type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'linkedin' | 'threads' | 'bluesky';
 
 export type SocialLink = {
@@ -7,6 +10,8 @@ export type SocialLink = {
   postId: string;
 };
 
+export type SocialLinkRecord = Record<SocialLinkType, SocialLink[]>;
+
 const hostNames: Record<SocialLinkType, string[]> = {
   twitter: ['twitter.com', 'x.com'],
   instagram: ['instagram.com'],
@@ -14,6 +19,7 @@ const hostNames: Record<SocialLinkType, string[]> = {
   youtube: ['youtube.com'],
   linkedin: ['linkedin.com'],
   threads: ['threads.net'],
+  bluesky: ['bsky.app'],
 };
 
 export function isSocialLink(link: string, type?: SocialLinkType): boolean {
@@ -123,7 +129,29 @@ export function parseSocialLink(link: string): SocialLink | undefined {
   return;
 }
 
-export function parseSocialLinks(links: string[]) {
+export function parseSocialLinks(links: string[]): SocialLinkRecord {
   const parsedLinks = links.map(link => parseSocialLink(link)).filter((link): link is SocialLink => !!link);
-  return Object.groupBy(parsedLinks, link => link.type);
+  return Object.groupBy(parsedLinks, link => link.type) as SocialLinkRecord;
+}
+
+
+async function populateSocialLink(link: SocialLink | SocialLink[]) {
+  const firstLink = Array.isArray(link) ? link.at(0)! : link;
+  return {
+    link: firstLink,
+    details: await fetchSocialDetails(firstLink),
+  };
+}
+
+export type PopulatedLink = Awaited<ReturnType<typeof populateSocialLink>>;
+
+export async function populateSocialLinks(links: SocialLinkRecord) {
+  const record = Object.entries(links) as [SocialLinkType, SocialLink[]][];
+  const populatedLinks = await Promise.all(record.map(async ([type, links]) => {
+    return [type, await populateSocialLink(links)] as const;
+  }));
+  // filter any links that don't have details
+  const populatedLinksFiltered = populatedLinks.filter((entry) => !!entry[1]?.details);
+  const populatedLinksObject = Object.fromEntries(populatedLinksFiltered) as Record<SocialLinkType, PopulatedLink>;
+  return populatedLinksObject;
 }

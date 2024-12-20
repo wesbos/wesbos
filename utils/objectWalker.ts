@@ -1,6 +1,6 @@
 type FindInObjectParams = {
   obj: any;
-  targetKey?: string;
+  targetKey?: string | string[];
   targetValue?: any;
   currentPath?: string[];
 };
@@ -26,6 +26,32 @@ export function findInObject({
   targetValue,
   currentPath = []
 }: FindInObjectParams): WalkResult {
+  // Handle array of keys
+  if (Array.isArray(targetKey)) {
+    let currentObj = obj;
+    let currentResult: WalkResult = null;
+
+    // Process each key in sequence
+    for (const key of targetKey) {
+      currentResult = findInObject({
+        obj: currentObj,
+        targetKey: key,
+        currentPath: currentResult ? currentResult.path : []
+      });
+
+      if (!currentResult) return null;
+      currentObj = currentResult.value;
+    }
+
+    // Only check targetValue against final result
+    if (targetValue !== undefined && currentResult?.value !== targetValue) {
+      return null;
+    }
+
+    return currentResult;
+  }
+
+  // Original single key logic
   if (!obj || typeof obj !== 'object') {
     return null;
   }
@@ -63,7 +89,6 @@ export function findInObject({
 
   return null;
 }
-
 
 export function getNestedValue(obj: any, path: string[]) {
   try {

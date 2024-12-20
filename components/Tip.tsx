@@ -1,35 +1,28 @@
 import { TipStyles } from '@/styles/TipStyles.module.css';
 import TipMeta from './TipMeta';
 import mdxComponents from './mdxComponents';
-import { parseSocialLinks } from '@/utils/parseSocialLinks';
+import { parseSocialLinks, populateSocialLinks } from '@/utils/parseSocialLinks';
 import { XMediaDisplay } from './media/XMedia';
-import { fetchTweetDetails } from '@/lib/twitter-fetcher';
-import { fetchTiktokDetails } from '@/lib/socials/tiktokFetcher';
-import { socialVideoStats, socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
+import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
 import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter } from 'react-icons/fa';
-import { formatNumber } from '@/utils/formatNumber';
-import { fetchInstagramDetails } from '@/lib/socials/instagramFetcher';
-import { findInObject } from '@/utils/objectWalker';
-import { fetchBlueSkyDetails } from '@/lib/socials/blueSkyFetcher';
-import { fetchLinkedInDetails } from '@/lib/socials/linkedInFetcher';
+import { fetchSocialDetails } from '@/lib/socials/fetchers';
+import { Post } from '@/db/schema';
+import { SocialStats } from './SocialStats';
 
 export async function Tip({ tip }) {
-  const links = [
-    ...(tip.frontmatter.links || []),
-    ...tip.frontmatter.tweetURL ? [tip.frontmatter.tweetURL] : [],
-  ];
+  const links = [...(tip.frontmatter.links || []), ...(tip.frontmatter.tweetURL ? [tip.frontmatter.tweetURL] : [])];
   const socialLinks = parseSocialLinks(links);
-  console.log(socialLinks);
+  const populatedLinks = await populateSocialLinks(socialLinks);
   const twitterLink = socialLinks.twitter?.at(0);
-  const tweetDetails = twitterLink ? await fetchTweetDetails(twitterLink.postId) : null;
+  const tweetDetails = twitterLink ? await fetchSocialDetails(twitterLink) : null;
   const tiktokLink = socialLinks.tiktok?.at(0);
-  const tiktokDetails = tiktokLink ? await fetchTiktokDetails(tiktokLink.postId) : null;
+  const tiktokDetails = tiktokLink ? await fetchSocialDetails(tiktokLink) : null;
   const instagramLink = socialLinks.instagram?.at(0);
-  const instagramDetails = instagramLink ? await fetchInstagramDetails(instagramLink.postId) : null;
+  const instagramDetails = instagramLink ? await fetchSocialDetails(instagramLink) : null;
   const blueSkyLink = socialLinks.bluesky?.at(0);
-  const blueSkyDetails = blueSkyLink ? await fetchBlueSkyDetails(blueSkyLink.postId) : null;
+  const blueSkyDetails = blueSkyLink ? await fetchSocialDetails(blueSkyLink) : null;
   const linkedInLink = socialLinks.linkedin?.at(0);
-  const linkedInDetails = linkedInLink ? await fetchLinkedInDetails(linkedInLink.postId) : null;
+  const linkedInDetails = linkedInLink ? await fetchSocialDetails(linkedInLink) : null;
 
   const Content = tip.default;
   return (
@@ -44,7 +37,10 @@ export async function Tip({ tip }) {
         />
 
         <div className={socialStatsContainer}>
-          {tweetDetails && (
+          {Object.entries(populatedLinks).map(([type, link]) => {
+            return <SocialStats key={type} link={link} />;
+          })}
+          {/* {tweetDetails && (
             <div className={socialVideoStats}>
               <div className="stat">
                 <FaTwitter />
@@ -104,7 +100,6 @@ export async function Tip({ tip }) {
           {blueSkyDetails && (
             <div className={socialVideoStats}>
               <div className="stat">☁️</div>
-              {/* replyCount repostCount likeCount quoteCount */}
               <div className="stat">❤️ {formatNumber(blueSkyDetails.postData?.likeCount)}</div>
               <div className="stat">💬 {formatNumber(blueSkyDetails.postData?.replyCount)}</div>
               <div className="stat">♻️ {formatNumber(blueSkyDetails.postData?.repostCount)}</div>
@@ -117,7 +112,7 @@ export async function Tip({ tip }) {
               <div className="stat">❤️ {formatNumber(linkedInDetails.postData?.likeCount)}</div>
               <div className="stat">💬 {formatNumber(linkedInDetails.postData?.commentCount)}</div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

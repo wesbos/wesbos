@@ -1,30 +1,4 @@
 "use server";
-import { desc, eq } from 'drizzle-orm';
-import { getDb } from '@/db/db';
-import { postsTable } from '@/db/schema';
-
-export async function fetchInstagramDetails(postId: string) {
-  console.log('Instagram: Checking the DB first');
-  const db = await getDb();
-  const result = await db.query.postsTable.findFirst({
-    where: eq(postsTable.postId, postId),
-    orderBy: desc(postsTable.createdAt),
-  });
-  if (result) {
-    console.log('Tiktok: Found in the DB');
-    return result;
-  }
-  console.log('Tiktok: Not found in the DB, fetching from the API');
-  const freshResult = await fetchInstagramDetailsFromApi({ postId });
-  if(!freshResult) return; // The API returned nothing or was rate limited
-  const returnedFreshResult = await db.insert(postsTable).values({
-    type: 'instagram',
-    url: `https://instagram.com/p/${postId}`,
-    postId: postId,
-    postData: freshResult,
-  }).returning();
-  return returnedFreshResult[0];
-}
 
 const headers = {
   "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",

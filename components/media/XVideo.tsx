@@ -3,7 +3,7 @@ import { MediaController, MediaControlBar, MediaTimeRange, MediaTimeDisplay, Med
 import 'hls-video-element';
 // import { MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu, MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem } from 'media-chrome/menu';
 import HLSVideoElement from 'hls-video-element/react';
-import { XVideoVariant } from '@/lib/twitter-fetcher';
+import { XVideoVariant } from '@/lib/socials/twitter-fetcher';
 import { MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem, MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu } from 'media-chrome/react/menu';
 export function XVideoPlayer({ url, contentType, style }: { url: string; contentType: XVideoVariant['content_type']; style: React.CSSProperties }) {
   return (

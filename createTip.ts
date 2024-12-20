@@ -1,7 +1,7 @@
 import { writeFile } from 'fs/promises';
 import { prompt } from 'enquirer';
 import { join } from 'path';
-import { fetchTweetDetails } from './lib/twitter-fetcher.ts';
+import { fetchTweetDetails } from './lib/socials/twitter-fetcher.js';
 import { parseSocialLink } from './utils/parseSocialLinks.ts';
 async function createTip() {
   // Format the date in ISO format
