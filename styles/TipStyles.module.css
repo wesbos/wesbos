@@ -2,10 +2,10 @@
   border-bottom: 2px solid var(--yellow);
   padding-bottom: 2rem;
   margin-bottom: 2rem;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 400px 1fr;
   align-items: center;
-  border: 5px solid black;
+  border: 2px solid black;
   margin-bottom: 5rem;
   position: relative;
   padding: 2rem;
@@ -49,7 +49,9 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background: var(--whiteGrit) top left, var(--whiteGrit) bottom right;
+    background:
+      var(--whiteGrit) top left,
+      var(--whiteGrit) bottom right;
     background-size: 550px;
     pointer-events: none;
   }

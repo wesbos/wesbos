@@ -1,4 +1,4 @@
-export type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'linkedin' | 'threads';
+export type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'linkedin' | 'threads' | 'bluesky';
 
 export type SocialLink = {
   url: string;
@@ -107,5 +107,23 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     };
   }
 
-  throw new Error('Unsupported social media link');
+  // bsky.app - example: https://bsky.app/profile/wesbos.com/post/3lbsenppiy22l
+  if (url.hostname.includes('bsky.app')) {
+    const [,, handle, , postId] = pathname.split('/');
+    return {
+      url: link,
+      type: 'bluesky',
+      handle,
+      postId,
+    };
+  }
+
+  // This link is not one we care about
+  console.log(`Unsupported social media link: ${link}`);
+  return;
+}
+
+export function parseSocialLinks(links: string[]) {
+  const parsedLinks = links.map(link => parseSocialLink(link)).filter((link): link is SocialLink => !!link);
+  return Object.groupBy(parsedLinks, link => link.type);
 }

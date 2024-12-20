@@ -6,7 +6,7 @@ import { FetcherService, EResourceType, ITweetDetailsResponse } from 'rettiwt-ap
 const fetcher = new FetcherService({ apiKey: process.env.TWITTER_API_KEY });
 
 export async function fetchTweetDetails(tweetId: string) {
-  // console.log('Checking the DB first');
+  // console.log('Checking the DB first', { tweetId });
   const db = await getDb();
   const result = await db.query.postsTable.findFirst({
     where: eq(postsTable.postId, tweetId),
@@ -20,7 +20,7 @@ export async function fetchTweetDetails(tweetId: string) {
   const freshResult = await fetchTweetDetailsFromApi(tweetId);
   if(!freshResult) return; // The API returned nothing or was rate limited
   const returnedFreshResult = await db.insert(postsTable).values({
-    type: 'tweet',
+    type: 'twitter',
     url: `https://twitter.com/i/web/status/${tweetId}`,
     postId: tweetId,
     postData: freshResult,

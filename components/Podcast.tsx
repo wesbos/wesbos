@@ -4,7 +4,9 @@ import logo from '@/public/images/syntax-logo.jpg';
 import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
 
 export default async function Podcast() {
-  const podcast = await fetch(url).then((res) => res.json());
+  const podcast = await fetch(url).then((res) => res.json()).catch(err => {
+    console.log(`Error fetching podcast`);
+  });
   if(!podcast) return <p>Hrm.. </p>;
   return (
     <div className={FooterBlock}>

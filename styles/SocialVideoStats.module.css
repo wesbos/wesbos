@@ -1,0 +1,20 @@
+.socialVideoStats {
+  display: flex;
+  gap: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  & > * {
+    flex: 1;
+    border-left: 1px solid black;
+    padding: 10px;
+    &:first-child {
+      border-left: none;
+    }
+  }
+}
+
+.socialStatsContainer {
+  display: grid;
+  gap: 10px;
+}

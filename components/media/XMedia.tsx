@@ -32,7 +32,6 @@ export function XMediaDisplayVideo({ media }: { media: XMediaEntity[]}) {
   const bestVariant = findBestXMediaVariant(variants);
   if (!bestVariant) return null; // No best variant
   const aspectRatio = video.aspect_ratio;
-  console.log(aspectRatio);
   return (
     <XVideoPlayer
       style={{

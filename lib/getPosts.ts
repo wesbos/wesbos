@@ -49,18 +49,14 @@ let postCache: MDXResult[] = [];
 
 async function parsePosts(): Promise<MDXResult[]> {
   if(postCache.length > 0) {
-    console.log(`Returning ${postCache.length} posts from cache`);
     return postCache;
   }
-  console.time('🕧 Importing posts');
   // Get a list of all the mdx files in the content folder
   const importPromises = mdxPosts.map((post) => import(`../content/${makePathDynamicallyImportable(post)}.mdx`));
-  console.timeLog('🕧 Importing posts', `Importing ${importPromises.length} posts`);
   const imported = await Promise.all(importPromises).catch((err) => {
     console.log(`Error reading posts from the file system`);
     console.error(err);
   });
-  console.timeEnd('🕧 Importing posts');
 
   if(!imported) {
     throw new Error('No Content Found?!?');

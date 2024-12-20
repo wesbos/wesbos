@@ -1,9 +1,8 @@
 "use client";
-import { MediaController, MediaControlBar, MediaTimeRange, MediaTimeDisplay, MediaVolumeRange, MediaPlayButton, MediaSeekBackwardButton, MediaSeekForwardButton, MediaMuteButton, MediaPlaybackRateButton } from 'media-chrome/react';
+import { MediaController, MediaControlBar, MediaTimeRange, MediaTimeDisplay, MediaVolumeRange, MediaPlayButton, MediaSeekBackwardButton, MediaSeekForwardButton, MediaMuteButton, MediaPlaybackRateButton, MediaErrorDialog } from 'media-chrome/react';
 import 'hls-video-element';
-import 'media-chrome/menu';
 // import { MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu, MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem } from 'media-chrome/menu';
-import HLSVideoElement from 'hls-video-element';
+import HLSVideoElement from 'hls-video-element/react';
 import { XVideoVariant } from '@/lib/twitter-fetcher';
 import { MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem, MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu } from 'media-chrome/react/menu';
 export function XVideoPlayer({ url, contentType, style }: { url: string; contentType: XVideoVariant['content_type']; style: React.CSSProperties }) {
@@ -11,7 +10,9 @@ export function XVideoPlayer({ url, contentType, style }: { url: string; content
     <div style={style}>
       <MediaController>
         {contentType === 'application/x-mpegURL' ? (
-          <hls-video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></hls-video>
+          <HLSVideoElement onErrorCapture={(err) => {
+            console.log('error playing hls video', err);
+          }} loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></HLSVideoElement>
         ) : (
           <video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></video>
         )}

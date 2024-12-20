@@ -34,6 +34,7 @@
     "hast-util-to-string": "^3.0.1",
     "hls-video-element": "^1.2.11",
     "isomorphic-fetch": "^3.0.0",
+    "linkedom": "^0.18.6",
     "mdast": "^3.0.0",
     "mdast-util-to-string": "^4.0.0",
     "media-chrome": "^4.3.0",

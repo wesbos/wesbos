@@ -80,13 +80,16 @@ slug: ${answers.slug}
 links:
 ${links.map(link => `  - ${link}`).join('\n')}
 ---
+
 ${bodyText}
 `;
 
     // Write to file
     const filePath = join(process.cwd(), 'content/tips', `${answers.slug}.mdx`);
+    const relativePath = filePath.replace(process.cwd(), '').replace(/\\/g, '/');
     await writeFile(filePath, mdxContent);
-    console.log(`✅ Created new tip at ${filePath}`);
+    console.log(`✅ Created new tip at ${relativePath}`);
+    process.exit(0);
   } catch (error) {
     console.error('Failed to create tip:', error);
     process.exit(1);
