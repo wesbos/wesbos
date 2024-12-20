@@ -21,7 +21,6 @@
     "enquirer": "^2.3.6",
     "eslint-config-next": "^15.1.1",
     "estree-util-is-identifier-name": "^3.0.0",
-    "estree-util-scope": "^1.0.0",
     "estree-util-to-js": "^2.0.0",
     "estree-util-value-to-estree": "^3.2.1",
     "fast-glob": "^3.3.2",
@@ -56,7 +55,6 @@
     "tsx": "^3.12.7",
     "typescript-plugin-css-modules": "^5.1.0",
     "unist-util-visit": "^5.0.0",
-    "unist-util-visit-parents": "^6.0.1",
     "vitest": "^2.1.8"
   },
   "devDependencies": {

@@ -50,9 +50,6 @@ importers:
       estree-util-is-identifier-name:
         specifier: ^3.0.0
         version: 3.0.0
-      estree-util-scope:
-        specifier: ^1.0.0
-        version: 1.0.0
       estree-util-to-js:
         specifier: ^2.0.0
         version: 2.0.0
@@ -155,9 +152,6 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
-      unist-util-visit-parents:
-        specifier: ^6.0.1
-        version: 6.0.1
       vitest:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@22.10.2)(less@4.2.1)(sass@1.83.0)(stylus@0.62.0)(terser@5.16.9)
