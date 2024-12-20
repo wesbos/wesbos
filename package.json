@@ -72,7 +72,7 @@
     "waait": "^1.0.5"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^0.2.1",
+    "@opennextjs/cloudflare": "^0.3.0",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -118,7 +118,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "build:worker": "cloudflare",
+    "build:worker": "opennextjs-cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "preview:worker": "pnpm run build:worker && pnpm run dev:worker",
     "deploy:worker": "pnpm run build:worker && wrangler deploy",
