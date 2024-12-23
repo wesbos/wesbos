@@ -8,10 +8,11 @@ import * as schema from '@/db/schema';
  */
 export async function getDb() {
   const context = await getCloudflareContext();
+  console.log('Database----------------------------------------------------');
+  console.dir(context.env.DB, { depth: null });
   const db = drizzle(context.env.DB, {
     schema,
   });
-  console.dir(db, { depth: null });
   return db;
 }
 
