@@ -1,10 +1,10 @@
 {
   "name": "wes-bos-blog",
   "description": "Wes Bos Site",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Wes Bos <wesbos@gmail.com>",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
