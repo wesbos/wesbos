@@ -11,6 +11,7 @@ export async function getDb() {
   const db = drizzle(context.env.DB, {
     schema,
   });
+  console.dir(db, { depth: null });
   return db;
 }
 
