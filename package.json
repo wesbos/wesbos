@@ -14,6 +14,7 @@
     "@types/glob-watcher": "^5.0.5",
     "@types/mdx": "^2.0.13",
     "better-sqlite3": "^11.7.0",
+    "caniuse-lite": "^1.0.30001690",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
