@@ -1,4 +1,3 @@
-import { Post } from '@/db/schema';
 import { fetchSocialDetails } from '@/lib/socials/fetchers';
 
 export type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'linkedin' | 'threads' | 'bluesky';

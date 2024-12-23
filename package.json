@@ -109,7 +109,7 @@
     "preview:worker": "pnpm run build:worker && pnpm run dev:worker",
     "deploy:worker": "pnpm run build:worker && wrangler deploy",
     "types:worker": "wrangler types --experimental-include-runtime",
-    "db:migrate": "NODE_ENV=production drizzle-kit migrate",
+    "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",

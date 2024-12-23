@@ -4,9 +4,7 @@ import mdxComponents from './mdxComponents';
 import { parseSocialLinks, populateSocialLinks } from '@/utils/parseSocialLinks';
 import { XMediaDisplay } from './media/XMedia';
 import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
-import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { fetchSocialDetails } from '@/lib/socials/fetchers';
-import { Post } from '@/db/schema';
 import { SocialStats } from './SocialStats';
 
 export async function Tip({ tip }) {
