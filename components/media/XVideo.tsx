@@ -1,10 +1,8 @@
 "use client";
-import { MediaController, MediaControlBar, MediaTimeRange, MediaTimeDisplay, MediaVolumeRange, MediaPlayButton, MediaSeekBackwardButton, MediaSeekForwardButton, MediaMuteButton, MediaPlaybackRateButton, MediaErrorDialog } from 'media-chrome/react';
-import 'hls-video-element';
-// import { MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu, MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem } from 'media-chrome/menu';
+import { MediaController, MediaControlBar, MediaTimeRange, MediaTimeDisplay, MediaVolumeRange, MediaPlayButton, MediaMuteButton, MediaPlaybackRateButton } from 'media-chrome/react';
 import HLSVideoElement from 'hls-video-element/react';
 import { XVideoVariant } from '@/lib/socials/twitter-fetcher';
-import { MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem, MediaCaptionsMenu, MediaPlaybackRateMenu, MediaRenditionMenu } from 'media-chrome/react/menu';
+import { MediaSettingsMenu, MediaSettingsMenuButton, MediaSettingsMenuItem, MediaRenditionMenu } from 'media-chrome/react/menu';
 export function XVideoPlayer({ url, contentType, style }: { url: string; contentType: XVideoVariant['content_type']; style: React.CSSProperties }) {
   return (
     <div style={style}>

@@ -1,5 +1,11 @@
 import createMDX from '@next/mdx';
 import path from 'path';
+// import bundleAnalyzer from '@next/bundle-analyzer';
+
+// const withBundleAnalyzer = bundleAnalyzer({
+//   enabled: true,
+// });
+
 
 const withMDX = createMDX({
   options: {

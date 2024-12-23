@@ -9,6 +9,7 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
+    "@next/bundle-analyzer": "^15.1.2",
     "@next/mdx": "15.1.2",
     "@stefanprobst/rehype-extract-toc": "^2.2.1",
     "@types/glob-watcher": "^5.0.5",
