@@ -10,7 +10,7 @@ export default defineConfig({
   out: './migrations',
   schema: './db/schema.ts',
   dialect: 'sqlite',
-  ...(sqliteFile ?
+  ...(process.env.NODE_ENV === 'development' ?
     // Local D1
     {
       dbCredentials: { url: `${D1_DATABASE_PATH}/${sqliteFile}` },

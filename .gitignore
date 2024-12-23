@@ -79,3 +79,4 @@ yarn-error.log
 .worker-next
 .wrangler
 .open-next/
+db.sql
