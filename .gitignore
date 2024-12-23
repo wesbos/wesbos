@@ -80,3 +80,4 @@ yarn-error.log
 .wrangler
 .open-next/
 db.sql
+dist/
