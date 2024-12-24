@@ -37,4 +37,4 @@ export default async function HotTips({ params }: { params: { pageNumber: string
 }
 
 // This forces next to skip SSG, because we dont have access to the DB in build??
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';

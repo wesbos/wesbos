@@ -9,5 +9,5 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 [[ d1_databases ]]
 binding = "DB"
 database_name = "wes-bos-social-cache"
-database_id = "7a07786d-8f53-4578-86a4-933d939c16bb"
+database_id = "44adcb8f-8ad1-408b-8da1-8dca56a879b2"
 migrations_dir = "migrations"
