@@ -115,7 +115,7 @@
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "db:migrate-local-db": "wrangler d1 migrations apply wes-bos-social-cache --local ",
+    "db:migrate-local-db": "wrangler d1 migrations apply wes-bos-social-cache --local",
     "tip": "tsx --conditions=react-server ./createTip.ts"
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
