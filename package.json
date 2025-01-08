@@ -11,6 +11,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "^15.1.2",
     "@next/mdx": "15.1.2",
+    "@sparticuz/chromium": "^131.0.1",
     "@stefanprobst/rehype-extract-toc": "^2.2.1",
     "@types/glob-watcher": "^5.0.5",
     "@types/mdx": "^2.0.13",
@@ -37,6 +38,7 @@
     "next-mdx-remote": "^5.0.0",
     "normalize.css": "^8.0.1",
     "postcss-nesting": "^13.0.1",
+    "puppeteer-core": "^23.11.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-helmet": "^6.1.0",
@@ -61,7 +63,7 @@
     "vitest": "^2.1.8"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^0.3.2",
+    "@opennextjs/cloudflare": "^0.3.4",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
