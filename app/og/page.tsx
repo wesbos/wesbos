@@ -1,7 +1,8 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import H from '../../components/mdxComponents/Headings';
 import * as ogcss from '@/styles/OG.module.css';
+import '@/styles/ogGlobal.css';
 // import logo from '../assets/images/logo.png';
 import { useParams, usePathname, useSearchParams } from 'next/navigation';
 
@@ -15,7 +16,7 @@ function getFontSize(length) {
   return `10rem`;
 }
 
-export default function OG() {
+function OG() {
   const searchParams = useSearchParams();
   console.log(searchParams);
   if (!searchParams) return null;
@@ -52,5 +53,13 @@ export default function OG() {
           <img src="/logo.png" alt="logo" className={ogcss.logo} />
         </div>
       </div>
+  );
+}
+
+export default function OGPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <OG />
+    </Suspense>
   );
 }

@@ -13,8 +13,6 @@ export default async function BlogPost({ params, children }: { params: { slug: s
     return <p>Post not found</p>;
   }
   const { default: MDXContent } = post;
-  console.log(post);
-
   const editURL = `https://github.com/wesbos/wesbos/tree/master/src/TODO`;
   const image = post.images?.[0];
 
