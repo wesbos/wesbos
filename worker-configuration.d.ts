@@ -3,5 +3,6 @@
 interface CloudflareEnv {
 	OG: KVNamespace;
 	DB: D1Database;
+	MYBROWSER: Fetcher;
 	ASSETS: Fetcher;
 }

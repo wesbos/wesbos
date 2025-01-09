@@ -1,45 +1,53 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-// const chrome = require('chrome-aws-lambda');
-// Switch to this, re: https://answers.netlify.com/t/netlify-function-with-puppeteer-breaks-if-i-make-any-changes/76924/8
-import chrome from '@sparticuz/chromium';
-import puppeteer, { LaunchOptions } from 'puppeteer-core';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
-import { writeFileSync } from 'node:fs';
 
-const kv = (await getCloudflareContext()).env.OG;
+const { env } = (await getCloudflareContext());
+const kv = env.OG;
 
 function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
-async function getOptions(): Promise<LaunchOptions> {
+async function getBrowser() {
+  // If we are in a cloudflare Worker, we need to use the browser binding and @cloudflare/puppeteer
+  if(env.MYBROWSER) {
+    console.log(`🎭 Using cloudflare puppeteer`);
+    const puppeteer = await import("@cloudflare/puppeteer");
+    return puppeteer.launch(env.MYBROWSER);
+  };
+  // otherwise, we use puppeteer-core
+  const puppeteer = await import('puppeteer-core');
+  // Local dev, use local chrome
   if (process.env.NODE_ENV === 'development') {
-    return {
+    console.log(`🎭 Using local puppeteer`);
+    return puppeteer.launch({
       browser: 'chrome',
       args: [],
       executablePath: exePath,
       headless: true,
-    };
+    });
   }
-  return {
+  // Otherwise, we use @sparticuz/chromium which fits into a serverless environment (like netlify functions)
+  console.log(`🎭 Using @sparticuz/chromium`);
+  const { default: chrome } = await import('@sparticuz/chromium');
+  return puppeteer.launch({
     browser: 'chrome',
     args: chrome.args,
     executablePath: await chrome.executablePath(),
     headless: chrome.headless,
-  };
+  });
 }
+
 
 async function getScreenshot(url: string) {
   // first check if this value has been cached
   const cachedImage = await kv.get(url, 'arrayBuffer');
-  if (cachedImage) {
+  if (false &&cachedImage) {
     console.log('Returning cached image');
     return cachedImage;
   }
-  const options = await getOptions();
-  const browser = await puppeteer.launch(options);
+  const browser = await getBrowser();
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1.5 });
   await page.goto(url);
@@ -57,7 +65,6 @@ async function getScreenshot(url: string) {
 export async function GET(request: NextRequest) {
   const qs = new URLSearchParams(request.nextUrl.searchParams);
   const url = `${process.env.URL || `http://localhost:3000`}/og?${qs.toString()}`;
-
   const photoBuffer = await getScreenshot(url);
   return new NextResponse(photoBuffer, {
     headers: {
