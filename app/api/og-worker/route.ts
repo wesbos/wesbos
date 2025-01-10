@@ -18,6 +18,8 @@ async function getScreenshot(url: string) {
     console.log('Returning cached image');
     return cachedImage;
   }
+  console.log(`Launching browser`);
+  console.log(`Cloudflare Browser:`, env.MYBROWSER);
   const browser = await puppeteer.launch(env.MYBROWSER);
   console.log(`Browser launched`);
   const page = await browser.newPage();
