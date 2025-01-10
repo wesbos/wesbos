@@ -9,7 +9,7 @@ export function XVideoPlayer({ url, contentType, style }: { url: string; content
       <MediaController>
         {contentType === 'application/x-mpegURL' ? (
           <div>
-            <p>HLS Video temporarily disabled because its too large for cloudflare workers</p>
+            {/* <p>HLS Video temporarily disabled because its too large for cloudflare workers</p> */}
             {/*<HLSVideoElement onErrorCapture={(err) => {
             console.log('error playing hls video', err);
           }} loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></HLSVideoElement> */}
