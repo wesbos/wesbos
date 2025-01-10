@@ -15,7 +15,7 @@ async function getScreenshot(url: string) {
   const kv = env.OG;
   // first check if this value has been cached
   const cachedImage = await kv.get(url, 'arrayBuffer');
-  if (false && cachedImage) {
+  if (cachedImage) {
     console.log('Returning cached image');
     return cachedImage;
   }
@@ -37,9 +37,7 @@ async function getScreenshot(url: string) {
   await kv.put(url, buffer, {
     expirationTtl: 60 * 60 * 24 * 30, // 30 days
   });
-  console.log(`KV cached`);
-  // const base64Image = buffer.toString('base64');
-  // cached.set(url, base64Image);
+  console.log(`Put in KV cache`);
   console.log(`Returning buffer`);
   await browser.close();
   return buffer;

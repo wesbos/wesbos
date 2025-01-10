@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
+import { Browser } from '@cloudflare/puppeteer';
 
 const { env } = (await getCloudflareContext());
 const kv = env.OG;
 
-function wait(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+let browser: Browser;
 
 async function getBrowser() {
   // If we are in a cloudflare Worker, we need to use the browser binding and @cloudflare/puppeteer
@@ -47,25 +46,28 @@ async function getScreenshot(url: string) {
     console.log('Returning cached image');
     return cachedImage;
   }
-  const browser = await getBrowser();
+  browser = await getBrowser();
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1.5 });
-  await page.goto(url);
-  await wait(1000);
+  await page.goto(url, { waitUntil: 'networkidle0' });
   const buffer = await page.screenshot({ type: 'png' });
   // Cache to KV
   await kv.put(url, buffer, {
     expirationTtl: 60 * 60 * 24 * 30, // 30 days
   });
-  // const base64Image = buffer.toString('base64');
-  // cached.set(url, base64Image);
   return buffer;
 }
 
 export async function GET(request: NextRequest) {
   const qs = new URLSearchParams(request.nextUrl.searchParams);
-  const url = `${process.env.URL || `http://localhost:3000`}/og?${qs.toString()}`;
-  const photoBuffer = await getScreenshot(url);
+  const url = `${request.nextUrl.origin}/og?${qs.toString()}`;
+  console.log(`Getting screenshot for ${url}`);
+  const photoBuffer = await getScreenshot(url).catch(async (err) => {
+    console.log(`Error getting screenshot`, err);
+    await browser.close();
+    throw err;
+  });
+  console.log(`Returning response`);
   return new NextResponse(photoBuffer, {
     headers: {
       'Content-Type': 'image/png',
