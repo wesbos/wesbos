@@ -38,6 +38,7 @@ async function getScreenshot(url: string) {
   // const base64Image = buffer.toString('base64');
   // cached.set(url, base64Image);
   console.log(`Returning buffer`);
+  await browser.close();
   return buffer;
 }
 
