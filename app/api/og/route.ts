@@ -10,7 +10,7 @@ let browser: Browser;
 
 async function getBrowser() {
   // If we are in a cloudflare Worker, we need to use the browser binding and @cloudflare/puppeteer
-  if(env.MYBROWSER) {
+  if (env.MYBROWSER) {
     console.log(`🎭 Using cloudflare puppeteer`);
     const { default: puppeteer } = await import("@cloudflare/puppeteer");
     console.log(`imported puppeteer!`);
@@ -43,7 +43,7 @@ async function getBrowser() {
 async function getScreenshot(url: string) {
   // first check if this value has been cached
   const cachedImage = await kv.get(url, 'arrayBuffer');
-  if (false &&cachedImage) {
+  if (false && cachedImage) {
     console.log('Returning cached image');
     return cachedImage;
   }
@@ -64,7 +64,6 @@ async function getScreenshot(url: string) {
   console.log(`Put in KV cache`);
   console.log(`Returning buffer`);
   await browser.close();
-  console.log(`Browser closed`);
   return buffer;
 }
 
