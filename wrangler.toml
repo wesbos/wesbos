@@ -17,7 +17,9 @@ migrations_dir = "migrations"
 [[kv_namespaces]]
 binding = "OG"
 id = "d5ca915ca3b54dc48a19b70deaf274af"
+preview_id = "b8399cb69a284320bc97b3efbc3af6b6"
 
 [[kv_namespaces]]
 binding = "NEXT_CACHE_WORKERS_KV"
 id = "e09de51f462241728f22e36bb3bcbedc"
+preview_id = "6160abb870834617ace162b7e567853f"
