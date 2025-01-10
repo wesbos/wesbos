@@ -17,3 +17,7 @@ migrations_dir = "migrations"
 [[kv_namespaces]]
 binding = "OG"
 id = "d5ca915ca3b54dc48a19b70deaf274af"
+
+[[kv_namespaces]]
+binding = "NEXT_CACHE_WORKERS_KV"
+id = "e09de51f462241728f22e36bb3bcbedc"

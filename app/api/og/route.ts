@@ -16,27 +16,27 @@ async function getBrowser() {
     const puppeteer = await import("@cloudflare/puppeteer");
     return puppeteer.launch(env.MYBROWSER);
   };
-  // // otherwise, we use puppeteer-core
-  // const puppeteer = await import('puppeteer-core');
-  // // Local dev, use local chrome
-  // if (process.env.NODE_ENV === 'development') {
-  //   console.log(`🎭 Using local puppeteer`);
-  //   return puppeteer.launch({
-  //     browser: 'chrome',
-  //     args: [],
-  //     executablePath: exePath,
-  //     headless: true,
-  //   });
-  // }
-  // // Otherwise, we use @sparticuz/chromium which fits into a serverless environment (like netlify functions)
-  // console.log(`🎭 Using @sparticuz/chromium`);
-  // const { default: chrome } = await import('@sparticuz/chromium');
-  // return puppeteer.launch({
-  //   browser: 'chrome',
-  //   args: chrome.args,
-  //   executablePath: await chrome.executablePath(),
-  //   headless: chrome.headless,
-  // });
+  // otherwise, we use puppeteer-core
+  const puppeteer = await import('puppeteer-core');
+  // Local dev, use local chrome
+  if (process.env.NODE_ENV === 'development') {
+    console.log(`🎭 Using local puppeteer`);
+    return puppeteer.launch({
+      browser: 'chrome',
+      args: [],
+      executablePath: exePath,
+      headless: true,
+    });
+  }
+  // Otherwise, we use @sparticuz/chromium which fits into a serverless environment (like netlify functions)
+  console.log(`🎭 Using @sparticuz/chromium`);
+  const { default: chrome } = await import('@sparticuz/chromium');
+  return puppeteer.launch({
+    browser: 'chrome',
+    args: chrome.args,
+    executablePath: await chrome.executablePath(),
+    headless: chrome.headless,
+  });
 }
 
 
