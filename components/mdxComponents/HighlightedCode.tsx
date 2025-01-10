@@ -1,4 +1,6 @@
-import { codeToHtml } from 'shiki';
+// import { codeToHtml } from 'shiki';
+import { bundledLanguages, createHighlighter } from 'shiki';
+
 import { cobalt2 } from '@/lib/assets/cobalt2';
 
 function getLanguageFromClassName(className: string) {
@@ -7,9 +9,10 @@ function getLanguageFromClassName(className: string) {
 }
 
 export async function HighlightedCode({ children, ...props }: { children: React.ReactNode; className: string }) {
-  // const highlighter = await getHighlighter({
-  //   themes: [cobalt2],
-  // });
+  const highlighter = await createHighlighter({
+    themes: [cobalt2],
+    langs: Object.keys(bundledLanguages),
+  });
   // The way we differentiate between inline `code` and code blocks, is we check if the <pre> has a <code> inside of it.
   if (typeof children === 'string') {
     return <code {...props} />;
@@ -22,9 +25,9 @@ export async function HighlightedCode({ children, ...props }: { children: React.
     // TODO: Add custom theme
     // console.log(codeToHtml);
     // console.log(children.props.children);
-    const html = await codeToHtml(children.props.children, {
+    const html = await highlighter.codeToHtml(children.props.children, {
       lang: 'javascript',
-      theme: 'aurora-x',
+      theme: 'Cobalt2',
     });
     return (
       <div
