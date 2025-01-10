@@ -12,11 +12,12 @@ async function getBrowser() {
   // If we are in a cloudflare Worker, we need to use the browser binding and @cloudflare/puppeteer
   if(env.MYBROWSER) {
     console.log(`🎭 Using cloudflare puppeteer`);
-    const puppeteer = await import("@cloudflare/puppeteer");
+    const { default: puppeteer } = await import("@cloudflare/puppeteer");
+    console.log(`imported puppeteer!`);
     return puppeteer.launch(env.MYBROWSER);
   };
   // // otherwise, we use puppeteer-core
-  // const puppeteer = await import('puppeteer-core');
+  // const { default: puppeteer } = await import('puppeteer-core');
   // // Local dev, use local chrome
   // if (process.env.NODE_ENV === 'development') {
   //   console.log(`🎭 Using local puppeteer`);
@@ -47,14 +48,23 @@ async function getScreenshot(url: string) {
     return cachedImage;
   }
   browser = await getBrowser();
+  console.log(`Browser launched`, browser);
   const page = await browser.newPage();
+  console.log(`Page created`, page);
   await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1.5 });
+  console.log(`Viewport set`);
   await page.goto(url, { waitUntil: 'networkidle0' });
+  console.log(`Page navigated`);
   const buffer = await page.screenshot({ type: 'png' });
+  console.log(`Screenshot taken`);
   // Cache to KV
   await kv.put(url, buffer, {
     expirationTtl: 60 * 60 * 24 * 30, // 30 days
   });
+  console.log(`Put in KV cache`);
+  console.log(`Returning buffer`);
+  await browser.close();
+  console.log(`Browser closed`);
   return buffer;
 }
 
