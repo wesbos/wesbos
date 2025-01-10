@@ -1,10 +1,10 @@
 import createMDX from '@next/mdx';
 import path from 'path';
-// import bundleAnalyzer from '@next/bundle-analyzer';
+import bundleAnalyzer from '@next/bundle-analyzer';
 
-// const withBundleAnalyzer = bundleAnalyzer({
-//   enabled: true,
-// });
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: true,
+});
 
 
 const withMDX = createMDX({
@@ -49,4 +49,4 @@ const nextConfig = {
   },
 };
 
-export default withMDX(nextConfig);
+export default withBundleAnalyzer(withMDX(nextConfig));
