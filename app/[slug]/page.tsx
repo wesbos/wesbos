@@ -68,29 +68,44 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
-  const url = `https://wesbos.com/${post.frontmatter.slug}`;
-  /*
-      <link rel="canonical" href={canonical} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@wesbos" />
-      <meta name="twitter:creator" content="@wesbos" />
-      <meta name="twitter:url" content={url} />
-      <meta name="twitter:title" content={post.frontmatter.title} />
-      <meta name="twitter:description" content={post.excerpt} />
-      <meta name="twitter:image" content={ogImage} />
-      <meta property="og:type" content="article" />
-      <meta property="og:title" content={post.frontmatter.title} />
-      <meta property="og:url" content={url} />
-      <meta property="og:description" content={post.excerpt} />
-      {post.frontmatter.date ? <meta property="article:published_time" content={new Date(post.frontmatter.date).toISOString()} /> : null}
-      <meta property="og:site_name" content="Wes Bos" />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:locale" content="en_CA" />
-      <title>{`${post.frontmatter.title} - Wes Bos`}</title>
-  */
-  return {
+  const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://wesbos.com'; // TODO: make this dynamic
+  const url = `${baseUrl}/${post.frontmatter.slug}`;
+  const image = post.images?.[0];
+  const searchParams = new URLSearchParams();
+  searchParams.set('title', post.frontmatter.title);
+  searchParams.set('url', url);
+  searchParams.set('thumbnail', image.src);
+  const ogImage = `${baseUrl}/api/og-worker?${searchParams.toString()}`;
 
-  }
+  return {
+    title: `${post.frontmatter.title} - Wes Bos`,
+    description: post.excerpt,
+    canonical: url,
+    openGraph: {
+      type: 'article',
+      title: post.frontmatter.title,
+      url,
+      authorName: 'Wes Bos',
+      description: post.excerpt,
+      siteName: 'Wes Bos',
+      images: [{
+        url: ogImage,
+        width: 1200,
+        height: 630,
+      }],
+      locale: 'en_CA',
+      publishedTime: post.frontmatter.date ? new Date(post.frontmatter.date).toISOString() : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@wesbos',
+      creator: '@wesbos',
+      title: post.frontmatter.title,
+      description: post.excerpt,
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: url,
+    },
+  };
 }

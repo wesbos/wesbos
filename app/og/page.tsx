@@ -24,6 +24,7 @@ function OG() {
   const link = searchParams.get('url');
   const title = searchParams.get('title');
   console.log({ thumbnail, link, title });
+  console.log(link);
   const linkURL = new URL(link);
 
   // example URL: http://localhost:3000/thumbnail?title=Uses&url=https%3A%2F%2Fwesbos.com%2Fuses&thumbnail=%2F_next%2Fimage%3Furl%3D%252F_next%252Fstatic%252Fmedia%252Faeron.b514fb21.jpg%26w%3D1920%26q%3D75
