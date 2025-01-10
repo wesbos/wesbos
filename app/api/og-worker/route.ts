@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
-import puppeteer from '@cloudflare/puppeteer';
+import puppeteer, { Browser } from '@cloudflare/puppeteer';
 
 
 function wait(ms: number) {
@@ -8,6 +8,7 @@ function wait(ms: number) {
 }
 const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
+let browser: Browser;
 
 async function getScreenshot(url: string) {
   const { env } = (await getCloudflareContext());
@@ -20,7 +21,7 @@ async function getScreenshot(url: string) {
   }
   console.log(`Launching browser`);
   console.log(`Cloudflare Browser:`, env.MYBROWSER);
-  const browser = await puppeteer.launch(env.MYBROWSER);
+  browser = await puppeteer.launch(env.MYBROWSER);
   console.log(`Browser launched`);
   const page = await browser.newPage();
   console.log(`Page created`);
@@ -46,9 +47,13 @@ async function getScreenshot(url: string) {
 
 export async function GET(request: NextRequest) {
   const qs = new URLSearchParams(request.nextUrl.searchParams);
-  const url = `${`http://localhost:3000`}/og?${qs.toString()}`;
+  const url = `${request.nextUrl.origin}/og?${qs.toString()}`;
   console.log(`Getting screenshot for ${url}`);
-  const photoBuffer = await getScreenshot(url);
+  const photoBuffer = await getScreenshot(url).catch(async (err) => {
+    console.log(`Error getting screenshot`, err);
+    await browser.close();
+    throw err;
+  });
   console.log(`Returning response`);
   return new NextResponse(photoBuffer, {
     headers: {
