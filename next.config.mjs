@@ -3,9 +3,8 @@ import path from 'path';
 import bundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = bundleAnalyzer({
-  enabled: false,
+  enabled: true,
 });
-
 
 const withMDX = createMDX({
   options: {

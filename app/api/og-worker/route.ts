@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { Browser } from '@cloudflare/puppeteer';
-import { getChromeWsEndpoint } from '@/utils/localChrome';
 const puppeteer = require('@cloudflare/puppeteer');
 let browser: Browser;
 
@@ -23,8 +22,13 @@ async function getScreenshot(url: string) {
     browser = await puppeteer.launch(env.MYBROWSER);
   } else {
     // Local Browser (for local development)
-    const browserWSEndpoint = await getChromeWsEndpoint();
-    browser = await puppeteer.connect({ browserWSEndpoint });
+    if (process.env.NODE_ENV === 'development') {
+      const { getChromeWsEndpoint } = await import('@/utils/localChrome');
+      const browserWSEndpoint = await getChromeWsEndpoint();
+      browser = await puppeteer.connect({ browserWSEndpoint });
+    } else {
+      browser = await puppeteer.launch(env.MYBROWSER);
+    }
   }
   console.log(`Browser launched`);
   const page = await browser.newPage();
