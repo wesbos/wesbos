@@ -64,7 +64,7 @@
     "vitest": "^2.1.8"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^0.3.4",
+    "@opennextjs/cloudflare": "^0.3.7",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

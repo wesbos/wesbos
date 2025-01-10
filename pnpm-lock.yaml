@@ -180,8 +180,8 @@ importers:
         version: 2.1.8(@types/node@22.10.2)(less@4.2.1)(sass@1.83.0)(stylus@0.62.0)(terser@5.16.9)
     devDependencies:
       '@opennextjs/cloudflare':
-        specifier: ^0.3.4
-        version: 0.3.4(wrangler@3.99.0)
+        specifier: ^0.3.7
+        version: 0.3.7(wrangler@3.99.0)
       '@types/node':
         specifier: ^22
         version: 22.10.2
@@ -1788,8 +1788,8 @@ packages:
     version: 3.3.1
     hasBin: true
 
-  '@opennextjs/cloudflare@0.3.4':
-    resolution: {integrity: sha512-CW2caZAC4uq6VLbdHLQ9kY2WoR9twrJX5LNOJdbV9gpqOYPbjB6Bc+L7RwZQ61ls87BdRZcTR19caVtxaqj7Gg==}
+  '@opennextjs/cloudflare@0.3.7':
+    resolution: {integrity: sha512-sedXeFeSknvJkUr6g/15bn16T/EFfCYXW2JvbkT9rojXgmAtVwUeOjFVtRPsd+mf3NImPdeDZ/kz7Y7lZK8crQ==}
     hasBin: true
     peerDependencies:
       wrangler: ^3.99.0
@@ -4953,11 +4953,6 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  rimraf@6.0.1:
-    resolution: {integrity: sha512-9dkvaxAsk/xNXSJzMgFqqMCuFgt2+KsOFek3TMLfo8NCPfWpBmqwyNn5Y+NX56QUYfCtsyhF3ayiboEoUmJk/A==}
-    engines: {node: 20 || >=22}
-    hasBin: true
-
   rollup-plugin-inject@3.0.2:
     resolution: {integrity: sha512-ptg9PQwzs3orn4jkgXJ74bfs5vYz1NCZlSQMBUA0wKcGp5i5pA1AO3fOUEte8enhGUC+iapTCzEWw2jEFFUO/w==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
@@ -7433,13 +7428,12 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@0.3.4(wrangler@3.99.0)':
+  '@opennextjs/cloudflare@0.3.7(wrangler@3.99.0)':
     dependencies:
       '@dotenvx/dotenvx': 1.31.0
       '@opennextjs/aws': https://pkg.pr.new/@opennextjs/aws@688
       enquirer: 2.4.1
       glob: 11.0.0
-      rimraf: 6.0.1
       ts-morph: 23.0.0
       wrangler: 3.99.0
     transitivePeerDependencies:
@@ -11395,11 +11389,6 @@ snapshots:
       - debug
 
   reusify@1.0.4: {}
-
-  rimraf@6.0.1:
-    dependencies:
-      glob: 11.0.0
-      package-json-from-dist: 1.0.1
 
   rollup-plugin-inject@3.0.2:
     dependencies:
