@@ -8,6 +8,10 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 # Browser for Puppeteer
 browser = { binding = "MYBROWSER" }
 
+routes = [
+  { pattern = "rsc.wesbos.com", custom_domain = true }
+]
+
 [[ d1_databases ]]
 binding = "DB"
 database_name = "wes-bos-social-cache"
@@ -27,3 +31,4 @@ preview_id = "6160abb870834617ace162b7e567853f"
 [observability]
 enabled = true
 head_sampling_rate = 1 # optional. default = 1.
+
