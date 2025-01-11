@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { Browser } from '@cloudflare/puppeteer';
 const puppeteer = require('@cloudflare/puppeteer');
+
 let browser: Browser;
 
 async function getScreenshot(url: string) {

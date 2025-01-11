@@ -70,11 +70,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://wesbos.com'; // TODO: make this dynamic
   const url = `${baseUrl}/${post.frontmatter.slug}`;
-  const image = post.images?.[0];
+  const image = post.images?.[0]?.src;
   const searchParams = new URLSearchParams();
   searchParams.set('title', post.frontmatter.title);
   searchParams.set('url', url);
-  searchParams.set('thumbnail', image.src);
+  image ? searchParams.set('thumbnail', image) : null;
   const ogImage = `${baseUrl}/api/og-worker?${searchParams.toString()}`;
 
   return {

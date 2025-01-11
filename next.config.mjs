@@ -46,6 +46,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    loader: 'custom',
+    loaderFile: './lib/imageLoader.ts',
+  },
 };
 
 export default withBundleAnalyzer(withMDX(nextConfig));
