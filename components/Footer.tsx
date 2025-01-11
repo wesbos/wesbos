@@ -5,9 +5,10 @@ import Podcast from './Podcast';
 import LatestCourse from './LatestCourse';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
-import { FooterInner, FooterStyles } from '@/styles/FooterStyles.module.css';
+import styles, { FooterBottomStyles, FooterInner, FooterStyles } from '@/styles/FooterStyles.module.css';
 
 export default function Footer() {
+  console.log(styles);
   return (
     <footer className={FooterStyles}>
       <div className={FooterInner}>
@@ -15,22 +16,22 @@ export default function Footer() {
         <Twitter />
         <Instagram />
         <LatestCourse />
-        <div className="bottom">
+        <div className={FooterBottomStyles}>
           I post videos on{' '}
-          <a href="https://youtube.com/wesbos?sub_confirmation=1" target="_blank" rel="noreferrer noopener" className="socialLink">
+          <a href="https://youtube.com/wesbos?sub_confirmation=1" target="_blank" rel="noreferrer noopener" className={styles.socialLink}>
             <IoLogoYoutube /> YouTube
           </a>{' '}
           and code on{' '}
-          <a href="https://github.com/wesbos" target="_blank" rel="noreferrer noopener" className="socialLink">
+          <a href="https://github.com/wesbos" target="_blank" rel="noreferrer noopener" className={styles.socialLink}>
             <IoLogoGithub /> GitHub
           </a>
-          {/* TODO DynamicIO Is whining about this <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p> */}
+          <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
           <p>
-            <Link className="terms" href="/terms">
+            <Link className={styles.terms} href="/terms">
               Terms
             </Link>{' '}
             &times;{' '}
-            <Link className="terms" href="/privacy">
+            <Link className={styles.terms} href="/privacy">
               Privacy Policy
             </Link>
           </p>

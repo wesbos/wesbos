@@ -72,6 +72,7 @@
   body {
     min-height: calc(100vh - 40px);
     font-size: 2rem;
+    margin: 0;
   }
   *,
   *:before,
