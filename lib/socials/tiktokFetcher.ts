@@ -1,5 +1,5 @@
 "use server";
-import { parseHTML } from 'linkedom';
+import { parseHTML } from 'linkedom/worker';
 import { TikTokResponse } from './tiktokFetcherTypes';
 
 const headers = {

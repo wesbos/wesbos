@@ -1,5 +1,5 @@
 "use server";
-import { parseHTML } from 'linkedom';
+import { parseHTML } from 'linkedom/worker';
 
 function makeLinkedInUrl(postId: string) {
   return `https://www.linkedin.com/feed/update/urn:li:activity:${postId}`;
