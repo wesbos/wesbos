@@ -29,10 +29,11 @@ export async function fetchSocialDetails(link: SocialLink) {
   }
   console.log(`Fetching social details for ${link.type} / ${link.postId}`);
   const db = await getDb();
-  const result = await db.query.postsTable.findFirst({
+  const query = {
     where: eq(postsTable.postId, link.postId),
     orderBy: desc(postsTable.createdAt),
-  });
+  }
+  const result = await db.query.postsTable.findFirst(query);
   if (result) {
     console.log(`${link.type}: Found in the DB`);
     return result;

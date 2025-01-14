@@ -2,9 +2,9 @@ import { socialVideoStats } from '@/styles/SocialVideoStats.module.css';
 import { formatNumber } from '@/utils/formatNumber';
 import { findInObject } from '@/utils/objectWalker';
 import { SocialLinkType, PopulatedLink } from '@/utils/parseSocialLinks';
-import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter, FaYoutube, FaBluesky, FaThreads, FaHeart, FaBookmark, FaRetweet, FaComment, FaChartSimple, FaPlay, FaQuoteLeft, FaShare } from 'react-icons/fa6';
-
-type NestedSelector = string | [string, string];
+import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter, FaYoutube, FaBluesky, FaThreads, FaHeart, FaBookmark, FaRetweet, FaComment,
+  FaChartSimple, FaPlay, FaQuoteLeft, FaShare } from 'react-icons/fa6';
+  type NestedSelector = string | [string, string];
 
 const socialLookup: Record<SocialLinkType, NestedSelector[]> = {
   twitter: ['favorite_count', 'retweet_count', 'reply_count', 'bookmark_count', ['views', 'count']],

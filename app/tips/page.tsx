@@ -6,6 +6,7 @@ import { Tip } from '@/components/Tip';
 export default async function HotTips({ params }: { params: { pageNumber: string } }) {
   const paramz = await params;
   const currentPage = parseInt(paramz.pageNumber, 10) || 1;
+
   const { posts, total, pages } = await getPosts({
     page: currentPage,
     type: 'tip',
