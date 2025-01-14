@@ -1,4 +1,4 @@
-@layer reset, base, tokens, recipes, utilities;
+@layer reset, base, tokens, recipes, media, utilities;
 
 @layer base {
   :root {
@@ -321,5 +321,10 @@ span.grit {
   }
   .inline {
     display: inline;
+  }
+}
+@layer media {
+  media-controller {
+    width: 100%;
   }
 }
