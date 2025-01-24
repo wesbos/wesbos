@@ -5,6 +5,7 @@ import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
 import Image, { ImageProps } from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
+import { headers } from 'next/headers';
 
 export default async function BlogPost({ params, children }: { params: { slug: string }, children: React.ReactNode }) {
   const { slug } = await params;
@@ -58,7 +59,6 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.frontmatter.slug }));
 }
 
-// or Dynamic metadata
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);

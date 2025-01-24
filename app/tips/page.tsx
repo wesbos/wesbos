@@ -2,6 +2,7 @@ import { getPosts } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
 import Pagination from '@/components/Pagination';
 import { Tip } from '@/components/Tip';
+import { Metadata } from 'next';
 
 export default async function HotTips({ params }: { params: { pageNumber: string } }) {
   const paramz = await params;
@@ -39,3 +40,18 @@ export default async function HotTips({ params }: { params: { pageNumber: string
 
 // This forces next to skip SSG, because we dont have access to the DB in build??
 export const dynamic = 'force-dynamic';
+
+// Page Meta
+export async function generateMetadata({ params }: { params: { pageNumber: string } }): Promise<Metadata> {
+  const pageNumber = parseInt(params.pageNumber, 10) || 1;
+
+  const { posts, total, pages } = await getPosts({
+    page: pageNumber,
+    type: 'tip',
+    limit: 10
+  });
+  return {
+    title: `🔥 Hot Tips - Page ${pageNumber} of ${pages} - Wes Bos`,
+    description: `Hot tips are spicy lil' nuggets related to web development and tooling that I share on my twitter account.`,
+  };
+}
