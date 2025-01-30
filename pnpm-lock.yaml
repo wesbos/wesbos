@@ -178,9 +178,6 @@ importers:
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
-      vitest:
-        specifier: ^2.1.8
-        version: 2.1.8(@types/node@22.10.2)(less@4.2.1)(sass@1.83.0)(stylus@0.62.0)(terser@5.16.9)
     devDependencies:
       '@opennextjs/cloudflare':
         specifier: ^0.3.7
@@ -227,6 +224,9 @@ importers:
       typescript:
         specifier: ^5
         version: 5.7.2
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.8(@types/node@22.10.2)(less@4.2.1)(sass@1.83.0)(stylus@0.62.0)(terser@5.16.9)
       wrangler:
         specifier: ^3.99.0
         version: 3.99.0

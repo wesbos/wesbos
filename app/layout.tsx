@@ -9,6 +9,7 @@ import { ContentStyles } from '@/styles/ContentStyles.module.css';
 import { getPostBySlug } from '@/lib/getPosts';
 import { baseUrl } from '@/lib/meta';
 import { headers } from 'next/headers';
+import { slugToTitle } from '@/utils/slugToTitle';
 
 // import mdxComponents from '@/components/mdxComponents';
 
@@ -33,17 +34,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const paramz = await params;
-  const headersList = await headers(); // using headers opts out of dynamic renderings. MEH
-  const slug = headersList.get('x-invoke-path');
-  console.log('slug', slug);
-  const post = await getPostBySlug(slug || paramz.slug);
+// export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }, state: Record<string, any>): Promise<Metadata> {
+  // AWful hack to get the url pathname from the state. I'm pretty sure this disabled SSG for the entire website but it is not possible to get the current URL inside of generateMetadata.
+  // dumb. https://github.com/vercel/next.js/discussions/50189
+  const res = Object.getOwnPropertySymbols(state || {}).map((p) => state[p]);
+  const pathname = res.find((state) => state?.hasOwnProperty('url'))?.url?.pathname;
+  const route = res.find((state) => state?.hasOwnProperty('route')).route;
+  // console.log('res::', res);
+  // console.log('route::', route);
+  let slug = pathname; // Default to the sanme things, EG /about, /tips
+  // if the route has a [slug] in it, we need to parse out that slug from the pathname. EG /tips/[slug]
+  if (route?.includes('[slug]')) {
+    slug = pathname?.split('/').pop();
+  }
+
+  const post = await getPostBySlug(slug);
+  console.log('POST::', post);
   // First we try to see if we can get a piece fo content for this page
   // If we can't, we just return the default meta
   const pageSlug = post?.frontmatter?.slug || slug;
-  const title = post?.frontmatter?.title || slug.replace(/-/g, ' ');
-  const url = `${baseUrl}/${pageSlug}`;
+  const title = post?.frontmatter?.title || slugToTitle(pageSlug);
+  const url = `${baseUrl}${pathname}`;
+  console.log('URL::', url);
   const image = post?.images?.[0]?.src;
   const searchParams = new URLSearchParams();
   searchParams.set('title', title);
@@ -51,22 +64,24 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   image ? searchParams.set('thumbnail', image) : null;
   const ogImage = `${baseUrl}/api/og-worker?${searchParams.toString()}`;
 
+  const description = post?.excerpt || '';
   return {
     title: `${title} - Wes Bos`,
-    description: post?.excerpt,
+    description,
     canonical: url,
     openGraph: {
       type: 'article',
       title,
       url,
-      authorName: 'Wes Bos',
-      description: post?.excerpt,
+      description,
       siteName: 'Wes Bos',
-      images: [{
-        url: ogImage,
-        width: 1200,
-        height: 630,
-      }],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+        },
+      ],
       locale: 'en_CA',
       publishedTime: post?.frontmatter?.date ? new Date(post.frontmatter.date).toISOString() : undefined,
     },
@@ -75,7 +90,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       site: '@wesbos',
       creator: '@wesbos',
       title,
-      description: post?.excerpt,
+      description,
       images: [ogImage],
     },
     alternates: {

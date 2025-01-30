@@ -25,18 +25,18 @@ export function TimeSinceStarting() {
   const { timeSinceStarting } = useOldGuy({
     update: 100,
   });
-  return timeSinceStarting;
+  return <span suppressHydrationWarning>{timeSinceStarting}</span>;
 }
 
 export function TimeSince() {
   const { timeAsYears, timeSinceStarting, age, ageAsYears } = useOldGuy({ update: 100 });
   return (
     <p>
-      I'm a web developer, teacher and speaker from Hamilton, Ontario 🇨🇦. I'm <span title={`That's ${age} ms!`}>{ageAsYears}</span> years old and I've been{' '}
+      I'm a web developer, teacher and speaker from Hamilton, Ontario 🇨🇦. I'm <span suppressHydrationWarning title={`That's ${age} ms!`}>{ageAsYears}</span> years old and I've been{' '}
       <a target="_blank" rel="noopener noreferrer" href="http://web.archive.org/web/20040608163410/http://www.wesbos.com/">
         making websites
       </a>{' '}
-      for about {timeAsYears} years - or <em>exactly</em> <TimeSinceStarting /> milliseconds!
+      for about <span suppressHydrationWarning>{timeAsYears}</span> years - or <em>exactly</em> <TimeSinceStarting /> milliseconds!
     </p>
   );
 }

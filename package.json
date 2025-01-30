@@ -61,8 +61,7 @@
     "theme-cobalt2": "^2.4.3",
     "tsx": "^4.19.2",
     "typescript-plugin-css-modules": "^5.1.0",
-    "unist-util-visit": "^5.0.0",
-    "vitest": "^2.1.8"
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^0.3.7",
@@ -80,6 +79,7 @@
     "postcss": "^8",
     "prettier": "^3.4.2",
     "typescript": "^5",
+    "vitest": "^2.1.8",
     "wrangler": "^3.99.0"
   },
   "homepage": "https://wesbos.com",
@@ -100,7 +100,7 @@
   "scripts": {
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
     "lint:fix": "eslint --ext .js,.jsx --ignore-pattern public . --fix",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "develop": "gatsby develop",
     "build-gatsby": "gatsby build",
     "netlify": "netlify dev",

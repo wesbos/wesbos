@@ -8,7 +8,6 @@ import Twitter from './Twitter';
 import styles, { FooterBottomStyles, FooterInner, FooterStyles } from '@/styles/FooterStyles.module.css';
 
 export default function Footer() {
-  console.log(styles);
   return (
     <footer className={FooterStyles}>
       <div className={FooterInner}>
