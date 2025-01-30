@@ -21,7 +21,6 @@ export default async function BlogPost({ params, children }: { params: { slug: s
       <>
         {image && <Image src={image} alt={post.frontmatter.title} />}
         <div>
-          {/* <PostMetaTags post={post} /> */}
           <H>{post.frontmatter.title}</H>
           <div className={postMeta}>
             <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>

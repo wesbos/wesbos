@@ -26,14 +26,6 @@ export default async function HotTips({ params }: { params: { pageNumber: string
         })}
       </div>
       <Pagination currentPage={currentPage} totalCount={total} totalPages={pages} pathPrefix="/tips/" />
-      {/* <PostMetaTags
-        post={{
-          frontmatter: {
-            slug: location.pathname,
-            title: `🔥 Hot Tips ${pageContext.currentPage ? `- Page ${pageContext.currentPage}` : ''}`,
-          },
-        }}
-      /> */}
     </>
   );
 }
@@ -51,7 +43,9 @@ export async function generateMetadata({ params }: { params: { pageNumber: strin
     limit: 10
   });
   return {
-    title: `🔥 Hot Tips - Page ${pageNumber} of ${pages} - Wes Bos`,
+    title: {
+      absolute: `🔥 Hot Tips - Page ${pageNumber} of ${pages} - Wes Bos`,
+    },
     description: `Hot tips are spicy lil' nuggets related to web development and tooling that I share on my twitter account.`,
   };
 }

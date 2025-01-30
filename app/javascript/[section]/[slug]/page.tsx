@@ -35,7 +35,6 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
       </div>
       <article>
         <div>
-          {/* <PostMetaTags post={post} /> */}
           <h2>Params.slug: {slug}</h2>
           <H>{post.frontmatter.title}</H>
           <BeginnerJavaScript />
