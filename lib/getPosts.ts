@@ -1,15 +1,25 @@
 import fg from 'fast-glob';
 import { slug } from 'github-slugger';
 import path from 'path';
-import { ContentType, MDXResult } from './types';
+import { ContentType, MDXResult, Frontmatter, JavaScriptFrontmatter } from './types';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
 
 const PER_PAGE = 10;
-type PostFilterArgs = {
+type PostFilterArgs<T extends ContentType = ContentType> = {
   page?: number;
   skip?: number;
+  type?: T;
   limit?: number;
-  type?: ContentType;
+};
+
+type TypeToFrontmatter<T extends ContentType> = T extends 'javascript'
+  ? MDXResult<JavaScriptFrontmatter>
+  : MDXResult<Frontmatter>;
+
+type PostsReturn<T extends ContentType> = {
+  posts: TypeToFrontmatter<T>[];
+  total: number;
+  pages: number;
 };
 
 /**
@@ -17,7 +27,7 @@ type PostFilterArgs = {
  * Ideally this would be done as a Remark/rehype plugin, but its too complex to do that.
  * https://bsky.app/profile/remcohaszing.nl/post/3lcxmt7aez22t
  */
-export function parseContent(post: MDXResult): Promise<MDXResult> {
+export function parseContent(post: MDXResult): MDXResult {
   const filename = path.basename(post.filePath, path.extname(post.filePath));
   if (!post.frontmatter.slug) {
     post.frontmatter.slug = slug(filename);
@@ -90,7 +100,12 @@ export async function getPostBySlug(postSlug: string) {
   return posts.find((post) => post.frontmatter.slug === postSlug);
 }
 
-export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_PAGE }: PostFilterArgs = {}) {
+export async function getPosts<T extends ContentType>({
+  page = 1,
+  skip = 0,
+  type = 'blog' as T,
+  limit = PER_PAGE
+}: PostFilterArgs<T> = {} as PostFilterArgs<T>): Promise<PostsReturn<T>> {
   const allPosts = await parsePosts();
   const posts = allPosts.filter((post) => post.frontmatter.type === type);
   // Return the posts for this page
@@ -98,10 +113,9 @@ export async function getPosts({ page = 1, skip = 0, type = 'blog', limit = PER_
   const end = start + limit;
   const postsForPage = posts.slice(start, end);
 
-  const returnedPosts = {
-    posts: postsForPage,
+  return {
+    posts: postsForPage as TypeToFrontmatter<T>[],
     total: posts.length,
     pages: Math.ceil(posts.length / limit),
   };
-  return returnedPosts;
 }

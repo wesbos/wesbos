@@ -2,10 +2,9 @@
 import React, { Suspense } from 'react';
 import H from '../../components/mdxComponents/Headings';
 import * as ogcss from '@/styles/OG.module.css';
-// import logo from '../assets/images/logo.png';
-import { useParams, usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
-function getFontSize(length) {
+function getFontSize(length: number) {
   if (length > 55) {
     return `5rem`;
   }
@@ -21,10 +20,8 @@ function OG() {
   if (!searchParams) return null;
   const thumbnail = searchParams.get('thumbnail');
   const link = searchParams.get('url');
-  const title = searchParams.get('title');
-  console.log({ thumbnail, link, title });
-  console.log(link);
-  const linkURL = new URL(link);
+  const title = searchParams.get('title') || 'Wes Bos';
+  const linkURL = new URL(link || 'https://wesbos.com');
 
   // example URL: http://localhost:3000/og?title=Uses&url=https%3A%2F%2Fwesbos.com%2Fuses&thumbnail=%2F_next%2Fimage%3Furl%3D%252F_next%252Fstatic%252Fmedia%252Faeron.b514fb21.jpg%26w%3D1920%26q%3D75
   return (

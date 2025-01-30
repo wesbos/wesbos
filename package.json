@@ -54,6 +54,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-mdx-frontmatter": "^5.0.0",
     "rettiwt-api": "^4.1.4",
+    "schema-dts": "^1.1.2",
     "server-only": "^0.0.1",
     "shiki": "^1.24.4",
     "speakingurl": "^14.0.1",
@@ -99,6 +100,7 @@
   },
   "scripts": {
     "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
+    "typecheck": "tsc --noEmit",
     "lint:fix": "eslint --ext .js,.jsx --ignore-pattern public . --fix",
     "test": "vitest",
     "develop": "gatsby develop",
@@ -116,6 +118,7 @@
     "preview:worker": "pnpm run build:worker && pnpm run dev:worker:remote",
     "deploy:worker": "pnpm run build:worker && wrangler deploy",
     "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
+    "types:css": "node --experimental-strip-types ./lib/createStyleIndex.ts",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "db:generate": "drizzle-kit generate",

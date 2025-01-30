@@ -1,30 +1,56 @@
-import { MDXRemoteSerializeResult } from 'next-mdx-remote/rsc';
+import { MDXContent } from 'mdx/types';
+import { StaticImageData } from 'next/image';
 
 export type ContentType = 'blog' | 'tip' | 'javascript'; // Blog post, hot tip, beginner javascript note
 
-export type MDXResult = MDXRemoteSerializeResult<undefined, Frontmatter>;
-export type Frontmatter = {
+export type MDXResult<T extends Frontmatter = Frontmatter> = {
+  frontmatter: T;
+  default: MDXContent;
+  filePath: string;
+  images: StaticImageData[];
+  excerpt: string;
+  toc: TableOfContentsHeading[];
+};
+
+// Base Frontmatter type with common fields
+type BaseFrontmatter = {
   title: string;
   slug: string;
   image: string;
   imagePath: string;
   category: string[];
-  date: Date;
+  date: string;
   id: number;
   filename: string;
-  type: ContentType;
   folder: string;
+  tweetURL?: string;
+  links?: string[];
+};
+
+// Type for blog and tip content
+type RegularFrontmatter = BaseFrontmatter & {
+  type: 'blog' | 'tip';
   tocTitle?: string;
   section?: string;
   sectionNumber?: number;
   postNumber?: number;
 };
 
-export type JavaScriptFrontmatter = Frontmatter & {
+// Type for javascript content
+export type JavaScriptFrontmatter = BaseFrontmatter & {
+  type: 'javascript';
   tocTitle: string;
-  title: string;
-  slug: string;
   section: string;
   sectionNumber: number;
   postNumber: number;
+};
+
+// Union type that enforces the correct shape based on the type field
+export type Frontmatter = RegularFrontmatter | JavaScriptFrontmatter;
+
+export type TableOfContentsHeading = {
+  depth: number;
+  id: string;
+  value: string;
+  children?: TableOfContentsHeading[];
 };

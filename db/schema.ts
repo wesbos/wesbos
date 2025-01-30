@@ -1,10 +1,13 @@
+import { BlueSkyPost } from '@/lib/socials/blueSkyFetcher';
+import { InstagramPost } from '@/lib/socials/instagramTypes';
+import { LinkedInPost } from '@/lib/socials/linkedInFetcher';
 import { TiktokDetails } from '@/lib/socials/tiktokFetcherTypes';
 import { TweetDetails } from '@/lib/socials/twitter-fetcher';
 import { SocialLinkType } from '@/utils/parseSocialLinks';
 import { sql } from 'drizzle-orm';
 import { index, int, integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-type PostData = TweetDetails | TiktokDetails;
+type PostData = TweetDetails | TiktokDetails | LinkedInPost | BlueSkyPost | InstagramPost;
 export const postsTable = sqliteTable("posts", {
   id: int().primaryKey({ autoIncrement: true }),
   type: text().$type<SocialLinkType>(),

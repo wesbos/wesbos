@@ -1,4 +1,4 @@
-// import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 // import { getCloudflareContext } from '@opennextjs/cloudflare';
 // import { Browser } from '@cloudflare/puppeteer';
 

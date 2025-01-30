@@ -1,13 +1,13 @@
 import { TipStyles } from '@/styles/TipStyles.module.css';
 import TipMeta from './TipMeta';
-import mdxComponents from './mdxComponents';
 import { parseSocialLinks, populateSocialLinks } from '@/utils/parseSocialLinks';
 import { XMediaDisplay } from './media/XMedia';
 import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
 import { fetchSocialDetails } from '@/lib/socials/fetchers';
 import { SocialStats } from './SocialStats';
+import { MDXResult } from '@/lib/types';
 
-export async function Tip({ tip }) {
+export async function Tip({ tip }: { tip: MDXResult }) {
   const links = [...(tip.frontmatter.links || []), ...(tip.frontmatter.tweetURL ? [tip.frontmatter.tweetURL] : [])];
   const socialLinks = parseSocialLinks(links);
   const populatedLinks = await populateSocialLinks(socialLinks);
@@ -17,15 +17,11 @@ export async function Tip({ tip }) {
   const Content = tip.default;
   return (
     <div className={TipStyles}>
+      {/* @ts-ignore MEH upstream */}
       {tweetDetails && <XMediaDisplay media={tweetDetails.postData?.extended_entities?.media || tweetDetails.postData?.entities.media} />}
       <div className="tipContent">
         <TipMeta tip={tip} />
-        <Content
-          components={{
-            ...mdxComponents,
-          }}
-        />
-
+        <Content />
         <div className={socialStatsContainer}>
           {Object.entries(populatedLinks).map(([type, link]) => {
             return <SocialStats key={type} link={link} />;

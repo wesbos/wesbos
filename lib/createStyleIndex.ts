@@ -10,12 +10,15 @@ import { writeFile } from 'fs/promises';
 const outputFile = path.resolve('./styles/styleIndex.ts');
 const outputDir = path.dirname(outputFile);
 const globs = ['./styles/**/*.module.css', './app/**/*.module.css', './components/**/*.module.css'];
-const watcher = watch(globs, {
-  ignoreInitial: true,
-});
 
-export async function cssModuleIndexMaker() {
-  await generateStyleIndex();
+
+export async function watchForStyleChanges() {
+  await generateStyleIndex(); // Generate the initial style index
+
+  const watcher = watch(globs, {
+    ignoreInitial: true,
+  });
+
   watcher.on('add', (filePath) => {
     generateStyleIndex();
   });
@@ -29,5 +32,7 @@ async function generateStyleIndex() {
   });
   const styleIndex = `${importStatements.join('\n')}`;
   await writeFile(outputFile, styleIndex);
-  console.log('Style index generated');
+  console.log(`🎉 Style index generated. Wrote ${files.length} file imports to ${outputFile}`);
 }
+
+generateStyleIndex(); // run on import

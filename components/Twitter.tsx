@@ -1,12 +1,16 @@
+import { TweetDetails, XMediaEntity } from '@/lib/socials/twitter-fetcher';
 import { FooterBlock, FooterHeading, TweetStyles } from '@/styles/FooterStyles.module.css';
 import clsx from 'clsx';
 import React from 'react';
 import { IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
 
 const url = `/.netlify/functions/twitter`;
+type Media = {
+  media: XMediaEntity[];
+  alt: string;
+};
 
-
-function Media({ media, alt }) {
+function Media({ media, alt }: Media) {
   if (!media) return null;
   console.log(media);
   const mediaUrl = media[0].media_url_https;
@@ -17,7 +21,7 @@ function Media({ media, alt }) {
 }
 
 export default function Twitter() {
-  const tweets = [];
+  const tweets: TweetDetails[] = [];
 
   return (
     <div className={clsx([FooterBlock, TweetStyles])}>
@@ -32,13 +36,14 @@ export default function Twitter() {
       </h3>
       {!tweets.length && (
         <p>
-          <strike>twitter</strike> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
+          <s>twitter</s> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
         </p>
       )}
       {Array.isArray(tweets) &&
         tweets.map((tweet) => {
-          const { media } = tweet.entities;
-          const text = tweet.full_text.split('https://t.co').shift().slice(0, 100);
+          // @ts-ignore
+          const media = tweet.extended_entities?.media;
+          const text = tweet.full_text?.split('https://t.co').shift()?.slice(0, 100) ?? '';
           return (
             <div key={tweet.id_str}>
               <p>
@@ -47,7 +52,7 @@ export default function Twitter() {
                   {text}…
                 </a>
               </p>
-              <TweetMeta>
+              <div className="TweetMeta">
                 <span title={`${tweet.retweet_count} Retweets`}>
                   <IoIosRepeat />
                   {tweet.retweet_count}
@@ -57,7 +62,7 @@ export default function Twitter() {
                   <IoIosHeart className="heart" />
                   {tweet.favorite_count}
                 </span>
-              </TweetMeta>
+              </div>
             </div>
           );
         })}

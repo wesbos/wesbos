@@ -35,7 +35,8 @@
       --scale: 1.1;
     }
   }
-  & a[disabled] {
+  & a[disabled],
+  & a[aria-disabled='true'] {
     /* opacity: 0.5; */
     pointer-events: none;
     text-decoration: line-through;

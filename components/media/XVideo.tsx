@@ -10,7 +10,7 @@ export function XVideoPlayer({ url, contentType, style }: { url: string; content
         {contentType === 'application/x-mpegURL' ? (
           <HLSVideoElement onErrorCapture={(err) => {
             console.log('error playing hls video', err);
-          }} loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></HLSVideoElement>
+          }} loop muted autoplay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></HLSVideoElement>
         ) : (
           <video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></video>
         )}

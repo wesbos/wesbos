@@ -1,11 +1,9 @@
-import mdxComponents from '@/components/mdxComponents';
 import H from '@/components/mdxComponents/Headings';
 import { getPostBySlug, getPosts } from '@/lib/getPosts';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
 import Image, { ImageProps } from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
-import { headers } from 'next/headers';
 
 export default async function BlogPost({ params, children }: { params: { slug: string }, children: React.ReactNode }) {
   const { slug } = await params;
@@ -30,14 +28,7 @@ export default async function BlogPost({ params, children }: { params: { slug: s
             </a>
           </div>
         </div>
-              <MDXContent
-        components={{
-          img: (props) => {
-            return <Image sizes="100vw" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />;
-          },
-          ...mdxComponents
-        }}
-      />
+        <MDXContent/>
         <div className={EditDialogStyles}>
           <p>Find an issue with this post? Think you could clarify, update or add something?</p>
           <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>

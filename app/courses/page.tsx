@@ -1,8 +1,7 @@
 import H from '@/components/mdxComponents/Headings';
-import { PostMetaTags } from '../../components/MetaTags';
 import { CourseListStyles, PriceTag } from '@/styles/CourseStyles.module.css';
 
-export default function CoursesPage({ location }) {
+export default function CoursesPage() {
   return (
     <>
       <p>

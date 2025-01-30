@@ -1,19 +1,11 @@
 import H from '@/components/mdxComponents/Headings';
 import { getPosts } from '@/lib/getPosts';
-import { MDXResult } from '@/lib/types';
+import { MDXResult, TableOfContentsHeading } from '@/lib/types';
 import { TOCAsideStyles } from '@/styles/TOCAsideStyles.module.css';
 import createSectionedFrontMatter from '@/utils/createSectionedFrontmatter';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import { TOC } from '@/styles/TOC.module.css';
-
-
-type TableOfContentsHeading = {
-  depth: number;
-  id: string;
-  value: string;
-  children?: TableOfContentsHeading[];
-};
 
 function ContentHeadings({ headings, parent }: { headings?: TableOfContentsHeading[]; parent?: MDXResult }) {
   if (!headings) return null;
@@ -23,11 +15,11 @@ function ContentHeadings({ headings, parent }: { headings?: TableOfContentsHeadi
         <Fragment key={heading.id}>
           <li key={heading.id}>
             <Link href={`/javascript/${parent?.frontmatter.slug}#${heading.id}`}>{heading.value}</Link>
-          {heading.children && (
+            {heading.children && (
               <ul>
                 <ContentHeadings headings={heading.children} parent={parent} />
               </ul>
-          )}
+            )}
           </li>
         </Fragment>
       ))}
@@ -48,7 +40,7 @@ export async function TableOfContents() {
         <Fragment key={section}>
           <H as="h5">Module {section}</H>
           <ul>
-            {posts.map((post) => (
+            {(posts || []).map((post) => (
               <li key={post.frontmatter.slug}>
                 <Link href={`/javascript/${post.frontmatter.slug}`}>
                   {post.frontmatter.title}
@@ -74,12 +66,12 @@ export async function TableOfContentsLanding() {
       {toc.map(([title, items]) => (
         <div key={title}>
           <H as="h3">{title}</H>
-        <ul>
-          {(items || []).map((item) => (
-            <li key={item.frontmatter.tocTitle}>
-              <Link href={`/javascript/${item.frontmatter.slug}`}>{item.frontmatter.tocTitle}</Link>
-            </li>
-          ))}
+          <ul>
+            {(items || []).map((item) => (
+              <li key={item.frontmatter.tocTitle}>
+                <Link href={`/javascript/${item.frontmatter.slug}`}>{item.frontmatter.tocTitle}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       ))}

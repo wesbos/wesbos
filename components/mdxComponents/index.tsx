@@ -5,7 +5,7 @@ import H from './Headings';
 // import Blockquote from './blockquote';
 import { Code } from './code';
 import { HighlightedCode } from './HighlightedCode';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 
 /* eslint-disable */
 const mdxComponents: MDXComponents = {

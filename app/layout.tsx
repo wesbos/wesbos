@@ -11,7 +11,6 @@ import { baseUrl } from '@/lib/meta';
 import { headers } from 'next/headers';
 import { slugToTitle } from '@/utils/slugToTitle';
 
-// import mdxComponents from '@/components/mdxComponents';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // TODO if (pageContext.layout === 'thumbnail') return children;
@@ -38,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 export async function generateMetadata({ params }: { params: { slug: string } }, state: Record<string, any>): Promise<Metadata> {
   // AWful hack to get the url pathname from the state. I'm pretty sure this disabled SSG for the entire website but it is not possible to get the current URL inside of generateMetadata.
   // dumb. https://github.com/vercel/next.js/discussions/50189
-  const res = Object.getOwnPropertySymbols(state || {}).map((p) => state[p]);
+  const res = Object.getOwnPropertySymbols(state || {}).map((p) => (state as any)[p]);
   const pathname = res.find((state) => state?.hasOwnProperty('url'))?.url?.pathname;
   const route = res.find((state) => state?.hasOwnProperty('route')).route;
   // console.log('res::', res);
@@ -53,13 +52,11 @@ export async function generateMetadata({ params }: { params: { slug: string } },
   }
 
   const post = await getPostBySlug(slug);
-  console.log('post::', post, 'from slug::', slug);
   // First we try to see if we can get a piece fo content for this page
   // If we can't, we just return the default meta
   const pageSlug = post?.frontmatter?.slug || slug;
   const title = post?.frontmatter?.title || slugToTitle(pageSlug);
   const url = `${baseUrl}${pathname}`;
-  console.log('URL::', url);
   const image = post?.images?.[0]?.src;
   const searchParams = new URLSearchParams();
   searchParams.set('title', title);
@@ -74,7 +71,6 @@ export async function generateMetadata({ params }: { params: { slug: string } },
       default: title,
     },
     description,
-    canonical: url,
     openGraph: {
       type: 'article',
       title,

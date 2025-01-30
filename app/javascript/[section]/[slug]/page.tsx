@@ -1,4 +1,3 @@
-import Image, { ImageProps } from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
 import { getPostBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
@@ -8,8 +7,6 @@ import clsx from 'clsx';
 import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { TableOfContents } from '@/components/TableOfContentsNew';
-import mdxComponents from '@/components/mdxComponents';
-import { generateMdxMetadata } from '@/lib/meta';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -46,12 +43,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
           </div>
         </div>
 
-        <MDXContent
-          components={{
-            img: (props) => <Image sizes="100vw" width="100" height="100" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />,
-            ...mdxComponents
-          }}
-        />
+        <MDXContent />
 
         <div className={EditDialogStyles}>
           <p>Find an issue with this post? Think you could clarify, update or add something?</p>
@@ -62,23 +54,8 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
             </a>
           </p>
         </div>
-        {/* <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} /> */}
-        {/* <Helmet>
-          <title>{post.frontmatter.title} - Beginner JavaScript - Wes Bos</title>
-        </Helmet> */}
+        {/* TODO <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} /> */}
       </article>
     </div>
   );
 }
-
-// export const meta_title = 'Test Override Title';
-// export const meta_description = 'Test Override Description';
-
-// export const generateMetadata = generateMdxMetadata(import.meta.url);
-
-// This is what we need to pre-gen all the posts
-// export async function generateStaticParams() {
-//   const { posts } = await getPosts();
-//   return posts.map((post) => ({ slug: post.frontmatter.slug }));
-// }
-// export const dynamicParams = false;

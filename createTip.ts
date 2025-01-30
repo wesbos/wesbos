@@ -1,8 +1,9 @@
 import { writeFile } from 'fs/promises';
 import { prompt } from 'enquirer';
 import { join } from 'path';
-import { fetchTweetDetails } from './lib/socials/twitter-fetcher.js';
+import { fetchTweetDetailsFromApi, TweetDetails } from './lib/socials/twitter-fetcher.ts';
 import { parseSocialLink } from './utils/parseSocialLinks.ts';
+import { fetchSocialDetails } from './lib/socials/fetchers.ts';
 async function createTip() {
   // Format the date in ISO format
   let date = new Date().toISOString();
@@ -40,14 +41,15 @@ async function createTip() {
         console.log('Invalid URL');
         process.exit(1);
       }
-      const tweetDetails = await fetchTweetDetails(socialLink.postId);
-      if (!tweetDetails?.postData?.full_text) {
+      const tweetDetails = await fetchSocialDetails(socialLink);
+      const postData = tweetDetails?.postData as TweetDetails;
+      if (!postData?.full_text) {
         console.log('No tweet details found, please try again');
         process.exit(1);
       }
-      bodyText = tweetDetails.postData?.full_text;
+      bodyText = postData.full_text;
       links.push(tweetURL);
-      date = tweetDetails.postData?.created_at;
+      date = postData.created_at;
     } else {
       // ask for body text until the submmitted is empty
       while (true) {

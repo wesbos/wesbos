@@ -1,12 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 
 export default function useRowFinder() {
-  const ref = useRef<HTMLElement>(null);
-  const previous = useRef({
+  const ref = useRef<HTMLUListElement>(null);
+  const previous = useRef<{
+    width: number | undefined;
+    renders: number;
+  }>({
     width: undefined,
     renders: 0,
   });
-  const [rows, setRows] = useState({});
+  const [rows, setRows] = useState<Record<number, number>>({});
 
   // when the nav changes size, run this callback
   function callback([entry]: ResizeObserverEntry[]) {
@@ -39,16 +42,16 @@ export default function useRowFinder() {
   }
 
   useEffect(() => {
+    if (!ref.current) return;
     const observer = new ResizeObserver(callback);
-    const el = ref.current;
-    observer.observe(el);
-    return function () {
-      observer.unobserve(el);
+    observer.observe(ref.current);
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
     };
-  }, [ref]);
+  }, []);
 
-  function getRow(index): number {
-    return rows[index];
+  function getRow(index: number): number {
+    return rows[index] || 0;
   }
 
   return {

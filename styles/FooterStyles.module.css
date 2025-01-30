@@ -170,3 +170,10 @@
     font-size: 0;
   }
 }
+
+.terms {
+  text-decoration: none;
+  &:before {
+    display: none;
+  }
+}

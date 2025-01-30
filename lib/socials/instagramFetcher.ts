@@ -1,5 +1,7 @@
 "use server";
 
+import type { InstagramApiResponse } from './instagramTypes';
+
 const headers = {
   "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
   "accept-language": "en-CA,en;q=0.9",
@@ -16,7 +18,7 @@ const headers = {
   "upgrade-insecure-requests": "1"
 }
 
-export async function fetchInstagramDetailsFromApi({ postId }: { postId: string }) {
+export async function fetchInstagramDetailsFromApi({ postId }: { postId: string }): Promise<InstagramApiResponse['data'] | undefined> {
   // Fetch the page
   const response = await fetch("https://www.instagram.com/graphql/query", {
     "headers": {
@@ -24,25 +26,7 @@ export async function fetchInstagramDetailsFromApi({ postId }: { postId: string 
       "accept-language": "en-CA,en;q=0.9",
       "cache-control": "no-cache",
       "content-type": "application/x-www-form-urlencoded",
-      // "pragma": "no-cache",
-      // "priority": "u=1, i",
-      // "sec-ch-prefers-color-scheme": "light",
-      // "sec-ch-ua": "\"Microsoft Edge\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
-      // "sec-ch-ua-full-version-list": "\"Microsoft Edge\";v=\"131.0.2903.99\", \"Chromium\";v=\"131.0.6778.140\", \"Not_A Brand\";v=\"24.0.0.0\"",
-      // "sec-ch-ua-mobile": "?0",
-      // "sec-ch-ua-model": "\"\"",
-      // "sec-ch-ua-platform": "\"macOS\"",
-      // "sec-ch-ua-platform-version": "\"15.1.1\"",
-      // "sec-fetch-dest": "empty",
-      // "sec-fetch-mode": "cors",
-      // "sec-fetch-site": "same-origin",
-      // "x-asbd-id": "129477",
-      // "x-bloks-version-id": "8ecbdca0bb1041c4b02312aa25073150305028c9b6346da6fa811443494f2ab8",
-      // "x-csrftoken": "V0sU9JmfnbKqxQC79_-7-M",
       "x-fb-friendly-name": "PolarisPostActionLoadPostQueryQuery",
-      // "x-fb-lsd": "AVqqtCUqtNs",
-      // "x-ig-app-id": "936619743392459",
-      // "cookie": "csrftoken=V0sU9JmfnbKqxQC79_-7-M; datr=ho1kZ4tDXJfaV1DkD7goM2vA; ig_did=F3960A55-9BD8-4278-8E76-896101B2B30D; mid=Z2SNhgAEAAEyVviLCyiPIyDEdMNs; ig_nrcb=1; ps_l=1; ps_n=1; wd=1272x948",
       "Referer": "https://www.instagram.com/p/DDh_vjgqdU8/",
       "Referrer-Policy": "strict-origin-when-cross-origin"
     },
@@ -80,7 +64,8 @@ export async function fetchInstagramDetailsFromApi({ postId }: { postId: string 
     "method": "POST"
   });
   // Get the HTML
-  const payload = await response.json();
+  const payload = await response.json() as InstagramApiResponse;
   if(!payload) return;
+  console.log('payload::', payload);
   return payload.data;
 }

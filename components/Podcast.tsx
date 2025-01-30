@@ -2,8 +2,15 @@ import Image from 'next/image'
 const url = `https://syntax.fm/api/shows/latest`;
 import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
 
+type Podcast = {
+  number: number;
+  displayDate: string;
+  title: string;
+  slug: string;
+}
+
 export default async function Podcast() {
-  const podcast = await fetch(url).then((res) => res.json()).catch(err => {
+  const podcast = await fetch(url).then((res) => res.json() as Promise<Podcast>).catch(err => {
     console.log(`Error fetching podcast`);
   });
   if(!podcast) return <p>Hrm.. </p>;

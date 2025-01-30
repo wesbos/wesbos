@@ -14,13 +14,23 @@ export default function Pagination({ totalCount, currentPage = 1, totalPages,  p
   const prevPage = currentPage - 1;
   return (
     <div className={clsx(PaginationStyles, 'dirty')}>
-      <Link className="dirty" scroll={false} disabled={prevPage <= 0 ? true : null} href={prevPage <= 0 ? '' : `${pathPrefix}${prevPage === 1 ? '' : prevPage}`}>
+      <Link
+        className="dirty"
+        scroll={false}
+        aria-disabled={prevPage <= 0}
+        href={prevPage <= 0 ? '#' : `${pathPrefix}${prevPage === 1 ? '' : prevPage}`}
+      >
         ← Prev 10 please
       </Link>
       <p className="dirty">
         Page {currentPage} of {totalPages}
       </p>
-      <Link className="dirty" scroll={false} disabled={nextPage > totalPages ? true : null} href={nextPage > totalPages ? '' : `${pathPrefix}${nextPage}`}>
+      <Link
+        className="dirty"
+        scroll={false}
+        aria-disabled={nextPage > totalPages}
+        href={nextPage > totalPages ? '#' : `${pathPrefix}${nextPage}`}
+      >
         {nextPage > totalPages ? `That's all Folks` : `10 More please →`}
       </Link>
     </div>

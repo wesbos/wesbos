@@ -154,6 +154,9 @@ importers:
       rettiwt-api:
         specifier: ^4.1.4
         version: 4.1.4
+      schema-dts:
+        specifier: ^1.1.2
+        version: 1.1.2(typescript@5.7.2)
       server-only:
         specifier: ^0.0.1
         version: 0.0.1
@@ -5032,6 +5035,11 @@ packages:
 
   scheduler@0.25.0:
     resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
+
+  schema-dts@1.1.2:
+    resolution: {integrity: sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==}
+    peerDependencies:
+      typescript: '>=4.1.0'
 
   selfsigned@2.4.1:
     resolution: {integrity: sha512-th5B4L2U+eGLq1TVh7zNRGBapioSORUeymIydxgFpwww9d2qyKvtuPU2jJuHvYAwwqi2Y596QBL3eEqcPEYL8Q==}
@@ -11529,6 +11537,10 @@ snapshots:
     optional: true
 
   scheduler@0.25.0: {}
+
+  schema-dts@1.1.2(typescript@5.7.2):
+    dependencies:
+      typescript: 5.7.2
 
   selfsigned@2.4.1:
     dependencies:

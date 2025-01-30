@@ -5,7 +5,7 @@ import Podcast from './Podcast';
 import LatestCourse from './LatestCourse';
 import Instagram from './Instagram';
 import Twitter from './Twitter';
-import styles, { FooterBottomStyles, FooterInner, FooterStyles } from '@/styles/FooterStyles.module.css';
+import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
 
 export default function Footer() {
   return (
@@ -26,11 +26,11 @@ export default function Footer() {
           </a>
           <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
           <p>
-            <Link className={styles.terms} href="/terms">
+            <Link className={terms} href="/terms">
               Terms
             </Link>{' '}
             &times;{' '}
-            <Link className={styles.terms} href="/privacy">
+            <Link className={terms} href="/privacy">
               Privacy Policy
             </Link>
           </p>
