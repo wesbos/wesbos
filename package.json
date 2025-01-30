@@ -12,6 +12,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/bundle-analyzer": "^15.1.2",
     "@next/mdx": "15.1.2",
+    "@sentry/nextjs": "^8",
     "@sparticuz/chromium": "^131.0.1",
     "@stefanprobst/rehype-extract-toc": "^2.2.1",
     "@types/glob-watcher": "^5.0.5",

@@ -80,3 +80,6 @@ yarn-error.log
 .open-next/
 db.sql
 dist/
+
+# Sentry Config File
+.env.sentry-build-plugin

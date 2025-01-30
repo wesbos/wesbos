@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,7 +22,9 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-    "types": ["./.wrangler/types/runtime.d.ts"],
+    "types": [
+      "./.wrangler/types/runtime.d.ts"
+    ],
     "plugins": [
       {
         "name": "next"
@@ -31,10 +37,26 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   // TODO: I remmoved ".next/types/**/*.ts"
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "next.config.js", "postcss.config.cjs", "postcss.config.cjs", "**/*.module.css", "lib/**/*.d.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.module.css",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/**/*.d.ts",
+    "next-env.d.ts",
+    "next.config.js",
+    "postcss.config.cjs",
+    "postcss.config.cjs",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
