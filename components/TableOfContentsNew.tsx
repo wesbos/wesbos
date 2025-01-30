@@ -5,6 +5,8 @@ import { TOCAsideStyles } from '@/styles/TOCAsideStyles.module.css';
 import createSectionedFrontMatter from '@/utils/createSectionedFrontmatter';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import { TOC } from '@/styles/TOC.module.css';
+
 
 type TableOfContentsHeading = {
   depth: number;
@@ -63,5 +65,26 @@ export async function TableOfContents() {
         </Fragment>
       ))}
     </aside>
+  );
+}
+
+export async function TableOfContentsLanding() {
+  const { posts } = await getPosts({ type: 'javascript', limit: 1000 });
+  const toc = createSectionedFrontMatter(posts);
+  return (
+    <div className={TOC}>
+      {toc.map(([title, items]) => (
+        <div key={title}>
+          <H as="h3">{title}</H>
+        <ul>
+          {(items || []).map((item) => (
+            <li key={item.frontmatter.tocTitle}>
+              <Link href={`/javascript/${item.frontmatter.slug}`}>{item.frontmatter.tocTitle}</Link>
+            </li>
+          ))}
+          </ul>
+        </div>
+      ))}
+    </div>
   );
 }
