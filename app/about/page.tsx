@@ -5,15 +5,6 @@ import { TimeSince } from './TimeSinceStarting';
 export default function AboutPage() {
   return (
     <>
-      {/* TODO <PostMetaTags
-        post={{
-          frontmatter: {
-            slug: location.pathname,
-            title: 'About',
-            image: `${process.env.GATSBY_DEPLOY_PRIME_URL || `http://localhost:8888`}${data.wes.childImageSharp.gatsbyImageData.src}`,
-          },
-        }}
-      /> */}
       <H>About</H>
       <p>Hey, I'm Wes Bos.</p>
       <Image width="800" height="400" src="/images/wes.jpg" alt="Wes Bos sits at a table in the direct sunlight pretending to be on his computer" />

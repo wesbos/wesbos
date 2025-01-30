@@ -9,6 +9,7 @@ import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { TableOfContents } from '@/components/TableOfContentsNew';
 import mdxComponents from '@/components/mdxComponents';
+import { generateMdxMetadata } from '@/lib/meta';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -35,6 +36,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
       <article>
         <div>
           {/* <PostMetaTags post={post} /> */}
+          <h2>Params.slug: {slug}</h2>
           <H>{post.frontmatter.title}</H>
           <BeginnerJavaScript />
           <div className={postMeta}>
@@ -69,6 +71,12 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
     </div>
   );
 }
+
+// export const meta_title = 'Test Override Title';
+// export const meta_description = 'Test Override Description';
+
+// export const generateMetadata = generateMdxMetadata(import.meta.url);
+
 // This is what we need to pre-gen all the posts
 // export async function generateStaticParams() {
 //   const { posts } = await getPosts();

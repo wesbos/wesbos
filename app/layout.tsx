@@ -44,13 +44,16 @@ export async function generateMetadata({ params }: { params: { slug: string } },
   // console.log('res::', res);
   // console.log('route::', route);
   let slug = pathname; // Default to the sanme things, EG /about, /tips
-  // if the route has a [slug] in it, we need to parse out that slug from the pathname. EG /tips/[slug]
-  if (route?.includes('[slug]')) {
+  // if the route has a [section] and/or [slug] in it, we need to parse out that slug from the pathname. EG /javascript/[section]/[slug]
+  if (route?.includes('[section]') && route?.includes('[slug]')) {
+    // grab the last two items in the pathname
+    slug = pathname?.split('/').slice(-2).join('/');
+  } else if (route?.includes('[slug]')) {
     slug = pathname?.split('/').pop();
   }
 
   const post = await getPostBySlug(slug);
-  console.log('POST::', post);
+  console.log('post::', post, 'from slug::', slug);
   // First we try to see if we can get a piece fo content for this page
   // If we can't, we just return the default meta
   const pageSlug = post?.frontmatter?.slug || slug;
@@ -66,7 +69,10 @@ export async function generateMetadata({ params }: { params: { slug: string } },
 
   const description = post?.excerpt || '';
   return {
-    title: `${title} - Wes Bos`,
+    title: {
+      template: '%s - Wes Bos',
+      default: title,
+    },
     description,
     canonical: url,
     openGraph: {

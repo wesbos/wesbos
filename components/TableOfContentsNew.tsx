@@ -17,7 +17,6 @@ type TableOfContentsHeading = {
 
 function ContentHeadings({ headings, parent }: { headings?: TableOfContentsHeading[]; parent?: MDXResult }) {
   if (!headings) return null;
-  console.log(parent);
   return (
     <>
       {headings.map((heading) => (
@@ -42,7 +41,6 @@ export async function TableOfContents() {
     type: 'javascript',
     limit: 1000,
   });
-  // console.log(posts);
   const toc = createSectionedFrontMatter(posts);
   return (
     <aside className={TOCAsideStyles}>

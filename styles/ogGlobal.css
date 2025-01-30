@@ -1,7 +1,8 @@
-html {
+/* TODO Only apply this to OG pages */
+html.disableeeee {
   position: relative;
 }
-body {
+body.disableeeee {
   position: relative;
   z-index: -2;
   margin: 0;

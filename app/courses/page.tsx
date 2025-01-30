@@ -145,14 +145,6 @@ export default function CoursesPage({ location }) {
           <p>A quick 34 minute mini course for anyone who is looking to learn markdown for the first time, or fill in any gaps along the way. Markdown is a very simple language and can be easily mastered in under an hour.</p>
         </div>
       </div>
-      {/* TODO <PostMetaTags
-        post={{
-          frontmatter: {
-            slug: location.pathname,
-            title: 'Courses',
-          },
-        }}
-      /> */}
     </>
   );
 }
