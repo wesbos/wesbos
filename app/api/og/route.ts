@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // import { getCloudflareContext } from '@opennextjs/cloudflare';
 // import { Browser } from '@cloudflare/puppeteer';
 
-// const { env } = (await getCloudflareContext());
+// const { env } = getCloudflareContext();
 // const kv = env.OG;
 
 // const exePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';

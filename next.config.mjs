@@ -3,6 +3,9 @@ import createMDX from '@next/mdx';
 import path from 'path';
 import bundleAnalyzer from '@next/bundle-analyzer';
 
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+
+initOpenNextCloudflareForDev();
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: false,
 });

@@ -6,7 +6,7 @@ const puppeteer = require('@cloudflare/puppeteer');
 let browser: Browser;
 
 async function getScreenshot(url: string) {
-  const env = (await getCloudflareContext()).env;
+  const env = getCloudflareContext().env;
   const kv = env.OG;
   console.log(`env`, env);
   // first check if this value has been cached
@@ -24,7 +24,7 @@ async function getScreenshot(url: string) {
   } else {
     // Local Browser (for local development)
     if (process.env.NODE_ENV === 'development') {
-      const { getChromeWsEndpoint } = await import('@/utils/localChrome');
+    const { getChromeWsEndpoint } = await import('@/utils/localChrome');
       const browserWSEndpoint = await getChromeWsEndpoint();
       browser = await puppeteer.connect({ browserWSEndpoint });
     } else {
