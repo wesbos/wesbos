@@ -48,57 +48,6 @@ export default async function BlogPost({ params, children }: { params: { slug: s
 }
 // This is what we need to pre-gen all the posts
 export async function generateStaticParams() {
-  const { posts } = await getPosts();
+  const { posts } = await getPosts({ type: 'blog' });
   return posts.map((post) => ({ slug: post.frontmatter.slug }));
-}
-
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
-  const post = await getPostBySlug(slug);
-  if (!post) {
-    return {
-      title: 'Post not found',
-    };
-  }
-
-  const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://wesbos.com'; // TODO: make this dynamic
-  const url = `${baseUrl}/${post.frontmatter.slug}`;
-  const image = post.images?.[0]?.src;
-  const searchParams = new URLSearchParams();
-  searchParams.set('title', post.frontmatter.title);
-  searchParams.set('url', url);
-  image ? searchParams.set('thumbnail', image) : null;
-  const ogImage = `${baseUrl}/api/og-worker?${searchParams.toString()}`;
-
-  return {
-    title: `${post.frontmatter.title} - Wes Bos`,
-    description: post.excerpt,
-    canonical: url,
-    openGraph: {
-      type: 'article',
-      title: post.frontmatter.title,
-      url,
-      authorName: 'Wes Bos',
-      description: post.excerpt,
-      siteName: 'Wes Bos',
-      images: [{
-        url: ogImage,
-        width: 1200,
-        height: 630,
-      }],
-      locale: 'en_CA',
-      publishedTime: post.frontmatter.date ? new Date(post.frontmatter.date).toISOString() : undefined,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      site: '@wesbos',
-      creator: '@wesbos',
-      title: post.frontmatter.title,
-      description: post.excerpt,
-      images: [ogImage],
-    },
-    alternates: {
-      canonical: url,
-    },
-  };
 }
