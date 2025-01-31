@@ -3,7 +3,7 @@ import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import Link from 'next/link';
 import Podcast from './Podcast';
 import LatestCourse from './LatestCourse';
-import Instagram from './Instagram';
+// import Instagram from './Instagram';
 import Twitter from './Twitter';
 import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
 
@@ -13,7 +13,7 @@ export default function Footer() {
       <div className={FooterInner}>
         <Podcast />
         <Twitter />
-        <Instagram />
+        {/* <Instagram /> */}
         <LatestCourse />
         <div className={FooterBottomStyles}>
           I post videos on{' '}
