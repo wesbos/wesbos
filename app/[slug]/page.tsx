@@ -3,7 +3,7 @@ import H from '@/components/mdxComponents/Headings';
 import { getPostBySlug, getPosts, getSiblingPostsBySlug } from '@/lib/getPosts';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
-import Image, { ImageProps } from 'next/image';
+import Image from 'next/image';
 import { IoLogoGithub } from 'react-icons/io';
 
 export default async function BlogPost({ params, children }: { params: { slug: string }, children: React.ReactNode }) {

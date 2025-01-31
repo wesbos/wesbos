@@ -1,4 +1,5 @@
 export function slugToTitle(slug: string): string {
+  if (!slug) return '';
   // Remove leading and trailing slashes
   const cleanSlug = slug.replace(/^\/+|\/+$/g, '');
 
