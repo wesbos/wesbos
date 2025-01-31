@@ -30,13 +30,11 @@ export function generateMdxMetadata(importMetaUrl: string) {
     const relativePath = relative(import.meta.url, importMetaUrl);
     // remove the file extension and everything after it. This may be .mdx, .tsx, or .mdx.tsx
     const relativePathWithoutExtension = relativePath.replace(/\.(mdx|tsx|mdx.tsx)$/, '');
-    console.log('relativePathWithoutExtension::', relativePathWithoutExtension);
     // Remove app/ and everything before it
     const relativePathWithoutApp = relativePathWithoutExtension.split('app/')[1];
     // Get the file extension from the original path
     const fileExtension = importMetaUrl.includes('.mdx') ? '.mdx' : '.tsx';
     // we add back the folder and the file extension
-    console.log('relativePathWithoutApp::', relativePathWithoutApp);
     const myself = await import(`../app/${relativePathWithoutApp}${fileExtension}`);
     // We have the option to override the title and description by exporting meta_title and meta_description from files
     const title = myself.meta_title || myself.title;

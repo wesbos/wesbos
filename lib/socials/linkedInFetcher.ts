@@ -64,7 +64,6 @@ function makeLinkedInUrl(postId: string) {
 
 export async function fetchLinkedInDetailsFromApi({ postId }: { postId: string }): Promise<LinkedInPost | undefined> {
   const url = makeLinkedInUrl(postId);
-  console.log('LinkedIn: Fetching from', url);
   const response = await fetch(url).then(res => res.text()).catch(console.error);
   if(!response) {
     console.error('LinkedIn: No response from the API');
@@ -84,6 +83,5 @@ export async function fetchLinkedInDetailsFromApi({ postId }: { postId: string }
     const statKey = stat?.interactionType?.replace(/(http|https):\/\/schema.org\//i, '').toLowerCase().replace('action', 'Count');
     payload[statKey] = stat?.userInteractionCount;
   });
-  console.log(payload);
   return payload;
 }

@@ -34,9 +34,7 @@ function findImagePaths(content) {
 }
 
 async function downloadImage(remotePath, localFolder) {
-  console.log(`Downloading ${remotePath} to ${localFolder}`);
   const imageData = await fetch(remotePath).then((res) => res.buffer());
-  console.log(`~~~Doing ${remotePath}`);
   const { ext = 'png' } = (await FileType.fromBuffer(imageData)) || {};
   const imageName = getImageName(remotePath);
   const [, extension] = imageName.split('.');
@@ -64,7 +62,6 @@ async function getTweets() {
     // find links
     const links = tip.text.match(linkRegex) || [];
     const resourceLinks = links.slice(0, links.length - 1);
-    console.log(resourceLinks);
     const expandedLinks = await Promise.all(
       resourceLinks.map((link) => {
         const url = link.startsWith('http') ? link : `http://${link}`;
@@ -72,10 +69,7 @@ async function getTweets() {
       })
     );
 
-    console.log(expandedLinks);
     // Download images and videos
-    console.log('finding image paths');
-    console.log(videos);
     await Promise.all(images.map((path) => downloadImage(path, folderPath)));
     await Promise.all(videos.map((path) => downloadImage(path, folderPath)));
 

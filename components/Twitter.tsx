@@ -59,7 +59,6 @@ export default async function Twitter() {
             const media = tweet.legacy.entities.media;
             const text = tweet.legacy.full_text?.split('https://t.co').shift() ?? '';
             const isPinned = tweet.rest_id === pinnedTweet;
-            console.log(tweet);
             // Decode HTML entities
             const text_ = decodeEntities(text);
             return (

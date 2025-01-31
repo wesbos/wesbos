@@ -66,6 +66,5 @@ export async function fetchInstagramDetailsFromApi({ postId }: { postId: string 
   // Get the HTML
   const payload = await response.json() as InstagramApiResponse;
   if(!payload) return;
-  console.log('payload::', payload);
   return payload.data;
 }
