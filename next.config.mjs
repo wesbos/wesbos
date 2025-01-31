@@ -50,10 +50,15 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: {
-    loader: 'custom',
-    loaderFile: './lib/imageLoader.ts',
-  },
+  images:
+    process.env.NODE_ENV === 'development'
+      ? {
+          loader: 'default',
+        }
+      : {
+          loader: 'custom',
+          loaderFile: './lib/imageLoader.ts',
+        },
 };
 
 export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), {
