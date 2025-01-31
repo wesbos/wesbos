@@ -290,11 +290,15 @@
 span.grit {
   background: var(--blackGrit);
   background-size: 600px;
-  padding: 2rem 2rem 2rem 0;
+  padding: 2rem 0 2rem 0;
   position: relative;
   &:hover {
     animation: gritty 2s steps(10) infinite;
   }
+}
+
+.hideYoSelf {
+  visibility: hidden;
 }
 
 @layer utilities {

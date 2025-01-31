@@ -27,7 +27,6 @@ export async function fetchTweetDetailsFromApi({ postId }: { postId: string }) {
 
 function formatTimeline(response: IUserTweetsResponse) {
   const tweets = [];
-  console.log(response.data.user.result);
   // Types are wrong - Its' timeline.timeline
   type Instructions = typeof response.data.user.result.timeline_v2.timeline.instructions & {
     entry?: Entry;

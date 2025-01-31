@@ -9,11 +9,15 @@
   border-bottom: 5px solid var(--yellow);
   display: grid;
   grid-template-columns: 1fr;
-  @media (max-width: 550px) {
+  padding-top: 25px;
+  @media (max-width: 625px) {
     ul {
-      padding: 2.5rem 1rem 0;
+      /* padding: 2.5rem 1rem 0;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+      text-align: center;
+      display: flex;
+      gap: 0 20px;
       a > span {
         display: block;
         padding: 1rem 0;
@@ -42,6 +46,9 @@
       text-decoration-color: var(--yellow);
     }
   }
+  & span:before {
+    display: none;
+  }
 }
 
 .NavSmall {
@@ -53,8 +60,8 @@
   line-height: 10px;
   position: relative;
   pointer-events: none;
-  .row2 & {
-    display: none;
+  @media (max-width: 625px) {
+    display: none !important;
   }
 }
 
@@ -67,7 +74,7 @@
   margin: 0;
   padding: 3rem 2rem 2rem 2rem;
   box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.06);
-  @media (max-width: 550px) {
+  @media (max-width: 625px) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
@@ -80,15 +87,18 @@
   align-content: center;
   grid-gap: 2rem;
   margin: 1rem;
-  .hideYoSelf {
-    visibility: hidden;
-  }
-
-  &.row2 {
+  &[data-row='row2'] {
     margin: 0;
     & > *,
     span {
       transform: scale(0.55);
+      @media (max-width: 625px) {
+        transform: scale(1);
+      }
+    }
+    :global(.top),
+    :global(.bottom) {
+      display: none;
     }
   }
   &:after {
@@ -101,7 +111,7 @@
     display: none;
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 625px) {
     grid-template-columns: 1fr;
     margin: 0;
     text-align: center;

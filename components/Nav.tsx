@@ -23,7 +23,7 @@ export default function Nav() {
             <a className={NavLink}>
               <span className={clsx([NavSmall, 'top'])}>free + premium</span>
               <H as="span">Courses</H>
-              <span className={clsx([NavSmall, 'bottom'])}>x</span>
+              <span className={clsx([NavSmall, 'bottom', 'hideYoSelf'])}>x</span>
             </a>
           </Link>
         </li>
@@ -48,7 +48,7 @@ export default function Nav() {
             <a className={NavLink}>
               <span className={clsx([NavSmall, 'top'])}>the</span>
               <H as="span">Blog</H>
-              <span className={clsx([NavSmall, 'bottom'])}>x</span>
+              <span className={clsx([NavSmall, 'bottom', 'hideYoSelf'])}>x</span>
             </a>
           </Link>
         </li>

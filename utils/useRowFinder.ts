@@ -44,7 +44,8 @@ export default function useRowFinder() {
   useEffect(() => {
     if (!ref.current) return;
     const observer = new ResizeObserver(callback);
-    observer.observe(ref.current);
+    // We turned off the row finders because its causes page junmp on load
+    // observer.observe(ref.current);
     return () => {
       if (ref.current) observer.unobserve(ref.current);
     };

@@ -18,7 +18,6 @@
     pointer-events: none;
   }
 
-
   &:before {
     /* Yellow square is using ems so it scales up/down with the font size */
     width: 0.75em;
