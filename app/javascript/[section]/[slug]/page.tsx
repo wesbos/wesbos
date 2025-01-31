@@ -1,5 +1,5 @@
 import { IoLogoGithub } from 'react-icons/io';
-import { getPostBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
+import { getPostBySlug, getSiblingPostsBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
 import { postMeta } from '@/styles/PostMeta.module.css';
 import { BeginnerJavaScript } from '@/components/beginnerJavaScript';
@@ -7,10 +7,13 @@ import clsx from 'clsx';
 import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { TableOfContents } from '@/components/TableOfContentsNew';
+import ContentNav from '@/components/ContentNav';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
-  const post = await getPostBySlug(`${section}/${slug}`);
+  const sluuuug = `${section}/${slug}`;
+  const post = await getPostBySlug(sluuuug);
+  const { prev, next } = await getSiblingPostsBySlug(sluuuug, 'javascript');
   if (!post) {
     return (
       <p>
@@ -32,7 +35,6 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
       </div>
       <article>
         <div>
-          <h2>Params.slug: {slug}</h2>
           <H>{post.frontmatter.title}</H>
           <BeginnerJavaScript />
           <div className={postMeta}>
@@ -54,7 +56,7 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
             </a>
           </p>
         </div>
-        {/* TODO <ContentNav pathPrefix={pageContext.pathPrefix} prev={pageContext.prev} next={pageContext.next} /> */}
+        <ContentNav prev={prev} next={next} />
       </article>
     </div>
   );

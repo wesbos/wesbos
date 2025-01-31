@@ -6,6 +6,7 @@ import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
 import { fetchSocialDetails } from '@/lib/socials/fetchers';
 import { SocialStats } from './SocialStats';
 import { MDXResult } from '@/lib/types';
+import { Suspense } from 'react';
 
 export async function Tip({ tip }: { tip: MDXResult }) {
   const links = [...(tip.frontmatter.links || []), ...(tip.frontmatter.tweetURL ? [tip.frontmatter.tweetURL] : [])];
@@ -23,9 +24,11 @@ export async function Tip({ tip }: { tip: MDXResult }) {
         <TipMeta tip={tip} />
         <Content />
         <div className={socialStatsContainer}>
-          {Object.entries(populatedLinks).map(([type, link]) => {
-            return <SocialStats key={type} link={link} />;
-          })}
+          <Suspense fallback={<div>Loading...</div>}>
+            {Object.entries(populatedLinks).map(([type, link]) => {
+              return <SocialStats key={type} link={link} />;
+            })}
+          </Suspense>
         </div>
       </div>
     </div>

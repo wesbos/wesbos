@@ -40,8 +40,6 @@ export async function generateMetadata({ params }: { params: { slug: string } },
   const res = Object.getOwnPropertySymbols(state || {}).map((p) => (state as any)[p]);
   const pathname = res.find((state) => state?.hasOwnProperty('url'))?.url?.pathname;
   const route = res.find((state) => state?.hasOwnProperty('route')).route;
-  // console.log('res::', res);
-  // console.log('route::', route);
   let slug = pathname; // Default to the sanme things, EG /about, /tips
   // if the route has a [section] and/or [slug] in it, we need to parse out that slug from the pathname. EG /javascript/[section]/[slug]
   if (route?.includes('[section]') && route?.includes('[slug]')) {

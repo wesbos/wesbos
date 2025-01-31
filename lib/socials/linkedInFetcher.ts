@@ -1,5 +1,5 @@
 "use server";
-import { parseHTML } from 'linkedom';
+import { parseHTML } from 'linkedom/worker';
 
 interface LinkedInImageObject {
   url: string;

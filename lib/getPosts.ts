@@ -55,9 +55,15 @@ export function parseContent(post: MDXResult): MDXResult {
 
 const mdxPosts = await fg(['./content/**/*.mdx']);
 
-let postCache: MDXResult[] = [];
+// Use a function to manage the cache, store on global so it survives between HMR
+function getPostCache() {
+  const cache = (global as any)._postCache || [];
+  (global as any)._postCache = cache;
+  return cache;
+}
 
 async function parsePosts(): Promise<MDXResult[]> {
+  const postCache = getPostCache();
   if(postCache.length > 0) {
     return postCache;
   }
@@ -81,7 +87,7 @@ async function parsePosts(): Promise<MDXResult[]> {
       // Otherwise sort by date descending
       return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
     });
-  postCache = posts;
+  (global as any)._postCache = posts;
   return posts;
 }
 
@@ -98,6 +104,17 @@ export function makePathDynamicallyImportable(filePath: string) {
 export async function getPostBySlug(postSlug: string) {
   const posts = await parsePosts();
   return posts.find((post) => post.frontmatter.slug === postSlug);
+}
+
+export async function getSiblingPostsBySlug(postSlug: string, type: ContentType) {
+  const posts = (await parsePosts()).filter((post) => post.frontmatter.type === type);
+  const postIndex = posts.findIndex((post) => post.frontmatter.slug === postSlug);
+  if(postIndex === -1) {
+    return { prev: undefined, next: undefined };
+  }
+  const prev = posts[postIndex - 1];
+  const next = posts[postIndex + 1];
+  return { prev, next };
 }
 
 export async function getPosts<T extends ContentType>({
