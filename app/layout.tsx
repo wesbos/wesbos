@@ -1,6 +1,6 @@
 import '@/components/styles/index.css';
 import React from 'react';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import Footer from '@/components/Footer';
 import Nav from '@/components/Nav';
 import { operatorMono, radnika } from '@/lib/assets/fonts/Fonts';
@@ -95,6 +95,10 @@ export async function generateMetadata({ params }: { params: { slug: string } },
     },
     alternates: {
       canonical: url,
-    },
+    }
   };
 }
+
+export const viewport: Viewport = {
+  themeColor: '#ffc600',
+};

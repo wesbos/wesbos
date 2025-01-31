@@ -2,21 +2,15 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import H from '../components/mdxComponents/Headings';
 
-// TODO: Meta tags
-// export const meta: Metadata = {
-//   title: "Wes Bos - Full Stack Developer"
-// };
+export const meta: Metadata = {
+  title: {
+    absolute: 'Wes Bos - Full Stack Developer',
+  },
+};
+
 export default function HomePage() {
   return (
     <div className="welcome">
-      {/* TODO <PostMetaTags
-        post={{
-          frontmatter: {
-            slug: location.pathname,
-            title: 'Wes Bos',
-          },
-        }}
-      /> */}
       <div>
         <H as="h2">Hey, I'm Wes&nbsp;Bos.</H>
 
@@ -26,7 +20,7 @@ export default function HomePage() {
 
         <p>I'm a full Stack JavaScript developer from Canada 🇨🇦.</p>
         <p>
-          I create <Link href="/courses">free + premium courses</Link> and do a <a href="https://syntax.fm">tri-weekly podcast</a> called Syntax.
+          I create <Link href="/courses">free + premium courses</Link> and do a <a href="https://syntax.fm">twice weekly podcast</a> called Syntax.
         </p>
         <p>
           You can <Link href="/about">read more about me here</Link>, but stick around if you like CSS, JavaScript, mediocre jokes, learning new things or BBQ Tips.
@@ -35,3 +29,4 @@ export default function HomePage() {
     </div>
   );
 }
+
