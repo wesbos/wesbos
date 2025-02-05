@@ -2,10 +2,10 @@ import { withSentryConfig } from '@sentry/nextjs';
 import createMDX from '@next/mdx';
 import path from 'path';
 import bundleAnalyzer from '@next/bundle-analyzer';
-
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
 
 initOpenNextCloudflareForDev();
+
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: false,
 });
@@ -36,14 +36,11 @@ const withMDX = createMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  // transpilePackages: ['next-mdx-remote'],
+
   experimental: {
     mdxRs: false /* Turned off as it doesnt work with rehype plugins */,
     dynamicIO: false,
   },
-  // compiler: {
-  //   styledComponents: true,
-  // },
   typescript: {
     ignoreBuildErrors: true,
   },
