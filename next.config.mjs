@@ -40,6 +40,7 @@ const nextConfig = {
   experimental: {
     mdxRs: false /* Turned off as it doesnt work with rehype plugins */,
     dynamicIO: false,
+    ppr: true,
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -64,7 +65,10 @@ export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), {
 
   org: 'bostype-inc',
   project: 'wesbos-com',
-
+  sourcemaps: {
+    enabled: true,
+    deleteSourcemapsAfterUpload: false
+  },
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
 

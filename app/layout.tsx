@@ -8,25 +8,16 @@ import { LayoutStyles } from '@/styles/LayoutStyles.module.css';
 import { ContentStyles } from '@/styles/ContentStyles.module.css';
 import { getPostBySlug } from '@/lib/getPosts';
 import { baseUrl } from '@/lib/meta';
-import { headers } from 'next/headers';
 import { slugToTitle } from '@/utils/slugToTitle';
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // TODO if (pageContext.layout === 'thumbnail') return children;
   return (
     <html lang="en" className={`${radnika.variable} ${operatorMono.variable}`}>
       <meta name="theme-color" content="#ffc600" />
       <body>
-        <div
-          className={LayoutStyles}
-          /* className={ TODO We need the current page `
-          ${location.pathname === '/' ? 'welcome' : null}
-          ${pageContext.layoutClasses}`  } */
-        >
+        <div className={LayoutStyles}>
           <Nav />
           <div className={ContentStyles} /* className={ TODO: pageContext.layoutClasses } */>{children}</div>
-          <Footer />
         </div>
       </body>
     </html>
@@ -95,10 +86,12 @@ export async function generateMetadata({ params }: { params: { slug: string } },
     },
     alternates: {
       canonical: url,
-    }
+    },
   };
 }
 
 export const viewport: Viewport = {
   themeColor: '#ffc600',
 };
+
+export const experimental_ppr = true;

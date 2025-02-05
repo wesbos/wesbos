@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import Link from 'next/link';
 import Podcast from './Podcast';
@@ -12,7 +12,9 @@ export default function Footer() {
     <footer className={FooterStyles}>
       <div className={FooterInner}>
         <Podcast />
-        <Twitter />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Twitter />
+        </Suspense>
         {/* <Instagram /> */}
         <LatestCourse />
         <div className={FooterBottomStyles}>

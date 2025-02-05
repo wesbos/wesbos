@@ -127,7 +127,7 @@ export async function getPosts<T extends ContentType>({
   const posts = allPosts.filter((post) => post.frontmatter.type === type);
   // Return the posts for this page
   const start = (page - 1) * limit;
-  const end = start + limit;
+  const end = limit === -1 ? undefined : start + limit;
   const postsForPage = posts.slice(start, end);
 
   return {

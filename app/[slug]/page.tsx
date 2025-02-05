@@ -48,6 +48,6 @@ export default async function BlogPost({ params, children }: { params: { slug: s
 }
 // This is what we need to pre-gen all the posts
 export async function generateStaticParams() {
-  const { posts } = await getPosts({ type: 'blog' });
+  const { posts } = await getPosts({ type: 'blog', limit: -1 });
   return posts.map((post) => ({ slug: post.frontmatter.slug }));
 }

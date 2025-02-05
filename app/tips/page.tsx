@@ -30,9 +30,6 @@ export default async function HotTips({ params }: { params: { pageNumber: string
   );
 }
 
-// This forces next to skip SSG, because we dont have access to the DB in build??
-export const dynamic = 'force-dynamic';
-
 // Page Meta
 export async function generateMetadata({ params }: { params: { pageNumber: string } }): Promise<Metadata> {
   const pageNumber = parseInt(params.pageNumber, 10) || 1;
@@ -49,3 +46,5 @@ export async function generateMetadata({ params }: { params: { pageNumber: strin
     description: `Hot tips are spicy lil' nuggets related to web development and tooling that I share on my twitter account.`,
   };
 }
+
+export const dynamic = 'force-dynamic';
