@@ -110,7 +110,7 @@
     "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
-    "build:worker": "opennextjs-cloudflare --skipBuild",
+    "build:worker": "opennextjs-cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "dev:worker:remote": "wrangler dev --port 8771 --remote",
     "preview:worker": "pnpm run build:worker && pnpm run dev:worker:remote",
