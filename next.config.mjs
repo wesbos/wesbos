@@ -14,13 +14,13 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: [[`remark-frontmatter`], [`remark-mdx-frontmatter`]],
     rehypePlugins: [
-      [
-        'rehype-mdx-import-media',
-        {
-          strict: true,
-          throwOnError: true,
-        },
-      ],
+      // [
+      //   'rehype-mdx-import-media',
+      //   {
+      //     strict: true,
+      //     throwOnError: true,
+      //   },
+      // ],
       ['rehype-extract-excerpt'],
       ['rehype-slug'],
       ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],
@@ -38,7 +38,7 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 
   experimental: {
-    mdxRs: false /* Turned off as it doesnt work with rehype plugins */,
+    mdxRs: false /* Turned off as it doesn't work with rehype plugins */,
     dynamicIO: false,
     ppr: true,
   },

@@ -10,7 +10,7 @@ import Image, { ImageProps } from 'next/image';
 /* eslint-disable */
 const mdxComponents: MDXComponents = {
   // TODO: Figure out what sizes should be
-  img: (props) => <Image sizes="100vw" width="100" height="100" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />,
+  img: (props) => <Image placeholder="empty" sizes="100vw" width="100" height="100" style={{ width: '100%', height: 'auto' }} {...(props as ImageProps)} />,
   h1: (props) => <H as="h1" {...props} />,
   h2: (props) => <H as="h2" {...props} />,
   h3: (props) => <H as="h3" {...props} />,

@@ -3,6 +3,7 @@ import { slug } from 'github-slugger';
 import path from 'path';
 import { ContentType, MDXResult, Frontmatter, JavaScriptFrontmatter } from './types';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 const PER_PAGE = 10;
 type PostFilterArgs<T extends ContentType = ContentType> = {
@@ -57,6 +58,7 @@ const mdxPosts = await fg(['./content/**/*.mdx']);
 
 // Use a function to manage the cache, store on global so it survives between HMR
 function getPostCache() {
+  return [];
   const cache = (global as any)._postCache || [];
   (global as any)._postCache = cache;
   return cache;
@@ -87,7 +89,7 @@ async function parsePosts(): Promise<MDXResult[]> {
       // Otherwise sort by date descending
       return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
     });
-  (global as any)._postCache = posts;
+  // (global as any)._postCache = posts;
   return posts;
 }
 
