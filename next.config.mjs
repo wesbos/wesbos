@@ -59,7 +59,7 @@ const nextConfig = {
         },
 };
 
-export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), {
+const sentryConfig = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
@@ -67,7 +67,7 @@ export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), {
   project: 'wesbos-com',
   sourcemaps: {
     enabled: true,
-    deleteSourcemapsAfterUpload: false
+    deleteSourcemapsAfterUpload: false,
   },
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
@@ -100,4 +100,7 @@ export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), {
   // https://docs.sentry.io/product/crons/
   // https://vercel.com/docs/cron-jobs
   automaticVercelMonitors: true,
-});
+};
+
+// export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), sentryConfig);
+export default withBundleAnalyzer(withMDX(nextConfig));
