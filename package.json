@@ -123,10 +123,5 @@
     "db:push": "drizzle-kit push",
     "tip": "tsx --conditions=react-server ./createTip.ts"
   },
-  "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8",
-  "pnpm": {
-    "patchedDependencies": {
-      "rehype-extract-excerpt": "patches/rehype-extract-excerpt.patch"
-    }
-  }
+  "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
 }
