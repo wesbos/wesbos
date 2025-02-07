@@ -94,4 +94,4 @@ export const viewport: Viewport = {
   themeColor: '#ffc600',
 };
 
-export const experimental_ppr = true;
+// export const experimental_ppr = true;
