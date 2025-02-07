@@ -8,10 +8,7 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 # Browser for Puppeteer
 browser = { binding = "MYBROWSER" }
 
-routes = [
-  { pattern = "rsc.wesbos.com", custom_domain = true },
-  { pattern = "wesbos.wesbos.workers.dev" },
-]
+routes = [{ pattern = "rsc.wesbos.com", custom_domain = true }]
 
 [[ d1_databases ]]
 binding = "DB"
