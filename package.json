@@ -113,7 +113,7 @@
     "build:worker": "opennextjs-cloudflare",
     "dev:worker": "wrangler dev --port 8771",
     "dev:worker:remote": "wrangler dev --port 8771 --remote",
-    "preview:worker": "pnpm run build:worker && pnpm run dev:worker:remote",
+    "preview:worker": "pnpm run build:worker && pnpm run dev:worker",
     "deploy:worker": "pnpm run build:worker && wrangler deploy",
     "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
     "types:css": "node --experimental-strip-types ./lib/createStyleIndex.ts",
