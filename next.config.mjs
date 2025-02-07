@@ -102,4 +102,5 @@ const sentryConfig = {
   automaticVercelMonitors: true,
 };
 
-export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), sentryConfig);
+// export default withSentryConfig(withBundleAnalyzer(withMDX(nextConfig)), sentryConfig);
+export default withBundleAnalyzer(withMDX(nextConfig));
