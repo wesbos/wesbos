@@ -14,13 +14,14 @@ const withMDX = createMDX({
   options: {
     remarkPlugins: [[`remark-frontmatter`], [`remark-mdx-frontmatter`]],
     rehypePlugins: [
-      // [
-      //   'rehype-mdx-import-media',
-      //   {
-      //     strict: true,
-      //     throwOnError: true,
-      //   },
-      // ],
+      // TODO: This import causes the webpack "Long strings" warning. Not much we can do about it. Maybe disable the blur effect?
+      [
+        'rehype-mdx-import-media',
+        {
+          strict: true,
+          throwOnError: true,
+        },
+      ],
       ['rehype-extract-excerpt'],
       ['rehype-slug'],
       ['@stefanprobst/rehype-extract-toc', { name: 'toc' }],

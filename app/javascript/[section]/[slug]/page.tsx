@@ -1,5 +1,5 @@
 import { IoLogoGithub } from 'react-icons/io';
-import { getPostBySlug, getSiblingPostsBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
+import { getPostBySlug, getPosts, getSiblingPostsBySlug, makePathDynamicallyImportable } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
 import { postMeta } from '@/styles/PostMeta.module.css';
 import { BeginnerJavaScript } from '@/components/beginnerJavaScript';
@@ -8,6 +8,7 @@ import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { TableOfContents } from '@/components/TableOfContentsNew';
 import ContentNav from '@/components/ContentNav';
+import createSectionedFrontMatter from '@/utils/createSectionedFrontmatter';
 
 export default async function JavaScriptNotesPage({ params }: { params: { slug: string; section: string } }) {
   const { slug, section } = await params;
@@ -61,3 +62,18 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  // Pre-generate every Notes page
+    const { posts } = await getPosts({ type: 'javascript', limit: 1000 });
+    const toc = createSectionedFrontMatter(posts);
+    const modules = toc
+      .map(([title, items]) => items)
+      .flat()
+      .map((item) => {
+        const [section, slug] = item?.frontmatter.slug.split('/') || [];
+        return { section, slug };
+      });
+    return modules;
+}
+
