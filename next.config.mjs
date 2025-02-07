@@ -40,7 +40,7 @@ const nextConfig = {
   experimental: {
     mdxRs: false /* Turned off as it doesn't work with rehype plugins */,
     dynamicIO: false,
-    ppr: true,
+    ppr: false,
   },
   typescript: {
     ignoreBuildErrors: true,
