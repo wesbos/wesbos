@@ -58,7 +58,6 @@ const mdxPosts = await fg(['./content/**/*.mdx']);
 
 // Use a function to manage the cache, store on global so it survives between HMR
 function getPostCache() {
-  return [];
   const cache = (global as any)._postCache || [];
   (global as any)._postCache = cache;
   return cache;
@@ -89,7 +88,7 @@ async function parsePosts(): Promise<MDXResult[]> {
       // Otherwise sort by date descending
       return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
     });
-  // (global as any)._postCache = posts;
+  (global as any)._postCache = posts;
   return posts;
 }
 
