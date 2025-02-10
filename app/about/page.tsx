@@ -6,7 +6,7 @@ export default function AboutPage() {
   return (
     <>
       <H>About</H>
-      <p>Hey, I'm Wes Bos.</p>
+      <p>Hey, I'm Wes Bos!</p>
       <Image width="800" height="400" src="/images/wes.jpg" alt="Wes Bos sits at a table in the direct sunlight pretending to be on his computer" />
 
       <H as="h3">The Skinny&hellip;</H>
