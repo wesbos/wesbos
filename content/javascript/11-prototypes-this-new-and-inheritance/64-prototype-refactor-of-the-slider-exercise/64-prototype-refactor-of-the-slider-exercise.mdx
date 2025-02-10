@@ -22,11 +22,11 @@ We have the sliders that we grabbed at the bottom.
 
 We will log them, like we did in the previous lesson.
 
-![selecting the elements using querySelector](./961.png)
+![selecting the elements using querySelector](./961.webp)
 
 You should see the following in the console
 
-![log of mySlider and dogSlider](./962.png)
+![log of mySlider and dogSlider](./962.webp)
 
 Now we will do the same thing we did last time -- add a `new` keyword in front of it. That will create a new instance of the slider for each instance that we have.
 
@@ -37,7 +37,7 @@ const dogSlider = new Slider(document.querySelector(".dog-slider"));
 console.log(mySlider, dogSlider);
 ```
 
-![log of instance of the slider for each instance](./963.png)
+![log of instance of the slider for each instance](./963.webp)
 
 As you can see we have our sliders now, and they each have the prototypes, and there is nothing in them yet.
 
@@ -374,7 +374,7 @@ Within `move` function we need to change it to call `this.applyClasses()`.
 
 Now let's go to our browser to refresh and see what errors we are getting.
 
-![uncaught type error: cannot read property 'querySelector' of undefined](./964.png)
+![uncaught type error: cannot read property 'querySelector' of undefined](./964.webp)
 
 The first one we see is
 
@@ -384,7 +384,7 @@ The stack trace tells us it happened on line 63, however that is not helpful bec
 
 So let's click on the error to see where it takes us.
 
-![console log in the sources tab of browser](./965.png)
+![console log in the sources tab of browser](./965.webp)
 
 Unfortunately that is not very helpful either. Sometimes you get these errors and it's hard to find where the error is even when the browser tries to give you a stack trace.
 
@@ -392,13 +392,13 @@ Let's just try to debug this ourselves.
 
 Let's look at everywhere that we are using `querySelector`.
 
-![using querySelector everywhere in the slider function](./966.png)
+![using querySelector everywhere in the slider function](./966.webp)
 
 Those first 3 should be fine since we are passing in the slider.
 
 Where else are we using `querySelector`? Within the `startSlider` function and where we initialize the slider instances.
 
-![initializing the slider instances](./967.png)
+![initializing the slider instances](./967.webp)
 
 Wes thinks it might be the latter, which he will test by logging the slider parameter within the `Slider()`.
 
@@ -406,7 +406,7 @@ We can tell it's not an issue with that because we can see the slider being logg
 
 It seems like the issue must be in our `startSlider` function when we try to access `this.slider`.
 
-![issue with startSlider function where we are using this.slider function](./969.png)
+![issue with startSlider function where we are using this.slider function](./969.webp)
 
 Let's throw a `debugger` in the first line of the `startSlider` function.
 
@@ -437,7 +437,7 @@ If we log what `this` is within our `move` function, we will see that it's the n
 
 So let's go to where we have listened to our move.
 
-![calling move funtion and passing reference of move function in first and second event listener](./970.png)
+![calling move funtion and passing reference of move function in first and second event listener](./970.webp)
 
 The reason next is broken but previous is not is that in next, we just pass a reference to that function, and it's being rebound.
 
@@ -476,7 +476,7 @@ The slider should be working well now if you refresh the page!
 
 Now that we are done, let's just go over a few things.
 
-![selecting the prev and next buttons using querySelector](./971.png)
+![selecting the prev and next buttons using querySelector](./971.webp)
 
 Why did we not rename the buttons to live on `this` like `this.prevButton = slider.querySelector('.goToPrev');`?
 
@@ -486,11 +486,11 @@ One cool thing about this is if you take `dogSlider`, you cannot access it in th
 
 The cool thing about that is now you can call the functions yourself like the move in the terminal to control the slider.
 
-![calling the move function on dogSlider object in console](./972.png)
+![calling the move function on dogSlider object in console](./972.webp)
 
 What you could do is at the bottom of the page add an event listener on the window's keyup event like below.
 
-![event listener keyup to window object](./973.png)
+![event listener keyup to window object](./973.webp)
 
 Now if you use your arrow keys you will see that it works.
 

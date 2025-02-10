@@ -10,7 +10,7 @@ category:
 
 In this video, we will be building a slider.
 
-![building a slider](./881.png)
+![building a slider](./881.webp)
 
 A slider may seem simple, but once you dive into it, it starts to get pretty complex. We will build the basics of the slider together and then you can feel free to add any functionality you want to it.
 
@@ -20,7 +20,7 @@ We have 2 sliders on the page, so we can be sure that our code can be used more 
 
 If we look at the HTML structure of the slider within the element tab of the dev tools, you will see that we have all 20 slides. Now as we hit the next button and previous buttons, the classes are actually changing on the sliders depending on what button you press.
 
-![changing slides on the click on previous or next button](./882.png)
+![changing slides on the click on previous or next button](./882.webp)
 
 In this lesson we will use **SASS**, just to demonstrate that it is possible. Wes will show us how to get that up and running.
 
@@ -66,7 +66,7 @@ Then we take the slides and put them off the screen like so 👇
 
 Our current slide has `translateX(0)`, which puts it in the middle. As we modify the value that we pass to `translateX`, you will see the slide is moving.
 
-![translating a slide on X-axis](./883.png)
+![translating a slide on X-axis](./883.webp)
 
 By translating something 100%, we are essentially just putting it outside the slides `div` and we have an `overflow:hidden` on it so you cannot see what is outside of it.
 
@@ -74,7 +74,7 @@ Have the previous, current and next slide on translateX -100, 0 and then 100% ma
 
 Back to the SASS, in the SASS file we aren't actually using any special SASS syntax, so you could change the file extension to `.css` and it would work. However, Wes wanted to demonstrate that the Parcel bundler is able to recognize a SASS file if you add it via a stylesheet tag.
 
-![parcel bundler recognize sass files](./884.png)
+![parcel bundler recognize sass files](./884.webp)
 
 The Parcel bundler detects that the file is a `.scss` extension and it will compile it SASS for us before it puts it into the browser.
 
@@ -82,11 +82,11 @@ Let's get started. Navigate in our terminal to the `exercises/59 - Slider` folde
 
 While that installs, open up the `package.json` file and take a look.
 
-![package.json file](./885.png)
+![package.json file](./885.webp)
 
 You will notice that we have 2 dev dependencies, one for Sass and one for Parcel. When we type `npm start`, that will run the `parcel index.html` command.
 
-![adding start script in package.json](./886.png)
+![adding start script in package.json](./886.webp)
 
 You should see the server is running on a specific port indicated in your terminal. Nothing should be happening on the page because haven't added any JavaScript yet.
 
@@ -122,11 +122,11 @@ The element is the most general base class from which all objects in a document 
 
 If you open up your dev tools and type `Element`, you will see that it is a function.
 
-![typing element in console](./887.png)
+![typing element in console](./887.webp)
 
 This means that we can use `document instanceof Element` to check whether something is an instance of the Element base class.
 
-![](./889.png)
+![](./889.webp)
 
 Modify the code as shown below 👇
 
@@ -158,7 +158,7 @@ Just like we did in the last lesson, we will be adding a whole bunch of function
 
 Create a function called `startSlider`. Within that function we will be populating those variables.
 
-![creation of startSlider function](./890.png)
+![creation of startSlider function](./890.webp)
 
 We want to update the `current` variable from within this function. The reason we are creating the variable outside of the function is that it needs to be accessible by other functions we will create in the future like move next functionality.
 
@@ -179,7 +179,7 @@ function startSlider() {
 }
 ```
 
-![setting the class current](./891.png)
+![setting the class current](./891.webp)
 
 When we create the slider, we now have to run the `startSlider` function.  Add it to the bottom of the `Slider` function.
 
@@ -192,17 +192,17 @@ That is often what we refer to as a **constructor**, which we will be getting in
 
 If you refresh the page you will see that we now have both of our slides logged in the console. The first slide starts at 16 because it has the class current on it and the slider had no class of current on any of the slides so it started on the first slide.
 
-![current slide in console](./893.png)
+![current slide in console](./893.webp)
 
 For the previous one we will grab the element that is behind the current one using `previousElementSibling`.
 
 Let's demo how that works by going to the HTML page in the browser, selecting slide #2 in the elements tab and then going back to the console and typing `$0.previousElementSibling`. You will see that the slide that says 1 will be returned.
 
-![selecting the slide from elements tab](./894.png)
+![selecting the slide from elements tab](./894.webp)
 
 If you were to do the same thing but with #1 slide, you would get `null` because because there is nothing next to one.
 
-![getting null on selecting the first slide](./896.png)
+![getting null on selecting the first slide](./896.webp)
 
 So we want to set the previous slide to be the `previousElementSibling`, or if that doesn't exist, we can fall back to the last slide within our slides div.
 
@@ -216,7 +216,7 @@ Let's demonstrate with an example.
 
 Add a paragraph at the top of the HTML page such as `<p>I <strong>love</strong> to eat <strong>pizza</strong></p>` and inspect it.
 
-![adding a paragraph on the top of html page](./897.png)
+![adding a paragraph on the top of html page](./897.webp)
 
 Click on "love", and then go into the console and try the following 👇
 
@@ -226,7 +226,7 @@ $0.nextSibling;
 $0.nextElementSibling;
 ```
 
-![executing $0, $0.nextSibling, $0.nextElementSibling after clicking on element](./898.png)
+![executing $0, $0.nextSibling, $0.nextElementSibling after clicking on element](./898.webp)
 
 What is the difference? `nextSibling` gives us a Node, and a node can be text or an element, whereas `nextElementSibling` will only return elements. Always use `elementSibling` when you are looking for an element.
 
@@ -241,7 +241,7 @@ function startSlider() {
 }
 ```
 
-![startSlider function definition](./899.png)
+![startSlider function definition](./899.webp)
 
 If you open the console, you will see we have `current, prev, next`.
 
@@ -266,7 +266,7 @@ applyClasses();
 
 If you were to inspect the code you would see that now the appropriate slides have classes.
 
-![appropriate slides have class current](./900.png)
+![appropriate slides have class current](./900.webp)
 
 Next we need a method called `move` that takes in a direction like back or forwards.
 
@@ -370,7 +370,7 @@ Now when you click it, you will see the slider works.
 
 One error is when you get to the very end or very beginning, we will get an arrow because we lose our `next` class.
 
-![prev and current class](./901.png)
+![prev and current class](./901.webp)
 
 Now we need to say when we have the edge case where a previous element or next sibling doesn't exist you will add an or condition and get the `slides.lastElementChild` or `slides.firstElementChild` for the next button.
 
@@ -402,7 +402,7 @@ Because if you look back at where we grab the buttons in our code, we are using 
 
 If you refresh the page you will see they now run on their own.
 
-![slides running on their own](./902.png)
+![slides running on their own](./902.webp)
 
 63 lines of code for a slider!
 

@@ -1,7 +1,7 @@
 ---
 title: Remote Debugging with Chrome for Android [video + tut]
 slug: remote-debugging-mobile-chrome-android
-image: androidthumb.png
+image: androidthumb.webp
 category:
  - HTML5
  - JavaScript
@@ -35,7 +35,7 @@ https://youtu.be/n_7Wyj6DciY
 
 ### Installing the Android SDK
 
-This step is really quick because you either already have the android SDK installed or if you need to install it, we just need a tiny little part of it - nothing related to the native android development. These instructions are for OSX but they are very similar to Windows, the one differnce being that Windows users must install the [USB Driver](http://developer.android.com/sdk/win-usb.html). Go ahead and download the SDK, unzip it, and put the entire \`android-sdk-macosx folder somewhere other than your downloads folder. I reccomend keeping it in in /Developer/android-sdk-macosx/. Double click android\` file and the Android SDK manager will open up. Uncheck everything except the "Android SDK Platform-tools" and click "Install 1 Package" ![](Screen-Shot-2012-02-11-at-11.30.02-AM3-650x464.png "Screen Shot 2012-02-11 at 11.30.02 AM")
+This step is really quick because you either already have the android SDK installed or if you need to install it, we just need a tiny little part of it - nothing related to the native android development. These instructions are for OSX but they are very similar to Windows, the one differnce being that Windows users must install the [USB Driver](http://developer.android.com/sdk/win-usb.html). Go ahead and download the SDK, unzip it, and put the entire \`android-sdk-macosx folder somewhere other than your downloads folder. I reccomend keeping it in in /Developer/android-sdk-macosx/. Double click android\` file and the Android SDK manager will open up. Uncheck everything except the "Android SDK Platform-tools" and click "Install 1 Package" ![](Screen-Shot-2012-02-11-at-11.30.02-AM3-650x464.webp "Screen Shot 2012-02-11 at 11.30.02 AM")
 
 You'll also probably want to add the `/platform tools/ to your $PATH so you can access the adb` command from any folder rather than just in the platform tools folder. Run the following command from your terminal.
 
@@ -56,15 +56,15 @@ Now that we have everything in place and our phone is plugged in, we can start t
 
 Occasionally I'll either get no response or a "device not found" error. I've found that running the command `adb kill-server` and then the code above resurrects the situation.
 
-![](Screen-Shot-2012-02-11-at-12.07.17-PM.png "adb forward tcp:9222 localabstract:chrome_devtools_remote")
+![](Screen-Shot-2012-02-11-at-12.07.17-PM.webp "adb forward tcp:9222 localabstract:chrome_devtools_remote")
 
 Now browse to [http://localhost:9222](http://localhost:9222) on your desktop version of chrome and you will see a list of currently open tabs on your phone, clicking one of them will reveal the Chrome dev tools interface that you're used to. Instead of having the window above the tools, its on your phone!
 
-![](Screen-Shot-2012-02-11-at-12.39.28-PM-650x373.png "Chrome Remote Debugging")
+![](Screen-Shot-2012-02-11-at-12.39.28-PM-650x373.webp "Chrome Remote Debugging")
 
 You can use it just as if you were using your regular dev tools. Go ahead change the CSS background colour or send an alert over the console.
 
-![](Screen-Shot-2012-02-11-at-12.44.50-PM-300x284.png "Remote Debugging Alert") ![](Screenshot_2012-02-11-12-54-40-180x300.png "Screenshot_2012-02-11-12-54-40")
+![](Screen-Shot-2012-02-11-at-12.44.50-PM-300x284.webp "Remote Debugging Alert") ![](Screenshot_2012-02-11-12-54-40-180x300.webp "Screenshot_2012-02-11-12-54-40")
 
 ### Thats all folks!
 

@@ -12,11 +12,11 @@ We will be doing another AJAX example in this video, but this time using a Dad J
 
 Every time you click the button, a new random dad joke should be fetched from the API and displayed and the button text will change occasionally.
 
-![rendered page showing button that shows random dad joke](./1155.png)
+![rendered page showing button that shows random dad joke](./1155.webp)
 
 We will be using the endpoint "get a random dad joke" from the API https://icanhazdadjoke.com/api.
 
-![api docs for icanhazdadjoke.com](./1156.png)
+![api docs for icanhazdadjoke.com](./1156.webp)
 
 This example will require **custom headers** which is a good thing to learn.
 
@@ -24,7 +24,7 @@ We will also be learning how to ensure that the button text never uses the same 
 
 Navigate to the `exercises/76 - Dad Jokes/` directory and open up `index.html`.
 
-![html of dad jokes webpage and rendered page](./1157.png)
+![html of dad jokes webpage and rendered page](./1157.webp)
 
 We have some basic HTML to start. We have a div div that contains a paragraph tag in which to display the joke, a button with a class of `getJoke` and a script tag.
 
@@ -39,7 +39,7 @@ Next create a function that will be responsible for fetching the joke.
 
 Let's look at the API docs for fetching a random joke.
 
-![api docs showing that no authentication is required for the api](./1158.png)
+![api docs showing that no authentication is required for the api](./1158.webp)
 
 No authentication is required. There is this one note however..
 
@@ -74,7 +74,7 @@ fetchJoke();
 
 If you refresh the page, you should see the response is something similar to what you see below.
 
-![browser console output of api response](./1159.png)
+![browser console output of api response](./1159.webp)
 
 ## Headers
 
@@ -93,7 +93,7 @@ What that errors means is that you have most likely been returned some HTML (sin
 
 The way we can check for that is to go to the network tab and find the actual request and click through it, you will see that the response is just an HTML document that came back.
 
-![browser network tab showing api html in the response](./1160.png)
+![browser network tab showing api html in the response](./1160.webp)
 
 Not all websites allow you to fetch HTML but since this API has a CORS policy setup, we are able to do it.
 
@@ -111,7 +111,7 @@ A header is some additional information that comes along with a request, kind of
 
 If you look at our dad joke API fetch request in the network tab and click it, you can click the headers tab and see the headers that were passed along with the request, and the ones that were passed along with the response.
 
-![browser network tab showing the api response headers](./1161.png)
+![browser network tab showing the api response headers](./1161.webp)
 
 We need to pass along this additional information with `fetch`. The way you do that is you pass a second object to fetch, which can take in a whole bunch of different arguments. 👇
 
@@ -136,7 +136,7 @@ const response = await fetch("http://icanhazdadjoke.com", {
 
 If you refresh the page now, you will see a promise.
 
-![browser console showing api promise](./1162.png)
+![browser console showing api promise](./1162.webp)
 
 That is because we forgot to await the response. Modify the code like so:
 
@@ -147,7 +147,7 @@ console.log(joke);
 
 Now what comes back is the actual data.
 
-![browser console showing response data](./1163.png)
+![browser console showing response data](./1163.webp)
 
 ```js
 const response = await fetch("http://icanhazdadjoke.com", {
@@ -158,7 +158,7 @@ const response = await fetch("http://icanhazdadjoke.com", {
 });
 ```
 
-![browser network tab showing the api response](./1164.png)
+![browser network tab showing the api response](./1164.webp)
 
 Now if we change that to text/plain (it is fine to have two, the one further down will overwrite the earlier ones, we will see a similar error about unexpected token W). If you look at the response, it says "Unexpected W" because it returned to us text and our application was expecting JSON.
 
@@ -218,7 +218,7 @@ jokeButton.addEventListener("click", handleClick);
 
 Now when you refresh the page and open the console, you will see that every time we click the button, a new joke is logged.
 
-![browser console showing various responses from api endpoint](./1165.png)
+![browser console showing various responses from api endpoint](./1165.webp)
 
 Now within`handleClick`, take the `jokeHolder` and set it's `textContent` to be the joke 👇
 
@@ -231,7 +231,7 @@ async function handleClick() {
 
 When the button is clicked now, the joke should populate and change within the paragraph tag.
 
-![rendered page showing joke returned from api endpoint](./1166.png)
+![rendered page showing joke returned from api endpoint](./1166.webp)
 
 Next we want to take the button text and replace it with one of the strings in the `buttonText` array shown below.👇
 
@@ -276,7 +276,7 @@ randomItemFromArray(buttonText);
 
 Now whenever we run it, we get a random item returned.
 
-![browser console outputs showing results of multiple responses from the api where some are the same](./1168.png)
+![browser console outputs showing results of multiple responses from the api where some are the same](./1168.webp)
 
 However, sometimes it will randomly return the exact same thing, which makes it seem like nothing happened.
 
@@ -295,7 +295,7 @@ It is possible that this code will run a few times and call itself before it fin
 
 Let's try running it in the console but this time passing the `not` parameter.
 
-!![browser console showing we used that one last time log](./1170.png)
+!![browser console showing we used that one last time log](./1170.webp)
 
 As you can see, when we got "please stop", we logged "Ah we used that one last time look again" to the console and the method called itself again and the next time it returned different text.
 
@@ -326,13 +326,13 @@ In the HTML, right before our paragraph tag that will contain our dad jokes, add
 
 Google "CSS loader" and select `loading.io`.
 
-![google results for css loader search](./1171.png)
+![google results for css loader search](./1171.webp)
 
-![loading.io website](./1172.png)
+![loading.io website](./1172.webp)
 
 Click on whatever loader you would like to move and it should show you the markup you need to add to the page.
 
-![css and html for a loading icon](./1173.png)
+![css and html for a loading icon](./1173.webp)
 
 Then let's actually replace the div we just added with the HTML supplied to us for the loader.
 
@@ -409,7 +409,7 @@ If you look at the styles, you will notice the loader is set to the colour white
 }
 ```
 
-![rendered html of dad joke page showing new loading icon](./1174.png)
+![rendered html of dad joke page showing new loading icon](./1174.webp)
 
 Now you can see the loader, it was always working, it was just white so we could not see it.
 
@@ -499,7 +499,7 @@ Let's try to put the loader inside of the button instead.
 </button>
 ```
 
-![rendered html of form button with loading icon](./1175.png)
+![rendered html of form button with loading icon](./1175.webp)
 
 It is showing up because we removed the class of `hidden` from the HTML. Modify the CSS to make the loader white again.
 
@@ -507,7 +507,7 @@ It is showing up because we removed the class of `hidden` from the HTML. Modify 
   border: 4px solid var(--yellow);
 ```
 
-![rendered html showing larger loading icon](./1176.png)
+![rendered html showing larger loading icon](./1176.webp)
 
 Let's also change the size.
 
@@ -572,7 +572,7 @@ We will make a size variable and set it to `20px` and then modify some of the ot
 </style>
 ```
 
-![final rendered html of button showing loading icon](./1178.png)
+![final rendered html of button showing loading icon](./1178.webp)
 
 As you can see above, it is working although it doesn't look great. Our sizing was a bit off.
 

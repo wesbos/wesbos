@@ -22,7 +22,7 @@ To make sure everything is working, add a `console.log('hey');` within the scrip
 
 If you open up the `variables.html` file in the browser, you should see 'hey' in the console.
 
-![the variables.html file and the console showing the output hey](./variables-html-console-hey.png)
+![the variables.html file and the console showing the output hey](./variables-html-console-hey.webp)
 
 There are three different ways to make a variable, which in JavaScript we refer to as declaring a variable. They are:
 
@@ -44,7 +44,7 @@ What we have done there is created a new variable called `first` and we set it t
 
 Now, if you refresh the `variables.html` page, and type into the console `first`, you will see that we actually get the value that is inside of that variable.
 
-![browser console showing the output of typing the variable name first](./browser-console-showing-variable-first.png)
+![browser console showing the output of typing the variable name first](./browser-console-showing-variable-first.webp)
 
 You can also do it by doing adding a `console.log()` statement like so:
 
@@ -87,7 +87,7 @@ The naming of these things aren't great. Const means constant, but it's still ca
 
 Before we do that, let's discuss the _semi-colon_ Wes is adding after each JavaScript line.
 
-![javascript single-line statements where each line ends with a semi-colon](./javascript-code-semi-colon.png)
+![javascript single-line statements where each line ends with a semi-colon](./javascript-code-semi-colon.webp)
 
 Semi-colons are used to terminate the line of code in JavaScript. Below is an example of what is referred to as a **statement** in JavaScript.
 
@@ -170,7 +170,7 @@ The same can be done with the `age` variable.
 
 For example type in the console `age = 400`. That updates the value of the `age` variable.
 
-![browser console that shows the age variable changed to 400](./browser-console-age-variable.png)
+![browser console that shows the age variable changed to 400](./browser-console-age-variable.webp)
 
 You can either run the JavaScript from the `variables.html` page, or you can run it from the console. Because the variables in `variables.html` are **global variables** _(which we will cover in a future video)_, we can modify them either in the script tag within `variables.html` or directly from the console.
 
@@ -190,7 +190,7 @@ You only need to declare the variable with `var`, `let`, or `const`, and then wh
 
 You **cannot** set a `const` variable to be something else _(there are instances where you can change a const variable, that will be handled later)_. If you were to go `cool = false`, you will see the following error: 👇
 
-![browser console showing an error after trying to update a const variable](./browser-console-const-error.png)
+![browser console showing an error after trying to update a const variable](./browser-console-const-error.webp)
 
 Errors in JavaScript will tell you what went wrong and where it went wrong. Here it says 👇
 
@@ -233,7 +233,7 @@ Now if we go to the top of our opening script tag, and add `"use strict";` and t
 
 > dog is not defined
 
-![an uncaught reference error when we try to access the variable dog](./dog-variable-reference-error.png)
+![an uncaught reference error when we try to access the variable dog](./dog-variable-reference-error.webp)
 
 In the early days of JavaScript, it was possible to create a variable without first declaring it, and the browser would just add the `var` on behalf of the user.
 
@@ -256,7 +256,7 @@ dog = "snickers";
 
 That will work because what happens here is if you comment out the second line so it's just `var dog`; and refresh `variables.html`, when you type `dog` into the console you will have the value of `"undefined"` returned to you.
 
-![the browser console showing the value of dog as undefined](./undefined-dog-variable.png)
+![the browser console showing the value of dog as undefined](./undefined-dog-variable.webp)
 
 Strict mode is useful but we won't be typing it every time in this course because we are going to be following best practices and it is enforced by default when you are using **ECMAScript Modules**, and modules are probably how you are going to be writing all of your modern JavaScript.
 

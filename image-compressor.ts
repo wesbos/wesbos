@@ -252,7 +252,7 @@ async function main() {
 
   const savingsLog: SavingsLog[] = [];
   const queue = new PQueue({ concurrency: 1 });
-  const files = await glob('**/*.{jpg,jpeg,png,webp}', {
+  const files = await glob('**/*.{jpg,jpeg,png}', {
     cwd: directory,
     absolute: true,
     nodir: true,

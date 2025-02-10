@@ -57,7 +57,7 @@ In the browser, the global scope is called the window.
 
 If you type `window` in the console, you will see every single thing that is attached to the global scope is inside of the window.
 
-![console showing Window object](./191.png)
+![console showing Window object](./191.webp)
 
 That is why sometimes you will see people doing things like `window.setTimeout()`. There is also just regular, old, `setTimeout()`, both are the exact same thing.
 
@@ -76,11 +76,11 @@ var age = 100;
 
 If you reload `scope.html` in the browser and then in the console type in `first`, `second` and `age`, you will see the following values returned because they are all global variables 👇
 
-![console showing value of the typed variable within scope](./192.png)
+![console showing value of the typed variable within scope](./192.webp)
 
 However, if you type in `window.first` and `window.second` you will get `undefined` but when you type in `window.age` it will return `100`.
 
-![console showing undefined for variables that was not declared with var](./193.png)
+![console showing undefined for variables that was not declared with var](./193.webp)
 
 This is because `var` variables are attached to the `window` object and they are globally scoped, and `const` and `let` variables when declared like the example above are still globally scoped, they are just not attached to the window.
 
@@ -132,7 +132,7 @@ console.log(hair);
 1. When we `console.log(age)`, is it going to be 100?
 1. When we `console.log('hair')`, will it be blonde?
 
-![console showing logged value for defined variable and throws a reference error for undefined variable](./194.png)
+![console showing logged value for defined variable and throws a reference error for undefined variable](./194.webp)
 
 Age returns 100, but hair throws a reference error.
 
@@ -194,7 +194,7 @@ Why is this allowed? Why is it not breaking? If you hover over the variable in V
 
 > 'age' is already declared in the upper scope.
 
-![Editor showing a warning that 'age' is already declared](./195.png)
+![Editor showing a warning that 'age' is already declared](./195.webp)
 
 That is what is referred to as **shadow variables**.
 
@@ -238,7 +238,7 @@ if (1 === 1) {
 console.log(cool);
 ```
 
-![console showing Uncaught ReferenceError: cool is not defined](./196.png)
+![console showing Uncaught ReferenceError: cool is not defined](./196.webp)
 
 No, it throws the error shown above 👆
 >Uncaught ReferenceError: cool is not defined
@@ -254,7 +254,7 @@ console.log(cool);
 
 It works!
 
-![console showing logged value as true](./197.png)
+![console showing logged value as true](./197.webp)
 
 What if we make it a `let` variable?
 
@@ -267,7 +267,7 @@ console.log(cool);
 
 It doesn't work, we get the same error.
 
-![console showing Uncaught ReferenceError: cool is not defined](./198.png)
+![console showing Uncaught ReferenceError: cool is not defined](./198.webp)
 
 What is happening there is whenever you have a set of curly brackets like in the if statement above, that is what is referred to as a **block**. _(Blocks will be showing up in most places, the most common is probably an if statement. We will have lots more examples throughout the course.)_
 
@@ -358,11 +358,11 @@ In the past, we have had for loops such as the following:
 
 That will log 0 - 9 as shown below 👇
 
-![console showing logged numbers from 0 to 9](./199.png)
+![console showing logged numbers from 0 to 9](./199.webp)
 
 If you type `i` in the console, it will return 10.
 
-![console showing i as 10](./200.png)
+![console showing i as 10](./200.webp)
 
 We have this random variable that is out floating called `i`, which should have been contained within the for loops but because it's a `var`, it has leaked outside.
 
@@ -424,7 +424,7 @@ Or you might think it may log Snickers because the function is declared within a
 
 What does it log? Snickers!
 
-![console showing logged value as snickers](./201.png)
+![console showing logged value as snickers](./201.webp)
 
 Even though we ran the `logDog()` function within the `go()` function and that function has a locally scoped variable set to the value of Sunny, it's still logging Snickers.
 
@@ -438,7 +438,7 @@ So even though the `logDog()` function is run inside of another function which h
 
 Because `logDog()` is defined where it is, since it doesn't have a local variable named `dog`, it will just go up one level.
 
-![Editor showing code](./202.png)
+![Editor showing code](./202.webp)
 
 Ideally the function `logDog()` would take a parameter of `dog` and then log whatever parameter value it is passed like so 👇
 
@@ -518,7 +518,7 @@ function sayHi(name) {
 
 If you were to write `sayHi('wes')` in the console, it will return WES.
 
-![console showing the logged name from sayHi function in uppercase](./203.png)
+![console showing the logged name from sayHi function in uppercase](./203.webp)
 
 However if you try to call the `yell` function outside of `sayHi()`, as shown below, it will throw an error 👇
 

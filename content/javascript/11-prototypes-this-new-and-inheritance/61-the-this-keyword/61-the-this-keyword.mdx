@@ -41,7 +41,7 @@ button2.addEventListener("click", tellMeAboutTheButton);
 
 Now when we go and click on each button, the `this` keyword will be equal to each button that was clicked.
 
-![this keyword equals to each button that was clicked](./918.png)
+![this keyword equals to each button that was clicked](./918.webp)
 
 Now we can call that an instance. Why?
 
@@ -65,7 +65,7 @@ const tellMeAboutTheButton = () => {
 
 Now when you click the buttons, you will see the `Window` logged not the button.
 
-![window object log in console](./919.png)
+![window object log in console](./919.webp)
 
 The value of the `this` keyword does not change when you use an arrow function. The `this` keyword will be equal to whatever it was at a higher level function. (If there is no higher level function, it will be equal to the Window).
 
@@ -89,19 +89,19 @@ If you refresh the HTML page and try clicking on the buttons, you will see that 
 
 Let's log the value of `this` within the timeout, refresh the page and click the second button and then look at the console. You should see the button logged and then the window.
 
-![log of this keyword directly inside arrow function and the setTimeout function](./920.png)
+![log of this keyword directly inside arrow function and the setTimeout function](./920.webp)
 
 Why is that?
 
 Modify the logs to be a bit clearer. Replace the first log with `console.log('outside', this)` and the second one with `console.log('inside',this);`.
 
-![log describing outside and inside function in console](./921.png)
+![log describing outside and inside function in console](./921.webp)
 
 As you can see, outside it is equal to the button but inside the timeout it is equal to the window. That is because every time you create a new function, it will change what the value of `this` is equal to.
 
 If you need to be able to access the value of the `this` keyword within the `tellMeABoutTheButton` function, you can use an arrow function because it will know not to change. It will instead grab the value of whatever `this` is equal to within the `tellMeABoutTheButton` function.
 
-![accessing this keyword within tellMeABoutTheButton with arrow function](./922.png)
+![accessing this keyword within tellMeABoutTheButton with arrow function](./922.webp)
 
 ```js
 setTimeout(() => {
@@ -112,7 +112,7 @@ setTimeout(() => {
 
 If you refresh the page you will see that the value of `this` remains the same now.
 
-![logs of this keyword inside setTimeout function](./923.png)
+![logs of this keyword inside setTimeout function](./923.webp)
 
 That is something about arrow functions that might come and bite you, so just know about that.
 
@@ -120,7 +120,7 @@ That is what we now about the `this` keyword so far. The other thing we need to 
 
 If you go up to the `Pizza` function further up in the file, and add a log of `this`, whenever the pizza is made we get access to the pizza that was created.
 
-![log of this keyword returning inside a function](./924.png)
+![log of this keyword returning inside a function](./924.webp)
 
 We can do things like store information about the pizza that is being made inside of that pizza. When you make a pizza, you need to store information about it like what are the toppings, who is it for, and things like that.
 
@@ -145,7 +145,7 @@ Let's add that.
 
 Whenever Wes needs to generate a random id, he likes to use this blog post by Tom Irish. It's not guaranteed to be unique, but it is good enough for most use cases. This one gives you a random hex code. We will take the `#` sign off the method because we don't need it.
 
-![documentation describing generating random hex color code in javascript](./925.png)
+![documentation describing generating random hex color code in javascript](./925.webp)
 
 ```js
 this.id = Math.floor(Math.random() * 16777215).toString(16);
@@ -153,7 +153,7 @@ this.id = Math.floor(Math.random() * 16777215).toString(16);
 
 Now when you refresh the page, you will see that in our pizza there is a bunch of information about that pizza.
 
-![console log the contents of pizza function](./926.png)
+![console log the contents of pizza function](./926.webp)
 
 The `toppings` and `customers` are empty and `undefined` because we haven't passed them in. So let's update `pepperoniPizza` to add some toppings and a customer and then add another pizza as shown below 👇
 
@@ -164,7 +164,7 @@ const canadianPizza = new Pizza(['pepperoni', 'mushrooms', 'onion'], 'Kait Bos')
 
 If you refresh the page and open up the console, you will see our two pizzas with all the information we passed to the function.
 
-![pizza object with toppings, customer and id proerties](./927.png)
+![pizza object with toppings, customer and id proerties](./927.webp)
 
 The `this` keyword, when you are creating an object, is used to store information about that instance.
 

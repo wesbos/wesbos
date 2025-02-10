@@ -174,15 +174,15 @@ Now that we have the analyzer, we need to figure out how much data we want acces
 
 Here is an example with a lot of data:
 
-![](./1408.png)
+![](./1408.webp)
 
 And here is an example with just some data:
 
-![](./1409.png)
+![](./1409.webp)
 
 It is up to us how much data we want to collect. To set that we use the `fftSize` property of the analyzer. If you are curious you can look up the docs for that property but essentially that is what we use to set how much data should be collected.
 
-![](./1410.png)
+![](./1410.webp)
 
 We will set it to be 2 to the power of 10, which you represent using two multiplication signs like so:
 
@@ -198,7 +198,7 @@ const timeData = new Uint8Array(analyzer.frequencyBinCount);
 
 Let's break that down starting with looking up the docs for the Uint8Array.
 
-![](./1411.png)
+![](./1411.webp)
 
 What does that all mean? Well the data that we are getting back from the time data is 8 bits or 1 byte. This is getting pretty nerdy but essentially if you have an array, normal arrays you can put as much data as you want in every single item. However with this special array, each item can only ever be 8 bits of 1 byte (8 bits is 1 byte).
 
@@ -226,7 +226,7 @@ getAudio();
 
 When the page refreshes, we expected to see an array of audio logged to the console. However, we are currently seeing an error "Uncaught (in promise) DOMException: Permission denied"
 
-![](./1412.png)
+![](./1412.webp)
 
 What is happening there is our call to `getUserMedia` has been denied.
 
@@ -246,11 +246,11 @@ async function getAudio() {
 
 Now we see the following message in the console 👇
 
-![](./1413.png)
+![](./1413.webp)
 
 To allow access, you need to allow the webpage access to the microphone within chrome, as shown in the image below.
 
-![](./1414.png)
+![](./1414.webp)
 
 Now when you refresh the page, you will see we get an array.
 
@@ -263,7 +263,7 @@ const frequencyData = new Uint8Array(analyzer.frequencyBinCount);
 console.log(frequencyData);
 ```
 
-![](./1415.png)
+![](./1415.webp)
 
 We now have two empty arrays with the right amount of slots that we are going to be filling up with data.
 
@@ -307,7 +307,7 @@ function drawTimeData(timeData) {
 
 Now when you refresh you will see we have this stream of data coming in.
 
-![](./1416.png)
+![](./1416.webp)
 
 It is all still zeros because it was 0 initially but we have another method that will allow us to pull the data out of it: `analyzer.getByteTimeDomainData(timeData);`
 
@@ -324,7 +324,7 @@ function drawTimeData(timeData) {
 }
 ```
 
-![](./1417.png)
+![](./1417.webp)
 
 That data is a visual representation of the words that Wes is speaking.
 
@@ -348,7 +348,7 @@ function drawTimeData(timeData) {
 
 Now we need to do is figure out how long each line will be.
 
-![](./1418.png)
+![](./1418.webp)
 
 Let's use the example above and assume there are 8 pieces of data we have to represent that visual. We need to draw lines between each of those data points like a line graph. In order to that, we must figure out how wide each of those lines are going to be.
 
@@ -381,7 +381,7 @@ const sliceWidth = WIDTH / bufferLength;
 console.log(sliceWidth);
 ```
 
-![](./1419.png)
+![](./1419.webp)
 
 That gives us 2.9296875 pixels long. If we were to modify the `WIDTH` variable to 2500, that value will go up to 4.88 pixels wide per slice. Wes is not going to round that because canvas does a good enough job of rounding those values for us.
 
@@ -404,7 +404,7 @@ The reason we do that is because when you are not speaking, it returns 128 and t
 
 We also want to make a `y` value.
 
-![](./1420.png)
+![](./1420.webp)
 
 Take the visual above as an example.
 
@@ -481,7 +481,7 @@ function drawTimeData(timeData) {
 }
 ```
 
-![](./1421.png)
+![](./1421.webp)
 
 What is happening there is that every single time we are drawing something, it is drawing that to the page.
 
@@ -500,11 +500,11 @@ Now every single time that this runs, we first clear out the canvas so it looks 
 
 Go back to the place in the code where we set the `fftSize`. Let's try modifying it to be `analyzer.fftSize = 2 ** 6;`
 
-![](./1423.png)
+![](./1423.webp)
 
 The higher limit is 32768. Let's try setting it to that like so: `analyzer.fftSize = 32768;`
 
-![](./1424.png)
+![](./1424.webp)
 
 As you can see above, when we set it to the upper limit, we have tons of data streaming in. Let's bring that back to be 2 to the power of 10 instead.
 
@@ -575,7 +575,7 @@ function drawFrequency(frequencyData) {
 
 Now you should see that when Wes talks, the high and low ends are starting to fill each other up. If you zoom out while focused in the console and start talking, you will see that the data is streaming in.
 
-![](./1426.png)
+![](./1426.webp)
 
 Now we need to take that data and paint it to the canvas. It will be a similar approach to how we visualized the time data.
 
@@ -586,7 +586,7 @@ const barWidth = WIDTH / bufferLength;
 console.log(barWidth);
 ```
 
-![](./1427.png)
+![](./1427.webp)
 
 As you can see, we get the same width as we did for the time. Let's multiply that value by 2.5 like so: `const barWidth = (WIDTH / bufferLength) * 2.5;`.
 
@@ -652,7 +652,7 @@ ctx.fillRect(
 );
 ```
 
-![](./1428.png)
+![](./1428.webp)
 
 Now when you refresh the page, you will see the bar, and it is going all the way to the top. That is because we need to increment the `x` variable by the width of the bar, so they go all the way across.
 
@@ -660,11 +660,11 @@ Add the following code as the last line of the forEach: `x += barWidth`.
 
 Now you should see the data is going all the way across.
 
-![](./1429.png)
+![](./1429.webp)
 
 If you wanted to space the bars out a bit more, you could do something like `x += barWidth + 1` or `x += barWidth + 10`.
 
-![](./1430.png)
+![](./1430.webp)
 
 Now let's fix the issue where the bars are going too high. We can do that by taking the barHeight variable and dividing it's value by 2 like so 👇
 
@@ -672,7 +672,7 @@ Now let's fix the issue where the bars are going too high. We can do that by tak
 const barHeight = (HEIGHT * percent) / 2;
 ```
 
-![](./1431.png)
+![](./1431.webp)
 
 Now you should notice that the bars don't go quite as high as they would.
 
@@ -685,7 +685,7 @@ We can also set the fillStyle to use an RGBA value like so:
 });
 ```
 
-![](./1432.png)
+![](./1432.webp)
 
 That will cause the bars to be semi-transparent and allow the time data line to show through.
 
@@ -693,7 +693,7 @@ The cool thing we want to do is use HSL to figure out which color each of the ba
 
 If you go to the website https://mothereffinghsl.com, you will see that for HSL the hue goes from 0 to 360, and it goes through the entire rainbow.
 
-![](./1433.png)
+![](./1433.webp)
 
 Now we can say something that has 0 will be 0 on the HSL and something that has a 255 frequency will be 360 on the HSL spectrum. We can use that as a base to go through the entire thing.
 
@@ -770,7 +770,7 @@ frequencyData.forEach((amount) => {
 });
 ```
 
-![](./1434.png)
+![](./1434.webp)
 
 It is working, however the colors are a bit pastel.
 
@@ -780,7 +780,7 @@ Let's fix that. Wes found that to get vibrant colors, you can simply subtract 0.
 const [h, s, l] = [360 / (percent * 360) - 0.5, 0.8, 0.5];
 ```
 
-![](./1435.png)
+![](./1435.webp)
 
 You can feel free to play with these hue, saturation and lightness values.
 

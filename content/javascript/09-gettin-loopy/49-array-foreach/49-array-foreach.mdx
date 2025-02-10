@@ -39,7 +39,7 @@ function logTopping(topping) {
 toppings.forEach(logTopping)
 ```
 
-![array forEach output in console](./619.png)
+![array forEach output in console](./619.webp)
 
 If you refresh the page, you will see that we are logging every single one of the toppings as we loop over them.
 
@@ -56,13 +56,13 @@ function logTopping(topping) {
 
 When you refresh the HTML page, the debugger should open once it hits the first item in the array.
 
-![placing debugger in the logTopping callback function](./620.png)
+![placing debugger in the logTopping callback function](./620.webp)
 
 As you can see, the debugger is in paused state. We have access to the call stack, and it tells us we are in the function `logTopping`.
 
 Below that, the debugger tells us what the `topping` variable is equal to which is "Mushrooms", as well as the value of the `this` variable, which is equal to the Window.
 
-![paused status in debugger in the dialog box](./621.png)
+![paused status in debugger in the dialog box](./621.webp)
 
 If you click the symbol shown in the image above twice, the JavaScript code will continue running.
 
@@ -78,7 +78,7 @@ toppings.forEach(topping => {
 
 One thing you might be having trouble with is where is this `topping` variable shown highlighted below is coming from. You may be wondering if it's a special keyword because it is a singular of toppings which is the name of the variable that holds the `toppings` array.
 
-![different ways to write forEach loop](./622.png)
+![different ways to write forEach loop](./622.webp)
 
 If you remember back to when we learned about arguments and placeholders we said that arguments were the actual values and the parameters were the placeholders.
 
@@ -90,7 +90,7 @@ How do we know that?
 
 We can look at the `forEach()` docs on MDN.
 
-![forEach mdn documentation for syntax](./623.png)
+![forEach mdn documentation for syntax](./623.webp)
 
 In our case, we chose to name the `currentValue` parameter `topping`.
 
@@ -108,7 +108,7 @@ toppings.forEach(logTopping);
 
 When you refresh the HTML page and open the console, you will see that for each item in the array, the actual item was logged, the index and also the original array.
 
-![console log of the loop with current looping value, index and whole topping array](./624.png)
+![console log of the loop with current looping value, index and whole topping array](./624.webp)
 
 Why would you need to pass the original array?
 
@@ -132,7 +132,7 @@ function logTopping(topping, index, originalArray)
 
 Add a log of `originalArray[index]` and refresh the HTML page.
 
-![adding a log of originalArray[index] + 1 to access current looping value via index](./625.png)
+![adding a log of originalArray[index] + 1 to access current looping value via index](./625.webp)
 
 ```js
 console.log(originalArray[index + 1]);
@@ -152,11 +152,11 @@ function logTopping(topping, index, originalArray) {
 
 When you refresh the HTML page, you should see the following 👇
 
-![accessing the current looping value directly or via array index in console](./626.png)
+![accessing the current looping value directly or via array index in console](./626.webp)
 
 If you scroll all the way to the bottom, you will see that when we get to the last one, the next index returns `undefined`.
 
-![at the last index next element returns undefined](./627.png)
+![at the last index next element returns undefined](./627.webp)
 
 We can check whether the next topping exists or not by adding the following code 👇
 
@@ -170,7 +170,7 @@ if (nextTopping) {
 
 Now if you refresh the page and look at the console, you will see that for the last item, we are not logging the next one because it doesn't exist.
 
-![removing the undefined based on a ternary check whether we have a value at the next index or not](./628.png)
+![removing the undefined based on a ternary check whether we have a value at the next index or not](./628.webp)
 
 We can go a bit further and make it a bit easier to understand using a ternary function.
 
@@ -194,7 +194,7 @@ nextTopping ? console.log(nextTopping) : null;
 console.log('--------🍕-----');
 ```
 
-![console log of the prevTopping and nextTopping by adding 1 in the index or subtracting 1 from it](./629.png)
+![console log of the prevTopping and nextTopping by adding 1 in the index or subtracting 1 from it](./629.webp)
 
 Now the first and last topping should only have 2 items logged while all the other items have 3 items logged.
 
@@ -206,7 +206,7 @@ Let's use `.length` on the array and a ternary statement.
 index === array.length - 1 ? console.log('Goodbye') : console.log("getting the next topping");
 ```
 
-![printing goodbye when we reach the end of array using length property of array](./630.png)
+![printing goodbye when we reach the end of array using length property of array](./630.webp)
 
 Let's break down what we did exactly in that last example.
 

@@ -41,7 +41,7 @@ const person = {
 
 Open that in the browser and take a look at it in the console.
 
-![calling sayHi function on person object in console](./974.png)
+![calling sayHi function on person object in console](./974.webp)
 
 As you can see, it says "hey wes bos".
 
@@ -59,7 +59,7 @@ const sayHi = person.sayHi;
 
 When you run that, we will just see "hey " with no name.
 
-![we see 'hey ' with no name when we run](./975.png)
+![we see 'hey ' with no name when we run](./975.webp)
 
 You can see if we call the `sayHi()` on the person object, we get the hey message returned with a name.
 
@@ -93,11 +93,11 @@ const jenna = { name: 'Jenna' };
 
 How would we use the `sayHi` method for this other object when `name` isn't being passed in as an argument?
 
-![not passing name as an argument to sayHi function](./976.png)
+![not passing name as an argument to sayHi function](./976.webp)
 
 That is the difference between object oriented programming and functional programming.
 
-![accessing the name property of an object using this keyword](./977.png)
+![accessing the name property of an object using this keyword](./977.webp)
 
 Our `sayHi` method is object oriented.
 
@@ -109,7 +109,7 @@ What we can do is we can bind `sayHi`` to Jenna object as shown below.
 const sayHi = person.sayHi.bind(jenna);
 ```
 
-![binding sayHi function to jenna object](./978.png)
+![binding sayHi function to jenna object](./978.webp)
 
 `bind` is a method that lives on all functions and it says change the `this` keyword to be equal to, in this example, a different object.
 
@@ -141,13 +141,13 @@ Now if you refresh the page, open the dev tools console and type `$` you will se
 
 If you try typing in `document.querySelector` it will be the exact same thing. In fact, they are identical.
 
-![querySelector and document.querySelector are exact same thing](./979.png)
+![querySelector and document.querySelector are exact same thing](./979.webp)
 
 _Aside: sometimes you see that "[native code]" in the console. That means that is a function that has been implemented by the browser so we are not able to see how it works under the hood because it's implemented in whatever language it's written in._
 
 Now if you wanted to actually select something, you might think you would be able to just do `$('p')`. However, if you try that you will see that we get an error complaining about "Illegal invocation".
 
-![uncaught type error: illegal invocation in console](./980.png)
+![uncaught type error: illegal invocation in console](./980.webp)
 
 What is happening here?
 
@@ -169,7 +169,7 @@ const p = wrapper.querySelector('p');
 console.log(p);
 ```
 
-![selecting a paragraph using querySelector and logging in console](./981.png)
+![selecting a paragraph using querySelector and logging in console](./981.webp)
 
 As you can see, that works. We got it.
 
@@ -201,7 +201,7 @@ console.log(lookFor('p'));
 
 You would see that a NodeList is returned to us.
 
-![paragraphs as node list returned by lookFor('p')](./982.png)
+![paragraphs as node list returned by lookFor('p')](./982.webp)
 
 To reiterate: using `bind` will change the context of what `this` is equal to inside of a function or a method.
 
@@ -223,7 +223,7 @@ console.log(total);
 
 Let's refresh the page to check if it works. You should see 1130 in the console.
 
-![total bill in console](./983.png)
+![total bill in console](./983.webp)
 
 If you wanted to take that function and store it in an external variable, you could add the code below 👇
 
@@ -237,13 +237,13 @@ If you tried to call `calc` and pass it 0.13, you would see `NaN` in the console
 console.log(calc(0.13));
 ```
 
-![NaN in console log](./984.png)
+![NaN in console log](./984.webp)
 
 Why?
 
 Because if we were to log `this` inside of the `calculate` method on our `bill` object, you would see that it is equal to the window.
 
-![logging this keyword inside calculate returns window object](./985.png)
+![logging this keyword inside calculate returns window object](./985.webp)
 
 The first time around it is equal to our `bill` object and the second time it was called it was equal to the window.
 
@@ -271,7 +271,7 @@ const calc = bill.calculate.bind({ total: 500 }, 0.06);
 console.log(calc());
 ```
 
-![total bill in console using bind method](./986.png)
+![total bill in console using bind method](./986.webp)
 
 As you can see, it still works! Why?
 
@@ -289,7 +289,7 @@ Let's move on to the two methods: `call` and `apply`.
 
 They work the exact same as `bind` does with one difference: they will call the function for you.
 
-![calc function in console](./987.png)
+![calc function in console](./987.webp)
 
 ### Call method
 
@@ -314,7 +314,7 @@ If you need to bind a function that you want to call immediately you can use `ca
 
 ### Apply method
 
-![apply method documentation in mozilla developers docs](./988.png)
+![apply method documentation in mozilla developers docs](./988.webp)
 
 > Note: While the syntax of this function is almost identical to that of `call`, the fundamental difference is that `call` accepts an argument list, while `apply` accepts a single array of arguments.
 
@@ -349,7 +349,7 @@ Now we can try running the function in the console.
 bill.describe('pizza', 'beer', 0.13);
 ```
 
-![calling describe method of the bill object in console](./989.png) 17:52
+![calling describe method of the bill object in console](./989.webp) 17:52
 
 As you can see the function works.
 
@@ -360,7 +360,7 @@ const myMeal = bill.describe.call({ total: 342 }, 'pizza', 'beer', 0.13);
 console.log(myMeal);
 ```
 
-![calling the same describe method of bill object using new parameters](./990.png)
+![calling the same describe method of bill object using new parameters](./990.webp)
 
 Why do we pass an object as the first argument to `call`?
 
@@ -372,7 +372,7 @@ If you try running that, you will see that we get an error complaining that "thi
 
 What is happening?
 
-![on running, we get an error complaining that "this.calculate is not a function"](./991.png)
+![on running, we get an error complaining that "this.calculate is not a function"](./991.webp)
 
 We called `this.calculate` but we didn't pass it the `this` that we wanted.
 
@@ -382,7 +382,7 @@ Let's go modify the `myMeal` declaration so that it has access to the `calculate
 const myMeal = bill.describe.call(bill, 'pizza', 'beer', 0.13);
 ```
 
-![calling the modified myMeal function in console](./992.png)
+![calling the modified myMeal function in console](./992.webp)
 
 Now it should be working for you.
 

@@ -37,7 +37,7 @@ makePizza(['cheese','pineapple']).then(pizza => {
 })
 ```
 
-![promise rejection error - uncaught in promise](./1037.png)
+![promise rejection error - uncaught in promise](./1037.webp)
 
 What does that log "Uncaught (in promise)" mean?
 
@@ -60,7 +60,7 @@ makePizza(['cheese','pineapple'])
 
 As you see, we no longer get an error logged because we caught and logged the error ourselves.
 
-![catching the uncaught promise error and logged in console](./1038.png)
+![catching the uncaught promise error and logged in console](./1038.webp)
 
 `.then()` will only run when the promise resolves successfully, and the catch will only run if the promise doesn't go successfully.
 
@@ -91,11 +91,11 @@ It's important to note that not every single promise needs a catch on the end.
 
 Go back to our pizzas where we chained a bunch of promises together and modify the pizza with no toppings to instead pass the topping of "pineapple",
 
-![not every promise needs a catch statement at the end](./1040.png)
+![not every promise needs a catch statement at the end](./1040.webp)
 
 What happens there is we go through the chain of promises and then as soon as we hit the code where we try to make a pizza with a pineapple we get the "uncaught in promise" error.
 
-![in chain of promises - error uncaught promise](./1041.png)
+![in chain of promises - error uncaught promise](./1041.webp)
 
 So how do we catch the error?
 
@@ -104,7 +104,7 @@ Thankfully, the answer is no.
 
 You just need to put one catch at the very end that will be able to handle our error.
 
-![handling the error in chanin of promises in code](./1042.png)
+![handling the error in chanin of promises in code](./1042.webp)
 
 The thing about an error happening in a promise chain is that where the error happens, it will then bail out of executing the rest of the promise chain.
 
@@ -138,7 +138,7 @@ dinnerPromise2
   })
 ```
 
-![output of promise as first one fulfilled, second one rejected using Promise.allSettled()](./1043.png)
+![output of promise as first one fulfilled, second one rejected using Promise.allSettled()](./1043.webp)
 
 As you can see in our results we can see that the first one was **fulfilled** and the second one was **rejected**.
 Fulfilled is another word they use for resolved.
@@ -149,7 +149,7 @@ If we tried that example but with `Promise.all()` like so, you will see that the
 const dinnerPromise2 = Promise.all([p1, p2]);
 ```
 
-![Promise.all() produces error in console if one of the promise is rejected](./1044.png)
+![Promise.all() produces error in console if one of the promise is rejected](./1044.webp)
 
 That is because `Promise.all` assumes that all of them will go successfully.
 
@@ -159,7 +159,7 @@ If you want to catch any errors that happen in `Promise.all()` you would have to
 const dinnerPromise2 = Promise.all([p1, p2]).catch(handleError);
 ```
 
-![using catch handler with Promise.all()](./1045.png)
+![using catch handler with Promise.all()](./1045.webp)
 
 That is probably not what you want because if one of them breaks, you might still want the other one, because those other pizzas are still good.
 

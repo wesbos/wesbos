@@ -22,7 +22,7 @@ There are a few ways to create HTML in JavaScript. The main way is using `docume
 
 Let's look that up in MDN.
 
-![the document.createElement MDN web docs page](./251.png)
+![the document.createElement MDN web docs page](./251.webp)
 
 To use this method, you pass it a tagName and then there are optional options you can pass _(you can tell it's optional because of the square brackets)_, which we won't be using.
 
@@ -37,7 +37,7 @@ When you open the HTML file, you will see the paragraph in the console but it is
 
 That is because we haven't actually put it on the page yet, we just created it and it's living in what is called **memory** right now.
 
-![browser console showing output of myParagrah as empty tag](./252.png)
+![browser console showing output of myParagrah as empty tag](./252.webp)
 
 There is no shortcut to create an element with a class or with a set attribute, so something like the code below would **not** work 👇
 
@@ -54,7 +54,7 @@ myParagraph.classList.add('special');
 console.log(myParagraph);
 ```
 
-![browser console showing output of myParagrah with added class 'special'](./253.png)
+![browser console showing output of myParagrah with added class 'special'](./253.webp)
 
 We now have that paragraph with a class of `special` and the text content that we supplied it with.
 
@@ -94,13 +94,13 @@ Let's look up `appendChild()` in MDN.
 
 It takes in one parameter, which is a child reference.
 
-![the node.appendChild MDN web docs page](./254.png)
+![the node.appendChild MDN web docs page](./254.webp)
 
 ```js
 document.body.appendChild(myParagraph);
 ```
 
-![rendered html showing p tag before the closing body tag](./255.png)
+![rendered html showing p tag before the closing body tag](./255.webp)
 
 This gives us a `p` tag right before the closing `body` tag.
 
@@ -112,7 +112,7 @@ myDiv.appendChild(myParagraph);
 myDiv.appendChild(myImage);
 ```
 
-![rendered webpage showing a paragrah above an image](./257.png)
+![rendered webpage showing a paragrah above an image](./257.webp)
 
 It is probably better to do that in reverse order. Why?
 
@@ -145,7 +145,7 @@ That is one way to go ahead and create elements, using the `createElement()` API
 
 You may come across the `.append()` method when searching for how to add an element to the DOM, which works very similarly to `createElement`. However, `append()` doesn't seem to be fully supported in Internet Explorer so Wes suggests holding off on using it.
 
-![The .append method MDN web docs page](./258.png)
+![The .append method MDN web docs page](./258.webp)
 
 ## insertAdjacentElement method
 
@@ -153,7 +153,7 @@ There is another API, `insertAdjacentElement`, that Wes is fond of using. It wor
 
 The difference is `insertAdjacentElement` is used to insert elements before, after and inside other elements.
 
-![The .insertAdjacentElement method MDN web docs page](./259.png)
+![The .insertAdjacentElement method MDN web docs page](./259.webp)
 
 This is handy when you need to do something like insert an element before a paragraph in a div.
 
@@ -165,7 +165,7 @@ myDiv.appendChild(heading);
 
 If you try using `appendChild` as shown in the code above 👆, you should see that the heading is inserted after the image _(as shown below 👇)_ which is **not** what we want.
 
-![rendered page showing a large heading below an image](./260.png)
+![rendered page showing a large heading below an image](./260.webp)
 
 `insertAdjacentElement()` takes two parameters:
 1. the position of where you want to insert the element
@@ -177,7 +177,7 @@ myDiv.insertAdjacentElement('afterbegin', heading);
 
 That will put the heading before the paragraph and image tag.
 
-![rendered page showing a paragraph before an image](./261.png)
+![rendered page showing a paragraph before an image](./261.webp)
 
 If you were to use `beforebegin`, it would insert the `header` before the `div` tag, as a sibling to the wrapper.
 
@@ -239,7 +239,7 @@ list.insertAdjacentElement('afterbegin', li1);
 
 What that code will do is it will create a clone of the `li5` Node, and then insert that clone adjacently.
 
-![rendered html showing a list with multiple nodes](./1447.png)
+![rendered html showing a list with multiple nodes](./1447.webp)
 
 If you reload the page, you will see that we added the element but it is empty.
 

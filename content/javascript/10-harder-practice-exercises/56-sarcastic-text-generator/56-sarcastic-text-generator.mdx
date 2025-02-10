@@ -19,11 +19,11 @@ Based on your selection, the text you entered will be modified to match the styl
 
 The sarcastic option gives us "sponge bob case" as it's often called, which is depicted in the image below.
 
-![sarcastic text generator](./783.png)
+![sarcastic text generator](./783.webp)
 
-![unable to structure a sentence generator](./782.png)
+![unable to structure a sentence generator](./782.webp)
 
-![funky text generator](./784.png)
+![funky text generator](./784.webp)
 
 _Note: the funky option gives us those weird characters but you should never use these characters in a real world situation because they are inaccessible to someone with a screen reader._
 
@@ -81,7 +81,7 @@ const filterInputs = document.querySelectorAll('[name="filter"]');
 
 Log them all the make sure they are working.
 
-![selecting textarea, paragraph and nodelist using querySelectorAll](./785.png)
+![selecting textarea, paragraph and nodelist using querySelectorAll](./785.webp)
 
 Next we need a handler that will output the text.
 
@@ -146,7 +146,7 @@ const transformText(text) {
 
 Now every time you type in the textarea, you should get an array of every single letter that the person has in there.
 
-![array of every single letter](./786.png)
+![array of every single letter](./786.webp)
 
 We want to loop over that array and uppercase and lowercase every other letter.
 
@@ -176,7 +176,7 @@ function transformText(text) {
 textarea.addEventListener("input", (e) => transformText(e.target.value));
 ```
 
-![log the letter on typing text](./787.png)
+![log the letter on typing text](./787.webp)
 
 Now when you type, as you can see, we are logging the letter and the index. What we can do is say if it's an even number, lowercase it, and if it's an odd number, uppercase it.
 
@@ -186,13 +186,13 @@ How do you know if a number is even or odd?
 
 There is a neat way of doing that with the **modulo** operator.  Let's do a little aside to go over how the modulo operator works.
 
-![pack of 10 smarties (a candy in canada)](./788.png)
+![pack of 10 smarties (a candy in canada)](./788.webp)
 
 Let's say Wes he has a pack of 10 smarties (which are a candy in Canada) and three kids.
 
 If you try to divide 10 by 3 you get `10 / 3 = 3.33333333335`. Well you can't really split a smartie into thirds. You might think we can use `Math.floor(10/3)` which does return 3.
 
-![divide and math.floor as wrong approach](./789.png)
+![divide and math.floor as wrong approach](./789.webp)
 
 So each kid gets 3 smarties.
 
@@ -209,7 +209,7 @@ What you can do is you can use the modulo operator. Let's say you have 10 smarti
 10 % 3 = 1
 ```
 
-![modulo operator in console](./791.png)
+![modulo operator in console](./791.webp)
 
 So if we have 10 smarties that we divide by 3, there will be `one` leftover.
 If we have 6 smarties, there will be 0 leftover.
@@ -240,7 +240,7 @@ const filters = {
 
 If you refresh the page and start typing, you will see that every other letter is uppercase.
 
-![upper/lowercase every other letter using modulo operator](./792.png)
+![upper/lowercase every other letter using modulo operator](./792.webp)
 
 Set the result to be `mod.join(' ')`.
 
@@ -255,7 +255,7 @@ function transformText(text) {
 
 Now if you type in the textarea and select the sarcastic filter, you should see something like this 👇
 
-![applying sarcastic filter to the text typed](./793.png)
+![applying sarcastic filter to the text typed](./793.webp)
 
 So that is our first filter, and we are just hard coding it in our `transformText` function right now. But it would be great if we can use it based on the radio selection that we have.
 
@@ -268,11 +268,11 @@ const filter = document.querySelector('[name="filter"]:checked').value;
 console.log(filter);
 ```
 
-![console log of characters typed](./794.png)
+![console log of characters typed](./794.webp)
 
 Now when we type in it, we get the selected filter type logged in the console.
 
-![querySelector filter type checked to find the radio button checked](./795.png)
+![querySelector filter type checked to find the radio button checked](./795.webp)
 
 Another way we could have done the filter is because we already have the inputs, we could use the find method to find the input that is checked like so 👇
 
@@ -280,7 +280,7 @@ Another way we could have done the filter is because we already have the inputs,
 filterInputs.find(input => input.checked);
 ```
 
-![error - filterInputs.find is not a function](./796.png)
+![error - filterInputs.find is not a function](./796.webp)
 
 If you try that, you should notice an error in the console that says
 
@@ -292,7 +292,7 @@ That is because `filterInputs` is a NodeList, not an array. We could wrap it in 
 Array.from(filterInputs).find(input => input.checked);
 ```
 
-![using Array.from method to covert the node list to array](./797.png)
+![using Array.from method to covert the node list to array](./797.webp)
 
 This is actually a better approach because why rerun the query selector if we have already selected all of the inputs!
 
@@ -346,7 +346,7 @@ Copy that variable along with the `/* eslint-disable */` and `/* eslint-enable *
 
 Paste it towards the top of the file, after our `filterInputs` declaration.
 
-![funkyLetters object](./798.png)
+![funkyLetters object](./798.webp)
 
 This object is just a lookup of letters that match to funky letters.
 
@@ -359,7 +359,7 @@ Back to our funky function logic, we need to do the following:
 
 You have the `letter` argument, which you can use to look up inside of `funkyLetters`. For example if someone types `T`, we know there is a t for us to use.
 
-![accessing the funky letter using its property assigned](./800.png)
+![accessing the funky letter using its property assigned](./800.webp)
 
 Add the following code 👇
 
@@ -385,11 +385,11 @@ funky(letter) {
 
 If you refresh the page and try typing something while selecting the funky radio button, you should see it start working.
 
-![funkyLetters filter in action](./801.png)
+![funkyLetters filter in action](./801.webp)
 
 If no `funkyLetter` is returned, we want to check for the lowercase version of it because some letters have a funky version for both lower and uppercase, like `f`.
 
-![checking the lowercase version of funkyLetters](./803.png)
+![checking the lowercase version of funkyLetters](./803.webp)
 
 To do that, we will modify `funkyLetter` to be a `let` instead of a `const`, and then after the comment where we check if there is a lowercase version, we will try to grab the lowercase version by lowercasing the letter and looking it up in the `funkyLetters` object and then assigning the value to  `funkyLetter`.
 
@@ -414,7 +414,7 @@ So we need a random number between 0 and 2, such as 1, 2, or 3 or 0, 1, 2.
 
 The way that we can do that is using `Math.random() * 3`. That returns a number with decimals so we need to wrap it in a `Math.floor()`.
 
-![generating a random number using math.random function](./804.png)
+![generating a random number using math.random function](./804.webp)
 
 Now we will get 0, 1, or 2 returned. Grab that random number within the `unable` function.
 
@@ -439,7 +439,7 @@ unable(letter) {
 
 Now if you refresh the page, select the unable option and try typing into the textarea, there is a one in three chance that the space will be turned into a `...`
 
-![unable to structure sentence output in action](./805.png)
+![unable to structure sentence output in action](./805.webp)
 
 The last thing we want to do is when you click on the radio button options, it should trigger that filter and show you the result.
 

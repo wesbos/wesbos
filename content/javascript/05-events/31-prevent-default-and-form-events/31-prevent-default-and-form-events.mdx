@@ -16,7 +16,7 @@ In our `/29 - Events` directory, we have a `forms.js` and `forms.html` file. The
 
 Add a log of it works and refres hthe forms page.
 
-![rendered page showing login form and browser console with output of It Works](./352.png)
+![rendered page showing login form and browser console with output of It Works](./352.webp)
 
 ## preventDefault method
 
@@ -44,7 +44,7 @@ wes.addEventListener("click", function(event) {
 
 When you click the link, you will see the event in the console for a split second before you are redirected to the next page.
 
-![browser console showing pointerEvent](./353.png)
+![browser console showing pointerEvent](./353.webp)
 
 _**Helpful Tip**: If you need to log something but you are being redirected and the console is being cleared, you can click the "cog" icon in the chrome dev tools and check on "preserve log" to not clear the console when you navigate to another page._
 
@@ -61,7 +61,7 @@ wes.addEventListener("click", function(event) {
 });
 ```
 
-![alert message showing malicious website warning](./354.png)
+![alert message showing malicious website warning](./354.webp)
 
 Now when you refresh the page and click the link, you will get an alert asking you if you wish to proceed.
 
@@ -141,7 +141,7 @@ signupForm.addEventListener("submit", function(event) {
 
 Now if you put your name and email and click submit, you will see in the url the form values that you entered as parameters
 
-![website url shows uame and email](./355.png)
+![website url shows uame and email](./355.webp)
 
 More often than not, you don't want to submit the form to the server but you often want to stop the form from submitting, grab those details with JS and continue.
 
@@ -155,7 +155,7 @@ You could just put a required attribute on the input boxes like so `<input requi
 
 Now if you were to refresh and try to submit, you would see this little zerror.
 
-![rendered page of user login with a hover message on the agree terms checkbox](./1463.png)
+![rendered page of user login with a hover message on the agree terms checkbox](./1463.webp)
 
 In some cases however you want to do extended validation.
 
@@ -173,13 +173,13 @@ console.dir(event.currentTarget);
 
 Hit submit in the form. You should see something similar to what is shown below.
 
-![browser console output of form](./357.png)
+![browser console output of form](./357.webp)
 
 You might notice that there are properties inside of the form object with each of input names.
 
 There is a name `property` and a 1 property.
 
-![browser console output of form, focusing on the property name](./358.png)
+![browser console output of form, focusing on the property name](./358.webp)
 
 There are two ways you can  grab the fields from the form.
 
@@ -193,7 +193,7 @@ signupForm.addEventListener("submit", function(event) {
 });
 ```
 
-![browser console output of form inputs](./360.png)
+![browser console output of form inputs](./360.webp)
 
 Now add `.value` to both of those inputs like so 👇
 
@@ -202,7 +202,7 @@ console.log(event.currentTarget.name.value);
 console.log(event.currenTarget.email.value);
 ```
 
-![browser console output showing name and email values](./361.png)
+![browser console output showing name and email values](./361.webp)
 
 That will give you the actual values that are in the input boxes.
 
@@ -268,7 +268,7 @@ Now when you type anything in the name field, you will see `keyup` getting calle
 
 You can also log the `event.currentTarget.value` to get what the user has typed into the input.
 
-![browser output of from inputs on keyup event](./363.png)
+![browser output of from inputs on keyup event](./363.webp)
 
 This is useful if for example you don't want to allow certain numbers or letters being used in the input, you can simply just prevent the default from happening. You would do that on the `keydown`.
 
@@ -278,7 +278,7 @@ Duplicate the `keyup` event listener and paste it right below and modify the eve
 signupForm.name.addEventListener("keydown", logEvent);
 ```
 
-![browser output of from inputs on keydown event](./364.png)
+![browser output of from inputs on keydown event](./364.webp)
 
 This logs the `keydown` event and the `keyup` event.
 
@@ -292,6 +292,6 @@ The same goes with tabbing, it will trigger a focus and blur event as you go bet
 
 That can be used for showing styling, or recording info like how long people spend on specific inputs.
 
-![rendered login form with styling on name form](./366.png)
+![rendered login form with styling on name form](./366.webp)
 
 There are some more events on form elements that we will get into in the future but those are the ones that Wes finds himself using the most often.

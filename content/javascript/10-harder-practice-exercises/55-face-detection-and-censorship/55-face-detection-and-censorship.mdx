@@ -14,7 +14,7 @@ We are going to build a face detection that will detect and blur your face from 
 
 This exercise is stepping a little bit ahead because there are a couple of things we need to learn a more about like promises and async/await, and bundling tools, specifically one called Parcel.
 
-![checking browser for face detection support](./731.png)
+![checking browser for face detection support](./731.webp)
 
 The first thing we need to check is that we are on a browser that supports face detection.
 
@@ -24,7 +24,7 @@ Ideally it will get into all of the browsers but currently it is only in Chrome 
 
 The way you can tell if your browser supports it is you can go to the console on any page and type `FaceDetector`, or `typeof FaceDetector`.
 
-![write typeof FaceDetector to see if your browser supports FaceDetector](./732.png)
+![write typeof FaceDetector to see if your browser supports FaceDetector](./732.webp)
 
 If you get `undefined` or an error returned, that means your browser does not support it. If you are on Chrome, you likely have to go to the flags page in Chrome and turn it on.
 
@@ -32,7 +32,7 @@ Often new features in the browser are not given to the masses because they are n
 
 The way you turn flags on in Chrome is you navigate to `chrome://flags`.
 
-![enabling experimental flags](./733.png)
+![enabling experimental flags](./733.webp)
 
 This page contains all kinds of features that are still experimental in Chrome. You want to search for "Experimental Web Platform features" and enable it.
 
@@ -52,19 +52,19 @@ An **origin** in JavaScript is just a fancy way of saying a **domain name**.
 
 So in Wes' case, he is currently allowing the camera on localhost, but you might allow the camera on New York Times or Facebook or all these different websites.
 
-![allowing camera on a url](./734.png)
+![allowing camera on a url](./734.webp)
 
 Everytime you visit a new origin, a new domain name, you're going to have to ask the user for access to their webcam and it will pop up.
 
 So in order for us to do that, we cannot just open up `face.html` (from the  `/53 - Face Detection Censorship` folder) in the browser like we have been doing up until now.
 
-![open face.html to ask the user to access their webcam](./735.png)
+![open face.html to ask the user to access their webcam](./735.webp)
 
 The reason for that is the file path that you see in the url browser above is not an origin. If security stuff is tied to an origin, it won't be able to do it from a local file.
 
 You might notice the X next to the camera. If you take a look, you will see that the camera is blocked.
 
-![webcam access popup](./736.png)
+![webcam access popup](./736.webp)
 
 If you try to allow it by clicking "always allow", it still won't work.
 
@@ -82,23 +82,23 @@ To do that, you need to use the command `cd` to go into the correct directory.
 
 If you don't know where you are starting in the terminal, you can type `pwd` and it will tell you where you are on your computer.
 
-![type pwd to see where you are on your computer](./737.png)
+![type pwd to see where you are on your computer](./737.webp)
 
 What is probably easier than that is if you are using VS Code, you can just right click the folder and select "Open in Terminal".
 
-![in vs code rigght click the folder and select open in terminal](./738.png)
+![in vs code rigght click the folder and select open in terminal](./738.webp)
 
 That opens the terminal up in the built in terminal in VS Code.
 
-![terminal opened in vs code](./739.png)
+![terminal opened in vs code](./739.webp)
 
 In the second video, Wes had us install **Node.js** and **NPM**. You can check if you have both installed by typing `node -v` and `npm -v` in the terminal. That will return to you the version you have installed, as shown below 👇
 
-![checking the npm and node version from terminal](./740.png)
+![checking the npm and node version from terminal](./740.webp)
 
 If you need to check what the latest Node.js version is, you can go to `nodejs.org` and find the LTS version which stands for long term support -- that is the most stable version.
 
-![node js and npm installation](./741.png)
+![node js and npm installation](./741.webp)
 
 Once you have confirmed you have both of those and you are in the right directory, go ahead and type `npm install`.
 
@@ -106,7 +106,7 @@ Wes will cover this all more in the  future, but what that does is it will take 
 
 In our case we are installing Parcel.
 
-![install the dependencies using npm install](./742.png)
+![install the dependencies using npm install](./742.webp)
 
 You should completely ignore the versions in this file, because that will likely change in the future and Wes will be keeping the files up to date.
 
@@ -175,7 +175,7 @@ After that we have a few styles that just center things on the page, nothing too
 
 If you look at the terminal, the package should be done installing.
 
-![packages finished installation](./743.png)
+![packages finished installation](./743.webp)
 
 You may notice in the terminal something like "found 39 high severity vulnerabilities". That will pop up when you `npm install` things. What happens there is that some dependencies have security vulnerabilities that need to be fixed and what happens is the people who create Parcel will fix that eventually. So if you see that, don't freak out. It's totally fine, hopefully NPM will hopefully find a better way to deal with those warnings.
 
@@ -185,11 +185,11 @@ Go back to the terminal and in the same directory type `npm start`.
 
 That will run Parcel against the `face.html` file and it will run the server at some URL.
 
-![npm start in terminal](./744.png)
+![npm start in terminal](./744.webp)
 
 If you go to that URL in the browser and open the console, you should see "it works!".
 
-![it works in console](./745.png)
+![it works in console](./745.webp)
 
 Sometimes you will see weird warnings like the yellow one above, and that is related to a Chrome extension that you have installed, and that is annoying because it gets in the way of writing our actual code.
 
@@ -197,7 +197,7 @@ That can be annoying because there is no way to get rid of them.
 
 One trick Wes has found it typing into the Filter `-DevTools` as shown below 👇
 
-![get rid of the warnings using filter -DevTools in console](./746.png)
+![get rid of the warnings using filter -DevTools in console](./746.webp)
 
 Now that we have everything up and running, let's dig into some code.
 
@@ -225,7 +225,7 @@ face
 
 _In VS Code, he is able to press the shortcuts `CMD + A` and then `CMD + Shift + L`, and that gives him a cursor on every single line._
 
-![use shortcuts CMD + A and then CMD + Shift + L to get cursor on every single line](./747.png)
+![use shortcuts CMD + A and then CMD + Shift + L to get cursor on every single line](./747.webp)
 
 Add the following code 👇
 
@@ -258,11 +258,11 @@ const faceDetector = new FaceDetector();
 console.log(video, canvas, faceCanvas, faceDetector);
 ```
 
-![initializing FaceDetector class](./748.png)
+![initializing FaceDetector class](./748.webp)
 
 _Note: you might notice in VS Code that it says "FaceDetector is not defined" if you hover over `new FaceDetector()`._
 
-![FaceDetector is not defined error](./749.png)
+![FaceDetector is not defined error](./749.webp)
 
 _That is because it is looking for a function called `FaceDetector`. The way we can solve that is to say `const faceDetector = new window.FaceDetector()`. That is fine to do (Wes told us not to do it in looping) here because this FaceDetector API does not exist in Node.js land._
 
@@ -292,7 +292,7 @@ function populateVideo() {
 
 If you refresh the HTML page and try to run `populateVideo()`, you will see an error as shown below.
 
-![uncaught reference error: populateVideo is not defined](./750.png)
+![uncaught reference error: populateVideo is not defined](./750.webp)
 
 Now that we are running things through a bundler, we no longer have the ability to access our functions globally via the console.
 
@@ -304,17 +304,17 @@ The best way to do it would just be to add a log in your JavaScript file and you
 
 If you do ever need to access it from the chrome dev tools, you can right click it, and click store as global variable.
 
-![store as global varibale in console](./751.png)
+![store as global varibale in console](./751.webp)
 
 That will store it in a global variable called `temp1`.
 
 If you try calling `temp1()`, you will see something returned to us called a **promise**.
 
-![pending promise in console](./752.png)
+![pending promise in console](./752.webp)
 
 There are a couple things going on here. First, it might show you a little recording icon on the chrome tab (it might not, we will go over that in a sec.).
 
-![tab is using camera or microphone notification](./753.png)
+![tab is using camera or microphone notification](./753.webp)
 
 As mentioned, we are returned a promise when we call `temp1()` in the console (which is our `populateVideo()` function stored as a global variabe).
 
@@ -340,7 +340,7 @@ populateVideo();
 
 If you refresh the page and look at the console, you may see the following 👇
 
-![MediaStream object in console](./754.png)
+![MediaStream object in console](./754.webp)
 
 If you do not, you may see a little red X on your video camera icon in the browser tab.
 
@@ -348,7 +348,7 @@ To fix that, you need to click on it and select "continue" or "always allow acce
 
 Click done, then reload the page, and then you should see a media stream in the console.
 
-![allow the camera in the popup](./755.png)
+![allow the camera in the popup](./755.webp)
 
 How is what is returned to us via the `MediaStream` useful?
 
@@ -423,7 +423,7 @@ This is promise-based, which we will cover in more detail in future videos.
 
 If you refresh the page and open the console now, you should see a face detected. It will tell you exactly where the eyes, the nose, and the mouth are.
 
-![Detected Face telling where eyes, nose and mouth are](./756.png)
+![Detected Face telling where eyes, nose and mouth are](./756.webp)
 
 It also gives us the `boundingBox` which is the square around the user's head.
 
@@ -460,15 +460,15 @@ What we have just done there is a concept called **recursion**.
 
 Let's take a look at the `DetectedFace`.
 
-![detect is getting called infinitely](./757.png)
+![detect is getting called infinitely](./757.webp)
 
 As you can see, it gives us an array with one item. Log `faces.length`.
 
-![faces.length in console](./758.png)
+![faces.length in console](./758.webp)
 
 As you can see, it only logs one face until Wes holds up the queens face on a dollar bill to the webcam.
 
-![mutiple faces count in console](./759.png)
+![mutiple faces count in console](./759.webp)
 
 When Wes holds up a picture, Face Detection detects all four faces.
 
@@ -502,7 +502,7 @@ When you refresh the page and look at the console, you should see many faces log
 
 Let's get the bounding box from one of those. We need the `top` and `left`, `width`, and the `height`.
 
-![bounding box in FaceDetector](./760.png)
+![bounding box in FaceDetector](./760.webp)
 
 ```js
 function drawFace(face) {
@@ -513,7 +513,7 @@ function drawFace(face) {
 
 If you refresh the page, you should see lots of logs like the following 👇
 
-![bounding box top, left, width and height representation in console](./761.png)
+![bounding box top, left, width and height representation in console](./761.webp)
 
 One trick you can do is if within the log, you just wrap the items in curly brackets as shown below, it will log the property names and values.
 
@@ -523,11 +523,11 @@ console.log({ width, height, top, left });
 
 The reason that works is because you are essentially making an object.
 
-![log of width, height, top and left as object](./762.png)
+![log of width, height, top and left as object](./762.webp)
 
 Now we want to draw a box onto our canvas element that is down in the part of the page that is highlighted in the image below.
 
-![draw a box onto the canvas element](./763.png)
+![draw a box onto the canvas element](./763.webp)
 
 We are going to overlay it with the video in order to do that.
 
@@ -548,7 +548,7 @@ function drawFace(face) {
 }
 ```
 
-![box moves around as we move our face](./764.png)
+![box moves around as we move our face](./764.webp)
 
 As you can see, it does work. if you move your face around, the boxes should move around as well.
 
@@ -592,7 +592,7 @@ Let's take a look at `face.html`. It seems like it's ignoring the style tag. Try
 
 If you refresh the page now, it should work. This likely happened because we are using a beta version of Parcel.
 
-![bounding box with actual face](./765.png)
+![bounding box with actual face](./765.webp)
 
 The next thing to fix is that the stroke that the rectangle is created in is not yellow. Try moving where you set `strokeStyle` and `lineWidth` into the function right before you draw the rectangle like so 👇
 
@@ -641,7 +641,7 @@ function censor({ boundingBox: face }) {
 }
 ```
 
-![bounding box border as yellow colored](./766.png)
+![bounding box border as yellow colored](./766.webp)
 
 As you can see, we have bounding box.
 
@@ -666,7 +666,7 @@ Now the way we are going to do this is we are going to take our second canvas co
 
 `drawImage` takes in a lot of arguments, let's look it up on MDN.
 
-![mozilla developers docs for CanvasRenderingContext2D.drawImage method](./767.png)
+![mozilla developers docs for CanvasRenderingContext2D.drawImage method](./767.webp)
 
 (t takes a few set of options. You can either pass in 3 (`image`, `dx`, `dy`), 5(`image`, `dx`, `dy`, `dWidth`, `dHeight`), or it takes 9 (`image`, `sx`, `sy`, `sWidth`, `sHeight`, `dx`, `dy`, `dWidth`, `dHeight`).
 
@@ -682,7 +682,7 @@ If you just look at the HTML page, it might look like nothing has changed but if
 
 If we add a `display:none` CSS style to the video, you will notice that you can still see yourself. The video is being painted onto the canvas.
 
-![adding display none css style to video](./768.png)
+![adding display none css style to video](./768.webp)
 
 Now this isn't exactly what we want to do. We want to take the square that is painting on Wes' face and throw it on there.
 
@@ -735,7 +735,7 @@ face.y,
 10
 ```
 
-![tiny little wes at the top corner of square](./769.png)
+![tiny little wes at the top corner of square](./769.webp)
 
 You can see in the very top corner there is a tiny little Wes.
 
@@ -849,7 +849,7 @@ const faceCanvas = document.querySelector(".face");
 const faceCtx = faceCanvas.getContext("2d");
 ```
 
-![face spreading all over](./770.png)
+![face spreading all over](./770.webp)
 
 Now it is finally working! It is taking our faces and spreading it all over. There are few things we can do to fix some of that stuff.
 
@@ -857,9 +857,9 @@ Go into the `censor` function.  In the first line of the function add `faceCtx.i
 
 If you don't have that, the image is just kind of blurry so what the browser does is it says "oh this is pixelated!, let me try to smooth it out".  But if you turn that off, you get the real pixelated values.
 
-![pixelated face](./771.png)
+![pixelated face](./771.webp)
 
-![pixelated face](./772.png)
+![pixelated face](./772.webp)
 
 We also want to clear the canvas before we do any of this so add `faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height)`.
 
@@ -867,7 +867,7 @@ Now the canvas should clear when we move.
 
 One other thing is it doesn't do a great job at getting Wes' whole face. What Wes will do is go to the top of the file and create a scale variable like so `const SCALE = 1.5;`
 
-![scale the face](./773.png)
+![scale the face](./773.webp)
 
 Go to our second draw and make a few variables that are scaled up.
 
@@ -899,7 +899,7 @@ faceCtx.drawImage(
 );
 ```
 
-![scale the face 1](./774.png)
+![scale the face 1](./774.webp)
 
 That makes a bigger scaled up face. Now we need to move the canvas over a bit based on the scale. For that we need a bit of math.
 
@@ -911,13 +911,13 @@ face.x - (width - face.width) / 2,
 face.y - (height - face.height) / 2,
 ```
 
-![scale the face 2](./775.png)
+![scale the face 2](./775.webp)
 
 Now you can play around with the size and scale variables. If you change the size to `const SIZE = 100;`, you will see something like
 
-![increase size of the face with size 1](./776.png)
+![increase size of the face with size 1](./776.webp)
 
-![increase size of the face with size 2](./777.png)
+![increase size of the face with size 2](./777.webp)
 
 You can feel free to stop the video here, but if you want to continue, we will create some sliders that will change these `SIZE` and `SCALE`  values.
 
@@ -951,11 +951,11 @@ Give ourselves an input of type "range", with a minimum value of 0.3 and a max o
 </div>
 ```
 
-![create range input for scaling](./778.png)
+![create range input for scaling](./778.webp)
 
 Let's make the defaults line up with what we set.  Add `value="1.35"` to the input range.
 
-![setting the default values for scale](./779.png)
+![setting the default values for scale](./779.webp)
 
 As you can see now the default value is set on the scale slider.
 
@@ -979,7 +979,7 @@ console.log(optionsInputs);
 
 If you refresh the page and inspect the console, there is nothing! We did make a mistake, we should have used `querySelectorAll`. If you modify the code to that, you will see that it still doesn't give us anything.
 
-![nodelist length in the console](./780.png)
+![nodelist length in the console](./780.webp)
 
 Oh we have a typo! It should be `.controls input[type="range"]` not `inputs` plural. Modify the code accordingly.
 
@@ -1001,7 +1001,7 @@ Now when you move the slider, you should see the values changing in the console.
 
 Next we need to pull out the value and name of the input. Log `event.currentTarget.name` as well.
 
-![log of slider in console as it is moved](./781.png)
+![log of slider in console as it is moved](./781.webp)
 
 Destructure the `value` and `name` variables.
 

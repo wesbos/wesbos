@@ -11,7 +11,7 @@ category:
 
 In this lesson we will go back to the event loop example, where we added the classes of `circle`, `purple` and `fadeout`, and we will refactor it to use promises instead.
 
-![callback hell in code](./1046.png)
+![callback hell in code](./1046.webp)
 
 We will be coming back to this example one more time and refactor it after we learn `async/await`.
 
@@ -37,7 +37,7 @@ wait(200).then(() => {
 
 Now if you refresh the page, after 2 seconds you should see "done" logged to the console.
 
-![npm package waait](./1048.png)
+![npm package waait](./1048.webp)
 
 That is such a common thing that Wes actually has an npm package called **waait** which gets around 75k downloads per week and all it does is return a promise that resolves after a certain number of milliseconds that have been passed in.
 
@@ -97,7 +97,7 @@ function animate(e) {
 
 Now after 2 milliseconds, the GO square will turn into a circle. If you refresh the page, you will see it still works.
 
-![after 2 milliseconds GO square turned into circle](./1049.png)
+![after 2 milliseconds GO square turned into circle](./1049.webp)
 
 Now how do we make it red after 0.5 seconds?
 We cannot just call it after the wait function because that will cause it to go red before it goes to circle.
