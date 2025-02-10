@@ -8,7 +8,7 @@ category:
  - Exercises
 ---
 
-![browser showing HTML page with tabs](./1355.png)
+![browser showing HTML page with tabs](./1355.webp)
 
 In this example we are going to build tabs.
 
@@ -147,7 +147,7 @@ Now when you click on one of the tabs it gives you the event.
 
 If you logged `event.currentTarget` and then clicked different tabs, you would see each of the buttons logged.
 
-![console showing event.currentTarget on tab click](./1356.png)
+![console showing event.currentTarget on tab click](./1356.webp)
 
 Now let's get into looping which you haven't learned yet but it's good to preview it before you hit the looping lesson and to see some examples of where you might use it in real life.
 
@@ -172,7 +172,7 @@ We have already selected all the tab panels at the top of our file.
 
 If you were to log them within the  `handleTabClick` event, you would get a node list with the 3 divs.
 
-![console showing logged NodeList](./1357.png)
+![console showing logged NodeList](./1357.webp)
 
 The tab panels are getting hidden by the `hidden` attribute.
 
@@ -188,7 +188,7 @@ That code will take the node list of the 3 panels, loop over each one, and for e
 
 If you click on one tab, you get 3 separate console logs of each of them.
 
-![console showing logged NodeList Elements](./1358.png)
+![console showing logged NodeList Elements](./1358.webp)
 
 Modify the code like so to set each panel to hidden. 👇
 
@@ -200,7 +200,7 @@ tabPanels.forEach(function(panel) {
 
 As soon as you click on any tab, all the panels turn to hidden.
 
-![browser showing tabs with each panel hidden](./1359.png)
+![browser showing tabs with each panel hidden](./1359.webp)
 
 To refactor that to an arrow function, you would simply modify the code like so 👇
 
@@ -216,7 +216,7 @@ In a future step, you will go back and show one of those `tabPanels`.
 
 You could just filter out the selected `tabPanel` when hiding them, but in Wes' experience it is much easier to just hide them all and then show the one that we want.
 
-![editor showing aria-selected set to true highlighted](./1362.png)
+![editor showing aria-selected set to true highlighted](./1362.webp)
 
 The next step is to take the tabs and mark them all as unselected.
 
@@ -224,7 +224,7 @@ As you can see, we are using the `aria-selected` attribute to set whether it is 
 
 So how do you set that? Would  `tab.aria-selected = false` work?
 
-![console showing 'Uncaught SyntaxError: Invalid left-handside in assigment' error](./1363.png)
+![console showing 'Uncaught SyntaxError: Invalid left-handside in assigment' error](./1363.webp)
 
 It does not, because you can't put dashes in it.
 
@@ -250,11 +250,11 @@ If you refresh the page does that work?
 
 No. You will see a tab is still selected.
 
-![dev tools inspect showing tab button highlighted](./1364.png)
+![dev tools inspect showing tab button highlighted](./1364.webp)
 
 If you click on the JavaScript button which still looks selected, and flip to the console and do `$0.ariaSelected`, it will return false.
 
-![console showing `$0.ariaSelected` value as false](./1365.png)
+![console showing `$0.ariaSelected` value as false](./1365.webp)
 
 So why is it not updating?
 
@@ -268,7 +268,7 @@ The only other way is to use the `.setAttribute()` method.
 
 Wes looked at some docs and for `aria` properties, you should always use the `setAttribute` and `getAttribute` method on the element instead of on the property.
 
-![browser showing msdn.microsoft.com docs for aria properties](./1366.png)
+![browser showing msdn.microsoft.com docs for aria properties](./1366.webp)
 
 So some properties like `.alt` or `.src` or `.title`, those things can be done via properties on the element, but not for aria attributes.
 
@@ -289,7 +289,7 @@ function handleTabClick(event) {
 
 If you were to refresh the page and click one of the tabs, all the tabs will no longer be selected.
 
-![dev tools inspect showing tab button aria-selected attribute set to false](./1367.png)
+![dev tools inspect showing tab button aria-selected attribute set to false](./1367.webp)
 
 Now, mark the clicked tab as selected.
 
@@ -299,7 +299,7 @@ event.currentTarget.setAttribute('aria-selected', true);
 
 When you click one, you will see it will set and remove the aria selected.
 
-![dev tools inspect showing non active tab buttons aria-selected attribute set to false](./1368.png)
+![dev tools inspect showing non active tab buttons aria-selected attribute set to false](./1368.webp)
 
 You might have noticed that we are not using any classes here and the reason for that is if you can reach for an accessibility attribute over a class then do that so you can kill 2 birds with one stone.
 
@@ -376,7 +376,7 @@ If you added the following code, would it work?
 tabPanels.find()
 ```
 
-![console showing 'Uncaught TypeError: tabPanels.find is not a function'](./1369.png)
+![console showing 'Uncaught TypeError: tabPanels.find is not a function'](./1369.webp)
 
 No, it does not.
 
@@ -386,7 +386,7 @@ That is because the `.find()` method is only a method on arrays.
 
 If you recall from when we logged `tabPanels`, it is not an array, it is a NodeList, and it doesn't have all of those array methods.
 
-![console showing NodeList __proto__ object properties and methods](./1370.png)
+![console showing NodeList __proto__ object properties and methods](./1370.webp)
 
 You can convert the NodeList into an array by wrapping it in `Array.from()` like so 👇
 
@@ -418,7 +418,7 @@ So what you did is you used find to find the tabPanel that matches the id we pas
 
 Now when you click on a tab, you will see the associated panel.
 
-![console showing array of elements](./1371.png)
+![console showing array of elements](./1371.webp)
 
 Replace the log with `tabPanel.hidden = false;` so it is no longer hidden.
 

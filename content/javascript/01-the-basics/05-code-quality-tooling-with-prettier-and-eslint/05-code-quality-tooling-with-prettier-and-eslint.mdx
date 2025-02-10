@@ -18,7 +18,7 @@ There are two tools that are extremely helpful in code quality and formatting of
 
 Before we jump into those, let's start by looking at some code and opinions people have about formatting in JavaScript.
 
-![initial code to assess the quality of code](./initial-code-to-assess-quality.png)
+![initial code to assess the quality of code](./initial-code-to-assess-quality.webp)
 
 In the code above 👆, we are using single quotes `''` rather than double quotes `""`, which is an opinion that some people have. Some people prefer one over the other.
 
@@ -32,11 +32,11 @@ The tools we mentioned earlier will help you fix those issues by either fixing i
 
 I recommend that you go to https://eslint.org and go to the demo in the navigation.
 
-![eslint homepage](./eslint-homepage.png)
+![eslint homepage](./eslint-homepage.webp)
 
 For Prettier, there is a link on the homepage that says "Try it".
 
-![prettier homepage](./prettier-homepage.png)
+![prettier homepage](./prettier-homepage.webp)
 
 We will cover the following about these tools:
 
@@ -50,13 +50,13 @@ ESLint, is a JavaScript linter for identifying and reporting potential issues in
 
 If you go to the ESLint demo, select the "Rules Configuration" section and choose the latest version of JavaScript.
 
-![eslint demo page with rule selector showing the list of available eslint rules such as 2015, 2016 and 2018](./eslint-demo-page.png)
+![eslint demo page with rule selector showing the list of available eslint rules such as 2015, 2016 and 2018](./eslint-demo-page.webp)
 
 If you type into the demo `const age = 300;`, you will see the following linting rule 👇
 
 > 'age' is assigned a value but never used.
 
-![eslint demo page showing the message "age is assigned a value but never used"](./eslint-age-never-used-rule.png)
+![eslint demo page showing the message "age is assigned a value but never used"](./eslint-age-never-used-rule.webp)
 
 If we go ahead and use it by adding a line below of `console.log(age);`, we will get the following errors 👇
 
@@ -125,7 +125,7 @@ const age = 100;
 alert("hey");
 ```
 
-![prettier playground showing the output code that was formatted](./prettier-formatting-code.png)
+![prettier playground showing the output code that was formatted](./prettier-formatting-code.webp)
 
 The input code is technically valid JavaScript, however it is messy and harder to read. Those are annoying things, such as indentation or spaces between lines of code.
 
@@ -165,7 +165,7 @@ We are going to follow the instructions located at https://github.com/wesbos/esl
 
 The ESLint config can only be installed locally per project due to changes that were made to ESLint v6 that removed global installs.
 
-![the eslint-config-wesbos repo showing the per project installation guide](./eslint-config-project-install-guide.png)
+![the eslint-config-wesbos repo showing the per project installation guide](./eslint-config-project-install-guide.webp)
 
 ## Installing npm packages locally
 
@@ -181,7 +181,7 @@ To create the `package.json`, you simply just type `npm init` in the terminal an
 
 You will now be prompted to enter a `package name`, `description`, `keywords`, etc. but you can just press enter to skip setting those values for now.
 
-![terminal output of npm init command](./npm-init-terminal-output.png)
+![terminal output of npm init command](./npm-init-terminal-output.webp)
 
 Then we need to go ahead and install all of our dependencies.
 
@@ -193,7 +193,7 @@ npx install-peerdeps --dev eslint-config-wesbos
 
 After about a minute or so, it will go ahead and install all of your packages.
 
-![terminal output after running the npx command to install the eslint-config-wesbos pacakge](./npx-install-peerdeps-terminal-output.png)
+![terminal output after running the npx command to install the eslint-config-wesbos pacakge](./npx-install-peerdeps-terminal-output.webp)
 
 If you take a look at your filesystem, you will see that there is this new folder called `node_modules` and inside there are a whole bunch of dependencies.
 
@@ -215,7 +215,7 @@ Inside of your `.eslintrc` file, copy the following:
 }
 ```
 
-![eslintrc file in vs code that extends the wesbos config](./eslintrc-config.png)
+![eslintrc file in vs code that extends the wesbos config](./eslintrc-config.webp)
 
 We are going to extend `"wesbos"`, which means we are going to extend all the settings and plugins that Wes has packed into his own config. That is really all we need right now.
 
@@ -223,7 +223,7 @@ Next, what we need is to get it running with VS Code.
 
 Scroll down in Wes' instructions to the _With VS Code_ section.
 
-![vs code settings showing how to configure eslint](./eslint-vs-code-setup.png)
+![vs code settings showing how to configure eslint](./eslint-vs-code-setup.webp)
 
 First thing you need to do is install the ESLint extension for VS Code.
 
@@ -237,25 +237,25 @@ Now what we need to do is set up some VS Code settings. Within VS Code, in the r
 
 If you're on Windows, that would be `File` > `Preferences` > `Settings`.
 
-![vs code in MacOS showing the settings menu item](./macos-settings-menu.png)
+![vs code in MacOS showing the settings menu item](./macos-settings-menu.webp)
 
 That should open up the settings section in VS Code like so 👇
 
-![vs code ui settings page](./vs-code-settings-ui.png)
+![vs code ui settings page](./vs-code-settings-ui.webp)
 
 What you want to do is click on the symbol in the top right hand corner that looks like a page with a curved arrow 👇
 
-![the icon to open the text based vs code settings](./vs-code-settings-icon.png)
+![the icon to open the text based vs code settings](./vs-code-settings-icon.webp)
 
 That will open up the text based version of your settings.
 
-![vs code text settings page](./vs-code-settings-ui.png)
+![vs code text settings page](./vs-code-settings-ui.webp)
 
 Simply just copy all of the settings from Step #2 of the _"With VS Code"_ instructions found here https://github.com/wesbos/eslint-config-wesbos.
 
 Go to the very end of your `settings.json` file in VS Code, and after the last value, add a comma and then paste in the settings we just copied. _(If you don't have any previous VS Code custom settings then you will have an empty object)._
 
-![eslint settings in vs code that was copied from the eslint-config-wesbos github repository](./eslint-settings-vs-code.png)
+![eslint settings in vs code that was copied from the eslint-config-wesbos github repository](./eslint-settings-vs-code.webp)
 
 Let's go through the settings really quickly.
 
@@ -295,11 +295,11 @@ To check if Prettier is working, you can open a JavaScript file in VS Code and s
 
 If it isn't working, you can click on ESLint in the bottom corner and it will often tell you what the issues are and why it isn't workig.
 
-![vs code bottom toolbar showing the eslint icon at the bottom right](./vs-code-eslint-icon.png)
+![vs code bottom toolbar showing the eslint icon at the bottom right](./vs-code-eslint-icon.webp)
 
 Another thing you will notice with ESLint is these squiggly underlines in VS Code👇
 
-![vs code showing the eslint rule error as a red squiggle under the code](./vs-code-eslint-highlighting.png)
+![vs code showing the eslint rule error as a red squiggle under the code](./vs-code-eslint-highlighting.webp)
 
 That is actually ESLint giving you information about a warning or error.
 

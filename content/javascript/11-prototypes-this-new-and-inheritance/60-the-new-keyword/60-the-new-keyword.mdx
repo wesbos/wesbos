@@ -32,15 +32,15 @@ const myDate = new Date('August 11, 2025');
 console.log(myDate);
 ```
 
-![date in console](./903.png)
+![date in console](./903.webp)
 
 If we did `console.dir(myDate);` instead, you will see that we have our date and inside of it we have a prototype of tons of different methods.
 
-![prototype of tons of method for date in console](./904.png)
+![prototype of tons of method for date in console](./904.webp)
 
 Let's say you were to log `myDate.getFullYear()`, you will see we get 2025 in the console.
 
-![log of myDate.getFullYear() in console](./905.png)
+![log of myDate.getFullYear() in console](./905.webp)
 
 Where did the `getFullYear()` method come from?
 
@@ -50,17 +50,17 @@ That is because when you create a date, an object, an array, a string, a number 
 
 If we take a look at all of the types that we have by entering them into the console, such as `Array`, `Object`, `Date`, `Number` you will see that they are all just functions, which if run with the new keyword in front of it, will return a new object.
 
-![log of functions run with the new keyword](./906.png)
+![log of functions run with the new keyword](./906.webp)
 
 That is why we say in JavaScript everything is an object. Even though a number is just a number, when we create a new number, we have all these methods that exist on it. So although the number is just a number, it is packed with all these methods for working with it.
 
-![executing toLocaleString() function on the number object](./907.png)
+![executing toLocaleString() function on the number object](./907.webp)
 
 Let's go back to the date example.
 
 Because we are creating a new `Date`, we have this variable `myDate` which is an instance of `date`. If you were to type into a console `typeof myDate`, it would return an object. But if you were to type `myDate instanceof Date` it would return true.
 
-![typeof and instanceof operator with date](./908.png)
+![typeof and instanceof operator with date](./908.webp)
 
 `myDate` is an object, but it is an instance of our special object that we have in the browser that is called a `date`.
 
@@ -70,7 +70,7 @@ In the script tag, add `const name = ['wes', 'kait'];`.
 
 If you try running `typeof` and `instanceof Array` in the console, you should see the same result -- names is an instance of an array but an object itself.
 
-![typeof and instanceof operator with arrays](./909.png)
+![typeof and instanceof operator with arrays](./909.webp)
 
 With the array, it might be a bit confusing because you don't see the `new` keyword being used. Same thing when you create an object like `const wes = { name: 'wes' };`.
 
@@ -83,7 +83,7 @@ const names = new Array('wes', 'kait');
 const wes = new Object({ name: 'wes' });
 ```
 
-![log of names holding array and wes holding object, created using new keyword](./910.png)
+![log of names holding array and wes holding object, created using new keyword](./910.webp)
 
 As you can see, the array and object look the same. The only difference is it is a shorter syntax.
 
@@ -98,7 +98,7 @@ console.log(span);
 
 If you tried to check whether `span` was an instance of an element you could do `span instanceof Element` which should return true because `Element` was the base one and `span` is the instance that we created.
 
-![log of span instanceof Element, returning true](./911.png)
+![log of span instanceof Element, returning true](./911.webp)
 
 Why didn't we use `new Element`?
 
@@ -116,7 +116,7 @@ Both will return true. Why? Is it an element, is it a span, is it a node?
 
 We will learn more about this in later classes but essentially things can start very basic like a node with text. Then it can go a little further and become an element, and have a tag and attributes. And then it can go even further and become a special kind of element like an image or div. In all of those cases, the element inherits the Node and the `HTMLSpanElement` inherits the `Element`.
 
-![log of span as instanceof HTMLSpanElement and Node](./912.png)
+![log of span as instanceof HTMLSpanElement and Node](./912.webp)
 
 That is what is referred to as **extending** which we will get into when we discuss classes.
 
@@ -141,7 +141,7 @@ console.log(pepperoniPizza);
 
 If you refresh the page, you will see we get `undefined`.
 
-![undefined log in console](./914.png)
+![undefined log in console](./914.webp)
 
 That makes sense because the function did not return anything.
 
@@ -151,7 +151,7 @@ const pepperoniPizza = new Pizza();
 
 Add the new keyword as shown above, and when you check the logs you will see that we get a pizza object with nothing because we haven't added anything to it yet.
 
-![console of pizza object with its constructor](./915.png)
+![console of pizza object with its constructor](./915.webp)
 
 What happens is when you use the `new` keyword on a function, it creates a new instance object of that function instead of whatever has been returned from that function.
 
@@ -165,10 +165,10 @@ console.log(pepperoniPizza.constructor);
 
 The constructor will tell us what function made it.
 
-![log of the object constructor](./916.png)
+![log of the object constructor](./916.webp)
 
 Same thing with our span. If we look at our constructor, we see that the thing that made the span was the `HTMLSpanElement` function.
 
-![logging the constructor of span element](./917.png)
+![logging the constructor of span element](./917.webp)
 
 If you were to type `pepperoniPizza instanceof Pizza` we would see true returned in the console.

@@ -8,7 +8,7 @@ category:
  - Web Speech
 ---
 
-![](./1372.png)
+![](./1372.webp)
 
 In this exercise we will be using the Speech Recognition API that is currently only available in the Chrome broswer to practice our JavaScript skills by building a little game.
 
@@ -16,7 +16,7 @@ The way it will work is when you say a colour, the background colour of the webs
 
 Let's start by opening chrome and navigating to `chrome://flags` in the browser. On this page, we need to make sure that "Experimental Web Platform features" are turned on.
 
-![](./1373.png)
+![](./1373.webp)
 
 We also need to get a server going.
 
@@ -28,7 +28,7 @@ Within the file there is also a function called `isDark` which Wes grabbed from 
 
 Then there is `style.css` which contains a few styles and animations, like the word popping up and getting crossed off when you say it.
 
-![](./1374.png)
+![](./1374.webp)
 
 If look at the `package.json`, you will see we have `parcel-bundler` and `browserslist`, both of which we have used before.
 
@@ -36,7 +36,7 @@ Open up the terminal and navigate to the exercises folder and type `npm install`
 
 After that is finished installing, simply type `npm start` and open up the server in a browser to see what we are starting with.
 
-![](./1375.png)
+![](./1375.webp)
 
 Let's start by getting the web speech part working and then later we will connect the colours.
 
@@ -44,7 +44,7 @@ Let's start by getting the web speech part working and then later we will connec
 
 We need to check if there is something called `window.SpeechRecognition`. However if you try to reference that in the console, you will get undefined because it is actually `window.webkitSpeechRecognition`.
 
-![](./1376.png)
+![](./1376.webp)
 
 Add the following to `speech.js`.
 
@@ -70,11 +70,11 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 Now in our chrome tools we can access it like so:
 
-![](./1377.png)
+![](./1377.webp)
 
 Now within `start` let's check for the existance of a property called `SpeechRecognition` that is in the window.
 
-![](./1378.png)
+![](./1378.webp)
 
 ```js
 // speech.js
@@ -114,7 +114,7 @@ We also need to hook up an event listener.
 
 This is a little bit different than most event listeners because normally you would add `.addEventListener`. but if you try to log the `recognition` variable and look at the prototype, you will see there is no method like `addEventListener`.
 
-![](./1379.png)
+![](./1379.webp)
 
 To listen for a result, we will use `onresult` like so 👇
 
@@ -150,21 +150,21 @@ This time we do not have to include the `.js` extension when importing from `han
 
 When the page refreshes after adding the import statement, you may be prompted to accept permissions to the microphone.
 
-![](./1380.png)
+![](./1380.webp)
 
 We want to allow access to the microphone so that the SpeechRecognition API picks up our voice. Go ahead and allow it.
 
 Once you do that, it should start listening to your voice and you should see events streaming in the console as you speak.
 
-![](./1381.png)
+![](./1381.webp)
 
 If you open up one of the `SpeechRecognitionEvents` that have been logged in the console, you will see it is very similar to an event object.
 
-![](./1382.png)
+![](./1382.webp)
 
 However there is a `results` property, which contains a few items that the speech recognition thinks you said. In our case, we will be taking both of the results.
 
-![](./1383.png)
+![](./1383.webp)
 
 The speech recognizer will continue giving us words as it tries to figure out what you said. Even after you stop talking, it keeps streaming the results in until it is confident in the result.
 
@@ -185,7 +185,7 @@ export function handleResult(event) {
 
 Sometimes the SpeechRecognition event will return a list, from which we want to grab the last one.
 
-![](./1385.png)
+![](./1385.webp)
 
 Within the last item there is a `SpeechRecognitionAlternative`, which we can use to grab the transcript. Wes has only ever run into there being one `SpeechRecognitionAlternative` item.
 
@@ -200,7 +200,7 @@ function logWords(results) {
 
 Now if you refresh the page and try to say something like "I love Pizza", you will see that logged in the console.
 
-![](./1386.png)
+![](./1386.webp)
 
 In the code above, we are accessing the deeply nested property on the `results` object.
 
@@ -229,7 +229,7 @@ import { handleResult } from "./handlers";
 import { colorsByLength } from "./colors";
 ```
 
-![](./1387.png)
+![](./1387.webp)
 
 If you look at the console when the page refreshes you will see that it gives us an array of all the colors.
 
@@ -253,7 +253,7 @@ The `sort()` method works like so:
 
 When the page refreshes, you will see that the colors are now sorted by length.
 
-![](./1388.png)
+![](./1388.webp)
 
 Next, we will write a function to display the colors within `speech.js`.
 
@@ -286,7 +286,7 @@ function displayColors(colors) {
 
 Let's take a look at the HTML we are working with.
 
-![](./1389.png)
+![](./1389.webp)
 
 As you can see, in our `index.html`, we have a div with the class of colors. We will select that on page load.
 
@@ -337,7 +337,7 @@ colorsEl.innerHTML = displayColors();
 
 When the page refreshes, you will notice that we get the following error:
 
-![](./1390.png)
+![](./1390.webp)
 
 That issue is happening because we did not pass the list of colors as an argument. Let's fix that.
 
@@ -348,7 +348,7 @@ colorsEl.innerHTML = displayColors(colorsByLength);
 
 Now, when the page refreshes we just see undefined and there is nothing in the console. What is going on?
 
-![](./1391.png)
+![](./1391.webp)
 
 If you look at our `speech.js` file, you will see that we forgot to return the colors map in our `displayColors` function. Fix that by adding the return keyword before the map.
 
@@ -359,7 +359,7 @@ function displayColors(colors) {
 }
 ```
 
-![](./1392.png)
+![](./1392.webp)
 
 As you can see, now it works! That gives us a list of all the colors.
 
@@ -372,7 +372,7 @@ function displayColors(colors) {
 }
 ```
 
-![](./1393.png)
+![](./1393.webp)
 
 Let's add some style properties to each of the colors. We will set the background to be the name of the colors, like so 👇
 
@@ -388,7 +388,7 @@ function displayColors(colors) {
 }
 ```
 
-![](./1394.png)
+![](./1394.webp)
 
 We want to know if the color is light or dark so we can change the color of the text accordingly. Wes wrote some CSS ahead of time to handle this.
 
@@ -415,11 +415,11 @@ function displayColors(colors) {
 }
 ```
 
-![](./1395.png)
+![](./1395.webp)
 
 What should happen is the dark ones have a class of "dark" and the lighter colors should have no class appended.
 
-![](./1396.png)
+![](./1396.webp)
 
 However, if you inspect the element in the dev tools, you will see that the classes that are dark have the "dark" class, but the light colors have a "false" class, which is incorrect.
 
@@ -438,7 +438,7 @@ function displayColors(colors) {
 }
 ```
 
-![](./1397.png)
+![](./1397.webp)
 
 As you can see, the light colors only have the "colors" class now.
 
@@ -461,7 +461,7 @@ export function handleResult(event) {
 
 If you refresh the page and try to say red, you will see an error logged complaining that `results` is not defined.
 
-![](./1398.png)
+![](./1398.webp)
 
 To fix that, let's destructure the results property in the function definitions.
 
@@ -542,11 +542,11 @@ That code above works like this:
 
 Calling `colors.red` will return the hex, but calling `!!colors.red` will return `true` and if the property doesn't exist, it will return `false`.
 
-![](./1399.png)
+![](./1399.webp)
 
 We could also use the `in` syntax and it would give us the same results.
 
-![](./1400.png)
+![](./1400.webp)
 
 Next we can import that into our `handlers.js`.
 
@@ -577,7 +577,7 @@ Let's start working on the UI to display if it is a valid color.
 
 When a color is spoken, we will first cross the word out. To do that, we need to select the span corresponding to the color.
 
-![](./1401.png)
+![](./1401.webp)
 
 However, we have run into an issue. We need a way to select a specific span and as you can see above, there is no way to identify the correct span. Let's fix that to add the color's name as a class in addition to the `color` class.
 
@@ -605,7 +605,7 @@ const colorSpan = document.querySelector(`.${color}`);
 console.log(colorSpan);
 ```
 
-![](./1402.png)
+![](./1402.webp)
 
 If you try speaking the color red when the page refreshes, you should see the red color span logged.
 

@@ -85,7 +85,7 @@ You might think we can just add another script source tag above the one we added
 <script src="./scripts.js"></script>
 ```
 
-![hi wes in console](./1207.png)
+![hi wes in console](./1207.webp)
 
 As you can see, now it works. All we had to do is put one script in front of the other one that needed it in.
 
@@ -126,7 +126,7 @@ console.log("Its working...");
 
 If you refresh the HTML page and look at the console. you will should see a bunch of errors.
 
-![cors blocked error in console](./1208.png)
+![cors blocked error in console](./1208.webp)
 
 This first one is the CORS issue again. It is giving us trouble because you cannot use modules unless you are running it on a server.
 
@@ -142,13 +142,13 @@ There are a couple of different ways to do this.
 
 If you go to extensions in VS Code and search for "Live Server", you should see an extension that matches it and you can click install.
 
-![live server extension for vs code](./1209.png)
+![live server extension for vs code](./1209.webp)
 
 If you go back to the modules and right click on the `index.html` and click open with Live server, and that will start it up in the browser.
 
-![open with live server in context menu](./1210.png)
+![open with live server in context menu](./1210.webp)
 
-![live server started the application at url `127.0.0.1:5550` which is equivalent to localhost](./1211.png)
+![live server started the application at url `127.0.0.1:5550` which is equivalent to localhost](./1211.webp)
 
 That will start up a localhost server. The url is `127.0.0.1:5550` which is the equivalent as localhost, it is just the IP address. You can replace it with localhost and it will work just the same `localhost:5550`.
 
@@ -158,15 +158,15 @@ Now if you open up the dev tools, you will see that it is working.
 
 Another way to get a server running is to open your terminal and run `npm install -g browser-sync`.
 
-![run the command browser-sync](./1212.png)
+![run the command browser-sync](./1212.webp)
 
 In the terminal, cd into the `modules/playground` folder and run the command`browser-sync`, it should start up a server.
 
-![server is started in command line](./1213.png)
+![server is started in command line](./1213.webp)
 
 If you open up the dev tools, you will see it is working but we get an error regarding `base.css`.
 
-![error regarding base.css in console](./1214.png)
+![error regarding base.css in console](./1214.webp)
 
 That is because we are running the server within our `/modules` folder but the base CSS file is actually at a higher level and it can't go up higher than the root.
 
@@ -235,7 +235,7 @@ console.log("Its working....");
 
 Now when the page refreshes, you will see that it is working.
 
-![is working log in console](./1215.png)
+![is working log in console](./1215.webp)
 
 To recap:
 
@@ -270,7 +270,7 @@ console.log(last);
 
 When the HTML refreshes, you will see we get an error "last is not defined". That is because `last` is in a different module.
 
-![uncaught reference error, last is not defined](./1216.png)
+![uncaught reference error, last is not defined](./1216.webp)
 
 What if within the `returnHi` function in `utils.js` we use the `last` variable like so 👇
 
@@ -286,7 +286,7 @@ Let's find out.
 
 Within our `scripts.js` remove `console.log(last)`.
 
-![hi wes bos, its working log in console](./1217.png)
+![hi wes bos, its working log in console](./1217.webp)
 
 As you can see, it is working.
 
@@ -316,7 +316,7 @@ import { returnHi, last } from './utils.js';
 
 At the bottom of `scripts.js` let's log `console.log(last)`.
 
-![console log last in code and console](./1218.png)
+![console log last in code and console](./1218.webp)
 
 As you can see, that works!
 
@@ -366,7 +366,7 @@ console.log("Its working....");
 console.log(last, middle);
 ```
 
-![last and middle variable logs in console](./1219.png)
+![last and middle variable logs in console](./1219.webp)
 
 Which type of export should you use? That is a personal preference so use what you prefer. Wes often uses a combination of both.
 
@@ -408,7 +408,7 @@ import wes from "./wes.js";
 
 Now let's log it `console.log(wes)`.
 
-![imported wes module as console log](./1220.png)
+![imported wes module as console log](./1220.webp)
 
 Now we could have named that import anything we wanted.
 
@@ -450,7 +450,7 @@ console.log(westerhoff);
 console.log(first);
 ```
 
-![named and default modules imports log in console](./1221.png)
+![named and default modules imports log in console](./1221.webp)
 
 To reiterate:
 
@@ -488,13 +488,13 @@ console.log("Its working...");
 console.log(last, middle);
 ```
 
-![returnHi function as console log](./1222.png)
+![returnHi function as console log](./1222.webp)
 
 As you can see, when we log `sayHi`, you see that we have that function there as `returnHi`.
 
 Let's take a quick look at the docs. Google "mdn import".
 
-![mdn import module documentation](./1223.png)
+![mdn import module documentation](./1223.webp)
 
 As you can see those are all the different types of imports.
 
@@ -508,7 +508,7 @@ import first, { returnHi as sayHi, last, middle } from "./utils";
 
 When you refresh the page, you will see we get an error.
 
-![utils not found error in console](./1225.png)
+![utils not found error in console](./1225.webp)
 
 In a lot of bundlers, like Parcel, you can leave the end `.js` off, but that isn't part of the specs, so if you are using pure HTML-browser based loading, like we are, you must include it.
 
@@ -577,7 +577,7 @@ console.log("Its working...");
 console.log(last, middle);
 ```
 
-![whole module logged in console](./1227.png)
+![whole module logged in console](./1227.webp)
 
 If you look at the console you will see that we get this thing that kinda looks like an object but its called a module.
 
@@ -588,7 +588,7 @@ Inside of it we have:
 - `eat`
 - `food`.
 
-![module having default dog eat and food properties](./1228.png)
+![module having default dog eat and food properties](./1228.webp)
 
 That is useful when you want to import absolutely everything from a module.
 
@@ -598,7 +598,7 @@ Wes will refer to these docs often but 99% of the time he will just use the `ret
 
 They also have docs for export where you can see how to export different types of expressions and objects and things like that (we will be covering some in the examples we do).
 
-![mdn documentation about exporting module](./1229.png)
+![mdn documentation about exporting module](./1229.webp)
 
 The last thing we want to do is called an `on-demand` import.
 
@@ -722,7 +722,7 @@ Then if he wants to know how something works, he needs to dig a bit further into
 
 If you refresh the HTML page and try clicking on the button, you will see the event logged.
 
-![clicking the load currencies button](./1230.png)
+![clicking the load currencies button](./1230.webp)
 
 Now we can go to `handlers.js` and work on that function.
 
@@ -730,7 +730,7 @@ When the button is clicked, we want to get all the currencies. We could simply i
 
 If you do that, and refresh the page while the network tab is open, you will see all of the script modules that are being loaded.
 
-![network tab requests to load the data](./1231.png)
+![network tab requests to load the data](./1231.webp)
 
 If you comment out that import statement and refresh the HTML page, you will see currencies is no longer in the network tab.
 
@@ -747,13 +747,13 @@ export async function handleButtonClick(event) {
 
 When the page refreshes, you will see that `currencies.js` is no longer loaded in the network tab until you click the button.
 
-![all filter in the network tab](./1232.png)
+![all filter in the network tab](./1232.webp)
 
-![loaded script.js in network tab](./1233.png)
+![loaded script.js in network tab](./1233.webp)
 
 That request was only made after we clicked the button. Now we have the module logged in the console.
 
-![loaded module log in console tab](./1234.png)
+![loaded module log in console tab](./1234.webp)
 
 If we want to access the currencies we need to get the default. Let's refactor the import slightly to rename the variable.
 
@@ -766,7 +766,7 @@ export async function handleButtonClick(event) {
 
 When the page refreshes, you should see and have access to the currencies in the console.
 
-![currencies in console](./1235.png)
+![currencies in console](./1235.webp)
 
 It does cache it, so if someone were to click the button again, the currencies would be loaded instantly instead of needing to be fetched again.
 
@@ -776,7 +776,7 @@ How would we also import that on demand?
 
 If you refresh the HTML page, you will see that we do have the `localCurrency` in the `module`.
 
-![loadCurrency module in coonsole](./1236.png)
+![loadCurrency module in coonsole](./1236.webp)
 
 Let's destructure them into their own variables with curly brackets like so 👇
 
@@ -794,6 +794,6 @@ const { localCurrency, default: currency } = await import("./currencies.js");
 console.log(localCurrency, currency);
 ```
 
-![destructuring an import result in console](./1237.png)
+![destructuring an import result in console](./1237.webp)
 
 When destructuring a property like `default` that is not allowed to be named `default`, we can use destructuring renaming syntax that looks like this: `default: currency`.

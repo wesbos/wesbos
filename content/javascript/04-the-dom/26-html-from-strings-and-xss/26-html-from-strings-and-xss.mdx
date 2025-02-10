@@ -26,7 +26,7 @@ const item = document.querySelector('.item');
 console.log(item.innerHTML);
 ```
 
-![browser console showing logged output of innerHTML](./264.png)
+![browser console showing logged output of innerHTML](./264.webp)
 
 You can see that `innerHTML` is a string of all the HTML that makes up what is inside of it.
 
@@ -39,7 +39,7 @@ item.innerHTML = `<h1>Hey How are you?</h1>`;
 console.log(item.innerHTML);
 ```
 
-![browser console showing logged output of innerHTML after its contents changed by setting on innerHTML](./265.png)
+![browser console showing logged output of innerHTML after its contents changed by setting on innerHTML](./265.webp)
 
 The inside of the `div.item` has been updated with some HTML.
 
@@ -89,7 +89,7 @@ item.innerHTML = myHTML;
 console.log(item.innerHTML);
 ```
 
-![rendered html output matches that which was defined in javascript](./266.png)
+![rendered html output matches that which was defined in javascript](./266.webp)
 
 We could go a step further with the following code.
 
@@ -119,7 +119,7 @@ First, you can log the value of `myHTML` and you can also check and log it's typ
 console.log(typeof myHTML);
 ```
 
-![browser console showing output when using typeof](./267.png)
+![browser console showing output when using typeof](./267.webp)
 
 ```js
 myHTML.classList.add('special');
@@ -131,7 +131,7 @@ If you try to do that, it will give you the following error 👇
 
 > Cannot read property 'add' of undefined
 
-![browser console showing error output - Uncaught TypeError: Cannot read property 'add' of undefined](./1448.png)
+![browser console showing error output - Uncaught TypeError: Cannot read property 'add' of undefined](./1448.webp)
 
 Similarly, if you try to do log `myHTML.classList`, you will see that it is also undefined.
 
@@ -156,7 +156,7 @@ const itemImage = document.querySelector('.wrapper img');
 itemImage.classList.add('round');
 ```
 
-![rendered html output of img with attached class that was defined in javascript](./268.png)
+![rendered html output of img with attached class that was defined in javascript](./268.webp)
 
 ## document.createRange() and document.createFragment()
 
@@ -171,7 +171,7 @@ const myFragment = document.createRange();
 console.log(myFragment);
 ```
 
-![browser console showing logged out fragment created using .createRange](./269.png)
+![browser console showing logged out fragment created using .createRange](./269.webp)
 
 This code creates something called a **range**.
 
@@ -186,7 +186,7 @@ console.log(myFragment);
 
 If you open the page in a browser and view the console, you will see that we have this thing called a **document fragment** (which is just a way of saying some HTML).
 
-![browser console showing logged out fragment created using .createRange and .createContextualFragment](./270.png)
+![browser console showing logged out fragment created using .createRange and .createContextualFragment](./270.webp)
 
 Now, from within this fragment, we are able to access all of the elements that live inside of it.
 
@@ -196,7 +196,7 @@ What we have done is turned our HTML into true elements, that are still not on t
 myFragment.querySelector('img');
 ```
 
-![browser console showing logged out img tag from querySelector on fragment created using  .createRange and .createContextualFragment](./271.png)
+![browser console showing logged out img tag from querySelector on fragment created using  .createRange and .createContextualFragment](./271.webp)
 
 Let's now try to append the fragment to the document.
 
@@ -228,7 +228,7 @@ If a user were to put HTML where the description input is, what could happen is 
 
 Let's demonstrate with an example.
 
-![javascript code example showing a profile a user can customize](./272.png)
+![javascript code example showing a profile a user can customize](./272.webp)
 
 Let's say we are taking this `desc` variable from somebody.
 
@@ -242,7 +242,7 @@ Add the code about where it says `Cute Pup` and refresh the HTML page.
 
 You should now see that there is actually an `h1` tag that wasn't created from us.
 
-![rendered html showing multiple header tags](./274.png)
+![rendered html showing multiple header tags](./274.webp)
 
 Remember, in this example scenario, the description value would be coming from a database, from someone's editor when they typed it in. They just started to put some HTML.
 
@@ -286,7 +286,7 @@ const desc = `Cute Pup <img onload="alert('hacked');" src="https://picsum.photos
 
 If you refresh the HTML page, you will see an alert.
 
-![webpage with active alert saying HACKED](./275.png)
+![webpage with active alert saying HACKED](./275.webp)
 
 What happened there is you took data from the user and allowed them to run any JavaScript that they want on your website, which is a potential security hole.
 

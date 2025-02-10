@@ -52,15 +52,15 @@ There is `console.error(person.name)`.
 
 That isn't used for throwing or handling errors (we will learn about that), this just changes what the log looks like in the console, as shown below 👇
 
-![console error method does not throw any error but it changes the log appearence as an error](./console-error-in-console.png)
+![console error method does not throw any error but it changes the log appearence as an error](./console-error-in-console.webp)
 
 It also gives you a stack trace 👇
 
-![console error method also gives stack trace](./error-stack-trace-in-console.png)
+![console error method also gives stack trace](./error-stack-trace-in-console.webp)
 
 There is `console.warn()` which is very similar to `console.log()` 👇
 
-![console warn method is similar to console log](./console-warn-in-console.png)
+![console warn method is similar to console log](./console-warn-in-console.webp)
 
 There is `console.table()`.
 
@@ -70,7 +70,7 @@ Anytime you have a list of objects, and the objects have the same property (mean
 console.table(people);
 ```
 
-![console table method prints an object as a pretty table for better visibility](./console-table-in-console.png)
+![console table method prints an object as a pretty table for better visibility](./console-table-in-console.webp)
 
 There is `console.count()`.
 
@@ -78,7 +78,7 @@ This is useful if you want to know how many times a function is being run.
 
 If we go into the `doctorize()` function in `debugging.js` and add `console.count('running doctorize');`, and then refresh the html page, every time you type `doctorize('wes');` in the console, the console will log a count.
 
-![console.count helps to determine how many times a function is being run](./console-count-in-console.png)
+![console.count helps to determine how many times a function is being run](./console-count-in-console.webp)
 
 That is useful in a scenario where you aren't sure if a function is running twice, or sometimes you are working with hover elements and it's getting triggered way too often. `console.count()` will show you how many times it's actually running.
 
@@ -93,11 +93,11 @@ function doctorize(name) {
 
 Now if you type in the console `doctorize('wes')`, it will show the count, but if you run `doctorize('snickers');`, it goes back to one.
 
-![console count increments the function call count for similar arguments](./console-count-with-function-arguments.png)
+![console count increments the function call count for similar arguments](./console-count-with-function-arguments.webp)
 
 But if you call `doctorize('wes');` again, it maintains that count.
 
-![when doctorize function with same argument named wes called again, it will increment the count](./console-count-for-different-arguments-in-console.png)
+![when doctorize function with same argument named wes called again, it will increment the count](./console-count-for-different-arguments-in-console.webp)
 
 `console.count()` is based on what strings you pass it.
 
@@ -123,7 +123,7 @@ function doALotOfStuff() {
 }
 ```
 
-![console group will put all the consoles together as single block and ends where console groupEnd is called](./console-group-in-console.png)
+![console group will put all the consoles together as single block and ends where console groupEnd is called](./console-group-in-console.webp)
 
 What that does is it groups together all of the logs into a group-able thing, and that can be very helpful.
 
@@ -139,7 +139,7 @@ people.forEach((person, index) => {
 });
 ```
 
-![using console group with forEach method to keep a person details together as a group](./console-group-practical-example-in-console.png)
+![using console group with forEach method to keep a person details together as a group](./console-group-practical-example-in-console.webp)
 
 As you can see, it nicely organizes the people into their separate collapsible section. 👆
 
@@ -149,7 +149,7 @@ console.groupCollapsed();
 
 You can actually also use the `.groupCollapsed()` method shown above 👆 which will by default collapse all the groups, as shown below 👇.
 
-![use console groupCollapsed to collapse all the groups by default](./console-group-collapse-in-console.png)
+![use console groupCollapsed to collapse all the groups by default](./console-group-collapse-in-console.webp)
 
 Those are the main console methods that Wes uses to debug something.
 
@@ -163,7 +163,7 @@ If you scroll down to the function `go`, you will see that it calls `doctorize`,
 
 There is a lot going on in the code.
 
-![stack trace gives us a sequence of functions that were called, helping in the debugging](./multiple-functions-definition.png)
+![stack trace gives us a sequence of functions that were called, helping in the debugging](./multiple-functions-definition.webp)
 
 You will notice that inside of `greet()` we have this function that doesn't exist, and that will cause an error. If we try to run that from the console, you will see an uncaught reference error.
 
@@ -171,7 +171,7 @@ If you expand the error, you should see a few messages below, which are often ig
 
 If you want to know what went wrong, you have to get good at reading the call stacks. It's pretty simple!
 
-![doesnt function not defined error](./does-not-exist-not-defined-error-in-console.png)
+![doesnt function not defined error](./does-not-exist-not-defined-error-in-console.webp)
 
 In the error log above, the console is letting us know that the error happened at the `greet()` function, which is on line 47 of `debugging.js`. This is where the actual error happened.
 
@@ -196,11 +196,11 @@ function bootstrap() {
 
 If you call `bootstrap()` from the console, you will see 👇
 
-![calling bootstrap function from console](./calling-bootstrap-function-in-console.png)
+![calling bootstrap function from console](./calling-bootstrap-function-in-console.webp)
 
 If you were to modify `debugging.js` to add a call to bootstrap on page load like so: `bootstrap();`, you won't see that anonymous function line in the call stack.
 
-![calling bootstrap function on page load wont display anonymous function line in call stack](./calling-bootstrap-function-on-page-load.png)
+![calling bootstrap function on page load wont display anonymous function line in call stack](./calling-bootstrap-function-on-page-load.webp)
 
 Go ahead and comment out the `bootstrap()` call now.
 
@@ -210,14 +210,14 @@ Next we will learn about the grabbing of elements.
 
 This is a handy tip that Wes uses often. If you're on a website, and you're inspecting it, and focusing on an element such as this input from Mozilla's website by clicking on it in the element inspector, if you flip over to the console and type `$0`, it will return to you whatever element you had currently selected in the elements tab.
 
-![select the html element clicking on inspect in browser](./selecting-the-element-in-inspect-mode.png)
+![select the html element clicking on inspect in browser](./selecting-the-element-in-inspect-mode.webp)
 
-![grabbing elements in console using $0 where we are focusing the element through click](./grabbing-elements-in-console.png)
+![grabbing elements in console using $0 where we are focusing the element through click](./grabbing-elements-in-console.webp)
 
 
 That is very useful because now you could do something like call `$0.value()` against it, and it will tell you what you have typed inside the input.
 
-![to view the value of grabbed element type $0.value()](./view-value-inside-element-in-console.png)
+![to view the value of grabbed element type $0.value()](./view-value-inside-element-in-console.webp)
 
 You might be wondering, what does `0` in the `$0` mean.
 
@@ -225,14 +225,14 @@ It means the last element that was clicked.
 
 If you were to go back to the elements tab, select another element like a button, when you go back to the console `$0` will give you the button element and`$1` will give you the input.
 
-![browser will keep track of the sequence of grabbing elements](./sequence-of-selecting-elements-in-console.png)
+![browser will keep track of the sequence of grabbing elements](./sequence-of-selecting-elements-in-console.webp)
 
 You can keep going forever, if you click another element, it will remember the order in which they were clicked.
 
 Another cool thing you can do is to use the `$` and `$$` symbol in the console.
 You cannot use these things in your code, it only works in the console. Also, if jQuery is loaded on the page, that won't work.
 
-![use $ and $$ symbols if jQuery is not loaded on the page](./symbols-$-and-$$-in-console.png)
+![use $ and $$ symbols if jQuery is not loaded on the page](./symbols-\$-and-\$\$-in-console.webp)
 
 👆 Those are shorthand selectors for two things we will learn about in a future video about the DOM. Those selectors will allow us to select things based on selectors.
 
@@ -240,7 +240,7 @@ You cannot use these things in your code, it only works in the console. Also, if
 
 `$$('p')` will match ALL of the elements that match the selectors.
 
-![$ shorthand to use document querySelector and $$ shorthand to use document querySelectorAll](./use-of-$-and-$$-symbols-in-console.png)
+![$ shorthand to use document querySelector and $$ shorthand to use document querySelectorAll](./use-of-\$-and-\$\$-symbols-in-console.webp)
 
 In the value returned from `$('p')` you can see it found the first paragraph, and with `$$('p')`, it found all of the `p` elements on the page.
 
@@ -269,13 +269,13 @@ That is a statement that only takes into effect when your dev tools are open, an
 
 If you refresh `debugging.html` now, what happens is that we have set what is called a **breakpoint**. When you set a breakpoint, you are telling JavaScript to break execution of code when it reaches that line.
 
-![debugger in source tab to debug the code](./debugger-in-source-tab.png)
+![debugger in source tab to debug the code](./debugger-in-source-tab.webp)
 
 This gives you a whole bunch of information as to what happened.
 
 If you hover over it, it will show you what the variables are equal to at this point in time.
 
-![variable shows the values they are having on this point of time](./variable-holding-values-runtime.png)
+![variable shows the values they are having on this point of time](./variable-holding-values-runtime.webp)
 
 You can see that the JavaScript has paused and if you go to the console, you will see that nothing has been logged yet.
 
@@ -283,7 +283,7 @@ Flip back to the sources tab.
 
 On the right hand-side of the `Sources` tab, that is where all the different tools for inspecting what is going on reside.
 
-![different tools for inspecting more during debugging](./tools-for-inspection-during-debugging.png)
+![different tools for inspecting more during debugging](./tools-for-inspection-during-debugging.webp)
 
 We get the call stack, which we learned about earlier.
 
@@ -291,11 +291,11 @@ It will also let us know what the local variables are.
 
 You can expand the collapsed Local section within the Scope section, or hover over a variable to see it's value.
 
-![expand the collapsed local option inside scope section, or hover a variable to see their value](./see-variables-value.png)
+![expand the collapsed local option inside scope section, or hover a variable to see their value](./see-variables-value.webp)
 
 There are other sections for breakpoints which we will get to in a second.
 
-![press play button to execute next statement in the sequence](./resume-script-execution.png)
+![press play button to execute next statement in the sequence](./resume-script-execution.webp)
 
 What is cool is you can click the play button shown above , and then if you flip back to the console, you will see that the name "Wes" has been logged.
 
@@ -303,11 +303,11 @@ What happened there is when the function first ran, it hit the breakpoint and th
 
 Now you can see that the second person is equal to Scott.
 
-![second person equals to scott](./second-person-is-equal-to-scott.png)
+![second person equals to scott](./second-person-is-equal-to-scott.webp)
 
 You can also step over into the next function call like so 👇
 
-![use redo button to step over to next function call](./step-over-to-next-function-call.png)
+![use redo button to step over to next function call](./step-over-to-next-function-call.webp)
 
 When you hit play, it will just continue execution of the code until it hits the next breakpoint.
 
@@ -325,11 +325,11 @@ Remove the line of code in `debugger.js` that says `debugger;` and refresh `debu
 
 Open the sources tab.
 
-![source tab](./source-tab.png)
+![source tab](./source-tab.webp)
 
 In the sidebar on the left, you can click on your actual JavaScript files that are loaded on the page, and then you can say something like "when someone runs this go() function, I want to put a breakpoint in there"
 
-![put a breakpoint by clicking on the left side of line](./put-a-breakpoint-in-source-tab.png)
+![put a breakpoint by clicking on the left side of line](./put-a-breakpoint-in-source-tab.webp)
 
 What you do is you click the line number next to the line of code that you would like to pause during.
 
@@ -347,7 +347,7 @@ The next one is Network Request.
 
 This is useful if you want to see what is being fired off when you load the page. If you go to your networks tab and refresh `debugging.html`, you will see all of the different files that are needed in order for the page to work.
 
-![to view the files loaded in website to make it work can be tracked via network tab](./files-loaded-in-website-in-network-tab.png)
+![to view the files loaded in website to make it work can be tracked via network tab](./files-loaded-in-website-in-network-tab.webp)
 
 This is helpful because you can see when the data is being sent to you.
 
@@ -375,11 +375,11 @@ If you were to run the `fetchDadJoke()` function in the console, it will return 
 
 If you go back to the network tab, you will see that there is a new item that has been logged.
 
-![track http requests and response to endpoints using network tab](./http-requests-in-network-tab.png)
+![track http requests and response to endpoints using network tab](./http-requests-in-network-tab.webp)
 
 This tells you the information about the request, what actually happened, the raw response and a preview of it. It gives you information such as how long did this request take.
 
-![timing in network tab tells the information regarding request, response and how much time it took to respond back](./timing-in-network-tab.png)
+![timing in network tab tells the information regarding request, response and how much time it took to respond back](./timing-in-network-tab.webp)
 
 For example, if your website is slow, it will tell you how long the request took, and where the time was spent.
 
@@ -387,7 +387,7 @@ To demonstrate this, go to http://apple.com and inspect the network tab.
 
 You will see that there are 100s of things that are requested. You can also filter out the requests within the network tab such as XHR, which is when they're sending data out about you.
 
-![filter the network requests by types](./filtering-network-requests-by-types.png)
+![filter the network requests by types](./filtering-network-requests-by-types.webp)
 
 ## Break On Attribute
 
@@ -395,7 +395,7 @@ Next we will go over break on attribute. Wes doesn't use this one often, but it 
 
 On `debugging.html` there is a button that says "Make me bigger".
 
-![make me bigger button](./make-me-bigger-button.png)
+![make me bigger button](./make-me-bigger-button.webp)
 
 When you click it, it gets bigger.
 
@@ -403,7 +403,7 @@ If you go to your elements, you will see that the font-size is just being bumped
 
 If you don't know where the JavaScript is that is making that button bigger, you can go into you button in the elements tab of dev tools and select _Break on > Attribute Modifications_.
 
-![to see what is causing this button to change the size, use break on and then attribute modification](./break-on-attribute-modification.png)
+![to see what is causing this button to change the size, use break on and then attribute modification](./break-on-attribute-modification.webp)
 
 This is just another way of adding a breakpoint.
 
@@ -421,17 +421,17 @@ That is very useful when you get thrown into a random code base where you don't 
 
 Finally, if you go to the sources tab again, you will see that there are other things on the right hand side.
 
-![other features in source tab includes dom breakpoints, global listeners, event listener breakpoints](./other-features-in-source-tab.png)
+![other features in source tab includes dom breakpoints, global listeners, event listener breakpoints](./other-features-in-source-tab.webp)
 
 You can throw Event Listener breakpoints, such as mouse click. 👇
 
-![add event listener breakpoint](./event-listener-breakpoint.png)
+![add event listener breakpoint](./event-listener-breakpoint.webp)
 
 If you add that breakpoint, now when you click on the button, it will throw a debugger breakpoint for you.
 
 There are also XHR breakpoints:
 
-![xhr and fetch breakpoints allows to break the code whenever a fetch request is made](./xhr-fetch-breakpoints.png)
+![xhr and fetch breakpoints allows to break the code whenever a fetch request is made](./xhr-fetch-breakpoints.webp)
 
 If you click `Any XHR or fetch`, what that will do is anytime a fetch request is made, anytime someone goes off to an external API, the code will break execution.
 

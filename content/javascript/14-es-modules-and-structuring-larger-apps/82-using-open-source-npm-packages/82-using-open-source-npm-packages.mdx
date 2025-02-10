@@ -28,7 +28,7 @@ Cd into that folder in the terminal, and then run `npm init`. Name the package `
 
 At this stage, the directory should be created and there should be a `package.json` file.
 
-![directory with package.json module is created](./1278.png)
+![directory with package.json module is created](./1278.webp)
 
 Let's go ahead and install a couple, so we can begin working with them.
 
@@ -78,7 +78,7 @@ npm i faker date-fns await-to-js lodash axios
 
 Those are all regular dependencies so there is no need to add `--save-dev` on the end.
 
-![all dependencies in package.json file](./1279.png)
+![all dependencies in package.json file](./1279.webp)
 
 If you look at the `package.json` file, you will see all our dependencies.
 
@@ -133,7 +133,7 @@ Modify the `packages.json` file to include a start command, and a browserslist p
 
 However if you run `npm start` and open the page, you will see this error.
 
-![run npm start and open page will come up with this error](./1280.png)
+![run npm start and open page will come up with this error](./1280.webp)
 
 That issue is caused by the link to the CSS being incorrect. It has to go up one more level.
 
@@ -141,7 +141,7 @@ Modify the link on our HTML page like so: `<link rel="stylesheet" href="../../ba
 
 In the video, Wes ran into an issue when he refreshed the page at this stage.
 
-![unexpected token < error in console](./1281.png)
+![unexpected token < error in console](./1281.webp)
 
 Sometimes Parcel will act strange or funky, in which case you just need to open up the project directory and delete the `dist` and `.cache` folders and then rerun `npm start`. A lot of the times, that will fix the issue. When Wes did that, it fixed the issue.
 
@@ -153,7 +153,7 @@ Next we will go through some different packages that are useful, starting within
 
 https://www.npmjs.com/package/waait
 
-![npm package waait](./1282.png)
+![npm package waait](./1282.webp)
 
 This is the package that Wes told us about previously and we have coded ourselves a couple of times already. Now we can install it as a package!
 
@@ -203,7 +203,7 @@ That is why Wes made this package, because he uses it quite a bit.
 
 Next we will look at `faker`.
 
-![npm package faker](./1283.png)
+![npm package faker](./1283.webp)
 
 Faker is a package which generates massive amounts of fake data in the browser and node.js.
 
@@ -211,7 +211,7 @@ It is pretty simple to use.
 
 How it works is you import `faker` and then call different methods on it to generate things like fake names and emails.
 
-![import faker and call different methods to generate things like fake names and emails](./1284.png)
+![import faker and call different methods to generate things like fake names and emails](./1284.webp)
 
 That is useful for siutations like when you are writing tests and you want to fill those tests with a bunch of fake data.
 
@@ -253,7 +253,7 @@ async function go() {
 go();
 ```
 
-![faker methods in console](./1285.png)
+![faker methods in console](./1285.webp)
 
 As you can see above, faker has all these methods we can use.
 
@@ -267,7 +267,7 @@ import faker from "faker";
 console.log(`Hello ${faker.name.firstName()}`);
 ```
 
-![generating a random firstName with faker and logging on console](./1286.png)
+![generating a random firstName with faker and logging on console](./1286.webp)
 
 Every time you refresh the page, you should see a different first name logged in the console because the code will give you a fake name each time.
 
@@ -305,7 +305,7 @@ const fakeNames = Array.from({ length: 10 },
 );
 ```
 
-![generating an array of firstName and lastName with faker and logging on console](./1287.png)
+![generating an array of firstName and lastName with faker and logging on console](./1287.webp)
 
 You should see something similar to the screenshot above 👆in your console.
 
@@ -319,13 +319,13 @@ Some packages you have to go to npm to look at the docs, but some bigger package
 
 In the browser, go to https://date-fns.org.
 
-![date-fns module](./1288.png)
+![date-fns module](./1288.webp)
 
 `date-fns` has all these different methods that makes working and formatting dates much nicer.
 
 Let's say we want to know what the difference is between two dates. On the website, if you click through to the docs, you should be able to search for `formatDistance`, which is a method that we can use for this.
 
-![documentation showing how we can calculate difference between two dates](./1289.png)
+![documentation showing how we can calculate difference between two dates](./1289.webp)
 
 In `index.js` let's import `formatDistance`.
 
@@ -336,7 +336,7 @@ import { formatDistance } from "date-fns";
 
 If you have ever heard of people using `moment.js`, this is the same thing, it is just a little more chunked up. What that means is you _do not_ have to import the entire library, instead you can just pull in a single piece if that is all you need, which is great.
 
-![formatDistance method showing difference in dates](./1290.png)
+![formatDistance method showing difference in dates](./1290.webp)
 
 In the docs, they provide an example of how it should be used.
 
@@ -354,7 +354,7 @@ cost diff = formatDistance(
 console.log(diff);
 ```
 
-![logging the result of difference between dates in console](./1291.png)
+![logging the result of difference between dates in console](./1291.webp)
 
 When you refresh the page, you should see "in about 1 hour" logged in the console.
 
@@ -371,7 +371,7 @@ console.log(diff);
 
 That returns 4 months.
 
-![logging the result of difference between dates in console](./1292.png)
+![logging the result of difference between dates in console](./1292.webp)
 
 Often times when working with code, you will need to format a date in a specific way.
 
@@ -386,7 +386,7 @@ const date = new Date();
 
 How do we format the current date so that the month is the full spelling, then the date has "th" or "st" on it, and then the year with be the number value of the year like "2020"?
 
-![formatting the current date with the help of date-fns docs](./1293.png)
+![formatting the current date with the help of date-fns docs](./1293.webp)
 
 We will use the `format` method, so go ahead and import that.
 
@@ -397,11 +397,11 @@ import { formatDistance, format } from "date-fns";
 
 The `format` method takes in a date, a format and some options.
 
-![syntax of format function](./1294.png)
+![syntax of format function](./1294.webp)
 
 Use the format function within `index.js`. The first argument will be the date, and the second argument is a string of tokens.
 
-![different ways to format month](./1295.png)
+![different ways to format month](./1295.webp)
 
 For the month we want the month name to be in full. We can use `LLLL` for that.
 
@@ -416,7 +416,7 @@ Next, we want the word "the". To get that, we need to put it in single quotes wi
 const formatted = format(date, `LLLL 'the'`);
 ```
 
-![format the month from date](./1296.png)
+![format the month from date](./1296.webp)
 
 The day of the month is next, and we want the "th" such at "12th" or "1st". We can use "day of month" for that, which gives us the option to have the day of the month with a leading 0, just the number, or with the **ordinal**. ("st" and "th" are referred to as ordinals).
 
@@ -426,7 +426,7 @@ We will use `do` which gives us the day of the month with the ordinal, like so �
 const formatted = format(date, `LLLL 'the' do`);
 ```
 
-![formatting the calendar year](./1297.png)
+![formatting the calendar year](./1297.webp)
 
 Finally we need the calendar year, for which we can use `y`.
 
@@ -434,7 +434,7 @@ Finally we need the calendar year, for which we can use `y`.
 const formatted = format(date, `LLLL 'the' do y`);
 ```
 
-![formatting the year using date-fns in console](./1298.png)
+![formatting the year using date-fns in console](./1298.webp)
 
 As you can see, we are able to format any date in this way. That is current not doable in regular JavaScript at the moment.
 
@@ -460,7 +460,7 @@ async function getJoke() {
 }
 ```
 
-![headers in the axios request](./1299.png)
+![headers in the axios request](./1299.webp)
 
 The second argument for axios is headers, which we can use to specify that we want to accept JSON, so go ahead and modify the coded like so to do that and also run the function on page load. 👇
 
@@ -479,7 +479,7 @@ async function getJoke() {
 getJoke();
 ```
 
-![logging the response got from axios call](./1300.png)
+![logging the response got from axios call](./1300.webp)
 
 As you can see we get the data back, as well as the headers and the entire request.
 
@@ -520,7 +520,7 @@ To do that we would import it.
 import { intersection } from "lodash";
 ```
 
-![lodash library docs](./1301.png)
+![lodash library docs](./1301.webp)
 
 You will notice that all the examples for lodash use `_.`
 
@@ -541,7 +541,7 @@ const sameValues = intersection(a, b);
 console.log(sameValues);
 ```
 
-![intersection of two arrays in console](./1302.png)
+![intersection of two arrays in console](./1302.webp)
 
 As you can see, that returns to us an array containing the values that exist in both.
 
@@ -559,7 +559,7 @@ const person2 = { name: "wes" };
 console.log(person1 === person2);
 ```
 
-![comparing two object results in false in console](./1303.png)
+![comparing two object results in false in console](./1303.webp)
 
 It will return false. Why is that?
 
@@ -573,7 +573,7 @@ import { intersection, isEqual } from "lodash";
 
 Within the file, add the following code 👉 `console.log(isEqual(person1, person2))`.
 
-![comparing two objects using isEqual using lodash results in true](./1304.png)
+![comparing two objects using isEqual using lodash results in true](./1304.webp)
 
 As you can see, it returns true because the `isEqual` method performs a check on all of the values.
 
@@ -583,7 +583,7 @@ What Wes recommends is to take an hour or two and go through and read about what
 
 The last one is await-to-js.
 
-![await-to-js library in npm](./1305.png)
+![await-to-js library in npm](./1305.webp)
 
 This library allows you to handle errors a bit differently. Start by importing it.
 
@@ -619,7 +619,7 @@ async function checkName() {
 checkName();
 ```
 
-![executing checkIfNameIsCool function and getting cool name as log in console](./1306.png)
+![executing checkIfNameIsCool function and getting cool name as log in console](./1306.webp)
 
 If you refresh the page, you will see that it says "Cool name".
 
@@ -634,7 +634,7 @@ async function checkName() {
 checkName();
 ```
 
-![uncaught error - bad name in console](./1307.png)
+![uncaught error - bad name in console](./1307.webp)
 
 We get an error. How would we catch that?
 
@@ -649,13 +649,13 @@ async function checkName() {
 }
 ```
 
-![catching the bad name error and logging in console](./1308.png)
+![catching the bad name error and logging in console](./1308.webp)
 
 As you can see, we get 2 things back: the error and undefined.
 
 What if we switched it back to "wes" instead of snickers?
 
-![switch the name back to wes instead of snickers and log the result in console](./1309.png)
+![switch the name back to wes instead of snickers and log the result in console](./1309.webp)
 
 Then the first thing is null, and the second thing is cool name.
 
@@ -674,7 +674,7 @@ if (err) {
 }
 ```
 
-![bad name error handled in console](./1310.png)
+![bad name error handled in console](./1310.webp)
 
 This way if you want to deal with the error right up front, before you keep going in the function, all you need to do is wrap it in a `to` function and that will return an array.
 

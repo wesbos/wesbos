@@ -34,7 +34,7 @@ The most popular way to pull data from an API is using a URL that you can hit wi
 
 In the example below, the API will respond with what is called **JSON**.
 
-![example JSON payload](./1113.png)
+![example JSON payload](./1113.webp)
 
 We have discussed **JSON** a few times. It stands for **JavaScript Object Notation**, and it is a good way to transport JavaScript objects between servers and clients.
 
@@ -48,7 +48,7 @@ Although what is returned looks like an object, it's actually just a string.
 
 If we copy that string into the console and assign it to a variable called `data`, we can log it and access it from the console like so.
 
-![browser console output of 'data'](./1114.png)
+![browser console output of 'data'](./1114.webp)
 
 As you can see, it is just a huge string.
 
@@ -66,7 +66,7 @@ const dataObj = JSON.parse(data);
 
 Now we can access the object properties using **JavaScript dot notation**.
 
-![browser output showing accesing JSON object properties](./1115.png)
+![browser output showing accesing JSON object properties](./1115.webp)
 
 Lots of APIs allow you to pull data from their server onto your own. There are many that do not allow it and many that require API keys (which we will go into later). For now, we will be working with wide open APIs that do not require any authentication.
 
@@ -124,11 +124,11 @@ const wesPromise = fetch(endpoint);
 console.log(wesPromise);
 ```
 
-![browser console showing output of a promise](./1116.png)
+![browser console showing output of a promise](./1116.webp)
 
 To check if it worked, you can go to the network tab and refresh the page. When you do that, you will see all the requests that have happened on the page. This allows you to see when a request was sent out, and when it came back with the data.
 
-![browser network tab showing preview response](./1118.png)
+![browser network tab showing preview response](./1118.webp)
 
 If we want to get that data back into JavaScript, how do we do that? We can use `.then()`.
 
@@ -154,7 +154,7 @@ wesPromise
   .catch(handleError);
 ```
 
-![browser console showing response output](./1120.png)
+![browser console showing response output](./1120.webp)
 
 Now when you refresh the page, you will see that we no longer get a promise. Instead we get the response object you see above 👆
 
@@ -162,7 +162,7 @@ The response tells us the type is **CORS** which we will talk about in a second.
 
 If you expand the properties like `headers` and `body`, you won't find it.
 
-![browser console showing reponse output with body expanded](./1121.png)
+![browser console showing reponse output with body expanded](./1121.webp)
 
 As you can see, the data is nowhere to be found.
 
@@ -174,7 +174,7 @@ The `fetch` API can be used to fetch any type of data, whether it is JSON, an im
 
 To actually get the data, you must tell the browser to convert the data from JSON to a JavaScript object once it is finished downloading.
 
-![browser console showing the prototype functions of a api response object](./1122.png)
+![browser console showing the prototype functions of a api response object](./1122.webp)
 
 Take a look at the prototype of the response object, and you will see that there is a number of methods on the response.
 
@@ -210,7 +210,7 @@ wesPromise
   .catch(handleError);
 ```
 
-![browser console outputting data from an api response](./1123.png)
+![browser console outputting data from an api response](./1123.webp)
 
 Let's go ahead and display some info about the user.
 
@@ -243,7 +243,7 @@ A paragraph tag to the HTML with a class of "user", and then go ahead and select
 </body>
 ```
 
-![text showing name and blog url](./1124.png)
+![text showing name and blog url](./1124.webp)
 
 As you can see, it pops up.
 
@@ -260,7 +260,7 @@ Now let's refactor this to use **async/await**.
 
 Create an async function called `displayUser` which takes in a `username`. Take all the code we wrote after selecting the element and put it into the `displayUser` function.
 
-![code snippet of displayUser function](./1125.png)
+![code snippet of displayUser function](./1125.webp)
 
 Now let's go line by line. Leave the first line as is.
 
@@ -338,11 +338,11 @@ To fix that, let's add a catch and pass it our error handler function like so �
 displayUser("stolinski").catch(handleError);
 ```
 
-![browser console showing error output from api response](./1127.png)
+![browser console showing error output from api response](./1127.webp)
 
 _🔥HOT TIP: You can filter out just AJAX request from the Network tab by clicking XHR. 👇_
 
-![broswer network tab showing filtered out XHR requests](./1126.png)
+![broswer network tab showing filtered out XHR requests](./1126.webp)
 
 Next let's modify the `handleError` function to show the error by replacing the paragraph text content.
 
@@ -354,7 +354,7 @@ function handleError(err) {
 }
 ```
 
-![rendered html page showing error from api response](./1129.png)
+![rendered html page showing error from api response](./1129.webp)
 
 We wil do one more example in the next lesson.
 
@@ -362,6 +362,6 @@ We wil do one more example in the next lesson.
 
 It is hard to find good APIs that are public and don't require API keys. There is a good list of them in the github repo https://github.com/public-apis/public-apis
 
-![list of public api endpoints](./1130.png)
+![list of public api endpoints](./1130.webp)
 
 You can scroll through and find different APIs for all different things.

@@ -15,7 +15,7 @@ We will use a real API in this example so Wes can show us how to overcome common
 
 We will be using the API at the website www.recipepuppy.com.
 
-![response from recipepuppy api endpoint](./1131.png)
+![response from recipepuppy api endpoint](./1131.webp)
 
 If you look at the docs, the way this API works is you go to the url and pass `i` (which is ingredients), pass `q` ( which is your omelet) and pass `p` (which is your page). On the homepage, you can see that there are additional parameters you can pass.
 
@@ -23,7 +23,7 @@ If you look at the docs, the way this API works is you go to the url and pass `i
 
 ## Query Parameters
 
-![a list of query params available on recipepuppy api endpoint](./1132.png)
+![a list of query params available on recipepuppy api endpoint](./1132.webp)
 
 `i`, `q` and `p` are all parameters. Let's talk about **parameters**.
 
@@ -31,7 +31,7 @@ Sometimes when you got to a URL, you see these question marks on the end.
 
 Even when you submit a form they are there. 👇
 
-![url showing parameters in a url](./1133.png)
+![url showing parameters in a url](./1133.webp)
 
 Those are referred to as **query parameters** or **query params**. Let's break down the query params from the url above.
 
@@ -64,7 +64,7 @@ This example will include a form with an input where the user can type a keyword
 
 We won't worry about the UI just yet, let's just getting it working.
 
-![rendered html of a form](./1134.png)
+![rendered html of a form](./1134.webp)
 
 In the empty `scripts.js` file, let's add the base url.
 
@@ -85,7 +85,7 @@ Let's start fetching the data.
 
 Open up the dev tools and then refresh the page. You should see the following error 👇
 
-![browser console showing CORS Policy error](./1135.png)
+![browser console showing CORS Policy error](./1135.webp)
 
 > Access to fetch at 'http://www.recipepuppy.com/api?q=pizza' from origin 'null' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. >If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 > www.recipepuppy.com/api?q=pizza:1 Failed to load resource: net::ERR_FAILED
@@ -93,7 +93,7 @@ Open up the dev tools and then refresh the page. You should see the following er
 
 If you look at the network tab, and filter for XHR, you will see the request but there is no response data.
 
-![browser network tab showing request has no response data](./1136.png)
+![browser network tab showing request has no response data](./1136.webp)
 
 ## CORS
 
@@ -145,7 +145,7 @@ Let's select a server to use, which could be any server. You could use:
 
 Let's start by getting Parcel running. In the terminal, run the `npm init` command.
 
-![terminal window showing npm init](./1137.png)
+![terminal window showing npm init](./1137.webp)
 
 You need to put a package name (which you can call anything, Wes chose `dogrecipes`) and then you just keep hitting enter to accept the default for the next few questions, as shown above.
 
@@ -163,11 +163,11 @@ Open the file and modify the scripts start command like so 👇
 
 When we run `npm start`, you should see a message in the terminal that a server has been started on localhost:1234 or another port.
 
-![terminal window showing npm start](./1138.png)
+![terminal window showing npm start](./1138.webp)
 
 Open that server in the browser and take a look at the error we are now getting in the console. 👇
 
-![browser console showing Uncaught ReferenceError](./1139.png)
+![browser console showing Uncaught ReferenceError](./1139.webp)
 
 It is complaining that "regeneratorRuntime is not defined".
 
@@ -187,7 +187,7 @@ The weird thing about Babel is it wants to compile async/await, even though in m
 
 Since it's unnecessary, we need to tell Babel not to transpile async/await. The way we can get around that is to go to the `package.json` and somewhere in there we will add a `browerslist` property to the JSON file.
 
-![browserlist github page](./1140.png)
+![browserlist github page](./1140.webp)
 
 `browserslist` is a package that allows you to define which browsers you are currently supporting.
 
@@ -205,11 +205,11 @@ Wes likes to use the filter above because it tricks babel into thinking you are 
 
 Now when you look at the page the error should be gone (you may see other errors which is fine).
 
-![browser console showing CORS Policy error](./1141.png)
+![browser console showing CORS Policy error](./1141.webp)
 
 If you do have issues, kill the server by pressing Ctrl + C while focused in the terminal. Then open the folder up in your finder, and find the `cache/` and `dist/` folders within there and just delete those.
 
-![os file system showing cache/ and dist/ folder locations](./1142.png)
+![os file system showing cache/ and dist/ folder locations](./1142.webp)
 
 Now run `npm run start`, and that will fire it up again.
 
@@ -217,7 +217,7 @@ Problem number two, we have solved by using browserslist (you might not need to 
 
 The next problem is kind of the same error we had in the first issue.
 
-![browser console showing CORS Policy error](./1143.png)
+![browser console showing CORS Policy error](./1143.webp)
 
 As you can see, even though we are now running our code on a server instead of access it right from the file, we are still getting an error except this time it is complaining about localhost:1234 not origin.
 
@@ -245,11 +245,11 @@ To use a proxy you either have to build one yourself which requires building an 
 
 To find one, just google CORS proxy.
 
-![google resulst for cors proxy](./1145.png)
+![google resulst for cors proxy](./1145.webp)
 
 Wes has found that the https://cors-anywhere.herokuapp.com one works the best.
 
-![website cors-anywhere.herokuapp.com](./1146.png)
+![website cors-anywhere.herokuapp.com](./1146.webp)
 
 If you go to the website you will just see the text above, but the way that it works if you take the url and paste it in front of your urls and that will proxy that data for you.
 
@@ -288,7 +288,7 @@ fetchRecipes("pizza");
 
 Now when you refresh the page, the error should be gone. Let's also console log the data.
 
-![browser console output showing response data](./1147.png)
+![browser console output showing response data](./1147.webp)
 
 Now that we finally have the data working, we need to loop through the data and show them based on what the user has searched for.
 
@@ -306,7 +306,7 @@ fetchRecipes("pizza");
 
 To grab the value of the query we can modify the code to use `event.currentTarget.query.value` because the input has a `name` attribute of `query`.
 
-![browser console output showing a value from the response data](./1149.png)
+![browser console output showing a value from the response data](./1149.webp)
 
 If you were to refresh the page, you should see pizza logged.
 
@@ -328,7 +328,7 @@ button[disabled] {
 }
 ```
 
-![rendered html showing disabled button](./1150.png)
+![rendered html showing disabled button](./1150.webp)
 
 Now it is clear that the button is disabled.
 
@@ -379,7 +379,7 @@ async function handleSubmit(event) {
 
 When we submit the form now and search for something like "chicken", it will disable the button, fetch and log the recipes, and finally re-enable the button.
 
-![rendered page showing filled in form and browser console outputting the forms response data](./1151.png)
+![rendered page showing filled in form and browser console outputting the forms response data](./1151.webp)
 
 Next, make another function called `displayRecipes` which takes in the array of recipe and returns the HTML that will be used to display those recipes.
 
@@ -412,7 +412,7 @@ function displayRecipes(recipes) {
 }
 ```
 
-![browser console showing multiple recipe html outputs](./1152.png)
+![browser console showing multiple recipe html outputs](./1152.webp)
 
 As you can see, for each recipe we had returned we have some HTML generated for them.
 
@@ -432,9 +432,9 @@ recipesGrid.innerHTML = html.join("");
 
 When you refresh the page, the HTML should look similar to the image below 👇
 
-![rendered page of recipes](./1153.png)
+![rendered page of recipes](./1153.webp)
 
-![rendered html of recipes](./1154.png)
+![rendered html of recipes](./1154.webp)
 
 For each item, we have:
 

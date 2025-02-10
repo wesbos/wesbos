@@ -10,7 +10,7 @@ category:
 
 In this exercise we will be building a gallery.
 
-![building a gallery](./856.png)
+![building a gallery](./856.webp)
 
 We are going to be building it in a standard way, and then come back and refactor it for prototypes once we understand what those are. Then we are going to come back to this exercise a third time and refactor the gallery for classes.
 
@@ -71,7 +71,7 @@ Soon there will be a `new` keyword before we do ` = Gallery()` but for now we do
 
 If we go to the `index.html` that is on the Gallery exercises directory, you will see that we have a `div` with class of `gallery1`, and then a secondary gallery.
 
-![html structure for the gallery with bunch of images](./860.png)
+![html structure for the gallery with bunch of images](./860.webp)
 
 Pass the gallery function reference to the gallery we want, which is the first one.
 
@@ -84,7 +84,7 @@ From the beginning we will be running these examples with 2 different galleries 
 
 The first thing we want to do is log the gallery from within the `Gallery` function. When you refresh the page, you should see both `gallery1` and `gallery2` logged.
 
-![logging the gallery from within the Gallery function](./861.png)
+![logging the gallery from within the Gallery function](./861.webp)
 
 One helpful thing we can do is if no gallery argument was provided, throw an error that says "No Gallery Found".
 
@@ -98,7 +98,7 @@ function Gallery(gallery) {
 }
 ```
 
-![uncaught error: no gallery found](./862.png)
+![uncaught error: no gallery found](./862.webp)
 
 If instead you want the function to gracefully degrade, you can simply return without throwing anything. That will break and exit the function without throwing any errors in the console.
 
@@ -110,7 +110,7 @@ Previously, Wes has been selecting everything at the top of the file, however, s
 
 The first thing you need is a list of all of the images. Instead of using `document.querySelector` however, you need to make sure it's scoped to the gallery element that was passed in to the function.
 
-![selecting galleries using querySelector](./863.png)
+![selecting galleries using querySelector](./863.webp)
 
 Use the `gallery` variable as our selector. For the list, use `Array.from()` because you will need to loop over it at some point.
 
@@ -121,7 +121,7 @@ const images = Array.from(gallery.querySelectorAll('img'));
 console.log(images);
 ```
 
-![logging the images in console](./864.png)
+![logging the images in console](./864.webp)
 
 If you add that code and look at the console, you will notice it is empty.
 
@@ -129,15 +129,15 @@ Let's debug that.
 
 Start by logging `gallery` before we declare the `images` variable.
 
-![logging the gallery in console](./865.png)
+![logging the gallery in console](./865.webp)
 
 As you can see, the gallery is showing up.
 
-![gallery console log shows up](./866.png)
+![gallery console log shows up](./866.webp)
 
 If we look inside of the gallery, we can see lots of image elements.
 
-![image elements inside the gallery](./867.png)
+![image elements inside the gallery](./867.webp)
 
 The next thing you need is the modal, with the next and previous buttons.
 
@@ -242,7 +242,7 @@ Now that you have added a bunch of different functions, let's check that it work
 
 If you refresh the page, you should see that when you click an image, that image element is logged to the console.
 
-![clicking on image element gets logged in console](./868.png)
+![clicking on image element gets logged in console](./868.webp)
 
 Refactor the code so instead of having a separate `handleImageClick` function, you can just do the same functionality with an arrow function.
 
@@ -258,7 +258,7 @@ Back to `showImage`, there are a few things that need to happen.
 
 When someone clicks the image, you need to update the source of the image element in the modal and the `h2` and `p` content.
 
-![update the source of image, h2 and p element](./869.png)
+![update the source of image, h2 and p element](./869.webp)
 
 Add the following code 👇
 
@@ -281,7 +281,7 @@ Why do you need to do that?
 
 If you take a look at the image elements, you will see a couple of attributes on them.
 
-![image tags along with several attributes](./871.png)
+![image tags along with several attributes](./871.webp)
 
 One of those is the `title`. Take the title from the image and then duplicate it again and grab the paragraph.
 
@@ -301,7 +301,7 @@ At the very bottom of the `showImage` function, add `currentImage = el;`
 
 If you refresh the page, then click on an image with the dev tools elements tab open, you should see the modal values being swapped out.
 
-![modal values being swapped out when clicking on image](./872.png)
+![modal values being swapped out when clicking on image](./872.webp)
 
 _Note: the demo text is the same for each image, but you can tell it's being swapped because the first time you load the page, and then click, the value will be different._
 
@@ -346,15 +346,15 @@ Why does that work?
 
 If you look at the `gallery.css`, you will see that by default, the modal has an opacity of 0 and pointer-event of none.
 
-![modal css styles](./873.png)
+![modal css styles](./873.webp)
 
 However the modal with the class of `open` has opacity of 1 and pointer-event of all.
 
-![modal with class open has opacity 1 and pointer-event of all](./874.png)
+![modal with class open has opacity 1 and pointer-event of all](./874.webp)
 
 The CSS style `opacity:0` will hide the element from the user, and setting `pointer-events:none` will ignore all the clicks on the element.
 
-![translate the modal using transform and translateY in css](./875.png)
+![translate the modal using transform and translateY in css](./875.webp)
 
 There is also the `modalInner` which is currently off the page, via the CSS style `transform: translateY(-100vh);`.
 
@@ -362,7 +362,7 @@ If we comment that CSS style out and also set `opacity:1` by default on the moda
 
 When there is an open property on the parent, `.modalInner` gets a `translateY` of 0.
 
-![when there is open property on parent .modalInner gets translated on y axios to 0](./876.png)
+![when there is open property on parent .modalInner gets translated on y axios to 0](./876.webp)
 
 Make a function `closeModal` which will remove the `open` class from the modal. Add a TODO comment to remind you to add event listeners for clicks and keyboard like the escape key later.
 
@@ -377,7 +377,7 @@ If you click outside of the modal, you want to be able to run the `closeModal` f
 
 How can you do that?
 
-![clicking outside the modal and run closeModal function](./877.png)
+![clicking outside the modal and run closeModal function](./877.webp)
 
 We only want the modal to close when someone clicks outside of `modalInner`. If you click within the modal, it should not close.
 
@@ -399,7 +399,7 @@ The code above checks whether the thing the user clicked matches the thing that 
 
 So if you clicked within the modal, that would return false but if you clicked outside of it, it would return true.
 
-![controlling the modal visibility via open class](./878.png)
+![controlling the modal visibility via open class](./878.webp)
 
 Refresh the page and open the modal and click outside of it, to ensure it works. (It should.)
 
@@ -453,7 +453,7 @@ function showNextImage() {
 }
 ```
 
-![error - cannot read property nextElementSibling of undefined](./879.png)
+![error - cannot read property nextElementSibling of undefined](./879.webp)
 
 It gives Wes the suitcase which is correct but we get an error.
 
@@ -569,7 +569,7 @@ Images by default are not keyboard focus-able, and in order to make the gallery 
 
 If you look at the HTML page, you will see that all the images have a `tab-index` of 0.
 
-![tab-index 0 attribute on img tag](./880.png)
+![tab-index 0 attribute on img tag](./880.webp)
 
 By giving it a `tab-index` of 0, you are telling the browser that this is an element that you can tab through, just like an input or links. Giving them all a tab-index of 0 will allow the tab to just naturally go in the flow of the document.
 

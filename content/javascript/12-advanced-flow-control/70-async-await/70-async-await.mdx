@@ -46,7 +46,7 @@ go();
 
 Now we know if we run `go` on page load, we will get "starting" and "ending" immediately.
 
-![starting and ending log in the console](./1050.png) 2:32
+![starting and ending log in the console](./1050.webp) 2:32
 
 What async await allows us to do is put the keyword `await` in front of a promise based function and it will sort of temporarily pause that function from running until that promise is resolved.
 
@@ -62,7 +62,7 @@ go();
 
 If you modify the code as shown above and then refresh the page, you will see an error in the console.
 
-![uncaught syntax error: await is only valid in async function](./1051.png)
+![uncaught syntax error: await is only valid in async function](./1051.webp)
 
 >Uncaught SyntaxError: await is only valid in async function
 
@@ -94,7 +94,7 @@ async function go() {
 }
 ```
 
-![starting running and ending in console](./1052.png)
+![starting running and ending in console](./1052.webp)
 
 We are now able to just stick these calls to our `wait` function wherever we want within our `go` function and the execution of that function will temporarily pause until the promise has been resolved.
 
@@ -171,7 +171,7 @@ We get an error in the console.
 
 >Uncaught SyntaxError: await is only valid in async function
 
-![uncaught syntax error: await is valid only in async function in console](./1053.png)
+![uncaught syntax error: await is valid only in async function in console](./1053.webp)
 
 You can however copy and paste the call to the wait function and call it directly from devtools console.
 
@@ -181,7 +181,7 @@ Go to our `promises.html` file that we have and let's grab the `makePizza` funct
 
 Both of those functions return a promise.
 
-![both wait and makePizza functions returning a promise](./1054.png)
+![both wait and makePizza functions returning a promise](./1054.webp)
 
 Go to the bottom of the script tag and make another async function `makeDinner`.
 
@@ -198,7 +198,7 @@ makeDinner();
 
 If you comment out the `go` function and the code where we call `go` and instead just run the code we added right above, you will see that we get a promise logged to the console.
 
-![pending promise in console](./1055.png)
+![pending promise in console](./1055.webp)
 
 That is because we are running the function and storing it in a variable, which will store the promise in the variable. Note that we call it "await" instead of "wait" because it is asynchronously waiting. Meaning it won't actually pause all of JavaScript, it's not going to block the rest of the JavaScript from running.
 
@@ -213,7 +213,7 @@ async function makeDinner() {
 makeDinner();
 ```
 
-![pizza with pepperoni log in console](./1056.png)
+![pizza with pepperoni log in console](./1056.webp)
 
 Similarly we can do that with pizza2 as well.
 
@@ -228,7 +228,7 @@ async function makeDinner() {
 makeDinner();
 ```
 
-![pizza with pepperoni and pizza with mushrooms in console](./1057.png)
+![pizza with pepperoni and pizza with mushrooms in console](./1057.webp)
 
 Now let's say we want to wait for both of those to be done because the way it is coded right now could be possibly inefficient.
 
@@ -249,7 +249,7 @@ async function makeDinner() {
 
 If you do it like above, we will still only get the big promise.
 
-![promise log with promise status as resolved in console](./1058.png)
+![promise log with promise status as resolved in console](./1058.webp)
 
 We need to modify the code to await the mamma promise like so 👇
 
@@ -257,7 +257,7 @@ We need to modify the code to await the mamma promise like so 👇
 const pizzas = await Promise.all([pizzaPromise1, pizzaPromise2]);
 ```
 
-![resolved promise array with async await in console](./1059.png)
+![resolved promise array with async await in console](./1059.webp)
 
 Now we get the actual pizzas instead of just the promises. Go ahead and destructure the two pizzas that are returned.
 
@@ -266,11 +266,11 @@ const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
 console.log(pep, mush);
 ```
 
-![log of resolved promises in console](./1060.png)
+![log of resolved promises in console](./1060.webp)
 
 What we want to do now is go back to the code that we wrote early on with our promise chain and rewrite it one more time into async await.
 
-![rewrite the promise chain using async await syntax](./1061.png)
+![rewrite the promise chain using async await syntax](./1061.webp)
 
 Take the entire animate function and copy it and rename it to `animate2`.
 

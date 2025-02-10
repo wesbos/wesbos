@@ -12,7 +12,7 @@ In this lesson we are going to learn how to check whether you clicked outside an
 
 Let's look at the HTML we will be working with.
 
-![screenshot of the HTML page](./1325.png)
+![screenshot of the HTML page](./1325.webp)
 
 ```html
 <body>
@@ -78,7 +78,7 @@ Let's add the following CSS 👇
 </style>
 ```
 
-![HTML page showing four columns card](./1326.png)
+![HTML page showing four columns card](./1326.webp)
 
 That looks good.
 
@@ -119,7 +119,7 @@ Go ahead and style the modal in the on position and then we will turn it off wit
 }
 ```
 
-![inspecting modal in dev tools](./1328.png)
+![inspecting modal in dev tools](./1328.webp)
 
 Now you have this modal which will pop up and you want to be able to close it.
 
@@ -158,7 +158,7 @@ That is an example of where JavaScript and CSS work together.
 
 Now if you refresh the page and give `modal-outer` an opacity of .5, in the dev tools, you will see that the modal outer is still there but you will see how the buttons underneath can still be clicked and the events aren't being captured by `modal-outer`.
 
-![updating modal-outer opacity to 0.5](./1329.png)
+![updating modal-outer opacity to 0.5](./1329.webp)
 
 When the modal has a class of open, set the opacity to 1 and the pointer events to all.
 
@@ -171,7 +171,7 @@ When the modal has a class of open, set the opacity to 1 and the pointer events 
 
 If you go into the dev tools and give `modal-outer` a class of `open`, it will show up.
 
-![added open class to modal-outer in dev tools inspect to show modal](./1330.png)
+![added open class to modal-outer in dev tools inspect to show modal](./1330.webp)
 
 Let's add a transition to make that look a bit smoother. 👇
 
@@ -244,7 +244,7 @@ What is great about using `closest` like we did is you can take any element, suc
 
 If there is something that does not find (like `$0.closest('.doesnotmatch')`) it will return `null` because there is no parent of it.
 
-![console showing $0.closest('.doesnotmatch') output](./1331.png)
+![console showing $0.closest('.doesnotmatch') output](./1331.webp)
 
 `.closest()` is like `querySelectorAll`, except it is the opposite where it will climb up the nested tree of DOM elements instead of look down the DOM tree.
 
@@ -274,7 +274,7 @@ Add a log as well to make sure it is working.
 
 Now when you refresh the page, and click the buttons, you should see the descriptions logged to the console.
 
-![console showing description logs](./1332.png)
+![console showing description logs](./1332.webp)
 
 Next you can populate the modal with the card's info.
 
@@ -342,7 +342,7 @@ function handleCardButtonClick(event) {
 
 If you refresh the page, you will see that it works.
 
-![HTML page with a modal open](./1333.png)
+![HTML page with a modal open](./1333.webp)
 
 The image is also there, it is just spilling out so let's fix the CSS.
 
@@ -354,7 +354,7 @@ Add the following to the style tag
 }
 ```
 
-![a modal with a large image in it](./1334.png)
+![a modal with a large image in it](./1334.webp)
 
 Good, now you have the bare bones of a modal.
 
@@ -370,7 +370,7 @@ function closeModal() {
 
 But how do we code it so that the modal closes when you click outside of it, and not on the text or the image or anything like that?
 
-![a modal showing an image and it's description](./1335.png)
+![a modal showing an image and it's description](./1335.webp)
 
 We can solve this using a technique called **click outside**.
 
@@ -386,7 +386,7 @@ modalOuter.addEventListener('click', function(event) {
 
 Now when you click outside the modal on `modalOuter`, you will see the click event logged.
 
-![console showing PointerEvent object logs from modalOuter click event handler](./1336.png)
+![console showing PointerEvent object logs from modalOuter click event handler](./1336.webp)
 
 Next log the `target` and `currentTarget` of the event.
 
@@ -397,7 +397,7 @@ modalOuter.addEventListener('click', function(event) {
 })
 ```
 
-![console showing logged HTML elements from modalOuter event handler](./1338.png)
+![console showing logged HTML elements from modalOuter event handler](./1338.webp)
 
 You might think this would be simple to solve because you can just check if the `modalOuter` and the `currentTarget` are the same thing, then you can go ahead and close it.
 
@@ -509,9 +509,9 @@ You can test this by going into the dev tools.
 
 Go to the network tab and click the dropdown arrow next to "Online"
 
-![dev tools showing network panel](./1339.png)
+![dev tools showing network panel](./1339.webp)
 
-![dev tools showing network mode options](./1340.png)
+![dev tools showing network mode options](./1340.webp)
 
 Select Fast 3G.
 

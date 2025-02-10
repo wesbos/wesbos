@@ -54,11 +54,11 @@ Within the `handleBuyBackButtonClick()`, log the `event` object, and refresh the
 
 Whhen you click on a button you should see the following in the console 👇
 
-![browser console output showing pointerEvent](./324.png)
+![browser console output showing pointerEvent](./324.webp)
 
 What we have there is a pointer event, which we will get into more detail about later, but essentialy we have clicks, and touches and mouse movements and they are all consolidated into one event called a pointer event.
 
-![browser console output showing expanded pointerEvent](./1455.png)
+![browser console output showing expanded pointerEvent](./1455.webp)
 
 If you expand the event, you will see all sorts of things.
 
@@ -74,7 +74,7 @@ Within `handleBuyBackButtonClick`, log `event.target`.
 
 When you refresh and click on different buttons, it will show you which button the user has clicked on.
 
-![rendered buttons on page with browser console showing click events](./328.png)
+![rendered buttons on page with browser console showing click events](./328.webp)
 
 That is very useful because we could do something like add a data attribute, such as `data-price=""`, like so 👇
 
@@ -102,11 +102,11 @@ function handleBuyButtonClick(event) {
 
 Now when you click on a specific button, it should show you the `dataset` in the console.
 
-![browser console output showing button dataset values](./1459.png)
+![browser console output showing button dataset values](./1459.webp)
 
 And if you do `dataset.price`, it will return the price.
 
-![browser console output showing button price values as a string](./1460.png)
+![browser console output showing button price values as a string](./1460.webp)
 
 If you do log `typeof event.target.dataset.price`, you will see that the price is a string, so you need to convert it.
 
@@ -118,7 +118,7 @@ console.log(parseFloat(event.target.dataset.price));
 
 Now you get a true number.
 
-![browser console output showing button price values as a float](./332.png)
+![browser console output showing button price values as a float](./332.webp)
 
 To recap: the event object contains all this information about what happened in this event, such as what type of event it was (mouseclick  etc), the target, and then once you have the target, you can access anything you want about that target.
 
@@ -142,7 +142,7 @@ There is also another property, which you should log
 event.currentTarget
 ```
 
-![browser console output showing event targets](./333.png)
+![browser console output showing event targets](./333.webp)
 
 You might notice that you get the same thing.
 
@@ -160,7 +160,7 @@ function handleBuyButtonClick(event) {
   console.log(event.target === event.currentTarget);
 }
 ```
-![browser console output showing event target vs event currentTarget](./334.png)
+![browser console output showing event target vs event currentTarget](./334.webp)
 
 It returns true.
 
@@ -176,9 +176,9 @@ Take all the numbers in our buttons and wrap them in a strong tag like so 👇
 
 What happens if you click on the number in the button?
 
-![rendered button](./1461.png)
+![rendered button](./1461.webp)
 
-![browser console showing output of button and false](./336.png)
+![browser console showing output of button and false](./336.webp)
 
 In this instance we are clicking on the button and on the strong tag.
 
@@ -202,7 +202,7 @@ Now, when you click anywhere on the HTML page, it will show YOU CLICKED THE WIND
 
 If you click on the `h2`, it will still show you clicked on the window. But if you click on one of the buttons, are you click on the window, or on the button?
 
-![browser console showing output for buttons and you clicked the window](./337.png)
+![browser console showing output for buttons and you clicked the window](./337.webp)
 
 What happened is that both the window event listener fired, and the `handleBuyButtonClick` fired. We technically clicked on both of them.
 
@@ -214,7 +214,7 @@ When we clicked the strong tag, what happens is the event bubbles up.
 
 Meaning we clicked on the strong tag, but we also clicked on the button, and then we also clicked on the body, and the HTML tag, and the window, and the google chrome browser etc, etc.
 
-![rendered html showing buttons](./338.png)
+![rendered html showing buttons](./338.webp)
 
 Although we just clicked on the strong tag, the browser and operating system are also listening to that event.
 
@@ -239,7 +239,7 @@ Now anytime we click on something, it will show us what we are actually clicking
 
 So even though we are listening on the window, it will show what the actual element you clicked on is, whether it's a `button` or an `h2`.
 
-![browser console output showing various window events](./339.png)
+![browser console output showing various window events](./339.webp)
 
 Events bubble up, and if we want to stop them from bubbling up, we run `stopPropagation()` and there is a way to flip that: **capture**.
 
@@ -247,7 +247,7 @@ Events bubble up, and if we want to stop them from bubbling up, we run `stopProp
 
 This is a diagram from W3 (those are the people who decide how Javascript works, how the browsers work, and how events happen) 👇
 
-![event phases diagram](./340.png)
+![event phases diagram](./340.webp)
 
 If you have an element that is very low in the DOM, like a `td` (or in our case, a button), and we are listening on the `td`, when someone makes a click, we actually are clicking on the document, then clicking on the html, then the body, the table, and then finally end up clicking the button.
 
@@ -271,7 +271,7 @@ That means that if we want to listen for a click on the window first and then st
 
 To do that, we need to add a third argument to `addEventListener`.
 
-![mozilla website screenshot showing .addEventListener information](./341.png)
+![mozilla website screenshot showing .addEventListener information](./341.webp)
 
 This can be confusing because `addEventListener` has 3 different ways to call it.
 
@@ -279,11 +279,11 @@ Typically, the first one is the most modern way to call it.
 
 It used to be that `addEventListener` took a boolean as the 3rd parameter which specified whether to use capture or not.  But now, they have an `options` object that needs to be passed through.
 
-![different function calls you can do on .addEventListener](./342.png)
+![different function calls you can do on .addEventListener](./342.webp)
 
 We will be passing the `options` object which has a few options such as capture.
 
-![different parameter options you can pass to .addEventListener](./343.png)
+![different parameter options you can pass to .addEventListener](./343.webp)
 
 Go to the `window.eventListener` and pass in `options` as the 3rd parameter.
 
@@ -306,11 +306,11 @@ Inside of `handleBuyButtonClick`, at the beginning of the function log "You clic
 
 Now, if you click on the button, you will see that first it says "You clicked on a button" and then it says "YOU CLICKED THE WINDOW".
 
-![browser console output showing event logs for clicking a button](./344.png)
+![browser console output showing event logs for clicking a button](./344.webp)
 
 If you uncomment `{ capture: true }` on the window eventListener, when you refresh the page and click the button, you will first get the window log and then the button.
 
-![browser console output showing event logs for clicking a window](./345.png)
+![browser console output showing event logs for clicking a window](./345.webp)
 
 The order at which the events are fired goes top down, rather than bubbling up.
 
@@ -326,7 +326,7 @@ That will allow us to stop the event from propagating down, rather than bubbling
 
 Now if you click a button, you will see that the `handleBuyButtonClick()` will never be run.
 
-![rendered page showing buttons and browser console output showing clicked event logs](./346.png)
+![rendered page showing buttons and browser console output showing clicked event logs](./346.webp)
 
 All of that is good to know, but the capture functionality does not come up very often in day to day development, but it is often an interview question about how the intricacies of events work.
 
@@ -381,7 +381,7 @@ window.addEventListener("click", function(event) {
 
 If you refresh the HTML page and click somewhere you should see something like the following 👇
 
-![browser console showing clicked window events](./1462.png)
+![browser console showing clicked window events](./1462.webp)
 
 The properties we logged to the console tell us what we clicked, the type of event (a click) and if the event is going to bubble or not.
 
@@ -420,13 +420,13 @@ photoEl.addEventListener("mousemove", function(e) ...
 
 Now, whenever you move your mouse anywhere over the image, that event is fired millions of times because it is triggered on every movement of the mouse.
 
-![browser console output showing mouseMove events](./348.png)
+![browser console output showing mouseMove events](./348.webp)
 
 Add `console.count(e.currentTarget);`.
 
 That will tell us how often something has fired on that specific thing.
 
-![browser console output showing the currentTarget of the mouse](./349.png)
+![browser console output showing the currentTarget of the mouse](./349.webp)
 
 There is also `mouseenter` events which only get triggered when you leave and enter an element.
 
@@ -453,7 +453,7 @@ photoEl.addEventListener("mousemove", function() {
 
 When you hover over the image, you should see 👇
 
-![rendered page showing buttons and an image and browser console output of img currentEvent logs](./351.png)
+![rendered page showing buttons and an image and browser console output of img currentEvent logs](./351.webp)
 
 It is exactly the same thing.
 

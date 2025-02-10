@@ -31,7 +31,7 @@ Create a file `events.js` (if it's not already there).
 
 If you open the html file, you should see the button and when you click it, nothing should happen.
 
-![button showing click me!](./316.png)
+![button showing click me!](./316.webp)
 
 In order to attach event listeners, you first need to select the element you want to attach it to.
 
@@ -68,7 +68,7 @@ In the example above, `function() { }` is the second argument that we have passe
 
 Now, each time you click the button, you will see that message logged in the console.
 
-![browser console output showing it got clicked!!! 8 times](./317.png)
+![browser console output showing it got clicked!!! 8 times](./317.webp)
 
 _NOTE: For the click event on a button, you don't have to worry about thinking about keyboard events, if the user hits enter to click the button instead of click it, because it's a standard button, the browser will still trigger the click event._
 
@@ -246,7 +246,7 @@ const buyButtons = document.querySelectorAll("button.buy");
 
 This gives us a node list of all of the buttons.
 
-![browser console output of a nodelist of buttons from .querySelectorAll](./1451.png)
+![browser console output of a nodelist of buttons from .querySelectorAll](./1451.webp)
 
 You might think, why can't we just go ahead and take our buy buttons and add an event listener of click like so 👇
 
@@ -262,7 +262,7 @@ So we have our elements, we listened for them, and then when that happens, we pa
 
 You should see the following error when you reload the HTML page and look at the console. 👇
 
-![browser console output error: Uncaught typeError: buyBottons.addEventListener is not a function](./319.png)
+![browser console output error: Uncaught typeError: buyBottons.addEventListener is not a function](./319.webp)
 
 The error is telling us that the buyButtons does not have the method `addEventListener`.
 
@@ -274,7 +274,7 @@ console.log(buyButtons);
 
 If you ever want to see what all of the different methods are that are available on a variable you can look at the prototype.
 
-![browser console showing the methods on the button prototype](./1452.png)
+![browser console showing the methods on the button prototype](./1452.webp)
 
 You will notice that `addEventListener` is not there.
 
@@ -312,7 +312,7 @@ buyButtons.forEach(function(buyButton)) {
 
 If you run that, you should see all the buy buttons logged in the console.
 
-![browser console output showing all the buttons](./322.png)
+![browser console output showing all the buttons](./322.webp)
 
 Anything you put in our `forEach` loop will happen 10 times, once per button.
 
@@ -327,7 +327,7 @@ buyButtons.forEach(function(buyButton) {
 
 If you refresh the page, you will see the "Binding the buy button" text was triggered 10 times and if you click each of the buttons, you should see the text BUYING ITEM logged 10 times.
 
-![browser console output showing binding to button event messages and buying item event message](./323.png)
+![browser console output showing binding to button event messages and buying item event message](./323.webp)
 
 Similarly, if you want to remove the event listener from each of those, you have to loop over each of them as well.
 

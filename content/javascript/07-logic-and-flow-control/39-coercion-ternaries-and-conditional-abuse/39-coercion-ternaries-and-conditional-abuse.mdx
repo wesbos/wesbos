@@ -62,7 +62,7 @@ Let's say you have a middle variable that is assigned an empty string, like so �
 const middle = "";
 ```
 
-![browser console output of bang checks](./389.png)
+![browser console output of bang checks](./389.webp)
 
 When you put 1 bang inmfront of it, it gave us the opposite which was true.
 
@@ -108,11 +108,11 @@ const sentence = `You have ${count} ${word} in your cart`;
 console.log(sentence);
 ```
 
-![browser console output showing you have 2 items in your cart](./390.png)
+![browser console output showing you have 2 items in your cart](./390.webp)
 
 If you changes `count` to be 1, it would return the following sentence 👇
 
-![browser console output showing you have 1 item in your cart](./391.png)
+![browser console output showing you have 1 item in your cart](./391.webp)
 
 The if statement that you wrote above is a bit verbose.. you first have to declare an empty variable and then update it. What we can do, if it's a simple `if` `else` like in this example, you can turn it into a shorthand if statement with **ternary**.
 
@@ -135,7 +135,7 @@ const sentence = `You have ${count} ${word} in your cart`;
 console.log(sentence);
 ```
 
-![browser console output showing you have 0 items in your cart](./392.png)
+![browser console output showing you have 0 items in your cart](./392.webp)
 
 You should see that it works.
 
@@ -214,7 +214,7 @@ Now inside each function, add the code above 👆 with the corresponding functio
 
 What is cool about this is if you refresh the page and look in the console, you will see each one running in order 👇
 
-![browser console showing output from various check functions](./393.png)
+![browser console showing output from various check functions](./393.webp)
 
 Now if we put an else like so, and make one of the checks fail (modify one to return false) like so 👇
 
@@ -232,7 +232,7 @@ if (check1() && check2() && check3()) {
 
 When you run in the browser you should see the following 👇
 
-![browser console showing output from various check functions](./394.png)
+![browser console showing output from various check functions](./394.webp)
 
 Did the third check ever run?
 

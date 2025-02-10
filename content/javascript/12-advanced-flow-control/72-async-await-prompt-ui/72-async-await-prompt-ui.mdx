@@ -12,7 +12,7 @@ In this lesson we will be working more with promises and async await to build a 
 
 A pretty common thing to do in JavaScript is when someone clicks a button or something happens on the page, you want to pop up a little box, ask them for something, and then go ahead and get that data back and display it on the page somehow.
 
-![what is your name diaglog box](./1076.png)
+![what is your name diaglog box](./1076.webp)
 
 There is a prompt that is built into the browser, but the problem with that prompt if you can only have one input box.
 
@@ -172,7 +172,7 @@ Call `ask` directly from the console, and pass in an options object as an argume
 ask({ title: 'does this work' });
 ```
 
-![calling ask function from console](./1077.png)
+![calling ask function from console](./1077.webp)
 
 As you can see, we have the form, with a fieldset and label containing the title so we know that it works so far.
 
@@ -199,7 +199,7 @@ Let's do that last step first.
 document.body.appendChild(popup);
 ```
 
-![adding required html code with form tag](./1078.png)
+![adding required html code with form tag](./1078.webp)
 
 Let's get that popup showing up so we have a visual.
 
@@ -207,7 +207,7 @@ If you go to our CSS, you will see that we have opacity of 0 on the `popup` clas
 
 The reason Wes has created a **CSS custom property** (or variable as it is referred to in CSS) to store the opacity value which we can then reference using the variable.
 
-![define the popup class styles](./1079.png)
+![define the popup class styles](./1079.webp)
 
 Now when we go to the popup with class of `open`, it will know to update the value of the opacity variable everywhere that it is used.
 
@@ -220,7 +220,7 @@ popup.classList.add('open');
 
 When we click it, as you see, it is not fading itself in, which is a bit of a problem. That is back to the whole event loop that we talked about a few videos ago.
 
-![making the does this work popup appear on the screen](./1080.png)
+![making the does this work popup appear on the screen](./1080.webp)
 
 The reason it is not animating itself in is because it queues up the "add a class of `popup`" and "add a class of `open`" sort of at the same time.
 
@@ -290,7 +290,7 @@ Now that should work exactly the same way as it did before when you call `ask({t
 
 Try opening Firefox and testing it there to see if it works.
 
-![opening different browser to see if it work there](./1081.png)
+![opening different browser to see if it work there](./1081.webp)
 
 GO back to our fieldset and put the rest of the inputs there.
 
@@ -310,7 +310,7 @@ popup.insertAdjacentHTML(
 
 If you refresh the page, you should see an input with the button.
 
-![does this work popup with an input and submit button](./1082.png)
+![does this work popup with an input and submit button](./1082.webp)
 
 If you try to enter a value into the input and hit submit, you will see that the page refreshed and that we get the value entered in the query string of the url.
 
@@ -339,23 +339,23 @@ We are getting an error.
 
 > Uncaught (in promise) DOMException: Failed to execute 'appendChild' on 'Node': This node type does not support this method.
 
-![Uncaught (in promise) DOMException: Failed to execute 'appendChild' on 'Node'](./1083.png)
+![Uncaught (in promise) DOMException: Failed to execute 'appendChild' on 'Node'](./1083.webp)
 
 Why is that happening?
 
 Let's debug by logging the value of `popup.firstChild` before we call `appendChild` on it.
 
-![debug the logging value of popup.firstChild](./1084.png)
+![debug the logging value of popup.firstChild](./1084.webp)
 
 As you can see, it is returning text node.
 
 If you scroll up to our code, you will see that where we created the fieldset using backticks, we had the fieldset start on a new line.
 
-![code where fieldset is defined using backticks](./1085.png)
+![code where fieldset is defined using backticks](./1085.webp)
 
 If you just modify the code so that the fieldset starts on the same line as the backtick, it will work.
 
-![modify the fieldset starts on same line as the backtick](./1087.png)
+![modify the fieldset starts on same line as the backtick](./1087.webp)
 
 What happened is when we had the fieldset start on a new line, the new line was treated as a text node.
 
@@ -367,7 +367,7 @@ Leave the fieldset on the separate line and then modify the code to be `popup.fi
 
 That fixes it!
 
-![does this work diaglog box fixed](./1089.png)
+![does this work diaglog box fixed](./1089.webp)
 
 Let's also fix the fieldset so it's not on it's own line because that was sloppy formatting.
 
@@ -395,11 +395,11 @@ popup.addEventListener("submit", function(e) {
 });
 ```
 
-![typing wes text in the input](./1090.png)
+![typing wes text in the input](./1090.webp)
 
 Next we want to take the value out of the input and resolve it. We have access to the `resolve` function bcause it passed as a parameter.
 
-{/* TODO: where did this image go? ![](./1091.png) */}
+{/* TODO: where did this image go? ![](./1091.webp) */}
 
 Because of the scope of our promise callback, the `resolve` function is available to us in the higher function.
 
@@ -412,7 +412,7 @@ popup.addEventListener("submit", function(e) {
 });
 ```
 
-![form with popup and open class in console](./1092.png)
+![form with popup and open class in console](./1092.webp)
 
 As you can see, the target is the form.
 
@@ -427,7 +427,7 @@ popup.addEventListener("submit", function(e) {
 
 As you can see, it returns the input with a name of input.
 
-![input with type text](./1093.png)
+![input with type text](./1093.webp)
 
 Remember, anytime an input has a name property, it will be available via the property on the form.
 
@@ -442,7 +442,7 @@ popup.addEventListener("submit", function(e) {
 
 If you refresh the page and try it by calling `ask({title:'does it work', cancel:true})` in the console, entering a value in the input and pressing submit, you should see the promise in the console with the resolved value.
 
-![call `ask({title:'does it work', cancel:true})` in console, typing the value and pressing submit, we see the promise in console with resolved value](./1094.png)
+![call `ask({title:'does it work', cancel:true})` in console, typing the value and pressing submit, we see the promise in console with resolved value](./1094.webp)
 
 If we wanted to get the actual data from the input, we could just call `ask` with `await` in front of it from the console, as shown below 👇
 
@@ -450,11 +450,11 @@ If we wanted to get the actual data from the input, we could just call `ask` wit
 await ask({ title: 'does it work', cancel: true })
 ```
 
-![use await in front of ask function to get the resolved value directly](./1095.png)
+![use await in front of ask function to get the resolved value directly](./1095.webp)
 
 Now if you try pressing the submit button again, it doesn't really do anything, but that event listener is still there. You can tell that it is still there by adding a log of "Submitted" to the handler.
 
-![pressing the submit button again wont do anything as no event listener is there](./1096.png)
+![pressing the submit button again wont do anything as no event listener is there](./1096.webp)
 
 One neat thing about `addEventListener` is you could remove the event listener for submitted as soon as it is resolved.
 
@@ -562,7 +562,7 @@ const buttons = document.querySelectorAll('[data-question]');
 console.log(button);
 ```
 
-![selecting the buttons using document.querySelectorAll](./1097.png)
+![selecting the buttons using document.querySelectorAll](./1097.webp)
 
 As you can see we get a node list of buttons.
 
@@ -580,7 +580,7 @@ function askQuestion(e) {
 }
 ```
 
-![attaching the event listener to each of the button](./1098.png)
+![attaching the event listener to each of the button](./1098.webp)
 
 As you can see, when we click the button we get the event.
 
@@ -598,11 +598,11 @@ async function askQuestion(e) {
 }
 ```
 
-![button submitted click resulting in logging the typed value in console](./1099.png)
+![button submitted click resulting in logging the typed value in console](./1099.webp)
 
 As you can see, when you click the popup for name and enter a name, we get the value back.
 
-![adding data-cancel attribute to button](./1100.png)
+![adding data-cancel attribute to button](./1100.webp)
 
 Now we need to check if someone has passed the `data-cancel` attribute.  To do this, we need to pass `cancel` to the options object we are passing to `ask`.
 
@@ -619,7 +619,7 @@ console.log(button.dataset);
 
 If you refresh the page and click the age button you will see `button.dataset` logged to the console.
 
-![clicking age button logs `button.dataset` to console](./1101.png)
+![clicking age button logs `button.dataset` to console](./1101.webp)
 
 Why is `cancel` an empty string?
 
@@ -695,7 +695,7 @@ const answer = await ask({
 
 _NOTE: In the video, Wes pauses it to specify that he could have used `button.hasAttribute('data-cancel');` to check for this but he decided to leave this in the video because it is a good lesson on how to check if a property on an object exists, regardless of which value it is set to._
 
-![instructions for `data-cancel` attribute](./1102.png)
+![instructions for `data-cancel` attribute](./1102.webp)
 
 If you refresh the page, that should now work.
 
@@ -724,7 +724,7 @@ For example, let's say someone is going through a form and you want to popup som
 
 Let's say we had an array of questions like you see in the image below.
 
-![array of questions in code](./1103.png)
+![array of questions in code](./1103.webp)
 
 How would we ask them in series?
 
@@ -748,7 +748,7 @@ We have to use the promise syntax because we are not in an async function where 
 
 If you refresh the page and try that, you will see that the questions are asked out of order. What s happening is there are actually three popups on the page at the same time.
 
-![questions asked in sequence in the html elements tab](./1104.png)
+![questions asked in sequence in the html elements tab](./1104.webp)
 
 That is not a good solution, we do not want to pop them all up at once.
 
@@ -763,7 +763,7 @@ console.log(qPromises);
 
 If you refresh the page and look at that in the console, you will see we have an array of three promises which have not been answered yet.
 
-![array of 3 pending promises, which needs to be answered yet](./1105.png)
+![array of 3 pending promises, which needs to be answered yet](./1105.webp)
 
 What we can do is loop over the array and for each one return a promises to get an array of promises.
 
@@ -790,7 +790,7 @@ questions.forEach(async function() {
 })
 ```
 
-![script executed immediately without waiting for other question to resolve first](./1106.png)
+![script executed immediately without waiting for other question to resolve first](./1106.webp)
 
 That did not wait for anything right? They will resolve, but they all three ran at the same time.
 
@@ -816,7 +816,7 @@ askMany();
 
 Now when you refresh the page, you will see the questions come up one after the other and are submitted sequentially as well.
 
-![making async map function to make questions come up one after the another and submitted sequentially](./1107.png)
+![making async map function to make questions come up one after the another and submitted sequentially](./1107.webp)
 
 The reason for that is unlike `map` and `foreach`, `for of` allows you to pause a loop by awaiting something inside of it, which is great.
 
@@ -853,7 +853,7 @@ go();
 
 Now when you refresh the page and look at the results, you should see that we get our array back.
 
-![clicking on submit will log the array in console](./1108.png)
+![clicking on submit will log the array in console](./1108.webp)
 
 We could take things one step further and refactor the function slightly to push the await of the callback directly.
 

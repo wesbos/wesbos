@@ -65,7 +65,7 @@ However, that is not valid JavaScript. If you try running it in the console you 
 
 > SyntaxError: Function statements require a function name
 
-![declare function without name throws error](./function-requires-function-name-error.png)
+![declare function without name throws error](./function-requires-function-name-error.webp)
 
 Anonymous functions are only valid in some use cases, such as using them in **callbacks** (we will learn more about that later) as well as in an **IIFE (immediately invoked function expression)**. This example was not a valid use case.
 
@@ -92,7 +92,7 @@ In the code above 👆, we have taken the anonymous function and stuck it in a v
 
 If you refresh the page, you will see that in the console, we have `doctorize()` available to us, and we can call it like we did in previous videos.
 
-![assigning function to a variable makes function as anonymous](./assigning-function-to-a-variable.png)
+![assigning function to a variable makes function as anonymous](./assigning-function-to-a-variable.webp)
 
 Having the ability to store a function in a variable is what leads people to say functions are _"first-class citizens"_.
 
@@ -110,7 +110,7 @@ const doctorize = function (firstName) {
 };
 ```
 
-![does not exists function call error](./does-not-exist-not-defined-error-in-console.png)
+![does not exists function call error](./does-not-exist-not-defined-error-in-console.webp)
 
 In our case, it does now tell you it happens inside of doctorize on line 12.
 
@@ -221,7 +221,7 @@ This function will take in inches and return centimeters.
 
 Let's try it out in the browser.
 
-![regular function named inchToCM with inches as parameters and return value](./regular-function-definiation-with-calling.png)
+![regular function named inchToCM with inches as parameters and return value](./regular-function-definiation-with-calling.webp)
 
 This is a pretty simple function, but it still takes up 4 lines of code.
 
@@ -233,7 +233,7 @@ function inchToCM(inches) {
 }
 ```
 
-![regular function with direct return value](./regular-function-with-direct-return-value.png)
+![regular function with direct return value](./regular-function-with-direct-return-value.webp)
 
 _Note: You may notice in the above 👆 screenshot that the line of code with `return cm;` is now greyed out. That is because that code will never be reached, since we are returning in the line of code above it. When you return from a function, the function stops running._
 
@@ -351,7 +351,7 @@ Save the code from above 👆 and refresh `index.html` in the browser.
 
 Open the console and test the function.
 
-![add function with optional b argument](./optional-functional-argument-in-console.png)
+![add function with optional b argument](./optional-functional-argument-in-console.webp)
 
 You might notice that dev tools is giving us an annotation `?b` in `ƒ(a,?b)` as shown above.
 
@@ -421,7 +421,7 @@ function makeABaby(first, last) {
 
 It works!
 
-![makeABaby accepting first and last name and returning a baby object having name and age properties](./function-accepting-first-last-name-with-returning-object.png)
+![makeABaby accepting first and last name and returning a baby object having name and age properties](./function-accepting-first-last-name-with-returning-object.webp)
 
 How could you convert this to an arrow function?
 
@@ -477,7 +477,7 @@ To make it an implicit return, get rid of the curly brackets and the `return` ke
 const makeABaby = (first, last) => { name: `${first} ${last}`, age: 0};
 ```
 
-![error in making implicit return and removing curly brackets](./implicit-return-error-in-console.png)
+![error in making implicit return and removing curly brackets](./implicit-return-error-in-console.webp)
 
 However, you will see the above 👆 error if you try to run the code like that.
 
@@ -574,7 +574,7 @@ If we take a look at the function `console.log` in the browser, we will see that
 
 If you type `console` into the console and expand it, you will see that there are all kinds of things within it. 👇
 
-![printing console word includes many methods along with it](./printing-console-in-console.png)
+![printing console word includes many methods along with it](./printing-console-in-console.webp)
 
 Scroll down to log, and the little ƒ you see means that it's actually a function 👉
 
@@ -603,7 +603,7 @@ Next, type `wes.sayHi()` and hit Enter.
 
 You should see the following 👇
 
-![wes is an object here and sayHi method it has which gets called](./calling-a-method-of-object-in-console.png)
+![wes is an object here and sayHi method it has which gets called](./calling-a-method-of-object-in-console.webp)
 
 `wes.sayHi()` is a **method**. You make it a property on your object and you set it to a function.
 
@@ -684,7 +684,7 @@ Modify the `sayHi()` method to add `console.log(this);` and run it in the browse
 
 You will see that on the line in our code that we logged, like `50`, the value of `this` has been returned.
 
-![sayHi method logs the whole object, as this points to the whole object here](./this-keyword-in-method.png)
+![sayHi method logs the whole object, as this points to the whole object here](./this-keyword-in-method.webp)
 
 ((`this`)) is equal to the object that it was called against.
 
@@ -703,7 +703,7 @@ const wes = {
 
 You would see it immediately fills the value of the name property. 👇
 
-![access the individual properties of object using this operator](./accessing-individual-object-properties-using-this-operator.png)
+![access the individual properties of object using this operator](./accessing-individual-object-properties-using-this-operator.webp)
 
 That will not work in an arrow function because they take the parent scope of `this`. We will explain that in the future.
 
@@ -750,7 +750,7 @@ console.log(button);
 
 Refresh the page and open the console to see that it works.
 
-![selecting a button element using querySelector and printing in console](./html-button-element-in-console.png)
+![selecting a button element using querySelector and printing in console](./html-button-element-in-console.webp)
 
 Next, listen for a click on that button as shown below
 
@@ -763,7 +763,7 @@ When that click happens, we can pass it to any function that we want. in this ca
 
 Now, every time you click it, it will say "HEY WESSSS" 👇
 
-![using object method as click handler in console](./object-method-as-click-handler-in-console.png)
+![using object method as click handler in console](./object-method-as-click-handler-in-console.webp)
 
 What is happening there is that `.addEventListener()` is an **event listener** that we are listening for a click on, and the callback function is `wes.sayHi()`.
 
@@ -792,7 +792,7 @@ button.addEventListener("click", function () {
 });
 ```
 
-![passing anonymous function as callback function in button click listener](./anonymous-function-as-callback-in-console.png)
+![passing anonymous function as callback function in button click listener](./anonymous-function-as-callback-in-console.webp)
 
 And it works just fine when you press it.
 

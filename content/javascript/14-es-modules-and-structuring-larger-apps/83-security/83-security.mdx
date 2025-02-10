@@ -68,7 +68,7 @@ You may want to allow people to put images tags, to be able to use strong, empha
 
 We could do something like add a style tag and make the background red. Then we can tilt the entire page.
 
-![add background as red color and tilt the entire page](./1312.png)
+![add background as red color and tilt the entire page](./1312.webp)
 
 That is not something you would want someone doing that and that is probably the least of your worries, someone goofing like that.
 
@@ -78,7 +78,7 @@ Anytime a user is able to run JavaScript on your page, then you are in trouble.
 
 Let's try it by adding a script tag and seeing what happens.
 
-![anytime user able to run javascript in your page then you are in trouble](./1313.png)
+![anytime user able to run javascript in your page then you are in trouble](./1313.webp)
 
 As you can see, even though we added a script tag with an alert, there is no alert popping up. That is because script tags will not run.
 
@@ -86,11 +86,11 @@ As you can see, even though we added a script tag with an alert, there is no ale
 
 But what you can do is take an image tag and hijack the onload event of the image tag and then within it we can add any JavaScript we want.
 
-![image event hijacking](./1314.png)
+![image event hijacking](./1314.webp)
 
 If Facebook allowed that, then you would be able to run code on anyone who is viewing your Facebook profile. That is not secure.
 
-![send $1000000 in alert using javascript code](./1315.png)
+![send $1000000 in alert using javascript code](./1315.webp)
 
 It is **_not good_** to have someone else run JavaScript on your page because then they become a puppet of your own account and they can do things like click buttons as if they are you, or grab your messages and send fetch requests back to their own server.
 
@@ -100,7 +100,7 @@ Let's say you set the source of the image tag to be an image that doesn't exist.
 
 Using the onerror attribute, we can trigger an alert like so 👇
 
-![using onerror attribute we can trigger an alert like this one](./1316.png)
+![using onerror attribute we can trigger an alert like this one](./1316.webp)
 
 That is how people do **cross site scripting**.
 
@@ -114,13 +114,13 @@ So how can you **sanitize** user data?
 
 Luckily there is a very easy library to use called **DOMPurify**.
 
-![npm package DOMPurify](./1317.png)
+![npm package DOMPurify](./1317.webp)
 
 It works by taking in a string and scrubbing it of all the security issues for us.
 
 Wes has already npm installed DOMPurify, and at the top of the file he has imported the `sanitize` method from DOMPurify.
 
-![import sanitize as named import](./1318.png)
+![import sanitize as named import](./1318.webp)
 
 All we need to do to fix the code is modify the input event listener function to use the sanitize method.
 
@@ -135,13 +135,13 @@ In the code above, we are simply replacing line breaks with a `<br>` tag so the 
 
 If you try adding an alert in the onload attribute of the image tag again, nothing will happen this time.
 
-![try add an alert in onload attribute, nothing happens](./1320.png)
+![try add an alert in onload attribute, nothing happens](./1320.webp)
 
 Why is that?
 
 Open the dev tools and look at the code in the elements tab. You will see that the onload and onerror attributes have been stripped out, as well as all the other inline event handlers on image tags.
 
-![opening dev tools and looking at the element tab, we see onload and onerror attribute have been stripped out](./1319.png)
+![opening dev tools and looking at the element tab, we see onload and onerror attribute have been stripped out](./1319.webp)
 
 If yu tried to add a style tag, it would still work however.
 
@@ -149,7 +149,7 @@ Why is that? That is because the style tag, if you look at it in the console is 
 
 To fix that, we need to pass `options` to DOMPurify. The default simply strip the nasty JavaScript stuff out of there but there are lots of options you can use.
 
-![passing attribute as option to DOMPurify.sanitize function](./1323.png)
+![passing attribute as option to DOMPurify.sanitize function](./1323.webp)
 
 The options Wes usually chooses are `FORBID_TAGS` and `FORBID_ATTR`.
 
@@ -168,7 +168,7 @@ input.addEventListener("input", () => {
 
 Now if you try to use the style tag, you will see that it has been completely removed.
 
-![style tag is completely removed](./1324.png)
+![style tag is completely removed](./1324.webp)
 
 That the basics of security.
 

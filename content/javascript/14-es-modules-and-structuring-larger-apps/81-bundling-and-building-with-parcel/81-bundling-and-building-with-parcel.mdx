@@ -34,17 +34,17 @@ We talked about **Babel** earlier, which will transpile newer JavaScript code an
 
 There are a bunch of different bundlers out there, and generally a bundler will include both a bundler and a dev server. In this course, whenever we used the command `parcel start`, that was to start the dev server that is part of the Parcel bundlers.
 
-![parcel bundler](./1263.png)
+![parcel bundler](./1263.webp)
 
 Parcel is a popular bundler.
 
 There is a new one called Pika which is newer.
 
-![pika bundler](./1264.png)
+![pika bundler](./1264.webp)
 
 Webpack is the most popular one at the moment, but hard to get up and running in Wes' opinion.
 
-![webpack bundler - the most popular one](./1265.png)
+![webpack bundler - the most popular one](./1265.webp)
 
 Both Parcel and Webpack also do image compression which is neat.
 
@@ -68,11 +68,11 @@ A `package.json` is a file that contains information about your dependencies, wh
 
 If you don't have a package.json, you can get one by typing `npm init`. We have done this a few times in the course already.
 
-![type npm init command to initialize a package.json](./1266.png)
+![type npm init command to initialize a package.json](./1266.webp)
 
 You will be prompted to answer a bunch of questions, starting with the name of the package, which we will call `dadjokes`, and then it asks you a bunch of other questions. You can just hit enter to select the default answer for each question.
 
-![package.json after answering a bunch of questions](./1267.png)
+![package.json after answering a bunch of questions](./1267.webp)
 
 ```json
 {
@@ -135,7 +135,7 @@ After a couple of minutes it will finish installing and it will be listed under 
 }
 ```
 
-![add parcel-bundler in devDependencies](./1268.png)
+![add parcel-bundler in devDependencies](./1268.webp)
 
 _(Note: if you see Parcel 2 as your Parcel version that is fine, it will still work!)_
 
@@ -167,11 +167,11 @@ To run parcel, you just call it and then pass it the entry file which is `index.
 
 Now in the terminal, you can type `npm start` and that will run `parcel index.html` for us. You should see a message in the terminal that Parcel is running on localhost:1234.
 
-![type npm start command that will run parcel index.html](./1269.png)
+![type npm start command that will run parcel index.html](./1269.webp)
 
 Open up the server, and take a look at the error in the console. We have run into this issue before.
 
-![uncaught reference error - regeneratorRuntime is not defined](./1270.png)
+![uncaught reference error - regeneratorRuntime is not defined](./1270.webp)
 
 
 > handlers.js:7 Uncaught ReferenceError: regeneratorRuntime is not defined
@@ -248,19 +248,19 @@ npm run build
 
 As Parcel is working you will see the terminal updating and then when it is finished you should see a message similar to the one below 👇
 
-![type npm run build command in command prompt](./1271.png)
+![type npm run build command in command prompt](./1271.webp)
 
 What Parcel has does is it created a `dist` folder for us. If you look at that folder, there will be a lot of files.
 
-![when parcel done building, it will create a dist folder](./1272.png)
+![when parcel done building, it will create a dist folder](./1272.webp)
 
 If you open up the `index.html` file, you will see that Parcel has taken the file and compressed it as much as it can.
 
-![percel compressed the index.html file](./1273.png)
+![percel compressed the index.html file](./1273.webp)
 
 It also swapped out the `jokes.js` file for us.
 
-![it has also swapped out the jokes.js file](./1274.png)
+![it has also swapped out the jokes.js file](./1274.webp)
 
 In the `dist` folder we also have all these different JavaScript files, which is our code.
 
@@ -272,7 +272,7 @@ For example, if there is an error that occurs in the JavaScript code, the bundle
 
 Parcel will also compile all of the CSS for us.
 
-![parcel also compile all the css for us](./1275.png)
+![parcel also compile all the css for us](./1275.webp)
 
 ```html
 <script src="jokes.js" type="module"></script>
@@ -288,11 +288,11 @@ You want to run the Parcel build every time you change your application.
 
 If you were to rerun `npm run build`, you will notice that the numbers in the files stay the same.
 
-![if we re run the npm run build command, you will notice number of files are the same](./1276.png)
+![if we re run the npm run build command, you will notice number of files are the same](./1276.webp)
 
 If we were to change some of our files, like adding a `console.log('hey')` at the bottom of `jokes.js`, and rerun the build, you will see that the numbers in the `jokes` JavaScript file have changed.
 
-![if we add a log statement at the bottom of jokes.js and re run the build we see number in the jokes javascript file have changed](./1277.png)
+![if we add a log statement at the bottom of jokes.js and re run the build we see number in the jokes javascript file have changed](./1277.webp)
 
 Parcel is able to detect when your files have changed and it will only rerun the build on those files. The random keys that you see in the file name are used to bust any caches that your users might have of previous builds.
 

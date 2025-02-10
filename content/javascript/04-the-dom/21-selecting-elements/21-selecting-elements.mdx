@@ -46,13 +46,13 @@ If you wanted to load this JavaScript into the `index.html`, you might think you
 
 Let's try that. Reload the page, which will cause the JavaScript to run, then open up the dev tools and take a look at what was logged in the console. It should be `null`.
 
-![browser console showing output of null](./223.png)
+![browser console showing output of null](./223.webp)
 
 What we are doing in the JavaScript code we just added is we are trying to select something on the page, and then log it.
 
 If you try to run `document.querySelector('p')` in the console, it will return an element like so 👇
 
-![browser console showing output of the element p](./224.png)
+![browser console showing output of the element p](./224.webp)
 
 Why does it work in the console, but not when we loaded it via JavaScript?
 
@@ -111,7 +111,7 @@ In the example above 👆 we have selected something with a `p`.
 
 Both `querySelector()` and `querySelectorAll()` take one argument, which is the CSS selector. Those are almost the exact same selectors used in CSS.
 
-![querySelector being called with the selector 'p'](./225.png)
+![querySelector being called with the selector 'p'](./225.webp)
 
 If you open up the `index.html` in the browser, you will see we have grabbed a paragraph tag. When we log it, you will see we have the item there.
 
@@ -129,7 +129,7 @@ console.log(divs);
 
 If you reload `index.html` you will see that we get something in the console called a **NodeList**.
 
-![browser console showing a nodeList from querySelectorAll query](./226.png)
+![browser console showing a nodeList from querySelectorAll query](./226.webp)
 
 We will be learning about arrays in the future and NodeLists look a lot like arrays. It is a frequent interview question that you might hear, that a node list is not an array.
 
@@ -139,7 +139,7 @@ The short and skinny is that it does not have all the methods that an array does
 
 If you hover over the NodeList in the console, you will see that it is grabbing everything that matches the selector (`div`).
 
-![broswer console showing an expanded nodeList from querySelectorAll query when hovering over result in browser console](./227.png)
+![broswer console showing an expanded nodeList from querySelectorAll query when hovering over result in browser console](./227.webp)
 
 You can get more specific than using elements as selectors.
 
@@ -185,7 +185,7 @@ If you want to search inside of an element that you already selected, you can us
 const item2Image = item2.querySelector('img');
 ```
 
-![code snippet showing you how to use querySelector on an already selected element](./228.png)
+![code snippet showing you how to use querySelector on an already selected element](./228.webp)
 
 If you ever need to narrow down your focus as to where you are searching, you can do that in your selector, but you can also run `querySelector()` and `querySelectorAll()` on any other element and only search within it to limit the scope.
 

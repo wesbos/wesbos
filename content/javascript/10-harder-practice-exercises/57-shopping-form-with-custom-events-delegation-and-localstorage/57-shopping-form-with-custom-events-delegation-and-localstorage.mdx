@@ -11,13 +11,13 @@ category:
 
 In this lesson we will build a shopping list, where you can add items, check them off, and delete them.
 
-![building shopping list](./806.png)
+![building shopping list](./806.webp)
 
 Although you may have written something like this before, Wes has baked a lot of things that we need to learn about JavaScript into this simple example.
 
 We will be learning about emitting **custom events**, such as the one highlighted in the image below (if you don't know what a custom event is, don't worry, we will be learning about it).
 
-![learn about emitting custom events](./807.png)
+![learn about emitting custom events](./807.webp)
 
 We will also be learning about **event delegation**, how do you listen for clicks on things that happen in the future, as well as **DOM events**, and **localstorage**.
 
@@ -50,7 +50,7 @@ There are 2 ways to install Parcel on your machine. You can:
 
 To install Parcel globally on your machine, open the terminal and type `npm install -g parcel-bundler`. That will globally install Parcel for you, so that anytime you are in a terminal, Parcel will be available to you.
 
-![install parcel bundler globally on machine](./810.png)
+![install parcel bundler globally on machine](./810.webp)
 
 If you are on a Mac and you have trouble installing global modules on your command line, type `sudo` in front of the command like so `sudo npm install -g parcel-bundler`.  That will ask you for a password first.
 
@@ -60,9 +60,9 @@ Now in the terminal, cd into the Shopping List directory and then type `parcel i
 
 There will be a message in the terminal telling on which server it is running (usually localhost:1234).
 
-![start the server](./811.png)
+![start the server](./811.webp)
 
-![shopping list ui in browser](./812.png)
+![shopping list ui in browser](./812.webp)
 
 Let's get started. Open the `shopping.js` file, which should contain nothing.
 
@@ -73,7 +73,7 @@ There are a couple of things that need to happen. We need to:
 
 _Note: you may notice when you focus into the input to enter a shopping list, all these values of everything you have ever typed show up, like in the picture below. To fix that, you can go to the HTML, you can set autocomplete to false on either the input or the whole form. There is also an `autocapitialize` attribute which you can switch on or off._
 
-![search values on typing in input box](./813.png)
+![search values on typing in input box](./813.webp)
 
 ```html
 <form class="shopping" autocomplete="off">
@@ -99,7 +99,7 @@ The definition changes from framework to framework, but generally what people ar
 
 But what does that mean? Let's use this finished shopping list screenshot below as an example.
 
-![finished shopping list example](./814.png)
+![finished shopping list example](./814.webp)
 
 In this example, state is going to contain a list of all of your items, a list of those item ids, and whether they have been completed.
 
@@ -115,9 +115,9 @@ If you refresh the page and try to type an item in the input and hit submit, you
 
 However that is not what we want.
 
-![type eggs in input and click add item](./815.png)
+![type eggs in input and click add item](./815.webp)
 
-![?item=egg gets appended in url](./816.png)
+![?item=egg gets appended in url](./816.webp)
 
 Let's make a submit handler for that.
 
@@ -156,7 +156,7 @@ function handleSubmit(e) {
 
 If you refresh the page now, type in eggs and hit enter, you should get something like below in the console.
 
-![submitted!! in console log](./817.png)
+![submitted!! in console log](./817.webp)
 
 Why are we getting `undefined`?
 
@@ -164,7 +164,7 @@ Let's do a bit of debugging.
 
 Log of `e.currentTarget` in our handler, and then refresh the page. You should see the form element logged.
 
-![console log e.currentTarget](./818.png)
+![console log e.currentTarget](./818.webp)
 
 The reason we are getting `undefined` is because the `currentTarget` is the form, not the input and we want to get the text out of the input.  There are a couple ways we could do this.
 
@@ -174,11 +174,11 @@ We could write another query selector to grab it. However, because the input has
 <input type="text" name="item" id="item>
 ```
 
-![store the form as global variable](./819.png)
+![store the form as global variable](./819.webp)
 
 Take the form and store it as a global variable, called `temp1`, then add `console.dir(temp1)` to get every property inside of it.
 
-![console.dir(temp1) in console tab](./820.png)
+![console.dir(temp1) in console tab](./820.webp)
 
 Somewhere inside of all those properties is `item`.
 
@@ -186,7 +186,7 @@ Wes is having trouble finding it but we will demonstrate it with code.
 
 Modify the log of `console.log(e.currentTarget)` to `console.log(e.currentTarget.item)`.
 
-![modify the log of e.currentTarget to e.currentTarget.item](./821.png)
+![modify the log of e.currentTarget to e.currentTarget.item](./821.webp)
 
 As you can see, we now get the item, not the entire form itself.
 
@@ -203,7 +203,7 @@ function handleSubmit(e) {
 
 As you can see, now we can capture the value of eggs.
 
-![captured the value of eggs in console](./822.png)
+![captured the value of eggs in console](./822.webp)
 
 Next step is to store the data about the shopping item in the `items` array, but we cannot just store the straight up string, because we need to be able to store a bit more info about that item.
 
@@ -219,7 +219,7 @@ The name of the item is going to be our name variable.
 
 The id of the item just needs to be something unique. One trick that Wes likes to use is to use `Date.now()` as an ID, which works if you aren't creating more than one item per millisecond, which works for our case.
 
-![Date.now() in console](./823.png)
+![Date.now() in console](./823.webp)
 
 The third property will be `complete` which we will set to false when the item is added to the list.
 
@@ -255,7 +255,7 @@ console.log(`There are now ${items.length} in your state`);
 
 If you refresh the page and try adding a few items, you should see the count in our log increasing.
 
-![count logs increasing by adding more items](./824.png)
+![count logs increasing by adding more items](./824.webp)
 
 Next we need to clear the form. There are a few ways we can do this.
 
@@ -308,7 +308,7 @@ You can call `map` on the `names` array which will go over each of them and then
 
 That is what we will be doing with the `items` array.
 
-![calling map method on the names array](./825.png)
+![calling map method on the names array](./825.webp)
 
 ```js
 function displayItems() {
@@ -326,7 +326,7 @@ Refresh the page and test that out by adding a few items: egg, milk and then bee
 
 We pushed the item into state, and then once that is finished `displayItems` run and that loops over each item and returns a list item with each of them.
 
-![looping over the displayItems](./826.png)
+![looping over the displayItems](./826.webp)
 
 A couple of problems there...
 
@@ -341,7 +341,7 @@ console.log(html);
 
 Now as you can see, we are returned one string.
 
-![join method on html variable returns one string](./827.png)
+![join method on html variable returns one string](./827.webp)
 
 Take the list and set the innerHTML of it, within the `displayItems` function.
 
@@ -355,7 +355,7 @@ function displayItems() {
 
 Now when you type in an item and enter submit, you will see it displayed.
 
-![typing an item and submit will be displayed](./828.png)
+![typing an item and submit will be displayed](./828.webp)
 
 We need to add a bit more to our HTML like a delete button and a complete checkbox. Let's scaffold the HTML out a bit more for each item.
 
@@ -383,7 +383,7 @@ function displayItems() {
 
 If you refresh the page and try entering items, you should see something like the following 👇
 
-![shopping list view after adding some items](./829.png)
+![shopping list view after adding some items](./829.webp)
 
 We need to fix a few things here.
 
@@ -462,13 +462,13 @@ We need something to fire off an event about that data and we need to attach it.
 
 If we look at our HTML, we will probably fire off the event from this list. You could also fire it off from the form or the body, it doesn't matter that much.
 
-![firing off event from the ul list](./830.png)
+![firing off event from the ul list](./830.webp)
 
 At the bottom of the `handleSubmit` function, run `list.dispatchEvent()`. The `dispatchEvent` method lives on all DOM elements. You provide it a `CustomEvent`, which is a constructor in the browser.
 
 As you can see, it's just a function.
 
-![custom event log in console](./831.png)
+![custom event log in console](./831.webp)
 
 ```js
 new CustomEvent('PIZZAS HERE')
@@ -476,7 +476,7 @@ new CustomEvent('PIZZAS HERE')
 
 If you were to run it by passing the name of your event, as shown above, you should see something like the image below in the console.
 
-![running the custom event using new CustomEvent('PIZZAS HERE')](./833.png)
+![running the custom event using new CustomEvent('PIZZAS HERE')](./833.webp)
 
 It gives us the type of events, as well as any details about when it is fired.
 
@@ -504,7 +504,7 @@ list.addEventListener('itemsUpdated', (e) => {
 });
 ```
 
-![shopping list with elements in console](./834.png)
+![shopping list with elements in console](./834.webp)
 
 You can see all sorts of details such as the path, which is pretty neat because it shows you the path at which the events have bubbled through. It was first triggered on the `ul`, then bubbled up to the shopping list, then the `body`, `html`, `document` and then the `window`.
 
@@ -520,7 +520,7 @@ Localstorage is kind of like a mini database that lives in your browser. It allo
 
 If you go to the "Application" tab of the chrome developer tools and look at localstorage, and then click on the domain name, you won't see anything. However Wes has already completed it so he has values there. There is all this information in his localstorage about the items.
 
-![items stored in localStorage](./835.png)
+![items stored in localStorage](./835.webp)
 
 So what we want to do now is create a function that will mirror our data to localstorage.
 
@@ -548,7 +548,7 @@ The API is pretty simple.
 
 If you type in `localStorage` in the console, it will return to you everything that is in localstorage.
 
-![logging localStorage in console](./836.png)
+![logging localStorage in console](./836.webp)
 
 To set an item in localstorage, you can use `localStorage.setItem()` where you pass in the key and the value.
 
@@ -556,7 +556,7 @@ To get an item from localstorage, you can use `localStorage.getItem()` to which 
 
 If something funky is happening with localstorage, it's best to just clear it out and start fresh which you can do by clicking this button in the Applications tab.
 
-![clearning the localStorage if something wrong happens](./837.png)
+![clearning the localStorage if something wrong happens](./837.webp)
 
 So how are we going to save items to localstorage?
 
@@ -571,17 +571,17 @@ function mirrorToLocalStorage() {
 
 If you take a look, you will see `[object Object]`.. what is that? If you try to open it up, you can't, it's just the word object.
 
-![localStorage storing values as object Object](./838.png)
+![localStorage storing values as object Object](./838.webp)
 
 Why is that? That is because localstorage is text only. That means if you have an object or an array or a boolean, it will try to convert that item to text first before it puts it in.
 
 Every single type has a `.toString()` method, which will convert it to a string.
 
-![toString method converting array to string](./839.png)
+![toString method converting array to string](./839.webp)
 
 If you have an object, and you call `.toString()` on it, it just gives you `"[object Object]"`, which is not helpful at all.
 
-![calling toString() on an object](./840.png)
+![calling toString() on an object](./840.webp)
 
 That is what is happening here, because we are passing it an object, it is trying to convert it to a string which isn't very helpful because there is no data for that.
 
@@ -605,7 +605,7 @@ function mirrorToLocalStorage() {
 
 If you try to add some items now, you will see those changes reflected in localstorage.
 
-![items in localStorage stored accurately](./841.png)
+![items in localStorage stored accurately](./841.webp)
 
 In order to mirror everything to localstorage, we need another function that restores from localstorage when you load the page.
 
@@ -678,11 +678,11 @@ console.log(buttons);
 
 You should get 5.
 
-![number of buttons returns a nodelist of 5 on querying with querySelectorAll](./842.png)
+![number of buttons returns a nodelist of 5 on querying with querySelectorAll](./842.webp)
 
 However, if you move that code further up, above the event listener declarations, we get none.
 
-![moving the code above the event listener](./843.png)
+![moving the code above the event listener](./843.webp)
 
 Why is that?
 
@@ -690,7 +690,7 @@ Because when we run the code from a bit further up in the file, none of the rest
 
 If you throw a `debugger;` after  `console.log(buttons);` and refresh the page, you will see that when the debugger hits, there are no items yet.
 
-![using debbuger](./844.png)
+![using debbuger](./844.webp)
 
 That happen a bit later. So you may think it's safe to leave that code at the very bottom of the page. Let's try that.
 
@@ -744,13 +744,13 @@ list.addEventListeners('click', function(e) {
 
 If you refresh the page and then click anywhere on it, you will see that it thinks we are click on the span, even though we listened on the list.
 
-![event delegation](./845.png)
+![event delegation](./845.webp)
 
 Now if you click on the x next to an item, we listened on the list but we actually clicked on the button.
 
 `currentTarget` is the thing that you listened on and the `target` is the thing that you actually clicked on.
 
-![clicking the delete button](./847.png)
+![clicking the delete button](./847.webp)
 
 Now we need to check if what was clicked matches the button, using `e.target.matches('button')`. That will check if an element matches a CSS selector, which in this case is `button`, then we will delete the item by passing the delete method the id of that item.
 
@@ -800,7 +800,7 @@ Now when you look at the HTML, you should see the id is in the button.
 
 Pass that value to the `deleteItem` function.
 
-![html button id in the element tab](./848.png)
+![html button id in the element tab](./848.webp)
 
 Modify the code like below.
 
@@ -814,7 +814,7 @@ list.addEventListener("click", function(e) {
 
 Add a log for the id in the `deleteItem` function.
 
-![deleteItem function logging the id in console](./849.png)
+![deleteItem function logging the id in console](./849.webp)
 
 That works now, because when you click on the button, you take the value of the button and pass it as an argument to `deleteItem`, which then logs that argument.
 
@@ -830,7 +830,7 @@ That is the opposite, but we will flip it in a second.
 
 Now if you press the delete button next to an item, we get nothing.
 
-![pressing delete button next to item returns empty array](./850.png)
+![pressing delete button next to item returns empty array](./850.webp)
 
 If we change the code from `===` to `==` will it work?
 
@@ -854,7 +854,7 @@ Now you can add back the triple equals.
 
 Now when you click the button, you will get the item that needs to be removed.
 
-![on clicking the button, you need the item to be removed](./851.png)
+![on clicking the button, you need the item to be removed](./851.webp)
 
 ```js
 const newItems = items.filter(item => item.id !== id);
@@ -864,7 +864,7 @@ We actually want the opposite so modify the line of code as shown above 👆.
 
 If you were to click the delete button for an item now, and you had 12 items, you would only get 11 returned.
 
-![on cliking the delete button for an item, we are getting return with the remaining items](./852.png)
+![on cliking the delete button for an item, we are getting return with the remaining items](./852.webp)
 
 We need to get the new items into our items array. How can we do that?
 
@@ -954,7 +954,7 @@ if (e.target.matches('input[type="checkbox"]')) {
 
 Now when you check them, you should see "marking as complete" with the id logged to the console.
 
-![mark as complete in console](./853.png)
+![mark as complete in console](./853.webp)
 
 We are repeating ourselves a bit in our event delegator so refactor it as shown below 👇
 
@@ -1004,7 +1004,7 @@ itemRef.complete = !itemRef.complete;
 
 That should work because the opposite of true is false and vice versa. Thus, setting it to the bang version of itself should work.
 
-![usage of not operator in console](./854.png)
+![usage of not operator in console](./854.webp)
 
 Now all you have to do is dispatch the `itemsUpdated` event because after updating the items.
 
@@ -1017,7 +1017,7 @@ You will notice that if you try to enter an item and the check it, it looks like
 
 However if you go to the application tab, you will see that the localstorage values are updating.
 
-![LocalStorage getting updated along with all the events](./855.png)
+![LocalStorage getting updated along with all the events](./855.webp)
 
 What is going on?
 

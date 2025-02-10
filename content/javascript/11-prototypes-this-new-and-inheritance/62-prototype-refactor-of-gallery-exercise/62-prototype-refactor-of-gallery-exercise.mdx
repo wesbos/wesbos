@@ -25,7 +25,7 @@ console.log(gallery1, gallery2);
 
 Why? because the `Gallery()` function doesn't actually return anything.
 
-![Gallery() function not returning anything](./928.png)
+![Gallery() function not returning anything](./928.webp)
 
 If, however, we change it to use the `new` keyword, it will automatically return an instance of that gallery.
 
@@ -34,7 +34,7 @@ const gallery1 = new Gallery(document.querySelector('.gallery1'));
 const gallery2 = new Gallery(document.querySelector('.gallery2'));
 ```
 
-![gallery prototype](./929.png)
+![gallery prototype](./929.webp)
 
 Right now there is nothing in our Gallery nor in the prototype of it, but you will see as we add things to the prototype and to the instance, we will see them populate there.
 
@@ -50,7 +50,7 @@ function Gallery(gallery) {
 
 The way we check whether the parameter exists is fine, we can leave that alone.
 
-![null check of gallery argument](./930.png)
+![null check of gallery argument](./930.webp)
 
 The only thing we need to do is save the reference to the gallery div that was passed in because we will need it in our prototype method shortly.
 
@@ -62,7 +62,7 @@ this.gallery = gallery;
 
 Now if you refresh the page, you should see both of our galleries logged, and you can see that those are instance properties because they differ in each one.
 
-![both galleries logged in console](./931.png)
+![both galleries logged in console](./931.webp)
 
 Now we need to go through all the variables we created.
 
@@ -74,9 +74,9 @@ So we will change all those variables and everywhere we have used them to `this.
 
 The easiest way that Wes has found to do that is to right click on a variable name in VSCode and select "Rename symbol". Then add `this.` next to `const image` and remove the `const`, because we are not declaring a new variable, we are simply setting a property on the gallery instance.
 
-![right clicking the variable and selecting go to definition](./932.png)
+![right clicking the variable and selecting go to definition](./932.webp)
 
-![selecting all the images using querySelectorAll](./933.png)
+![selecting all the images using querySelectorAll](./933.webp)
 
 Now let's go through the rest of them.
 
@@ -91,7 +91,7 @@ this.nextButton = this.modal.querySelector('.next');
 
 We don't need the `let currentImage` variable anymore because wherever we set the `currentImage`, we will simply say `this.currentImage = el;` where we are setting the `currentImage` instead. So delete the `let` declaration of that variable.
 
-![console log of gallery with having properties in it](./934.png)
+![console log of gallery with having properties in it](./934.webp)
 
 As you can see, our gallery now has all these properties inside of it.
 
@@ -183,13 +183,13 @@ Gallery.prototype.openModal() {
 
 If you save and refresh, you will see that we now have access to the `openModal` function on the prototype of our galleries. Nothing will work yet but we will go through and fix them one by one.
 
-![access of openModal function in console ](./935.png)
+![access of openModal function in console ](./935.webp)
 
 Wes likes to use VSCode multi-cursor to refactor the methods all at once.
 
 His shortcuts are to hold down Click + Cmd and then put the cursor in front of every function name so you can edit them all at once.
 
-![selecting and putting cursor in front of multiple functions using shortcuts ](./936.png)
+![selecting and putting cursor in front of multiple functions using shortcuts ](./936.webp)
 
 ```js
 Gallery.prototype.openModal() {
@@ -253,7 +253,7 @@ Gallery.prototype.showImage(el) {
 It won't even load now because we get these errors like
 >handleClickOutside is not defined
 
-![uncaught error - handleClickOutside is not defined](./937.png)
+![uncaught error - handleClickOutside is not defined](./937.webp)
 
 If you go to line 29, you will see we are calling `showImage(e.currentTarget)`.
 
@@ -261,7 +261,7 @@ Anytime we reference one of our functions, it needs to be changed to `this.showI
 
 That is where ESLint becomes very helpful. If you click ESLint at the bottom, you can see all of the problems.
 
-![problems in code highlighted by ESLint](./938.png)
+![problems in code highlighted by ESLint](./938.webp)
 
 Now we can go through them one by one and change them out.
 
@@ -342,7 +342,7 @@ The error says
 
 > cannot read property 'nextElementSibling' of undefined.
 
-![uncaught type error: cannot read property 'nextElementSibling' of undefined](./939.png)
+![uncaught type error: cannot read property 'nextElementSibling' of undefined](./939.webp)
 
 The line that is throwing the error is
 
@@ -354,17 +354,17 @@ this.showImage(
 
 `this.currentImage` is `undefined`. So what is the value of the `this` we have highlighted in the image below?
 
-![adding this keyword to access objects own property](./940.png)
+![adding this keyword to access objects own property](./940.webp)
 
 Let's add a log and take a look. As far as we know, `this` should always equal the instance of the gallery.
 
-![uncaught type error: cannot read properties 'nextElementSibling' of undefined](./941.png)
+![uncaught type error: cannot read properties 'nextElementSibling' of undefined](./941.webp)
 
 According to the log, `this` is equal to a button within our `showImage` method.
 
 Let's find where `showNextImage()` is called from... it is being called from within the `closeModal` function to remove the event listener. It is also being called from another method to add the event listener.
 
-![showNextImage function is called within closeModal function](./943.png)
+![showNextImage function is called within closeModal function](./943.webp)
 
 What is happening is we are listening for a click and when the click happens, the `showNextImage` function is running.
 
@@ -400,7 +400,7 @@ The way we fixed that before is we just removed the event listener when we close
 
 However what happens when you use `() => this.showNextImage())` what is highlighted in the image below is that you are creating an anonymous function, and in order to remove an event listener, you have to have reference to that function.
 
-![creating an anonymous function inside event listener and calling this.showNextImage()](./944.png)
+![creating an anonymous function inside event listener and calling this.showNextImage()](./944.webp)
 
 The other way we can fix that is by binding it to `this` when we have access to `this` inside of the gallery.
 

@@ -23,7 +23,7 @@ Open up the HTML page in a browser and open the console. Type in `buns` to see w
 
 You should see the following returned 👇
 
-![browser console showing buns.join() invoked](./552.png)
+![browser console showing buns.join() invoked](./552.webp)
 
 `join()` turns the array into a string, joining each item with a comma. It takes an argument, which is what you want to join it on.
 
@@ -35,7 +35,7 @@ console.log(buns.join(' or '));
 
 Now instead of being joined with commas in the string, you are joining the items using the word "or".
 
-![browser console showing buns.join() invoked with pass parameter](./553.png)
+![browser console showing buns.join() invoked with pass parameter](./553.webp)
 
 ## split method
 
@@ -59,7 +59,7 @@ In this example, you want to split the string on the comma. `split(',')` will ge
 console.log(foodString.split(','));
 ```
 
-![browser console showing foodString with .split() method with comma delimeter passed as parameter](./554.png)
+![browser console showing foodString with .split() method with comma delimeter passed as parameter](./554.webp)
 
 `split` is a pretty common method that is used.
 
@@ -67,7 +67,7 @@ You can call `split()` and pass it nothing. That will just take every letter in 
 
 One little "gotcha" about `split` is that you can do something like this no problem 👇
 
-![browser console showing string ran with .split() method](./555.png)
+![browser console showing string ran with .split() method](./555.webp)
 
 However, if you have emojis in there, like 👇
 
@@ -79,7 +79,7 @@ That emoji is actually made up of several different emojis and what is referred 
 
 So that will come and bite you if you ever try to split something with an emoji, just something to keep in mind. If you do run into issues doing that, there are libraries you can use to help.
 
-![browser console showing string with emoji ran with .split() method](./557.png)
+![browser console showing string with emoji ran with .split() method](./557.webp)
 
 ## pop method
 
@@ -89,15 +89,15 @@ We haven't learned what pop does just yet.
 
 Let's look at the `toppings` array in the console.
 
-![browser console showing toppings array](./558.png)
+![browser console showing toppings array](./558.webp)
 
 If you call `toppings.pop()`, it will return to us the last item in the array, which is "Cheese".
 
-![browser console showing toppings.pop(), returning last element from the array](./559.png)
+![browser console showing toppings.pop(), returning last element from the array](./559.webp)
 
 If you take a look at `toppings` again, you will see that "Cheese" is no longer part of the array.
 
-![browser console showing mutated toppings array without last element](./560.png)
+![browser console showing mutated toppings array without last element](./560.webp)
 
 This is a handy method if you need to grab one off the end of the array and then work with it, and it will just take that item out of the array.
 
@@ -129,13 +129,13 @@ console.log(t2);
 You should see 11 in the console. What does that mean?
 Well when you push an item into an array, it will return to you the new length of the array, in case you need it.
 
-![browser console showing new array length after calling .pop() method](./561.png)
+![browser console showing new array length after calling .pop() method](./561.webp)
 
 You don't have to put it into a variable if you don't need it, so in our case we will remove the declaration of `t2` and instead just use `toppings.push(lastItem)` and remove the `console.log(t2);`.
 
 Instead log `toppings` to see if cheese has been added back.
 
-![browser console showing toppings array with last removed element added back](./562.png)
+![browser console showing toppings array with last removed element added back](./562.webp)
 
 It has been added back!
 
@@ -151,7 +151,7 @@ console.log(firstItem);
 
 That should give us mushrooms.
 
-![browser console showing fist element of toppings array removed via .shift() method](./563.png)
+![browser console showing fist element of toppings array removed via .shift() method](./563.webp)
 
 Next you need to add it back using unshift like so:
 
@@ -196,7 +196,7 @@ console.log(newToppings);
 
 We should see "cheese" at the end like so 👇
 
-![browser console showing newToppings array made using spread operator and slice method](./565.png)
+![browser console showing newToppings array made using spread operator and slice method](./565.webp)
 
 Next, we want to add it to the front.
 
@@ -217,13 +217,13 @@ Do we need to pass a second argument to `slice()`?
 
 Let's look it up.
 
-![MDN Documentation on Array slice method page](./567.png)
+![MDN Documentation on Array slice method page](./567.webp)
 
 It says that `end` is optional. If it is ommited, slice extracts through the end of the sequence, so we don't need it!
 
 As you can see below, that worked.
 
-![browser console showing toppingsCopy array](./568.png)
+![browser console showing toppingsCopy array](./568.webp)
 
 The way we can tell if that is a copy is if we change the original `toppings` and then log both, like so 👇
 
@@ -235,7 +235,7 @@ console.log(toppingsCopy);
 ```
 As you can see below, only `toppings` has the "mushy boi" object, which tells us that `toppingsCopy` is a true copy.
 
-![browser console showing toppingsCopy is a true copy with unmutated first element](./569.png)
+![browser console showing toppingsCopy is a true copy with unmutated first element](./569.webp)
 
 The next exercise is to make a copy of the `toppings` array with a spread.
 
@@ -254,7 +254,7 @@ console.log(toppingsCopy);
 
 As you can see, there are now only 8 items rather than 11 in the array.
 
-![browser console showing toppingsCopy with splice method, starting at index 3, and taking out 5 elements](./570.png)
+![browser console showing toppingsCopy with splice method, starting at index 3, and taking out 5 elements](./570.webp)
 
 Next we need to find the index of avocado with `indexOf`.
 
@@ -267,7 +267,7 @@ console.log(avoIndex);
 
 If you refresh the page you should see "5" logged in the console. That tells us that the avocado item is in the 5th index.
 
-{/* TODO: where did this image go? ![](./571.png) */}
+{/* TODO: where did this image go? ![](./571.webp) */}
 
 One thing about `indexOf` that you should know is that it works with any type. Let's do an example to demonstrate.
 
@@ -279,7 +279,7 @@ console.log(people.indexOf(wes));
 
 If you refresh the page and look at the console you should see the number 1 logged, which tells us the `wes` object is at index of 1 because it is giving reference to the `wes` object.
 
-![browser console showing wes object at index 1](./572.png)
+![browser console showing wes object at index 1](./572.webp)
 
 ```js
 people.indexOf({ name: 'scott' });
@@ -293,7 +293,7 @@ However, if you try that, you will see -1 in the console.
 
 -1 is what is returned when it didn't find anything (the reason it doesn't give you 0 is because 0 is the first item in the array).
 
-![browser console showing -1 as indexOf parameter was not found](./573.png)
+![browser console showing -1 as indexOf parameter was not found](./573.webp)
 
 So why it work when we passed it `wes` but it didn't work when we passed it `{name:'scott'}`, which is an object exactly the same as the item in the first slot?
 
@@ -305,7 +305,7 @@ Why?
 
 Because objects don't do a deep check to see if all the properties match up, they just check if the reference to it is actually the same object.
 
-![browser console showing false boolean result of two objects comparison](./574.png)
+![browser console showing false boolean result of two objects comparison](./574.webp)
 
 When we called `indexOf(wes)`, it was checking whether the `people` variable contained a reference to the object `wes`, which it did. When we checked it for an object that just looks the same, it gave us false. That is the whole reference vs value thing again.
 
@@ -329,14 +329,14 @@ You can call `includes()` to check if the array contains that number, like so
 
 If you passed `includes` an object, it would check if the reference to that object exists in the array.
 
-![browser console showing Array.includes() method example](./575.png) 1
+![browser console showing Array.includes() method example](./575.webp) 1
 
 ```js
 const isInToppings = toppings.includes('Hot Sauce');
 console.log(isInToppings);
 ```
 
-![browser console showing false boolean result](./576.png)
+![browser console showing false boolean result](./576.webp)
 
 Note that includes is case sensitive, so if you were checking for all different versions of the case, what you would want to do is first lowercase the entire array with `.map()` which we will look at in the next couple of videos.
 
@@ -350,7 +350,7 @@ if (!isInToppings) {
 console.log(toppings);
 ```
 
-![browser console showing toppings added if not already included](./577.png)
+![browser console showing toppings added if not already included](./577.webp)
 
 Finally you need to fip the toppings around using `reverse()`.
 
@@ -363,7 +363,7 @@ toppings.reverse();
 console.log(toppings);
 ```
 
-![browser console showing toppings array in reverse via reverse() method](./578.png)
+![browser console showing toppings array in reverse via reverse() method](./578.webp)
 
 If you want to do it **immutably** without modifying the original toppings array, you can create a new array, spread toppings into it, and then call `reverse()` directly on it like so 👇
 

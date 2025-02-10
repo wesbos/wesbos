@@ -13,7 +13,7 @@ This lesson is an exercise where you have to use `map`, `filter`, and `reduce` a
 
 The task is to go to any webpage, like the Mozilla Developer Docs for reduce, copy every single piece of text like Wes is doing in the screenshot below by pressing `Cmd` + `A` and `Cmd` + `C` and then counting how many times every letter and number occurs on the page.
 
-![mozilla developer docs for the array reduce](./684.png)
+![mozilla developer docs for the array reduce](./684.webp)
 
 Here are a couple of tips:
 - first grab all the text
@@ -44,7 +44,7 @@ Sum all the values of an array`;
 console.log(text);
 ```
 
-![A text example having 31 kb worth of text](./685.png)
+![A text example having 31 kb worth of text](./685.webp)
 
 As you can see, we have over 31.1 KB worth of text.
 
@@ -59,7 +59,7 @@ const everything = text.split('');
 console.log(everything);
 ```
 
-![array having 15911 length letters in console](./686.png)
+![array having 15911 length letters in console](./686.webp)
 
 As you see, now we get an array with 15,911 letters that are in it.
 
@@ -112,11 +112,11 @@ const result = everything.filter((char) => {
 });
 ```
 
-![result of match method applied on string 'a' with /a/ regex](./687.png)
+![result of match method applied on string 'a' with /a/ regex](./687.webp)
 
 As you can see, when we checked if it is a match with the letter `a`, it returned the value with a bit more information like where we found the word.
 
-![result of match method applied on string 'cat' with /a/ regex](./688.png)
+![result of match method applied on string 'cat' with /a/ regex](./688.webp)
 
 However when we check if `'a'.match(/b/)`, it returned false because 'a' clearly does not match the letter 'b'.
 
@@ -137,7 +137,7 @@ const result = everything.filter((char) => {
 console.log(result);
 ```
 
-![result of match method applied on everything with /[a-z]/ regex](./689.png)
+![result of match method applied on everything with /[a-z]/ regex](./689.webp)
 
 We have over 10,000 letters in our filtered array now.
 If you look closely, you will see they are all lowercase.
@@ -148,7 +148,7 @@ Let's fix that by modifying the group in our Regex like so 👇
 char.match(/[a-zA-Z]/)
 ```
 
-![result of match method applied on everything with /[a-zA-Z]/ regex](./690.png)
+![result of match method applied on everything with /[a-zA-Z]/ regex](./690.webp)
 
 As you can see, our array now contains letters as well.
 
@@ -163,7 +163,7 @@ Wes knows this off the top of his head from years of writing regex's.
 However you can use the website https://regexr.com to find lots of patterns there and cheat sheets to help you match any character except a new line.
 
 
-![regexr.com website to find regex patterns](./691.png)
+![regexr.com website to find regex patterns](./691.webp)
 
 Another thing you could do is pass the case insensitive flag like so 👇
 
@@ -181,13 +181,13 @@ The `i` flag will make it case insensitive.
 
 Let's refresh to mak sure that still works.
 
-![case insensitive pattern matching with /i flag](./692.png)
+![case insensitive pattern matching with /i flag](./692.webp)
 
 As you can see, it does work, and we also getting numbers now.
 
 _(You might notice in the dev tools that when you expand a large array, it breaks them up into groups as displayed in the image below.)_
 
-![geeting numbers with insensitive pattern matching with /i flag ](./693.png)
+![geeting numbers with insensitive pattern matching with /i flag ](./693.webp)
 
 So that is our first filter. The next thing we want to do is to lowercase everything.
 
@@ -282,11 +282,11 @@ function instanceCounter(counts, char) {
 ```
 If you refresh the page, you might see something like the following error 👇
 
-![cannot read property k of undefined error](./694.png)
+![cannot read property k of undefined error](./694.webp)
 
 In Wes' example, `k` is the second character.
 
-![k as the second character](./695.png)
+![k as the second character](./695.webp)
 
 Why is it telling us it's `undefined`?
 
@@ -305,7 +305,7 @@ If you refresh the page and open the console, you will see it is showing a count
 
 That's not right!
 
-![count of 1 next to each character](./696.png)
+![count of 1 next to each character](./696.webp)
 
 Let's debug this by looking at our ternary operator in `instanceCounter`.
 
@@ -315,7 +315,7 @@ If it does exist, then the count of that character should be equal to the existi
 
 We forgot the equal sign!
 
-![ternary check for letters exists in the array, if does then the count of that character should be equal to the existing count plus one, forgot the equal sign as well](./697.png)
+![ternary check for letters exists in the array, if does then the count of that character should be equal to the existing count plus one, forgot the equal sign as well](./697.webp)
 
 Modify the code like so
 
@@ -329,7 +329,7 @@ You could even put the ternary operator on separate lines as shown below.
 counts[char] ? (counts[char] = counts[char] + 1) : (counts[char] = 1);
 ```
 
-![result of occurrence of each character in array](./698.png)
+![result of occurrence of each character in array](./698.webp)
 
 It looks like we are getting real values!
 
@@ -339,7 +339,7 @@ Let's do it together.
 
 What if we try using `Object.entries(result);`?
 
-![using Object.entries() method returning array with first item being the key and the second item being the count](./699.png)
+![using Object.entries() method returning array with first item being the key and the second item being the count](./699.webp)
 
 It gives us an array of arrays with each arrays first item being the key and the second item being the count.
 
@@ -370,6 +370,6 @@ const sortedResult = Object
   .sort(sortByValue);
 ```
 
-![one single reduce function showing all the work we did](./701.png)
+![one single reduce function showing all the work we did](./701.webp)
 
 It is possible to do all of the work we just did in one single reduce function,  but it's much easier to read and better for re-usability to split it up into separate functions and chain them along.
