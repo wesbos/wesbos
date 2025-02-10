@@ -55,10 +55,10 @@ async function updateImageReferences(oldPath: string, newPath: string): Promise<
       // Check for both relative and absolute paths
       const oldBasename = path.basename(oldPath);
       const hasReference = content.includes(oldRelativePath) ||
-                         content.includes(oldBasename) ||
-                         content.includes(`image: ${oldBasename}`) ||
-                         content.includes(`./${oldBasename}`) ||
-                         content.includes(`/${oldBasename}`);
+        content.includes(oldBasename) ||
+        content.includes(`image: ${oldBasename}`) ||
+        content.includes(`./${oldBasename}`) ||
+        content.includes(`/${oldBasename}`);
 
       if (hasReference) {
         const relativeFile = path.relative(process.cwd(), file);
@@ -141,19 +141,31 @@ async function processImage(inputPath: string, savingsLog: SavingsLog[]): Promis
 
     if (answer.toLowerCase() === 'y') {
       await fs.writeFile(newPath, bestResult.buffer);
-      
-      // Verify the file was written correctly
+
+      // Verify the new file exists and was written correctly
       try {
+        // First check if file exists
+        const stats = await fs.stat(newPath);
+        if (!stats.isFile()) {
+          throw new Error('New path exists but is not a file');
+        }
+        if (stats.size !== bestResult.buffer.length) {
+          throw new Error(`File size mismatch: expected ${bestResult.buffer.length} bytes, got ${stats.size} bytes`);
+        }
+
+        // Then verify content
         const writtenFile = await fs.readFile(newPath);
         if (!writtenFile.equals(bestResult.buffer)) {
-          throw new Error('File verification failed - content mismatch');
+          throw new Error('File content verification failed - content does not match expected data');
         }
       } catch (error) {
-        console.error(`${chalk.red('Error')} Failed to verify written file: ${error.message}`);
-        await fs.unlink(newPath).catch(() => {});
-        return;
+        const errorMessage = error.code === 'ENOENT' ? 'New file does not exist' : error.message;
+        console.error(`${chalk.red('Error')} Failed to verify written file: ${errorMessage}`);
+        // Clean up the new file if it exists but is invalid
+        await fs.unlink(newPath).catch(() => { });
+        throw new Error(`File verification failed: ${errorMessage}`);
       }
-      
+
       const relativeNewPath = path.relative(process.cwd(), newPath);
       console.log(`${chalk.green('✓')} Saved ${chalk.cyan(relativeNewPath)}`);
 
@@ -239,7 +251,7 @@ async function main() {
   }
 
   const savingsLog: SavingsLog[] = [];
-  const queue = new PQueue({ concurrency: 4 }); // Process 4 images at a time
+  const queue = new PQueue({ concurrency: 1 });
   const files = await glob('**/*.{jpg,jpeg,png,webp}', {
     cwd: directory,
     absolute: true,
