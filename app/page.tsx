@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 import H from '../components/mdxComponents/Headings';
 
+export const experimental_ppr = true;
 export const meta: Metadata = {
   title: {
     absolute: 'Wes Bos - Full Stack Developer',

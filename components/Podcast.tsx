@@ -1,6 +1,7 @@
 import Image from 'next/image'
 const url = `https://syntax.fm/api/shows/latest`;
 import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
+import { connection } from 'next/server';
 
 type Podcast = {
   number: number;
@@ -10,6 +11,7 @@ type Podcast = {
 }
 
 export default async function Podcast() {
+  await connection(); //forces component to be dynamic
   const podcast = await fetch(url).then((res) => res.json() as Promise<Podcast>).catch(err => {
     console.log(`Error fetching podcast`);
   });

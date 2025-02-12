@@ -10,6 +10,8 @@ import { getPostBySlug } from '@/lib/getPosts';
 import { baseUrl } from '@/lib/meta';
 import { slugToTitle } from '@/utils/slugToTitle';
 
+export const experimental_ppr = true;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${radnika.variable} ${operatorMono.variable}`}>
@@ -18,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className={LayoutStyles}>
           <Nav />
           <div className={ContentStyles}>{children}</div>
-          <Footer />
+            <Footer />
         </div>
       </body>
     </html>
@@ -94,4 +96,4 @@ export const viewport: Viewport = {
   themeColor: '#ffc600',
 };
 
-export const experimental_ppr = true;
+

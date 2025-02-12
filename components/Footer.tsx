@@ -11,7 +11,9 @@ export default function Footer() {
   return (
     <footer className={FooterStyles}>
       <div className={FooterInner}>
-        <Podcast />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Podcast />
+        </Suspense>
         <Suspense fallback={<div>Loading...</div>}>
           <Twitter />
         </Suspense>

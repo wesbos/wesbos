@@ -2,6 +2,7 @@ import { fetchLatestTweets, TweetDetails, XMediaEntity } from '@/lib/socials/twi
 import { FooterBlock, FooterHeading, Tweet, TweetLink, TweetMeta, Tweets, TweetStyles } from '@/styles/FooterStyles.module.css';
 import clsx from 'clsx';
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
+import { connection } from 'next/server';
 import React from 'react';
 import { IoIosEye, IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
 
@@ -34,6 +35,7 @@ function decodeEntities(encodedString: string) {
 }
 
 export default async function Twitter() {
+  await connection(); //forces component to be dynamic
   const tweets = await fetchLatestTweets();
   const pinnedTweet = tweets.at(0)?.core.user_results.result.legacy.pinned_tweet_ids_str[0];
 
