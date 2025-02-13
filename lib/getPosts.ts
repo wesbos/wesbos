@@ -1,10 +1,11 @@
-import fg from 'fast-glob';
 import { slug } from 'github-slugger';
 import path from 'path';
 import { ContentType, MDXResult, Frontmatter, JavaScriptFrontmatter } from './types';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
+import * as mdxIndex from '../content/index';
 
 const PER_PAGE = 10;
+
 type PostFilterArgs<T extends ContentType = ContentType> = {
   page?: number;
   skip?: number;
@@ -53,32 +54,8 @@ export function parseContent(post: MDXResult): MDXResult {
   return post;
 }
 
-const mdxPosts = await fg(['./content/**/*.mdx']);
-
-// Use a function to manage the cache, store on global so it survives between HMR
-function getPostCache() {
-  const cache = (global as any)._postCache || [];
-  (global as any)._postCache = cache;
-  return cache;
-}
-
 async function parsePosts(): Promise<MDXResult[]> {
-  const postCache = getPostCache();
-  if(postCache.length > 0) {
-    return postCache;
-  }
-  // Get a list of all the mdx files in the content folder
-  const importPromises = mdxPosts.map((post) => import(`../content/${makePathDynamicallyImportable(post)}.mdx`));
-  const imported = await Promise.all(importPromises).catch((err) => {
-    console.log(`Error reading posts from the file system`);
-    console.error(err);
-  });
-
-  if(!imported) {
-    throw new Error('No Content Found?!?');
-  }
-  console.log(`Going to parse ${imported.length} posts`);
-  const posts = imported
+  const posts = Object.values(mdxIndex)
     .map(parseContent)
     .toSorted((a, b) => {
       // If either post doesn't have a date, put it at the end
@@ -87,7 +64,7 @@ async function parsePosts(): Promise<MDXResult[]> {
       // Otherwise sort by date descending
       return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime();
     });
-  (global as any)._postCache = posts;
+  // (global as any)._postCache = posts;
   return posts;
 }
 
@@ -109,7 +86,7 @@ export async function getPostBySlug(postSlug: string) {
 export async function getSiblingPostsBySlug(postSlug: string, type: ContentType) {
   const posts = (await parsePosts()).filter((post) => post.frontmatter.type === type);
   const postIndex = posts.findIndex((post) => post.frontmatter.slug === postSlug);
-  if(postIndex === -1) {
+  if (postIndex === -1) {
     return { prev: undefined, next: undefined };
   }
   const prev = posts[postIndex - 1];
