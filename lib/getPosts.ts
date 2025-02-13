@@ -3,7 +3,6 @@ import { slug } from 'github-slugger';
 import path from 'path';
 import { ContentType, MDXResult, Frontmatter, JavaScriptFrontmatter } from './types';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
-import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 const PER_PAGE = 10;
 type PostFilterArgs<T extends ContentType = ContentType> = {

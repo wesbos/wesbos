@@ -17,7 +17,6 @@ export default function Footer() {
         <Suspense fallback={<div>Loading...</div>}>
           <Twitter />
         </Suspense>
-        {/* <Instagram /> */}
         <LatestCourse />
         <div className={FooterBottomStyles}>
           I post videos on{' '}
