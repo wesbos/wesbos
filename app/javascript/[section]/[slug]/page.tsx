@@ -63,17 +63,17 @@ export default async function JavaScriptNotesPage({ params }: { params: { slug: 
   );
 }
 
-export async function generateStaticParams() {
-  // Pre-generate every Notes page
-    const { posts } = await getPosts({ type: 'javascript', limit: 1000 });
-    const toc = createSectionedFrontMatter(posts);
-    const modules = toc
-      .map(([title, items]) => items)
-      .flat()
-      .map((item) => {
-        const [section, slug] = item?.frontmatter.slug.split('/') || [];
-        return { section, slug };
-      });
-    return modules;
-}
+// export async function generateStaticParams() {
+//   // Pre-generate every Notes page
+//     const { posts } = await getPosts({ type: 'javascript', limit: 1000 });
+//     const toc = createSectionedFrontMatter(posts);
+//     const modules = toc
+//       .map(([title, items]) => items)
+//       .flat()
+//       .map((item) => {
+//         const [section, slug] = item?.frontmatter.slug.split('/') || [];
+//         return { section, slug };
+//       });
+//     return modules;
+// }
 
