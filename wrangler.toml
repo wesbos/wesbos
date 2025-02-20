@@ -1,14 +1,19 @@
-main = ".open-next/worker.js"
+main = "./dist/worker/serve-cloudflare.js"
 name = "wesbos"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 
 # The binding name must be "ASSETS" when the cache is enabled
-assets = { directory = ".open-next/assets", binding = "ASSETS" }
-# Browser for Puppeteer
-browser = { binding = "MYBROWSER" }
+[assets]
+directory = "./dist/assets"
+binding = "ASSETS"
+html_handling = "drop-trailing-slash" # "single-page-application" | "404-page" | "none"
+not_found_handling = "404-page"
 
-routes = [{ pattern = "rsc.wesbos.com", custom_domain = true }]
+# Browser for Puppeteer
+# browser = { binding = "MYBROWSER" }
+
+# routes = [{ pattern = "rsc.wesbos.com", custom_domain = true }]
 
 [[ d1_databases ]]
 binding = "DB"

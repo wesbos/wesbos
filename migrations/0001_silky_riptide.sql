@@ -1,1 +1,0 @@
-CREATE INDEX `post_id_idx` ON `posts` (`postId`);
