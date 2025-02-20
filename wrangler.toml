@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 # The binding name must be "ASSETS" when the cache is enabled
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
 # Browser for Puppeteer
-# browser = { binding = "MYBROWSER" }
+browser = { binding = "MYBROWSER" }
 
 routes = [{ pattern = "rsc.wesbos.com", custom_domain = true }]
 

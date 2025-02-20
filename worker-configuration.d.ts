@@ -4,6 +4,5 @@ interface CloudflareEnv {
 	OG: KVNamespace;
 	NEXT_CACHE_WORKERS_KV: KVNamespace;
 	DB: D1Database;
-	MYBROWSER: Fetcher;
 	ASSETS: Fetcher;
 }
