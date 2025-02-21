@@ -10,7 +10,6 @@ import { fetchBlueSkyDetailsFromApi } from './blueSkyFetcher';
 import { fetchInstagramDetailsFromApi } from './instagramFetcher';
 import { fetchTiktokDetailsFromApi } from './tiktokFetcher';
 
-
 const fetchers: Record<SocialLinkType, (link: SocialLink) => Promise<Post['postData'] | undefined>> = {
   twitter: fetchTweetDetailsFromApi,
   instagram: fetchInstagramDetailsFromApi,
@@ -27,7 +26,7 @@ export async function fetchSocialDetails(link: SocialLink) {
     console.error(`${link.type}: No fetcher found`);
     return;
   }
-  console.log(`Fetching social details for ${link.type} / ${link.postId}`);
+  // console.log(`Fetching social details for ${link.type} / ${link.postId}`);
   const db = await getDb();
   if (!db) {
     console.error('No DB found');
@@ -39,7 +38,7 @@ export async function fetchSocialDetails(link: SocialLink) {
   }
   const result = await db.query.postsTable.findFirst(query);
   if (result) {
-    console.log(`${link.type}: Found in the DB`);
+    // console.log(`${link.type}: Found in the DB`);
     return result;
   }
   console.log(`${link.type}: Not found in the DB, fetching from the API`);
