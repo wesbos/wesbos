@@ -12,11 +12,6 @@ import { Providers } from "@/components/Providers";
 
 type RootLayoutProps = { children: ReactNode };
 
-const ServerMessage = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  return <p>Hello from server!</p>;
-};
-
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <Providers>
@@ -24,11 +19,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <Nav />
         <div className={ContentStyles}>{children}</div>
         <Footer />
-        {/*  */}
       </div>
     </Providers>
   );
 }
+
+export const getConfig = async () => {
+  return {
+    render: "dynamic",
+  } as const;
+};
+
 
 // const getData = async () => {
 //   const data = {
