@@ -18,7 +18,6 @@ export default function ContactPage() {
 
 export const getConfig = async () => {
   return {
-    render: 'static',
-    title: 'Contact - Wes Bos',
+    render: "dynamic",
   } as const;
 };
