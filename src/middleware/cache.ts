@@ -8,7 +8,7 @@ const cacheMiddleware: Middleware = () => {
     console.log('🥛', ctx.req.url.pathname);
     ctx.res.headers ||= {};
     // Cache for both CDN and browser with stale-while-revalidate
-    ctx.res.headers['cache-control'] = 'public, max-age=20, s-maxage=20, stale-while-revalidate=200';
+    // ctx.res.headers['cache-control'] = 'public, max-age=20, s-maxage=20, stale-while-revalidate=200';
     return next();
     // const cookies = cookie.parse(ctx.req.headers.cookie || '');
     // ctx.data.count = Number(cookies.count) || 0;
