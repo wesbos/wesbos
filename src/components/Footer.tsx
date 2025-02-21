@@ -8,7 +8,7 @@ import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/
 import { Link } from 'waku';
 
 
-export default function Footer() {
+export default async function Footer() {
   return (
     <footer className={FooterStyles}>
       <div className={FooterInner}>

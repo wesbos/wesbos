@@ -5,7 +5,7 @@ const COOKIE_OPTS = {};
 
 const cacheMiddleware: Middleware = () => {
   return async (ctx, next) => {
-    console.log('🥛', ctx.req.url.pathname);
+    // console.log('🥛', ctx.req.url.pathname);
     ctx.res.headers ||= {};
     // Cache for both CDN and browser with stale-while-revalidate
     // ctx.res.headers['cache-control'] = 'public, max-age=20, s-maxage=20, stale-while-revalidate=200';

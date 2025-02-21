@@ -1,3 +1,4 @@
+import { withCache } from '@/lib/cache';
 import { fetchLatestTweets, TweetDetails, XMediaEntity } from '@/lib/socials/twitter-fetcher';
 import { FooterBlock, FooterHeading, Tweet, TweetLink, TweetMeta, Tweets, TweetStyles } from '@/styles/FooterStyles.module.css';
 import clsx from 'clsx';
@@ -34,8 +35,11 @@ function decodeEntities(encodedString: string) {
 }
 
 export default async function Twitter() {
-  const tweets = await fetchLatestTweets();
-  const pinnedTweet = tweets.at(0)?.core.user_results.result.legacy.pinned_tweet_ids_str[0];
+  const tweets = await withCache(fetchLatestTweets, {
+    key: 'tweets',
+    expiry: 60 * 30, // 30 minutes
+  });
+  const pinnedTweet = tweets?.at(0)?.core.user_results.result.legacy.pinned_tweet_ids_str[0];
 
   return (
     <div className={clsx([FooterBlock, TweetStyles])}>
