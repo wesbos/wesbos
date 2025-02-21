@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import "@/components/styles/index.css";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
@@ -12,19 +12,21 @@ import { Providers } from "@/components/Providers";
 
 type RootLayoutProps = { children: ReactNode };
 
-export const getConfig = async () => {
-  return {
-    render: "dynamic",
-  } as const;
+const ServerMessage = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  return <p>Hello from server!</p>;
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <div className={LayoutStyles}>
-      <Nav />
-      <div className={ContentStyles}>{children}</div>
-      <Footer />
-    </div>
+    <Providers>
+      <div className={LayoutStyles}>
+        <Nav />
+        <div className={ContentStyles}>{children}</div>
+        <Footer />
+        {/*  */}
+      </div>
+    </Providers>
   );
 }
 

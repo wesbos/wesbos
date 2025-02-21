@@ -6,7 +6,7 @@
 }
 
 .NavStyles {
-  border-bottom: 15px solid var(--yellow);
+  border-bottom: 5px solid var(--yellow);
   display: grid;
   grid-template-columns: 1fr;
   padding-top: 25px;

@@ -10,20 +10,20 @@ import { isValidElement, ReactElement } from "react";
 // import SHIKI_WASM from "./onigasm.wasm";
 // import SHIKI_WASM from "shiki/onig.wasm?module";
 import { cobalt2 } from "@/lib/assets/cobalt2";
-import javascript from "shiki/langs/javascript";
-import typescript from "shiki/langs/typescript";
-import bash from "shiki/langs/bash";
-import html from "shiki/langs/html";
-import css from "shiki/langs/css";
-import yaml from "shiki/langs/yaml";
-import json from "shiki/langs/json";
-import php from "shiki/langs/php";
-import xml from "shiki/langs/xml";
-import vue from "shiki/langs/vue";
-import scss from "shiki/langs/scss";
-import cpp from "shiki/langs/cpp";
-import jsx from "shiki/langs/jsx";
-import tsx from "shiki/langs/tsx";
+import javascript from "shiki/langs/javascript.mjs";
+import typescript from "shiki/langs/typescript.mjs";
+import bash from "shiki/langs/bash.mjs";
+import html from "shiki/langs/html.mjs";
+import css from "shiki/langs/css.mjs";
+import yaml from "shiki/langs/yaml.mjs";
+import json from "shiki/langs/json.mjs";
+import php from "shiki/langs/php.mjs";
+import xml from "shiki/langs/xml.mjs";
+import vue from "shiki/langs/vue.mjs";
+import scss from "shiki/langs/scss.mjs";
+import cpp from "shiki/langs/cpp.mjs";
+import jsx from "shiki/langs/jsx.mjs";
+import tsx from "shiki/langs/tsx.mjs";
 
 // const { default: shikiWasm } = await import(
 //   /* @vite-ignore */ `${SHIKI_WASM}?module`

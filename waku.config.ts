@@ -29,11 +29,13 @@ export default defineConfig({
     }
     : {}),
   middleware: () => {
+    // TODO: cache API via headers? https://github.com/dai-shi/waku/blob/main/examples/38_cookies/src/middleware/cookie.ts
     return [
-      cache({
-        cacheName: 'waku-cache',
-        cacheControl: 'max-age=3600',
-      }),
+      // cache({
+      //   cacheName: 'waku-cache',
+      //   cacheControl: 'max-age=3600',
+      // }),
+      import('./src/middleware/cache'),
       import('waku/middleware/context'),
       import('waku/middleware/dev-server'),
       import('./waku.cloudflare-middleware'),

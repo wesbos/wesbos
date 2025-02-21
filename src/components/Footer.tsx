@@ -20,20 +20,36 @@ export default function Footer() {
         </Suspense>
         <LatestCourse />
         <div className={FooterBottomStyles}>
-          I post videos on{' '}
-          <a href="https://youtube.com/wesbos?sub_confirmation=1" target="_blank" rel="noreferrer noopener" className={styles.socialLink}>
+          I post videos on{" "}
+          <a
+            href="https://youtube.com/wesbos?sub_confirmation=1"
+            target="_blank"
+            rel="noreferrer noopener"
+            className={styles.socialLink}
+          >
             <IoLogoYoutube /> YouTube
-          </a>{' '}
-          and code on{' '}
-          <a href="https://github.com/wesbos" target="_blank" rel="noreferrer noopener" className={styles.socialLink}>
+          </a>{" "}
+          and code on{" "}
+          <a
+            href="https://github.com/wesbos"
+            target="_blank"
+            rel="noreferrer noopener"
+            className={styles.socialLink}
+          >
             <IoLogoGithub /> GitHub
           </a>
-          <p>Wes Bos &copy; 1999 — {new Date().getFullYear()}</p>
+          <p>
+            Wes Bos &copy;{" "}
+            <a href="https://web.archive.org/web/20040615000000*/wesbos.com" target='_blank'>
+              1999
+            </a>{" "}
+            — {new Date().getFullYear()}
+          </p>
           <p>
             <Link className={terms} to="/terms">
               Terms
-            </Link>{' '}
-            &times;{' '}
+            </Link>{" "}
+            &times;{" "}
             <Link className={terms} to="/privacy">
               Privacy Policy
             </Link>

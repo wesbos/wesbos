@@ -10,6 +10,8 @@ type Podcast = {
 }
 
 export default async function Podcast() {
+  // Wait 3 seconds to simulate a slow API
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   const podcast = await fetch(url).then((res) => res.json() as Promise<Podcast>).catch(err => {
     console.log(`Error fetching podcast`);
   });
