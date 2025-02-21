@@ -15,32 +15,8 @@ import topLevelAwait from "vite-plugin-top-level-await";
 import wasmModuleWorkers from './vite-plugin-wasm-module-workers'
 import { cloudflareWasm }  from './vite-plugin-cloudflare-wasm'
 import { unstable_getBuildOptions } from 'waku/server';
-
-function ProcessExitPlugin() {
-  return {
-    name: 'ProcessExitPlugin',
-
-    // catch the end of a build with errors
-    buildEnd(error?: Error) {
-      if (error) {
-        console.error('Build failed:', error)
-        process.exit(1)
-      } else {
-        const phase = unstable_getBuildOptions().unstable_phase;
-        console.log('Build succeeded: ', phase)
-      }
-    },
-
-    // catch the end of a build without errors
-    closeBundle() {
-      const phase = unstable_getBuildOptions().unstable_phase;
-      if (phase === 'buildDeploy') {
-        // console.log(`This never exits for some reason. Exiting...`);
-        // process.exit(0)
-      }
-    },
-  }
-}
+import { openimg } from "openimg/vite";
+import rehypeImageSize from './src/lib/rehype-image-size';
 
 // TODO: https://github.com/dai-shi/waku/issues/421
 export default defineConfig({
@@ -50,12 +26,13 @@ export default defineConfig({
     // topLevelAwait(),
     // wasmModuleWorkers(),
     // cloudflareWasm(),
-    ProcessExitPlugin(),
+    // openimg(),
     mdx({
       // A custom useMDXComponents function is required to be able to use the MDXProvider with server components. This is also how Next.js does it.
       providerImportSource: "@/components/mdxComponents/index",
       remarkPlugins: [[remarkFrontmatter], [remarkMdxFrontmatter]],
       rehypePlugins: [
+        [rehypeImageSize],
         [
           rehypeMdxImportMedia,
           {

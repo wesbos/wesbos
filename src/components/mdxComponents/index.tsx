@@ -10,12 +10,12 @@ const mdxComponents: MDXComponents = {
   // TODO: Figure out what sizes should be
   img: (props) => (
     <Image
-      sizes="100vw"
-      width="100"
-      height="100"
+      // sizes="100vw"
+      // width="100"
+      // height="100"
       style={{ width: "100%", height: "auto" }}
       {...props}
-      placeholder="empty"
+      // placeholder="empty"
     />
   ),
   h1: (props) => <H as="h1" {...props} />,
