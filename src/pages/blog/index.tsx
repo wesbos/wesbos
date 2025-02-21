@@ -5,18 +5,17 @@ import H from "@/components/mdxComponents/Headings";
 import Pagination from "@/components/Pagination";
 import { PostGrid, PostGridItem, postMeta } from "@/styles/PostGrid.module.css";
 import { Link } from "waku";
+import { MetaTags } from "@/components/MetaTags";
+import type { PageProps } from "waku/router";
 
-export default async function Blog({
-  page,
-}: {
-  page: string;
-}) {
-  const currentPage = parseInt(page || "1");
+export default async function Blog(props: PageProps<'/blog'> & { page: string }) {
+  const currentPage = parseInt(props.page || "1");
   const { posts, total, pages } = await getPosts({
     page: currentPage,
   });
   return (
     <>
+      <MetaTags {...props} />
       <Pagination
         currentPage={currentPage}
         totalPages={pages}

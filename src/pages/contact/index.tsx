@@ -1,16 +1,12 @@
 import Contact from './content.mdx';
-import { Suspense } from 'react';
-async function SlowBoy() {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  return <div>✅ Loaded at {new Date().toLocaleTimeString()}! </div>;
-}
+import { MetaTags } from '../../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-export default function ContactPage() {
+
+export default function ContactPage(props: PageProps<'/contact'>) {
   return (
     <div>
-      <Suspense fallback={<div>⌛ Loading Slow component...</div>}>
-        <SlowBoy />
-      </Suspense>
+      <MetaTags {...props} />
       <Contact />
     </div>
   );

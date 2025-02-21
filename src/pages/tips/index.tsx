@@ -2,9 +2,11 @@ import { getPosts } from '../../lib/getPosts';
 import H from '../../components/mdxComponents/Headings';
 import Pagination from '../../components/Pagination';
 import { Tip } from '../../components/Tip';
+import { MetaTags } from '../../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-export default async function HotTips({ page }: { page: string }) {
-  const currentPage = parseInt(page || '1');
+export default async function HotTips(props: PageProps<'/tips'> & { page: string }) {
+  const currentPage = parseInt(props.page || '1');
 
   const { posts, total, pages } = await getPosts({
     page: currentPage,
@@ -14,6 +16,7 @@ export default async function HotTips({ page }: { page: string }) {
 
   return (
     <>
+      <MetaTags {...props} />
       <H>🔥 There are {total} Hot Tips!!</H>
       <p>
         Hot tips are spicy lil' nuggets related to web development and tooling that I share on <a href="https://twitter.com/wesbos">my twitter account</a>. I've logged them here to make them easier to find.

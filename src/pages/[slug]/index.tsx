@@ -5,12 +5,15 @@ import { postMeta } from '@/styles/PostMeta.module.css';
 import { Image } from '../../components/Image';
 import { IoLogoGithub } from 'react-icons/io';
 import ContentNav from '../../components/ContentNav';
+import { MetaTags } from '../../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-interface BlogPostPageProps {
+interface BlogPostPageProps extends PageProps<'/[slug]'> {
   slug: string;
 }
 
-export default async function BlogPost({ slug }: BlogPostPageProps) {
+export default async function BlogPost(props: BlogPostPageProps) {
+  const { slug } = props;
   const post = await getPostBySlug(slug);
   const { prev, next } = await getSiblingPostsBySlug(slug, 'blog');
 
@@ -24,6 +27,7 @@ export default async function BlogPost({ slug }: BlogPostPageProps) {
 
   return (
     <>
+      <MetaTags {...props} />
       {image && <Image src={image} alt={post.frontmatter.title} />}
       <div>
         <H>{post.frontmatter.title}</H>

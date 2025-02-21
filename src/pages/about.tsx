@@ -2,10 +2,13 @@ import { Link } from 'waku';
 import H from '../components/mdxComponents/Headings';
 import { TimeSince } from '../components/TimeSince';
 import { Image } from '../components/Image';
+import { MetaTags } from '../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-export default function AboutPage() {
+export default function AboutPage(props: PageProps<'/about'>) {
   return (
     <>
+      <MetaTags {...props} />
       <H>About</H>
       <p>Hey, I'm Wes Bos</p>
       <Image width={800} height={400} src="/images/wes.jpg" alt="Wes Bos sits at a table in the direct sunlight pretending to be on his computer" />

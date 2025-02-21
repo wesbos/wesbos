@@ -49,7 +49,6 @@ function formatTimeline(response: IUserTweetsResponse) {
   return tweets;
 }
 
-const SHOULD_CACHE_TWEETS = true;
 
 type Tweet = ReturnType<typeof formatTimeline>[number] & {
   views: {
@@ -58,25 +57,9 @@ type Tweet = ReturnType<typeof formatTimeline>[number] & {
 };
 
 export async function fetchLatestTweets(): Promise<Tweet[]> {
-
-  const kv = getCloudflareContext()?.env?.OG;
-  if (!kv) {
-    return [];
-  }
-  // check if the tweets are in the KV cache
-  if (SHOULD_CACHE_TWEETS) {
-    const cachedTweets = await kv.get<Tweet[]>('tweets', 'json');
-    if (cachedTweets) {
-      return cachedTweets;
-    }
-  }
   // const tweets = await rettiwt.user.timeline('815246', 10);
   const tweets = await fetcher.request<IUserTweetsResponse>(EResourceType.USER_TIMELINE, { id: '815246', count: 10 });
   const formattedTweets = formatTimeline(tweets);
-  // stick the tweets in the KV cache for 15 minutes
-  if (SHOULD_CACHE_TWEETS) {
-    await kv.put('tweets', JSON.stringify(formattedTweets), { expirationTtl: 60 * 15 });
-  }
   return formattedTweets as Tweet[];
 }
 

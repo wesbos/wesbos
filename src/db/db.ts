@@ -15,3 +15,8 @@ export async function getDb() {
   return db;
 }
 
+export async function getKV() {
+  const context = getCloudflareContext();
+  if (!context) return;
+  return context.env.OG;
+}

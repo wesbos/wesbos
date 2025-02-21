@@ -7,16 +7,17 @@ import { TableOfContents } from '../../../components/TableOfContentsNew';
 import ContentNav from '../../../components/ContentNav';
 import { JavaScriptNotesStyles } from "@/styles/JavaScriptNotesStyles.module.css";
 import mdxComponents from '@/components/mdxComponents';
+import { MetaTags } from '../../../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-interface JavaScriptNotesPageProps {
-  section: string;
-  slug: string;
-}
 
-export default async function JavaScriptNotesPage({ section, slug }: JavaScriptNotesPageProps) {
+export default async function JavaScriptNotesPage(
+  props: PageProps<"/javascript/[section]/[slug]">
+) {
+  const { section, slug } = props;
   const sluuuug = `${section}/${slug}`;
   const post = await getPostBySlug(sluuuug);
-  const { prev, next } = await getSiblingPostsBySlug(sluuuug, 'javascript');
+  const { prev, next } = await getSiblingPostsBySlug(sluuuug, "javascript");
 
   if (!post) {
     return (
@@ -32,6 +33,7 @@ export default async function JavaScriptNotesPage({ section, slug }: JavaScriptN
 
   return (
     <div className={clsx("ultra-wide", JavaScriptNotesStyles)}>
+      <MetaTags {...props} />
       <div>
         <TableOfContents />
       </div>

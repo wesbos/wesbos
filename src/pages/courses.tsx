@@ -1,9 +1,12 @@
 import H from '../components/mdxComponents/Headings';
 import styles from '../styles/CourseStyles.module.css';
+import { MetaTags } from '../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-export default function CoursesPage() {
+export default function CoursesPage(props: PageProps<'/courses'>) {
   return (
     <>
+      <MetaTags {...props} />
       <p>
         <strong>
           <a href="https://courses.wesbos.com">Sign in to course dashboard here!</a>

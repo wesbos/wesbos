@@ -1,10 +1,13 @@
 import { TableOfContentsLanding } from '../../components/TableOfContentsNew';
 import H from '../../components/mdxComponents/Headings';
+import { MetaTags } from '../../components/MetaTags';
+import type { PageProps } from "waku/router";
 
-export default function JavaScriptPage() {
+export default function JavaScriptPage(props: PageProps<'/javascript'>) {
   return (
     <>
-      <H>JavaScript Notes &amp; Reference</H>
+      <MetaTags {...props} title="Beginner JavaScript Notes &amp; Reference" />
+      <H>Beginner JavaScript Notes &amp; Reference</H>
 
       <p>Hey! Welcome to my Beginner JavaScript Notes + Reference.</p>
 

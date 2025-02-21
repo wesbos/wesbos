@@ -1,6 +1,8 @@
 import { Image } from '@/components/Image';
+import { cache  } from 'react';
 const url = `https://syntax.fm/api/shows/latest`;
 import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
+import { withCache } from '@/lib/cache';
 
 type Podcast = {
   number: number;
@@ -9,13 +11,20 @@ type Podcast = {
   slug: string;
 }
 
+const getPodcast = async () => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Failed to fetch podcast");
+  return res.json() as Promise<Podcast>;
+};
+
 export default async function Podcast() {
-  // Wait 3 seconds to simulate a slow API
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-  const podcast = await fetch(url).then((res) => res.json() as Promise<Podcast>).catch(err => {
-    console.log(`Error fetching podcast`);
+  const podcast = await withCache(getPodcast, {
+    key: 'podcast',
+    expiry: 3600,
   });
-  if(!podcast) return <p>Hrm.. </p>;
+
+  if(!podcast) return <p>Error loading podcast</p>;
+
   return (
     <div className={FooterBlock}>
       <h3 className={FooterHeading}>

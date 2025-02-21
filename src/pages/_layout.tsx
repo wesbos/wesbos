@@ -9,6 +9,7 @@ import { getPostBySlug } from "@/lib/getPosts";
 import { baseUrl } from "@/lib/meta";
 import { slugToTitle } from "@/utils/slugToTitle";
 import { Providers } from "@/components/Providers";
+import { MetaTags } from "@/components/MetaTags";
 
 type RootLayoutProps = { children: ReactNode };
 
@@ -18,7 +19,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       <div className={LayoutStyles}>
         <Nav />
         <div className={ContentStyles}>{children}</div>
-        <Footer />
+        <Suspense>
+          <Footer />
+        </Suspense>
       </div>
     </Providers>
   );
@@ -29,13 +32,3 @@ export const getConfig = async () => {
     render: "dynamic",
   } as const;
 };
-
-
-// const getData = async () => {
-//   const data = {
-//     description: 'An internet website!',
-//     icon: '/images/favicon.png',
-//   };
-
-//   return data;
-// };
