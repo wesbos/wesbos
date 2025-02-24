@@ -4,6 +4,7 @@
   @font-face {
     font-family: radnika;
     src: url(../../lib/assets/fonts/RadnikaNext/RadnikaNext-Black.woff2);
+    font-display: swap;
   }
   @font-face {
     font-family: "HCo Operator Mono";
@@ -11,6 +12,7 @@
       format("woff2");
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
@@ -19,6 +21,7 @@
       format("woff2");
     font-weight: 400;
     font-style: italic;
+    font-display: swap;
   }
 
   @font-face {
@@ -26,6 +29,7 @@
     src: url(../../lib/assets/fonts/operator/OperatorMono-Bold_Web.woff2)
       format("woff2");
     font-weight: 700;
+    font-display: swap;
     font-style: normal;
   }
 
@@ -35,6 +39,7 @@
       format("woff2");
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
   }
 
   :root {
