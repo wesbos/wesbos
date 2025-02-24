@@ -25,6 +25,7 @@ export async function Image({
       cdn="cloudflare"
       className={className}
       {...props}
+      loading="eager"
     />
   );
 }
