@@ -44,6 +44,12 @@ const cacheMiddleware: Middleware = () => {
       return next();
     }
 
+    // Cache the favicon for a long time
+    if(pathname.startsWith('/favicon.png')) {
+      ctx.res.headers['cache-control'] = `public, max-age=${20000}, s-maxage=${20000}, stale-while-revalidate=${20000}`
+      return next();
+    }
+
     return next();
     // const cookies = cookie.parse(ctx.req.headers.cookie || '');
     // ctx.data.count = Number(cookies.count) || 0;
