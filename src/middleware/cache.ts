@@ -25,7 +25,7 @@ const cacheMiddleware: Middleware = () => {
     const CACHE_TIME = 5;
 
     // Cache RSC GET requests  - this is switching pages in Waku
-    if(pathname.startsWith('/RSC/RSC')) {
+    if(pathname.startsWith('/RSC/R')) {
       console.log(`Taggin ${pathname} as cacheable for ${CACHE_TIME} seconds`);
       ctx.res.headers['CDN-Cache-Control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}`
       return next();
