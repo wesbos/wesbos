@@ -42,6 +42,16 @@
     font-display: swap;
   }
 
+  /* Thank you https://twitter.com/juan_ferreras_/status/1894113365615694014 */
+  @font-face {
+    font-family: fallback;
+    src: local("Arial");
+    ascent-override: 76.36%;
+    descent-override: 22.46%;
+    line-gap-override: 0%;
+    size-adjust: 121.44%;
+  }
+
   :root {
     --yellow: #ffc600;
     --light: #ffffff;
@@ -53,7 +63,7 @@
     --baseFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     --operator-mono: "HCo Operator Mono";
-    --radnika: "radnika";
+    --radnika: "radnika", fallback, Inter, Helvetica, Arial, sans-serif;
     --whiteGrit: url("../mdxComponents/whitegrit.png");
     --blackGrit: url("../mdxComponents/blackgrit.webp");
   }
@@ -121,7 +131,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--radnika), Inter, Helvetica, Arial, sans-serif;
+    font-family: var(--radnika);
     font-weight: normal;
     font-style: italic;
     line-height: 1.5;
