@@ -66,6 +66,7 @@
     "tsx": "^4.19.3",
     "typescript-plugin-css-modules": "^5.1.0",
     "unist-util-visit": "^5.0.0",
+    "vite-plugin-inline-source": "^2.5.2",
     "vite-plugin-wasm": "^3.4.1",
     "waku": "0.21.20"
   },

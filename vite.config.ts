@@ -19,6 +19,7 @@ import { openimg } from "openimg/vite";
 import rehypeImageSize from './src/lib/rehype-image-size';
 import { imgDimensions } from './vite-plugin-img-dimensions';
 import UnpluginInjectPreload from 'unplugin-inject-preload/vite'
+import inlineSource from "vite-plugin-inline-source";
 
 
 // TODO: https://github.com/dai-shi/waku/issues/421
@@ -53,6 +54,7 @@ export default defineConfig({
         [rehypeHotTips],
       ],
     }),
+    inlineSource(),
     UnpluginInjectPreload({
       files: [
         {
