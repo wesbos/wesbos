@@ -27,26 +27,26 @@ const cacheMiddleware: Middleware = () => {
     // Cache RSC GET requests  - this is switching pages in Waku
     if(pathname.startsWith('/RSC/R')) {
       console.log(`Taggin ${pathname} as cacheable for ${CACHE_TIME} seconds`);
-      ctx.res.headers['CDN-Cache-Control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}`
+      ctx.res.headers['CDN-Cache-Control'] = `max-age=${CACHE_TIME}`
       return next();
     }
     // Cache the about adn contact pages as a test
     if(pathname.startsWith('/about') || pathname.startsWith('/contact')) {
       console.log(`Taggin ${pathname} as cacheable for ${CACHE_TIME} seconds`);
-      ctx.res.headers['CDN-Cache-Control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}`
+      ctx.res.headers['CDN-Cache-Control'] = `max-age=${CACHE_TIME}`
       return next();
     }
 
     if(pathname.startsWith('/assets')) {
       // We can cache assets for a long time - forever really because their content doesn't change. The hash on the filename is changed.
       // I don;t think I need this at all since the assets arent even showing up in the cloudflare logs??
-      ctx.res.headers['CDN-Cache-Control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}`
+      ctx.res.headers['CDN-Cache-Control'] = `max-age=${CACHE_TIME}`
       return next();
     }
 
     // Cache the favicon for a long time
     if(pathname.startsWith('/favicon.png')) {
-      ctx.res.headers['CDN-Cache-Control'] = `public, max-age=${20000}, s-maxage=${20000}, stale-while-revalidate=${20000}`
+      ctx.res.headers['CDN-Cache-Control'] = `max-age=${20000}, s-maxage=${20000}, stale-while-revalidate=${20000}`
       return next();
     }
 
