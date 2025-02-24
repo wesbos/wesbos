@@ -20,6 +20,8 @@ const cacheMiddleware: Middleware = () => {
 
     ctx.res.headers ||= {};
 
+    ctx.res.headers['x-wes-was'] = 'here';
+
     if(pathname.startsWith('/assets')) {
       // We can cache assets for a long time - forever really because their content doesn't change. The hash on the filename is changed.
       // Cache for both CDN and browser with stale-while-revalidate
