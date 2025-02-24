@@ -21,7 +21,7 @@ export default function Nav() {
   return (
     <nav className={NavStyles}>
       <div className={LogoStyles}>
-        <Link to="/">
+        <Link to="/" style={{ height: "164px", width: "200px" }}>
           <Image
             height={164}
             width={200}
