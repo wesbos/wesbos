@@ -22,7 +22,7 @@ const cacheMiddleware: Middleware = () => {
 
     ctx.res.headers['x-wes-was-here'] = new Date().toLocaleString();
 
-    const CACHE_TIME = 5;
+    const CACHE_TIME = 60;
 
     // Cache RSC GET requests  - this is switching pages in Waku
     if(pathname.startsWith('/RSC/R')) {
