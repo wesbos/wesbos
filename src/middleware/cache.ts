@@ -20,7 +20,7 @@ const cacheMiddleware: Middleware = () => {
 
     ctx.res.headers ||= {};
 
-    ctx.res.headers['x-wes-was'] = 'here';
+    ctx.res.headers['x-wes-was-here'] = new Date().toLocaleString();
 
     const CACHE_TIME = 5;
 
