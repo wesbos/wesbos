@@ -17,6 +17,7 @@ import { cloudflareWasm }  from './vite-plugin-cloudflare-wasm'
 import { unstable_getBuildOptions } from 'waku/server';
 import { openimg } from "openimg/vite";
 import rehypeImageSize from './src/lib/rehype-image-size';
+import { imgDimensions } from './vite-plugin-img-dimensions';
 
 // TODO: https://github.com/dai-shi/waku/issues/421
 export default defineConfig({
@@ -27,6 +28,7 @@ export default defineConfig({
     // wasmModuleWorkers(),
     // cloudflareWasm(),
     // openimg(),
+    imgDimensions(),
     mdx({
       // A custom useMDXComponents function is required to be able to use the MDXProvider with server components. This is also how Next.js does it.
       providerImportSource: "@/components/mdxComponents/index",
