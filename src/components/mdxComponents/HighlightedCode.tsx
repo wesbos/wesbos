@@ -33,8 +33,6 @@ import tsx from "shiki/langs/tsx.mjs";
 
 // await loadWasm(SHIKI_WASM);
 
-
-
 const highlighter = await createHighlighterCore({
   themes: [cobalt2 as unknown as ThemeInput],
   engine: createJavaScriptRegexEngine(),

@@ -15,7 +15,7 @@ type RootLayoutProps = { children: ReactNode };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <Providers>
+    <>
       <link
         rel="preload"
         href={RadnikaNextBlack}
@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <Footer />
         </Suspense>
       </div>
-    </Providers>
+    </>
   );
 }
 

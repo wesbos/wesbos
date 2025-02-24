@@ -7,6 +7,7 @@ import { IoLogoGithub } from 'react-icons/io';
 import ContentNav from '../../components/ContentNav';
 import { MetaTags } from '../../components/MetaTags';
 import type { PageProps } from "waku/router";
+import mdxComponents from '@/components/mdxComponents';
 
 interface BlogPostPageProps extends PageProps<'/[slug]'> {
   slug: string;
@@ -39,7 +40,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
           </a>
         </div>
       </div>
-      <MDXContent />
+      <MDXContent components={mdxComponents} />
       <div className={EditDialogStyles}>
         <p>Find an issue with this post? Think you could clarify, update or add something?</p>
         <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>

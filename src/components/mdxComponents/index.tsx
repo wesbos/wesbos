@@ -1,14 +1,12 @@
 import { MDXComponents } from "mdx/types";
 import H from "./Headings";
-// import Heading from "../heading";
-// import Blockquote from './blockquote';
 import { Code } from "./code";
 import { HighlightedCode } from "./HighlightedCode";
 import { Image } from "../Image";
 /* eslint-disable */
 const mdxComponents: MDXComponents = {
   // TODO: Figure out what sizes should be
-  img: (props) => (
+  img: async (props) => (
     <Image
       // sizes="100vw"
       // width="100"
@@ -25,7 +23,7 @@ const mdxComponents: MDXComponents = {
   h5: (props) => <H as="h5" {...props} />,
   h6: (props) => <H as="h6" {...props} />,
   inlineCode: (props) => <Code {...props} />,
-  pre: HighlightedCode,
+  pre: async (props) => <HighlightedCode {...props} />,
   // TODO add `a`
   // TODO add `img`
   // TODO add `ul`

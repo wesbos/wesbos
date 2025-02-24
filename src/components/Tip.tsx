@@ -6,7 +6,7 @@ import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
 import { fetchSocialDetails } from '@/lib/socials/fetchers';
 import { SocialStats } from './SocialStats';
 import { MDXResult } from '@/lib/types';
-
+import mdxComponents from './mdxComponents';
 async function TwitterMedia({ twitterLink }: { twitterLink: SocialLink | undefined }) {
   const tweetDetails = twitterLink ? await fetchSocialDetails(twitterLink) : null;
   if (!tweetDetails) {
@@ -29,7 +29,7 @@ export async function Tip({ tip }: { tip: MDXResult }) {
       <TwitterMedia twitterLink={twitterLink} />
       <div className="tipContent">
         <TipMeta tip={tip} />
-        <Content />
+        <Content components={mdxComponents} />
         <div className={socialStatsContainer}>
           {Object.entries(populatedLinks).map(([type, link]) => {
             return <SocialStats key={type} link={link} />;
