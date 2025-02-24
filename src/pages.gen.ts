@@ -33,6 +33,7 @@ import type { getConfig as TipsIndex_getConfig } from './pages/tips/index';
 // prettier-ignore
 type Page =
 | ({ path: '/[slug]' } & GetConfigResponse<typeof SlugIndex_getConfig>)
+| { path: '/_root'; render: 'dynamic' }
 | ({ path: '/about' } & GetConfigResponse<typeof About_getConfig>)
 | { path: '/blog/[page]'; render: 'dynamic' }
 | { path: '/blog'; render: 'dynamic' }

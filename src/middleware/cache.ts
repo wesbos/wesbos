@@ -5,10 +5,21 @@ const COOKIE_OPTS = {};
 
 const cacheMiddleware: Middleware = () => {
   return async (ctx, next) => {
-    // console.log('🥛', ctx.req.url.pathname);
+    if(import.meta.env.MODE === 'development') {
+      return next(); // Skip cache in development
+    }
+    const pathname = ctx.req.url.pathname;
+
+    console.log('👉🏻', pathname);
+
     ctx.res.headers ||= {};
-    // Cache for both CDN and browser with stale-while-revalidate
-    // ctx.res.headers['cache-control'] = 'public, max-age=20, s-maxage=20, stale-while-revalidate=200';
+
+    if(pathname.startsWith('/assets')) {
+      // We can cache assets for a long time - forever really because their content doesn't change. The hash on the filename is changed.
+      // Cache for both CDN and browser with stale-while-revalidate
+      ctx.res.headers['cache-control'] = 'public, max-age=5, s-maxage=5, stale-while-revalidate=15'
+    }
+
     return next();
     // const cookies = cookie.parse(ctx.req.headers.cookie || '');
     // ctx.data.count = Number(cookies.count) || 0;

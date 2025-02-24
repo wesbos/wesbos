@@ -15,42 +15,36 @@ type RootLayoutProps = { children: ReactNode };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="preload"
-          href={RadnikaNextBlack}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href={OperatorMonoBook}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href={OperatorMonoBold}
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body>
-        <Providers>
-          <div className={LayoutStyles}>
-            <Nav />
-            <div className={ContentStyles}>{children}</div>
-            <Suspense>
-              <Footer />
-            </Suspense>
-          </div>
-        </Providers>
-      </body>
-    </html>
+    <Providers>
+      <link
+        rel="preload"
+        href={RadnikaNextBlack}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href={OperatorMonoBook}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href={OperatorMonoBold}
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <div className={LayoutStyles}>
+        <Nav />
+        <div className={ContentStyles}>{children}</div>
+        <Suspense>
+          <Footer />
+        </Suspense>
+      </div>
+    </Providers>
   );
 }
 

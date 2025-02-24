@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import { Link } from "waku";
 import { Image } from "@/components/Image";
 import clsx from "clsx";
@@ -17,7 +14,7 @@ import {
 } from "@/styles/NavStyles.module.css";
 
 export default function Nav() {
-  const { ref, getRow } = useRowFinder();
+
   return (
     <nav className={NavStyles}>
       <div className={LogoStyles}>
@@ -30,17 +27,17 @@ export default function Nav() {
           />
         </Link>
       </div>
-      <ul className={NavUl} ref={ref}>
-        <li className={NavLi} data-row={getRow(0) > 1 ? "row2" : ""}>
+      <ul className={NavUl} >
+        <li className={NavLi}>
           <Link to="/courses" className={NavLink}>
             <span className={clsx([NavSmall, "top"])}>free + premium</span>
             <H as="span">Courses</H>
             <span className={clsx([NavSmall, "bottom", "hideYoSelf"])}>x</span>
           </Link>
         </li>
-        <li className={NavLi} data-row={getRow(1) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <a
-            to="https://syntax.fm"
+            href="https://syntax.fm"
             target="_blank"
             className={NavLink}
             rel="noreferrer"
@@ -50,7 +47,7 @@ export default function Nav() {
             <span className={clsx([NavSmall, "bottom"])}>Web Development</span>
           </a>
         </li>
-        <li className={NavLi} data-row={getRow(2) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link to="/about" className={NavLink}>
             <span className={clsx([NavSmall, "top"])}>more</span>
             <H as="span">About</H>
@@ -58,7 +55,7 @@ export default function Nav() {
           </Link>
         </li>
 
-        <li className={NavLi} data-row={getRow(3) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link
             to="/blog" /* TODO className={pageContext.collection === 'post' && !pageContext.slug.includes('uses') ? 'current-parent' : null} */
            className={NavLink}>
@@ -71,7 +68,7 @@ export default function Nav() {
 
           </Link>
         </li>
-        <li className={NavLi} data-row={getRow(4) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link to="/tips" className={NavLink}>
 
               <span className={clsx([NavSmall, "top"])}>🔥</span>
@@ -80,7 +77,7 @@ export default function Nav() {
 
           </Link>
         </li>
-        <li className={NavLi} data-row={getRow(5) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link to="/javascript" className={NavLink}>
 
               <span className={clsx([NavSmall, "top"])}>Beginner</span>
@@ -89,7 +86,7 @@ export default function Nav() {
 
           </Link>
         </li>
-        <li className={NavLi} data-row={getRow(6) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link to="/speaking-and-training" className={NavLink}>
 
               <span className={clsx([NavSmall, "top"])}>real life</span>
@@ -98,7 +95,7 @@ export default function Nav() {
 
           </Link>
         </li>
-        <li className={NavLi} data-row={getRow(7) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link to="/uses" className={NavLink}>
 
               <span className={clsx([NavSmall, "top"])}>what font?!</span>
@@ -107,7 +104,7 @@ export default function Nav() {
 
           </Link>
         </li>
-        <li className={NavLi} data-row={getRow(8) > 1 ? "row2" : ""}>
+        <li className={NavLi}>
           <Link to="/contact" className={NavLink}>
 
               <span className={clsx([NavSmall, "top"])}>You want to</span>

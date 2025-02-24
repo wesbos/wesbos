@@ -8,7 +8,7 @@ interface ImageProps {
   className?: string;
 }
 
-export function Image({
+export async function Image({
   src,
   alt,
   width,
@@ -20,11 +20,13 @@ export function Image({
     <UnpicImage
       src={src}
       alt={alt}
-      width={width}
-      height={height}
-      cdn="cloudflare"
+      width={width as number}
+      height={height as number}
       className={className}
       {...props}
+      {...(import.meta.env.MODE !== 'development' && {
+        cdn: 'cloudflare',
+      })}
       loading="eager"
     />
   );
