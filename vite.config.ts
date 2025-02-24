@@ -18,6 +18,8 @@ import { unstable_getBuildOptions } from 'waku/server';
 import { openimg } from "openimg/vite";
 import rehypeImageSize from './src/lib/rehype-image-size';
 import { imgDimensions } from './vite-plugin-img-dimensions';
+import UnpluginInjectPreload from 'unplugin-inject-preload/vite'
+
 
 // TODO: https://github.com/dai-shi/waku/issues/421
 export default defineConfig({
@@ -50,6 +52,16 @@ export default defineConfig({
         [rehypeMdxTitle],
         [rehypeHotTips],
       ],
+    }),
+    UnpluginInjectPreload({
+      files: [
+        {
+          entryMatch: /RadnikaNext-[a-zA-Z]*\.woff2$/,
+        },
+        {
+          entryMatch: /OperatorMono-[a-zA-Z]*\.woff2$/,
+        },
+      ]
     })
   ],
   resolve: {
