@@ -22,10 +22,25 @@ const cacheMiddleware: Middleware = () => {
 
     ctx.res.headers['x-wes-was'] = 'here';
 
+    const CACHE_TIME = 5;
+
+    // Cache RSC GET requests  - this is switching pages in Waku
+    if(pathname.startsWith('/RSC/RSC')) {
+      console.log(`Taggin ${pathname} as cacheable for ${CACHE_TIME} seconds`);
+      ctx.res.headers['cache-control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}, stale-while-revalidate=${CACHE_TIME}`
+      return next();
+    }
+    // Cache the about adn contact pages as a test
+    if(pathname.startsWith('/about') || pathname.startsWith('/contact')) {
+      console.log(`Taggin ${pathname} as cacheable for ${CACHE_TIME} seconds`);
+      ctx.res.headers['cache-control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}, stale-while-revalidate=${CACHE_TIME}`
+      return next();
+    }
+
     if(pathname.startsWith('/assets')) {
       // We can cache assets for a long time - forever really because their content doesn't change. The hash on the filename is changed.
-      // Cache for both CDN and browser with stale-while-revalidate
-      ctx.res.headers['cache-control'] = 'public, max-age=5, s-maxage=5, stale-while-revalidate=15'
+      // I don;t think I need this at all since the assets arent even showing up in the cloudflare logs??
+      ctx.res.headers['cache-control'] = `public, max-age=${CACHE_TIME}, s-maxage=${CACHE_TIME}, stale-while-revalidate=${CACHE_TIME}`
       return next();
     }
 
