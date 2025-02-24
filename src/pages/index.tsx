@@ -2,11 +2,15 @@ import { Link } from 'waku';
 import H from '../components/mdxComponents/Headings';
 import { MetaTags } from '../components/MetaTags';
 import type { PageProps } from "waku/router";
+import handsome from '../lib/assets/images/handsome.webp'
 
 export default function HomePage(props: PageProps<'/'>) {
   return (
     <>
       <MetaTags {...props} />
+      {/* This is only here so Google page speed will be higher and poeple wont try tweet dunk on me */}
+      <link rel="preload" fetchPriority="high" as="image" href={handsome} type="image/webp" />
+
       <div className="welcome">
         <div>
           <H as="h2">Hey, I'm Wes&nbsp;Bos.</H>
