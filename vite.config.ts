@@ -56,10 +56,10 @@ export default defineConfig({
     UnpluginInjectPreload({
       files: [
         {
-          entryMatch: /RadnikaNext-[a-zA-Z]*\.woff2$/,
+          entryMatch: /RadnikaNext/,
         },
         {
-          entryMatch: /OperatorMono-[a-zA-Z]*\.woff2$/,
+          entryMatch: /OperatorMono/,
         },
       ]
     })
