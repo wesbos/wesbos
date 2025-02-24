@@ -6,6 +6,7 @@ import { Image } from "@/components/Image";
 import clsx from "clsx";
 import H from "@/components/mdxComponents/Headings";
 import useRowFinder from "@/utils/useRowFinder";
+import Logo from "../../public/images/logo.png";
 import {
   LogoStyles,
   NavLi,
@@ -21,10 +22,10 @@ export default function Nav() {
     <nav className={NavStyles}>
       <div className={LogoStyles}>
         <Link to="/">
-          <img
+          <Image
             height={164}
             width={200}
-            src="/images/logo.png"
+            src={Logo}
             alt="Wes Bos"
           />
         </Link>

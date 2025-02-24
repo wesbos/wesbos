@@ -8,7 +8,7 @@ interface ImageProps {
   className?: string;
 }
 
-export async function Image({
+export function Image({
   src,
   alt,
   width,
