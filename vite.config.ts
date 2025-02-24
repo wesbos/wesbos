@@ -61,6 +61,7 @@ export default defineConfig({
     include: ["react/jsx-runtime"],
   },
   build: {
-    target: 'esnext'
+    target: 'esnext',
+    cssCodeSplit: false,
   }
 });
