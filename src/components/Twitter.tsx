@@ -89,7 +89,8 @@ export default async function Twitter() {
                 </div>
                 <a className={TweetLink} rel="noopener noreferrer" target="_blank" href={`https://twitter.com/wesbos/status/${tweet.rest_id}`}>
                   {/* @ts-ignore types are wrong upstream */}
-                  <Media media={media} alt={text} />
+                  {/* I removed the alt because google page speed thinks it's a duplicate */}
+                  <Media media={media} alt="" />
                   {text_}
                 </a>
               </div>
