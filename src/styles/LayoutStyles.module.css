@@ -1,7 +1,7 @@
 .LayoutStyles {
   min-height: calc(100vh - 40px);
   &:has(div[class="welcome"]) {
-    background: url("/images/handsome.jpg") no-repeat top center;
+    background: url("/images/handsome.webp") no-repeat top center;
     @media (max-width: 650px) {
       background-position: top left -400px;
       h2 {

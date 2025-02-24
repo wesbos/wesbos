@@ -54,17 +54,6 @@ export default defineConfig({
         [rehypeHotTips],
       ],
     }),
-    inlineSource(),
-    UnpluginInjectPreload({
-      files: [
-        {
-          entryMatch: /RadnikaNext/,
-        },
-        {
-          entryMatch: /OperatorMono/,
-        },
-      ]
-    })
   ],
   resolve: {
     alias: {
@@ -76,6 +65,6 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    cssCodeSplit: false,
+    // cssCodeSplit: false,
   }
 });
