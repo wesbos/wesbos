@@ -5,6 +5,7 @@ export const cloudflareDevServer = (cfOptions: any) => {
   const wranglerPromise = import('wrangler').then(({ getPlatformProxy }) =>
     getPlatformProxy({ ...(cfOptions || {}) }),
   );
+  console.log(`Importing miniflare`);
   const miniflarePromise = import('miniflare').then(({ WebSocketPair }) => {
     Object.assign(globalThis, { WebSocketPair });
   });

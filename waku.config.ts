@@ -35,10 +35,11 @@ export default defineConfig({
       //   cacheName: 'waku-cache',
       //   cacheControl: 'max-age=3600',
       // }),
-      import('./src/middleware/cache'),
+
       import('waku/middleware/context'),
       import('waku/middleware/dev-server'),
       import('./waku.cloudflare-middleware'),
+      import('./src/middleware/cache'),
       import('waku/middleware/handler'),
     ];
   },
