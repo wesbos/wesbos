@@ -65,8 +65,7 @@
     --operator-mono: "HCo Operator Mono";
     --radnika: "radnika", fallback, Inter, Helvetica, Arial, sans-serif;
     --whiteGrit: url("../mdxComponents/whitegrit.png");
-    /* --blackGrit: url("../mdxComponents/blackgrit.webp"); */
-    --blackGrit: transparent;
+    --blackGrit: url("../mdxComponents/blackgrit.webp");
   }
 
   html {
@@ -99,7 +98,6 @@
       z-index: -3;
       border: var(--borderSize) solid var(--dark);
       background: var(--light);
-      display: none; /* Page speed hack */
     }
     &:before {
       box-sizing: content-box;
@@ -114,7 +112,6 @@
       border: var(--size) solid transparent;
       border-image: var(--blackGrit) 250 round;
       background-size: 250px;
-      display: none; /* Page speed hack */
     }
   }
   body {
