@@ -5,6 +5,7 @@ const COOKIE_OPTS = {};
 
 const cacheMiddleware: Middleware = () => {
   return async (ctx, next) => {
+
     if(import.meta.env.MODE === 'development') {
       return next(); // Skip cache in development
     }

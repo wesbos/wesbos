@@ -5,7 +5,7 @@
  * - npm i image-size unist-util-visit
  * @url https://mmazzarolo.com/blog/2023-07-29-nextjs-mdx-image-size/
  */
-import getImageSize from "image-size";
+import { imageSizeFromFile } from "image-size/fromFile";
 import path from 'path';
 import { visit } from "unist-util-visit";
 
@@ -26,7 +26,7 @@ export const rehypeImageSize = (options) => {
       // get the directory of the markdown file
       const markdownDir = path.dirname(markdownFilePath);
       const imagePath = `${markdownDir}/${node.properties.src}`;
-      const imageSize = getImageSize(imagePath);
+      const imageSize = imageSizeFromFile(imagePath);
       node.properties.width = imageSize.width;
       node.properties.height = imageSize.height;
     });

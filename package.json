@@ -19,7 +19,7 @@
     "@stefanprobst/rehype-extract-toc": "^2.2.1",
     "@types/glob-watcher": "^5.0.5",
     "@types/mdx": "^2.0.13",
-    "@types/node": "^22.13.4",
+    "@types/node": "^22.13.5",
     "@unpic/react": "^1.0.0",
     "better-sqlite3": "^11.8.1",
     "caniuse-lite": "^1.0.30001700",
@@ -37,14 +37,14 @@
     "glob-watcher": "^6.0.0",
     "hls-video-element": "^1.4.1",
     "hono": "4.7.2",
-    "image-size": "^1.2.0",
+    "image-size": "^2.0.0",
     "linkedom": "^0.18.9",
     "magic-string": "^0.30.17",
     "media-chrome": "^4.5.0",
     "normalize.css": "^8.0.1",
-    "openimg": "^0.1.0",
+    "openimg": "^0.5.1",
     "postcss-nesting": "^13.0.1",
-    "puppeteer-core": "^24.2.1",
+    "puppeteer-core": "^24.3.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-icons": "^5.5.0",
@@ -67,21 +67,20 @@
     "typescript-plugin-css-modules": "^5.1.0",
     "unist-util-visit": "^5.0.0",
     "vite-plugin-wasm": "^3.4.1",
-    "waku": "0.21.20"
+    "waku": "0.21.21"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "^0.1.2",
+    "@cloudflare/vite-plugin": "^0.1.5",
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "miniflare": "3.20250214.0",
-    "tailwindcss": "4.0.7",
     "typescript": "5.7.3",
-    "vite": "^6.1.1",
+    "vite": "^6.2.0",
     "vite-plugin-top-level-await": "^1.5.0",
     "vite-plugin-wasm-module-workers": "^0.0.2",
-    "wrangler": "3.109.2"
+    "wrangler": "3.109.3"
   },
   "pnpm": {
     "overrides": {

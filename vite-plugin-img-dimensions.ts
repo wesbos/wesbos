@@ -1,7 +1,7 @@
 // Forked from https://github.com/andrelandgraf/openimg/blob/main/packages/core/src/vite.ts
 import type { Plugin } from "vite";
 import { readFileSync } from "node:fs";
-import sizeOf from "image-size";
+import { imageSizeFromFile } from "image-size/fromFile";
 
 export function imgDimensions(): Plugin {
   return {
@@ -20,7 +20,7 @@ export function imgDimensions(): Plugin {
         // ignore files that are not images
         return null;
       }
-      const { width, height } = sizeOf(path);
+      const { width, height } = imageSizeFromFile(path);
 
       return `import src from '${path}?url';
 export default {
