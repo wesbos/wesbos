@@ -65,7 +65,8 @@
     --operator-mono: "HCo Operator Mono";
     --radnika: "radnika", fallback, Inter, Helvetica, Arial, sans-serif;
     --whiteGrit: url("../mdxComponents/whitegrit.png");
-    --blackGrit: url("../mdxComponents/blackgrit.webp");
+    /* --blackGrit: url("../mdxComponents/blackgrit.webp"); */
+    --blackGrit: transparent; /* disable for page speed test*/
   }
 
   html {
