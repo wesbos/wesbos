@@ -55,7 +55,7 @@ export default async function Footer() {
             </Link>
           </p>
           <p>
-            <span>Version: {import.meta.env.WAKU_GIT_COMMIT_HASH}</span>
+            <span>Commit <a href={`https://github.com/wesbos/wesbos/commit/${import.meta.env.WAKU_GIT_COMMIT_HASH}`}>{import.meta.env.WAKU_GIT_COMMIT_HASH}</a></span>
           </p>
         </div>
       </div>
