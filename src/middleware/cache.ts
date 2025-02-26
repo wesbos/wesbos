@@ -32,12 +32,13 @@ const cacheMiddleware: Middleware = () => {
       cachedResponse.headers.forEach((value, key) => {
         c.header(key, value);
       });
-      c.status(cachedResponse.status);
-      c.body(txt);
+      ctx.res.body = txt;
+      ctx.res.status = cachedResponse.status;
+      ctx.res.headers = cachedResponse.headers;
+      // c.status(cachedResponse.status);
+      // c.body(txt);
       return;
       // Use the text content directly to avoid ReadableStream issues
-
-
 
       return; // Early return without calling next()
     }
