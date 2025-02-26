@@ -19,8 +19,10 @@ const cacheMiddleware: Middleware = () => {
     const response = await cache.match(key)
     if (response) {
       console.log('👉🏻 cache hit', response);
+      response.headers.set('x-cache-hit', 'hell-ya');
       // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
       return new Response(response.body, response)
+
     }
 
     await next(); // waits until after the response is returned
