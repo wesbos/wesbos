@@ -19,13 +19,14 @@ const cacheMiddleware: Middleware = () => {
     const response = await cache.match(key)
     if (response) {
       console.log('👉🏻 cache hit', response);
+      //clone the response so we can see the output
+      const cloned = response.clone();
+      const txt = await cloned.text();
+      console.log('👉🏻 cache hit text', txt);
       // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
-      return new Response(response.body, {
-        headers: {
-          'x-cache-hit': 'hell-ya'
-        }
-      })
-
+      c.body(response.body, response.status, response.headers);
+      ctx.res.body = undefined;
+      ctx.res.status = undefined;
     }
 
     await next(); // waits until after the response is returned
@@ -36,7 +37,7 @@ const cacheMiddleware: Middleware = () => {
     ctx.res.headers ||= {};
     ctx.res.headers['Cache-Control'] = 'max-age=3600';
     const cloned = c.res.clone();
-    c.executionCtx.waitUntil(cache.put(key, new Response('<h1>TEST CACHE</h1>')))
+    c.executionCtx.waitUntil(cache.put(key,  cloned))
     // console.log('👉🏻 caching', ctx.res.body);
     // await cache.put(key, new Response('TEST CACHE', c.res))
 
