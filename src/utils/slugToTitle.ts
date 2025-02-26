@@ -6,13 +6,25 @@ export function slugToTitle(slug: string): string {
   // Handle empty string
   if (!cleanSlug) return '';
 
-  // Special case for tip/ prefix
-  if (cleanSlug.startsWith('tip/')) {
-    const tipPart = cleanSlug.replace('tip/', '');
-    return `Tip: ${formatSlugPart(tipPart)}`;
+  // Check if the slug ends with a page number pattern (e.g., /2)
+  const pageNumberMatch = cleanSlug.match(/\/(\d+)$/);
+  let pageNumber: string | null = null;
+  let slugWithoutPageNumber = cleanSlug;
+
+  if (pageNumberMatch && pageNumberMatch[1]) {
+    pageNumber = pageNumberMatch[1];
+    slugWithoutPageNumber = cleanSlug.replace(/\/\d+$/, '');
   }
 
-  return formatSlugPart(cleanSlug);
+  // Special case for tip/ prefix
+  if (slugWithoutPageNumber.startsWith('tip/')) {
+    const tipPart = slugWithoutPageNumber.replace('tip/', '');
+    const title = `Tip: ${formatSlugPart(tipPart)}`;
+    return pageNumber ? `${title} - Page ${pageNumber}` : title;
+  }
+
+  const title = formatSlugPart(slugWithoutPageNumber);
+  return pageNumber ? `${title} - Page ${pageNumber}` : title;
 }
 
 function formatSlugPart(part: string): string {
