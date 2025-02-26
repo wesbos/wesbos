@@ -6,6 +6,10 @@ import puppeteer from '@cloudflare/puppeteer';
 
 let browser: Browser;
 
+/**
+ * @todo: This should be switched to using the Cloudlfare cache as seen in
+ * @link middleware/cache.ts
+*/
 async function getScreenshot(url: string, ctx: HandlerContext) {
   const env = getHonoContext(ctx)?.env;
   const kv = env?.OG;
@@ -13,6 +17,7 @@ async function getScreenshot(url: string, ctx: HandlerContext) {
   // first check if this value has been cached
   const cachedImage = await kv.get(url, 'arrayBuffer');
   if (cachedImage) {
+
     console.log('Returning cached image');
     return cachedImage;
   }
@@ -56,25 +61,6 @@ async function getScreenshot(url: string, ctx: HandlerContext) {
   return buffer;
 }
 
-// export async function GET(request: NextRequest) {
-  // const qs = new URLSearchParams(request.nextUrl.searchParams);
-  // const url = `${request.nextUrl.origin}/og?${qs.toString()}`;
-  // console.log(`Getting screenshot for ${url}`);
-  // const photoBuffer = await getScreenshot(url).catch(async (err) => {
-  //   console.log(`Error getting screenshot`, err);
-  //   console.dir(err)
-  //   await browser.close();
-  //   throw err;
-  // });
-  // console.log(`Returning response`);
-  // return new NextResponse(photoBuffer, {
-  //   headers: {
-  //     'Content-Type': 'image/png',
-  //   },
-  // });
-// }
-
-
 const ogInterceptor: Middleware = () => {
   return async function cache(ctx, next) {
     if (!ctx.req.url.pathname.startsWith('/og.jpg')) return next();
@@ -98,6 +84,7 @@ const ogInterceptor: Middleware = () => {
     ctx.res.body = photoBuffer;
     ctx.res.headers = {
       'Content-Type': 'image/png',
+      'CDN-Cache-Control': 'public, max-age=86400', // 1 day
     };
     return;
   }

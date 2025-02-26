@@ -33,7 +33,7 @@ export function OG({ query }: OGProps) {
             lineHeight: 1.3,
           }}
         >
-          {title}
+          {title || 'Wes Bos'}
         </H>
         {thumbnail && <img className="thumbnail" src={thumbnail} alt={title} />}
       </div>
