@@ -63,7 +63,8 @@ const cacheMiddleware: Middleware = () => {
       }
 
       // Create a response to cache
-      const responseToCache = new Response(ctx.res.body, {
+      const body = ctx.res.body.tee()
+      const responseToCache = new Response(body[0], {
         status: ctx.res.status || 200,
         headers: responseHeaders,
       });
