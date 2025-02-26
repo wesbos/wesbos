@@ -54,6 +54,9 @@ export default async function Footer() {
               Privacy Policy
             </Link>
           </p>
+          <p>
+            <span>Version: {import.meta.env.WAKU_GIT_COMMIT_HASH}</span>
+          </p>
         </div>
       </div>
     </footer>

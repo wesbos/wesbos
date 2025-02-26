@@ -20,6 +20,7 @@ import rehypeImageSize from './src/lib/rehype-image-size';
 import { imgDimensions } from './vite-plugin-img-dimensions';
 import UnpluginInjectPreload from 'unplugin-inject-preload/vite'
 import inlineSource from "vite-plugin-inline-source";
+import { gitHashPlugin } from './vite-plugin-git-hash';
 
 
 // TODO: https://github.com/dai-shi/waku/issues/421
@@ -31,6 +32,7 @@ export default defineConfig({
     // wasmModuleWorkers(),
     // cloudflareWasm(),
     // openimg(),
+    gitHashPlugin(),
     imgDimensions(),
     mdx({
       // A custom useMDXComponents function is required to be able to use the MDXProvider with server components. This is also how Next.js does it.

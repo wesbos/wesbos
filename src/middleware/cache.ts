@@ -11,7 +11,7 @@ const COOKIE_OPTS = {};
 const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
     const c = ctx.data.__hono_context as Context; // This is the Hono context
-    let key = c.req.url.toString();
+    let key = `${c.req.url.toString()}-${import.meta.env.WAKU_GIT_COMMIT_HASH}`;
     const cacheName = 'my-app';
     const cache = await caches.open(cacheName);
     console.log(`👉🏻 cache key`, key, cache);
@@ -61,8 +61,9 @@ const cacheMiddleware: Middleware = () => {
       ctx.res.headers['x-wes-cached-this'] = new Date().toLocaleString('en-US', {
         timeZone: 'America/New_York'
       });
-      // Cache Tag- TODO: Add a cache tag for the commit hash?
-      ctx.res.headers['Cache-Tag'] = 'my-app';
+      // Cache Tag- TODO: Add a cache tag for the Worker version hash?
+      // https://community.cloudflare.com/t/worker-version-as-environment-variable/359939
+      ctx.res.headers['Cache-Tag'] = `site,commit-${import.meta.env.WAKU_GIT_COMMIT_HASH}`;
 
       // Create a proper response object for caching
       // Convert headers to a proper Headers object
