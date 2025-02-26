@@ -21,7 +21,7 @@ export default async function HotTips(props: PageProps<'/tips'> & { page: string
       <p>
         Hot tips are spicy lil' nuggets related to web development and tooling that I share on <a href="https://twitter.com/wesbos">my twitter account</a>. I've logged them here to make them easier to find.
       </p>
-      <Pagination currentPage={currentPage} totalCount={total} totalPages={pages} pathPrefix="/tips/" />
+      <Pagination scroll={false} currentPage={currentPage} totalCount={total} totalPages={pages} pathPrefix="/tips/" />
       <div>
         {posts.map((tip, i) => (
           <Tip key={`${tip.frontmatter.slug}-${i}`} tip={tip} />

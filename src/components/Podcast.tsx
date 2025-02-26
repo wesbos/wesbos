@@ -30,7 +30,7 @@ export default async function Podcast() {
       <h3 className={FooterHeading}>
         <span className="highlight">Syntax Podcast: #{podcast.number}</span>
       </h3>
-      {/* <Image width={500} height={500} alt="Syntax Podcast" src="/images/syntax-logo.jpg" /> */}
+      <Image width={500} height={500} alt="Syntax Podcast" src="/images/syntax-logo.jpg" />
       <time
         style={{
           fontSize: '1.2rem',

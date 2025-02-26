@@ -8,11 +8,13 @@ export default function Pagination({
   currentPage = 1,
   totalPages,
   pathPrefix,
+  scroll = true,
 }: {
   totalCount: number;
   currentPage: number;
   totalPages: number;
   pathPrefix: string;
+  scroll?: boolean;
 }) {
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
@@ -24,6 +26,7 @@ export default function Pagination({
         to={
           prevPage <= 0 ? "#" : `${pathPrefix}${prevPage === 1 ? "" : prevPage}`
         }
+        scroll={scroll}
       >
         ← Prev 10 please
       </Link>
@@ -34,6 +37,7 @@ export default function Pagination({
         className="dirty"
         aria-disabled={nextPage > totalPages}
         to={nextPage > totalPages ? "#" : `${pathPrefix}${nextPage}`}
+        scroll={scroll}
       >
         {nextPage > totalPages ? `That's all Folks` : `10 More please →`}
       </Link>

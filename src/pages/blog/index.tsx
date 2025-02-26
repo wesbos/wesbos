@@ -21,6 +21,7 @@ export default async function Blog(props: PageProps<'/blog'> & { page: string })
         totalPages={pages}
         totalCount={total || 10}
         pathPrefix="/blog/"
+        scroll={false}
       />
       <div className={PostGrid}>
         {posts.map((post) => (
