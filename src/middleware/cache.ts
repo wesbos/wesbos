@@ -11,7 +11,7 @@ const COOKIE_OPTS = {};
 const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
     const c = ctx.data.__hono_context as Context; // This is the Hono context
-    let key = c.req.url.toString() + '2';
+    let key = c.req.url.toString();
     const cacheName = 'my-app';
     const cache = await caches.open(cacheName);
     console.log(`👉🏻 cache key`, key, cache);
@@ -20,15 +20,10 @@ const cacheMiddleware: Middleware = () => {
     const cachedResponse = await cache.match(key);
     if (cachedResponse) {
       console.log('👉🏻 cache hit', cachedResponse);
-
-      // Clone the response so we can see the output
-      const cloned = cachedResponse.clone();
-      const txt = await cloned.text();
-      console.log('👉🏻 cache hit text', txt);
       // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
       // Use the Hono context to set the response
       // This avoids the type issues with ctx.res
-      c.header('Cache-Control', 'max-age=3600, s-maxage=3600');
+      // c.header('Cache-Control', 'max-age=3600, s-maxage=3600');
       cachedResponse.headers.forEach((value, key) => {
         c.header(key, value);
       });
@@ -50,7 +45,6 @@ const cacheMiddleware: Middleware = () => {
         headers[key] = value;
       });
       ctx.res.headers = headers;
-
       return;
     }
 
@@ -61,7 +55,7 @@ const cacheMiddleware: Middleware = () => {
     if (ctx.res.body) {
       // Set cache control header
       ctx.res.headers = ctx.res.headers || {};
-      ctx.res.headers['Cache-Control'] = 'max-age=3600';
+      ctx.res.headers['CDN-Cache-Control'] = 'max-age=3600';
 
       // Create a proper response object for caching
       // Convert headers to a proper Headers object
