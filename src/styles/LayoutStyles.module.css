@@ -1,5 +1,9 @@
 .LayoutStyles {
-  min-height: calc(100vh - 40px);
+  padding-top: 2rem;
+  min-height: calc(100dvh - 40px);
+  @media (max-width: 800px) {
+    padding-top: 0;
+  }
   &:has(div[class="welcome"]) {
     background: url("/images/handsome.webp") no-repeat top center;
     @media (max-width: 650px) {

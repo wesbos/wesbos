@@ -11,9 +11,9 @@ import RadnikaNextBlack from "../lib/assets/fonts/RadnikaNext/RadnikaNext-Black.
 import OperatorMonoBook from "../lib/assets/fonts/operator/OperatorMono-Book_Web.woff2";
 import OperatorMonoBold from "../lib/assets/fonts/operator/OperatorMono-Bold_Web.woff2";
 
-type RootLayoutProps = { children: ReactNode };
+type RootLayoutProps = { children: ReactNode; path: string };
 
-export default async function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children, path }: RootLayoutProps) {
   return (
     <>
       <link
@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         crossOrigin="anonymous"
       />
       <div className={LayoutStyles}>
-        <Nav />
+        <Nav path={path} />
         <div className={ContentStyles}>{children}</div>
         <Suspense>
           <Footer />

@@ -29,10 +29,11 @@
 .FooterStyles {
   background: var(--dark) var(--whiteGrit);
   background-size: 500px;
-  padding-top: 180px;
+  padding-top: 50px;
   padding-bottom: 80px;
-  clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
+  /* clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%); */
   overflow: hidden;
+  background-size: 300px;
 
   .socialLink {
     background: var(--dark);
@@ -44,13 +45,13 @@
     display: inline-flex;
     align-items: center;
     margin: 2px;
-    &[href*='youtube.com'] {
+    &[href*="youtube.com"] {
       /* Kind of interesting, so I'm leaving this in: https://twitter.com/wesbos/status/1248252653953601538 */
       background: #ff0000; /* Red */
       background: #dd0000; /* AA Grade */
       background: #ec1212;
     }
-    &[href*='github.com'] {
+    &[href*="github.com"] {
       background: var(--light);
       color: var(--dark);
     }
@@ -173,7 +174,7 @@
     display: flex;
     align-items: center;
     gap: 3px;
-    &[title*='Hearts'] {
+    &[title*="Hearts"] {
       svg {
         color: red;
       }

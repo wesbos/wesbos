@@ -1,36 +1,29 @@
 .LogoStyles {
   display: grid;
   justify-items: center;
-  margin-bottom: -4rem;
-  z-index: 2;
+  align-items: center;
+  padding: 10px;
+  background: var(--white);
 }
 
 .NavStyles {
-  border-bottom: 5px solid var(--yellow);
+  --border-size: 2.5px;
+  border: var(--border-size) solid var(--black);
   display: grid;
   grid-template-columns: 1fr;
-  padding-top: 25px;
-  @media (max-width: 625px) {
-    ul {
-      /* padding: 2.5rem 1rem 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
-      text-align: center;
-      display: flex;
-      gap: 0 20px;
-      a > span {
-        display: block;
-        padding: 1rem 0;
-      }
-      span.grit {
-        margin: 0;
-      }
-      a:hover {
-        span:before {
-          display: none;
-        }
-      }
-    }
+  /* padding-top: 25px; */
+  display: grid;
+  background: var(--white);
+  grid-template-columns: auto 1fr;
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+  box-shadow: 5px 5px 0 var(--black), 10px 10px 0 var(--yellow);
+  @media (max-width: 1200px) {
+    margin-inline: 2rem;
+  }
+  @media (max-width: 800px) {
+    box-shadow: none;
+    margin: 0;
   }
 }
 
@@ -49,92 +42,55 @@
   & span:before {
     display: none;
   }
+  @media (max-width: 800px) {
+    span {
+      font-size: 20px;
+    }
+  }
 }
 
 .NavSmall {
   font-size: 1.3rem;
+  padding-top: 5px;
   display: block;
   font-family: var(--baseFont);
   font-weight: 400;
-  text-align: right;
+  text-align: left;
   line-height: 10px;
   position: relative;
   pointer-events: none;
-  @media (max-width: 625px) {
+  @media (max-width: 800px) {
     display: none !important;
   }
 }
 
 .NavUl {
-  background: var(--light);
+  background: var(--black);
+  border-left: 2px solid var(--dark);
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   list-style: none;
   margin: 0;
-  padding: 3rem 2rem 2rem 2rem;
+  gap: var(--border-size);
+  padding: 0;
   box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.06);
-  @media (max-width: 625px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  }
 }
 
 .NavLi {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
   align-items: start;
   align-content: center;
   grid-gap: 2rem;
-  margin: 1rem;
-  &[data-row="row2"] {
-    margin: 0;
-    & > *,
-    span {
-      transform: scale(0.55);
-      @media (max-width: 625px) {
-        transform: scale(1);
-      }
-    }
-    :global(.top),
-    :global(.bottom) {
-      display: none;
-    }
+  padding: 10px;
+  flex: 1;
+  background: var(--white);
+  flex-grow: 1;
+  &[class*="current-parent"] {
+    border-bottom: 2px solid var(--yellow);
   }
-  &:after {
-    content: "×";
-    color: var(--yellow);
-    display: flex;
-    align-items: center;
-  }
-  &:last-child:after {
-    display: none;
-  }
-
-  @media (max-width: 625px) {
-    grid-template-columns: 1fr;
-    margin: 0;
-    text-align: center;
-    /* This gets rid of the X */
-    &:after {
-      display: none;
-    }
-    a {
-      &:before {
-        display: none;
-      }
-    }
-    & > *,
-    span {
-      transform: scale(1);
-      font-size: 1.7rem;
-    }
-    small.top,
-    small.bottom {
-      display: none;
-    }
-    span.grit {
-      padding: 0;
-    }
+  &:last-child {
+    flex-grow: 4;
+    justify-items: end;
   }
 }

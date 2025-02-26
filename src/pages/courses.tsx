@@ -16,7 +16,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
       <p>I'm delivering a few new courses every year, so sign up for any of these courses and you'll hear when I announce new ones!</p>
       <div className={styles.CourseListStyles}>
         <div className="course">
-          <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GAT/GAT-social-share.webp" alt="Master Gatsby" />
+          <img src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GAT/GAT-social-share.png" alt="Master Gatsby" />
           <H as="h3">Master Gatsby</H>
           <span className={styles.PriceTag}>Premium</span>
           <a href="https://MasterGatsby.com" target="_blank" rel="noreferrer">
