@@ -29,14 +29,14 @@ const cacheMiddleware: Middleware = () => {
       });
 
       // Fix type issues by converting the text to a stream
-      const stream = new ReadableStream({
-        start(controller) {
-          controller.enqueue(new TextEncoder().encode(txt));
-          controller.close();
-        }
-      });
+      // const stream = new ReadableStream({
+      //   start(controller) {
+      //     controller.enqueue(new TextEncoder().encode(txt));
+      //     controller.close();
+      //   }
+      // });
 
-      ctx.res.body = stream;
+      ctx.res.body = cachedResponse.body;
       ctx.res.status = cachedResponse.status;
 
       // Convert Headers to a Record<string, string | string[]>
@@ -55,7 +55,7 @@ const cacheMiddleware: Middleware = () => {
     if (ctx.res.body) {
       // Set cache control header
       ctx.res.headers = ctx.res.headers || {};
-      ctx.res.headers['CDN-Cache-Control'] = 'max-age=3600';
+        ctx.res.headers['CDN-Cache-Control'] = 'max-age=3600';
 
       // Create a proper response object for caching
       // Convert headers to a proper Headers object
