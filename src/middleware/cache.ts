@@ -2,7 +2,7 @@
 import { getCloudflareContext } from '@/lib/hono';
 import { getEnv } from '@/lib/waku';
 import type { Middleware } from 'waku/config';
-import { cache } from 'hono/cache'
+import { cache } from 'hono/cache';
 import type { Context } from 'hono';
 
 // XXX we would probably like to extend config.
@@ -10,44 +10,74 @@ const COOKIE_OPTS = {};
 
 const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
-
     const c = ctx.data.__hono_context as Context; // This is the Hono context
     let key = c.req.url.toString() + '2';
-    const cacheName = 'my-app'
-    const cache = await caches.open(cacheName)
+    const cacheName = 'my-app';
+    const cache = await caches.open(cacheName);
     console.log(`👉🏻 cache key`, key, cache);
-    const response = await cache.match(key)
-    if (response) {
-      console.log('👉🏻 cache hit', response);
-      //clone the response so we can see the output
-      const cloned = response.clone();
+
+    // Try to get from cache
+    const cachedResponse = await cache.match(key);
+    if (cachedResponse) {
+      console.log('👉🏻 cache hit', cachedResponse);
+
+      // Clone the response so we can see the output
+      const cloned = cachedResponse.clone();
       const txt = await cloned.text();
       console.log('👉🏻 cache hit text', txt);
-      // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
-      c.body(response.body, response.status, response.headers);
-      ctx.res.body = undefined;
-      ctx.res.status = undefined;
-      return;
+
+      // Use the Hono context to set the response
+      // This avoids the type issues with ctx.res
+      c.header('Cache-Control', 'max-age=3600, s-maxage=3600');
+      cachedResponse.headers.forEach((value, key) => {
+        c.header(key, value);
+      });
+
+      // Use the text content directly to avoid ReadableStream issues
+      const responseText = await cachedResponse.clone().text();
+      c.status(cachedResponse.status);
+      c.body(responseText);
+
+      return; // Early return without calling next()
     }
 
-    await next(); // waits until after the response is returned
-    // if (!c.res.ok) {
-    //   console.log('👉🏻 not caching', key, c.res.status);
-    //   return
-    // }
-    ctx.res.headers ||= {};
-    ctx.res.headers['Cache-Control'] = 'max-age=3600';
-    const cloned = new Response(ctx.res.body, {
-      headers: ctx.res.headers,
-      status: ctx.res.status,
-    });
-    console.log('👉🏻 cloned', cloned);
-    c.executionCtx.waitUntil(cache.put(key,  cloned))
-    // console.log('👉🏻 caching', ctx.res.body);
-    // await cache.put(key, new Response('TEST CACHE', c.res))
+    // No cache hit, continue with the request
+    await next();
 
-  }
-}
+    // After the response is generated, cache it
+    if (ctx.res.body) {
+      // Set cache control header
+      ctx.res.headers = ctx.res.headers || {};
+      ctx.res.headers['Cache-Control'] = 'max-age=3600';
+
+      // Create a proper response object for caching
+      // Convert headers to a proper Headers object
+      const responseHeaders = new Headers();
+      if (ctx.res.headers) {
+        Object.entries(ctx.res.headers).forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach(v => responseHeaders.append(key, v));
+          } else if (value !== undefined) {
+            responseHeaders.set(key, value);
+          }
+        });
+      }
+
+      // Create a response to cache
+      const responseToCache = new Response(ctx.res.body, {
+        status: ctx.res.status || 200,
+        headers: responseHeaders,
+      });
+
+      console.log('👉🏻 caching response', key);
+
+      // Use waitUntil to ensure the cache operation completes
+      // even if the response is already sent
+      c.executionCtx.waitUntil(cache.put(key, responseToCache.clone()));
+    }
+  };
+};
+
 export default cacheMiddleware;
 
 // const cacheMiddlewareXXX: Middleware = () => {
