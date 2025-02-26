@@ -32,11 +32,25 @@ const cacheMiddleware: Middleware = () => {
       cachedResponse.headers.forEach((value, key) => {
         c.header(key, value);
       });
-      ctx.res.body = txt;
+
+      // Fix type issues by converting the text to a stream
+      const stream = new ReadableStream({
+        start(controller) {
+          controller.enqueue(new TextEncoder().encode(txt));
+          controller.close();
+        }
+      });
+
+      ctx.res.body = stream;
       ctx.res.status = cachedResponse.status;
-      ctx.res.headers = cachedResponse.headers;
-      // c.status(cachedResponse.status);
-      // c.body(txt);
+
+      // Convert Headers to a Record<string, string | string[]>
+      const headers: Record<string, string | string[]> = {};
+      cachedResponse.headers.forEach((value, key) => {
+        headers[key] = value;
+      });
+      ctx.res.headers = headers;
+
       return;
     }
 
@@ -62,17 +76,34 @@ const cacheMiddleware: Middleware = () => {
         });
       }
 
+      // Clone the stream before using it for caching
+      let responseBodyToCache: ReadableStream | string = '';
+
+      if (ctx.res.body instanceof ReadableStream) {
+        // Clone the stream so we can use it in two places
+        const [stream1, stream2] = ctx.res.body.tee();
+
+        // Use one stream for the response to the client
+        ctx.res.body = stream1;
+
+        // Use the other stream for caching
+        responseBodyToCache = stream2;
+      } else {
+        // If it's not a stream, we can use it directly
+        responseBodyToCache = ctx.res.body;
+      }
+
       // Create a response to cache
-      // const responseToCache = new Response(ctx.res.body, {
-      //   status: ctx.res.status || 200,
-      //   headers: responseHeaders,
-      // });
+      const responseToCache = new Response(responseBodyToCache, {
+        status: ctx.res.status || 200,
+        headers: responseHeaders,
+      });
 
       console.log('👉🏻 caching response', key);
 
       // Use waitUntil to ensure the cache operation completes
       // even if the response is already sent
-      c.executionCtx.waitUntil(cache.put(key, c.res));
+      c.executionCtx.waitUntil(cache.put(key, responseToCache));
     }
   };
 };
