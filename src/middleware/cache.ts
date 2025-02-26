@@ -32,11 +32,12 @@ const cacheMiddleware: Middleware = () => {
       cachedResponse.headers.forEach((value, key) => {
         c.header(key, value);
       });
-      return cachedResponse;
-      // Use the text content directly to avoid ReadableStream issues
-      const responseText = await cachedResponse.clone().text();
       c.status(cachedResponse.status);
-      c.body(responseText);
+      c.body(txt);
+      return;
+      // Use the text content directly to avoid ReadableStream issues
+
+
 
       return; // Early return without calling next()
     }
