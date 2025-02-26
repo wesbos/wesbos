@@ -63,17 +63,16 @@ const cacheMiddleware: Middleware = () => {
       }
 
       // Create a response to cache
-      const body = ctx.res.body.tee()
-      const responseToCache = new Response(body[1], {
-        status: ctx.res.status || 200,
-        headers: responseHeaders,
-      });
+      // const responseToCache = new Response(ctx.res.body, {
+      //   status: ctx.res.status || 200,
+      //   headers: responseHeaders,
+      // });
 
       console.log('👉🏻 caching response', key);
 
       // Use waitUntil to ensure the cache operation completes
       // even if the response is already sent
-      c.executionCtx.waitUntil(cache.put(key, responseToCache));
+      c.executionCtx.waitUntil(cache.put(key, c.res));
     }
   };
 };
