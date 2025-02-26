@@ -25,14 +25,14 @@ const cacheMiddleware: Middleware = () => {
       const cloned = cachedResponse.clone();
       const txt = await cloned.text();
       console.log('👉🏻 cache hit text', txt);
-
+      // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
       // Use the Hono context to set the response
       // This avoids the type issues with ctx.res
       c.header('Cache-Control', 'max-age=3600, s-maxage=3600');
       cachedResponse.headers.forEach((value, key) => {
         c.header(key, value);
       });
-
+      return cachedResponse;
       // Use the text content directly to avoid ReadableStream issues
       const responseText = await cachedResponse.clone().text();
       c.status(cachedResponse.status);
