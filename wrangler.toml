@@ -11,7 +11,8 @@ html_handling = "drop-trailing-slash" # "single-page-application" | "404-page" |
 not_found_handling = "404-page"
 
 # Browser for Puppeteer
-# browser = { binding = "MYBROWSER" }
+[browser]
+binding = "MYBROWSER"
 
 # routes = [{ pattern = "rsc.wesbos.com", custom_domain = true }]
 

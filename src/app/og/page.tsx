@@ -80,7 +80,8 @@ body {
   );
 }
 
-export default function OGPage() {
+export default function OGPage(all) {
+  console.log(all);
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <OG />

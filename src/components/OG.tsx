@@ -78,9 +78,8 @@ export function OG({ query }: OGProps) {
             .main {
               display: grid;
               grid-template-rows: 1fr auto;
-              height: 100vh;
               padding: 4rem;
-              background: var(--yellow);
+              background: var(--white);
               color: black;
             }
 
@@ -112,7 +111,6 @@ export function OG({ query }: OGProps) {
             }
 
             .logo {
-              width: 100px;
               height: 100px;
             }
 

@@ -1,11 +1,12 @@
-import { Suspense } from "react";
-import { OG, OGProps } from "../../components/OG";
+import { OG } from "../../components/OG";
 
-export default function OGPage({ query }: OGProps) {
+export default function OGPage({ query }: { query: string }) {
+  const queryObject = new URLSearchParams(query);
+  const url = queryObject.get('url') || '';
+  const title = queryObject.get('title') || '';
+  const thumbnail = queryObject.get('thumbnail') || '';
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <OG query={query} />
-    </Suspense>
+      <OG query={{ url, title, thumbnail }} />
   );
 }
 

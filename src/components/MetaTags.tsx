@@ -2,7 +2,7 @@ import { slugToTitle } from "@/utils/slugToTitle";
 import { getPostBySlug } from "@/lib/getPosts";
 import type { PageProps } from "waku/router";
 import { Link } from "waku";
-const baseUrl = "https://wesbos.com";
+const baseUrl =  import.meta.env.DEV ? 'http://localhost:3000' : "https://rsc.wesbos.com";
 
 type MetaProps = PageProps<string> & {
   section?: string;
@@ -20,18 +20,20 @@ export async function MetaTags({ path, query, section, slug, description, title:
   } else if (slug?.startsWith('/tip/')) {
     displaySlug = `${slug}`
   }
-  const post = await getPostBySlug(`${section}/${slug}`);
+  // Remove stargin / from the start of the slug if it exists
+  displaySlug = displaySlug.startsWith('/') ? displaySlug.slice(1) : displaySlug;
+  const post = await getPostBySlug(displaySlug);
   // First we try to see if we can get a piece fo content for this page
   // If we can't, we just return the default meta
   const pageSlug = post?.frontmatter?.slug || path;
   const title = titleProp || post?.frontmatter?.title || slugToTitle(pageSlug);
   const url = `${baseUrl}${path}`;
-  const image = post?.images?.[0]?.src;
+  const image = post?.images?.[0];
   const searchParams = new URLSearchParams();
   searchParams.set("title", title);
   searchParams.set("url", url);
   image ? searchParams.set("thumbnail", image) : null;
-  const ogImage = `${baseUrl}/api/og-worker?${searchParams.toString()}`;
+  const ogImage = `${baseUrl}/og.jpg?${searchParams.toString()}`;
   description = description || post?.excerpt || "";
   return (
     <>
