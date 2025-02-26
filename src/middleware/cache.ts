@@ -27,6 +27,7 @@ const cacheMiddleware: Middleware = () => {
       c.body(response.body, response.status, response.headers);
       ctx.res.body = undefined;
       ctx.res.status = undefined;
+      return;
     }
 
     await next(); // waits until after the response is returned
@@ -36,7 +37,11 @@ const cacheMiddleware: Middleware = () => {
     // }
     ctx.res.headers ||= {};
     ctx.res.headers['Cache-Control'] = 'max-age=3600';
-    const cloned = c.res.clone();
+    const cloned = new Response(ctx.res.body, {
+      headers: ctx.res.headers,
+      status: ctx.res.status,
+    });
+    console.log('👉🏻 cloned', cloned);
     c.executionCtx.waitUntil(cache.put(key,  cloned))
     // console.log('👉🏻 caching', ctx.res.body);
     // await cache.put(key, new Response('TEST CACHE', c.res))
