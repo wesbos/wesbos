@@ -10,14 +10,16 @@ const COOKIE_OPTS = {};
 
 const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
+
     const c = ctx.data.__hono_context as Context; // This is the Hono context
-    let key = c.req.url.toString();
+    let key = c.req.url.toString() + '2';
     const cacheName = 'my-app'
     const cache = await caches.open(cacheName)
     console.log(`👉🏻 cache key`, key, cache);
     const response = await cache.match(key)
     if (response) {
       console.log('👉🏻 cache hit', response);
+      // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
       return new Response(response.body, response)
     }
 
@@ -28,7 +30,8 @@ const cacheMiddleware: Middleware = () => {
     // }
     ctx.res.headers ||= {};
     ctx.res.headers['Cache-Control'] = 'max-age=3600';
-    c.executionCtx.waitUntil(cache.put(key,  c.res))
+    const cloned = c.res.clone();
+    c.executionCtx.waitUntil(cache.put(key,  cloned))
     // console.log('👉🏻 caching', ctx.res.body);
     // await cache.put(key, new Response('TEST CACHE', c.res))
 
