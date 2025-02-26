@@ -55,7 +55,14 @@ const cacheMiddleware: Middleware = () => {
     if (ctx.res.body) {
       // Set cache control header
       ctx.res.headers = ctx.res.headers || {};
-        ctx.res.headers['CDN-Cache-Control'] = 'max-age=3600';
+      // TODO add a browser TTL header, Ideally very short. Or a cache key with the latest commit hash?
+      ctx.res.headers['Cache-Control'] = 'max-age=60'; // 60 seconds for client
+      ctx.res.headers['CDN-Cache-Control'] = 'max-age=3600'; // 1 hour for CDN
+      ctx.res.headers['x-wes-cached-this'] = new Date().toLocaleString('en-US', {
+        timeZone: 'America/New_York'
+      });
+      // Cache Tag- TODO: Add a cache tag for the commit hash?
+      ctx.res.headers['Cache-Tag'] = 'my-app';
 
       // Create a proper response object for caching
       // Convert headers to a proper Headers object
