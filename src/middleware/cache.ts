@@ -38,9 +38,6 @@ const cacheMiddleware: Middleware = () => {
       // c.status(cachedResponse.status);
       // c.body(txt);
       return;
-      // Use the text content directly to avoid ReadableStream issues
-
-      return; // Early return without calling next()
     }
 
     // No cache hit, continue with the request
@@ -75,7 +72,7 @@ const cacheMiddleware: Middleware = () => {
 
       // Use waitUntil to ensure the cache operation completes
       // even if the response is already sent
-      c.executionCtx.waitUntil(cache.put(key, responseToCache.clone()));
+      c.executionCtx.waitUntil(cache.put(key, responseToCache));
     }
   };
 };
