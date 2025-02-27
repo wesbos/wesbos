@@ -26,12 +26,11 @@ export default defineConfig({
             console.log(`Error Caught in Waku Config`);
             return c.text('Soemthing went wronggggggg', 500);
           });
-          const app = createApp(withSentry(appToCreate));
+          const app = createApp(appToCreate);
 
           return {
             fetch: async (req: Request) => {
               const devHandler = await handlerPromise;
-              console.log(app.routes);
               return devHandler(req, app);
             },
           };
@@ -40,19 +39,22 @@ export default defineConfig({
     }
     : {
       // Production config
-      unstable_honoEnhancer: ((createApp: (app: Hono) => Hono) => {
-        return (appToCreate: Hono) => {
-          appToCreate.use('/wes', async (c, next) => {
-            return new Response('Hello Wes from production');
-          });
-          const app = withSentry(createApp(appToCreate));
-          return {
-            fetch: async (req: Request) => {
-              return app.fetch(req);
-            },
-          };
-        };
-      }) as Config['unstable_honoEnhancer'],
+      // unstable_honoEnhancer: ((createApp: (app: Hono) => Hono) => {
+      //   return (appToCreate: Hono) => {
+      //     appToCreate.use('/wes', async (c, next) => {
+      //       return new Response('Hello Wes from production');
+      //     });
+      //     const app = withSentry(createApp(appToCreate));
+      //     return {
+      //       fetch: async (req: Request) => {
+      //         return app.fetch(req).catch(err => {
+      //           console.log(`Error Caught in Waku Config`);
+      //           return new Response('Something went wrong', 500);
+      //         });
+      //       },
+      //     };
+      //   };
+      // }) as Config['unstable_honoEnhancer'],
     }),
   middleware: () => {
     return [

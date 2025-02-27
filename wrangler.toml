@@ -2,6 +2,7 @@ main = "./dist/worker/serve-cloudflare.js"
 name = "wesbos"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
+tail_consumers = [{service = "wesbos-tail"}]
 
 # The binding name must be "ASSETS" when the cache is enabled
 [assets]
@@ -35,3 +36,5 @@ preview_id = "6160abb870834617ace162b7e567853f"
 [observability]
 enabled = true
 head_sampling_rate = 1 # optional. default = 1.
+
+
