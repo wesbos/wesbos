@@ -16,4 +16,5 @@ import z_14_ from './PostMeta.module.css';
 import z_15_ from './SocialVideoStats.module.css';
 import z_16_ from './TOC.module.css';
 import z_17_ from './TOCAsideStyles.module.css';
-import z_18_ from './TipStyles.module.css';
+import z_18_ from './ThemeToggle.module.css';
+import z_19_ from './TipStyles.module.css';

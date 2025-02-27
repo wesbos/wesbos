@@ -8,7 +8,14 @@
     "start": "waku start --with-cloudflare",
     "build-cf-types": "wrangler types --experimental-include-runtime",
     "build": "waku build --with-cloudflare",
-    "worker:deploy": "wrangler deploy"
+    "worker:deploy": "wrangler deploy",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
+    "tip": "tsx --conditions=react-server ./createTip.ts",
+    "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts"
   },
   "dependencies": {
     "@cloudflare/puppeteer": "^0.0.14",

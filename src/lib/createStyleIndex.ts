@@ -7,9 +7,9 @@ import fg from 'fast-glob';
 import path from 'path';
 import { writeFile } from 'fs/promises';
 
-const outputFile = path.resolve('./styles/styleIndex.ts');
+const outputFile = path.resolve('./src/styles/styleIndex.ts');
 const outputDir = path.dirname(outputFile);
-const globs = ['./styles/**/*.module.css', './app/**/*.module.css', './components/**/*.module.css'];
+const globs = ['./src/styles/**/*.module.css', './components/**/*.module.css'];
 
 
 export async function watchForStyleChanges() {

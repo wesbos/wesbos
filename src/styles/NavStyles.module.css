@@ -95,3 +95,9 @@
     justify-items: end;
   }
 }
+
+.NavLiSocial {
+  display: flex;
+  gap: 1rem;
+  justify-content: end;
+}

@@ -11,7 +11,10 @@ import {
   NavSmall,
   NavStyles,
   NavUl,
+  NavLiSocial,
 } from "@/styles/NavStyles.module.css";
+import { IoLogoGithub, IoLogoYoutube, IoLogoInstagram, IoLogoLinkedin, IoLogoTiktok,} from "react-icons/io5";
+import { FaBluesky, FaSquareInstagram } from "react-icons/fa6";
 
 function activeLink(path: string, href: string) {
   if (path === href) {
@@ -31,12 +34,7 @@ export default function Nav({ path }: { path: string }) {
     <nav className={NavStyles}>
       <div className={LogoStyles}>
         <Link to="/" style={{ height: logoHeight, width: logoWidth }}>
-          <img
-            height={logoHeight}
-            width={logoWidth}
-            src={Logo}
-            alt="Wes Bos"
-          />
+          <img height={logoHeight} width={logoWidth} src={Logo} alt="Wes Bos" />
         </Link>
       </div>
       <ul className={NavUl}>
@@ -85,7 +83,9 @@ export default function Nav({ path }: { path: string }) {
             <span className={clsx([NavSmall, "bottom"])}>Notes</span>
           </Link>
         </li>
-        <li className={clsx([NavLi, activeLink("/speaking-and-training", path)])}>
+        <li
+          className={clsx([NavLi, activeLink("/speaking-and-training", path)])}
+        >
           <Link to="/speaking-and-training" className={NavLink}>
             <H as="span">Speaking</H>{" "}
             <span className={clsx([NavSmall, "bottom"])}>and training IRL</span>
@@ -103,8 +103,30 @@ export default function Nav({ path }: { path: string }) {
             <span className={clsx([NavSmall, "bottom"])}>me</span>
           </Link>
         </li>
-        <li className={clsx([NavLi, activeLink("/contact", path)])}>
-          <ThemeToggle />
+        <li className={clsx([NavLi, NavLiSocial])}>
+          {/* <ThemeToggle /> */}
+          <a href="https://x.com/wesbos" title="Wes Bos on X" target="_blank">
+            𝕏
+          </a>
+
+          <a href="https://www.youtube.com/@WesBos" title="Wes Bos on YouTube" target="_blank">
+            <IoLogoYoutube />
+          </a>
+          <a href="https://www.instagram.com/wesbos" title="Wes Bos on Instagram" target="_blank">
+            <FaSquareInstagram />
+          </a>
+          <a href="https://www.linkedin.com/in/wesbos" title="Wes Bos on LinkedIn" target="_blank">
+            <IoLogoLinkedin />
+          </a>
+          <a href="https://www.tiktok.com/@wesbos" title="Wes Bos on TikTok" target="_blank">
+            <IoLogoTiktok />
+          </a>
+          <a href="https://bsky.app/profile/wesbos.com" title="Wes Bos on Bluesky" target="_blank">
+            <FaBluesky />
+          </a>
+          <a href="https://github.com/wesbos" title="Wes Bos on GitHub" target="_blank">
+            <IoLogoGithub />
+          </a>
         </li>
       </ul>
     </nav>
