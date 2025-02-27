@@ -18,10 +18,20 @@ export default defineConfig({
             }),
         );
         return (appToCreate: Hono) => {
+          // If you add routes before createApp, they are run before Waku.
+          appToCreate.use('/wes', async (c, next) => {
+            return new Response('Hello Wes');
+          });
+          appToCreate.onError((err, c) => {
+            console.log(`Error Caught in Waku Config`);
+            return c.text('Soemthing went wronggggggg', 500);
+          });
           const app = createApp(withSentry(appToCreate));
+
           return {
             fetch: async (req: Request) => {
               const devHandler = await handlerPromise;
+              console.log(app.routes);
               return devHandler(req, app);
             },
           };
@@ -37,6 +47,8 @@ export default defineConfig({
       import('./waku.cloudflare-middleware'),
       import('./src/middleware/cache'),
       import('waku/middleware/handler'),
+
     ];
   },
+
 });

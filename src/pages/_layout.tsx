@@ -43,11 +43,7 @@ export default async function RootLayout({ children, path }: RootLayoutProps) {
       <div className={LayoutStyles}>
         <Nav path={path} />
         <div className={ContentStyles}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
-          </Suspense>
+          <ErrorBoundary key={path}>{children}</ErrorBoundary>
         </div>
         <Suspense>
           <Footer />

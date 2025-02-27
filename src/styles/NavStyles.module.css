@@ -86,8 +86,9 @@
   flex: 1;
   background: var(--white);
   flex-grow: 1;
+  border-bottom: 2px solid transparent;
   &[class*="current-parent"] {
-    border-bottom: 2px solid var(--yellow);
+    border-color: var(--yellow);
   }
   &:last-child {
     flex-grow: 4;
