@@ -37,7 +37,6 @@ type Page =
 | ({ path: '/about' } & GetConfigResponse<typeof About_getConfig>)
 | { path: '/blog/[page]'; render: 'dynamic' }
 | { path: '/blog'; render: 'dynamic' }
-| { path: '/contact/Break'; render: 'dynamic' }
 | ({ path: '/contact' } & GetConfigResponse<typeof ContactIndex_getConfig>)
 | ({ path: '/courses' } & GetConfigResponse<typeof Courses_getConfig>)
 | ({ path: '/' } & GetConfigResponse<typeof Index_getConfig>)
