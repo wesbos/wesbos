@@ -45,7 +45,7 @@ export default defineConfig({
           appToCreate.use('/wes', async (c, next) => {
             return new Response('Hello Wes from production');
           });
-          const app = createApp(withSentry(appToCreate));
+          const app = withSentry(createApp(appToCreate));
           return {
             fetch: async (req: Request) => {
               return app.fetch(req);
