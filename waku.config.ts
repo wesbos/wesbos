@@ -1,6 +1,7 @@
 import type { Hono } from 'hono';
 import { type Config, defineConfig } from 'waku/config';
 import { cache } from 'hono/cache'
+import { withSentry } from '@/middleware/sentry';
 
 export default defineConfig({
   ...(import.meta.env && !import.meta.env.PROD
@@ -17,7 +18,7 @@ export default defineConfig({
             }),
         );
         return (appToCreate: Hono) => {
-          const app = createApp(appToCreate);
+          const app = createApp(withSentry(appToCreate));
           return {
             fetch: async (req: Request) => {
               const devHandler = await handlerPromise;
@@ -29,9 +30,8 @@ export default defineConfig({
     }
     : {}),
   middleware: () => {
-    // TODO: cache API via headers? https://github.com/dai-shi/waku/blob/main/examples/38_cookies/src/middleware/cookie.ts
     return [
-      import('./src/lib/og/og'),
+      import('./src/middleware/og'),
       import('waku/middleware/context'),
       import('waku/middleware/dev-server'),
       import('./waku.cloudflare-middleware'),
