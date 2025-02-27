@@ -97,7 +97,19 @@
 }
 
 .NavLiSocial {
+  --gap: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: var(--gap);
+  padding-inline-end: var(--gap);
   justify-content: end;
+  align-items: stretch;
+  a {
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    --size: 2.5rem;
+    width: var(--size);
+    height: var(--size);
+  }
 }

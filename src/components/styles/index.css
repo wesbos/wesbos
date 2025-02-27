@@ -166,13 +166,6 @@
     list-style-type: square;
   }
 
-  p a,
-  li a {
-    --rotate: -2deg;
-    --scaleX: 1;
-    position: relative;
-  }
-
   p a:nth-child(4n + 1) {
     --rotate: -2deg;
   }
