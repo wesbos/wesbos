@@ -5,7 +5,6 @@ import mdxComponents from '@/components/mdxComponents';
 import { Break } from '@/components/Break';
 
 export default async function ContactPage(props: PageProps<'/contact'>) {
-  throw new Error('Thrown Error - Imported as component from index.tsx');
   return (
     <div>
       <MetaTags {...props} />
