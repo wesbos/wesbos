@@ -1,5 +1,5 @@
 .TOCAsideStyles {
-    position: sticky;
+  position: sticky;
   height: 100vh;
   top: 0;
   overflow: auto;
@@ -49,7 +49,7 @@
     display: inline;
     background: transparent;
     transition: background 0.05s;
-    &[aria-current='location'] {
+    &[aria-current="location"] {
       font-weight: 900;
       background: var(--yellow);
       padding-left: 10px;
@@ -68,22 +68,13 @@
     }
   }
 
-  .videoNumber {
-    font-size: 1rem;
-    background: #f3f3f3;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin-left: 5px;
-    font-feature-settings: 'tnum';
-    font-variant-numeric: tabular-nums;
-  }
-
   & > ul {
     font-size: 1.2rem;
     /* border-left: 2px solid var(--yellow); */
     /* Level 1 */
     list-style: none;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     margin-top: 0;
     padding-left: 0rem;
     padding-top: 0;
@@ -92,10 +83,11 @@
     padding-left: 2px;
     & > li {
       margin-left: 3px;
-      padding-left: 10px;
+      --padding-left: 10px;
+      padding-left: var(--padding-left);
       border-left: 2px solid var(--lightGrey);
       padding-bottom: 1rem;
-      &.currentPage {
+      &[data-current="true"] {
         border-color: var(--dark);
       }
       &:hover {
@@ -105,6 +97,7 @@
     & > li > a {
       display: inline-block;
       transform: translateY(-12px);
+      position: relative;
       /* Page Circle */
       &:before {
         --size: 10px;
@@ -114,9 +107,10 @@
         border: 1px solid var(--yellow);
         border-radius: 50%;
         z-index: 1;
-        content: '';
-        position: relative;
-        transform: translateX(-21px) translateY(-12px);
+        content: "";
+        /* The 1px accounts for the border of the circle */
+        transform: translateX(calc(var(--padding-left) * -2 - 1px))
+          translateY(calc(var(--size) / 2));
         display: inline-block;
         position: absolute;
       }
@@ -130,7 +124,7 @@
           display: inline-block;
           padding: 5px 0;
           &:before {
-            content: '#';
+            content: "#";
             display: inline-block;
             color: var(--yellow);
             z-index: 2;
@@ -163,4 +157,14 @@
   li a:focus {
     text-decoration: underline;
   }
+}
+
+.VideoNumber {
+  font-size: 1rem;
+  background: #f3f3f3;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
 }

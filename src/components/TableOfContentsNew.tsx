@@ -1,23 +1,37 @@
 import H from '@/components/mdxComponents/Headings';
 import { getPosts } from '@/lib/getPosts';
 import { MDXResult, TableOfContentsHeading } from '@/lib/types';
-import { TOCAsideStyles } from '@/styles/TOCAsideStyles.module.css';
+import { TOCAsideStyles, VideoNumber } from '@/styles/TOCAsideStyles.module.css';
 import createSectionedFrontMatter from '@/utils/createSectionedFrontmatter';
 import { Link } from 'waku';
 import { Fragment } from 'react';
 import { TOC } from '@/styles/TOC.module.css';
 
-function ContentHeadings({ headings, parent }: { headings?: TableOfContentsHeading[]; parent?: MDXResult }) {
+
+function SamePageLink({ children, to, scroll, ...props }: { children: React.ReactNode; to: string; [key: string]: any }) {
+  return <a href={to} {...props}>{children}</a>;
+}
+
+function ContentHeadings({ headings, parent, currentSlug }: { headings?: TableOfContentsHeading[]; parent?: MDXResult; currentSlug: string }) {
   if (!headings) return null;
+  const alreadyOnPage = currentSlug === parent?.frontmatter.slug;
+  // If we are on the same page, we use a regular <a> tag, otherwise we use a <Link> tag
+  const LinkComponent = alreadyOnPage ? SamePageLink : Link;
   return (
     <>
       {headings.map((heading) => (
         <Fragment key={heading.id}>
           <li key={heading.id}>
-            <Link to={`/javascript/${parent?.frontmatter.slug}#${heading.id}`}>{heading.value}</Link>
+            <LinkComponent scroll={false} to={`/javascript/${parent?.frontmatter.slug}#${heading.id}`}>
+              {heading.value}
+            </LinkComponent>
             {heading.children && (
               <ul>
-                <ContentHeadings headings={heading.children} parent={parent} />
+                <ContentHeadings
+                  currentSlug={currentSlug}
+                  headings={heading.children}
+                  parent={parent}
+                />
               </ul>
             )}
           </li>
@@ -28,7 +42,7 @@ function ContentHeadings({ headings, parent }: { headings?: TableOfContentsHeadi
 }
 
 // TODO: Highlight the current page and restore the scroll
-export async function TableOfContents() {
+export async function TableOfContents({ currentSlug }: { currentSlug: string }) {
   const { posts } = await getPosts({
     type: 'javascript',
     limit: 1000,
@@ -41,13 +55,27 @@ export async function TableOfContents() {
           <H as="h5">Module {section}</H>
           <ul>
             {(posts || []).map((post) => (
-              <li key={post.frontmatter.slug}>
-                <Link to={`/javascript/${post.frontmatter.slug}`}>
+              <li
+                key={post.frontmatter.slug}
+                data-current={
+                  post.frontmatter.slug === currentSlug ? true : false
+                }
+              >
+                <Link
+                  scroll={false}
+                  to={`/javascript/${post.frontmatter.slug}`}
+                >
                   {post.frontmatter.title}
-                  <span className="videoNumber">Part {post.frontmatter.postNumber}</span>
+                  <span className={VideoNumber}>
+                    Part {post.frontmatter.postNumber}
+                  </span>
                 </Link>
                 <ol>
-                  <ContentHeadings parent={post} headings={post.toc} />
+                  <ContentHeadings
+                    currentSlug={currentSlug}
+                    parent={post}
+                    headings={post.toc}
+                  />
                 </ol>
               </li>
             ))}

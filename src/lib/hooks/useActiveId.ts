@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-// Based on https://nickymeuleman.netlify.app/blog/table-of-contents by Nicky Meulman. Thanks Nicky!
-export function useActiveId(itemIds) {
+export function useActiveId(itemIds: string[]) {
   const [activeId, setActiveId] = useState('');
   const [isNewPage, setIsNewPage] = useState(true);
 
@@ -28,10 +27,8 @@ export function useActiveId(itemIds) {
       { rootMargin: `0% 0% -80% 0%` }
     );
 
-    itemIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+    console.log('itemIds', itemIds);
+
 
     return () => {
       itemIds.forEach((id) => {
@@ -39,7 +36,8 @@ export function useActiveId(itemIds) {
         if (el) observer.unobserve(el);
       });
     };
-  }, [itemIds, isNewPage]);
+  }, []);
 
   return activeId;
 }
+

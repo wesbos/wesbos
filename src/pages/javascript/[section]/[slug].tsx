@@ -9,7 +9,18 @@ import { JavaScriptNotesStyles } from "@/styles/JavaScriptNotesStyles.module.css
 import mdxComponents from '@/components/mdxComponents';
 import { MetaTags } from '../../../components/MetaTags';
 import type { PageProps } from "waku/router";
+import { HashChange } from '@/lib/hooks/useHashChange';
 
+type TOCItem = {
+  id: string;
+  children?: TOCItem[];
+}
+
+function getIds(toc: TOCItem[]): string[] {
+  return toc.map((item) => {
+    return [item.id, ...getIds(item.children || [])]
+  }).flat();
+}
 
 export default async function JavaScriptNotesPage(
   props: PageProps<"/javascript/[section]/[slug]">
@@ -28,14 +39,16 @@ export default async function JavaScriptNotesPage(
   }
 
   const importPath = makePathDynamicallyImportable(post.frontmatter.filename);
-  const { default: MDXContent } = post;
+  const { default: MDXContent, toc } = post;
+  const headingIds = getIds(toc);
   const editURL = `https://github.com/wesbos/beginner-javascript/edit/main/content/${importPath}.mdx`;
 
   return (
     <div className={clsx("ultra-wide", JavaScriptNotesStyles)}>
       <MetaTags {...props} />
       <div>
-        <TableOfContents />
+        <HashChange itemIds={headingIds} />
+        <TableOfContents currentSlug={sluuuug} />
       </div>
       <article>
         <div>

@@ -7,8 +7,7 @@
     max-width: 1000px;
   }
   &.ultra-wide,
-  &:has(> .ultra-wide) {
-    max-width: 1400px;
-    background: red;
+  &:has(> [class*="ultra-wide"]) {
+    max-width: 1200px;
   }
 }

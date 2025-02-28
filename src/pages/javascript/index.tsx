@@ -5,7 +5,7 @@ import type { PageProps } from "waku/router";
 
 export default function JavaScriptPage(props: PageProps<'/javascript'>) {
   return (
-    <>
+    <div className="ultra-wide">
       <MetaTags {...props} title="Beginner JavaScript Notes &amp; Reference" />
       <H>Beginner JavaScript Notes &amp; Reference</H>
 
@@ -26,7 +26,7 @@ export default function JavaScriptPage(props: PageProps<'/javascript'>) {
       </p>
 
       <TableOfContentsLanding />
-    </>
+    </div>
   );
 }
 
