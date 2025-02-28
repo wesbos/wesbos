@@ -43,7 +43,13 @@ export class ErrorBoundary extends React.Component<{ fallback: React.ReactNode }
   }
 }
 
-export function ErrorBoundaryFallback({ title = "Shoot, eh! Error", error }: { title: string, error: string }) {
+const errorLookup: Record<string, string> = {
+  default: "Shoot, eh! Error",
+  "Not Found": "4 OH CANADA 4",
+}
+
+export function ErrorBoundaryFallback({ error }: { error: string }) {
+  const title = errorLookup[error] || errorLookup.default;
   return (
     <div>
       <h1>{title}</h1>
@@ -54,11 +60,13 @@ export function ErrorBoundaryFallback({ title = "Shoot, eh! Error", error }: { t
         If the problem persists, please contact me at{" "}
         <a href="mailto:hey@wesbos.com">hey@wesbos.com</a>.
       </p>
-      <p style={{
-        borderLeft: '4px solid red',
-        padding: '1rem',
-        background: 'rgba(255, 0, 0, 0.1)',
-      }}>
+      <p
+        style={{
+          borderLeft: "4px solid red",
+          padding: "1rem",
+          background: "rgba(255, 0, 0, 0.1)",
+        }}
+      >
         {error}
       </p>
     </div>

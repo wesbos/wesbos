@@ -3,6 +3,7 @@ import {
   getPosts,
   getSiblingPostsBySlug,
 } from "../../lib/getPosts";
+import { unstable_notFound as notFound } from "waku/router/server";
 import H from "../../components/mdxComponents/Headings";
 import { EditDialogStyles } from "@/styles/EditDialogStyles.module.css";
 import { postMeta } from "@/styles/PostMeta.module.css";
@@ -23,7 +24,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
   const { prev, next } = await getSiblingPostsBySlug(slug, "blog");
 
   if (!post) {
-    return <p>Post not found</p>;
+    return notFound();
   }
 
   const { default: MDXContent } = post;
@@ -66,18 +67,16 @@ export default async function BlogPost(props: BlogPostPageProps) {
 }
 
 export const getConfig = async () => {
-  const staticPaths = await getStaticPaths();
   return {
-    render: "static",
-    staticPaths,
+    render: "dynamic",
   } as const;
 };
 
-const getStaticPaths = async () => {
-  const posts = await getPosts({
-    limit: -1,
-    type: "blog",
-  });
-  const paths = posts.posts.map((post) => post.frontmatter.slug);
-  return paths;
-};
+// const getStaticPaths = async () => {
+//   const posts = await getPosts({
+//     limit: -1,
+//     type: "blog",
+//   });
+//   const paths = posts.posts.map((post) => post.frontmatter.slug);
+//   return paths;
+// };
