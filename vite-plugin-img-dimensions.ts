@@ -3,7 +3,7 @@ import type { Plugin } from "vite";
 import { readFileSync } from "node:fs";
 import { imageSizeFromFile } from "image-size/fromFile";
 
-export function imgDimensions(): Plugin {
+export async function  imgDimensions(): Plugin {
   return {
     name: "vite-plugin-img-dimensions",
     enforce: "pre",
@@ -20,8 +20,7 @@ export function imgDimensions(): Plugin {
         // ignore files that are not images
         return null;
       }
-      const { width, height } = imageSizeFromFile(path);
-
+      const { width, height } = await imageSizeFromFile(path);
       return `import src from '${path}?url';
 export default {
 src,
