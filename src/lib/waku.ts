@@ -12,11 +12,7 @@ export function getEnv(key: string): string | undefined {
     return getWakuEnv(key);
   }
   const c = getCloudflareContext();
-  if (!c) {
-    return undefined;
-  }
   // Runtime Cloudflare environment variables
   // https://developers.cloudflare.com/workers/configuration/environment-variables/
-  const env = (c.env || {}) as unknown as Record<string, string | undefined>;
-  return env[key];
+  return c?.env[key] || process.env[key];
 }
