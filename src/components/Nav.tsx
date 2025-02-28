@@ -33,14 +33,20 @@ function activeLink(path: string, href: string) {
 }
 
 function useHoverSound(ref: React.RefObject<HTMLElement>) {
+  if (typeof window === "undefined") {
+    return {
+      playSound: () => {}, // silly servers
+    };
+  }
   const url = `https://f000.backblazeb2.com/file/wes-dropshare/click/click.mp3`;
   const audio = new Audio(url);
   audio.volume = 0.1;
   return {
     playSound: () => {
-      console.log(`BOOP`);
-      audio.currentTime = 0;
-      audio.play();
+      audio.currentTime = 0.006;
+      audio.play().catch((err) => {
+        console.info(`Man, you are missing out on some really cool sounds! If you Interact with the page, you can hear them.`);
+      });
     },
   };
 }
@@ -48,10 +54,9 @@ export default function Nav({ path }: { path: string }) {
   const logoWidth = 150;
   const ratio = 1.2195121951;
   const logoHeight = logoWidth / ratio;
-  const navRef = useRef<HTMLElement>(null);
-  const { playSound } = useHoverSound(navRef);
+  const { playSound } = useHoverSound();
   return (
-    <nav className={NavStyles} ref={navRef}>
+    <nav className={NavStyles}>
       <div className={LogoStyles}>
         <Link to="/" style={{ height: logoHeight, width: logoWidth }} onPointerEnter={playSound}>
           <img height={logoHeight} width={logoWidth} src={Logo} alt="Wes Bos" />
