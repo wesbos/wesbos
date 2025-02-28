@@ -32,6 +32,7 @@
   color: var(--dark);
   text-decoration: none;
   line-height: 1;
+  padding: 10px 12px;
   &[aria-current="page"],
   &.current-parent {
     .grit {
@@ -82,7 +83,6 @@
   align-items: start;
   align-content: center;
   grid-gap: 2rem;
-  padding: 10px;
   flex: 1;
   background: var(--white);
   flex-grow: 1;

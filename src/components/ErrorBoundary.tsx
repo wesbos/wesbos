@@ -43,11 +43,10 @@ export class ErrorBoundary extends React.Component<{ fallback: React.ReactNode }
   }
 }
 
-export function ErrorBoundaryFallback({ error, info }: { error: Error, info: React.ErrorInfo }) {
-
+export function ErrorBoundaryFallback({ title = "Shoot, eh! Error", error }: { title: string, error: string }) {
   return (
     <div>
-      <h1>Shoot, eh! Error</h1>
+      <h1>{title}</h1>
       <p>
         You might just need to <a href="">refresh the page</a>.
       </p>
