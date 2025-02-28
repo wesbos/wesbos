@@ -1,11 +1,13 @@
 "use server";
 import TWIT from 'rettiwt-api';
 import { getCloudflareContext } from '@/lib/hono';
+import { getEnv } from '../waku';
 const { EResourceType, FetcherService, ITweetDetailsResponse, IUserTweetsResponse } = TWIT;
 
-const fetcher = new FetcherService({ apiKey: process.env.TWITTER_API_KEY });
+const TWITTER_API_KEY = getEnv('TWITTER_API_KEY');
+const fetcher = new FetcherService({ apiKey: TWITTER_API_KEY });
 
-console.log('TWITTER??', process.env.TWITTER_API_KEY?.slice(0, 5));
+console.log('TWITTER??', TWITTER_API_KEY?.slice(0, 5));
 
 export async function fetchTweetDetailsFromApi({ postId }: { postId: string }) {
   // Fetching the details of the given user
