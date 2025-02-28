@@ -5,6 +5,8 @@ const { EResourceType, FetcherService, ITweetDetailsResponse, IUserTweetsRespons
 
 const fetcher = new FetcherService({ apiKey: process.env.TWITTER_API_KEY });
 
+console.log('TWITTER??', process.env.TWITTER_API_KEY?.slice(0, 5));
+
 export async function fetchTweetDetailsFromApi({ postId }: { postId: string }) {
   // Fetching the details of the given user
   const postDetails = await fetcher
