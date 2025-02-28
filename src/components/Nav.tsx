@@ -1,9 +1,8 @@
+'use client';
 import { Link } from "waku";
-import { Image } from "@/components/Image";
 import clsx from "clsx";
 import H from "@/components/mdxComponents/Headings";
 import Logo from "../../public/images/logo.png";
-import ThemeToggle from "./ThemeToggle";
 import {
   LogoStyles,
   NavLi,
@@ -16,11 +15,12 @@ import {
 import {
   IoLogoGithub,
   IoLogoYoutube,
-  IoLogoInstagram,
   IoLogoLinkedin,
   IoLogoTiktok,
 } from "react-icons/io5";
 import { FaBluesky, FaSquareInstagram, FaXTwitter } from "react-icons/fa6";
+import { useEffect } from "react";
+import { useRef } from "react";
 
 function activeLink(path: string, href: string) {
   if (path === href) {
@@ -32,20 +32,34 @@ function activeLink(path: string, href: string) {
   return null;
 }
 
+function useHoverSound(ref: React.RefObject<HTMLElement>) {
+  const url = `https://f000.backblazeb2.com/file/wes-dropshare/click/click.mp3`;
+  const audio = new Audio(url);
+  audio.volume = 0.1;
+  return {
+    playSound: () => {
+      console.log(`BOOP`);
+      audio.currentTime = 0;
+      audio.play();
+    },
+  };
+}
 export default function Nav({ path }: { path: string }) {
   const logoWidth = 150;
   const ratio = 1.2195121951;
   const logoHeight = logoWidth / ratio;
+  const navRef = useRef<HTMLElement>(null);
+  const { playSound } = useHoverSound(navRef);
   return (
-    <nav className={NavStyles}>
+    <nav className={NavStyles} ref={navRef}>
       <div className={LogoStyles}>
-        <Link to="/" style={{ height: logoHeight, width: logoWidth }}>
+        <Link to="/" style={{ height: logoHeight, width: logoWidth }} onPointerEnter={playSound}>
           <img height={logoHeight} width={logoWidth} src={Logo} alt="Wes Bos" />
         </Link>
       </div>
       <ul className={NavUl}>
         <li className={clsx([NavLi, activeLink("/courses", path)])}>
-          <Link to="/courses" className={NavLink}>
+          <Link to="/courses" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Courses</H>
             <span className={clsx([NavSmall, "bottom"])}>free + premium</span>
           </Link>
@@ -62,7 +76,7 @@ export default function Nav({ path }: { path: string }) {
           </a>
         </li>
         <li className={clsx([NavLi, activeLink("/about", path)])}>
-          <Link to="/about" className={NavLink}>
+          <Link to="/about" className={NavLink} onPointerEnter={playSound}>
             <H as="span">About</H>
             <span className={clsx([NavSmall, "bottom"])}>me</span>
           </Link>
@@ -72,19 +86,20 @@ export default function Nav({ path }: { path: string }) {
           <Link
             to="/blog" /* TODO className={pageContext.collection === 'post' && !pageContext.slug.includes('uses') ? 'current-parent' : null} */
             className={NavLink}
+            onPointerEnter={playSound}
           >
             <H as="span">Blog</H>
             <span className={clsx([NavSmall, "top"])}>it's good</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink("/tips", path)])}>
-          <Link to="/tips" className={NavLink}>
+          <Link to="/tips" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Tips</H>
             <span className={clsx([NavSmall, "top"])}>🔥 Real Hot</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink("/javascript", path)])}>
-          <Link to="/javascript" className={NavLink}>
+          <Link to="/javascript" className={NavLink} onPointerEnter={playSound}>
             <H as="span">JavaScript</H>
             <span className={clsx([NavSmall, "bottom"])}>Notes</span>
           </Link>
@@ -92,26 +107,26 @@ export default function Nav({ path }: { path: string }) {
         <li
           className={clsx([NavLi, activeLink("/speaking-and-training", path)])}
         >
-          <Link to="/speaking-and-training" className={NavLink}>
+          <Link to="/speaking-and-training" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Speaking</H>{" "}
             <span className={clsx([NavSmall, "bottom"])}>and training IRL</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink("/uses", path)])}>
-          <Link to="/uses" className={NavLink}>
+          <Link to="/uses" className={NavLink} onPointerEnter={playSound}>
             <H as="span">/uses</H>{" "}
             <span className={clsx([NavSmall, "bottom"])}>Font?! Theme!? </span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink("/contact", path)])}>
-          <Link to="/contact" className={NavLink}>
+          <Link to="/contact" className={NavLink} onPointerEnter={playSound}      >
             <H as="span">Contact</H>
             <span className={clsx([NavSmall, "bottom"])}>me</span>
           </Link>
         </li>
         <li className={clsx([NavLi, NavLiSocial])}>
           {/* <ThemeToggle /> */}
-          <a href="https://x.com/wesbos" title="Wes Bos on X" target="_blank">
+          <a href="https://x.com/wesbos" title="Wes Bos on X" target="_blank" onPointerEnter={playSound}>
             <FaXTwitter />
           </a>
 
@@ -119,6 +134,7 @@ export default function Nav({ path }: { path: string }) {
             href="https://bsky.app/profile/wesbos.com"
             title="Wes Bos on Bluesky"
             target="_blank"
+            onPointerEnter={playSound}
           >
             <FaBluesky />
           </a>
@@ -127,6 +143,7 @@ export default function Nav({ path }: { path: string }) {
             href="https://www.youtube.com/@WesBos"
             title="Wes Bos on YouTube"
             target="_blank"
+            onPointerEnter={playSound}
           >
             <IoLogoYoutube />
           </a>
@@ -134,6 +151,7 @@ export default function Nav({ path }: { path: string }) {
             href="https://www.instagram.com/wesbos"
             title="Wes Bos on Instagram"
             target="_blank"
+            onPointerEnter={playSound}
           >
             <FaSquareInstagram />
           </a>
@@ -141,6 +159,7 @@ export default function Nav({ path }: { path: string }) {
             href="https://www.linkedin.com/in/wesbos"
             title="Wes Bos on LinkedIn"
             target="_blank"
+            onPointerEnter={playSound}
           >
             <IoLogoLinkedin />
           </a>
@@ -148,6 +167,7 @@ export default function Nav({ path }: { path: string }) {
             href="https://www.tiktok.com/@wesbos"
             title="Wes Bos on TikTok"
             target="_blank"
+            onPointerEnter={playSound}
           >
             <IoLogoTiktok />
           </a>
@@ -156,6 +176,7 @@ export default function Nav({ path }: { path: string }) {
             href="https://github.com/wesbos"
             title="Wes Bos on GitHub"
             target="_blank"
+            onPointerEnter={playSound}
           >
             <IoLogoGithub />
           </a>
