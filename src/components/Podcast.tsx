@@ -3,6 +3,7 @@ import { cache  } from 'react';
 const url = `https://syntax.fm/api/shows/latest`;
 import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
 import { withCache } from '@/lib/cache';
+import synaxLogo from '@/assets/syntax-artwork.jpeg?meta';
 
 type Podcast = {
   number: number;
@@ -30,7 +31,7 @@ export default async function Podcast() {
       <h3 className={FooterHeading}>
         <span className="highlight">Syntax Podcast: #{podcast.number}</span>
       </h3>
-      <Image width={500} height={500} alt="Syntax Podcast" src="/images/syntax-logo.jpg" />
+      <Image alt="Syntax Podcast" {...synaxLogo} />
       <time
         style={{
           fontSize: '1.2rem',
