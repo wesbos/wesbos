@@ -15,7 +15,8 @@
     "db:push": "drizzle-kit push",
     "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
     "tip": "tsx --conditions=react-server ./createTip.ts",
-    "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts"
+    "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts",
+    "lint": "biome check"
   },
   "dependencies": {
     "@cloudflare/puppeteer": "^0.0.14",
@@ -79,6 +80,7 @@
     "waku": "0.21.22"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@cloudflare/vite-plugin": "^0.1.7",
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",

@@ -1,12 +1,16 @@
-import React, { Suspense } from 'react';
-import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
-import Podcast from './Podcast';
-import LatestCourse from './LatestCourse';
+import styles, {
+  FooterBottomStyles,
+  FooterInner,
+  FooterStyles,
+  terms,
+} from "@/styles/FooterStyles.module.css";
+import React, { Suspense } from "react";
+import { IoLogoGithub, IoLogoYoutube } from "react-icons/io";
+import { Link } from "waku";
+import LatestCourse from "./LatestCourse";
+import Podcast from "./Podcast";
 // import Instagram from './Instagram';
-import Twitter from './Twitter';
-import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
-import { Link } from 'waku';
-
+import Twitter from "./Twitter";
 
 export default async function Footer() {
   return (
@@ -40,7 +44,11 @@ export default async function Footer() {
           </a>
           <p>
             Wes Bos &copy;{" "}
-            <a href="https://web.archive.org/web/20040615000000*/wesbos.com" target='_blank'>
+            <a
+              href="https://web.archive.org/web/20040615000000*/wesbos.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               1999
             </a>{" "}
             — {new Date().getFullYear()}
@@ -55,7 +63,14 @@ export default async function Footer() {
             </Link>
           </p>
           <p>
-            <span>Commit <a href={`https://github.com/wesbos/wesbos/commit/${import.meta.env.WAKU_GIT_COMMIT_HASH}`}>{import.meta.env.WAKU_GIT_COMMIT_HASH}</a></span>
+            <span>
+              Commit{" "}
+              <a
+                href={`https://github.com/wesbos/wesbos/commit/${import.meta.env.WAKU_GIT_COMMIT_HASH}`}
+              >
+                {import.meta.env.WAKU_GIT_COMMIT_HASH}
+              </a>
+            </span>
           </p>
         </div>
       </div>
