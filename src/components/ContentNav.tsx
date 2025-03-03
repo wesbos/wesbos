@@ -11,7 +11,7 @@ function getSlugWithPrefix(result: MDXResult) {
   return `${result.frontmatter.slug}`;
 }
 
-export default function ContentNav({ prev, next }: { prev?: MDXResult, next?: MDXResult}) {
+export default function ContentNav({ prev, next }: { prev?: MDXResult; next?: MDXResult }) {
   return (
     <div className={ContentNavStyles}>
       {prev && (

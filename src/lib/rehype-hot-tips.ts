@@ -16,10 +16,17 @@ export const rehypeHotTips = ({ maxRank = 1 } = {}) => {
         const declarationName = node.data.estree?.body?.at(0)?.declaration?.declarations?.at(0)?.id?.name;
         if (declarationName === 'frontmatter') {
           // convert the estree to a string, remove the export const frontmatter =, and parse the json
-          const obj = toJs(node.data.estree).value.replace('export const frontmatter = ', '').replaceAll('\n', '').replace(/;$/gm, '').trim();
+          const obj = toJs(node.data.estree)
+            .value.replace('export const frontmatter = ', '')
+            .replaceAll('\n', '')
+            .replace(/;$/gm, '')
+            .trim();
           try {
             const frontmatter = JSON.parse(obj);
-            const images = [...(frontmatter.image ? [frontmatter.image] : []), ...(frontmatter.images?.length ? frontmatter.images : [])].map((image) => {
+            const images = [
+              ...(frontmatter.image ? [frontmatter.image] : []),
+              ...(frontmatter.images?.length ? frontmatter.images : []),
+            ].map((image) => {
               // Some of the images dont have a leading ./ as they should.
               if (!image.startsWith('./')) {
                 return `./${image}`;
@@ -60,7 +67,9 @@ export const rehypeHotTips = ({ maxRank = 1 } = {}) => {
                     id: { type: 'Identifier', name: 'images' },
                     init: {
                       type: 'ArrayExpression',
-                      elements: images.map((image, index) => { return { type: 'Literal', value: `image${index}`, raw: `image${index}` } })
+                      elements: images.map((image, index) => {
+                        return { type: 'Literal', value: `image${index}`, raw: `image${index}` };
+                      }),
                     },
                   },
                 ],

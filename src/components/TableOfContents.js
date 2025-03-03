@@ -64,7 +64,11 @@ function TableOfContents({ activeId, currentPage }) {
                         {tocItem.tocChild.map((toc2ndItem, secondIndex) => (
                           <Fragment key={`${toc2ndItem.title}-${secondIndex}`}>
                             <li>
-                              <Link getProps={isActive} to={`/javascript/${tocItem.slug}/#${slug(toc2ndItem.title, false)}`} aria-current={toc2ndItem.url === `#${activeId}` ? 'location' : ''}>
+                              <Link
+                                getProps={isActive}
+                                to={`/javascript/${tocItem.slug}/#${slug(toc2ndItem.title, false)}`}
+                                aria-current={toc2ndItem.url === `#${activeId}` ? 'location' : ''}
+                              >
                                 {toc2ndItem.title}
                               </Link>
 
@@ -72,7 +76,11 @@ function TableOfContents({ activeId, currentPage }) {
                                 <ul>
                                   {toc2ndItem.items.map((toc3rdItem, thirdIndex) => (
                                     <li key={`${toc3rdItem.title}-${thirdIndex}`}>
-                                      <Link getProps={isActive} to={`/javascript/${tocItem.slug}/#${slug(toc3rdItem.title, false)}`} aria-current={toc3rdItem.url === `#${activeId}` ? 'location' : ''}>
+                                      <Link
+                                        getProps={isActive}
+                                        to={`/javascript/${tocItem.slug}/#${slug(toc3rdItem.title, false)}`}
+                                        aria-current={toc3rdItem.url === `#${activeId}` ? 'location' : ''}
+                                      >
                                         {toc3rdItem.title}
                                       </Link>
                                     </li>

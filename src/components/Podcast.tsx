@@ -1,9 +1,9 @@
-import { Image } from "@/components/Image";
-import { cache } from "react";
+import { Image } from '@/components/Image';
+import { cache } from 'react';
 const url = `https://syntax.fm/api/shows/latest`;
-import synaxLogo from "@/assets/syntax-artwork.jpeg?meta";
-import { withCache } from "@/lib/cache";
-import { FooterBlock, FooterHeading } from "@/styles/FooterStyles.module.css";
+import synaxLogo from '@/assets/syntax-artwork.jpeg?meta';
+import { withCache } from '@/lib/cache';
+import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';
 
 type Podcast = {
   number: number;
@@ -14,13 +14,13 @@ type Podcast = {
 
 const getPodcast = async () => {
   const res = await fetch(url);
-  if (!res.ok) throw new Error("Failed to fetch podcast");
+  if (!res.ok) throw new Error('Failed to fetch podcast');
   return res.json() as Promise<Podcast>;
 };
 
 export default async function Podcast() {
   const podcast = await withCache(getPodcast, {
-    key: "podcast",
+    key: 'podcast',
     expiry: 3600,
   });
 
@@ -35,8 +35,8 @@ export default async function Podcast() {
       <Image alt="Syntax Podcast" {...synaxLogo} />
       <time
         style={{
-          fontSize: "1.2rem",
-          fontWeight: "600",
+          fontSize: '1.2rem',
+          fontWeight: '600',
         }}
       >
         {podcast.displayDate}

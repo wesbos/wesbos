@@ -1,6 +1,6 @@
 'use client';
-import { useEffect } from "react";
-import * as Sentry from "@sentry/react";
+import { useEffect } from 'react';
+import * as Sentry from '@sentry/react';
 // import {
 //   createRoutesFromChildren,
 //   matchRoutes,
@@ -9,7 +9,7 @@ import * as Sentry from "@sentry/react";
 // } from "react-router-dom";
 
 Sentry.init({
-  dsn: "https://dd98dd6ca4df23ad958966a5384321e2@o28940.ingest.us.sentry.io/4508735015026688",
+  dsn: 'https://dd98dd6ca4df23ad958966a5384321e2@o28940.ingest.us.sentry.io/4508735015026688',
   integrations: [
     // See docs for support of different versions of variation of react router
     // https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/
@@ -22,7 +22,7 @@ Sentry.init({
     // }),
     Sentry.replayIntegration({
       maskAllText: false,
-      blockAllMedia: false
+      blockAllMedia: false,
     }),
   ],
 

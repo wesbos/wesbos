@@ -7,12 +7,24 @@ import { Link } from 'waku';
 import { Fragment } from 'react';
 import { TOC } from '@/styles/TOC.module.css';
 
-
-function SamePageLink({ children, to, scroll, ...props }: { children: React.ReactNode; to: string; [key: string]: any }) {
-  return <a href={to} {...props}>{children}</a>;
+function SamePageLink({
+  children,
+  to,
+  scroll,
+  ...props
+}: { children: React.ReactNode; to: string; [key: string]: any }) {
+  return (
+    <a href={to} {...props}>
+      {children}
+    </a>
+  );
 }
 
-function ContentHeadings({ headings, parent, currentSlug }: { headings?: TableOfContentsHeading[]; parent?: MDXResult; currentSlug: string }) {
+function ContentHeadings({
+  headings,
+  parent,
+  currentSlug,
+}: { headings?: TableOfContentsHeading[]; parent?: MDXResult; currentSlug: string }) {
   if (!headings) return null;
   const alreadyOnPage = currentSlug === parent?.frontmatter.slug;
   // If we are on the same page, we use a regular <a> tag, otherwise we use a <Link> tag
@@ -27,11 +39,7 @@ function ContentHeadings({ headings, parent, currentSlug }: { headings?: TableOf
             </LinkComponent>
             {heading.children && (
               <ul>
-                <ContentHeadings
-                  currentSlug={currentSlug}
-                  headings={heading.children}
-                  parent={parent}
-                />
+                <ContentHeadings currentSlug={currentSlug} headings={heading.children} parent={parent} />
               </ul>
             )}
           </li>
@@ -55,27 +63,13 @@ export async function TableOfContents({ currentSlug }: { currentSlug: string }) 
           <H as="h5">Module {section}</H>
           <ul>
             {(posts || []).map((post) => (
-              <li
-                key={post.frontmatter.slug}
-                data-current={
-                  post.frontmatter.slug === currentSlug ? true : false
-                }
-              >
-                <Link
-                  scroll={false}
-                  to={`/javascript/${post.frontmatter.slug}`}
-                >
+              <li key={post.frontmatter.slug} data-current={post.frontmatter.slug === currentSlug ? true : false}>
+                <Link scroll={false} to={`/javascript/${post.frontmatter.slug}`}>
                   {post.frontmatter.title}
-                  <span className={VideoNumber}>
-                    Part {post.frontmatter.postNumber}
-                  </span>
+                  <span className={VideoNumber}>Part {post.frontmatter.postNumber}</span>
                 </Link>
                 <ol>
-                  <ContentHeadings
-                    currentSlug={currentSlug}
-                    parent={post}
-                    headings={post.toc}
-                  />
+                  <ContentHeadings currentSlug={currentSlug} parent={post} headings={post.toc} />
                 </ol>
               </li>
             ))}

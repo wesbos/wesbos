@@ -1,4 +1,4 @@
-"use server";
+'use server';
 import { desc } from 'drizzle-orm';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@/db/db';
@@ -35,7 +35,7 @@ export async function fetchSocialDetails(link: SocialLink) {
   const query = {
     where: eq(postsTable.postId, link.postId),
     orderBy: desc(postsTable.createdAt),
-  }
+  };
   const result = await db.query.postsTable.findFirst(query);
   if (result) {
     // console.log(`${link.type}: Found in the DB`);
@@ -47,11 +47,14 @@ export async function fetchSocialDetails(link: SocialLink) {
     console.warn(`${link.type}: No result from the API`);
     return;
   }
-  const returnedFreshResult = await db.insert(postsTable).values({
-    type: link.type,
-    url: link.url,
-    postId: link.postId,
-    postData: freshResult,
-  }).returning();
+  const returnedFreshResult = await db
+    .insert(postsTable)
+    .values({
+      type: link.type,
+      url: link.url,
+      postId: link.postId,
+      postData: freshResult,
+    })
+    .returning();
   return returnedFreshResult[0];
 }

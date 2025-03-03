@@ -16,15 +16,9 @@ const components = {
   ul: (props: any) => <ul className="list-disc list-inside my-4" {...props} />,
   ol: (props: any) => <ol className="list-decimal list-inside my-4" {...props} />,
   li: (props: any) => <li className="my-1" {...props} />,
-  blockquote: (props: any) => (
-    <blockquote className="border-l-4 border-gray-200 pl-4 my-4 italic" {...props} />
-  ),
-  code: (props: any) => (
-    <code className="bg-gray-100 rounded px-1 py-0.5" {...props} />
-  ),
-  pre: (props: any) => (
-    <pre className="bg-gray-100 rounded p-4 overflow-x-auto my-4" {...props} />
-  ),
+  blockquote: (props: any) => <blockquote className="border-l-4 border-gray-200 pl-4 my-4 italic" {...props} />,
+  code: (props: any) => <code className="bg-gray-100 rounded px-1 py-0.5" {...props} />,
+  pre: (props: any) => <pre className="bg-gray-100 rounded p-4 overflow-x-auto my-4" {...props} />,
 };
 
 export default function BlogPost({ post, isExcerpt = false }: BlogPostProps) {
@@ -42,16 +36,10 @@ export default function BlogPost({ post, isExcerpt = false }: BlogPostProps) {
         </h1>
         <div className="flex items-center space-x-4 text-gray-600">
           <div className="flex items-center">
-            <img
-              src={post.author.avatar}
-              alt={post.author.name}
-              className="w-8 h-8 rounded-full mr-2"
-            />
+            <img src={post.author.avatar} alt={post.author.name} className="w-8 h-8 rounded-full mr-2" />
             <span>{post.author.name}</span>
           </div>
-          <time dateTime={post.publishedAt}>
-            {new Date(post.publishedAt).toLocaleDateString()}
-          </time>
+          <time dateTime={post.publishedAt}>{new Date(post.publishedAt).toLocaleDateString()}</time>
         </div>
       </header>
 
@@ -59,27 +47,19 @@ export default function BlogPost({ post, isExcerpt = false }: BlogPostProps) {
         {isExcerpt ? (
           <>
             <p>{post.excerpt}</p>
-            <Link
-              to={`/blog/${post.slug}`}
-              className="inline-block mt-4 text-blue-600 hover:text-blue-800"
-            >
+            <Link to={`/blog/${post.slug}`} className="inline-block mt-4 text-blue-600 hover:text-blue-800">
               Read more →
             </Link>
           </>
         ) : (
-          <div>
-            {post.content}
-          </div>
+          <div>{post.content}</div>
         )}
       </div>
 
       <footer className="mt-6">
         <div className="flex flex-wrap gap-2">
-          {post.tags.map(tag => (
-            <span
-              key={tag}
-              className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-            >
+          {post.tags.map((tag) => (
+            <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
               #{tag}
             </span>
           ))}

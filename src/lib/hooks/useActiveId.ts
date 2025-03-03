@@ -24,11 +24,10 @@ export function useActiveId(itemIds: string[]) {
           }
         });
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -80% 0%` },
     );
 
     console.log('itemIds', itemIds);
-
 
     return () => {
       itemIds.forEach((id) => {
@@ -40,4 +39,3 @@ export function useActiveId(itemIds: string[]) {
 
   return activeId;
 }
-

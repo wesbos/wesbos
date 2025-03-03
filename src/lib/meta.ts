@@ -19,10 +19,7 @@ export function getOgImage({ slug, title, image }: { slug: string; title: string
 }
 
 export function generateMdxMetadata(importMetaUrl: string) {
-  return async function generateMetadata(
-    params: unknown,
-    parentMetaPromise: Promise<Metadata>
-  ): Promise<Metadata> {
+  return async function generateMetadata(params: unknown, parentMetaPromise: Promise<Metadata>): Promise<Metadata> {
     const parentMeta = await parentMetaPromise;
     // Dynamically import the file based on the import.meta.url
     // We gotta explicitly limit the path to the app dir, otherwise it will try to import the entire repo
@@ -57,4 +54,3 @@ export function generateMdxMetadata(importMetaUrl: string) {
     return foldedMeta;
   };
 }
-

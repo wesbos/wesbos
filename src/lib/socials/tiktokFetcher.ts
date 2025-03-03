@@ -1,22 +1,23 @@
-"use server";
+'use server';
 import { parseHTML } from 'linkedom/worker';
 import { TikTokResponse } from './tiktokFetcherTypes';
 
 const headers = {
-  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-  "accept-language": "en-CA,en;q=0.9",
-  "cache-control": "no-cache",
-  "pragma": "no-cache",
-  "priority": "u=0, i",
-  "sec-ch-ua": "\"Microsoft Edge\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
-  "sec-ch-ua-mobile": "?0",
-  "sec-ch-ua-platform": "\"macOS\"",
-  "sec-fetch-dest": "document",
-  "sec-fetch-mode": "navigate",
-  "sec-fetch-site": "same-origin",
-  "sec-fetch-user": "?1",
-  "upgrade-insecure-requests": "1"
-}
+  accept:
+    'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+  'accept-language': 'en-CA,en;q=0.9',
+  'cache-control': 'no-cache',
+  pragma: 'no-cache',
+  priority: 'u=0, i',
+  'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+  'sec-ch-ua-mobile': '?0',
+  'sec-ch-ua-platform': '"macOS"',
+  'sec-fetch-dest': 'document',
+  'sec-fetch-mode': 'navigate',
+  'sec-fetch-site': 'same-origin',
+  'sec-fetch-user': '?1',
+  'upgrade-insecure-requests': '1',
+};
 
 function tryParseJson<T>(scriptContent: string): T | null {
   try {
@@ -27,7 +28,7 @@ function tryParseJson<T>(scriptContent: string): T | null {
   }
 }
 
-export async function fetchTiktokDetailsFromApi({ postId, handle = 'wesbos' }: { postId: string, handle?: string }) {
+export async function fetchTiktokDetailsFromApi({ postId, handle = 'wesbos' }: { postId: string; handle?: string }) {
   // Fetch the page
   const response = await fetch(`https://www.tiktok.com/@${handle}/video/${postId}`, { headers });
   // Get the HTML

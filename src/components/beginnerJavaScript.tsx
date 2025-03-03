@@ -4,7 +4,10 @@ export function BeginnerJavaScript() {
   return (
     <div className={BannerStyles}>
       <div>
-        <img src="https://images.wesbos.com/upload/w_700,q_auto,f_auto/v1621453897/wesbos.com/bjs.png" alt="Beginner JavaScript" />
+        <img
+          src="https://images.wesbos.com/upload/w_700,q_auto,f_auto/v1621453897/wesbos.com/bjs.png"
+          alt="Beginner JavaScript"
+        />
       </div>
       <div className="text">
         <p>Enjoy these notes? Want to Slam Dunk JavaScript?</p>

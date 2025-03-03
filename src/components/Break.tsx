@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { throwError } from "@/lib/error";
+import { throwError } from '@/lib/error';
 
 export function Break() {
   return (
@@ -8,9 +8,7 @@ export function Break() {
       <button
         type="button"
         onClick={() => {
-          throw new Error(
-            "Thrown Error - Imported as component from _layout.tsx"
-          );
+          throw new Error('Thrown Error - Imported as component from _layout.tsx');
         }}
       >
         Break the world

@@ -9,7 +9,7 @@ let browser: Browser;
 /**
  * @todo: This should be switched to using the Cloudlfare cache as seen in
  * @link middleware/cache.ts
-*/
+ */
 async function getScreenshot(url: string, ctx: HandlerContext) {
   const env = getHonoContext(ctx)?.env;
   const kv = env?.OG;
@@ -17,7 +17,6 @@ async function getScreenshot(url: string, ctx: HandlerContext) {
   // first check if this value has been cached
   const cachedImage = await kv.get(url, 'arrayBuffer');
   if (cachedImage) {
-
     console.log('Returning cached image');
     return cachedImage;
   }
@@ -76,7 +75,7 @@ const ogInterceptor: Middleware = () => {
     console.log(`Getting screenshot for ${url}`);
     const photoBuffer = await getScreenshot(url, ctx).catch(async (err) => {
       console.log(`Error getting screenshot`, err);
-      console.dir(err)
+      console.dir(err);
       await browser.close();
       throw err;
     });
@@ -87,8 +86,7 @@ const ogInterceptor: Middleware = () => {
       'CDN-Cache-Control': 'public, max-age=86400', // 1 day
     };
     return;
-  }
-
-}
+  };
+};
 
 export default ogInterceptor;

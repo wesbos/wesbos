@@ -1,27 +1,23 @@
-import {
-  getPostBySlug,
-  getPosts,
-  getSiblingPostsBySlug,
-} from "../../lib/getPosts";
-import { unstable_notFound as notFound } from "waku/router/server";
-import H from "../../components/mdxComponents/Headings";
-import { EditDialogStyles } from "@/styles/EditDialogStyles.module.css";
-import { postMeta } from "@/styles/PostMeta.module.css";
-import { Image } from "../../components/Image";
-import { IoLogoGithub } from "react-icons/io";
-import ContentNav from "../../components/ContentNav";
-import { MetaTags } from "../../components/MetaTags";
-import type { PageProps } from "waku/router";
-import mdxComponents from "@/components/mdxComponents";
+import { getPostBySlug, getPosts, getSiblingPostsBySlug } from '../../lib/getPosts';
+import { unstable_notFound as notFound } from 'waku/router/server';
+import H from '../../components/mdxComponents/Headings';
+import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
+import { postMeta } from '@/styles/PostMeta.module.css';
+import { Image } from '../../components/Image';
+import { IoLogoGithub } from 'react-icons/io';
+import ContentNav from '../../components/ContentNav';
+import { MetaTags } from '../../components/MetaTags';
+import type { PageProps } from 'waku/router';
+import mdxComponents from '@/components/mdxComponents';
 
-interface BlogPostPageProps extends PageProps<"/[slug]"> {
+interface BlogPostPageProps extends PageProps<'/[slug]'> {
   slug: string;
 }
 
 export default async function BlogPost(props: BlogPostPageProps) {
   const { slug } = props;
   const post = await getPostBySlug(slug);
-  const { prev, next } = await getSiblingPostsBySlug(slug, "blog");
+  const { prev, next } = await getSiblingPostsBySlug(slug, 'blog');
 
   if (!post) {
     return notFound();
@@ -39,7 +35,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
         <H>{post.frontmatter.title}</H>
         <div className={postMeta}>
           <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
-          <span>{post.frontmatter.category.join(", ")}</span>
+          <span>{post.frontmatter.category.join(', ')}</span>
           <a rel="noopener noreferrer" target="_blank" href={editURL}>
             Edit Post <IoLogoGithub className="inline" />
           </a>
@@ -47,14 +43,8 @@ export default async function BlogPost(props: BlogPostPageProps) {
       </div>
       <MDXContent components={mdxComponents} />
       <div className={EditDialogStyles}>
-        <p>
-          Find an issue with this post? Think you could clarify, update or add
-          something?
-        </p>
-        <p>
-          All my posts are available to edit on Github. Any fix, little or
-          small, is appreciated!
-        </p>
+        <p>Find an issue with this post? Think you could clarify, update or add something?</p>
+        <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
         <p>
           <a target="_blank" href={editURL}>
             <IoLogoGithub /> Edit on Github
@@ -68,7 +58,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
 
 export const getConfig = async () => {
   return {
-    render: "dynamic",
+    render: 'dynamic',
   } as const;
 };
 

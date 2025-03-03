@@ -1,6 +1,14 @@
 import { withCache } from '@/lib/cache';
 import { fetchLatestTweets, TweetDetails, XMediaEntity } from '@/lib/socials/twitter-fetcher';
-import { FooterBlock, FooterHeading, Tweet, TweetLink, TweetMeta, Tweets, TweetStyles } from '@/styles/FooterStyles.module.css';
+import {
+  FooterBlock,
+  FooterHeading,
+  Tweet,
+  TweetLink,
+  TweetMeta,
+  Tweets,
+  TweetStyles,
+} from '@/styles/FooterStyles.module.css';
 import clsx from 'clsx';
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
 import React from 'react';
@@ -10,7 +18,15 @@ function Media({ media, alt }: { media?: XMediaEntity[]; alt: string }) {
   if (!media) return null;
   const mediaUrl = media[0].media_url_https;
   const thumb = `${mediaUrl}?name=thumb&format=jpg`;
-  return <img src={`https:///wsrv.nl/?url=${encodeURIComponent(thumb)}&w=150&h=150&fit=cover`} alt={alt} className="media" width="150" height="150" />;
+  return (
+    <img
+      src={`https:///wsrv.nl/?url=${encodeURIComponent(thumb)}&w=150&h=150&fit=cover`}
+      alt={alt}
+      className="media"
+      width="150"
+      height="150"
+    />
+  );
 }
 
 const numberFormatter = new Intl.NumberFormat('en-US');
@@ -54,7 +70,8 @@ export default async function Twitter() {
       </h3>
       {!tweets.length && (
         <p>
-          <s>twitter</s> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
+          <s>twitter</s> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the
+          𝕏eets.
         </p>
       )}
       <div className={Tweets}>
@@ -87,7 +104,12 @@ export default async function Twitter() {
                     {numberFormatter.format(tweet.views.count)}
                   </span>
                 </div>
-                <a className={TweetLink} rel="noopener noreferrer" target="_blank" href={`https://twitter.com/wesbos/status/${tweet.rest_id}`}>
+                <a
+                  className={TweetLink}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  href={`https://twitter.com/wesbos/status/${tweet.rest_id}`}
+                >
                   {/* @ts-ignore types are wrong upstream */}
                   {/* I removed the alt because google page speed thinks it's a duplicate */}
                   <Media media={media} alt="" />
@@ -103,6 +125,6 @@ export default async function Twitter() {
 
 export const getConfig = async () => {
   return {
-    render: "dynamic",
+    render: 'dynamic',
   } as const;
 };

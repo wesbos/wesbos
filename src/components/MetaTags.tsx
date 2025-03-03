@@ -1,8 +1,8 @@
-import { slugToTitle } from "@/utils/slugToTitle";
-import { getPostBySlug } from "@/lib/getPosts";
-import type { PageProps } from "waku/router";
-import { Link } from "waku";
-const baseUrl =  import.meta.env.DEV ? 'http://localhost:3000' : "https://rsc.wesbos.com";
+import { slugToTitle } from '@/utils/slugToTitle';
+import { getPostBySlug } from '@/lib/getPosts';
+import type { PageProps } from 'waku/router';
+import { Link } from 'waku';
+const baseUrl = import.meta.env.DEV ? 'http://localhost:3000' : 'https://rsc.wesbos.com';
 
 type MetaProps = PageProps<string> & {
   section?: string;
@@ -16,9 +16,9 @@ export async function MetaTags({ path, query, section, slug, description, title:
   // if the route has a [section] and/or [slug] in it, we need to parse out that slug from the pathname. EG /javascript/[section]/[slug]
   if (path.startsWith('/javascript/')) {
     // grab the last two items in the pathname
-    displaySlug = `${section}/${slug}`
+    displaySlug = `${section}/${slug}`;
   } else if (slug?.startsWith('/tip/')) {
-    displaySlug = `${slug}`
+    displaySlug = `${slug}`;
   }
   // Remove stargin / from the start of the slug if it exists
   displaySlug = displaySlug.startsWith('/') ? displaySlug.slice(1) : displaySlug;
@@ -30,14 +30,14 @@ export async function MetaTags({ path, query, section, slug, description, title:
   const url = `${baseUrl}${path}`;
   const image = post?.images?.[0];
   const searchParams = new URLSearchParams();
-  searchParams.set("title", title);
-  searchParams.set("url", url);
-  image ? searchParams.set("thumbnail", image) : null;
+  searchParams.set('title', title);
+  searchParams.set('url', url);
+  image ? searchParams.set('thumbnail', image) : null;
   const ogImage = `${baseUrl}/og.jpg?${searchParams.toString()}`;
-  description = description || post?.excerpt || "";
+  description = description || post?.excerpt || '';
   return (
     <>
-      <title>{`${title ? `${title} - ` : ""}Wes Bos`}</title>
+      <title>{`${title ? `${title} - ` : ''}Wes Bos`}</title>
       <meta name="description" content={description} />
       {/* Open Graph */}
       <meta property="og:type" content="article" />
@@ -72,10 +72,7 @@ export async function MetaTags({ path, query, section, slug, description, title:
   );
 }
 
-
-
 // export async function generateMetadata({ params }: { params: { slug: string } }, state: Record<string, any>): Promise<Metadata> {
-
 
 //   const description = post?.excerpt || '';
 //   return {

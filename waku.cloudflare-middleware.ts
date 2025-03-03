@@ -16,11 +16,7 @@ const cloudflareMiddleware: Middleware = () => {
       return;
     }
     const contentType = ctx.res.headers?.['content-type'];
-    if (
-      !contentType ||
-      contentType.includes('text/html') ||
-      contentType.includes('text/plain')
-    ) {
+    if (!contentType || contentType.includes('text/html') || contentType.includes('text/plain')) {
       ctx.res.headers ||= {};
       ctx.res.headers['content-encoding'] = 'Identity';
     }

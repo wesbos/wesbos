@@ -1,13 +1,11 @@
-import { Link } from "waku";
-import { ErrorBoundaryFallback } from "@/components/ErrorBoundary";
+import { Link } from 'waku';
+import { ErrorBoundaryFallback } from '@/components/ErrorBoundary';
 export default function NotFound() {
-  return (
-    <ErrorBoundaryFallback error={"Not Found"} />
-  );
+  return <ErrorBoundaryFallback error={'Not Found'} />;
 }
 
 export const getConfig = async () => {
   return {
-    render: "static",
+    render: 'static',
   };
 };

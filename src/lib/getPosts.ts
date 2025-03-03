@@ -94,12 +94,9 @@ export async function getSiblingPostsBySlug(postSlug: string, type: ContentType)
   return { prev, next };
 }
 
-export async function getPosts<T extends ContentType>({
-  page = 1,
-  skip = 0,
-  type = 'blog' as T,
-  limit = PER_PAGE
-}: PostFilterArgs<T> = {} as PostFilterArgs<T>): Promise<PostsReturn<T>> {
+export async function getPosts<T extends ContentType>(
+  { page = 1, skip = 0, type = 'blog' as T, limit = PER_PAGE }: PostFilterArgs<T> = {} as PostFilterArgs<T>,
+): Promise<PostsReturn<T>> {
   const allPosts = await parsePosts();
   const posts = allPosts.filter((post) => post.frontmatter.type === type);
   // Return the posts for this page

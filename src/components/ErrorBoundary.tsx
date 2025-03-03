@@ -1,12 +1,12 @@
 'use client';
-import * as React from "react";
+import * as React from 'react';
 
 export class ErrorBoundary extends React.Component<{ fallback: React.ReactNode }, { hasError: boolean }> {
   constructor(props: { fallback: React.ReactNode }) {
     super(props);
     this.state = {
       hasError: false,
-      error: null
+      error: null,
     };
   }
 
@@ -35,7 +35,7 @@ export class ErrorBoundary extends React.Component<{ fallback: React.ReactNode }
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      console.log("SSR error boundary?", import.meta.env.SSR);
+      console.log('SSR error boundary?', import.meta.env.SSR);
       return <ErrorBoundaryFallback error={this.state.error} info={this.state.info} />;
     }
 
@@ -44,9 +44,9 @@ export class ErrorBoundary extends React.Component<{ fallback: React.ReactNode }
 }
 
 const errorLookup: Record<string, string> = {
-  default: "Shoot, eh! Error",
-  "Not Found": "4 OH CANADA 4",
-}
+  default: 'Shoot, eh! Error',
+  'Not Found': '4 OH CANADA 4',
+};
 
 export function ErrorBoundaryFallback({ error }: { error: string }) {
   const title = errorLookup[error] || errorLookup.default;
@@ -57,14 +57,13 @@ export function ErrorBoundaryFallback({ error }: { error: string }) {
         You might just need to <a href="">refresh the page</a>.
       </p>
       <p>
-        If the problem persists, please contact me at{" "}
-        <a href="mailto:hey@wesbos.com">hey@wesbos.com</a>.
+        If the problem persists, please contact me at <a href="mailto:hey@wesbos.com">hey@wesbos.com</a>.
       </p>
       <p
         style={{
-          borderLeft: "4px solid red",
-          padding: "1rem",
-          background: "rgba(255, 0, 0, 0.1)",
+          borderLeft: '4px solid red',
+          padding: '1rem',
+          background: 'rgba(255, 0, 0, 0.1)',
         }}
       >
         {error}

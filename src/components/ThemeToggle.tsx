@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import styles from "@/styles/ThemeToggle.module.css";
-import clsx from "clsx";
-import H from "@/components/mdxComponents/Headings";
+import { useState, useEffect } from 'react';
+import styles from '@/styles/ThemeToggle.module.css';
+import clsx from 'clsx';
+import H from '@/components/mdxComponents/Headings';
 
-type Theme = "light" | "dark";
+type Theme = 'light' | 'dark';
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
   // When mounted on client, load the saved theme or default to light
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme) {
       setTheme(savedTheme);
-      document.documentElement.setAttribute("data-theme", savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
     } else if (prefersDark) {
-      setTheme("dark");
-      document.documentElement.setAttribute("data-theme", "dark");
+      setTheme('dark');
+      document.documentElement.setAttribute('data-theme', 'dark');
     }
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
   };
 
   // Avoid rendering the toggle on the server
@@ -40,10 +40,10 @@ export default function ThemeToggle() {
     <button
       onClick={toggleTheme}
       className={styles.themeToggle}
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-      title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
     >
-      {theme === "light" ? "🌙" : "☀️"}
+      {theme === 'light' ? '🌙' : '☀️'}
     </button>
   );
 }

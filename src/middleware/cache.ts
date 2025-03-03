@@ -2,10 +2,9 @@
 import type { Middleware } from 'waku/config';
 import type { Context } from 'hono';
 
-
 const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
-    if(import.meta.env.DEV) return next(); // Skip cache in dev
+    if (import.meta.env.DEV) return next(); // Skip cache in dev
     const c = ctx.data.__hono_context as Context; // This is the Hono context
     let key = `${c.req.url.toString()}-${import.meta.env.WAKU_GIT_COMMIT_HASH}`;
     const cacheName = 'my-app';
@@ -46,7 +45,7 @@ const cacheMiddleware: Middleware = () => {
       ctx.res.headers['Cache-Control'] = 'max-age=60'; // 60 seconds for client
       ctx.res.headers['CDN-Cache-Control'] = 'max-age=3600'; // 1 hour for CDN
       ctx.res.headers['x-wes-cached-this'] = new Date().toLocaleString('en-US', {
-        timeZone: 'America/New_York'
+        timeZone: 'America/New_York',
       });
 
       // Create a proper response object for caching
@@ -55,7 +54,7 @@ const cacheMiddleware: Middleware = () => {
       if (ctx.res.headers) {
         Object.entries(ctx.res.headers).forEach(([key, value]) => {
           if (Array.isArray(value)) {
-            value.forEach(v => responseHeaders.append(key, v));
+            value.forEach((v) => responseHeaders.append(key, v));
           } else if (value !== undefined) {
             responseHeaders.set(key, value);
           }

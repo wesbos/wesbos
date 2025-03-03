@@ -1,4 +1,4 @@
-import { Image as UnpicImage } from "@unpic/react";
+import { Image as UnpicImage } from '@unpic/react';
 
 interface ImageProps {
   src: string;
@@ -8,14 +8,7 @@ interface ImageProps {
   className?: string;
 }
 
-export async function Image({
-  src,
-  alt,
-  width,
-  height,
-  className,
-  ...props
-}: ImageProps) {
+export async function Image({ src, alt, width, height, className, ...props }: ImageProps) {
   return (
     <UnpicImage
       src={src}

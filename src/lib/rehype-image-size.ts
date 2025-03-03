@@ -5,9 +5,9 @@
  * - npm i image-size unist-util-visit
  * @url https://mmazzarolo.com/blog/2023-07-29-nextjs-mdx-image-size/
  */
-import { imageSizeFromFile } from "image-size/fromFile";
+import { imageSizeFromFile } from 'image-size/fromFile';
 import path from 'path';
-import { visit } from "unist-util-visit";
+import { visit } from 'unist-util-visit';
 
 /**
  * Analyze local MDX images and add `width` and `height` attributes to the
@@ -19,7 +19,7 @@ export const rehypeImageSize = (options) => {
   return async (tree, vfile) => {
     const matches: { node: any; path: string }[] = [];
     // This matches all images that use the markdown standard format ![label](path).
-    visit(tree, { type: "element", tagName: "img" }, async (node) => {
+    visit(tree, { type: 'element', tagName: 'img' }, async (node) => {
       if (node.properties.width || node.properties.height) {
         return; // If `width` or `height` have already been set explicitly we don't want to override them.
       }

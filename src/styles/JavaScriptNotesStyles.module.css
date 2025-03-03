@@ -19,7 +19,7 @@
   .gatsby-resp-image-wrapper {
     max-width: 700px !important;
   }
-  .gatsby-resp-image-wrapper[style*='max-width: 1500px'] {
+  .gatsby-resp-image-wrapper[style*="max-width: 1500px"] {
     max-width: 700px !important;
   }
 

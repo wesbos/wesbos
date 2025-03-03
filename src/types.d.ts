@@ -1,39 +1,39 @@
-declare module "*.jpg?meta" {
+declare module '*.jpg?meta' {
   export default {
     width: number,
     height: number,
-    src: string
+    src: string,
   };
 }
 
-declare module "*.png?meta" {
+declare module '*.png?meta' {
   export default {
     width: number,
     height: number,
-    src: string
+    src: string,
   };
 }
 
-declare module "*.jpeg?meta" {
+declare module '*.jpeg?meta' {
   export default {
     width: number,
     height: number,
-    src: string
+    src: string,
   };
 }
 
-declare module "*.webp?meta" {
+declare module '*.webp?meta' {
   export default {
     width: number,
     height: number,
-    src: string
+    src: string,
   };
 }
 
-declare module "*.avif?meta" {
+declare module '*.avif?meta' {
   export default {
     width: number,
     height: number,
-    src: string
+    src: string,
   };
 }

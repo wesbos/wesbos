@@ -1,8 +1,8 @@
-import { XMedia, XMediaEntity, XVideoVariant, XVideoVariantFile } from "@/lib/socials/twitter-fetcher";
-import { XVideoPlayer } from "./XVideo";
+import { XMedia, XMediaEntity, XVideoVariant, XVideoVariantFile } from '@/lib/socials/twitter-fetcher';
+import { XVideoPlayer } from './XVideo';
 function findBestXMediaVariant(variants: XVideoVariant[]) {
   // First look for content_type "application/x-mpegURL".
-  const xMpegUrl = variants.find(variant => variant.content_type === 'application/x-mpegURL');
+  const xMpegUrl = variants.find((variant) => variant.content_type === 'application/x-mpegURL');
   if (xMpegUrl) return xMpegUrl;
   // if not return the one with the highest bitrate.
   return variants
@@ -11,8 +11,8 @@ function findBestXMediaVariant(variants: XVideoVariant[]) {
     .at(0);
 }
 
-export function XMediaDisplay({ media }: { media: XMediaEntity[]}) {
-  if(!media) {
+export function XMediaDisplay({ media }: { media: XMediaEntity[] }) {
+  if (!media) {
     console.log(`No media foundd`, media);
     return null; // Some tips are just text
   }
@@ -25,7 +25,7 @@ export function XMediaDisplay({ media }: { media: XMediaEntity[]}) {
   return <XMediaDisplayVideo media={media} />;
 }
 
-export function XMediaDisplayVideo({ media }: { media: XMediaEntity[]}) {
+export function XMediaDisplayVideo({ media }: { media: XMediaEntity[] }) {
   const video = media.at(0)?.video_info;
   const variants = video?.variants;
   if (!video || !variants) return null; // No video variants

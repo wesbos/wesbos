@@ -15,7 +15,9 @@ async function TwitterMedia({ twitterLink }: { twitterLink: SocialLink | undefin
   {
     /* @ts-ignore MEH upstream */
   }
-  return <XMediaDisplay media={tweetDetails?.postData?.extended_entities?.media || tweetDetails?.postData?.entities.media} />;
+  return (
+    <XMediaDisplay media={tweetDetails?.postData?.extended_entities?.media || tweetDetails?.postData?.entities.media} />
+  );
 }
 
 export async function Tip({ tip }: { tip: MDXResult }) {
@@ -42,6 +44,6 @@ export async function Tip({ tip }: { tip: MDXResult }) {
 
 export const getConfig = async () => {
   return {
-    render: "dynamic",
+    render: 'dynamic',
   } as const;
 };

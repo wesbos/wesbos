@@ -1,5 +1,5 @@
-"use client";
-import H from "./mdxComponents/Headings";
+'use client';
+import H from './mdxComponents/Headings';
 
 function getFontSize(length: number) {
   if (length > 55) {
@@ -20,8 +20,8 @@ export interface OGProps {
 }
 
 export function OG({ query }: OGProps) {
-  const { thumbnail, url: link, title = "Wes Bos" } = query;
-  const linkURL = new URL(link || "https://wesbos.com");
+  const { thumbnail, url: link, title = 'Wes Bos' } = query;
+  const linkURL = new URL(link || 'https://wesbos.com');
 
   return (
     <div className="main">
@@ -52,6 +52,7 @@ export function OG({ query }: OGProps) {
         <img src="/logo.png" alt="logo" className="logo" />
       </div>
       <style
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: /*css*/ `
             body {

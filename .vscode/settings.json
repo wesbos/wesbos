@@ -1,55 +1,55 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"typescript.preferences.autoImportFileExcludePatterns": [
-		"**/dist/",
-		"**/build/",
-		"drizzle-orm/pg-core",
-		"drizzle-orm/mysql-core",
-		"drizzle-orm/singlestore-core",
-		"@radix-ui/*",
-		"node:test"
-	],
-	"workbench.editor.customLabels.patterns": {
-		"**/app/**/[[]*[]]/[[]*[]]/page.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • page",
-		"**/app/**/[[]*[]]/page.tsx": "${dirname(1)}/${dirname} • page",
-		"**/app/**/page.tsx": "${dirname}/page",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "**/dist/",
+    "**/build/",
+    "drizzle-orm/pg-core",
+    "drizzle-orm/mysql-core",
+    "drizzle-orm/singlestore-core",
+    "@radix-ui/*",
+    "node:test"
+  ],
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/[[]*[]]/[[]*[]]/page.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • page",
+    "**/app/**/[[]*[]]/page.tsx": "${dirname(1)}/${dirname} • page",
+    "**/app/**/page.tsx": "${dirname}/page",
 
-		"**/app/**/[[]*[]]/[[]*[]]/default.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • default",
-		"**/app/**/[[]*[]]/default.tsx": "${dirname(1)}/${dirname} • default",
-		"**/app/**/default.tsx": "${dirname} • default",
+    "**/app/**/[[]*[]]/[[]*[]]/default.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • default",
+    "**/app/**/[[]*[]]/default.tsx": "${dirname(1)}/${dirname} • default",
+    "**/app/**/default.tsx": "${dirname} • default",
 
-		"**/app/**/[[]*[]]/[[]*[]]/layout.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • layout",
-		"**/app/**/[[]*[]]/layout.tsx": "${dirname(1)}/${dirname} • layout",
-		"**/app/**/layout.tsx": "${dirname} • layout",
+    "**/app/**/[[]*[]]/[[]*[]]/layout.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • layout",
+    "**/app/**/[[]*[]]/layout.tsx": "${dirname(1)}/${dirname} • layout",
+    "**/app/**/layout.tsx": "${dirname} • layout",
 
-		"**/app/**/[[]*[]]/[[]*[]]/template.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • template",
-		"**/app/**/[[]*[]]/template.tsx": "${dirname(1)}/${dirname} • template",
-		"**/app/**/template.tsx": "${dirname} • template",
+    "**/app/**/[[]*[]]/[[]*[]]/template.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • template",
+    "**/app/**/[[]*[]]/template.tsx": "${dirname(1)}/${dirname} • template",
+    "**/app/**/template.tsx": "${dirname} • template",
 
-		"**/app/**/[[]*[]]/[[]*[]]/error.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • error",
-		"**/app/**/[[]*[]]/error.tsx": "${dirname(1)}/${dirname} • error",
-		"**/app/**/error.tsx": "${dirname} • error"
-	},
-	"editor.formatOnSave": true,
-	"editor.defaultFormatter": "biomejs.biome",
-	"editor.codeActionsOnSave": {
-		"source.fixAll.biome": "explicit",
-		"source.organizeImports.biome": "explicit"
-	},
-	"[html][css][javascript][typescript][typescriptreact]": {
-		"editor.defaultFormatter": "biomejs.biome",
-		"editor.formatOnSave": true
-	},
-	"[typescriptreact]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[css]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "biomejs.biome"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "biomejs.biome",
-		"editor.formatOnSave": true
-	}
+    "**/app/**/[[]*[]]/[[]*[]]/error.tsx": "${dirname(2)}/${dirname(1)}/${dirname} • error",
+    "**/app/**/[[]*[]]/error.tsx": "${dirname(1)}/${dirname} • error",
+    "**/app/**/error.tsx": "${dirname} • error"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.organizeImports.biome": "explicit"
+  },
+  "[html][css][javascript][typescript][typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[css]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome",
+    "editor.formatOnSave": true
+  }
 }

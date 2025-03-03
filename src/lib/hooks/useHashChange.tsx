@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useRef, useState } from "react"
-import { useActiveId } from "./useActiveId";
+import { useEffect, useRef, useState } from 'react';
+import { useActiveId } from './useActiveId';
 
 function findFirstElementInViewport(elements: Element[]) {
   return elements.find((element) => {
@@ -14,16 +14,12 @@ function findFirstElementInViewport(elements: Element[]) {
   });
 }
 
-
 export function useCurrentHeading() {
-
   const currentHeading = useRef<Element | null>(null);
 
   function handleSCrollEvent(e: Event) {
     // Find the last visible heading in the viewport
-    const headingsWithIds = Array.from(
-      document.querySelectorAll(`[id]:is(h1,h2,h3,h4,h5,h6)`)
-    ).reverse();
+    const headingsWithIds = Array.from(document.querySelectorAll(`[id]:is(h1,h2,h3,h4,h5,h6)`)).reverse();
     // now filter them for visible ones
     const firstVisibleHeading = findFirstElementInViewport(headingsWithIds);
     if (firstVisibleHeading) {
@@ -33,10 +29,10 @@ export function useCurrentHeading() {
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleSCrollEvent);
+    window.addEventListener('scroll', handleSCrollEvent);
     return () => {
       console.log(`removing scroll event listener`);
-      window.removeEventListener("scroll", handleSCrollEvent);
+      window.removeEventListener('scroll', handleSCrollEvent);
     };
   }, []);
 

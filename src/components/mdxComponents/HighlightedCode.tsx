@@ -1,29 +1,24 @@
-import {
-  bundledLanguages,
-  createHighlighter,
-  createHighlighterCore,
-  ThemeInput,
-} from "shiki";
-import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
-import { loadWasm } from "shiki/engine/oniguruma";
-import { isValidElement, ReactElement } from "react";
 // import SHIKI_WASM from "./onigasm.wasm";
 // import SHIKI_WASM from "shiki/onig.wasm?module";
-import { cobalt2 } from "@/lib/assets/cobalt2";
-import javascript from "shiki/langs/javascript.mjs";
-import typescript from "shiki/langs/typescript.mjs";
-import bash from "shiki/langs/bash.mjs";
-import html from "shiki/langs/html.mjs";
-import css from "shiki/langs/css.mjs";
-import yaml from "shiki/langs/yaml.mjs";
-import json from "shiki/langs/json.mjs";
-import php from "shiki/langs/php.mjs";
-import xml from "shiki/langs/xml.mjs";
-import vue from "shiki/langs/vue.mjs";
-import scss from "shiki/langs/scss.mjs";
-import cpp from "shiki/langs/cpp.mjs";
-import jsx from "shiki/langs/jsx.mjs";
-import tsx from "shiki/langs/tsx.mjs";
+import { cobalt2 } from '@/lib/assets/cobalt2';
+import { type ReactElement, isValidElement } from 'react';
+import { type ThemeInput, bundledLanguages, createHighlighter, createHighlighterCore } from 'shiki';
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
+import { loadWasm } from 'shiki/engine/oniguruma';
+import bash from 'shiki/langs/bash.mjs';
+import cpp from 'shiki/langs/cpp.mjs';
+import css from 'shiki/langs/css.mjs';
+import html from 'shiki/langs/html.mjs';
+import javascript from 'shiki/langs/javascript.mjs';
+import json from 'shiki/langs/json.mjs';
+import jsx from 'shiki/langs/jsx.mjs';
+import php from 'shiki/langs/php.mjs';
+import scss from 'shiki/langs/scss.mjs';
+import tsx from 'shiki/langs/tsx.mjs';
+import typescript from 'shiki/langs/typescript.mjs';
+import vue from 'shiki/langs/vue.mjs';
+import xml from 'shiki/langs/xml.mjs';
+import yaml from 'shiki/langs/yaml.mjs';
 
 // const { default: shikiWasm } = await import(
 //   /* @vite-ignore */ `${SHIKI_WASM}?module`
@@ -36,27 +31,12 @@ import tsx from "shiki/langs/tsx.mjs";
 const highlighter = await createHighlighterCore({
   themes: [cobalt2 as unknown as ThemeInput],
   engine: createJavaScriptRegexEngine(),
-  langs: [
-    javascript,
-    typescript,
-    bash,
-    html,
-    css,
-    yaml,
-    json,
-    php,
-    xml,
-    vue,
-    scss,
-    cpp,
-    jsx,
-    tsx,
-  ],
+  langs: [javascript, typescript, bash, html, css, yaml, json, php, xml, vue, scss, cpp, jsx, tsx],
 });
 
 function getLanguageFromClassName(className: string) {
-  if (!className) return "text";
-  return className.replace("language-", "");
+  if (!className) return 'text';
+  return className.replace('language-', '');
 }
 
 export async function HighlightedCode({
@@ -67,29 +47,25 @@ export async function HighlightedCode({
   className: string;
 }) {
   // The way we differentiate between inline `code` and code blocks, is we check if the <pre> has a <code> inside of it.
-  if (typeof children === "string") {
+  if (typeof children === 'string') {
     return <code {...props} />;
   }
 
   // Other wise we highlight the code!
-  if (isValidElement(children) && children.type === "code") {
-    const codeElement = children as ReactElement<
-      React.HTMLProps<HTMLPreElement>
-    >;
+  if (isValidElement(children) && children.type === 'code') {
+    const codeElement = children as ReactElement<React.HTMLProps<HTMLPreElement>>;
 
-    const className = codeElement.props.className || "";
+    const className = codeElement.props.className || '';
     const lang = getLanguageFromClassName(className);
-    const html = highlighter.codeToHtml(
-      codeElement.props.children?.toString() || "",
-      {
-        lang: "javascript",
-        theme: "Cobalt2",
-      }
-    );
+    const html = highlighter.codeToHtml(codeElement.props.children?.toString() || '', {
+      lang: 'javascript',
+      theme: 'Cobalt2',
+    });
     return (
       <div
         // The Rehype Remark unified plugin caused memory timeouts - too confusing. This is way easier YOLO
         data-language={className}
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
         dangerouslySetInnerHTML={{
           __html: html,
         }}

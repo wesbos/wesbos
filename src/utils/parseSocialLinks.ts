@@ -27,7 +27,7 @@ export function isSocialLink(link: string, type?: SocialLinkType): boolean {
   if (type) {
     return hostNames[type]?.includes(url.hostname);
   }
-  return Object.values(hostNames).some(hostnames => hostnames.includes(url.hostname));
+  return Object.values(hostNames).some((hostnames) => hostnames.includes(url.hostname));
 }
 
 export function parseSocialLink(link: string): SocialLink | undefined {
@@ -114,7 +114,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
 
   // bsky.app - example: https://bsky.app/profile/wesbos.com/post/3lbsenppiy22l
   if (url.hostname.includes('bsky.app')) {
-    const [,, handle, , postId] = pathname.split('/');
+    const [, , handle, , postId] = pathname.split('/');
     return {
       url: link,
       type: 'bluesky',
@@ -129,10 +129,9 @@ export function parseSocialLink(link: string): SocialLink | undefined {
 }
 
 export function parseSocialLinks(links: string[]): SocialLinkRecord {
-  const parsedLinks = links.map(link => parseSocialLink(link)).filter((link): link is SocialLink => !!link);
-  return Object.groupBy(parsedLinks, link => link.type) as SocialLinkRecord;
+  const parsedLinks = links.map((link) => parseSocialLink(link)).filter((link): link is SocialLink => !!link);
+  return Object.groupBy(parsedLinks, (link) => link.type) as SocialLinkRecord;
 }
-
 
 async function populateSocialLink(link: SocialLink | SocialLink[]) {
   const firstLink = Array.isArray(link) ? link.at(0)! : link;
@@ -146,9 +145,11 @@ export type PopulatedLink = Awaited<ReturnType<typeof populateSocialLink>>;
 
 export async function populateSocialLinks(links: SocialLinkRecord) {
   const record = Object.entries(links) as [SocialLinkType, SocialLink[]][];
-  const populatedLinks = await Promise.all(record.map(async ([type, links]) => {
-    return [type, await populateSocialLink(links)] as const;
-  }));
+  const populatedLinks = await Promise.all(
+    record.map(async ([type, links]) => {
+      return [type, await populateSocialLink(links)] as const;
+    }),
+  );
   // filter any links that don't have details
   const populatedLinksFiltered = populatedLinks.filter((entry) => !!entry[1]?.details);
   const populatedLinksObject = Object.fromEntries(populatedLinksFiltered) as Record<SocialLinkType, PopulatedLink>;

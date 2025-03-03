@@ -2,9 +2,24 @@ import { socialVideoStats } from '@/styles/SocialVideoStats.module.css';
 import { formatNumber } from '@/utils/formatNumber';
 import { findInObject } from '@/utils/objectWalker';
 import { SocialLinkType, PopulatedLink } from '@/utils/parseSocialLinks';
-import { FaInstagram, FaLinkedinIn, FaTiktok, FaTwitter, FaYoutube, FaBluesky, FaThreads, FaHeart, FaBookmark, FaRetweet, FaComment,
-  FaChartSimple, FaPlay, FaQuoteLeft, FaShare } from 'react-icons/fa6';
-  type NestedSelector = string | [string, string];
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaTiktok,
+  FaTwitter,
+  FaYoutube,
+  FaBluesky,
+  FaThreads,
+  FaHeart,
+  FaBookmark,
+  FaRetweet,
+  FaComment,
+  FaChartSimple,
+  FaPlay,
+  FaQuoteLeft,
+  FaShare,
+} from 'react-icons/fa6';
+type NestedSelector = string | [string, string];
 
 const socialLookup: Record<SocialLinkType, NestedSelector[]> = {
   twitter: ['favorite_count', 'retweet_count', 'reply_count', 'bookmark_count', ['views', 'count']],
@@ -71,10 +86,12 @@ const actionLookup = {
 function getActionWord(selector: string | string[]) {
   const selectorMashed = typeof selector === 'string' ? selector : selector.join('');
   // find the action in the lookup based on it's matches
-  const actionWord = Object.values(actionLookup).find((lookup) => lookup.matches.some((match) => selectorMashed.includes(match)));
+  const actionWord = Object.values(actionLookup).find((lookup) =>
+    lookup.matches.some((match) => selectorMashed.includes(match)),
+  );
   return actionWord;
 }
-export function SocialStats({ link }: { link: PopulatedLink; }) {
+export function SocialStats({ link }: { link: PopulatedLink }) {
   const Icon = iconLookup[link.link.type];
   return (
     <div className={socialVideoStats}>

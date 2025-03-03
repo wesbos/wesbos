@@ -11,17 +11,16 @@ import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
 import rehypeWesbos from './src/lib/rehype-wesbos';
 import rehypeMdxTitle from 'rehype-mdx-title';
 import rehypeHotTips from './src/lib/rehype-hot-tips';
-import topLevelAwait from "vite-plugin-top-level-await";
-import wasmModuleWorkers from './vite-plugin-wasm-module-workers'
-import { cloudflareWasm }  from './vite-plugin-cloudflare-wasm'
+import topLevelAwait from 'vite-plugin-top-level-await';
+import wasmModuleWorkers from './vite-plugin-wasm-module-workers';
+import { cloudflareWasm } from './vite-plugin-cloudflare-wasm';
 import { unstable_getBuildOptions } from 'waku/server';
-import { openimg } from "openimg/vite";
+import { openimg } from 'openimg/vite';
 import rehypeImageSize from './src/lib/rehype-image-size';
 import { imgDimensions } from './vite-plugin-img-dimensions';
-import UnpluginInjectPreload from 'unplugin-inject-preload/vite'
-import inlineSource from "vite-plugin-inline-source";
+import UnpluginInjectPreload from 'unplugin-inject-preload/vite';
+import inlineSource from 'vite-plugin-inline-source';
 import { gitHashPlugin } from './vite-plugin-git-hash';
-
 
 // TODO: https://github.com/dai-shi/waku/issues/421
 export default defineConfig({
@@ -36,7 +35,7 @@ export default defineConfig({
     imgDimensions(),
     mdx({
       // A custom useMDXComponents function is required to be able to use the MDXProvider with server components. This is also how Next.js does it.
-      providerImportSource: "@/components/mdxComponents/index",
+      providerImportSource: '@/components/mdxComponents/index',
       remarkPlugins: [[remarkFrontmatter], [remarkMdxFrontmatter]],
       rehypePlugins: [
         [rehypeImageSize],
@@ -59,13 +58,13 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   optimizeDeps: {
-    include: ["react/jsx-runtime"],
+    include: ['react/jsx-runtime'],
   },
   build: {
-    target: 'esnext'
-  }
+    target: 'esnext',
+  },
 });

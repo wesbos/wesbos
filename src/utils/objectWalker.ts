@@ -20,12 +20,7 @@ type WalkResult = {
  * @returns Object containing the path and parent object, or null if not found
  */
 
-export function findInObject({
-  obj,
-  targetKey,
-  targetValue,
-  currentPath = []
-}: FindInObjectParams): WalkResult {
+export function findInObject({ obj, targetKey, targetValue, currentPath = [] }: FindInObjectParams): WalkResult {
   // Handle array of keys
   if (Array.isArray(targetKey)) {
     let currentObj = obj;
@@ -36,7 +31,7 @@ export function findInObject({
       currentResult = findInObject({
         obj: currentObj,
         targetKey: key,
-        currentPath: currentResult ? currentResult.path : []
+        currentPath: currentResult ? currentResult.path : [],
       });
 
       if (!currentResult) return null;
@@ -79,7 +74,7 @@ export function findInObject({
         obj: value,
         targetKey,
         targetValue,
-        currentPath: newPath
+        currentPath: newPath,
       });
       if (result) {
         return result;

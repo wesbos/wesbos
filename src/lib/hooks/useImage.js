@@ -26,7 +26,9 @@ export default function useImage() {
   `);
   return {
     getImagePath(fileName) {
-      return images.edges.map((x) => x.node.childImageSharp.gatsbyImageData.src).find((path) => path.endsWith(fileName));
+      return images.edges
+        .map((x) => x.node.childImageSharp.gatsbyImageData.src)
+        .find((path) => path.endsWith(fileName));
     },
   };
 }

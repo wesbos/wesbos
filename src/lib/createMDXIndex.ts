@@ -35,4 +35,4 @@ ${importStatements.join('\n')}`;
   console.log(`🎉 MDX index generated. Wrote ${files.length} file imports to ${outputFile}`);
 }
 
-generateStyleIndex()
+generateStyleIndex();

@@ -47,7 +47,8 @@ function slimUpPosts(response: InstagramResponse): InstagramPost[] {
     biggie: edge.node.thumbnail_src,
     thumbnail: edge.node.thumbnail_resources[2].src,
     url: `https://instagram.com/p/${edge.node.shortcode}`,
-    caption: edge.node.edge_media_to_caption.edges.length > 0 ? edge.node.edge_media_to_caption.edges[0].node.text : null,
+    caption:
+      edge.node.edge_media_to_caption.edges.length > 0 ? edge.node.edge_media_to_caption.edges[0].node.text : null,
     id: edge.node.id,
   }));
 }
@@ -67,13 +68,12 @@ export async function getInstagramPosts() {
   return posts;
 }
 
-type HandlerCallback = (error: any, result: { statusCode: number; headers: { [key: string]: string }; body: string }) => void;
+type HandlerCallback = (
+  error: any,
+  result: { statusCode: number; headers: { [key: string]: string }; body: string },
+) => void;
 
-exports.handler = async function (
-  event: any,
-  context: any,
-  callback: HandlerCallback
-) {
+exports.handler = async function (event: any, context: any, callback: HandlerCallback) {
   const posts = await getInstagramPosts();
   callback(null, {
     statusCode: 200,

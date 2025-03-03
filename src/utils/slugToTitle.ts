@@ -28,11 +28,13 @@ export function slugToTitle(slug: string): string {
 }
 
 function formatSlugPart(part: string): string {
-  return part
-    // Replace hyphens with spaces
-    .replace(/-/g, ' ')
-    // Capitalize first letter of each word
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+  return (
+    part
+      // Replace hyphens with spaces
+      .replace(/-/g, ' ')
+      // Capitalize first letter of each word
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  );
 }

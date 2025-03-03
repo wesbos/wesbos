@@ -36,7 +36,7 @@ async function getTweets() {
     .filter(
       (tweet) =>
         // filter out any BOMBS. Show only tweets that have more than 5 RTs or 10 hearts
-        tweet.retweet_count > 5 || tweet.favorite_count > 10
+        tweet.retweet_count > 5 || tweet.favorite_count > 10,
     )
     .slice(0, 3);
   cache.lastFetch = Date.now();

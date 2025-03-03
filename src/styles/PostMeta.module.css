@@ -8,7 +8,7 @@
 
   & > * {
     &:after {
-      content: '×';
+      content: "×";
       margin-left: 1rem;
       color: var(--yellow);
       font-weight: 600;

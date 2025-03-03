@@ -1,17 +1,12 @@
-import { name as isIdentifierName } from 'estree-util-is-identifier-name'
-import { valueToEstree } from 'estree-util-value-to-estree'
+import { name as isIdentifierName } from 'estree-util-is-identifier-name';
+import { valueToEstree } from 'estree-util-value-to-estree';
 import path from 'path';
 
 // MDX script to convert the TOC to an export on the MDX file
 export function rehypeWesBosMdx({ name = 'wesbos' } = {}) {
   if (!isIdentifierName(name)) {
-    throw new Error(
-      `The name should be a valid identifier name, got: ${JSON.stringify(
-        name,
-      )}`,
-    )
+    throw new Error(`The name should be a valid identifier name, got: ${JSON.stringify(name)}`);
   }
-
 
   return function transformer(tree, vfile) {
     tree.children.unshift({
@@ -59,7 +54,7 @@ export function rehypeWesBosMdx({ name = 'wesbos' } = {}) {
         },
       },
     });
-  }
+  };
 }
 
 export default rehypeWesBosMdx;

@@ -1,4 +1,4 @@
-"use server";
+'use server';
 import TWIT from 'rettiwt-api';
 import { getCloudflareContext } from '@/lib/hono';
 import { getEnv } from '../waku';
@@ -20,7 +20,7 @@ export async function fetchTweetDetailsFromApi({ postId }: { postId: string }) {
     return; // nothing to return
   }
   // Otherwise we slim it up to the essentials
-  const { views, legacy  } = result;
+  const { views, legacy } = result;
   return {
     views,
     ...legacy,
@@ -33,13 +33,14 @@ function formatTimeline(response: IUserTweetsResponse) {
   type Instructions = typeof response.data.user.result.timeline_v2.timeline.instructions & {
     entry?: Entry;
   };
-  type Entry = IUserTweetsResponse['data']['user']['result']['timeline_v2']['timeline']['instructions'][number]['entries'][number];
+  type Entry =
+    IUserTweetsResponse['data']['user']['result']['timeline_v2']['timeline']['instructions'][number]['entries'][number];
   // @ts-ignore
   const instructions = response.data.user.result.timeline.timeline.instructions as Instructions[];
 
   for (const instruction of instructions) {
     // Handle both single entry and multiple entries
-    const entries = (instruction.entry ? [instruction.entry] : instruction.entries || [] )as Entry[];
+    const entries = (instruction.entry ? [instruction.entry] : instruction.entries || []) as Entry[];
 
     for (const entry of entries) {
       if (entry?.content?.itemContent?.tweet_results?.result?.legacy) {
@@ -50,7 +51,6 @@ function formatTimeline(response: IUserTweetsResponse) {
 
   return tweets;
 }
-
 
 type Tweet = ReturnType<typeof formatTimeline>[number] & {
   views: {
@@ -96,7 +96,7 @@ export type XMediaEntity = Tweet['legacy']['entities']['media'] & {
     duration_millis: number;
     variants: XVideoVariant[];
   };
-}
+};
 
 interface XMediaSize {
   h: number;
@@ -105,13 +105,13 @@ interface XMediaSize {
 }
 
 export interface XVideoVariantStream {
-  content_type: "application/x-mpegURL";
+  content_type: 'application/x-mpegURL';
   url: string;
 }
 
 export interface XVideoVariantFile {
   bitrate: number;
-  content_type: "video/mp4";
+  content_type: 'video/mp4';
   url: string;
 }
 

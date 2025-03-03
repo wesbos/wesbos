@@ -1,4 +1,4 @@
-"use server";
+'use server';
 import { parseHTML } from 'linkedom/worker';
 
 interface LinkedInImageObject {
@@ -64,14 +64,16 @@ function makeLinkedInUrl(postId: string) {
 
 export async function fetchLinkedInDetailsFromApi({ postId }: { postId: string }): Promise<LinkedInPost | undefined> {
   const url = makeLinkedInUrl(postId);
-  const response = await fetch(url).then(res => res.text()).catch(console.error);
-  if(!response) {
+  const response = await fetch(url)
+    .then((res) => res.text())
+    .catch(console.error);
+  if (!response) {
     console.error('LinkedIn: No response from the API');
     return;
   }
   const dom = parseHTML(response);
   const data = dom.window.document.querySelector('script[type="application/ld+json"]')?.textContent;
-  if(!data) return;
+  if (!data) return;
   const payload = JSON.parse(data) as LinkedInPost;
   // remove a few keys as its a pretty large payload
   // delete payload.caption;
@@ -79,8 +81,11 @@ export async function fetchLinkedInDetailsFromApi({ postId }: { postId: string }
   delete payload.comment;
   delete payload.potentialAction;
   // Bring the interaction stats to the top level
-  (payload.interactionStatistic)?.forEach((stat: LinkedInInteractionStatistic) => {
-    const statKey = stat?.interactionType?.replace(/(http|https):\/\/schema.org\//i, '').toLowerCase().replace('action', 'Count');
+  payload.interactionStatistic?.forEach((stat: LinkedInInteractionStatistic) => {
+    const statKey = stat?.interactionType
+      ?.replace(/(http|https):\/\/schema.org\//i, '')
+      .toLowerCase()
+      .replace('action', 'Count');
     payload[statKey] = stat?.userInteractionCount;
   });
   return payload;

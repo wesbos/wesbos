@@ -6,7 +6,7 @@
   &:after {
     position: absolute;
     z-index: 2;
-    content: '';
+    content: "";
     background: var(--whiteGrit);
     background-size: 700px;
     background-repeat: repeat;
@@ -22,7 +22,7 @@
     /* Yellow square is using ems so it scales up/down with the font size */
     width: 0.75em;
     height: 0.75em;
-    content: '';
+    content: "";
     pointer-events: none;
     background: var(--yellow);
     position: absolute;

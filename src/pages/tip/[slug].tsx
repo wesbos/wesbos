@@ -2,7 +2,7 @@ import ContentNav from '../../components/ContentNav';
 import { Tip } from '../../components/Tip';
 import { getPostBySlug, getSiblingPostsBySlug } from '../../lib/getPosts';
 import { MetaTags } from '../../components/MetaTags';
-import type { PageProps } from "waku/router";
+import type { PageProps } from 'waku/router';
 
 interface TipPageProps extends PageProps<'/tip/[slug]'> {
   slug: string;

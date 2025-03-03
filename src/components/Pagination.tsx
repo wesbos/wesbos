@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "waku";
-import { PaginationStyles } from "@/styles/PaginationStyles.module.css";
-import clsx from "clsx";
+import React from 'react';
+import { Link } from 'waku';
+import { PaginationStyles } from '@/styles/PaginationStyles.module.css';
+import clsx from 'clsx';
 
 export default function Pagination({
   totalCount,
@@ -19,13 +19,11 @@ export default function Pagination({
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
   return (
-    <div className={clsx(PaginationStyles, "dirty")}>
+    <div className={clsx(PaginationStyles, 'dirty')}>
       <Link
         className="dirty"
         aria-disabled={prevPage <= 0}
-        to={
-          prevPage <= 0 ? "#" : `${pathPrefix}${prevPage === 1 ? "" : prevPage}`
-        }
+        to={prevPage <= 0 ? '#' : `${pathPrefix}${prevPage === 1 ? '' : prevPage}`}
         scroll={scroll}
       >
         ← Prev 10 please
@@ -36,7 +34,7 @@ export default function Pagination({
       <Link
         className="dirty"
         aria-disabled={nextPage > totalPages}
-        to={nextPage > totalPages ? "#" : `${pathPrefix}${nextPage}`}
+        to={nextPage > totalPages ? '#' : `${pathPrefix}${nextPage}`}
         scroll={scroll}
       >
         {nextPage > totalPages ? `That's all Folks` : `10 More please →`}

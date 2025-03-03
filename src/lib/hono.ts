@@ -1,7 +1,7 @@
 import { getHonoContext as getHonoContextFromWaku } from 'waku/unstable_hono';
 import { isBuild } from './waku';
-import type { Env } from "hono";
-import { getHonoContext as getHonoContextWaku } from "waku/unstable_hono";
+import type { Env } from 'hono';
+import { getHonoContext as getHonoContextWaku } from 'waku/unstable_hono';
 
 /**
  * @description Get the Cloudflare context
@@ -25,20 +25,15 @@ const isHonoContextUnavailableError = (e: unknown): boolean => {
   return e instanceof Error && e.message === 'Hono context is not available';
 };
 
-export type HonoContextType<E extends Env = Env> = ReturnType<
-  typeof getHonoContextWaku<E>
->;
+export type HonoContextType<E extends Env = Env> = ReturnType<typeof getHonoContextWaku<E>>;
 
-export const getHonoContext = <E extends Env = Env>(
-  ctx?: HandlerContext,
-): HonoContextType<E> | null => {
+export const getHonoContext = <E extends Env = Env>(ctx?: HandlerContext): HonoContextType<E> | null => {
   try {
     if (ctx) {
       return ctx.data.__hono_context as HonoContextType<E>;
     }
     if ((globalThis as Record<string, unknown>).__hono_context) {
-      return (globalThis as Record<string, unknown>)
-        .__hono_context as HonoContextType<E>;
+      return (globalThis as Record<string, unknown>).__hono_context as HonoContextType<E>;
     }
     const c = getHonoContextWaku<E>();
     if (!c) {

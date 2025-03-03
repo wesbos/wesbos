@@ -16,7 +16,9 @@
     "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
     "tip": "tsx --conditions=react-server ./createTip.ts",
     "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts",
-    "lint": "biome check"
+    "lint": "biome lint",
+    "format": "biome format --write",
+    "check": "biome check"
   },
   "dependencies": {
     "@cloudflare/puppeteer": "^0.0.14",

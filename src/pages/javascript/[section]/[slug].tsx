@@ -5,30 +5,30 @@ import { BeginnerJavaScript } from '../../../components/beginnerJavaScript';
 import clsx from 'clsx';
 import { TableOfContents } from '../../../components/TableOfContentsNew';
 import ContentNav from '../../../components/ContentNav';
-import { JavaScriptNotesStyles } from "@/styles/JavaScriptNotesStyles.module.css";
+import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
 import mdxComponents from '@/components/mdxComponents';
 import { MetaTags } from '../../../components/MetaTags';
-import type { PageProps } from "waku/router";
+import type { PageProps } from 'waku/router';
 import { HashChange } from '@/lib/hooks/useHashChange';
 
 type TOCItem = {
   id: string;
   children?: TOCItem[];
-}
+};
 
 function getIds(toc: TOCItem[]): string[] {
-  return toc.map((item) => {
-    return [item.id, ...getIds(item.children || [])]
-  }).flat();
+  return toc
+    .map((item) => {
+      return [item.id, ...getIds(item.children || [])];
+    })
+    .flat();
 }
 
-export default async function JavaScriptNotesPage(
-  props: PageProps<"/javascript/[section]/[slug]">
-) {
+export default async function JavaScriptNotesPage(props: PageProps<'/javascript/[section]/[slug]'>) {
   const { section, slug } = props;
   const sluuuug = `${section}/${slug}`;
   const post = await getPostBySlug(sluuuug);
-  const { prev, next } = await getSiblingPostsBySlug(sluuuug, "javascript");
+  const { prev, next } = await getSiblingPostsBySlug(sluuuug, 'javascript');
 
   if (!post) {
     return (
@@ -44,7 +44,7 @@ export default async function JavaScriptNotesPage(
   const editURL = `https://github.com/wesbos/beginner-javascript/edit/main/content/${importPath}.mdx`;
 
   return (
-    <div className={clsx("ultra-wide", JavaScriptNotesStyles)}>
+    <div className={clsx('ultra-wide', JavaScriptNotesStyles)}>
       <MetaTags {...props} />
       <div>
         <HashChange itemIds={headingIds} />
@@ -55,7 +55,7 @@ export default async function JavaScriptNotesPage(
           <H>{post.frontmatter.title}</H>
           <BeginnerJavaScript />
           <div>
-            <span>{post.frontmatter.category.join(", ")}</span>
+            <span>{post.frontmatter.category.join(', ')}</span>
             <a target="_blank" href={editURL} rel="noreferrer">
               Edit Post <IoLogoGithub className="inline" />
             </a>
@@ -65,14 +65,8 @@ export default async function JavaScriptNotesPage(
         <MDXContent components={mdxComponents} />
 
         <div>
-          <p>
-            Find an issue with this post? Think you could clarify, update or add
-            something?
-          </p>
-          <p>
-            All my posts are available to edit on Github. Any fix, little or
-            small, is appreciated!
-          </p>
+          <p>Find an issue with this post? Think you could clarify, update or add something?</p>
+          <p>All my posts are available to edit on Github. Any fix, little or small, is appreciated!</p>
           <p>
             <a rel="noopener noreferrer" target="_blank" href={editURL}>
               <IoLogoGithub /> Edit on Github

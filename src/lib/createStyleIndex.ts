@@ -11,7 +11,6 @@ const outputFile = path.resolve('./src/styles/styleIndex.ts');
 const outputDir = path.dirname(outputFile);
 const globs = ['./src/styles/**/*.module.css', './components/**/*.module.css'];
 
-
 export async function watchForStyleChanges() {
   await generateStyleIndex(); // Generate the initial style index
 

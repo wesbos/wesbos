@@ -1,8 +1,8 @@
-import { MDXComponents } from "mdx/types";
-import H from "./Headings";
-import { Code } from "./code";
-import { HighlightedCode } from "./HighlightedCode";
-import { Image } from "../Image";
+import { MDXComponents } from 'mdx/types';
+import H from './Headings';
+import { Code } from './code';
+import { HighlightedCode } from './HighlightedCode';
+import { Image } from '../Image';
 /* eslint-disable */
 const mdxComponents: MDXComponents = {
   // TODO: Figure out what sizes should be
@@ -11,7 +11,7 @@ const mdxComponents: MDXComponents = {
       // sizes="100vw"
       // width="100"
       // height="100"
-      style={{ width: "100%", height: "auto" }}
+      style={{ width: '100%', height: 'auto' }}
       {...props}
       // placeholder="empty"
     />

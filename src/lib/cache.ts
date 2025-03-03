@@ -14,10 +14,7 @@ type CacheOptions = {
  * @param options Cache options including expiry time and custom key
  * @returns The cached or fresh result of the function
  */
-export async function withCache<T>(
-  fn: () => Promise<T>,
-  options: CacheOptions = {}
-): Promise<T | null> {
+export async function withCache<T>(fn: () => Promise<T>, options: CacheOptions = {}): Promise<T | null> {
   const kv = await getKV();
   if (!kv) return fn();
 
@@ -86,7 +83,7 @@ export async function invalidateAllCache(): Promise<void> {
     const existingKeys = await kv.get(CACHE_KEYS_KEY);
     if (existingKeys) {
       const keys = JSON.parse(existingKeys) as string[];
-      await Promise.all(keys.map(key => kv.delete(key)));
+      await Promise.all(keys.map((key) => kv.delete(key)));
       await kv.delete(CACHE_KEYS_KEY);
     }
   } catch (e) {

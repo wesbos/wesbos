@@ -509,14 +509,24 @@ export const cobalt2 = {
     },
     {
       name: '[CSS] - Constant',
-      scope: ['source.css constant', 'source.css support.constant', 'source.stylus constant', 'source.stylus support.constant'],
+      scope: [
+        'source.css constant',
+        'source.css support.constant',
+        'source.stylus constant',
+        'source.stylus support.constant',
+      ],
       settings: {
         foreground: '#ffee80',
       },
     },
     {
       name: '[CSS] - String',
-      scope: ['source.css string', 'source.css punctuation.definition.string', 'source.stylus string', 'source.stylus punctuation.definition.string'],
+      scope: [
+        'source.css string',
+        'source.css punctuation.definition.string',
+        'source.stylus string',
+        'source.stylus punctuation.definition.string',
+      ],
       settings: {
         foreground: '#ffee80',
       },
@@ -717,7 +727,11 @@ export const cobalt2 = {
     },
     {
       name: '[MARKDOWN] - Link/Image Title',
-      scope: ['string.other.link.title.markdown', 'string.other.link.description.markdown', 'string.other.link.description.title.markdown'],
+      scope: [
+        'string.other.link.title.markdown',
+        'string.other.link.description.markdown',
+        'string.other.link.description.title.markdown',
+      ],
       settings: {
         foreground: '#a5ff90',
       },

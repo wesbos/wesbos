@@ -1,15 +1,15 @@
-import React from "react";
-import { format } from "date-fns";
-import { getPosts } from "@/lib/getPosts";
-import H from "@/components/mdxComponents/Headings";
-import Pagination from "@/components/Pagination";
-import { PostGrid, PostGridItem, postMeta } from "@/styles/PostGrid.module.css";
-import { Link } from "waku";
-import { MetaTags } from "@/components/MetaTags";
-import type { PageProps } from "waku/router";
+import React from 'react';
+import { format } from 'date-fns';
+import { getPosts } from '@/lib/getPosts';
+import H from '@/components/mdxComponents/Headings';
+import Pagination from '@/components/Pagination';
+import { PostGrid, PostGridItem, postMeta } from '@/styles/PostGrid.module.css';
+import { Link } from 'waku';
+import { MetaTags } from '@/components/MetaTags';
+import type { PageProps } from 'waku/router';
 
 export default async function Blog(props: PageProps<'/blog'> & { page: string }) {
-  const currentPage = parseInt(props.page || "1");
+  const currentPage = parseInt(props.page || '1');
   const { posts, total, pages } = await getPosts({
     page: currentPage,
   });
@@ -26,19 +26,13 @@ export default async function Blog(props: PageProps<'/blog'> & { page: string })
       <div className={PostGrid}>
         {posts.map((post) => (
           <div className={PostGridItem} key={`post-${post.frontmatter.slug}`}>
-            {post.images?.[0] && (
-              <img src={post.images[0]} alt={post.frontmatter.title} />
-            )}
+            {post.images?.[0] && <img src={post.images[0]} alt={post.frontmatter.title} />}
             <div>
               <H as="h3">
-                <Link to={`/${post.frontmatter.slug}`}>
-                  {post.frontmatter.title}
-                </Link>
+                <Link to={`/${post.frontmatter.slug}`}>{post.frontmatter.title}</Link>
               </H>
               <div className={postMeta}>
-                <time dateTime={post.frontmatter.date.toString()}>
-                  {format(post.frontmatter.date, "MMMM d, yyyy")}
-                </time>
+                <time dateTime={post.frontmatter.date.toString()}>{format(post.frontmatter.date, 'MMMM d, yyyy')}</time>
                 <ul className="categories">
                   {(post.frontmatter.category || []).map((cat) => (
                     <li key={cat}>{cat}</li>
@@ -50,12 +44,7 @@ export default async function Blog(props: PageProps<'/blog'> & { page: string })
           </div>
         ))}
       </div>
-       <Pagination
-        currentPage={currentPage}
-        totalPages={pages}
-        totalCount={total}
-        pathPrefix="/blog/"
-      />
+      <Pagination currentPage={currentPage} totalPages={pages} totalCount={total} pathPrefix="/blog/" />
     </>
   );
 }
