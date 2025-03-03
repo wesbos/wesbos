@@ -18,10 +18,9 @@ type TOCItem = {
 
 function getIds(toc: TOCItem[]): string[] {
   return toc
-    .map((item) => {
+    .flatMap((item) => {
       return [item.id, ...getIds(item.children || [])];
-    })
-    .flat();
+    });
 }
 
 export default async function JavaScriptNotesPage(props: PageProps<'/javascript/[section]/[slug]'>) {

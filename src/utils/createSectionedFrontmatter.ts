@@ -1,9 +1,9 @@
-import { Frontmatter, JavaScriptFrontmatter, MDXResult } from '@/lib/types';
+import type { JavaScriptFrontmatter, MDXResult } from '@/lib/types';
 
 export function parseNumberFromTitle(section: string) {
   const maybeSection = section.split(' - ').at(0);
   if (!maybeSection) return;
-  const maybeSectionNumber = parseInt(maybeSection, 10);
+  const maybeSectionNumber = Number.parseInt(maybeSection, 10);
   if (Number.isNaN(maybeSectionNumber)) return;
   return maybeSectionNumber;
 }

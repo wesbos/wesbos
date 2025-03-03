@@ -6,7 +6,7 @@ import { MetaTags } from '../../components/MetaTags';
 import type { PageProps } from 'waku/router';
 
 export default async function HotTips(props: PageProps<'/tips'> & { page: string }) {
-  const currentPage = parseInt(props.page || '1');
+  const currentPage = Number.parseInt(props.page || '1');
 
   const { posts, total, pages } = await getPosts({
     page: currentPage,

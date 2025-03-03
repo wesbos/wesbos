@@ -1,8 +1,8 @@
-import { MDXComponents } from 'mdx/types';
-import H from './Headings';
-import { Code } from './code';
-import { HighlightedCode } from './HighlightedCode';
+import type { MDXComponents } from 'mdx/types';
 import { Image } from '../Image';
+import H from './Headings';
+import { HighlightedCode } from './HighlightedCode';
+import { Code } from './code';
 /* eslint-disable */
 const mdxComponents: MDXComponents = {
   // TODO: Figure out what sizes should be
@@ -32,7 +32,7 @@ const mdxComponents: MDXComponents = {
 
 export default mdxComponents;
 
-export async function useMDXComponents(components: MDXComponents): MDXComponents {
+export async function useMDXComponents(components: MDXComponents): Promise<MDXComponents> {
   return {
     ...components,
     ...mdxComponents,

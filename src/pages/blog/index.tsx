@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { format } from 'date-fns';
 import { getPosts } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
@@ -9,7 +9,7 @@ import { MetaTags } from '@/components/MetaTags';
 import type { PageProps } from 'waku/router';
 
 export default async function Blog(props: PageProps<'/blog'> & { page: string }) {
-  const currentPage = parseInt(props.page || '1');
+  const currentPage = Number.parseInt(props.page || '1');
   const { posts, total, pages } = await getPosts({
     page: currentPage,
   });

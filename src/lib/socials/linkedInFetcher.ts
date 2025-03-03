@@ -77,9 +77,9 @@ export async function fetchLinkedInDetailsFromApi({ postId }: { postId: string }
   const payload = JSON.parse(data) as LinkedInPost;
   // remove a few keys as its a pretty large payload
   // delete payload.caption;
-  delete payload.transcript;
-  delete payload.comment;
-  delete payload.potentialAction;
+  payload.transcript = undefined;
+  payload.comment = undefined;
+  payload.potentialAction = undefined;
   // Bring the interaction stats to the top level
   payload.interactionStatistic?.forEach((stat: LinkedInInteractionStatistic) => {
     const statKey = stat?.interactionType

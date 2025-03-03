@@ -6,7 +6,7 @@ const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
     if (import.meta.env.DEV) return next(); // Skip cache in dev
     const c = ctx.data.__hono_context as Context; // This is the Hono context
-    let key = `${c.req.url.toString()}-${import.meta.env.WAKU_GIT_COMMIT_HASH}`;
+    const key = `${c.req.url.toString()}-${import.meta.env.WAKU_GIT_COMMIT_HASH}`;
     const cacheName = 'my-app';
     const cache = await caches.open(cacheName);
     console.log(`👉🏻 cache key`, key, cache);

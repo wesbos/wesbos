@@ -1,9 +1,6 @@
 'use client';
-
-import { useState, useEffect } from 'react';
 import styles from '@/styles/ThemeToggle.module.css';
-import clsx from 'clsx';
-import H from '@/components/mdxComponents/Headings';
+import { useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -38,6 +35,7 @@ export default function ThemeToggle() {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       className={styles.themeToggle}
       aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}

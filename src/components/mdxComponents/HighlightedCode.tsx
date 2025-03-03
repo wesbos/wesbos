@@ -2,9 +2,8 @@
 // import SHIKI_WASM from "shiki/onig.wasm?module";
 import { cobalt2 } from '@/lib/assets/cobalt2';
 import { type ReactElement, isValidElement } from 'react';
-import { type ThemeInput, bundledLanguages, createHighlighter, createHighlighterCore } from 'shiki';
+import { type ThemeInput, createHighlighterCore } from 'shiki';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
-import { loadWasm } from 'shiki/engine/oniguruma';
 import bash from 'shiki/langs/bash.mjs';
 import cpp from 'shiki/langs/cpp.mjs';
 import css from 'shiki/langs/css.mjs';

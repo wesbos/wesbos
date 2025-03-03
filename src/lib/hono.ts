@@ -1,7 +1,7 @@
-import { getHonoContext as getHonoContextFromWaku } from 'waku/unstable_hono';
-import { isBuild } from './waku';
 import type { Env } from 'hono';
+import { getHonoContext as getHonoContextFromWaku } from 'waku/unstable_hono';
 import { getHonoContext as getHonoContextWaku } from 'waku/unstable_hono';
+import { isBuild } from './waku';
 
 /**
  * @description Get the Cloudflare context

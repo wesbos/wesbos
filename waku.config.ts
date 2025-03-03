@@ -1,6 +1,5 @@
-import { withSentry } from '@/middleware/sentry';
+
 import type { Hono } from 'hono';
-import { cache } from 'hono/cache';
 import { type Config, defineConfig } from 'waku/config';
 
 export default defineConfig({

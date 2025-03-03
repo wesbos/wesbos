@@ -29,6 +29,10 @@
       },
       "a11y": {
         "noBlankTarget": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "noUnusedImports": "info"
       }
     }
   },

@@ -1,6 +1,6 @@
 import H from '@/components/mdxComponents/Headings';
 import { getPosts } from '@/lib/getPosts';
-import { MDXResult, TableOfContentsHeading } from '@/lib/types';
+import type { MDXResult, TableOfContentsHeading } from '@/lib/types';
 import { TOCAsideStyles, VideoNumber } from '@/styles/TOCAsideStyles.module.css';
 import createSectionedFrontMatter from '@/utils/createSectionedFrontmatter';
 import { Link } from 'waku';
@@ -63,7 +63,7 @@ export async function TableOfContents({ currentSlug }: { currentSlug: string }) 
           <H as="h5">Module {section}</H>
           <ul>
             {(posts || []).map((post) => (
-              <li key={post.frontmatter.slug} data-current={post.frontmatter.slug === currentSlug ? true : false}>
+              <li key={post.frontmatter.slug} data-current={post.frontmatter.slug  === currentSlug}>
                 <Link scroll={false} to={`/javascript/${post.frontmatter.slug}`}>
                   {post.frontmatter.title}
                   <span className={VideoNumber}>Part {post.frontmatter.postNumber}</span>

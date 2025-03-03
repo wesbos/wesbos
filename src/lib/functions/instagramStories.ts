@@ -73,7 +73,7 @@ type HandlerCallback = (
   result: { statusCode: number; headers: { [key: string]: string }; body: string },
 ) => void;
 
-exports.handler = async function (event: any, context: any, callback: HandlerCallback) {
+exports.handler = async (event: any, context: any, callback: HandlerCallback) => {
   const res = await getInstagramStories();
   callback(null, {
     statusCode: 200,

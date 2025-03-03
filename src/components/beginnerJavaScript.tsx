@@ -1,5 +1,4 @@
 import { BannerStyles } from '@/styles/BannerStyles.module.css';
-import React from 'react';
 export function BeginnerJavaScript() {
   return (
     <div className={BannerStyles}>

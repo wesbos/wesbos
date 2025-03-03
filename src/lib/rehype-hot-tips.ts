@@ -6,7 +6,7 @@ import { toJs } from 'estree-util-to-js';
  */
 export const rehypeHotTips = ({ maxRank = 1 } = {}) => {
   return (ast) => {
-    let links = [];
+    const links = [];
     visit(ast, (node, index, parent) => {
       if (node.tagName === 'a' && node.properties.href) {
         links.push(node.properties.href);

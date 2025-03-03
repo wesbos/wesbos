@@ -87,7 +87,7 @@ export function findInObject({ obj, targetKey, targetValue, currentPath = [] }: 
 
 export function getNestedValue(obj: any, path: string[]) {
   try {
-    return path.reduce((acc, key) => acc && acc[key], obj);
+    return path.reduce((acc, key) => acc?.[key], obj);
   } catch (e) {
     return null;
   }

@@ -5,7 +5,7 @@ export type SocialLinkType = 'twitter' | 'instagram' | 'tiktok' | 'youtube' | 'l
 export type SocialLink = {
   url: string;
   type: SocialLinkType;
-  handle?: string;
+  handle?: string | undefined;
   postId: string;
 };
 
@@ -37,12 +37,14 @@ export function parseSocialLink(link: string): SocialLink | undefined {
 
   // Twitter/X handling
   if (url.hostname.includes('twitter.com') || url.hostname.includes('x.com')) {
-    const [, handle, , postId] = pathname.split('/');
+    let [, handle, , postId] = pathname.split('/');
+    postId = postId?.split('?')[0];
+    if (!handle || !postId) return;
     return {
       url: link,
       type: 'twitter',
       handle,
-      postId: postId.split('?')[0],
+      postId,
     };
   }
 
@@ -51,6 +53,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     const parts = pathname.split('/').filter(Boolean);
     const postId = parts[parts.length - 1];
     const handle = parts[0] !== 'p' ? parts[0] : undefined;
+    if (!handle || !postId) return;
     return {
       url: link,
       type: 'instagram',
@@ -62,8 +65,9 @@ export function parseSocialLink(link: string): SocialLink | undefined {
   // TikTok handling
   if (url.hostname.includes('tiktok.com')) {
     const parts = pathname.split('/');
-    const handle = parts[1].replace('@', '');
-    const postId = parts[3].split('?')[0];
+    const handle = parts[1]?.replace('@', '');
+    const postId = parts[3]?.split('?')[0];
+    if (!handle || !postId) return;
     return {
       url: link,
       type: 'tiktok',
@@ -74,7 +78,8 @@ export function parseSocialLink(link: string): SocialLink | undefined {
 
   // YouTube handling
   if (url.hostname.includes('youtube.com')) {
-    const postId = pathname.split('/').pop()!;
+    const postId = pathname.split('/').pop();
+    if (!postId) return;
     return {
       url: link,
       type: 'youtube',
@@ -91,19 +96,21 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     } else {
       postId = pathname.match(/activity-(\d+)/)?.[1];
     }
+    if (!postId) return;
     return {
       url: link,
       type: 'linkedin',
       handle: undefined,
-      postId: postId!,
+      postId,
     };
   }
 
   // Threads handling
   if (url.hostname.includes('threads.net')) {
     const parts = pathname.split('/').filter(Boolean);
-    const handle = parts[0].replace('@', '');
-    const postId = parts[2].split('?')[0];
+    const handle = parts?.[0]?.replace('@', '');
+    const postId = parts?.[2]?.split('?')[0];
+    if (!handle || !postId) return;
     return {
       url: link,
       type: 'threads',
@@ -115,6 +122,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
   // bsky.app - example: https://bsky.app/profile/wesbos.com/post/3lbsenppiy22l
   if (url.hostname.includes('bsky.app')) {
     const [, , handle, , postId] = pathname.split('/');
+    if (!handle || !postId) return;
     return {
       url: link,
       type: 'bluesky',
@@ -134,7 +142,8 @@ export function parseSocialLinks(links: string[]): SocialLinkRecord {
 }
 
 async function populateSocialLink(link: SocialLink | SocialLink[]) {
-  const firstLink = Array.isArray(link) ? link.at(0)! : link;
+  const firstLink = Array.isArray(link) ? link.at(0) : link;
+  if (!firstLink) return;
   return {
     link: firstLink,
     details: await fetchSocialDetails(firstLink),

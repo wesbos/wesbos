@@ -1,6 +1,5 @@
-import type { Context } from 'hono';
 import * as Sentry from '@sentry/cloudflare';
-
+import type { Hono } from 'hono';
 export const withSentry = (app: Hono) =>
   Sentry.withSentry(
     (env) => ({

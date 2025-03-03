@@ -1,7 +1,7 @@
 'use server';
 import fg from 'fast-glob';
-import path from 'path';
-import { writeFile } from 'fs/promises';
+import path from 'node:path';
+import { writeFile } from 'node:fs/promises';
 const outputFile = path.resolve('./content/index.ts');
 const outputDir = path.dirname(outputFile);
 

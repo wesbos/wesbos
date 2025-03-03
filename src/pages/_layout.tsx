@@ -5,7 +5,6 @@ import Nav from '@/components/Nav';
 // import { operatorMono, radnika } from "@/lib/assets/fonts/Fonts";
 import { LayoutStyles } from '@/styles/LayoutStyles.module.css';
 import { ContentStyles } from '@/styles/ContentStyles.module.css';
-import { Providers } from '@/components/Providers';
 
 import RadnikaNextBlack from '../lib/assets/fonts/RadnikaNext/RadnikaNext-Black.woff2';
 import OperatorMonoBook from '../lib/assets/fonts/operator/OperatorMono-Book_Web.woff2';

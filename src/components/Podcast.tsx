@@ -1,5 +1,4 @@
 import { Image } from '@/components/Image';
-import { cache } from 'react';
 const url = `https://syntax.fm/api/shows/latest`;
 import synaxLogo from '@/assets/syntax-artwork.jpeg?meta';
 import { withCache } from '@/lib/cache';

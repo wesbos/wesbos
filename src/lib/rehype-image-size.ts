@@ -6,7 +6,7 @@
  * @url https://mmazzarolo.com/blog/2023-07-29-nextjs-mdx-image-size/
  */
 import { imageSizeFromFile } from 'image-size/fromFile';
-import path from 'path';
+import path from 'node:path';
 import { visit } from 'unist-util-visit';
 
 /**

@@ -1,4 +1,4 @@
-import React, { Fragment, memo } from 'react';
+import { Fragment, memo } from 'react';
 import { useStaticQuery, graphql, Link, useScrollRestoration } from 'gatsby';
 import { slug } from 'github-slugger';
 import H from '@/components/mdxComponents/Headings';

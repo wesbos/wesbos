@@ -1,7 +1,7 @@
-import React from 'react';
+
 import { Link } from 'waku';
 import { ContentNavStyles } from '@/styles/ContentNavStyles.module.css';
-import { MDXResult } from '@/lib/types';
+import type { MDXResult } from '@/lib/types';
 import { slugToTitle } from '@/utils/slugToTitle';
 
 function getSlugWithPrefix(result: MDXResult) {

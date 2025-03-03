@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function useRowFinder() {
   const ref = useRef<HTMLUListElement>(null);
@@ -14,7 +14,7 @@ export default function useRowFinder() {
   // when the nav changes size, run this callback
   function callback([entry]: ResizeObserverEntry[]) {
     // if there is nothing, skip it
-    if (!entry.target?.children) return;
+    if (!entry?.target?.children) return;
     // if the width has not changed, skip it
     const { width } = entry.contentRect;
     if (width === previous.current.width && previous.current.renders >= 2) {

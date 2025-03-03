@@ -11,7 +11,7 @@ export function slugToTitle(slug: string): string {
   let pageNumber: string | null = null;
   let slugWithoutPageNumber = cleanSlug;
 
-  if (pageNumberMatch && pageNumberMatch[1]) {
+  if (pageNumberMatch?.[1]) {
     pageNumber = pageNumberMatch[1];
     slugWithoutPageNumber = cleanSlug.replace(/\/\d+$/, '');
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { IoIosLink, IoLogoTwitter } from 'react-icons/io';
 import { Link } from 'waku';
 import formatDistance from 'date-fns/formatDistance';

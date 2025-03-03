@@ -4,8 +4,8 @@
 // I do this so that Next.js knows about all the css files in the project, and the auto-imports work.
 import watch from 'glob-watcher';
 import fg from 'fast-glob';
-import path from 'path';
-import { writeFile } from 'fs/promises';
+import path from 'node:path';
+import { writeFile } from 'node:fs/promises';
 
 const outputFile = path.resolve('./src/styles/styleIndex.ts');
 const outputDir = path.dirname(outputFile);

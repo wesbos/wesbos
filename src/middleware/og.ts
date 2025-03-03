@@ -1,6 +1,6 @@
 import type { Middleware } from 'waku/config';
 import type { Context } from 'hono';
-import { Browser } from '@cloudflare/puppeteer';
+import type { Browser } from '@cloudflare/puppeteer';
 import { getHonoContext } from '@/lib/hono';
 import puppeteer from '@cloudflare/puppeteer';
 

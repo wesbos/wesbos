@@ -1,21 +1,21 @@
 'use client';
-import {
-  MediaController,
-  MediaControlBar,
-  MediaTimeRange,
-  MediaTimeDisplay,
-  MediaVolumeRange,
-  MediaPlayButton,
-  MediaMuteButton,
-  MediaPlaybackRateButton,
-} from 'media-chrome/react';
+import type { XVideoVariant } from '@/lib/socials/twitter-fetcher';
 import HLSVideoElement from 'hls-video-element/react';
-import { XVideoVariant } from '@/lib/socials/twitter-fetcher';
 import {
+  MediaControlBar,
+  MediaController,
+  MediaMuteButton,
+  MediaPlayButton,
+  MediaPlaybackRateButton,
+  MediaTimeDisplay,
+  MediaTimeRange,
+  MediaVolumeRange,
+} from 'media-chrome/react';
+import {
+  MediaRenditionMenu,
   MediaSettingsMenu,
   MediaSettingsMenuButton,
   MediaSettingsMenuItem,
-  MediaRenditionMenu,
 } from 'media-chrome/react/menu';
 export function XVideoPlayer({
   url,
@@ -37,9 +37,9 @@ export function XVideoPlayer({
             slot="media"
             crossOrigin="anonymous"
             tabIndex={-1}
-          ></HLSVideoElement>
+          />
         ) : (
-          <video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1}></video>
+          <video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1} />
         )}
         <MediaSettingsMenu hidden anchor="auto">
           <MediaSettingsMenuItem>
@@ -51,13 +51,13 @@ export function XVideoPlayer({
         </MediaSettingsMenu>
 
         <MediaControlBar>
-          <MediaPlayButton></MediaPlayButton>
-          <MediaTimeRange></MediaTimeRange>
-          <MediaTimeDisplay showDuration></MediaTimeDisplay>
-          <MediaMuteButton></MediaMuteButton>
-          <MediaVolumeRange></MediaVolumeRange>
-          <MediaPlaybackRateButton></MediaPlaybackRateButton>
-          <MediaSettingsMenuButton></MediaSettingsMenuButton>
+          <MediaPlayButton />
+          <MediaTimeRange />
+          <MediaTimeDisplay showDuration />
+          <MediaMuteButton />
+          <MediaVolumeRange />
+          <MediaPlaybackRateButton />
+          <MediaSettingsMenuButton />
         </MediaControlBar>
       </MediaController>
     </div>

@@ -1,5 +1,5 @@
-import { Plugin } from 'vite';
-import { execSync } from 'child_process';
+import type { Plugin } from 'vite';
+import { execSync } from 'node:child_process';
 
 export function gitHashPlugin(): Plugin {
   // Get the current Git commit hash

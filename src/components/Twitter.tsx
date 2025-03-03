@@ -1,5 +1,5 @@
 import { withCache } from '@/lib/cache';
-import { fetchLatestTweets, TweetDetails, XMediaEntity } from '@/lib/socials/twitter-fetcher';
+import { fetchLatestTweets, type XMediaEntity } from '@/lib/socials/twitter-fetcher';
 import {
   FooterBlock,
   FooterHeading,
@@ -10,9 +10,8 @@ import {
   TweetStyles,
 } from '@/styles/FooterStyles.module.css';
 import clsx from 'clsx';
-import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
-import React from 'react';
-import { IoIosEye, IoIosHeart, IoIosRepeat, IoLogoTwitter } from 'react-icons/io';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { IoIosEye, IoIosHeart, IoIosRepeat, } from 'react-icons/io';
 
 function Media({ media, alt }: { media?: XMediaEntity[]; alt: string }) {
   if (!media) return null;
@@ -32,8 +31,8 @@ function Media({ media, alt }: { media?: XMediaEntity[]; alt: string }) {
 const numberFormatter = new Intl.NumberFormat('en-US');
 
 function decodeEntities(encodedString: string) {
-  var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
-  var translate = {
+  const translate_re = /&(nbsp|amp|quot|lt|gt);/g;
+  const translate = {
     nbsp: ' ',
     amp: '&',
     quot: '"',
@@ -41,11 +40,9 @@ function decodeEntities(encodedString: string) {
     gt: '>',
   };
   return encodedString
-    .replace(translate_re, function (match, entity) {
-      return translate[entity as keyof typeof translate];
-    })
-    .replace(/&#(\d+);/gi, function (match, numStr) {
-      var num = parseInt(numStr, 10);
+    .replace(translate_re, (match, entity) => translate[entity as keyof typeof translate])
+    .replace(/&#(\d+);/gi, (match, numStr) => {
+      const num = Number.parseInt(numStr, 10);
       return String.fromCharCode(num);
     });
 }

@@ -1,7 +1,7 @@
 import { socialVideoStats } from '@/styles/SocialVideoStats.module.css';
 import { formatNumber } from '@/utils/formatNumber';
 import { findInObject } from '@/utils/objectWalker';
-import { SocialLinkType, PopulatedLink } from '@/utils/parseSocialLinks';
+import type { SocialLinkType, PopulatedLink } from '@/utils/parseSocialLinks';
 import {
   FaInstagram,
   FaLinkedinIn,

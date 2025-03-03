@@ -1,5 +1,5 @@
 import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import { Link } from 'waku';
 import LatestCourse from './LatestCourse';

@@ -1,4 +1,4 @@
-import { Link } from 'waku';
+
 import { ErrorBoundaryFallback } from '@/components/ErrorBoundary';
 export default function NotFound() {
   return <ErrorBoundaryFallback error={'Not Found'} />;

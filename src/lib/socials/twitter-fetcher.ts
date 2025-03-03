@@ -1,6 +1,5 @@
 'use server';
 import TWIT from 'rettiwt-api';
-import { getCloudflareContext } from '@/lib/hono';
 import { getEnv } from '../waku';
 const { EResourceType, FetcherService, ITweetDetailsResponse, IUserTweetsResponse } = TWIT;
 

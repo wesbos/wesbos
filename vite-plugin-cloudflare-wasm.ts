@@ -2,7 +2,7 @@ import assert from 'node:assert';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import MagicString from 'magic-string';
-import { normalizePath, Plugin } from 'vite';
+import { normalizePath, type Plugin } from 'vite';
 
 // https://github.com/cloudflare/workers-sdk/blob/main/packages/vite-plugin-cloudflare/src/index.ts
 // Plugin to support `CompiledWasm` modules

@@ -1,4 +1,4 @@
-import { XMedia, XMediaEntity, XVideoVariant, XVideoVariantFile } from '@/lib/socials/twitter-fetcher';
+import type { XMediaEntity, XVideoVariant, XVideoVariantFile } from '@/lib/socials/twitter-fetcher';
 import { XVideoPlayer } from './XVideo';
 function findBestXMediaVariant(variants: XVideoVariant[]) {
   // First look for content_type "application/x-mpegURL".

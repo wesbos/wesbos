@@ -2,8 +2,8 @@
 import { desc } from 'drizzle-orm';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@/db/db';
-import { Post, postsTable } from '@/db/schema';
-import { SocialLink, SocialLinkType } from '@/utils/parseSocialLinks';
+import { type Post, postsTable } from '@/db/schema';
+import type { SocialLink, SocialLinkType } from '@/utils/parseSocialLinks';
 import { fetchTweetDetailsFromApi } from './twitter-fetcher';
 import { fetchLinkedInDetailsFromApi } from './linkedInFetcher';
 import { fetchBlueSkyDetailsFromApi } from './blueSkyFetcher';

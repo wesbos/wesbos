@@ -1,4 +1,4 @@
-import { getPostBySlug, getPosts, getSiblingPostsBySlug } from '../../lib/getPosts';
+import { getPostBySlug, getSiblingPostsBySlug } from '../../lib/getPosts';
 import { unstable_notFound as notFound } from 'waku/router/server';
 import H from '../../components/mdxComponents/Headings';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';

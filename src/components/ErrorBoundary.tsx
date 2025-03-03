@@ -1,12 +1,16 @@
 'use client';
 import * as React from 'react';
 
-export class ErrorBoundary extends React.Component<{ fallback: React.ReactNode }, { hasError: boolean }> {
-  constructor(props: { fallback: React.ReactNode }) {
+export class ErrorBoundary extends React.Component<
+  { fallback: React.ReactNode; children: React.ReactNode },
+  { hasError: boolean; error: string | null; info: React.ErrorInfo | null }
+> {
+  constructor(props: { fallback: React.ReactNode; children: React.ReactNode }) {
     super(props);
     this.state = {
       hasError: false,
       error: null,
+      info: null,
     };
   }
 
@@ -48,13 +52,14 @@ const errorLookup: Record<string, string> = {
   'Not Found': '4 OH CANADA 4',
 };
 
-export function ErrorBoundaryFallback({ error }: { error: string }) {
-  const title = errorLookup[error] || errorLookup.default;
+export function ErrorBoundaryFallback({ error, info }: { error: string | null; info: React.ErrorInfo | null }) {
+  const title = errorLookup[error ?? 'default'] || errorLookup.default;
   return (
     <div>
       <h1>{title}</h1>
       <p>
-        You might just need to <a href="">refresh the page</a>.
+        You might just need to {/* biome-ignore lint/a11y/useValidAnchor: This is a valid link to the current page */}
+        <a href="">refresh the page</a>.
       </p>
       <p>
         If the problem persists, please contact me at <a href="mailto:hey@wesbos.com">hey@wesbos.com</a>.

@@ -1,6 +1,6 @@
 'use server';
 import { parseHTML } from 'linkedom/worker';
-import { TikTokResponse } from './tiktokFetcherTypes';
+import type { TikTokResponse } from './tiktokFetcherTypes';
 
 const headers = {
   accept:

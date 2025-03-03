@@ -1,5 +1,5 @@
-import { MDXContent } from 'mdx/types';
-import { StaticImageData } from 'next/image';
+import type { MDXContent } from 'mdx/types';
+import type { StaticImageData } from 'next/image';
 
 export type ContentType = 'blog' | 'tip' | 'javascript'; // Blog post, hot tip, beginner javascript note
 

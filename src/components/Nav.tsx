@@ -1,13 +1,11 @@
 'use client';
-import { Link } from 'waku';
-import clsx from 'clsx';
 import H from '@/components/mdxComponents/Headings';
-import Logo from '../../public/images/logo.png';
-import { LogoStyles, NavLi, NavLink, NavSmall, NavStyles, NavUl, NavLiSocial } from '@/styles/NavStyles.module.css';
-import { IoLogoGithub, IoLogoYoutube, IoLogoLinkedin, IoLogoTiktok } from 'react-icons/io5';
+import { LogoStyles, NavLi, NavLiSocial, NavLink, NavSmall, NavStyles, NavUl } from '@/styles/NavStyles.module.css';
+import clsx from 'clsx';
 import { FaBluesky, FaSquareInstagram, FaXTwitter } from 'react-icons/fa6';
-import { useEffect } from 'react';
-import { useRef } from 'react';
+import { IoLogoGithub, IoLogoLinkedin, IoLogoTiktok, IoLogoYoutube } from 'react-icons/io5';
+import { Link } from 'waku';
+import Logo from '../../public/images/logo.png';
 
 function activeLink(path: string, href: string) {
   if (path === href) {
@@ -19,7 +17,7 @@ function activeLink(path: string, href: string) {
   return null;
 }
 
-function useHoverSound(ref: React.RefObject<HTMLElement>) {
+function useHoverSound() {
   if (typeof window === 'undefined') {
     return {
       playSound: () => {}, // silly servers

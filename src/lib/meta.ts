@@ -1,6 +1,6 @@
-import { Post } from '@/db/schema';
-import { Metadata } from 'next';
-import { relative } from 'path';
+
+import type { Metadata } from 'next';
+import { relative } from 'node:path';
 export const defaultMeta: Metadata = {
   title: 'Wes Bos',
   description: 'Full-stack JavaScript developer, teacher, course maker and all around tinkerer.',

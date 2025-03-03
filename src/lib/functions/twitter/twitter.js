@@ -43,7 +43,7 @@ async function getTweets() {
   return cache.tweets;
 }
 
-exports.handler = async function (event, context, callback) {
+exports.handler = async (event, context, callback) => {
   const tweets = await getTweets();
   callback(null, {
     statusCode: 200,

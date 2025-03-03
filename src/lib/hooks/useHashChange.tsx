@@ -1,6 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import { useActiveId } from './useActiveId';
+import { useEffect, useRef, } from 'react';
 
 function findFirstElementInViewport(elements: Element[]) {
   return elements.find((element) => {

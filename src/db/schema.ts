@@ -1,9 +1,9 @@
-import { BlueSkyPost } from '@/lib/socials/blueSkyFetcher';
-import { InstagramPost } from '@/lib/socials/instagramTypes';
-import { LinkedInPost } from '@/lib/socials/linkedInFetcher';
-import { TiktokDetails } from '@/lib/socials/tiktokFetcherTypes';
-import { TweetDetails } from '@/lib/socials/twitter-fetcher';
-import { SocialLinkType } from '@/utils/parseSocialLinks';
+import type { BlueSkyPost } from '@/lib/socials/blueSkyFetcher';
+import type { InstagramPost } from '@/lib/socials/instagramTypes';
+import type { LinkedInPost } from '@/lib/socials/linkedInFetcher';
+import type { TiktokDetails } from '@/lib/socials/tiktokFetcherTypes';
+import type { TweetDetails } from '@/lib/socials/twitter-fetcher';
+import type { SocialLinkType } from '@/utils/parseSocialLinks';
 import { sql } from 'drizzle-orm';
 import { index, int, integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 

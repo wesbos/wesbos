@@ -7,7 +7,6 @@ import type { PageProps } from 'waku/router';
 import wes from '../../public/images/wes.jpg?meta';
 import wesAndScott from '../../public/images/wes-and-scott.jpg?meta';
 import bosFamily from '../../public/images/bos-family.jpg?meta';
-import { getEnv } from '@/lib/waku';
 export default function AboutPage(props: PageProps<'/about'>) {
   return (
     <>
