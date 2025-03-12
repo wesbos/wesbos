@@ -1,23 +1,23 @@
 import { socialVideoStats } from '@/styles/SocialVideoStats.module.css';
 import { formatNumber } from '@/utils/formatNumber';
 import { findInObject } from '@/utils/objectWalker';
-import type { SocialLinkType, PopulatedLink } from '@/utils/parseSocialLinks';
+import type { PopulatedLink, SocialLinkType } from '@/utils/parseSocialLinks';
 import {
+  FaBluesky,
+  FaBookmark,
+  FaChartSimple,
+  FaComment,
+  FaHeart,
   FaInstagram,
   FaLinkedinIn,
+  FaPlay,
+  FaQuoteLeft,
+  FaRetweet,
+  FaShare,
+  FaThreads,
   FaTiktok,
   FaTwitter,
   FaYoutube,
-  FaBluesky,
-  FaThreads,
-  FaHeart,
-  FaBookmark,
-  FaRetweet,
-  FaComment,
-  FaChartSimple,
-  FaPlay,
-  FaQuoteLeft,
-  FaShare,
 } from 'react-icons/fa6';
 type NestedSelector = string | [string, string];
 
@@ -91,13 +91,13 @@ function getActionWord(selector: string | string[]) {
   );
   return actionWord;
 }
-export function SocialStats({ link }: { link: PopulatedLink }) {
+export function SocialStats({ link }: { link: NonNullable<PopulatedLink> }) {
   const Icon = iconLookup[link.link.type];
   return (
     <div className={socialVideoStats}>
-      <span>
+      <a href={link.link.url} target="_blank">
         <Icon />
-      </span>
+      </a>
       {socialLookup[link.link.type].map((selector) => {
         const action = getActionWord(selector);
         const result = findInObject({ obj: link.details?.postData, targetKey: selector });
