@@ -25,6 +25,16 @@
     box-shadow: none;
     margin: 0;
   }
+  @media (max-width: 600px) {
+    grid-template-columns: 100px 1fr;
+    .LogoStyles {
+      a,
+      img {
+        place-content: center;
+        width: 100% !important;
+      }
+    }
+  }
 }
 
 .NavLink {
@@ -46,6 +56,12 @@
   @media (max-width: 800px) {
     span {
       font-size: 20px;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 5px 10px;
+    span {
+      font-size: 16px;
     }
   }
 }
@@ -103,6 +119,7 @@
   padding-inline-end: var(--gap);
   justify-content: end;
   align-items: stretch;
+  padding: 10px;
   a {
     display: flex;
     align-items: center;
@@ -111,5 +128,12 @@
     --size: 2.5rem;
     width: var(--size);
     height: var(--size);
+  }
+  @media (max-width: 600px) {
+    padding: 2px 10px;
+    --gap: 1rem;
+    svg {
+      --size: 2rem;
+    }
   }
 }

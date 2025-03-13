@@ -1,7 +1,7 @@
+import type { PageProps } from 'waku/router';
+import { MetaTags } from '../components/MetaTags';
 import H from '../components/mdxComponents/Headings';
 import styles from '../styles/CourseStyles.module.css';
-import { MetaTags } from '../components/MetaTags';
-import type { PageProps } from 'waku/router';
 
 export default function CoursesPage(props: PageProps<'/courses'>) {
   return (
@@ -23,6 +23,37 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
       <div className={styles.CourseListStyles}>
         <div className="course">
           <img
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/BJS/BJS-Social-Share.png"
+            alt="Beginner JavaScript"
+          />
+          <H as="h3">Beginner JavaScript</H>
+          <span className={styles.PriceTag}>Premium</span>
+          <a href="https://BeginnerJavaScript.com" target="_blank" rel="noreferrer">
+            BeginnerJavaScript.com
+          </a>
+          <p>
+            A fun, exercise heavy approach to learning Modern JavaScript from scratch. This is a course for absolute
+            beginners or anyone looking to brush up on their fundamentals. Start here if you are new to JS or
+            programming in general!
+          </p>
+        </div>
+        <div className="course">
+          <img
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GRID-social-share.png"
+            alt="CSS Grid"
+          />
+          <H as="h3">CSS Grid</H>
+          <span className={styles.PriceTag}>Free</span>
+          <a href="https://CSSGrid.io" target="_blank" rel="noreferrer">
+            CSSGrid.io
+          </a>
+          <p>
+            A free 25 video course on all there is to learn about CSS Grid! We start with CSS Grid fundamentals and end
+            with some real-world examples.
+          </p>
+        </div>
+        <div className="course">
+          <img
             src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GAT/GAT-social-share.png"
             alt="Master Gatsby"
           />
@@ -40,25 +71,10 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
             websites and let Gatsby take care of all the Hard Stuff™.
           </p>
         </div>
+
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/BJS/BJS-Social-Share.png"
-            alt="Beginner JavaScript"
-          />
-          <H as="h3">Beginner JavaScript</H>
-          <span className={styles.PriceTag}>Premium</span>
-          <a href="https://BeginnerJavaScript.com" target="_blank" rel="noreferrer">
-            BeginnerJavaScript.com
-          </a>
-          <p>
-            A fun, exercise heavy approach to learning Modern JavaScript from scratch. This is a course for absolute
-            beginners or anyone looking to brush up on their fundamentals. Start here if you are new to JS or
-            programming in general!
-          </p>
-        </div>
-        <div className="course">
-          <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/ARG/arg-facebook-share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/ARG/arg-facebook-share.png"
             alt="Advanced React"
           />
           <H as="h3">Fullstack Advanced React and GraphQL</H>
@@ -84,7 +100,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
         </div>
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/es6-facebook-share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/es6-facebook-share.png"
             alt="ES6 for Everyone"
           />
           <H as="h3">ES6 for Everyone</H>
@@ -100,7 +116,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
         </div>
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/JS3-social-share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/JS3-social-share.png"
             alt="JavaScript30"
           />
           <H as="h3">JavaScript30</H>
@@ -115,7 +131,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
         </div>
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share.png"
             alt="React for Beginners"
           />
           <H as="h3">React For Beginners</H>
@@ -128,24 +144,10 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
             training course to get you building real world React.js + Firebase apps and website components.{' '}
           </p>
         </div>
+
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/GRID-social-share.webp"
-            alt="CSS Grid"
-          />
-          <H as="h3">CSS Grid</H>
-          <span className={styles.PriceTag}>Free</span>
-          <a href="https://CSSGrid.io" target="_blank" rel="noreferrer">
-            CSSGrid.io
-          </a>
-          <p>
-            A free 25 video course on all there is to learn about CSS Grid! We start with CSS Grid fundamentals and end
-            with some real-world examples.
-          </p>
-        </div>
-        <div className="course">
-          <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/NODE/node-facebook-share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/NODE/node-facebook-share.jpg"
             alt="Learn Node"
           />
           <H as="h3">Learn Node</H>
@@ -155,26 +157,10 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
           </a>
           <p>A premium training course to learn to build apps with Node.js, Express, MongoDB, and friends. </p>
         </div>
+
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share2.webp"
-            alt="Sublime Text Power User"
-          />
-          <H as="h3">Sublime Text Power User</H>
-          <span className={styles.PriceTag}>Premium</span>
-          <a href="https://SublimeTextBook.com" target="_blank" rel="noreferrer">
-            SublimeTextBook.com
-          </a>
-          <p>
-            Ever wonder how so many great developers seem to get so much done? You probably aren't getting enough out of
-            your text editor. Investing in your text editor skill set will not only improve the quality of the code you
-            write and cut down on silly errors, but increase the speed and productivity at which you write it.
-          </p>
-          <p>With this book, you will easily save 30 minutes each day. That's an extra three weeks each year!</p>
-        </div>
-        <div className="course">
-          <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/WTF/share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/WTF/share.png"
             alt="What The Flexbox?!"
           />
           <H as="h3">What The Flexbox?!</H>
@@ -189,7 +175,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
         </div>
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/CLPU/share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/CLPU/share.png"
             alt="Command Line Power User"
           />
           <H as="h3">Command Line Power User</H>
@@ -204,7 +190,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
         </div>
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/RDX/share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/RDX/share.png"
             alt="Learn Redux"
           />
           <H as="h3">Learn Redux</H>
@@ -219,7 +205,7 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
         </div>
         <div className="course">
           <img
-            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/MMD/share.webp"
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/MMD/share.png"
             alt="Mastering Markdown"
           />
           <H as="h3">Mastering Markdown</H>
@@ -231,6 +217,23 @@ export default function CoursesPage(props: PageProps<'/courses'>) {
             A quick 34 minute mini course for anyone who is looking to learn markdown for the first time, or fill in any
             gaps along the way. Markdown is a very simple language and can be easily mastered in under an hour.
           </p>
+        </div>
+        <div className="course">
+          <img
+            src="https://res.cloudinary.com/wesbos/image/fetch/w_700,q_auto,f_auto/https://courses.wesbos.com/images/facebook-share2.png"
+            alt="Sublime Text Power User"
+          />
+          <H as="h3">Sublime Text Power User</H>
+          <span className={styles.PriceTag}>DEPRECATED</span>
+          <a href="https://SublimeTextBook.com" target="_blank" rel="noreferrer">
+            SublimeTextBook.com
+          </a>
+          <p>
+            Ever wonder how so many great developers seem to get so much done? You probably aren't getting enough out of
+            your text editor. Investing in your text editor skill set will not only improve the quality of the code you
+            write and cut down on silly errors, but increase the speed and productivity at which you write it.
+          </p>
+          <p>With this book, you will easily save 30 minutes each day. That's an extra three weeks each year!</p>
         </div>
       </div>
     </>
