@@ -1,6 +1,6 @@
+import type { Context } from 'hono';
 // https://github.com/honojs/hono/blob/main/src/middleware/cache/index.ts#L109-L112
 import type { Middleware } from 'waku/config';
-import type { Context } from 'hono';
 
 const cacheMiddleware: Middleware = () => {
   return async function cache(ctx, next) {
@@ -36,6 +36,11 @@ const cacheMiddleware: Middleware = () => {
 
     // No cache hit, continue with the request
     await next();
+
+    // if its a 404, 403, 500, etc, don't cache it
+    if (ctx.res.status === 404 || ctx.res.status === 403 || ctx.res.status === 500) {
+      return;
+    }
 
     // After the response is generated, cache it
     if (ctx.res.body) {
