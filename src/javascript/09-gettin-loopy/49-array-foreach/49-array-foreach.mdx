@@ -203,7 +203,7 @@ If it's the last item in the array we need to log "goodbye". How can we do that?
 Let's use `.length` on the array and a ternary statement.
 
 ```js
-index === array.length - 1 ? console.log('Goodbye') : console.log("getting the next topping");
+index === originalArray.length - 1 ? console.log('Goodbye') : console.log("getting the next topping");
 ```
 
 ![printing goodbye when we reach the end of array using length property of array](./630.png)
@@ -229,7 +229,7 @@ You could use an if statement instead of the ternary statement, it would work ju
 We can also use the && hack we learned about earlier, like so 👇
 
 ```js
-index === originalArray.length && console.log('Goodbye');
+index === originalArray.length - 1 && console.log('Goodbye');
 ```
 
 Why does that work?
