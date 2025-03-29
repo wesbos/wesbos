@@ -227,10 +227,10 @@ This is called a **high-order function** or a **higher-order function**. It is a
 Now we can simply replace the method we pass to `.find()` like so 👇
 
 ```js
-const student = students.find(findById('56a'));
+const student = students.find(findById('565a'));
 ```
 
-`findById('56a')` will generate a new function that is coded to find the id that we are looking for (56a).
+`findById('565a')` will generate a new function that is coded to find the id that we are looking for (565a).
 
 ![using higher order function named findById to find a student with id 56a from the list of array](./664.webp)
 
@@ -267,7 +267,7 @@ We have made the function really flexible now. If you ad the coded above, you wi
 
 ```js
 const student = students.find(findByProp('id', '565a'));
-const student = students.find(findByProp('first_name', 'Micki'));
+const student2 = students.find(findByProp('first_name', 'Micki'));
 
 console.log(student);
 console.log(student2);
@@ -294,6 +294,6 @@ So our function takes in a property and a value, and then it will look in each o
 
 The reason we have to use square brackets and not the dot notation in the code highlighted in the image above is because the property that we are looking for is being passed in as an argument to the function.
 
-This is a bit advance so don't feel too let down if you feel a bit confused.
+This is a bit advanced so don't feel too let down if you feel a bit confused.
 
 It took Wes years to understand the benefit of a function like we just made with `findByProp`.
