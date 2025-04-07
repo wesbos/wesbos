@@ -564,7 +564,7 @@ What if we do something like the following 👇
 
 ```js
 function mirrorToLocalStorage() {
-  localStorage.setItem(items, items);
+  localStorage.setItem('items', items);
   console.info("Saving items to localstorage");
 }
 ```
@@ -598,7 +598,7 @@ Modify the code as shown below.
 
 ```js
 function mirrorToLocalStorage() {
-  localStorage.setItem(items, JSON.stringify(items));
+  localStorage.setItem('items', JSON.stringify(items));
   console.info("Saving items to localstorage");
 }
 ```
@@ -737,7 +737,7 @@ Get rid of the button log and query selector, but keep the `deleteItem` function
 Let's listen for a click on the list, and then in the event handler log both `e.target` and `e.currentTarget`.
 
 ```js
-list.addEventListeners('click', function(e) {
+list.addEventListener('click', function(e) {
   console.log(e.target, e.currentTarget);
 });
 ```
@@ -986,7 +986,7 @@ function markAsComplete(id) {
 }
 ```
 
-The reason we called it `itemRef` because if we change a value on the objet, it will be reflected in the array of items. So we can update the value of the item's `complete` property easily.
+The reason we called it `itemRef` because if we change a value on the object, it will be reflected in the array of items. So we can update the value of the item's `complete` property easily.
 
 ```js
 itemRef.complete =
