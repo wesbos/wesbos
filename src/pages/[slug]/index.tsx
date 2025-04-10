@@ -1,14 +1,14 @@
-import { getPostBySlug, getSiblingPostsBySlug } from '../../lib/getPosts';
-import { unstable_notFound as notFound } from 'waku/router/server';
-import H from '../../components/mdxComponents/Headings';
+import mdxComponents from '@/components/mdxComponents';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
-import { Image } from '../../components/Image';
 import { IoLogoGithub } from 'react-icons/io';
-import ContentNav from '../../components/ContentNav';
-import { MetaTags } from '../../components/MetaTags';
 import type { PageProps } from 'waku/router';
-import mdxComponents from '@/components/mdxComponents';
+import { unstable_notFound as notFound } from 'waku/router/server';
+import ContentNav from '../../components/ContentNav';
+import { Image } from '../../components/Image';
+import { MetaTags } from '../../components/MetaTags';
+import H from '../../components/mdxComponents/Headings';
+import { getPostBySlug, getSiblingPostsBySlug } from '../../lib/getPosts';
 
 interface BlogPostPageProps extends PageProps<'/[slug]'> {
   slug: string;
@@ -24,7 +24,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
   }
 
   const { default: MDXContent } = post;
-  const editURL = `https://github.com/wesbos/wesbos/tree/master/src/TODO`;
+  const editURL = `https://github.com/wesbos/wesbos/tree/master/${post.filePath}`;
   const image = post.images?.[0];
 
   return (

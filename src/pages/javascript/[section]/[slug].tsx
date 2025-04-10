@@ -1,15 +1,15 @@
-import { IoLogoGithub } from 'react-icons/io';
-import { getPostBySlug, getSiblingPostsBySlug, makePathDynamicallyImportable } from '../../../lib/getPosts';
-import H from '../../../components/mdxComponents/Headings';
-import { BeginnerJavaScript } from '../../../components/beginnerJavaScript';
-import clsx from 'clsx';
-import { TableOfContents } from '../../../components/TableOfContentsNew';
-import ContentNav from '../../../components/ContentNav';
-import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
 import mdxComponents from '@/components/mdxComponents';
-import { MetaTags } from '../../../components/MetaTags';
-import type { PageProps } from 'waku/router';
 import { HashChange } from '@/lib/hooks/useHashChange';
+import { JavaScriptNotesStyles } from '@/styles/JavaScriptNotesStyles.module.css';
+import clsx from 'clsx';
+import { IoLogoGithub } from 'react-icons/io';
+import type { PageProps } from 'waku/router';
+import ContentNav from '../../../components/ContentNav';
+import { MetaTags } from '../../../components/MetaTags';
+import { TableOfContents } from '../../../components/TableOfContentsNew';
+import { BeginnerJavaScript } from '../../../components/beginnerJavaScript';
+import H from '../../../components/mdxComponents/Headings';
+import { getPostBySlug, getSiblingPostsBySlug, makePathDynamicallyImportable } from '../../../lib/getPosts';
 
 type TOCItem = {
   id: string;
@@ -17,10 +17,9 @@ type TOCItem = {
 };
 
 function getIds(toc: TOCItem[]): string[] {
-  return toc
-    .flatMap((item) => {
-      return [item.id, ...getIds(item.children || [])];
-    });
+  return toc.flatMap((item) => {
+    return [item.id, ...getIds(item.children || [])];
+  });
 }
 
 export default async function JavaScriptNotesPage(props: PageProps<'/javascript/[section]/[slug]'>) {
@@ -40,7 +39,7 @@ export default async function JavaScriptNotesPage(props: PageProps<'/javascript/
   const importPath = makePathDynamicallyImportable(post.frontmatter.filename);
   const { default: MDXContent, toc } = post;
   const headingIds = getIds(toc);
-  const editURL = `https://github.com/wesbos/beginner-javascript/edit/main/content/${importPath}.mdx`;
+  const editURL = `https://github.com/wesbos/wesbos/tree/master/${post.filePath}`;
 
   return (
     <div className={clsx('ultra-wide', JavaScriptNotesStyles)}>
