@@ -24,6 +24,7 @@
   @media (max-width: 800px) {
     box-shadow: none;
     margin: 0;
+    border-inline: 0;
   }
   @media (max-width: 600px) {
     grid-template-columns: 100px 1fr;
