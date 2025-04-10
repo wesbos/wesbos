@@ -147,13 +147,13 @@ Wes has a website, http://keycode.info, on which you can press any key and it wi
 
 ![Wes Bos keybode website](./369.png)
 
-There is `event.key`, `event.which`, `event.code` and `event.key`. `event.key` is the best way to go about it.
+There is `event.which`, `event.code` and `event.key`. `event.key` is the best way to go about it.
 
 Now what we can say is if the event is a click or if the `event.key` equals enter like so: 👇
 
 ```js
 function handlePhotoClick(event) {
-  if (event.type === "clicked" || event.key === "Enter") {
+  if (event.type === "click" || event.key === "Enter") {
     console.log("you clicked the photo");
   }
 }
