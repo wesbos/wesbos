@@ -1,14 +1,12 @@
-import Contact from './content.mdx';
-import { MetaTags } from '../../components/MetaTags';
-import type { PageProps } from 'waku/router';
 import mdxComponents from '@/components/mdxComponents';
-import { Break } from '@/components/Break';
+import type { PageProps } from 'waku/router';
+import { MetaTags } from '../../components/MetaTags';
+import Contact from './content.mdx';
 
 export default async function ContactPage(props: PageProps<'/contact'>) {
   return (
     <div>
       <MetaTags {...props} />
-      <Break />
       <Contact components={mdxComponents} />
     </div>
   );
