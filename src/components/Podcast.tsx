@@ -41,7 +41,9 @@ export default async function Podcast() {
         {podcast.displayDate}
       </time>
       <p>{podcast.title}</p>
-      <a href={`https://syntax.fm${podcast.slug}`}>Listen Now → </a>
+      <a target="_blank" href={`https://syntax.fm/${podcast.number}/${podcast.slug}`}>
+        Listen Now →{' '}
+      </a>
     </div>
   );
 }
