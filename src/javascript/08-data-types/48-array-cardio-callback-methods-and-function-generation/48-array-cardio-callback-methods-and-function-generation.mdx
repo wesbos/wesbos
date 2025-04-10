@@ -51,7 +51,7 @@ We want to find the first one that has either the word "burg" or "burger" in it.
 Add the following code 👇
 
 ```js
-const burgRating = rating.find();
+const burgRating = feedback.find();
 ```
 
 Let's look up `find()` on MDN.
@@ -70,7 +70,7 @@ We have been doing something like this with an arrow function.
 
 ```js
 const burgRating = feedback.find(rating => rating.comment.includes('burg'));
-console.log(burg);
+console.log(burgRating);
 ```
 
 Let's refresh the HTML page, open the console and see how this works.
