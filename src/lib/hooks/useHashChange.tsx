@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, } from 'react';
+import { useEffect, useRef } from 'react';
 
 function findFirstElementInViewport(elements: Element[]) {
   return elements.find((element) => {
@@ -22,7 +22,9 @@ export function useCurrentHeading() {
     // now filter them for visible ones
     const firstVisibleHeading = findFirstElementInViewport(headingsWithIds);
     if (firstVisibleHeading) {
-      window.location.hash = `#${firstVisibleHeading.id}`;
+      // window.location.hash = `#${firstVisibleHeading.id}`;
+      // instead of using window.location.hash, we will use pushState to change the URL so it doesnt jump to the heading
+      window.history.replaceState({}, '', `#${firstVisibleHeading.id}`);
       currentHeading.current = firstVisibleHeading;
     }
   }

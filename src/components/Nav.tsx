@@ -54,7 +54,13 @@ export default function Nav({ path }: { path: string }) {
   return (
     <nav className={NavStyles}>
       <div className={LogoStyles}>
-        <Link to="/" style={{ height: logoHeight, width: logoWidth }} onPointerEnter={playSound}>
+        <Link
+          to="/"
+          style={{ height: logoHeight, width: logoWidth }}
+          onPointerEnter={playSound}
+          unstable_pending={<Pending isPending={true} />}
+          unstable_notPending={<Pending isPending={false} />}
+        >
           <img height={logoHeight} width={logoWidth} src={Logo} alt="Wes Bos" />
         </Link>
       </div>
