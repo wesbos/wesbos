@@ -1,0 +1,28 @@
+.LoadingIndicatorStyles {
+  width: 100%;
+  height: 3px;
+}
+
+.LoadingIndicatorProgress {
+  height: 100%;
+  width: 0;
+  transition: width 0.1s ease-in-out;
+  background-color: var(--yellow);
+}
+
+@keyframes LoadingIndicatorProgressStart {
+  from {
+    width: 1%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.LoadingIndicatorProgressStart {
+  animation: LoadingIndicatorProgressStart 2s ease-in-out infinite;
+}
+
+.LoadingIndicatorProgressFinish {
+  width: 100%;
+}
