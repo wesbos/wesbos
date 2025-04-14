@@ -1,19 +1,19 @@
-import { defineConfig } from 'vite';
-import mdx from '@mdx-js/rollup';
 import path from 'node:path';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
-import rehypeMdxImportMedia from 'rehype-mdx-import-media';
-import rehypeExtractExcerpt from 'rehype-extract-excerpt';
-import rehypeSlug from 'rehype-slug';
+import mdx from '@mdx-js/rollup';
 import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
 import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
-import rehypeWesbos from './src/lib/rehype-wesbos';
+import rehypeExtractExcerpt from 'rehype-extract-excerpt';
+import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 import rehypeMdxTitle from 'rehype-mdx-title';
+import rehypeSlug from 'rehype-slug';
+import remarkFrontmatter from 'remark-frontmatter';
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+import { defineConfig } from 'vite';
 import rehypeHotTips from './src/lib/rehype-hot-tips';
 import rehypeImageSize from './src/lib/rehype-image-size';
-import { imgDimensions } from './vite-plugin-img-dimensions';
+import rehypeWesbos from './src/lib/rehype-wesbos';
 import { gitHashPlugin } from './vite-plugin-git-hash';
+import { imgDimensions } from './vite-plugin-img-dimensions';
 
 // TODO: https://github.com/dai-shi/waku/issues/421
 export default defineConfig({
@@ -59,5 +59,8 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
+    rollupOptions: {
+      external: ['blake3-wasm']
+    }
   },
 });
