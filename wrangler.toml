@@ -15,8 +15,6 @@ not_found_handling = "404-page"
 [browser]
 binding = "MYBROWSER"
 
-# routes = [{ pattern = "rsc.wesbos.com", custom_domain = true }]
-
 [[ d1_databases ]]
 binding = "DB"
 database_name = "wes-bos-social-cache"

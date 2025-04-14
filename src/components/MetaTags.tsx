@@ -1,7 +1,7 @@
-import { slugToTitle } from '@/utils/slugToTitle';
 import { getPostBySlug } from '@/lib/getPosts';
+import { slugToTitle } from '@/utils/slugToTitle';
 import type { PageProps } from 'waku/router';
-const baseUrl = import.meta.env.DEV ? 'http://localhost:3000' : 'https://rsc.wesbos.com';
+const baseUrl = import.meta.env.DEV ? 'http://localhost:3000' : 'https://wesbos.com';
 
 type MetaProps = PageProps<string> & {
   section?: string;
