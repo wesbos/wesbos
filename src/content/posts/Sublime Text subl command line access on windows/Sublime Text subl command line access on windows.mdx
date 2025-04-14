@@ -1,0 +1,29 @@
+---
+title: Sublime Text subl command line access on windows
+slug: subl-on-windows
+image: ss-2014-06-01-at-2.36.03-PM.png
+category:
+ - Sublime Text
+date: 2014-06-01T14:36:55
+id: 2790
+---
+
+If you are a terminal or command line power user, you often want to open in from Sublime Text right from the cmd line. Often something like this:
+
+`subl style.css`
+
+On OSX and Linux, we have the subl command that comes with Sublime Text, to install it you can follow the <a href="https://www.sublimetext.com/docs/2/osx_command_line.html" target="_blank">instructions here</a>.
+
+However, on windows we need to do it a little different by creating something called a doskey.
+
+So, if you wish to use the `subl` command to open files and folders from the command line in windows, you can use the following:
+
+`doskey subl="C:\Program Files\Sublime Text 2\sublime_text.exe" $*`
+
+Paste the above into your command line prompt and this will make the `subl` command available to you.
+
+If you are using Sublime Text 3, use the following instead:
+
+`doskey subl="C:\Program Files\Sublime Text\sublime_text.exe" $*`
+
+<a href="https://sublimetextbook.com/?utm_source=windowssubl&utm_medium=banner&utm_campaign=product"><img src="facebook-share2.webp" /></a>

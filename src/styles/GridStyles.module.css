@@ -1,0 +1,12 @@
+/* Im not sure this should be a thing...  */
+.grid {
+  display: grid;
+  grid-template-columns: var(--columns, auto 1fr);
+  grid-template-rows: var(--rows, auto);
+  justify-content: center;
+  align-content: center;
+  justify-items: start;
+  > * {
+    align-self: center;
+  }
+}

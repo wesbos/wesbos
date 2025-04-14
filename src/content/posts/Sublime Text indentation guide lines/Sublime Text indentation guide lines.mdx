@@ -1,0 +1,42 @@
+---
+title: Sublime Text indentation guide lines
+slug: sublime-text-indentation-guide-lines
+image: indentation_guides.webp
+category:
+ - Sublime Text
+date: 2013-07-24T16:19:23
+id: 909
+---
+
+Quick little tip today for Sublime Text and everyone who works with indentation based languages like Python, CoffeeScript, Jade or those who are very diligent with their indentation practices. Watch the video or read the text after the break.
+
+https://youtu.be/T4kZMjC3jEo
+
+By default, Sublime text will give you indentation guide lines that are all the same colour. This is helpful but can become a little confusing when you get 4-5 levels deep. A class example I always find myself is below. Is the `.getting div inside .row` or is it a sibling?
+
+<img src="ss-2013-07-24-at-4.02.52-PM.png" />
+
+Well, an easy fix to this is to turn on **"draw_active"** setting for **"indent_guide_options":**
+
+By Default, sublime already has **"draw_normal"** turn on for you, but we need to set it again so we do not overwrite it. You can put the code below in `Preferences → Settings - User`:
+
+
+```
+   "indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active"
+    ],
+```
+
+This will turn on highlighting of the active indentation guide as well as the stacked, or parent, indentation guides.
+
+Right away, I'm able to visually see that `.getting is nested inside .row`
+
+<img src="ss-2013-07-24-at-4.08.26-PM.png" />
+
+The colour of the guides completely depends on the theme you are using. You are able to style the default guide, the active guide and the stacked guide. I've updated my theme <a href="https://github.com/wesbos/cobalt2/" target="_blank">Cobalt2</a> to use blue, yellow and light blue respectively.
+
+Like this trick? My book is almost ready. Sign up below and I'll let you know when it is ready!
+
+<a href="https://sublimetextbook.com/?utm_source=indentationguides&utm_medium=banner&utm_campaign=product"><img src="facebook-share2.webp" /></a>

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /og/*
+Disallow: /nerds-and-haters
+

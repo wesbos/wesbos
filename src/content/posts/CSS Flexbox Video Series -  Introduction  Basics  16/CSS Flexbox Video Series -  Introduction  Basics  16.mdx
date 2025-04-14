@@ -1,0 +1,72 @@
+---
+title: CSS Flexbox Video Series -  Introduction & Basics — 1/6
+slug: flexbox-basics
+image: blogtitle-ep1.png
+category:
+ - CSS
+ - Video Series
+date: 2013-10-17T15:55:16
+id: 991
+---
+
+![](ss-2015-06-24-at-2.03.04-PM-300x201.webp)**Update:** While these videos are still a fantastic intro to flexbox, I'm working on a much more in depth, **free** video series called What The Flexbox - will be out in a few weeks! In the mean time check out my free [Command Line Power User](http://CommandLinePowerUser.com) video series as well!
+
+### Tell me when it launches!
+
+
+
+Flexbox is a new part of CSS3 that allows us to create super flexible layouts without having to deal with floats, margin centering hacks, variable height bugs, vertical centering hacks and any number of layout challenges you face when creating a website or application.
+
+With the rise of Responsive Design, web developers everywhere feel the pain of trying to create ultra-flexible layouts with traditional CSS tools. With flexbox, we can create a container with children that expand, contract and scale to fit in the best possible way. Columns, rows, scaling, equalized heights, re-ordering and directions have never been easier with flexbox.
+
+Flexbox is a very new idea and it can be really hard to wrap your head around how it works, and when you should be using it. To add insult to injury, there are two implementations of flexbox in the wild and every browser vendor does it just a little differently.
+
+This leaves us with a **MESS** of code that will leave even seasoned CSS developers running back to warm familiar arms of floats, clearfixes and JavaScript hacks.
+
+```css
+.flexWrapper {
+display: -webkit-box;
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+-webkit-box-direction: normal;
+-moz-box-direction: normal;
+-webkit-box-orient: vertical;
+-moz-box-orient: vertical;
+-webkit-flex-direction: column;
+-ms-flex-direction: column;
+flex-direction: column;
+-webkit-flex-wrap: nowrap;
+-ms-flex-wrap: nowrap;
+flex-wrap: nowrap;
+-webkit-box-pack: start;
+-moz-box-pack: start;
+-webkit-justify-content: flex-start;
+-ms-flex-pack: start;
+justify-content: flex-start;
+-webkit-align-content: stretch;
+-ms-flex-line-pack: stretch;
+align-content: stretch;
+-webkit-box-align: start;
+-moz-box-align: start;
+-webkit-align-items: flex-start;
+-ms-flex-align: start;
+align-items: flex-start;
+height: 100%;
+}
+```
+
+This video series will simplify things, discover the ins and outs of flexbox, how it works as well as how to back-port flexbox to work with older implementations, devices and browsers.
+
+Here is video #1 introducing the video series as well as the very basics of what flexbox is and how we can use it. I will be updating my blog over the next few weeks with the rest of the videos, each diving into a different part of flexbox.
+
+https://youtu.be/sewV3LsmoXI
+
+### Series Links:
+
+[Introduction & Basics — Part 1](http://wesbos.com/flexbox-basics/)
+
+[CSS Flexbox Video Series: Flexbox order, re-ordering columns and rows — Part 2](http://wesbos.com/css-flexbox-order-reordering-columns/)
+
+[CSS Flexbox Video Series: widths, heights and Layout — Learn CSS3 Flexbox — Part 3](http://wesbos.com/flexbox-widths-heights-and-layout-css/)

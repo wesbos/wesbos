@@ -1,0 +1,33 @@
+.BannerStyles {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  font-size: 12px;
+  gap: 1rem;
+  align-items: stretch;
+  background: #1a69d0;
+  color: white;
+  margin: 2rem 0;
+  font-family: var(--baseFont);
+  p {
+    margin: 5px 0;
+  }
+  a {
+    text-decoration-color: var(--yellow);
+    color: white;
+  }
+  strong {
+    color: var(--yellow);
+  }
+  img {
+    height: 100%;
+    align-self: stretch;
+    width: 220px;
+    object-fit: contain;
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+  .text {
+    padding: 0 1rem;
+  }
+}

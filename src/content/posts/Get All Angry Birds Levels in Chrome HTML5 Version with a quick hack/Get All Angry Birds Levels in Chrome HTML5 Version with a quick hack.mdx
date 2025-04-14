@@ -1,0 +1,32 @@
+---
+title: Get All Angry Birds Levels in Chrome HTML5 Version with a quick hack
+slug: all-levels-html5-angry-birds
+image: Screen-shot-2011-05-11-at-3.08.07-PM.webp
+category:
+ - HTML5
+ - JavaScript
+date: 2011-05-11T15:11:07
+id: 280
+---
+
+Just about an hour ago Rovio and Chrome released [Angry Birds for Chrome](http://chrome.angrybirds.com/?version=hd). As a JavaScript / HTML5 guy, I quickly jumped into the code to see how things worked.
+
+I was quickly able to find a hack that gave me access to all the levels, even the special Chrome levels!  So to  get access to all levels in Chrome Angry Birds, just copy and paste the following line into your browser's address bar.
+
+```js
+javascript: var i = 0; while (i<=69) { localStorage.setItem('level_star_'+i,'3'); i++; } window.location.reload();
+```
+
+To set all levels to locked, simply copy and paste this into your address bar:
+
+```js
+javascript: var i = 1; while (i<=69) { localStorage.setItem('level_star_'+i,'-1'); i++; } window.location.reload();
+```
+
+### How?
+
+In the talk Rovio did at Google IO, they mentioned they were using HTML5's LocalStorage. If you open up Web Inspector in chrome, you'll see they are keeping track of your score and stars with localstorage. Lucky for us, that means we can use [setItem(](https://developer.mozilla.org/en/DOM/Storage#localStorage)) set all 70 levels to 3 and get access to them all.
+
+If you like this kind of stuff, be sure to [follow me on twitter](http://twitter.com/wesbos) for more :).
+
+[![](Screen-shot-2011-05-11-at-3.09.21-PM-300x225.webp "Screen shot 2011-05-11 at 3.09.21 PM")](https://wesbos.com/wp-content/uploads/2011/05/Screen-shot-2011-05-11-at-3.08.52-PM.png)![](Screen-shot-2011-05-11-at-3.08.52-PM-300x225.webp "Screen shot 2011-05-11 at 3.08.52 PM")

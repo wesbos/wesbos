@@ -1,0 +1,29 @@
+---
+title: Associate Sublime Text with Git
+slug: git-messages-sublime-text
+image: gitsublime.webp
+category:
+ - Sublime Text
+date: 2014-05-12T12:09:48
+id: 2722
+---
+
+By default, git uses Vim as the editor for commit/rebase messages. This can be somewhat limiting if you aren't comfortable with using Vim, especially if you need to move around lines of code.
+
+Luckily it's easy to switch over to using Sublime Text as the editor for your messages. When git needs you to input and save a message. It will simply open up Sublime Text and prompt you with the file that needs editing. Once you save and close the file, git will continue on with what it needs to do.
+
+### Install subl
+
+First thing we need to do is to make Sublime accessible via the command line. Chances are you might already have this installed, but if you haven't, you can follow the [instructions here](http://www.sublimetext.com/docs/3/osx_command_line.html). If you are still on Sublime Text 2 - follow [these instead](http://www.sublimetext.com/docs/2/osx_command_line.html).
+
+### Set git to use
+
+Next, open up your Terminal or command line and paste the following:
+
+```js
+git config --global core.editor "subl -n -w"
+```
+
+That's it! Next time Git requires you to edit a file or commit message, Sublime Text will pop open!
+
+[![](facebook-share2.webp)](https://sublimetextbook.com/?utm_source=stgit&utm_medium=banner&utm_campaign=product)

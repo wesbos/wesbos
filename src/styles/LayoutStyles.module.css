@@ -1,0 +1,23 @@
+.LayoutStyles {
+  padding-top: 2rem;
+  min-height: calc(100dvh - 40px);
+  @media (max-width: 800px) {
+    padding-top: 0;
+  }
+  &:has(div[class="welcome"]) {
+    background: url("/images/handsome.webp") no-repeat top center;
+    @media (max-width: 650px) {
+      background-position: top left -400px;
+      background-size: auto 80vh; /* TRy to make the BG larger than the viewport so Page speed doesn't count it as a LCP */
+      h2 {
+        font-size: 3rem;
+      }
+    }
+    a {
+      text-decoration-color: var(--yellow);
+    }
+  }
+  p {
+    word-wrap: anywhere;
+  }
+}

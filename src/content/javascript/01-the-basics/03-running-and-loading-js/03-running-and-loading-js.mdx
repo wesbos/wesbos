@@ -1,0 +1,165 @@
+---
+tocTitle: 03 - Running and Loading JavaScript
+title: Running and Loading JavaScript
+slug: 01-the-basics/running-and-loading-js
+section: 1 - The Basics
+category:
+ - JavaScript
+ - Browser
+ - Node.js
+---
+
+Let's talk about how to actually run JavaScript.
+
+There are a couple of ways we can run JavaScript:
+
+* in the browser console
+* in node
+* via a script tag
+* we can also have an external script.
+
+We will talk about how we can actually run those.
+
+The simplest is to open up your browser dev tools and go to your console.
+
+If you want to run some JavaScript to see how it works, like here Wes has typed `1 + 1` and hit enter and the console returned `2`.
+
+![browser console showing the calculation of 1 + 1](./browser-console.webp)
+
+This right here is a JavaScript console and it's a nice way to quickly noodle on some JavaScript
+
+To see how it works, just pop open a browser console. The neat thing is if you are on any websites, say https://github.com, the JavaScript that you type into your console runs on the actual page that is loaded and existing.
+
+For example You can type the following to grab all the paragraphs from the github page that you are currently on. 👇
+
+```js
+document.querySelectorAll("p");
+```
+_(Don't worry about what document.querySelectorAll() does, we will cover that in a future video)._
+
+![browser console showing the output of document.querySelectorAll('p') which is all of the paragraphs on the website](./console-showing-queryselector.webp)
+
+The code that runs in your dev tools console is running in the context of the page that is loaded in your browser tab.
+
+The next way to do it is a script tag.
+
+Go into the `/playground` folder and create a new file `running-js.html`.
+
+Wes has an Emmet extension in VS Code so he is going to hit `!` and `Tab` to scaffold out some HTML for us.
+
+In the body, we can have a script tag in which we will add `console.log('hey')`.
+
+What that will do is when the HTML is loaded, it's going to say "OH! This is a script tag, I am changing languages from HTML over to JavaScript, and it will run any code inside of the opening and closing script tag as JavaScript.
+
+If you go ahead and open the `running-js.html` file in the browser, and open the console, you will see that it says "hey".
+
+![browser console output that says hey](./console-hey-message.webp)
+_Don't sweat this too much, we will be explaining what console.log() and everything does shortly._
+
+## Run scripts before closing body tag
+
+One thing to keep in mind is that it's almost always worth running scripts just before the closing body tag.
+
+So if we were to modify `running-js.html` to include a paragraph tag that says Hey right after the body tag, and then we wanted to grab that paragraph via JavaScript, we could if our script is right located right before the closing body tag, like below: 👇
+
+```html
+<body>
+  <p>Hey</p>
+  <script>
+    const p = document.querySelector("p");
+    console.log(p);
+  </script>
+</body>
+```
+
+![console output showing a paragraph element with the text content of Hey](./console-paragraph-output.webp)
+
+If you were to move the script tag above the paragraph element (or move the paragraph element below the script tag), and refresh the page, the console will show `null` because that means it found nothing.
+
+![a script tag before the paragraph element that is being selected](./body-with-paragraph-after-script-tag.webp)
+
+In order for your script tag to access the elements on the page, the elements must first be on the page before you select them. If we try to select something that doesn't yet exist (because it gets created later), we won't have access to it.
+
+For your own sanity, always put your JavaScript right below the closing body tag. _(We will talk about loading in future videos when we get a little bit more into the DOM)._
+
+## External JavaScript Files
+
+Another way we can do it is via an external JavaScript file.
+
+Go into the playground and make an external JavaScript file, called `some.js`. In that file, add the following code 👇
+
+```js
+console.log("I am in another file");
+```
+
+In the `running-js.html` file, remove the existing script block and instead add a script tag with a `src` attribute. _(You do not need a `type=` attribute until we hit ECMAScript Modules.)_
+
+Inside of the `src=` attribute, you need to give it a relative path, like so 👇
+
+```js
+<script src="./some.js">
+```
+
+That works because the HTML file is in a folder where the sibling file is `some.js`.
+
+* `./` means in this folder.
+* `../` would mean go up a folder level.
+
+In our case, it's in the same folder so `./some.js` is the relative path to our file.
+
+Now if you run that, it will say in the console `I'm in another file`, and it will even show you which file and line number of where that JavaScript had been run. 👇
+
+![browser console showing the filename and line number where the console statement was defined](./somejs-filename-and-line.webp)
+
+Again, if you were to put the script inside the `head` element, it will still work.
+
+![html markup showing the some.js file linked in the head element](./somejs-script-in-head.webp)
+
+However, if you were to try to select some things on the page, such as the paragraph tag, you will get `null`.
+
+![html markup showing the some.js file in the head element and a paragraph element in the body](./somejs-script-in-head-with-paragraph.webp)
+
+Why? Because of the same reason, the script will run before the actual HTML is finished building on the page. Leave the script tag right before the closing body tag for the best performance and to save yourself future debugging headaches.
+
+_(There are some options like the `async` and `defer` attributes you can add to your script tags that will delay the actual running of the JavaScript, and it will download it asynchronously and then run it once the HTML has been loaded, however that is a more advanced topic which we will get into once we discuss async. But first we will need to understand what does asynchronous mean, etc)_
+
+Another thing you may have noticed is why is there a closing script tag if there is no content in between the opening and closing tag?
+
+That is a quirk with the script tag. It cannot be self closed.
+
+You also cannot add extra JavaScript between the script tag like so: 👇
+
+![script tag that has a src attribute and inline code](./script-tag-with-inline-code.webp)
+_That will not work._
+
+You can have multiple script tags in an HTML file, if you like.
+
+The only downside to that is that every single time that it hits one of those script tags, it will go off and download the JavaScript file and parse that for you.
+
+When we hit modules, we will look at how we can bundle those multiple files into one. Or you can do something called code splitting, which is split them into multiple, smaller JavaScript files, and have them load on demand.
+
+## Running it in Node.js
+
+One more is actually running it in Node.js.
+
+```js
+console.log("I'm from node");
+```
+
+Node.js is JavaScript that can run in the server. Instead of running JavaScript on a website, we run it on an actual machine (like many other programming languages do).
+
+The way we do that is we open our terminal and `cd` into the `playground` directory.
+
+You can run the script in Node by entering the following in the terminal and hitting enter 👇
+
+```js
+node node-example.js
+```
+
+That will run whatever code is in the script file, and once it's done, it will exit out of node and return you to the terminal.
+
+![the terminal showing the node command and the output from the javascript file](./node-terminal-output.webp)
+
+That's the short of how to load JavaScript.
+
+We will be using a mixture of running JavaScript in the console, in a script tag and in external JavaScript files.

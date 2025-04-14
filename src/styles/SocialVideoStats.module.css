@@ -1,0 +1,25 @@
+.socialVideoStats {
+  display: grid;
+  grid-template-columns: subgrid;
+  gap: 0;
+  grid-column: 1 / -1;
+  border: 1px solid black;
+  border-radius: 500px;
+  & > * {
+    border-left: 1px solid black;
+    padding: 5px 10px;
+    align-content: center;
+    &:first-child {
+      border-left: none;
+    }
+    svg {
+      height: 0.7em;
+    }
+  }
+}
+
+.socialStatsContainer {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 10px;
+}

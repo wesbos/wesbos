@@ -1,0 +1,41 @@
+.themeToggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid var(--dark);
+  box-shadow: 2px 2px 0 var(--dark);
+  transition: all 0.2s;
+  margin-left: 10px;
+}
+
+.themeToggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--dark);
+}
+
+.themeToggle:active {
+  transform: translateY(0);
+  box-shadow: 1px 1px 0 var(--dark);
+}
+
+/* Animation for the toggle */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.themeToggle:focus {
+  outline: none;
+  animation: spin 0.5s ease-in-out;
+}

@@ -1,0 +1,367 @@
+@layer reset, base, tokens, recipes, media, utilities;
+
+@layer base {
+  @font-face {
+    font-family: radnika;
+    src: url(../../lib/assets/fonts/RadnikaNext/RadnikaNext-Black.woff2);
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "HCo Operator Mono";
+    src: url(../../lib/assets/fonts/operator/OperatorMono-Book_Web.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "HCo Operator Mono";
+    src: url(../../lib/assets/fonts/operator/OperatorMono-BookItalic_Web.woff2) format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "HCo Operator Mono";
+    src: url(../../lib/assets/fonts/operator/OperatorMono-Bold_Web.woff2) format("woff2");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "HCo Operator Mono";
+    src: url(../../lib/assets/fonts/operator/OperatorMono-BoldItalic_Web.woff2) format("woff2");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  /* Thank you https://twitter.com/juan_ferreras_/status/1894113365615694014 */
+  @font-face {
+    font-family: fallback;
+    src: local("Arial");
+    ascent-override: 76.36%;
+    descent-override: 22.46%;
+    line-gap-override: 0%;
+    size-adjust: 121.44%;
+  }
+
+  :root {
+    --yellow: #ffc600;
+    --light: #ffffff;
+    --white: #ffffff;
+    --dark: #000000;
+    --black: #000000;
+    --lightGrey: #d8d8d8;
+    --lightGray: var(--lightGrey);
+    --imGoingToFaint: #fbfbfb;
+    --maxWidth: 1200px;
+    --baseFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+      "Helvetica Neue", sans-serif;
+    --operator-mono: "HCo Operator Mono";
+    --radnika: "radnika", fallback, Inter, Helvetica, Arial, sans-serif;
+    --whiteGrit: url("../mdxComponents/whitegrit.png");
+    --blackGrit: url("../mdxComponents/blackgrit.webp");
+    --blue: #193549;
+    --darkBlue: #00112f;
+  }
+
+  /* Dark mode variables */
+  :root[data-theme="dark"] {
+    --light: var(--darkBlue);
+    --dark: var(--white);
+    --lightGrey: #333333;
+    --lightGray: #333333;
+    --imGoingToFaint: #1a1a1a;
+    --whiteGrit: url("../mdxComponents/blackgrit.webp");
+    --blackGrit: transparent;
+  }
+
+  /* Transition for theme switching */
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html {
+    --size: 20px;
+    --borderSize: calc(var(--size) / 2);
+    font-family: var(--baseFont);
+    border: var(--borderSize) solid var(--dark);
+    /* border-image: var(--whiteGrit) 200 round; */
+    font-size: 10px;
+    box-sizing: border-box;
+    font-family: var(--operator-mono), "JetBrains Mono", "Berkeley Mono", "MonoLisa", "JetBrains Mono BG",
+      "Fantasque Sans Mono", "Geist Mono", monospace;
+    line-height: 1.15;
+    position: relative;
+    color: var(--dark);
+    margin: 0;
+    /* &:after {
+      box-sizing: content-box;
+      display: block;
+      content: "";
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: calc(var(--borderSize) * -1);
+      left: calc(var(--borderSize) * -1);
+      z-index: -3;
+      border: var(--borderSize) solid var(--black);
+      background: var(--light);
+    }
+    &:before {
+      box-sizing: content-box;
+      display: block;
+      content: "";
+      height: calc(100% - var(--size));
+      width: calc(100% - var(--size));
+      position: absolute;
+      top: calc(var(--size) * -0.5);
+      left: calc(var(--size) * -0.5);
+      z-index: -1;
+      border: var(--size) solid transparent;
+      border-image: var(--blackGrit) 250 round;
+      background-size: 250px;
+    } */
+  }
+  body {
+    min-height: calc(100vh - 40px);
+    font-size: 2rem;
+    margin: 0;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--radnika);
+    font-weight: normal;
+    line-height: 1.5;
+    margin: revert;
+  }
+  a {
+    color: var(--dark);
+  }
+  p,
+  ul,
+  ol {
+    line-height: 1.77777777777777776777777777;
+    font-weight: 400;
+  }
+  ul {
+    list-style-type: square;
+  }
+
+  p a:nth-child(4n + 1) {
+    --rotate: -2deg;
+  }
+  p a:nth-child(4n + 2) {
+    --rotate: 1.64deg;
+  }
+  p a:nth-child(4n + 3) {
+    --rotate: 0.6deg;
+  }
+  p a:nth-child(4n + 4) {
+    --rotate: -0.75deg;
+  }
+
+  p.small {
+    font-size: 1.2rem;
+  }
+
+  :not(pre) > code {
+    background: #f6f6f6;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 0 3.5px;
+  }
+
+  [data-language] pre {
+    border-radius: 0;
+    padding: 3rem;
+    width: 110%;
+    margin-left: -5%;
+    line-height: 1.5;
+    overflow: auto;
+  }
+  pre {
+    white-space: break-spaces;
+  }
+  code,
+  kbd,
+  samp {
+    font-family: var(--operator-mono);
+    font-weight: 300;
+  }
+
+  video {
+    max-width: 100%;
+  }
+
+  @media (min-width: 2500px) {
+    body:after {
+      content: "Wow you have a big monitor!";
+      display: block;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 3rem;
+      font-size: 6.5vh;
+      pointer-events: none;
+      transform: rotate(90deg);
+      text-shadow: 3px 3px 0 white;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  .highlight {
+    background-image: var(--blackGrit);
+    background-color: var(--yellow);
+    background-size: 500px;
+    padding: 5px;
+  }
+  ::selection {
+    background: var(--yellow);
+  }
+  /* Scrollbar Styles */
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--yellow) var(--dark);
+  }
+  body::-webkit-scrollbar-track {
+    background: var(--dark);
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--yellow);
+    border-radius: 6px;
+    border: 3px solid var(--dark);
+  }
+
+  /* Button Styles */
+  button {
+    border: 0;
+    font-weight: 900;
+    padding: 1rem;
+    cursor: pointer;
+    --rotate: -1deg;
+    transform: rotate(var(--rotate));
+    &:hover {
+      --rotate: 0.2deg;
+      background-position: -200px;
+    }
+  }
+
+  /* <Pre> */
+  pre::selection {
+    background: #0050a4;
+  }
+
+  /* Table */
+  table {
+    border: 1px solid var(--lightGrey);
+    border-radius: 3px;
+    padding: 1rem;
+    border-collapse: collapse;
+    td,
+    th {
+      border: 1px solid var(--lightGrey);
+      padding: 10px;
+    }
+  }
+
+  .dirty,
+  button {
+    --rotate: -1deg;
+    --scale: 1;
+    background: var(--yellow) var(--blackGrit);
+    background-size: 550px;
+    transform: rotate(var(--rotate)) scale(var(--scale));
+    &:after {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background: var(--whiteGrit) top left, var(--whiteGrit) bottom right;
+      background-size: 550px;
+      pointer-events: none;
+    }
+  }
+
+  /* Links */
+  a {
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+  }
+}
+/* Keyframes */
+
+@keyframes gritty {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: -600px;
+  }
+}
+
+span.grit {
+  background: var(--blackGrit);
+  background-size: 400px;
+  padding: 2rem 0 2rem 0;
+  position: relative;
+  &:hover {
+    animation: gritty 2s steps(10) infinite;
+  }
+}
+
+.hideYoSelf {
+  visibility: hidden;
+}
+
+@layer utilities {
+  .h1 {
+    font-size: 5rem;
+  }
+  .h2 {
+    font-size: 4rem;
+  }
+  .h3 {
+    font-size: 3rem;
+  }
+  .h4 {
+    font-size: 2.5rem;
+  }
+  .h5 {
+    font-size: 2rem;
+  }
+  .h6 {
+    font-size: 1.8rem;
+  }
+  .span {
+    font-size: 3.2rem;
+  }
+  .inline {
+    display: inline;
+  }
+}
+@layer media {
+  media-controller {
+    width: 100%;
+  }
+}

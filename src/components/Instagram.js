@@ -1,34 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { FaInstagram } from 'react-icons/fa';
-
-const InstaStyles = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-  @media (max-width: 320px) {
-    grid-template-columns: 1fr;
-    img {
-      width: 100%;
-    }
-  }
-`;
-
-const StoriesStyles = styled.a`
-  font-size: 0;
-  display: flex;
-  flex-wrap: wrap;
-  .story {
-    width: 30px;
-    height: 89px1;
-    background-size: cover;
-    font-size: 0;
-    display: block;
-  }
-`;
+import { getInstagramPosts } from '@/lib/functions/instagram';
+import { getInstagramStories } from '@/lib/functions/instagramStories';
+import { FooterBlock, FooterHeading, InstaStyles } from '@/styles/FooterStyles.module.css';
 
 function converIGtoJPG(base64data) {
-  const jpegtpl = '/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABsaGikdKUEmJkFCLy8vQkc/Pj4/R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHSkpNCY0PygoP0c/NT9HR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//AABEIABQAKgMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AA==';
+  const jpegtpl =
+    '/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABsaGikdKUEmJkFCLy8vQkc/Pj4/R0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0cBHSkpNCY0PygoP0c/NT9HR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR//AABEIABQAKgMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2gAMAwEAAhEDEQA/AA==';
   const t = atob(base64data);
   const p = t.slice(3).split('');
   const o = t
@@ -41,46 +18,13 @@ function converIGtoJPG(base64data) {
   return base64data ? `data:image/jpeg;base64,${btoa(c.concat(p).join(''))}` : null;
 }
 
-function useInstagram() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    fetch(`/.netlify/functions/instagram`)
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(false);
-        setPosts(data);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setPosts([]);
-      });
-  }, []);
-  return { posts, loading };
-}
-function useInstagramStories() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    fetch(`/.netlify/functions/instagramStories`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data);
-      })
-      .catch((err) => {
-        setPosts([]);
-      });
-  }, []);
-  return posts;
-}
-
-function Stories() {
-  const stories = useInstagramStories();
-  if (!stories.length) return null;
+async function Stories() {
+  const stories = await getInstagramStories();
+  if (!stories.length) return;
   return (
     <>
       <h4>Stories</h4>
-      <StoriesStyles href="https://www.instagram.com/stories/wesbos/">
+      <a className={StoriesStyles} href="https://www.instagram.com/stories/wesbos/">
         {stories.map((story) => (
           <img
             className="story"
@@ -92,16 +36,16 @@ function Stories() {
             }}
           />
         ))}
-      </StoriesStyles>
+      </a>
     </>
   );
 }
 
-export default function Instagram() {
-  const { loading, posts: gramz } = useInstagram();
+export default async function Instagram() {
+  const [gramz, stories] = await Promise.all([getInstagramPosts()]);
   return (
-    <div>
-      <h3>
+    <div className={FooterBlock}>
+      <h3 className={FooterHeading}>
         <span className="highlight">
           <a href="https://instagram.com/wesbos" target="_blank" rel="noopener noreferrer">
             <FaInstagram style={{ strokeWidth: 15 }} />
@@ -110,17 +54,19 @@ export default function Instagram() {
           Instant Grams
         </span>
       </h3>
-      {loading && <p>One sec, getting the gramz...</p>}
       <Stories />
       {gramz.length ? <h4>Posts</h4> : null}
-      <InstaStyles>
+      <div className={InstaStyles}>
         {Array.isArray(gramz) &&
           gramz.map((gram) => (
             <a href={gram.url} key={gram.id}>
-              <img src={`https://images.weserv.nl/?url=${encodeURIComponent(gram.thumbnail)}&w=230`} alt={gram.caption} />
+              <img
+                src={`https://images.weserv.nl/?url=${encodeURIComponent(gram.thumbnail)}&w=230`}
+                alt={gram.caption}
+              />
             </a>
           ))}
-      </InstaStyles>
+      </div>
     </div>
   );
 }

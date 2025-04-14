@@ -1,0 +1,67 @@
+---
+tocTitle: 37 - BEDMAS
+title: BEDMAS
+slug: 07-logic-and-flow-control/bedmas
+section: 7 - Logic and Flow Control
+category:
+ - JavaScript
+ - BEDMAS
+---
+
+If you know what **BEDMAS** is, skip this video.
+
+![BEDMAS description](./371.webp)
+
+This video will be covering BEDMAS and the order of operations in which JavaScript runs. It is exactly the same as how mathematicians use it.
+
+The order in which things run is that things is brackets go first, then we do exponents (which is sort of like the power of).
+
+We do have **exponents** in JavaScript. That looks like `2 ** 2` which is the equivalent of 2 to the power of 2.
+
+`2 ** 10` is 2 to the power of 10.
+
+Next is `division`, `multiplication`, `addition` and `subtraction`.
+
+Why is that useful?
+
+Open up `bedmas.html` and in the script tag, let's say you have the following code 👇
+
+```js
+const age = 10 * 5 - 2;
+```
+
+That evaluates to 48.
+
+Why?
+
+Because first it looks for `brackets`, of which there are none, then we move onto `exponents`, which are also none of, then `multiplication` next, so `10 * 5 = 50` then comes `addition` and `subtraction` so `50 - 2 = 48`.
+
+Now what if you have the code below? 👇
+
+```js
+const age2 = 10 * (5 - 2);
+```
+
+First, it would evaluate what is in the brackets (`5 - 2 = 3`). Then we do exponents (there are none), and next comes multiplication so `10 * 3 = 30`.
+
+This is useful in things like the `calculateBill()` function from previous lessons.
+
+![code snippet of calculateBill](./372.webp)
+
+```js
+const total = calculateBill(100) + (calculateBill(20) - calculateBill(15));
+```
+
+What is happening in the code above  👆 is that all the functions(`calculateBill(100)`, `calculateBill(20)`, `calculateBill(15)`) run first and equate to a value.
+
+So the `total` variable declaration is actually evaluating the following:
+
+`const total = 128 + (25.6 - 19.2)`
+
+`calculateBill(100)` = 128 `calculateBill(20)` = 25.6  `calculateBill(15)` = 19.2
+
+So in this case, the subtraction happens first `(25.6 - 19.2)` and then it's added to 128.
+
+That is order of operations.
+
+Next we will get into logic and flow control. If statements, truthy or falsy, equality using and and or, ternarry, switch statements, timers and intervals.

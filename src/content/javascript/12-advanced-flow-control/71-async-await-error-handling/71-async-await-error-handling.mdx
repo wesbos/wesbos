@@ -1,0 +1,331 @@
+---
+tocTitle: 71 - Async/Await Error Handling
+title: Async/Await Error Handling
+slug: 12-advanced-flow-control/71-async-await-error-handling
+section: 12 - Advanced Flow Control
+category:
+ - JavaScript
+ - Async/Await
+ - Error Handling
+---
+
+We will talk about error handling strategies for `async await` in this lesson.
+
+Because there is no `.then()` that we are chaining on with promises, it's not as easy as just chaining a `.catch()` onto the end of a promise chain in order to deal with what is going on.
+
+We will cover 4 different ways that you can do error handling in `async await`, and then Wes will explain which approach he would use in which scenarios.
+
+Go into our playground and copy the `async-await.html` file and rename it to `async-await-error-handling.html`.
+
+Go and delete everything except for these two functions: `wait` and `makePizza`.
+
+```html
+<body>
+<script>
+function wait(ms = 0) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  })
+}
+
+function makePizza(toppings = []) {
+  return new Promise(function (resolve, reject) {
+    // reject if people try with pineapple
+    if (toppings.includes('pineapple')) {
+      reject('Seriously? Get out 🍍');
+    }
+
+    const amountOfTimeToBake = 500 + (toppings.length * 200);
+
+    // wait 1 second for the pizza to cook:
+    setTimeout(function () {
+      // when you are ready, you can resolve this promise
+      resolve(`Here is your pizza 🍕 with the toppings ${toppings.join(' ')}`);
+    }, amountOfTimeToBake);
+
+    // if something went wrong, we can reject this promise;
+  });
+}
+</script>
+</body>
+```
+
+In our `makePizza` function, we know that if it includes pineapple, it will reject because there is an error.
+
+Go below the `makePizza` function declaration and we will make a function `go()`, which will make one pizza with the topping pineapple, and then we will call the function right below, like so 👇
+
+```js
+function go() {
+  const pizza = makePizza(['pineapple']);
+}
+
+go();
+```
+
+If you refresh the page, you will see we get an error.
+
+![error - uncaught in promise in console](./1062.webp)
+
+If you try to log `pizza` within the `go` function, we don't get anything, we do not even get the error logged.
+
+There are 4 ways that we could handle that.
+
+The first 2 are with `try` and `catch`.
+
+**try and catch** in JavaScript is basically what the name suggests. You try a bunch of stuff and you wrap it in a safety blanket and then if anything goes wrong, you catch the error and handle it.
+
+You would use a try and catch inside the go function like so 👇
+
+```js
+async function go() {
+  try{
+    const pizza = await makePizza(['pineapple']);
+    console.log(pizza);
+  } catch(err) {
+    console.log('Ohhhh nooo!');
+    console.log(err);
+  }
+}
+```
+
+Now if you refresh the page, you should see the following..
+
+![log the error caught inside catch block in console](./1064.webp)
+
+What happened is any code inside of the try block is in the safe zone. It won't break the entire application if some of the code within the try errors out. Instead, it will just fail over to the `.catch()`.
+
+That works with anything, not just async await.
+
+If we tried calling a function that doesn't exist such as `window.doesNotExist()`, you will see we still get the errors for that.
+
+![TypeError: window.doesNotExist() error caught in console](./1065.webp)
+
+One downside to this is the syntax messes up the beautiful async await syntax because you have to wrap everything inside of the try and catch.
+
+The benefit to that is you can have multiple promises.
+
+For example, if we tried to make multiple pineapple pizzas, if either one failed, it would be caught by the same try/catch.
+
+Another way we can do that is using what Wes refers to as "mix and match", meaning that we can use async/await but use the promise syntax for error handling.
+
+Let's go and get rid of the try/catch we just added all together.
+
+Instead, lets make a function `handleError`.
+
+```js
+function handleError(err) {
+  console.log('Ohhhh nooo');
+  console.log(err);
+}
+```
+
+Normally within function like `handleError` you would want to display the error in the UI to your user, send it off to an error handling service to log it, or something like that so you know what is going on, on the clients side.
+
+In our case, we are just logging "Oh no!" and get the error.
+
+What we can do is now chain a `.catch()` to the end of our `makePizza` call from within our async `go` function and pass its reference to `handleError`.
+
+```js
+async function go() {
+  const pizza = await makePizza(['pineapple']).catch(handleError);
+  console.log(pizza);
+}
+```
+
+Now when it runs, it will give us "oh nooo. Seriously? get out" and then logs undefined.
+
+![attaching catch block to the end of makePizza function](./1066.webp)
+
+We are sort of mix and matching to get the best of both worlds. We are using await to get the data from the promise instead of using the `.then()`. But we are still using the other syntax which is adding a `.catch()` onto the end of the function.
+
+That approach is helpful when you want to handle the error at the time that you define the function, so you handle it inside of the function.
+
+Sometimes you want to handle the error when you call the actual function.
+
+If that is the case, we wouldn't handle it inside of the definition, but we would go down to where we call our async function and chain a `.catch()` onto there.
+
+Look at the following example below 👇
+
+```js
+function handleError(err) {
+  console.log('Ohhhh nooo');
+  console.log(err);
+}
+
+async function go() {
+  const pizza = await makePizza(['pineapple']).catch(handleError);
+  console.log(pizza);
+}
+
+go.catch(handleError);
+```
+
+![catching error by passing a handleError function as callback in console](./1067.webp)
+
+When you refresh the page you will see that the exact same thing just happened.
+
+What is interesting about that is you can also catch things that are unrelated.
+
+For example if within our `go()` function we call another function that does not yet exist, it will catch that error as well.
+
+```js
+async function go() {
+  window.doesNotExist();
+  const pizza = await makePizza(['pineapple']).catch(handleError);
+  console.log(pizza);
+}
+```
+
+You might be saying to yourself "Wes, you said that `.then()` and `.catch()` can only be used on functions that return a promise, but here you are using a `.catch` on a function that does not return a promise".
+
+`go()` doesn't return a promise, does it?
+
+Let's check by returning pizza from the function as shown below.
+
+```js
+async function go() {
+  const pizza = await makePizza(['pineapple']).catch(handleError);
+  console.log(pizza);
+  return pizza;
+}
+
+const result = go().catch(handleError);
+console.log(result);
+```
+
+What will the result be? Will we get the pizza? Will we get nothing?
+
+![function marked as async returns immediately returns a promise](./1069.webp)
+
+We get a promise! Whaaaaat?!
+
+This is a very important thing about promises in `async await`.
+
+When you mark a function as `async`, it will immediately return a promise to you.
+When a function is not marked with `async`, it is a regular function that will return the data that you want.
+
+What is possible is that you can `await` `async` functions as well, because they in themselves are promises. So you could do something as shown in the code below.
+
+```js
+go()
+  .then(result => {
+    console.log(result);
+  })
+  .catch(handleError);
+```
+
+![attaching a then block after calling a async function](./1070.webp)
+
+In that example it went straight to catch.
+
+But if instead we were making a pepperoni pizza and modified the topping to be pepperoni instead of pineapple, then we would actually get access to the pepperoni pizza.
+
+![async functions always return a promise automatically](./1071.webp)
+
+Asynchronous functions will always return a promise themselves, which means we can use the `.catch()` or the `.then()` syntax on the `async` functions if we want.
+
+Why is that useful?
+
+You often have a function with a few promises inside of it, but then you want to wait for that entire function to finish returning it's data.  If that is the case, you use a `.then().catch()` or an `await()` on it.
+
+Similarly, we do something as shown below 👇
+
+```js
+async function go() {
+  const pizza = await makePizza(['pineapple']).catch(handleError);
+  console.log(pizza);
+  return pizza;
+}
+
+async function goGo() {
+  const result = await go();
+}
+
+goGo();
+```
+
+If you refresh the page and run that, you will get an error.
+
+![uncaught in promise error in console](./1072.webp)
+
+How would you then handle that?
+
+```js
+goGo().catch(handleError);
+```
+
+![chaining catch block after the async function](./1073.webp)
+
+As you can see by chaining a `.catch()` onto it, we handle the error.
+
+You can nest promises as deep as you want and it is pretty common to have a good number of your functions marked as `async` and sort of have promises happening inside of promises. We will get into a lot more examples of that, so that might be a little confusing to you.
+
+Let's bring the examples back to `go().catch(handleError)`.
+
+That is the approach that Wes uses most often. It's sort of the best of both worlds. You can use the `await` like you want, and then you can catch them at call time.
+
+The only difference would be calling `.catch()` inside of `go()`, like so 👇
+
+```js
+async function go() {
+  const pizza = await makePizza(['pineapple']).catch(handleError);
+}
+```
+
+That is useful if you need to do something with the error inside the function like display a special modal at the time of definition, rather than at the time of call.
+
+## Handling Errors with Higher Order Functions
+
+The last way to handle an error with async/await is called a **higher order function**. We have talked about this a couple of times now.
+
+A higher order function is a function that returns another function.
+
+The way it works is you go ahead and define all of your functions, just as if you were never to have any errors. (That is the way Wes typically likes to write his code, he will write them as `async` functions and he doesn't worry about error handling inside of those functions.)
+
+When it comes time to calling that function, you have two options. You can catch it at run time like `go().catch(handleError)` or you can make a safe function with a higher order function.
+
+Create a higher order function, `makeSafe` that takes in 2 parameters:
+1. The function that we want to make safe
+1. The function we want to be responsible for handling the error
+
+What this function will do is it will return another function which then calls our original function and chains the `.catch()` onto the end.
+
+This might not make sense to you, it didn't make sense to Wes for years, so don't sweat it if that's confusing.
+
+```js
+// make a safe function with a HOF
+function makeSafe(fn, errorHandler) {
+  return function() {
+    fn().catch(errorHandler);
+  }
+}
+```
+
+If we just tried calling `go()` we would get an exception.
+
+But if we instead call `go` by first wrapping it in the `makeSafe(go)` function, as shown below, it will handle the error gracefully.
+
+```js
+const safeGo = makeSafe(go, handleError);
+safeGo();
+```
+
+That is because `makeSafe` takes in a function, and then returns a new function that is just your original function with a `.catch()` tacked onto the end of it.
+
+![makeSafe function in console](./1074.webp)
+
+Now we have the function `safeGo` now that we can just call it without worrying about anything.
+
+![execute function safeGo without worrying about anything](./1075.webp)
+
+That works just fine.
+
+Why would that be better than catching it like we were with `go().catch(handleError)` ?
+
+More often than not, Wes has a function like `safeGo` or a function that does a specific task, and he uses that like 30 different times throughout his application. If he has to write the code to handle the error 30 different times, that is pretty cumbersome.
+
+What you can do instead is make the safe function once (using `makeSafe` in our example),  and then you can carry the safe function and run it whenever you want, knowing the error handler will have been attached on.
+
+Those are a couple of different options you can use.
+
+Wes most often catches errors at run time using `go().catch(handleError)`, and then when he is in Node/Express land, he tends to reach for a higher order function.
