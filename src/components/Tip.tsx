@@ -1,12 +1,12 @@
-import { TipStyles } from '@/styles/TipStyles.module.css';
-import TipMeta from './TipMeta';
-import { parseSocialLinks, populateSocialLinks, type SocialLink } from '@/utils/parseSocialLinks';
-import { XMediaDisplay } from './media/XMedia';
-import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
 import { fetchSocialDetails } from '@/lib/socials/fetchers';
-import { SocialStats } from './SocialStats';
 import type { MDXResult } from '@/lib/types';
+import { socialStatsContainer } from '@/styles/SocialVideoStats.module.css';
+import { TipStyles } from '@/styles/TipStyles.module.css';
+import { type SocialLink, parseSocialLinks, populateSocialLinks } from '@/utils/parseSocialLinks';
+import { SocialStats } from './SocialStats';
+import TipMeta from './TipMeta';
 import mdxComponents from './mdxComponents';
+import { XMediaDisplay } from './media/XMedia';
 async function TwitterMedia({ twitterLink }: { twitterLink: SocialLink | undefined }) {
   const tweetDetails = twitterLink ? await fetchSocialDetails(twitterLink) : null;
   if (!tweetDetails) {

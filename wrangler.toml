@@ -3,7 +3,7 @@ name = "wesbos"
 compatibility_date = "2024-11-11"
 compatibility_flags = ["nodejs_compat"]
 tail_consumers = [{service = "wesbos-tail"}]
-
+upload_source_maps = true
 # The binding name must be "ASSETS" when the cache is enabled
 [assets]
 directory = "./dist/assets"
