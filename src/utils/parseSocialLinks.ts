@@ -35,6 +35,8 @@ export function parseSocialLink(link: string): SocialLink | undefined {
   const url = new URL(link);
   const pathname = url.pathname;
 
+  console.log(`PARSING LINK: ${link} ${url.hostname} ${pathname}`);
+
   // Twitter/X handling
   if (url.hostname.includes('twitter.com') || url.hostname.includes('x.com')) {
     let [, handle, , postId] = pathname.split('/');
@@ -107,7 +109,6 @@ export function parseSocialLink(link: string): SocialLink | undefined {
 
   // Threads handling
   if (url.hostname.includes('threads.net')) {
-    console.log('THREADS', { pathname });
     const parts = pathname.split('/').filter(Boolean);
     const handle = parts?.[0]?.replace('@', '');
     const postId = parts?.[2]?.split('?')[0];
