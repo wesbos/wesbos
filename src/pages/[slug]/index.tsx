@@ -35,6 +35,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
         <H>{post.frontmatter.title}</H>
         <div className={postMeta}>
           <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+
           <span>{post.frontmatter.category.join(', ')}</span>
           <a rel="noopener noreferrer" target="_blank" href={editURL}>
             Edit Post <IoLogoGithub className="inline" />
