@@ -1,14 +1,13 @@
-'use server';
-import { desc } from 'drizzle-orm';
-import { eq } from 'drizzle-orm';
 import { getDb } from '@/db/db';
 import { type Post, postsTable } from '@/db/schema';
 import type { SocialLink, SocialLinkType } from '@/utils/parseSocialLinks';
-import { fetchTweetDetailsFromApi } from './twitter-fetcher';
-import { fetchLinkedInDetailsFromApi } from './linkedInFetcher';
+import { desc } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { fetchBlueSkyDetailsFromApi } from './blueSkyFetcher';
 import { fetchInstagramDetailsFromApi } from './instagramFetcher';
+import { fetchLinkedInDetailsFromApi } from './linkedInFetcher';
 import { fetchTiktokDetailsFromApi } from './tiktokFetcher';
+import { fetchTweetDetailsFromApi } from './twitter-fetcher';
 
 const fetchers: Record<SocialLinkType, (link: SocialLink) => Promise<Post['postData'] | undefined>> = {
   twitter: fetchTweetDetailsFromApi,

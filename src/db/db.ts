@@ -1,4 +1,3 @@
-import 'server-only';
 import * as schema from '@/db/schema';
 import { getCloudflareContext } from '@/lib/hono';
 import { drizzle } from 'drizzle-orm/d1';
