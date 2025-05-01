@@ -7,6 +7,11 @@ settings:
 overrides:
   axios: 1.7.9
 
+patchedDependencies:
+  media-chrome:
+    hash: 4crqrx3azzdap3m7r2zqp44y64
+    path: patches/media-chrome.patch
+
 importers:
 
   .:
@@ -88,7 +93,7 @@ importers:
         version: 0.30.17
       media-chrome:
         specifier: ^4.9.0
-        version: 4.9.0(react@19.1.0)
+        version: 4.9.0(patch_hash=4crqrx3azzdap3m7r2zqp44y64)(react@19.1.0)
       normalize.css:
         specifier: ^8.0.1
         version: 8.0.1
@@ -5900,7 +5905,7 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-  media-chrome@4.9.0(react@19.1.0):
+  media-chrome@4.9.0(patch_hash=4crqrx3azzdap3m7r2zqp44y64)(react@19.1.0):
     dependencies:
       ce-la-react: 0.1.3(react@19.1.0)
     transitivePeerDependencies:

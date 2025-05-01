@@ -96,6 +96,9 @@
   "pnpm": {
     "overrides": {
       "axios": "1.7.9"
+    },
+    "patchedDependencies": {
+      "media-chrome": "patches/media-chrome.patch"
     }
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"

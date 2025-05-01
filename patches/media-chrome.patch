@@ -1,0 +1,13 @@
+diff --git a/dist/utils/i18n.js b/dist/utils/i18n.js
+index 6f99bec716a949242160cd547fd6a1766a22bac6..fc678402ab5de647258ed1c4b61b20953ddbfbc9 100644
+--- a/dist/utils/i18n.js
++++ b/dist/utils/i18n.js
+@@ -3,7 +3,7 @@ import { En } from "../lang/en.js";
+ const translationsLanguages = {
+   en: En
+ };
+-let currentLanguage = ((_a = globalThis.navigator) == null ? void 0 : _a.language.split("-")[0]) || "en";
++let currentLanguage = ((_a = globalThis.navigator) == null ? void 0 : _a.language?.split("-")[0]) || "en";
+ const setLanguage = (langCode) => {
+   currentLanguage = langCode;
+ };
