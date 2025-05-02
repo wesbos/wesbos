@@ -4,6 +4,7 @@ let isInitialized = false;
 const isClient = typeof window !== 'undefined';
 
 export function analytics() {
+  console.log(`Setting up analytics`);
   if (isClient && !isInitialized) {
     Counterscale.init({
       siteId: `wesbos${import.meta.env.DEV ? '-dev' : ''}`,
