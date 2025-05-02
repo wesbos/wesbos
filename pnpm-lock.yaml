@@ -19,6 +19,9 @@ importers:
       '@cloudflare/puppeteer':
         specifier: ^1.0.2
         version: 1.0.2
+      '@counterscale/tracker':
+        specifier: ^3.0.0
+        version: 3.0.0
       '@mdx-js/loader':
         specifier: ^3.1.0
         version: 3.1.0(acorn@8.14.1)(webpack@5.99.5)
@@ -430,6 +433,10 @@ packages:
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
+
+  '@counterscale/tracker@3.0.0':
+    resolution: {integrity: sha512-sXK1y02GhufB+z4Eo15ygxGYyoHhUFgEQh1kRLxPPNjPCOFVuXkr0EJ6/3Jb9QJu2nh8SxezsAr4iAd30zg8RQ==}
+    engines: {node: '>=20.0.0'}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -3850,6 +3857,8 @@ snapshots:
 
   '@cloudflare/workerd-windows-64@1.20250428.0':
     optional: true
+
+  '@counterscale/tracker@3.0.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
