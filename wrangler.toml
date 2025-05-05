@@ -36,5 +36,5 @@ enabled = true
 head_sampling_rate = 1 # optional. default = 1.
 
 routes = [
-  { pattern = "wesbos.com", custom_domain = true }
+  { pattern = "rsc.wesbos.com", custom_domain = true }
 ]
