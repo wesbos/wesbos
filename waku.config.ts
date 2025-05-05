@@ -4,6 +4,7 @@ export default defineConfig({
   unstable_honoEnhancer: './waku.hono-enhancer',
   middleware: [
     './src/middleware/og',
+    './src/middleware/trailingSlash',
     './src/middleware/errorReporting',
     'waku/middleware/context',
     'waku/middleware/dev-server',
