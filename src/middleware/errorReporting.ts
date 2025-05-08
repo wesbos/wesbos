@@ -1,4 +1,5 @@
 import * as Sentry from "@sentry/cloudflare";
+import type { Middleware } from "waku/config";
 
 const errorReportingMiddleware: Middleware = (
   options: MiddlewareOptions,
@@ -6,13 +7,10 @@ const errorReportingMiddleware: Middleware = (
   options.unstable_onError.add((err: unknown, ctx: HandlerContext, origin: 'handler' | 'rsc' | 'html'): void => {
     console.log('Sent error to Sentry', Sentry.captureException(err));
     console.log('STACK TRACE:');
+
     console.error(err.stack);
-    // capture it?
-    const captured = Error.captureStackTrace(err);
-    console.log('CAPTURED STACK TRACE:');
-    console.error(captured);
-
-
+    // console.log(`Context`, ctx);
+    // console.log(`Origin`, origin);
   });
   return async (_ctx: HandlerContext, next: () => Promise<void>): Promise<void> => {
     await next();

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "waku dev",
-    "start": "waku start --with-cloudflare",
+    "start": "wrangler dev",
     "build-cf-types": "wrangler types --experimental-include-runtime",
     "build": "waku build --with-cloudflare",
     "worker:deploy": "wrangler deploy",
