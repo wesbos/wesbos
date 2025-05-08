@@ -5,6 +5,8 @@ const errorReportingMiddleware: Middleware = (
   options: MiddlewareOptions,
 ): ((ctx: HandlerContext, next: () => Promise<void>) => Promise<void>) => {
   options.unstable_onError.add((err: unknown, ctx: HandlerContext, origin: 'handler' | 'rsc' | 'html'): void => {
+    const url = ctx.req.url;
+    console.log(`Error Happened on : ${url}`);
     console.log('Sent error to Sentry', Sentry.captureException(err));
     console.log('STACK TRACE:');
 
