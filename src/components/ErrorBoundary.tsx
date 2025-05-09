@@ -20,19 +20,26 @@ export class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
+    if (error.message === 'Not Found') {
+      // this isn't a error, it's expected.
+      // TODO We should log these somewhere, probably serverside
+      console.log(`Not Found Error`);
+      return;
+    }
     console.log(`Caught error: ${error.message}`);
-    console.error(
-      error,
-      // Example "componentStack":
-      //   in ComponentThatThrows (created by App)
-      //   in ErrorBoundary (created by App)
-      //   in div (created by App)
-      //   in App
-      info.componentStack,
-      // Only available in react@canary.
-      // Warning: Owner Stack is not available in production.
-      // React.captureOwnerStack()
-    );
+    console.log({ error, info });
+    // console.error(
+    //   error,
+    //   // Example "componentStack":
+    //   //   in ComponentThatThrows (created by App)
+    //   //   in ErrorBoundary (created by App)
+    //   //   in div (created by App)
+    //   //   in App
+    //   info.componentStack,
+    //   // Only available in react@canary.
+    //   // Warning: Owner Stack is not available in production.
+    //   // React.captureOwnerStack()
+    // );
     this.setState({ hasError: true, error: error.message, info });
   }
 
