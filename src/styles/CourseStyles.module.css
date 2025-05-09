@@ -1,0 +1,58 @@
+.CourseListStyles {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+}
+
+.CourseListStyles > * {
+  padding: 2rem;
+  border: 1px solid var(--lightGray);
+}
+
+.CourseListStyles > * h3 {
+  margin: 0;
+}
+
+.CourseListStyles > * h3 + p {
+  margin-top: 0;
+}
+
+.CourseListStyles > * img {
+  max-width: 300px;
+  float: left;
+  margin-right: 2rem;
+}
+
+@media (max-width: 800px) {
+  .CourseListStyles > * img {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .CourseListStyles > * {
+    padding: 0;
+    border: 0;
+    border-top: 2px solid var(--yellow);
+    padding-top: 4rem;
+  }
+  .CourseListStyles > * img {
+    width: 100%;
+  }
+  .CourseListStyles > * a {
+    font-size: 1.5rem;
+  }
+}
+
+.PriceTag {
+  text-transform: uppercase;
+  display: block;
+  font-size: 1.1rem;
+  color: black;
+}
+
+.PriceTag:before {
+  content: "$ ";
+  color: var(--yellow);
+  font-weight: bold;
+}

@@ -1,0 +1,194 @@
+.FooterInner {
+  width: 100%;
+  color: var(--dark);
+  display: grid;
+  grid-gap: 3rem;
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+  grid-template-columns: repeat(3, minmax(230px, 1fr));
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+  a {
+    color: var(--light);
+  }
+  p {
+    font-size: 1.2rem;
+  }
+}
+.FooterBottomStyles {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: none;
+  color: var(--light);
+}
+
+.FooterStyles {
+  background: var(--dark) var(--whiteGrit);
+  background-size: 500px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+  /* clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%); */
+  overflow: hidden;
+  background-size: 300px;
+
+  .socialLink {
+    background: var(--dark);
+    background: red;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--light);
+    display: inline-flex;
+    align-items: center;
+    margin: 2px;
+    &[href*="youtube.com"] {
+      /* Kind of interesting, so I'm leaving this in: https://twitter.com/wesbos/status/1248252653953601538 */
+      background: #ff0000; /* Red */
+      background: #dd0000; /* AA Grade */
+      background: #ec1212;
+    }
+    &[href*="github.com"] {
+      background: var(--light);
+      color: var(--dark);
+    }
+    & svg {
+      margin-right: 3px;
+    }
+  }
+}
+
+.FooterHeading {
+  margin: 0;
+  padding: 2px;
+  margin-bottom: 2rem;
+  text-align: center;
+  margin-top: -30px;
+  /* TODO dirty */
+  background: none;
+  & svg {
+    position: relative;
+    margin-right: 3px;
+    display: inline;
+  }
+  & a {
+    text-decoration: none;
+  }
+}
+
+.FooterBlock {
+  padding: 2rem;
+  background-color: var(--light);
+  background-image: var(--blackGrit);
+  background-size: 500px;
+
+  p {
+    font-size: 1.6rem;
+  }
+  a {
+    color: var(--dark);
+  }
+}
+
+/* Instagram Widget Styles */
+.InstaStyles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  @media (max-width: 320px) {
+    grid-template-columns: 1fr;
+    & img {
+      width: 100%;
+    }
+  }
+}
+
+.StoriesStyles {
+  /* a */
+  font-size: 0;
+  display: flex;
+  flex-wrap: wrap;
+  & .story {
+    width: 30px;
+    height: 89px;
+    background-size: cover;
+    font-size: 0;
+    display: block;
+  }
+}
+
+.Tweets {
+  display: grid;
+  gap: 20px;
+}
+/* Twitter Styles */
+.TweetStyles {
+  img {
+    margin-right: 5px;
+    position: relative;
+    border-radius: 5px;
+  }
+}
+
+.TweetLink {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  align-items: center;
+  &:has(> img) {
+    grid-template-columns: 100px auto;
+  }
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1.4;
+  &:before {
+    display: none;
+  }
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.Tweet {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.TweetMeta {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  align-items: center;
+  justify-content: end;
+  height: 2lh;
+  border-bottom: 1.5px solid black;
+  .media {
+    font-size: 0;
+  }
+  & > span {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    &[title*="Hearts"] {
+      svg {
+        color: red;
+      }
+    }
+    &:first-child {
+      flex-grow: 1;
+      font-weight: 600;
+    }
+  }
+}
+
+.terms {
+  text-decoration: none;
+  &:before {
+    display: none;
+  }
+}

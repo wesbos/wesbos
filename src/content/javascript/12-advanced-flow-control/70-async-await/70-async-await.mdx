@@ -1,0 +1,346 @@
+---
+tocTitle: 70 - Async/Await
+title: Async/Await
+slug: 12-advanced-flow-control/70-async-await
+section: 12 - Advanced Flow Control
+category:
+ - JavaScript
+ - Async/Await
+---
+
+Although in the last lesson we refactored our callback hell example to use promises, the syntax still isn't that great because we are nesting at least one level deep inside of callback hell with the `.then()` syntax.
+
+`async/await` is a new syntax that will allow us to use the keyword `async` and the keyword `await` for a much nicer, easier to read looking code and we will see how that works in just a second.
+
+Your functions that return promise still stay exactly the same way. There is nothing that needs to change about your promise generating functions. We need to change where we actually call the code to use `async/await`.
+
+Go into the `playground` folder and make a new file called `async-await.html` and add our base HTML.
+
+Add a script tag and create that wait function we have built a few times now.
+
+```html
+<script>
+function wait(ms = 0) {
+  return new Promise((resolve)=>{
+    setTimeout(resolve,ms);
+  })
+}
+</script>
+```
+
+Now if we want to use the `async await` syntax there are a few things that need to happen.
+
+First of all, you can only use `await` inside of a function that is marked as `async`.
+
+Make a function `go()` which logs "starting", and "ending". In order to make it wait for two seconds between the logs, you would add the following code 👇
+
+```js
+function go() {
+  console.log('Starting');
+  wait(2000);
+  console.log('Ending');
+}
+
+go();
+```
+
+Now we know if we run `go` on page load, we will get "starting" and "ending" immediately.
+
+![starting and ending log in the console](./1050.webp) 2:32
+
+What async await allows us to do is put the keyword `await` in front of a promise based function and it will sort of temporarily pause that function from running until that promise is resolved.
+
+```js
+function go() {
+  console.log('Starting');
+  await wait(2000);
+  console.log('ending')
+}
+
+go();
+```
+
+If you modify the code as shown above and then refresh the page, you will see an error in the console.
+
+![uncaught syntax error: await is only valid in async function](./1051.webp)
+
+>Uncaught SyntaxError: await is only valid in async function
+
+To fix this, we need to mark our function as `async`. That tells the code that somewhere inside of the function, we will be doing some awaiting.
+
+Mark the function `async` as shown below.
+
+```js
+async function go() {
+  console.log('Starting');
+  await wait(2000);
+  console.log('ending');
+}
+```
+
+Now if you go ahead and save the function and then refresh, we will get "starting" logged to the console and then two seconds later we will get "ending".
+
+That is beautiful because we achieved that without chaining a bunch of `.then()`.
+
+If we wanted to wait for another period of time in the same function before executing something else, we can.
+
+```js
+async function go() {
+  console.log('Starting');
+  await wait(2000);
+  console.log('running');
+  await wait(2000);
+  console.log('ending');
+}
+```
+
+![starting running and ending in console](./1052.webp)
+
+We are now able to just stick these calls to our `wait` function wherever we want within our `go` function and the execution of that function will temporarily pause until the promise has been resolved.
+
+Marking functions as `async` can work with any type of function.
+
+Let's go over all the functions just to demonstrate.
+
+You can add `async` to a function declaration as shown below 👇
+
+```js
+// Function Declaration
+async function fd() {}
+```
+
+You can also mark an arrow function as async 👇
+
+```js
+// arrow function
+const arrowFn = async () => {}
+```
+
+You can also mark callback functions async.
+
+For example, if you had an event listener, you could make the callback function async as shown below 👇
+
+```js
+window.addEventListener('click', async function() {
+
+})
+```
+
+You can also make methods async.
+
+```js
+const person = {
+  sayHi: async function() {
+
+  }
+}
+```
+
+You can also mark methods async using the method shorthand and function property, as shown below.
+
+```js
+const person = {
+  // method
+  sayHi: async function() {
+
+  },
+  // method shorthand
+  async sayHello() {
+
+  },
+  // function property
+  sayHey: async () => {
+
+  }
+}
+```
+
+Essentially whenever you have a function, put the word `async` in front of it and that will allow you to do awaiting inside of it.
+
+You cannot do what is referred to as top level await.
+
+If you go take the code within the go function and try to run it directly in the script tag and try calling `wait` as shown below, it will not work 👇
+
+```js
+console.log('one');
+await wait(200);
+console.log('two');
+```
+
+We get an error in the console.
+
+>Uncaught SyntaxError: await is only valid in async function
+
+![uncaught syntax error: await is valid only in async function in console](./1053.webp)
+
+You can however copy and paste the call to the wait function and call it directly from devtools console.
+
+Let's take a look at some other examples.
+
+Go to our `promises.html` file that we have and let's grab the `makePizza` function, and move it over to the `async await` file.
+
+Both of those functions return a promise.
+
+![both wait and makePizza functions returning a promise](./1054.webp)
+
+Go to the bottom of the script tag and make another async function `makeDinner`.
+
+Within that function we will call `makePizza` to make `pizza1` and then we will log it.
+
+```js
+async function makeDinner() {
+  const pizza1 = makePizza(['pepperoni']);
+  console.log(pizza1);
+}
+
+makeDinner();
+```
+
+If you comment out the `go` function and the code where we call `go` and instead just run the code we added right above, you will see that we get a promise logged to the console.
+
+![pending promise in console](./1055.webp)
+
+That is because we are running the function and storing it in a variable, which will store the promise in the variable. Note that we call it "await" instead of "wait" because it is asynchronously waiting. Meaning it won't actually pause all of JavaScript, it's not going to block the rest of the JavaScript from running.
+
+If we instead put an `await` in front of our `makePizza` function, we will asynchronously be waiting for the pizza to be done, and when it is, we will simply log it.
+
+```js
+async function makeDinner() {
+  const pizza1 = await makePizza(['pepperoni']);
+  console.log(pizza1);
+}
+
+makeDinner();
+```
+
+![pizza with pepperoni log in console](./1056.webp)
+
+Similarly we can do that with pizza2 as well.
+
+```js
+async function makeDinner() {
+  const pizza1 = await makePizza(['pepperoni']);
+  console.log(pizza1);
+  const pizza2 = await makePizza(['mushrooms']);
+  console.log(pizza2);
+}
+
+makeDinner();
+```
+
+![pizza with pepperoni and pizza with mushrooms in console](./1057.webp)
+
+Now let's say we want to wait for both of those to be done because the way it is coded right now could be possibly inefficient.
+
+This is what is referred to as a **foot gun** in the industry, when you give somebody the tools it is possible they could write code that is not performant.
+
+What that means is if you are making a pepperoni and a mushroom pizza, the way we have coded it, you have to wait for the pepperoni pizza to be created, baked and taken out before we even start making the next pizza.
+
+It is likely that we could be making the pizzas concurrently, so what we can do is instead of waiting for one, then moving onto the next line and making the next one, we will remove the await from both of them, make them both into promises and then make one big promise which we can await.
+
+```js
+async function makeDinner() {
+  const pizzaPromise1 = makePizza(['pepperoni']);
+  const pizzaPromise2 = makePizza(['mushrooms']);
+  const pizzas = Promise.all([pizzaPromise1, pizzaPromise2]);
+  console.log(pizzas);
+}
+```
+
+If you do it like above, we will still only get the big promise.
+
+![promise log with promise status as resolved in console](./1058.webp)
+
+We need to modify the code to await the mamma promise like so 👇
+
+```js
+const pizzas = await Promise.all([pizzaPromise1, pizzaPromise2]);
+```
+
+![resolved promise array with async await in console](./1059.webp)
+
+Now we get the actual pizzas instead of just the promises. Go ahead and destructure the two pizzas that are returned.
+
+```js
+const [pep, mush] = await Promise.all([pizzaPromise1, pizzaPromise2]);
+console.log(pep, mush);
+```
+
+![log of resolved promises in console](./1060.webp)
+
+What we want to do now is go back to the code that we wrote early on with our promise chain and rewrite it one more time into async await.
+
+![rewrite the promise chain using async await syntax](./1061.webp)
+
+Take the entire animate function and copy it and rename it to `animate2`.
+
+Modify the click event to call `animate2` as shown below.
+
+```js
+go.addEventListener('click', animate2);
+```
+
+Go back to the `animate2` function.
+
+The first thing you need to do is mark the function as `async` and then to check that it still works.
+
+```js
+async function animate2(e) {
+
+}
+```
+
+Open it up in the browser to make sure that it still works. Then refactor the animate function to instead await as shown below.
+
+```js
+async function animate2(e) {
+  const el = e.currentTarget;
+  // 1. Change the text to GO when clicked.
+  el.textContent = 'GO';
+  // 2. Make it a circle after 2 seconds
+  await wait(200);
+  el.classList.add('circle');
+  await wait(500);
+  el.classList.add('red');
+  await wait(250);
+  el.classList.remove('circle');
+  await wait(500);
+  el.classList.remove('red');
+  el.classList.add('purple');
+  await wait(500);
+  el.classList.add('fadeOut');
+}
+
+function animate(e) {
+  const el = e.currentTarget;
+  // 1. Change the text to GO when clicked.
+  el.textContent = 'GO';
+  // 2. Make it a circle after 2 seconds
+  wait(200)
+    .then(() => {
+      el.classList.add('circle');
+      return wait(500);
+    })
+    .then(() => {
+      // 3. Make it red after 0.5s
+      el.classList.add('red');
+      return wait(250);
+    })
+    .then(() => {
+      el.classList.remove('circle');
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.remove('red');
+      el.classList.add('purple');
+      return wait(500);
+    })
+    .then(() => {
+      el.classList.add('fadeOut');
+    })
+}
+```
+
+As you can see in `animate2` there are no `.then()` and no callbacks, we simply just pause the function from running with our `await` in front of a function that returns to us a promise.
+
+In the next video we will look at how to handle errors with `async await` and we will go over a lot of the browser APIs that come with `async await`.

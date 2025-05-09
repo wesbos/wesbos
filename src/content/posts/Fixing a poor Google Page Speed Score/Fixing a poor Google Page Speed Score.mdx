@@ -1,0 +1,47 @@
+---
+title: Fixing a poor Google Page Speed Score
+slug: wordpress-page-speed
+image: pagespeed-header.webp
+category:
+ - Other
+date: 2015-08-26T14:40:02
+id: 3606
+---
+
+<a href="https://developers.google.com/speed/pagespeed/insights">Google Page Speed Insights</a> gives your site a score for speed an useablilty, and while I had a great score for useability, my score for speed was a pathetic **51/100**. My site is WordPress, and because of the plugin ecosystem inserts many blocking assets into your head, WordPress often gets flack for being slow.
+
+So - armed with an hours worth of time, I set out to fix my own website while recording my progress. I'm far from a performance specialist, but hopefully this shows you that making your sites fast is a relatively simple task that can pay off huge for your users.
+
+I mention a few WordPress/Apache specific things in this video, but the tips should apply to any site/server config.
+
+https://youtu.be/BfKf7KCmfRY
+
+Links:
+
+
+
+* <a href="https://wordpress.org/plugins/zencache/">ZenCache</a>
+
+* <a href="https://kraken.io/">Kraken</a> and <a href="https://wordpress.org/plugins/kraken-image-optimizer/">Kraken WordPress Plugin</a>
+
+
+
+`.htaccess` config:
+
+
+```xml
+# 1 Week
+Header set Cache-Control "max-age=604800, public, must-revalidate"
+
+<IfModule deflate_module>
+  <IfModule filter_module>
+    AddOutputFilterByType DEFLATE text/plain text/html
+    AddOutputFilterByType DEFLATE text/xml application/xml application/xhtml+xml application/xml-dtd
+    AddOutputFilterByType DEFLATE application/rdf+xml application/rss+xml application/atom+xml image/svg+xml
+    AddOutputFilterByType DEFLATE text/css text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE font/otf font/opentype application/font-otf application/x-font-otf
+    AddOutputFilterByType DEFLATE font/ttf font/truetype application/font-ttf application/x-font-ttf
+  </IfModule>
+</IfModule>
+
+```
