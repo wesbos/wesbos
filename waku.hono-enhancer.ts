@@ -25,7 +25,8 @@ const unstable_honoEnhancerDev = ((createApp: (app: Hono) => Hono) => {
     appToCreate.use('/wes', async (c, next) => {
       return new Response('Hello Wes');
     });
-    const app = withSentry(createApp(appToCreate));
+    const app = createApp(withSentry(appToCreate));
+    console.log('app', app);
 
     return {
       fetch: async (req: Request) => {
@@ -39,10 +40,11 @@ const unstable_honoEnhancerDev = ((createApp: (app: Hono) => Hono) => {
 // PROD
 const unstable_honoEnhancerProd = ((createApp: (app: Hono) => Hono) => {
   return (appToCreate: Hono) => {
-    const app = withSentry(createApp(appToCreate));
-    app.use('/wes', async (c, next) => {
+    appToCreate.use('/wes', async (c, next) => {
       return new Response('Hello Wes from production!');
     });
+    const app = createApp(withSentry(appToCreate));
+    console.log('app', app);
     return app;
   }
 });

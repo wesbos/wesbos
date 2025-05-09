@@ -1,4 +1,5 @@
-import type { Middleware } from 'waku/config';
+import * as Sentry from "@sentry/cloudflare";
+import type { Middleware } from "waku/config";
 
 const errorReportingMiddleware: Middleware = (
   options: MiddlewareOptions,
@@ -10,7 +11,7 @@ const errorReportingMiddleware: Middleware = (
     //  return;
     // }
     console.log(`Error Happened on : ${url}`);
-    // console.log('Sent error to Sentry', Sentry.captureException(err));
+    console.log('Sent error to Sentry', Sentry.captureException(err));
     console.log('STACK TRACE:');
 
     console.error(err.stack);
