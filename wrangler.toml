@@ -1,0 +1,36 @@
+main = "./dist/worker/serve-cloudflare.js"
+name = "wesbos"
+compatibility_date = "2024-11-11"
+compatibility_flags = ["nodejs_compat"]
+tail_consumers = [{service = "wesbos-tail"}]
+upload_source_maps = true
+# The binding name must be "ASSETS" when the cache is enabled
+[assets]
+directory = "./dist/assets"
+binding = "ASSETS"
+html_handling = "drop-trailing-slash" # "single-page-application" | "404-page" | "none"
+not_found_handling = "404-page"
+
+# Browser for Puppeteer
+[browser]
+binding = "MYBROWSER"
+
+[[ d1_databases ]]
+binding = "DB"
+database_name = "wes-bos-social-cache"
+database_id = "7a07786d-8f53-4578-86a4-933d939c16bb"
+migrations_dir = "migrations"
+
+[[kv_namespaces]]
+binding = "OG"
+id = "d5ca915ca3b54dc48a19b70deaf274af"
+preview_id = "b8399cb69a284320bc97b3efbc3af6b6"
+
+[[kv_namespaces]]
+binding = "NEXT_CACHE_WORKERS_KV"
+id = "e09de51f462241728f22e36bb3bcbedc"
+preview_id = "6160abb870834617ace162b7e567853f"
+
+[observability]
+enabled = true
+head_sampling_rate = 1 # optional. default = 1.

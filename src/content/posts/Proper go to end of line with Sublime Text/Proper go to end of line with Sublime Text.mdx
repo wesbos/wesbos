@@ -1,0 +1,43 @@
+---
+title: Proper go to end of line with Sublime Text
+slug: sublime-text-end-of-line-wrap
+image: ss-2013-07-31-at-11.25.57-AM.png
+category:
+ - Sublime Text
+date: 2013-07-31T11:30:01
+id: 928
+---
+
+When working with wrapped lines in Sublime Text, the default go to End of line doesn't work as expected. When you hit  `cmd + →` it will bring you to the end of the visual line, something you rarely want when working with wrapped lines:
+
+<img alt="" src="ss-2013-07-31-at-11.19.26-AM.png" width="539" height="314" />
+
+Watch the video and read below on a quick fix to this problem.
+
+https://youtu.be/ngTMcHFDuQ8
+
+The solution to this is to overwrite the default key bindings and set it to move to **hardeol** rather than just **eol**.
+
+Place the following keyboard shortcuts in your key bindings file located at `Preferences → Key Bindings - User`. The first two control the jump to end and beginning of line while the second two do the same, but while selecting the text.
+
+You may want to update the key bindings based on your own preference.
+<br/><br/>
+
+
+```
+
+// Fix End of line
+,{ "keys": ["super+right"], "command": "move_to", "args": {"to": "hardeol", "extend": false} }
+// Fix Beginning of line
+,{ "keys": ["super+left"], "command": "move_to", "args": {"to": "hardbol", "extend": false} }
+// Fix end of line + select
+,{ "keys": ["super+shift+right"], "command": "move_to", "args": {"to": "hardeol", "extend": true} }
+// Fix beginning of line + select
+,{ "keys": ["super+shift+left"], "command": "move_to", "args": {"to": "hardbol", "extend": true} }
+
+
+```
+
+<br/><br/>
+
+<a href="https://sublimetextbook.com/?utm_source=eol&utm_medium=banner&utm_campaign=product"><img src="facebook-share2.webp" /></a>

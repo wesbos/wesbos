@@ -1,0 +1,77 @@
+---
+title: Twitter Cropping Vertical Video
+slug: twitter-cropping-vertical-video
+category:
+ - Business
+date: 2022-11-14T12:56:00
+---
+
+TLDR:
+
+1. Use 1080x1920 for TikTok, YouTube Shorts and Instagram Reels.
+2. I've settled on quickly re-editing my 1080x1920 into 1920x1920 for Twitter and Linked-In. The square video embeds very nicely on both web and mobile feeds, and the extra room is great!
+2. Use 1105 x 1920 on Twitter if you want "vertical" without cropping
+4. Use 1440 x 1920 on Twitter for a bit more width
+5. I made a video of [how I edit here](https://www.youtube.com/watch?v=Jc06ZeO29R4)
+
+
+I've been doing a bunch of vertical video lately for [TikTok](https://tiktok.com/@wesbos), [Twitter](https://twitter.com/wesbos), [YouTube Shorts](https://www.youtube.com/c/WesBos/shorts), [Instagram Reels](https://instagram.com/wesbos), and even [LinkedIn](https://linkedin.com/in.wesbos).
+
+Vertical video is typically 1080 x 1920.
+
+Inside of that, there is a "safe zone" - the area where its safe to put things like text that wont be cut off.
+
+I've been keeping to 45px gutter on the left + right, which has worked so far.
+
+Recently I received a few reports of my code being cut off on Twitter mobile apps - very frustrating.
+
+To figure out which devices were cropping it, and how much I sent this tweet out:
+
+https://twitter.com/wesbos/status/1592266192156524544
+
+100 Replies later, I've narrowed it down to this.
+
+### Devices that Crop
+
+It seems it's just iPhones, and the ones that do crop, all crop the same.
+
+There were many instances where the same phone cropped and [didn't](https://twitter.com/invisiblea/status/1592266990424838144).
+
+* ~98 px from the left and right.
+* ~190px from the bottom
+* 0px from the top
+
+* iPhone XR
+* iPhone XS Max
+* iPhone 11
+* iPhone 11 Pro Max
+* iPhone 12 Mini
+* iPhone 12
+* iPhone 12 Pro
+* iPhone 13 Pro
+* iPhone 13 Mini
+
+Almost every phone on this list had at least one instance of not cropping. So this is clearly an issue with Twitter.
+
+There was only [one instance](https://twitter.com/vegasgeek/status/1592269450488983553) of it cropping the sides, but not the bottom.
+
+
+### What to do? - 1105 x 1920
+
+Since the video on Twitter doesn't _have_ to be 1080 x 1920, I thought about adding some width to the video, to see if that would stop it from cropping.
+
+Adding height made it worse.
+
+After a few tests, I found that adding 25px to each side tricked whatever aspect ratio twitter was looking for into showing the entire video.
+
+I tried a bunch of sizes, and the lowest width I could find was 1105, where as 1100 was cropped.
+
+## Final Thoughts
+
+I tried uploading the same 1105x1920 to TikTok, and that seems to show the entire video as well, but then you lose the "full screen" feel.
+
+So now I need to decide if I will export two copies of my video - one for Twitter, and one for everything else.
+
+## Tips
+
+Ill leave this area open to Pull Requests from anyone who has sizing tips for these videos

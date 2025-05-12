@@ -1,0 +1,140 @@
+.LogoStyles {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 10px;
+  background: var(--white);
+}
+
+.NavStyles {
+  --border-size: 2.5px;
+  border: var(--border-size) solid var(--black);
+  display: grid;
+  grid-template-columns: 1fr;
+  /* padding-top: 25px; */
+  display: grid;
+  background: var(--white);
+  grid-template-columns: auto 1fr;
+  max-width: var(--maxWidth);
+  margin: 0 auto;
+  box-shadow: 5px 5px 0 var(--black), 10px 10px 0 var(--yellow);
+  @media (max-width: 1200px) {
+    margin-inline: 2rem;
+  }
+  @media (max-width: 800px) {
+    box-shadow: none;
+    margin: 0;
+    border-inline: 0;
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 100px 1fr;
+    .LogoStyles {
+      a,
+      img {
+        place-content: center;
+        width: 100% !important;
+      }
+    }
+  }
+}
+
+.NavLink {
+  font-family: var(--radnika);
+  color: var(--dark);
+  text-decoration: none;
+  line-height: 1;
+  padding: 10px 12px;
+  &[aria-current="page"],
+  &.current-parent {
+    .grit {
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+    }
+  }
+  & span:before {
+    display: none;
+  }
+  @media (max-width: 800px) {
+    span {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 5px 10px;
+    span {
+      font-size: 16px;
+    }
+  }
+}
+
+.NavSmall {
+  font-size: 1.3rem;
+  padding-top: 5px;
+  display: block;
+  font-family: var(--baseFont);
+  font-weight: 400;
+  text-align: left;
+  line-height: 10px;
+  position: relative;
+  pointer-events: none;
+  @media (max-width: 800px) {
+    display: none !important;
+  }
+}
+
+.NavUl {
+  background: var(--black);
+  border-left: 2px solid var(--dark);
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  gap: var(--border-size);
+  padding: 0;
+  box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.NavLi {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  align-content: center;
+  grid-gap: 2rem;
+  flex: 1;
+  background: var(--white);
+  flex-grow: 1;
+  border-bottom: 2px solid transparent;
+  &[class*="current-parent"] {
+    border-color: var(--yellow);
+  }
+  &:last-child {
+    flex-grow: 4;
+    justify-items: end;
+  }
+}
+
+.NavLiSocial {
+  --gap: 2rem;
+  display: flex;
+  gap: var(--gap);
+  padding-inline-end: var(--gap);
+  justify-content: end;
+  align-items: stretch;
+  padding: 10px;
+  a {
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    --size: 2.5rem;
+    width: var(--size);
+    height: var(--size);
+  }
+  @media (max-width: 600px) {
+    padding: 2px 10px;
+    --gap: 1rem;
+    svg {
+      --size: 2rem;
+    }
+  }
+}

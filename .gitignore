@@ -58,7 +58,6 @@ typings/
 
 # gatsby files
 .cache/
-public
 
 # Mac files
 .DS_Store
@@ -73,3 +72,17 @@ yarn-error.log
 # Local Netlify folder
 .netlify
 .now
+.next
+
+# cloudflare
+.worker-next
+.wrangler
+.open-next/
+db.sql
+dist/
+
+# Sentry Config File
+.env.sentry-build-plugin
+
+# tsconfig build info
+tsconfig.tsbuildinfo

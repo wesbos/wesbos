@@ -1,0 +1,13 @@
+.ContentStyles {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  &.wiiiiiiiiiide,
+  &:has(> .wiiiiiiiiiide) {
+    max-width: 1000px;
+  }
+  &.ultra-wide,
+  &:has(> [class*="ultra-wide"]) {
+    max-width: 1200px;
+  }
+}

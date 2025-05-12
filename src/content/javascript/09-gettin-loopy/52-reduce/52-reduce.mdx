@@ -1,0 +1,341 @@
+---
+tocTitle: 52 - Looping and Iterating - Reduce
+title: Looping and Iterating - Reduce
+slug: 09-gettin-loopy/52-looping-and-iterating-reduce
+section: 9 - Loops
+category:
+  - JavaScript
+  - Iterating
+  - Reduce
+---
+
+Let's add a `console.clear()` to the bottom of the script section in the HTML page we have been using for the last few examples.
+
+So far we have covered `.map()`, where you take in items and return transformed items, and `.filter()` where you take in items and return a subset of those items.
+
+`.reduce()` is probably one of the trickier array methods to understand because it does so much and there are a couple of different use cases for it.
+
+So what does it do?
+
+It takes in an array of data (just like `map` and `filter`) and it will return to you a result of or a single value.
+
+Now what does that exactly mean?
+
+Let's do an example to demonstrate.
+
+```js
+const orderTotals = [342, 1002, 523, 34, 634, 854, 1644, 2222];
+```
+
+We want to take the `ordersTotal` array and add up all the numbers in the array.
+
+One way you could approach it is to set a let variable to 0 and then use a `forEach()` to loop over each item and add to the total.
+
+```js
+let total = 0;
+
+orderTotals.forEach((singleTotal) => {
+  total = total + singleTotal;
+});
+
+console.log(total);
+```
+
+![add up all the numbers in the ordersTotal array](./670.webp)
+
+As you can see, that does work. However, is that the best way to add up a bunch of things?
+
+No, it is not.
+
+![incorrect way of adding up all the numbers](./671.webp)
+
+We have the callback method within the `forEach`, which relies on an external variable being made. So we have sort of reached outside of it. That is what is referred to as a **side effect** which is where you update a variable that exists outside of the function.
+
+`.reduce()` will allow us to loop over every single item in that array, and in this case it would allow us to do a running total with those numbers.
+
+Here are some visualizations that Wes has pulled from online by google image searching "map filter reduce".
+
+![visualizations pulled from google image search using map filter reduce keyword](./672.webp)
+
+In the image above, the language is not JavaScript but it doesn't matter because each language has some version of map, filter and reduce.
+
+The `map` function in the image above takes in raw materials of cow, potato, chicken and corn and that returns the cooked materials via the cook function.
+
+The filter will return to you a subset of the original array of what is vegetarian.
+
+`.reduce()` will take in an array of food and return to you something that is compiled into a smaller version of it.
+
+If you think about making a reduction when you're cooking or making a soup, what you do is you add a whole bunch of stuff to it and then you let it simmer and sort of become one. It is typically reduced down to something that is smaller than the original value that it came from.
+
+Now we will go through a bunch of use cases for `.reduce()`.
+
+Make a new variable called `allOrders`. We will call `.reduce()` on our `orderTotals` array.
+
+```js
+const allOrders = orderTotals.reduce();
+```
+
+We need a callback function that will be run on each item in the array, which we will call `tallyNumbers`.
+
+It will take in 2 arguments because that is what the callback function of a reduce method takes.
+
+Let's look that up in the MDN docs.
+
+![mozilla developer network (mdn) for the array reduce method](./673.webp)
+
+The 2 parameters it takes is the **accumulator** and the current value.
+
+The **accumulator** is the thing that has been handed to you from the last instance of the loop. The `currentValue` parameter is the current item in the array.
+
+We will name our parameters `tally` and `currentTotal`.
+
+Inside of the function, add a log of the current tally and current total, like so 👇
+
+```js
+function tallyNumbers(tally, currentTotal) {
+  console.log(`The current tally is ${tally}`);
+  console.log(`The current total is ${currentTotal}`);
+  console.log('--------');
+}
+
+const allOrders = ordersTotal.reduce(tallyNumbers);
+console.log(allOrders);
+```
+
+![tallyNumbers function showing current tally and current total](./674.webp)
+
+Now there might be some stuff in the console does not make sense, so let's go through it together.
+
+The first time the loop runs, the current tally is 342 and the current total is 1002.
+
+The second time the loop runs, we get the current tally is `undefined` and the current value is 523. In fact every time other than the first instance of the loop, `tally` is undefined.
+
+That is because `reduce()` takes in another argument which is what do you want to start the accumulator at.
+
+In our case we want to start counting at 0 so we pass in 0 like so 👇
+
+```js
+const allOrders = orderTotals.reduce(tallyNumbers, 0);
+```
+
+![passing a second argument to reduce method to specify our start counter](./675.webp)
+
+So as you can see, in the first loop the `tally` is 0 and then in the rest it is `undefined`.
+
+Now that we got the loop working, we have this problem where everything after the first loop is returning `undefined` for the tally.
+
+That is because of the accumulator parameter, `tally`, that is passed from the previous iteration of the loop.
+
+If we were to just return `'WES IS COOL';` from each of the iteration in our loop, the accumulator is going to be equal to that on the next iteration.
+
+Modify the `tallyNumbers` function by adding `return 'WES IS COOL'` as shown below.
+
+```js
+function tallyNumbers(tally, currentTotal) {
+  console.log(`The current tally is ${tally}`);
+  console.log(`The current total is ${currentTotal}`);
+  console.log('----------');
+  return 'WES IS COOL';
+}
+
+const allOrders = orderTotals.reduce(tallyNumbers, 0);
+```
+
+![detailed console ouput for the tallyNumbers function for visualization](./676.webp)
+
+As you can see, the first time the loop runs, `tally` is 0 because we started with an accumulator of 0 and then for all the next instances, our accumulator `tally` is equal to "WES IS COOL" because whatever you return from this function is what the accumulator is equal to.
+
+So what we really want to do is return the current tally + the current order's total.
+
+```js
+function tallyNumbers(tally, currentTotal) {
+  console.log(`The current tally is ${tally}`);
+  console.log(`The current total is ${currentTotal}`);
+  console.log('----------');
+  return tally + currentTotal;
+}
+
+const allOrders = orderTotals.reduce(tallyNumbers, 0);
+```
+
+![console showing the sum of numbers upto the current step and current step value](./677.webp)
+
+In the console above, as you can see we start with 0 because our accumulator starts at 0 as shown in the highlighted code in the image below.
+
+![accumulator start from 0 as we are passing 0 as starting counter](./678.webp)
+
+If we were to not pass an accumulator, the first loop iteration will take the first two numbers. In our case, that would still work but Wes always like to pass a default value so we know what we are starting with and so we can see what type we are starting with.
+
+So we start with 0, then the `currentTotal` is 342. Then in the next iteration, because we have returned 342 from the previous iteration, we are going to start with that as `tally` variable in the next iteration. We add the current value and return the `tally` variable to the next iteration and so on.
+
+A reduce will loop over items in an array and every single time that you loop over an item in an array, you have an option to return a value which you can use to accumulate values or distill them down into one value.
+
+Now, if we want to total the numbers, we already have them in the `allOrders` variable so we can simply log that variable to the console which should return to us 7255.
+
+For the next example, let's look at the `inventory` variable.
+
+```js
+const inventory = [
+  { type: 'shirt', price: 4000 },
+  { type: 'pants', price: 4532 },
+  { type: 'socks', price: 234 },
+  { type: 'shirt', price: 2343 },
+  { type: 'pants', price: 2343 },
+  { type: 'socks', price: 542 },
+  { type: 'pants', price: 123 },
+];
+```
+
+It is an array of objects and each object has a `type` and a `price` property on it.
+
+In this exercise, we need to figure out how many instances there are with type of pants, how many are pants, and how many are socks.
+
+We also want to figure out what is the total value of all of the inventory that we have.
+
+You could probably figure out how to calculate the total value form the last exercise, but the other part where we need to count how many instances of something there are, happens all the time in JavaScript.
+
+Let's add some code.
+
+Make a function called `inventoryReducer` which we will pass to `.reduce()` when we call it.
+
+```js
+function inventoryReducer() {}
+
+const inventoryCounts = inventory.reduce(inventoryReducer, {});
+```
+
+We also need to decide what value we should start with for the accumulator.
+In our case, we want to return an object that looks something like this 👇
+
+```js
+{
+  shirts: 2,
+  pants: 3,
+  socks: 2
+}
+```
+
+In order for us to get that, we need to pass an object.
+
+We could pass an object like this 👇
+
+```js
+const inventoryCounts = inventory.reduce(inventoryReducer, {
+  shirts: 0,
+  pants: 0,
+  socks: 0,
+});
+```
+
+That would start everything off at zero.
+
+However, more often then not, you are not aware of all of the different types that will be coming in so there is no way for you to go in and make a huge list of everything ahead of time. Or -- you might be aware of it and there are 50 different things so it doesn't make sense to do that.
+
+What we will do instead is we will start of with an empty object and then add the keys and set them to one as they appear, otherwise if they already exist, we will increment them by one.
+
+```js
+const inventoryCounts = inventory.reduce(inventoryReducer, {});
+```
+
+Shown above is how you pass an empty object as the accumulator
+
+Our reducer takes two things:
+
+1. our accumulator which we will call `totals`
+1. our item which we will call `item`
+
+Let's add a log to our reducer function which logs the item's type like so 👇
+
+```js
+function inventoryReducer(totals, item) {
+  console.log(`Looping over ${item.type}`);
+}
+```
+
+![looping and logging the items type in console](./680.webp)
+
+Inside of the reducer we need to increment the type by 1 and then return the accumulator or return the totals so the next loop can use it.
+
+To increment the type, let's try the following code.
+
+```js
+function inventoryReducer(totals, item) {
+  console.log(`Looping over ${item.type}`);
+  totals.shirt = totals.shirt + 1;
+  return totals;
+}
+
+const inventoryCounts = inventory.reduce(inventoryReducer, {});
+console.log(inventoryCounts);
+```
+
+![outcome of shirt after looping as NaN](./681.webp)
+
+Hm.. shirt is equal to `NaN`. Why would that be?
+
+That is because if you are trying to add one to something that doesn't exist, it will give you `NaN` (not a number).
+
+What we can do is check if the shirt already exists on `totals` and if it does, we increment it by one, but if it doesn't, we will set it to 0.
+
+Instead let's set `totals.shirt` to equals itself plus 1 or 1 like so 👇
+
+```js
+totals.shirt = totals.shirt + 1 || 1;
+```
+
+Lets try it.
+
+![total shirts in console](./682.webp)
+
+Why did that work? This is an example of **taking advantage of conditionals** or **abusing conditionals**.
+
+If we were to write that as an if statement, it would look like this 👇
+
+```js
+if (totals.shirt) {
+  totals.shirt = totals.shirt + 1;
+} else {
+  totals.shirt = 1;
+}
+```
+
+Note you can also increment totals.shirt like this `totals.shirt++;` Both work!
+
+So what is happening there is if the property doesn't exist, we first need to add it, and set it to 1, and then we can start incrementing it.
+
+In this statement `totals.shirt = totals.shirt + 1 || 1;`, if `totals.shirt + 1` turns out to be `NaN`, then that is falsy and it will fall back to 1.
+
+It's a bit harder to read which in a lot of cases isn't ideal, but it is nice to do it in a one liner.
+
+Shown below is yet another way 👇
+
+```js
+totals.shirt ? (totals.shirt += 1) : (totals.shirt = 1);
+```
+
+We are checking if `totals.shirt` exists, if it does, we increment it by 1, if it doesn't we create the property and set it to 1.
+
+One thing you may have noticed is we have been hard coding shirt, which we shouldn't be doing because there are a few different types.
+
+We can change it to a variable lookup item using square brackets like so 👇
+
+```js
+totals[item.type] = totals[item.type] + 1 || 1;
+```
+
+![result of calculation as total shirts, total pants and total socks in console](./683.webp)
+
+As you can see, now our accumulator has the 2 shirts, 2 socks and 3 pants.
+
+Pretty often a reduce can be done in an arrow function, a really quick one.
+
+In our case, we just want to add up the inventory `price` on each of them.
+
+We will start with 0 as our accumulator because we want to add up the total prices.
+
+```js
+const totalInventoryPrice = inventory.reduce((acc, item) => acc + item.price, 0);
+console.log(totalInventoryPrice);
+```
+
+We loop over every single item and then we return the accumulator plus the current item price.
