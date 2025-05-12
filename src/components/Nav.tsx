@@ -38,14 +38,6 @@ function useHoverSound() {
   };
 }
 
-function Pending({ isPending }: { isPending: boolean }) {
-  // This is a hack as waku has not way to track when the router is pending.
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('navigation-pending', { detail: { isPending } }));
-  }
-  return;
-}
-
 export default function Nav({ path }: { path: string }) {
   const logoWidth = 150;
   const ratio = 1.2195121951;
@@ -54,25 +46,13 @@ export default function Nav({ path }: { path: string }) {
   return (
     <nav className={NavStyles}>
       <div className={LogoStyles}>
-        <Link
-          to="/"
-          style={{ height: logoHeight, width: logoWidth }}
-          onPointerEnter={playSound}
-          unstable_pending={<Pending isPending={true} />}
-          unstable_notPending={<Pending isPending={false} />}
-        >
+        <Link to="/" style={{ height: logoHeight, width: logoWidth }} onPointerEnter={playSound}>
           <img height={logoHeight} width={logoWidth} src={Logo} alt="Wes Bos" />
         </Link>
       </div>
       <ul className={NavUl}>
         <li className={clsx([NavLi, activeLink('/courses', path)])}>
-          <Link
-            to="/courses"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/courses" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Courses</H>
             <span className={clsx([NavSmall, 'bottom'])}>free + premium</span>
           </Link>
@@ -83,13 +63,7 @@ export default function Nav({ path }: { path: string }) {
           </a>
         </li>
         <li className={clsx([NavLi, activeLink('/about', path)])}>
-          <Link
-            to="/about"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/about" className={NavLink} onPointerEnter={playSound}>
             <H as="span">About</H>
             <span className={clsx([NavSmall, 'bottom'])}>me</span>
           </Link>
@@ -100,67 +74,35 @@ export default function Nav({ path }: { path: string }) {
             to="/blog" /* TODO className={pageContext.collection === 'post' && !pageContext.slug.includes('uses') ? 'current-parent' : null} */
             className={NavLink}
             onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
           >
             <H as="span">Blog</H>
             <span className={clsx([NavSmall, 'top'])}>it's good</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink('/tips', path)])}>
-          <Link
-            to="/tips"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/tips" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Tips</H>
             <span className={clsx([NavSmall, 'top'])}>🔥 Real Hot</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink('/javascript', path)])}>
-          <Link
-            to="/javascript"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/javascript" className={NavLink} onPointerEnter={playSound}>
             <H as="span">JavaScript</H>
             <span className={clsx([NavSmall, 'bottom'])}>Notes</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink('/speaking-and-training', path)])}>
-          <Link
-            to="/speaking-and-training"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/speaking-and-training" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Speaking</H> <span className={clsx([NavSmall, 'bottom'])}>and training IRL</span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink('/uses', path)])}>
-          <Link
-            to="/uses"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/uses" className={NavLink} onPointerEnter={playSound}>
             <H as="span">/uses</H> <span className={clsx([NavSmall, 'bottom'])}>Font?! Theme!? </span>
           </Link>
         </li>
         <li className={clsx([NavLi, activeLink('/contact', path)])}>
-          <Link
-            to="/contact"
-            className={NavLink}
-            onPointerEnter={playSound}
-            unstable_pending={<Pending isPending={true} />}
-            unstable_notPending={<Pending isPending={false} />}
-          >
+          <Link to="/contact" className={NavLink} onPointerEnter={playSound}>
             <H as="span">Contact</H>
             <span className={clsx([NavSmall, 'bottom'])}>me</span>
           </Link>
