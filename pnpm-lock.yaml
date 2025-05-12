@@ -170,8 +170,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       waku:
-        specifier: 0.22.4
-        version: 0.22.4(@types/node@22.15.3)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1)
+        specifier: https://pkg.csb.dev/wakujs/waku/commit/f40e3d6f/waku
+        version: https://pkg.csb.dev/wakujs/waku/commit/f40e3d6f/waku(@types/node@22.15.3)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1)
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -3515,9 +3515,10 @@ packages:
       jsdom:
         optional: true
 
-  waku@0.22.4:
-    resolution: {integrity: sha512-E3+VmTzJNtavMdfCfMb1nOnPWQAR9kZsrNd22bvMF9Pf9a7iFYU24Nms2bGB58IZwUp1dCjevBcmDuxae/xJPw==}
-    engines: {node: ^22.7.0 || ^20.8.0}
+  waku@https://pkg.csb.dev/wakujs/waku/commit/f40e3d6f/waku:
+    resolution: {tarball: https://pkg.csb.dev/wakujs/waku/commit/f40e3d6f/waku}
+    version: 0.22.4
+    engines: {node: ^24.0.0 || ^22.7.0 || ^20.8.0}
     hasBin: true
     peerDependencies:
       react: ~19.1.0
@@ -7260,7 +7261,7 @@ snapshots:
       - tsx
       - yaml
 
-  waku@0.22.4(@types/node@22.15.3)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1):
+  waku@https://pkg.csb.dev/wakujs/waku/commit/f40e3d6f/waku(@types/node@22.15.3)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1):
     dependencies:
       '@hono/node-server': 1.14.1(hono@4.7.7)
       '@swc/core': 1.11.21

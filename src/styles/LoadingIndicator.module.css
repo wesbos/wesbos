@@ -6,7 +6,8 @@
 .LoadingIndicatorProgress {
   height: 100%;
   width: 0;
-  transition: width 0.1s ease-in-out;
+  margin-top: -10px;
+  transition: none;
   background-color: var(--yellow);
 }
 
@@ -20,6 +21,7 @@
 }
 
 .LoadingIndicatorProgressStart {
+  transition: width 0.1s ease-in-out;
   animation: LoadingIndicatorProgressStart 2s ease-in-out infinite;
 }
 

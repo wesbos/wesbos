@@ -14,28 +14,25 @@ export default function LoadingIndicator() {
 
   // listen for navigation-pending events
   useEffect(() => {
-    function handleNavigationPending(event: CustomEvent) {
-      if (event.detail.isPending) {
-        console.log('navigation-pending', 'START');
-        setNavigationState('start');
-      }
+    function handleNavigationStart(event: CustomEvent) {
+      setNavigationState('start');
     }
 
-    window.addEventListener('navigation-pending', handleNavigationPending as EventListener);
-
-    return () => {
-      window.removeEventListener('navigation-pending', handleNavigationPending as EventListener);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (navigationState === 'start') {
+    function handleNavigationComplete(event: CustomEvent) {
       setNavigationState('finish');
       setTimeout(() => {
         setNavigationState('idle');
       }, 1000);
     }
-  }, [router.path]);
+
+    router.unstable_events.on('start', handleNavigationStart);
+    router.unstable_events.on('complete', handleNavigationComplete);
+
+    return () => {
+      router.unstable_events.off('start', handleNavigationStart);
+      router.unstable_events.off('complete', handleNavigationComplete);
+    };
+  }, []);
 
   return (
     <div className={LoadingIndicatorStyles}>
