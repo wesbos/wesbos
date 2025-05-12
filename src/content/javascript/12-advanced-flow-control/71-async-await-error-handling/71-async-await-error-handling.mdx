@@ -153,7 +153,7 @@ function handleError(err) {
 }
 
 async function go() {
-  const pizza = await makePizza(['pineapple']).catch(handleError);
+  const pizza = await makePizza(['pineapple']);
   console.log(pizza);
 }
 
@@ -171,7 +171,7 @@ For example if within our `go()` function we call another function that does not
 ```js
 async function go() {
   window.doesNotExist();
-  const pizza = await makePizza(['pineapple']).catch(handleError);
+  const pizza = await makePizza(['pineapple']);
   console.log(pizza);
 }
 ```
@@ -184,7 +184,7 @@ Let's check by returning pizza from the function as shown below.
 
 ```js
 async function go() {
-  const pizza = await makePizza(['pineapple']).catch(handleError);
+  const pizza = await makePizza(['pineapple']);
   console.log(pizza);
   return pizza;
 }
@@ -195,7 +195,7 @@ console.log(result);
 
 What will the result be? Will we get the pizza? Will we get nothing?
 
-![function marked as async returns immediately returns a promise](./1069.webp)
+![function marked as async returns a promise](./1069.webp)
 
 We get a promise! Whaaaaat?!
 
@@ -228,11 +228,11 @@ Why is that useful?
 
 You often have a function with a few promises inside of it, but then you want to wait for that entire function to finish returning it's data.  If that is the case, you use a `.then().catch()` or an `await()` on it.
 
-Similarly, we do something as shown below 👇
+Similarly, if we do something as shown below 👇
 
 ```js
 async function go() {
-  const pizza = await makePizza(['pineapple']).catch(handleError);
+  const pizza = await makePizza(['pineapple']);
   console.log(pizza);
   return pizza;
 }
