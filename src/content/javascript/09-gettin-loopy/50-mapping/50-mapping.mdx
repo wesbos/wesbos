@@ -49,7 +49,7 @@ Let's make function `addArms`, that takes in a face, and returns an emoji.
 
 ```js
 function addArms(face) {
-  return `👋${face} 👋`;
+  return `👋 ${face} 👋`;
 }
 ```
 
@@ -105,7 +105,7 @@ So you can capitalize the first letter of the word as shown below.
 
 ```js
 function capitalize(word) {
-  return word[0].toUppercase();
+  return word[0].toUpperCase();
 }
 ```
 
@@ -139,7 +139,7 @@ We will use `slice` to return the words from index 1 to the end of the word like
 
 ```js
 function capitalize(word) {
-  return word[0].toUppercase() + word.slice(1);
+  return word[0].toUpperCase() + word.slice(1);
 }
 ```
 
@@ -153,7 +153,7 @@ Modify the code as shown below.
 
 ```js
 function capitalize(word) {
-  return `${word[0].toUppercase()}${word.slice(1)}`;
+  return `${word[0].toUpperCase()}${word.slice(1)}`;
 }
 ```
 
@@ -421,7 +421,7 @@ We need to convert it into years. We need to do some math for that.
 
 Let's ask ourselves how many milliseconds in a year. We know there are 1000 milliseconds in a second, there is 60 seconds in a minute, there is 60 minutes in an hour, there are 24 hours in a day and 365 days in a year.
 
-`1000 x 60 x60 x 24 x 365 = 31536000000`
+`1000 x 60 x 60 x 24 x 365 = 31536000000`
 
 There are other ways to do dates that will account for leap years and all that.
 
@@ -433,7 +433,7 @@ Take our age calculation timestamp and divide it by that number like so 👇
 const cleanPeople = people.map(function(person) {
   const birthday = new Date(person.birthday).getTime();
   const now = Date.now();
-  const age = now - birthday / 31536000000;
+  const age = (now - birthday) / 31536000000;
   console.log(age);
 })
 ```
@@ -450,7 +450,7 @@ You take the lower bound with `Math.floor`.
 Modify the code like so 👇
 
 ```js
-const age = Math.floor(now - birthday / 31536000000);
+const age = Math.floor((now - birthday) / 31536000000);
 ```
 
 ![rounding of the age of person using math.floor()](./655.webp)
@@ -477,7 +477,7 @@ Note: as mentioned before, if the property is the same name as the variable, we 
 ```js
 return {
   age,
-  name: `${person.name.first} ${person.name.last}`,
+  name: `${person.names.first} ${person.names.last}`,
 }
 ```
 
