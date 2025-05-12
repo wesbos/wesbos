@@ -92,7 +92,7 @@
     "vite": "^6.3.4",
     "vite-plugin-top-level-await": "^1.5.0",
     "vitest": "^3.1.2",
-    "wrangler": "4.13.2"
+    "wrangler": "4.14.4"
   },
   "pnpm": {
     "overrides": {
