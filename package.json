@@ -35,6 +35,7 @@
     "chrome-launcher": "^1.1.2",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "drizzle-kit": "^0.31.1",
     "drizzle-orm": "^0.43.1",
     "enquirer": "^2.4.1",
     "estree-util-is-identifier-name": "^3.0.0",
