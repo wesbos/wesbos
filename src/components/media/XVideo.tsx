@@ -33,6 +33,7 @@ export function XVideoPlayer({
             loop
             muted
             autoplay
+            playsInline
             src={url}
             slot="media"
             crossOrigin="anonymous"
