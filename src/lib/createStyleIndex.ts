@@ -1,13 +1,16 @@
 'use server';
 
+import { writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import fg from 'fast-glob';
 // This is a function that creates a file with every .module.css file imported into it.
 // I do this so that Next.js knows about all the css files in the project, and the auto-imports work.
 import watch from 'glob-watcher';
-import fg from 'fast-glob';
-import path from 'node:path';
-import { writeFile } from 'node:fs/promises';
 
-const outputFile = path.resolve('./src/styles/styleIndex.ts');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const outputFile = path.resolve(__dirname, '../styles/styleIndex.ts');
 const outputDir = path.dirname(outputFile);
 const globs = ['./src/styles/**/*.module.css', './components/**/*.module.css'];
 

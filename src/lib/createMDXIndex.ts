@@ -1,8 +1,12 @@
 'use server';
-import fg from 'fast-glob';
-import path from 'node:path';
 import { writeFile } from 'node:fs/promises';
-const outputFile = path.resolve('./content/index.ts');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import fg from 'fast-glob';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const outputFile = path.resolve(__dirname, '../content/index.ts');
 const outputDir = path.dirname(outputFile);
 
 // TODO: Add a watcher to this file so it regenerates on changes
@@ -20,7 +24,7 @@ const outputDir = path.dirname(outputFile);
 // }
 
 async function generateStyleIndex() {
-  const files = await fg(['./content/**/*.mdx']);
+  const files = await fg(['./src/content/**/*.mdx']);
   console.log(`Found ${files.length} Mdx Files`);
   const importStatements = files.map((file, index) => {
     const relativePath = path.relative(outputDir, file);
