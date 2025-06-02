@@ -14,7 +14,7 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
-    "tip": "tsx --conditions=react-server ./createTip.ts",
+    "tip": "tsx ./createTip.ts",
     "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts",
     "lint": "biome lint --write",
     "format": "biome format --write",

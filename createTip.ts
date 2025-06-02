@@ -25,7 +25,7 @@ async function createTip() {
       },
     ]);
 
-    const shouldScaffoldFromTwitter = await enquirer.prompt<{ shouldScaffoldFromTwitter: boolean }>({
+    const { shouldScaffoldFromTwitter } = await enquirer.prompt<{ shouldScaffoldFromTwitter: boolean }>({
       type: 'confirm',
       name: 'shouldScaffoldFromTwitter',
       message: 'Do you want to scaffold from a Twitter post?',
@@ -88,7 +88,7 @@ ${bodyText}
 `;
 
     // Write to file
-    const filePath = join(process.cwd(), 'content/tips', `${answers.slug}.mdx`);
+    const filePath = join(process.cwd(), 'src/content/tips', `${answers.slug}.mdx`);
     const relativePath = filePath.replace(process.cwd(), '').replace(/\\/g, '/');
     await writeFile(filePath, mdxContent);
     console.log(`✅ Created new tip at ${relativePath}`);
