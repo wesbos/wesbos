@@ -68,8 +68,13 @@ export async function fetchInstagramDetailsFromApi({
     }),
     method: 'POST',
   });
-  // Get the HTML
-  const payload = (await response.json()) as InstagramApiResponse;
-  if (!payload) return;
-  return payload.data;
+  // Attempt to parse the JSON
+  try {
+    const payload = (await response.json()) as InstagramApiResponse;
+    if (!payload) return;
+    return payload.data;
+  } catch (error) {
+    console.error('Error fetching Instagram details', error);
+    return;
+  }
 }
