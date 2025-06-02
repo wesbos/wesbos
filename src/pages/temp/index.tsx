@@ -42,7 +42,7 @@ export default async function Temp() {
     const date = new Date(post.frontmatter.date);
     const isRecent = date.getTime() > Date.now() - 15 * 24 * 60 * 60 * 1000;
     const hasTwitter = post.frontmatter.links?.some((link) => link.includes('twitter.com') || link.includes('x.com'));
-    return isRecent && hasTwitter;
+    return isRecent && !hasTwitter;
   });
 
   return (
@@ -57,7 +57,6 @@ export default async function Temp() {
             <p>Twitter: {socialLinks.twitter?.map((link) => link.url).join(', ')}</p>
             <form action={updateDate}>
               <input type="text" name="path" defaultValue={post.filePath} />
-              <input type="text" name="tweet" defaultValue={socialLinks.twitter.at(0)?.postId} />
               <button type="submit">Update Date</button>
             </form>
           </div>
