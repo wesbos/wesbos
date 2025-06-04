@@ -48,6 +48,7 @@ type Page =
 | ({ path: '/og' } & GetConfigResponse<typeof OgIndex_getConfig>)
 | ({ path: '/privacy' } & GetConfigResponse<typeof PrivacyIndex_getConfig>)
 | ({ path: '/speaking-and-training' } & GetConfigResponse<typeof SpeakingAndTrainingIndex_getConfig>)
+| { path: '/temp'; render: 'dynamic' }
 | ({ path: '/terms' } & GetConfigResponse<typeof TermsIndex_getConfig>)
 | ({ path: '/tip/[slug]' } & GetConfigResponse<typeof TipSlug_getConfig>)
 | { path: '/tips/[page]'; render: 'dynamic' }

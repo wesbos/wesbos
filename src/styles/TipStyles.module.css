@@ -7,9 +7,9 @@
   border: 2px solid black;
   margin-bottom: 5rem;
   position: relative;
-  padding: 2rem;
+  /* padding: 2rem; */
   grid-gap: 2rem;
-  background: var(--blackGrit);
+  /* background: var(--blackGrit); */
   background-size: 550px;
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
@@ -22,6 +22,9 @@
   p {
     font-size: 2rem;
     line-height: 1.7;
+    &:first-of-type {
+      margin-top: 0 !important;
+    }
   }
   .tipMeta {
     margin-top: -45px;
@@ -31,17 +34,22 @@
   }
 }
 
+.TipContent {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.TipStylesNoMedia {
+  p {
+    font-size: 3rem;
+  }
+}
+
 .TipMetaStyles {
-  font-size: 1.5rem;
-  font-style: italic;
-  display: flex;
-  align-self: start;
+  font-size: 1.2rem;
   border-top: 0;
   border-bottom: 0;
-  right: 2rem;
-  background: var(--yellow) var(--blackGrit);
-  background-size: 550px;
-  transform: rotate(-1deg);
+  margin: 10px 0;
+  /* transform: rotate(-1deg); */
   &:after {
     display: block;
     content: "";
@@ -53,19 +61,14 @@
     pointer-events: none;
   }
   & > * {
-    padding: 1rem;
     flex: auto;
-    line-height: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 2;
     &:before {
       content: "";
     }
   }
   a {
     text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
   }
   svg {
     margin-right: 2px;

@@ -44,6 +44,5 @@ export async function fetchTiktokDetailsFromApi({ postId, handle = 'wesbos' }: {
   const payload = tryParseJson<TikTokResponse>(scriptContent);
   // Access the Video info
   const videoInfo = payload?.__DEFAULT_SCOPE__?.['webapp.video-detail']?.itemInfo?.itemStruct;
-  console.dir(videoInfo, { depth: null });
   return videoInfo;
 }
