@@ -23,18 +23,64 @@ function useHoverSound() {
       playSound: () => {}, // silly servers
     };
   }
-  const url = `https://f000.backblazeb2.com/file/wes-dropshare/click/click.mp3`;
-  const audio = new Audio(url);
-  audio.volume = 0.1;
-  return {
-    playSound: () => {
-      audio.currentTime = 0.006;
-      audio.play().catch((err) => {
-        console.info(
-          `Man, you are missing out on some really cool sounds! If you Interact with the page, you can hear them.`,
-        );
+
+  let audioContext: AudioContext | null = null;
+  let audioBuffer: AudioBuffer | null = null;
+  let isLoaded = false;
+
+  // Initialize immediately when the hook is called
+  const initAudio = async () => {
+    if (isLoaded) return;
+
+    try {
+      // Create audio context with specific settings for iOS compatibility
+      audioContext = new (window.AudioContext || (window as any).webkitAudioContext)({
+        latencyHint: 'interactive',
       });
-    },
+
+      // Load and decode the audio file
+      const url = `/click.mp3`;
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+      audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+      isLoaded = true;
+    } catch (error) {
+      console.info('Web Audio API initialization failed:', error);
+    }
+  };
+
+  const playSound = async () => {
+    if (!audioContext || !audioBuffer || !isLoaded) return;
+
+    try {
+      // Resume audio context if it's suspended (required for iOS)
+      if (audioContext.state === 'suspended') {
+        await audioContext.resume();
+      }
+
+      // Create a buffer source
+      const source = audioContext.createBufferSource();
+      const gainNode = audioContext.createGain();
+
+      source.buffer = audioBuffer;
+      gainNode.gain.value = 0.1; // Set volume
+
+      // Connect: source -> gain -> destination
+      source.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      // Start playing from 0.006 seconds to match your original timing
+      source.start(0, 0.006);
+    } catch (error) {
+      console.info('Failed to play sound:', error);
+    }
+  };
+
+  // Initialize audio immediately
+  initAudio();
+
+  return {
+    playSound,
   };
 }
 

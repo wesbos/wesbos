@@ -40,7 +40,7 @@ export function XVideoPlayer({
             tabIndex={-1}
           />
         ) : (
-          <video loop muted autoPlay src={url} slot="media" crossOrigin="anonymous" tabIndex={-1} />
+          <video loop muted autoPlay playsInline src={url} slot="media" crossOrigin="anonymous" tabIndex={-1} />
         )}
         <MediaSettingsMenu hidden anchor="auto">
           <MediaSettingsMenuItem>
