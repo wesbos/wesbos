@@ -1,17 +1,18 @@
 import { withCache } from '@/lib/cache';
-import { fetchLatestTweets, type XMediaEntity } from '@/lib/socials/twitter-fetcher';
+import { type XMediaEntity, fetchLatestTweets } from '@/lib/socials/twitter-fetcher';
 import {
   FooterBlock,
   FooterHeading,
   Tweet,
   TweetLink,
   TweetMeta,
-  Tweets,
   TweetStyles,
+  Tweets,
 } from '@/styles/FooterStyles.module.css';
+import * as Sentry from '@sentry/cloudflare';
 import clsx from 'clsx';
 import { formatDistanceToNowStrict } from 'date-fns';
-import { IoIosEye, IoIosHeart, IoIosRepeat, } from 'react-icons/io';
+import { IoIosEye, IoIosHeart, IoIosRepeat } from 'react-icons/io';
 
 function Media({ media, alt }: { media?: XMediaEntity[]; alt: string }) {
   if (!media) return null;
@@ -51,7 +52,10 @@ export default async function Twitter() {
   const tweets = await withCache(fetchLatestTweets, {
     key: 'tweets',
     expiry: 60 * 30, // 30 minutes
+  }).catch((err: Error) => {
+    Sentry.captureException(err);
   });
+
   const pinnedTweet = tweets?.at(0)?.core.user_results.result.legacy.pinned_tweet_ids_str[0];
 
   return (
@@ -65,10 +69,10 @@ export default async function Twitter() {
           Tweets
         </span>
       </h3>
-      {!tweets.length && (
+      {!tweets?.length && (
         <p>
-          <s>twitter</s> 𝕏 API is paid now. You'll have to <a href="http://twitter.com/wesbos">follow me</a> to see the
-          𝕏eets.
+          Hrm... It seems my plans to foil the <s>twitter</s> 𝕏 API isn't working rn. You'll have to{' '}
+          <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
         </p>
       )}
       <div className={Tweets}>
