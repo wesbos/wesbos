@@ -4,55 +4,55 @@
 import type { PathsForPages, GetConfigResponse } from 'waku/router';
 
 // prettier-ignore
-import type { getConfig as 404_getConfig } from './pages/404';
+import type { getConfig as File_404_getConfig } from './pages/404';
 // prettier-ignore
-import type { getConfig as SlugIndex_getConfig } from './pages/[slug]/index';
+import type { getConfig as File_SlugIndex_getConfig } from './pages/[slug]/index';
 // prettier-ignore
-import type { getConfig as About_getConfig } from './pages/about';
+import type { getConfig as File_About_getConfig } from './pages/about';
 // prettier-ignore
-import type { getConfig as ContactIndex_getConfig } from './pages/contact/index';
+import type { getConfig as File_ContactIndex_getConfig } from './pages/contact/index';
 // prettier-ignore
-import type { getConfig as Courses_getConfig } from './pages/courses';
+import type { getConfig as File_Courses_getConfig } from './pages/courses';
 // prettier-ignore
-import type { getConfig as Index_getConfig } from './pages/index';
+import type { getConfig as File_Index_getConfig } from './pages/index';
 // prettier-ignore
-import type { getConfig as JavascriptSectionSlug_getConfig } from './pages/javascript/[section]/[slug]';
+import type { getConfig as File_JavascriptSectionSlug_getConfig } from './pages/javascript/[section]/[slug]';
 // prettier-ignore
-import type { getConfig as JavascriptIndex_getConfig } from './pages/javascript/index';
+import type { getConfig as File_JavascriptIndex_getConfig } from './pages/javascript/index';
 // prettier-ignore
-import type { getConfig as OgIndex_getConfig } from './pages/og/index';
+import type { getConfig as File_OgIndex_getConfig } from './pages/og/index';
 // prettier-ignore
-import type { getConfig as PrivacyIndex_getConfig } from './pages/privacy/index';
+import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/index';
 // prettier-ignore
-import type { getConfig as SpeakingAndTrainingIndex_getConfig } from './pages/speaking-and-training/index';
+import type { getConfig as File_SpeakingAndTrainingIndex_getConfig } from './pages/speaking-and-training/index';
 // prettier-ignore
-import type { getConfig as TermsIndex_getConfig } from './pages/terms/index';
+import type { getConfig as File_TermsIndex_getConfig } from './pages/terms/index';
 // prettier-ignore
-import type { getConfig as TipSlug_getConfig } from './pages/tip/[slug]';
+import type { getConfig as File_TipSlug_getConfig } from './pages/tip/[slug]';
 // prettier-ignore
-import type { getConfig as TipsIndex_getConfig } from './pages/tips/index';
+import type { getConfig as File_TipsIndex_getConfig } from './pages/tips/index';
 
 // prettier-ignore
 type Page =
-| ({ path: '/404' } & GetConfigResponse<typeof 404_getConfig>)
-| ({ path: '/[slug]' } & GetConfigResponse<typeof SlugIndex_getConfig>)
+| ({ path: '/404' } & GetConfigResponse<typeof File_404_getConfig>)
+| ({ path: '/[slug]' } & GetConfigResponse<typeof File_SlugIndex_getConfig>)
 | { path: '/_root'; render: 'dynamic' }
-| ({ path: '/about' } & GetConfigResponse<typeof About_getConfig>)
+| ({ path: '/about' } & GetConfigResponse<typeof File_About_getConfig>)
 | { path: '/blog/[page]'; render: 'dynamic' }
 | { path: '/blog'; render: 'dynamic' }
-| ({ path: '/contact' } & GetConfigResponse<typeof ContactIndex_getConfig>)
-| ({ path: '/courses' } & GetConfigResponse<typeof Courses_getConfig>)
-| ({ path: '/' } & GetConfigResponse<typeof Index_getConfig>)
-| ({ path: '/javascript/[section]/[slug]' } & GetConfigResponse<typeof JavascriptSectionSlug_getConfig>)
-| ({ path: '/javascript' } & GetConfigResponse<typeof JavascriptIndex_getConfig>)
-| ({ path: '/og' } & GetConfigResponse<typeof OgIndex_getConfig>)
-| ({ path: '/privacy' } & GetConfigResponse<typeof PrivacyIndex_getConfig>)
-| ({ path: '/speaking-and-training' } & GetConfigResponse<typeof SpeakingAndTrainingIndex_getConfig>)
+| ({ path: '/contact' } & GetConfigResponse<typeof File_ContactIndex_getConfig>)
+| ({ path: '/courses' } & GetConfigResponse<typeof File_Courses_getConfig>)
+| ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
+| ({ path: '/javascript/[section]/[slug]' } & GetConfigResponse<typeof File_JavascriptSectionSlug_getConfig>)
+| ({ path: '/javascript' } & GetConfigResponse<typeof File_JavascriptIndex_getConfig>)
+| ({ path: '/og' } & GetConfigResponse<typeof File_OgIndex_getConfig>)
+| ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
+| ({ path: '/speaking-and-training' } & GetConfigResponse<typeof File_SpeakingAndTrainingIndex_getConfig>)
 | { path: '/temp'; render: 'dynamic' }
-| ({ path: '/terms' } & GetConfigResponse<typeof TermsIndex_getConfig>)
-| ({ path: '/tip/[slug]' } & GetConfigResponse<typeof TipSlug_getConfig>)
+| ({ path: '/terms' } & GetConfigResponse<typeof File_TermsIndex_getConfig>)
+| ({ path: '/tip/[slug]' } & GetConfigResponse<typeof File_TipSlug_getConfig>)
 | { path: '/tips/[page]'; render: 'dynamic' }
-| ({ path: '/tips' } & GetConfigResponse<typeof TipsIndex_getConfig>);
+| ({ path: '/tips' } & GetConfigResponse<typeof File_TipsIndex_getConfig>);
 
 // prettier-ignore
 declare module 'waku/router' {
@@ -63,4 +63,3 @@ declare module 'waku/router' {
     pages: Page;
   }
 }
-  
