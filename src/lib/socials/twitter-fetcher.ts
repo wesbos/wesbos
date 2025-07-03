@@ -58,6 +58,7 @@ type Tweet = ReturnType<typeof formatTimeline>[number] & {
 };
 
 export async function fetchLatestTweets(): Promise<Tweet[]> {
+  throw new Error('Not implemented');
   // const tweets = await rettiwt.user.timeline('815246', 10);
   const tweets = await fetcher.request<IUserTweetsResponse>(EResourceType.USER_TIMELINE, { id: '815246', count: 10 });
   const formattedTweets = formatTimeline(tweets);
