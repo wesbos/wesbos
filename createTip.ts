@@ -99,7 +99,7 @@ ${bodyText}
   }
 }
 
-// createTip();
+createTip();
 
 // Parse the existing tips to update their timestamps
 
