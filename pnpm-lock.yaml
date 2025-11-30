@@ -35,8 +35,8 @@ importers:
         specifier: 10.27.0
         version: 10.27.0(react@19.2.0)
       '@sparticuz/chromium':
-        specifier: 133.0.0
-        version: 133.0.0
+        specifier: 141.0.0
+        version: 141.0.0
       '@stefanprobst/rehype-extract-toc':
         specifier: 3.0.0
         version: 3.0.0
@@ -1524,9 +1524,9 @@ packages:
     resolution: {integrity: sha512-rO92VvpgMc3kfiTjGT52LEtJ8Yc5kCWhZjLQ3LwlA4pSgPpQO7bVpYXParOD8Jwf+cVQECJo3yP/4I8aZtUQTQ==}
     engines: {node: '>=18'}
 
-  '@sparticuz/chromium@133.0.0':
-    resolution: {integrity: sha512-wioNxMtSxRI+Y6ymc/UFPX9lY7A1SDgBezjFITH6arwe5CONfWosNDGpgflUGYajxxGktb1k3kjJ83jWzbccBw==}
-    engines: {node: '>= 16'}
+  '@sparticuz/chromium@141.0.0':
+    resolution: {integrity: sha512-JsTp4AqgStkqKki4dUpEM0GoisAjQhsqZ1lQTNMSKK5A9pw6BbIuIvv2HVYMYzSZGyDdQNJYBPPDg2eggCkezA==}
+    engines: {node: '>=20.11.0'}
 
   '@speed-highlight/core@1.2.12':
     resolution: {integrity: sha512-uilwrK0Ygyri5dToHYdZSjcvpS2ZwX0w5aSt3GCEN9hrjxWCoeV4Z2DTXuxjwbntaLQIEEAlCeNQss5SoHvAEA==}
@@ -2611,6 +2611,15 @@ packages:
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
+
+  follow-redirects@1.15.11:
+    resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
 
   follow-redirects@1.15.9:
     resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
@@ -5208,10 +5217,10 @@ snapshots:
 
   '@sindresorhus/is@7.1.1': {}
 
-  '@sparticuz/chromium@133.0.0':
+  '@sparticuz/chromium@141.0.0':
     dependencies:
-      follow-redirects: 1.15.9
-      tar-fs: 3.0.8
+      follow-redirects: 1.15.11
+      tar-fs: 3.1.1
     transitivePeerDependencies:
       - bare-buffer
       - debug
@@ -6264,6 +6273,8 @@ snapshots:
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
+
+  follow-redirects@1.15.11: {}
 
   follow-redirects@1.15.9: {}
 

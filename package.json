@@ -28,7 +28,7 @@
     "@mdx-js/react": "3.1.1",
     "@sentry/cloudflare": "10.27.0",
     "@sentry/react": "10.27.0",
-    "@sparticuz/chromium": "133.0.0",
+    "@sparticuz/chromium": "141.0.0",
     "@stefanprobst/rehype-extract-toc": "3.0.0",
     "@unpic/react": "1.0.1",
     "better-sqlite3": "11.9.1",
