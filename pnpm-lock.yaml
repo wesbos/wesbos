@@ -59,11 +59,11 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       drizzle-kit:
-        specifier: 0.31.1
-        version: 0.31.1
+        specifier: 0.31.7
+        version: 0.31.7
       drizzle-orm:
-        specifier: 0.43.1
-        version: 0.43.1(better-sqlite3@11.9.1)
+        specifier: 0.44.7
+        version: 0.44.7(better-sqlite3@11.9.1)
       enquirer:
         specifier: 2.4.1
         version: 2.4.1
@@ -1989,12 +1989,12 @@ packages:
     resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
-  drizzle-kit@0.31.1:
-    resolution: {integrity: sha512-PUjYKWtzOzPtdtQlTHQG3qfv4Y0XT8+Eas6UbxCmxTj7qgMf+39dDujf1BP1I+qqZtw9uzwTh8jYtkMuCq+B0Q==}
+  drizzle-kit@0.31.7:
+    resolution: {integrity: sha512-hOzRGSdyKIU4FcTSFYGKdXEjFsncVwHZ43gY3WU5Bz9j5Iadp6Rh6hxLSQ1IWXpKLBKt/d5y1cpSPcV+FcoQ1A==}
     hasBin: true
 
-  drizzle-orm@0.43.1:
-    resolution: {integrity: sha512-dUcDaZtE/zN4RV/xqGrVSMpnEczxd5cIaoDeor7Zst9wOe/HzC/7eAaulywWGYXdDEc9oBPMjayVEDg0ziTLJA==}
+  drizzle-orm@0.44.7:
+    resolution: {integrity: sha512-quIpnYznjU9lHshEOAYLoZ9s3jweleHlZIAWR/jX9gAWNg/JhQ1wj0KGRf7/Zm+obRrYd9GjPVJg790QY9N5AQ==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -2010,6 +2010,7 @@ packages:
       '@types/better-sqlite3': '*'
       '@types/pg': '*'
       '@types/sql.js': '*'
+      '@upstash/redis': '>=1.34.7'
       '@vercel/postgres': '>=0.8.0'
       '@xata.io/client': '*'
       better-sqlite3: '>=7'
@@ -2052,6 +2053,8 @@ packages:
       '@types/pg':
         optional: true
       '@types/sql.js':
+        optional: true
+      '@upstash/redis':
         optional: true
       '@vercel/postgres':
         optional: true
@@ -5321,7 +5324,7 @@ snapshots:
 
   dotenv@16.5.0: {}
 
-  drizzle-kit@0.31.1:
+  drizzle-kit@0.31.7:
     dependencies:
       '@drizzle-team/brocli': 0.10.2
       '@esbuild-kit/esm-loader': 2.6.5
@@ -5330,7 +5333,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.43.1(better-sqlite3@11.9.1):
+  drizzle-orm@0.44.7(better-sqlite3@11.9.1):
     optionalDependencies:
       better-sqlite3: 11.9.1
 
