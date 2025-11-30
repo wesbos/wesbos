@@ -146,8 +146,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0
       remark-mdx-frontmatter:
-        specifier: 5.1.0
-        version: 5.1.0
+        specifier: 5.2.0
+        version: 5.2.0
       rettiwt-api:
         specifier: 4.2.0
         version: 4.2.0
@@ -3098,8 +3098,8 @@ packages:
   remark-frontmatter@5.0.0:
     resolution: {integrity: sha512-XTFYvNASMe5iPN0719nPrdItC9aU0ssC4v14mH1BCi1u0n1gAocqcujWUrByftZTbLhRtiKRyjYTSIOcr69UVQ==}
 
-  remark-mdx-frontmatter@5.1.0:
-    resolution: {integrity: sha512-F2l+FydK/QVwYMC4niMYl4Kh83TIfoR4qV9ekh/riWRakTTyjcLLyKTBo9fVgEtOmTEfIrqWwiYIm42+I5PMfQ==}
+  remark-mdx-frontmatter@5.2.0:
+    resolution: {integrity: sha512-U/hjUYTkQqNjjMRYyilJgLXSPF65qbLPdoESOkXyrwz2tVyhAnm4GUKhfXqOOS9W34M3545xEMq+aMpHgVjEeQ==}
 
   remark-mdx@3.1.0:
     resolution: {integrity: sha512-Ngl/H3YXyBV9RcRNdlYsZujAmhsxwzxpDzpDEhFBVAGthS4GDgnctpDjgFl/ULx5UEDzqtW1cyBSNKqYYrqLBA==}
@@ -6736,7 +6736,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  remark-mdx-frontmatter@5.1.0:
+  remark-mdx-frontmatter@5.2.0:
     dependencies:
       '@types/mdast': 4.0.4
       estree-util-value-to-estree: 3.3.3
