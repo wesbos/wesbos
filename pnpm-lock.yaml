@@ -27,7 +27,7 @@ importers:
         version: 3.1.0(acorn@8.14.1)(webpack@5.99.5(esbuild@0.25.4))
       '@mdx-js/react':
         specifier: 3.1.0
-        version: 3.1.0(@types/react@19.1.2)(react@19.1.0)
+        version: 3.1.0(@types/react@19.2.7)(react@19.1.0)
       '@sentry/cloudflare':
         specifier: 9.15.0
         version: 9.15.0
@@ -174,7 +174,7 @@ importers:
         version: 5.0.0
       waku:
         specifier: 0.23.3
-        version: 0.23.3(@types/node@22.15.3)(@types/react@19.1.2)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5(esbuild@0.25.4)))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1)
+        version: 0.23.3(@types/node@22.15.3)(@types/react@19.2.7)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5(esbuild@0.25.4)))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1)
     devDependencies:
       '@biomejs/biome':
         specifier: 1.9.4
@@ -192,11 +192,11 @@ importers:
         specifier: 22.15.3
         version: 22.15.3
       '@types/react':
-        specifier: 19.1.2
-        version: 19.1.2
+        specifier: 19.2.7
+        version: 19.2.7
       '@types/react-dom':
-        specifier: 19.1.3
-        version: 19.1.3(@types/react@19.1.2)
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.2.7)
       glob-watcher:
         specifier: 6.0.0
         version: 6.0.0
@@ -1448,13 +1448,13 @@ packages:
   '@types/postcss-modules-scope@3.0.4':
     resolution: {integrity: sha512-//ygSisVq9kVI0sqx3UPLzWIMCmtSVrzdljtuaAEJtGoGnpjBikZ2sXO5MpH9SnWX9HRfXxHifDAXcQjupWnIQ==}
 
-  '@types/react-dom@19.1.3':
-    resolution: {integrity: sha512-rJXC08OG0h3W6wDMFxQrZF00Kq6qQvw0djHRdzl3U5DnIERz0MRce3WVc7IS6JYBwtaP/DwYtRRjVlvivNveKg==}
+  '@types/react-dom@19.2.3':
+    resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
-      '@types/react': ^19.0.0
+      '@types/react': ^19.2.0
 
-  '@types/react@19.1.2':
-    resolution: {integrity: sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==}
+  '@types/react@19.2.7':
+    resolution: {integrity: sha512-MWtvHrGZLFttgeEj28VXHxpmwYbor/ATPYbBfSFZEIRK0ecCFLl2Qo55z52Hss+UV9CRN7trSeq1zbgx7YDWWg==}
 
   '@types/unist@2.0.11':
     resolution: {integrity: sha512-CmBKiL6NNo/OqgmMn95Fk9Whlp2mtvIv+KNpQKN2F4SjvrEesubTRWGYSg+BnWZOnlCaSTU1sMpsBOzgbYhnsA==}
@@ -1887,8 +1887,8 @@ packages:
   cssom@0.5.0:
     resolution: {integrity: sha512-iKuQcq+NdHqlAcwUY0o/HL69XQrUaQdMjmStJ8JFmUaiiQErlhrmuigkg/CU4E2J0IyUKUrMAgl36TvN67MqTw==}
 
-  csstype@3.1.3:
-    resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
+  csstype@3.2.3:
+    resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
   custom-media-element@1.4.2:
     resolution: {integrity: sha512-AM6FRWqJyW7pWTvXb4uJj6yvHE7C6UutdhJ5o3XO5NEl5aWFcfnpz8/TuW8qr1+/wfbj50wRvdArnSNjTmjmVw==}
@@ -4378,10 +4378,10 @@ snapshots:
       - acorn
       - supports-color
 
-  '@mdx-js/react@3.1.0(@types/react@19.1.2)(react@19.1.0)':
+  '@mdx-js/react@3.1.0(@types/react@19.2.7)(react@19.1.0)':
     dependencies:
       '@types/mdx': 2.0.13
-      '@types/react': 19.1.2
+      '@types/react': 19.2.7
       react: 19.1.0
 
   '@mdx-js/rollup@3.1.0(acorn@8.14.1)(rollup@4.44.0)':
@@ -4782,13 +4782,13 @@ snapshots:
     dependencies:
       postcss: 8.5.6
 
-  '@types/react-dom@19.1.3(@types/react@19.1.2)':
+  '@types/react-dom@19.2.3(@types/react@19.2.7)':
     dependencies:
-      '@types/react': 19.1.2
+      '@types/react': 19.2.7
 
-  '@types/react@19.1.2':
+  '@types/react@19.2.7':
     dependencies:
-      csstype: 3.1.3
+      csstype: 3.2.3
 
   '@types/unist@2.0.11': {}
 
@@ -5244,7 +5244,7 @@ snapshots:
 
   cssom@0.5.0: {}
 
-  csstype@3.1.3: {}
+  csstype@3.2.3: {}
 
   custom-media-element@1.4.2: {}
 
@@ -5844,7 +5844,7 @@ snapshots:
 
   html-escaper@3.0.3: {}
 
-  html-react-parser@5.2.5(@types/react@19.1.2)(react@19.1.0):
+  html-react-parser@5.2.5(@types/react@19.2.7)(react@19.1.0):
     dependencies:
       domhandler: 5.0.3
       html-dom-parser: 5.1.1
@@ -5852,7 +5852,7 @@ snapshots:
       react-property: 2.0.2
       style-to-js: 1.1.16
     optionalDependencies:
-      '@types/react': 19.1.2
+      '@types/react': 19.2.7
 
   html-void-elements@3.0.0: {}
 
@@ -7467,14 +7467,14 @@ snapshots:
       - tsx
       - yaml
 
-  waku@0.23.3(@types/node@22.15.3)(@types/react@19.1.2)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5(esbuild@0.25.4)))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1):
+  waku@0.23.3(@types/node@22.15.3)(@types/react@19.2.7)(less@4.3.0)(react-dom@19.1.0(react@19.1.0))(react-server-dom-webpack@19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5(esbuild@0.25.4)))(react@19.1.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1):
     dependencies:
       '@hono/node-server': 1.14.4(hono@4.8.3)
       '@swc/core': 1.12.6
       '@vitejs/plugin-react': 4.6.0(vite@7.0.0(@types/node@22.15.3)(less@4.3.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.19.4)(yaml@2.7.1))
       dotenv: 16.5.0
       hono: 4.8.3
-      html-react-parser: 5.2.5(@types/react@19.1.2)(react@19.1.0)
+      html-react-parser: 5.2.5(@types/react@19.2.7)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       react-server-dom-webpack: 19.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(webpack@5.99.5(esbuild@0.25.4))
