@@ -71,7 +71,7 @@
     "sharp": "0.34.5",
     "shiki": "3.17.0",
     "speakingurl": "14.0.1",
-    "tsx": "4.20.6",
+    "tsx": "4.21.0",
     "typescript-plugin-css-modules": "5.2.0",
     "unist-util-visit": "5.0.0",
     "waku": "0.23.3"
