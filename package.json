@@ -22,7 +22,7 @@
     "check": "biome check"
   },
   "dependencies": {
-    "@cloudflare/puppeteer": "1.0.2",
+    "@cloudflare/puppeteer": "1.0.4",
     "@counterscale/tracker": "3.0.0",
     "@mdx-js/loader": "3.1.0",
     "@mdx-js/react": "3.1.0",
