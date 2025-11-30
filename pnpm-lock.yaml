@@ -20,8 +20,8 @@ importers:
         specifier: 1.0.4
         version: 1.0.4
       '@counterscale/tracker':
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.3.0
+        version: 3.3.0
       '@mdx-js/loader':
         specifier: 3.1.1
         version: 3.1.1(acorn@8.14.1)(webpack@5.99.5(esbuild@0.25.4))
@@ -441,8 +441,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@counterscale/tracker@3.0.0':
-    resolution: {integrity: sha512-sXK1y02GhufB+z4Eo15ygxGYyoHhUFgEQh1kRLxPPNjPCOFVuXkr0EJ6/3Jb9QJu2nh8SxezsAr4iAd30zg8RQ==}
+  '@counterscale/tracker@3.3.0':
+    resolution: {integrity: sha512-yeKX48yso8rXkvOKCDT+IdDXfMxJ3EdQpjnpSjDDwW6fVXK6J2hVI65IwqIhdifMDRnIXgPlofEDkio1gMewnw==}
     engines: {node: '>=20.0.0'}
 
   '@cspotcode/source-map-support@0.8.1':
@@ -3983,7 +3983,7 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20250507.0':
     optional: true
 
-  '@counterscale/tracker@3.0.0': {}
+  '@counterscale/tracker@3.3.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:

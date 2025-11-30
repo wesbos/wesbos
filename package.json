@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@cloudflare/puppeteer": "1.0.4",
-    "@counterscale/tracker": "3.0.0",
+    "@counterscale/tracker": "3.3.0",
     "@mdx-js/loader": "3.1.1",
     "@mdx-js/react": "3.1.1",
     "@sentry/cloudflare": "9.15.0",
