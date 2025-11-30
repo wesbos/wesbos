@@ -24,8 +24,8 @@
   "dependencies": {
     "@cloudflare/puppeteer": "1.0.4",
     "@counterscale/tracker": "3.0.0",
-    "@mdx-js/loader": "3.1.0",
-    "@mdx-js/react": "3.1.0",
+    "@mdx-js/loader": "3.1.1",
+    "@mdx-js/react": "3.1.1",
     "@sentry/cloudflare": "9.15.0",
     "@sentry/react": "9.15.0",
     "@sparticuz/chromium": "133.0.0",
@@ -78,7 +78,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@mdx-js/rollup": "3.1.0",
+    "@mdx-js/rollup": "3.1.1",
     "@types/glob-watcher": "5.0.5",
     "@types/mdx": "2.0.13",
     "@types/node": "22.15.3",
