@@ -87,7 +87,7 @@
     "enquirer": "2.4.1",
     "fast-glob": "3.3.3",
     "glob-watcher": "6.0.0",
-    "miniflare": "4.20250428.0",
+    "miniflare": "4.20251125.0",
     "tsx": "4.19.4",
     "typescript": "5.8.3",
     "typescript-plugin-css-modules": "5.1.0",
