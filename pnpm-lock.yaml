@@ -81,8 +81,8 @@ importers:
         specifier: 1.5.10
         version: 1.5.10
       hono:
-        specifier: 4.7.8
-        version: 4.7.8
+        specifier: 4.10.7
+        version: 4.10.7
       image-size:
         specifier: 2.0.2
         version: 2.0.2
@@ -2777,8 +2777,8 @@ packages:
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
-  hono@4.7.8:
-    resolution: {integrity: sha512-PCibtFdxa7/Ldud9yddl1G81GjYaeMYYTq4ywSaNsYbB1Lug4mwtOMJf2WXykL0pntYwmpRJeOI3NmoDgD+Jxw==}
+  hono@4.10.7:
+    resolution: {integrity: sha512-icXIITfw/07Q88nLSkB9aiUrd8rYzSweK681Kjo/TSggaGbOX4RRyxxm71v+3PC8C/j+4rlxGeoTRxQDkaJkUw==}
     engines: {node: '>=16.9.0'}
 
   hono@4.8.3:
@@ -6517,7 +6517,7 @@ snapshots:
     dependencies:
       react-is: 16.13.1
 
-  hono@4.7.8: {}
+  hono@4.10.7: {}
 
   hono@4.8.3: {}
 

@@ -45,7 +45,7 @@
     "fast-glob": "3.3.3",
     "github-slugger": "2.0.0",
     "hls-video-element": "1.5.10",
-    "hono": "4.7.8",
+    "hono": "4.10.7",
     "image-size": "2.0.2",
     "linkedom": "0.18.12",
     "magic-string": "0.30.21",
