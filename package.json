@@ -74,7 +74,7 @@
     "tsx": "4.21.0",
     "typescript-plugin-css-modules": "5.2.0",
     "unist-util-visit": "5.0.0",
-    "waku": "0.23.3"
+    "waku": "0.23.7"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
