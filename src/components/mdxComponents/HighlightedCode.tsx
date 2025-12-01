@@ -38,13 +38,7 @@ function getLanguageFromClassName(className: string) {
   return className.replace('language-', '');
 }
 
-export async function HighlightedCode({
-  children,
-  ...props
-}: {
-  children: React.ReactNode;
-  className: string;
-}) {
+export async function HighlightedCode({ children, ...props }: { children: React.ReactNode; className: string }) {
   // The way we differentiate between inline `code` and code blocks, is we check if the <pre> has a <code> inside of it.
   if (typeof children === 'string') {
     return <code {...props} />;

@@ -1,4 +1,3 @@
-
 import { format } from 'date-fns';
 import { getPosts } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';

@@ -1,4 +1,3 @@
-
 import { Link } from 'waku';
 import { PaginationStyles } from '@/styles/PaginationStyles.module.css';
 import clsx from 'clsx';

@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next';
 import { relative } from 'node:path';
 export const defaultMeta: Metadata = {

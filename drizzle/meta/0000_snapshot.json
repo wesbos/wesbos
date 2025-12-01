@@ -69,9 +69,7 @@
       "indexes": {
         "post_id_idx": {
           "name": "post_id_idx",
-          "columns": [
-            "postId"
-          ],
+          "columns": ["postId"],
           "isUnique": false
         }
       },

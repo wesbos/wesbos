@@ -34,25 +34,25 @@ import type { getConfig as File_TipsIndex_getConfig } from './pages/tips/index';
 
 // prettier-ignore
 type Page =
-| ({ path: '/404' } & GetConfigResponse<typeof File_404_getConfig>)
-| ({ path: '/[slug]' } & GetConfigResponse<typeof File_SlugIndex_getConfig>)
-| { path: '/_root'; render: 'dynamic' }
-| ({ path: '/about' } & GetConfigResponse<typeof File_About_getConfig>)
-| { path: '/blog/[page]'; render: 'dynamic' }
-| { path: '/blog'; render: 'dynamic' }
-| ({ path: '/contact' } & GetConfigResponse<typeof File_ContactIndex_getConfig>)
-| ({ path: '/courses' } & GetConfigResponse<typeof File_Courses_getConfig>)
-| ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
-| ({ path: '/javascript/[section]/[slug]' } & GetConfigResponse<typeof File_JavascriptSectionSlug_getConfig>)
-| ({ path: '/javascript' } & GetConfigResponse<typeof File_JavascriptIndex_getConfig>)
-| ({ path: '/og' } & GetConfigResponse<typeof File_OgIndex_getConfig>)
-| ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
-| ({ path: '/speaking-and-training' } & GetConfigResponse<typeof File_SpeakingAndTrainingIndex_getConfig>)
-| { path: '/temp'; render: 'dynamic' }
-| ({ path: '/terms' } & GetConfigResponse<typeof File_TermsIndex_getConfig>)
-| ({ path: '/tip/[slug]' } & GetConfigResponse<typeof File_TipSlug_getConfig>)
-| { path: '/tips/[page]'; render: 'dynamic' }
-| ({ path: '/tips' } & GetConfigResponse<typeof File_TipsIndex_getConfig>);
+  | ({ path: '/404' } & GetConfigResponse<typeof File_404_getConfig>)
+  | ({ path: '/[slug]' } & GetConfigResponse<typeof File_SlugIndex_getConfig>)
+  | { path: '/_root'; render: 'dynamic' }
+  | ({ path: '/about' } & GetConfigResponse<typeof File_About_getConfig>)
+  | { path: '/blog/[page]'; render: 'dynamic' }
+  | { path: '/blog'; render: 'dynamic' }
+  | ({ path: '/contact' } & GetConfigResponse<typeof File_ContactIndex_getConfig>)
+  | ({ path: '/courses' } & GetConfigResponse<typeof File_Courses_getConfig>)
+  | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
+  | ({ path: '/javascript/[section]/[slug]' } & GetConfigResponse<typeof File_JavascriptSectionSlug_getConfig>)
+  | ({ path: '/javascript' } & GetConfigResponse<typeof File_JavascriptIndex_getConfig>)
+  | ({ path: '/og' } & GetConfigResponse<typeof File_OgIndex_getConfig>)
+  | ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
+  | ({ path: '/speaking-and-training' } & GetConfigResponse<typeof File_SpeakingAndTrainingIndex_getConfig>)
+  | { path: '/temp'; render: 'dynamic' }
+  | ({ path: '/terms' } & GetConfigResponse<typeof File_TermsIndex_getConfig>)
+  | ({ path: '/tip/[slug]' } & GetConfigResponse<typeof File_TipSlug_getConfig>)
+  | { path: '/tips/[page]'; render: 'dynamic' }
+  | ({ path: '/tips' } & GetConfigResponse<typeof File_TipsIndex_getConfig>);
 
 // prettier-ignore
 declare module 'waku/router' {

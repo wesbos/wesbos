@@ -17,7 +17,9 @@
   grid-template-columns: auto 1fr;
   max-width: var(--maxWidth);
   margin: 0 auto;
-  box-shadow: 5px 5px 0 var(--black), 10px 10px 0 var(--yellow);
+  box-shadow:
+    5px 5px 0 var(--black),
+    10px 10px 0 var(--yellow);
   @media (max-width: 1200px) {
     margin-inline: 2rem;
   }

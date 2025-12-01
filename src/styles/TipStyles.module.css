@@ -56,7 +56,9 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background: var(--whiteGrit) top left, var(--whiteGrit) bottom right;
+    background:
+      var(--whiteGrit) top left,
+      var(--whiteGrit) bottom right;
     background-size: 550px;
     pointer-events: none;
   }

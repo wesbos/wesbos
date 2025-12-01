@@ -60,7 +60,7 @@ export default defineConfig({
   build: {
     target: 'esnext',
     rollupOptions: {
-      external: ['blake3-wasm']
-    }
+      external: ['blake3-wasm'],
+    },
   },
 });

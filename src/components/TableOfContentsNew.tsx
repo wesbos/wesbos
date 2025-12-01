@@ -12,7 +12,11 @@ function SamePageLink({
   to,
   scroll,
   ...props
-}: { children: React.ReactNode; to: string; [key: string]: any }) {
+}: {
+  children: React.ReactNode;
+  to: string;
+  [key: string]: any;
+}) {
   return (
     <a href={to} {...props}>
       {children}
@@ -24,7 +28,11 @@ function ContentHeadings({
   headings,
   parent,
   currentSlug,
-}: { headings?: TableOfContentsHeading[]; parent?: MDXResult; currentSlug: string }) {
+}: {
+  headings?: TableOfContentsHeading[];
+  parent?: MDXResult;
+  currentSlug: string;
+}) {
   if (!headings) return null;
   const alreadyOnPage = currentSlug === parent?.frontmatter.slug;
   // If we are on the same page, we use a regular <a> tag, otherwise we use a <Link> tag
@@ -63,7 +71,7 @@ export async function TableOfContents({ currentSlug }: { currentSlug: string }) 
           <H as="h5">Module {section}</H>
           <ul>
             {(posts || []).map((post) => (
-              <li key={post.frontmatter.slug} data-current={post.frontmatter.slug  === currentSlug}>
+              <li key={post.frontmatter.slug} data-current={post.frontmatter.slug === currentSlug}>
                 <Link scroll={false} to={`/javascript/${post.frontmatter.slug}`}>
                   {post.frontmatter.title}
                   <span className={VideoNumber}>Part {post.frontmatter.postNumber}</span>

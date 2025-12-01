@@ -21,7 +21,11 @@ export function XVideoPlayer({
   url,
   contentType,
   style,
-}: { url: string; contentType: XVideoVariant['content_type']; style: React.CSSProperties }) {
+}: {
+  url: string;
+  contentType: XVideoVariant['content_type'];
+  style: React.CSSProperties;
+}) {
   return (
     <div style={style}>
       <MediaController>

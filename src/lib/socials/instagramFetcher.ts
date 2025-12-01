@@ -21,7 +21,9 @@ const headers = {
 
 export async function fetchInstagramDetailsFromApi({
   postId,
-}: { postId: string }): Promise<InstagramApiResponse['data'] | undefined> {
+}: {
+  postId: string;
+}): Promise<InstagramApiResponse['data'] | undefined> {
   // Fetch the page
   const response = await fetch('https://www.instagram.com/graphql/query', {
     headers: {

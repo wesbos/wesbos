@@ -1,4 +1,3 @@
-
 import { Link } from 'waku';
 import { ContentNavStyles } from '@/styles/ContentNavStyles.module.css';
 import type { MDXResult } from '@/lib/types';
