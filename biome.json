@@ -34,7 +34,6 @@
       "suspicious": {
         "noExplicitAny": "off"
       },
-      "a11y": {},
       "security": {
         "noBlankTarget": "off"
       },
