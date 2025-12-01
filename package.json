@@ -31,7 +31,7 @@
     "@sparticuz/chromium": "141.0.0",
     "@stefanprobst/rehype-extract-toc": "3.0.0",
     "@unpic/react": "1.0.1",
-    "better-sqlite3": "11.9.1",
+    "better-sqlite3": "12.5.0",
     "caniuse-lite": "1.0.30001757",
     "chrome-launcher": "1.2.1",
     "clsx": "2.1.1",
