@@ -1,4 +1,5 @@
 import type { Middleware } from 'waku/config';
+import type { HandlerContext, MiddlewareOptions } from 'waku/lib/middleware/types';
 
 const errorReportingMiddleware: Middleware = (
   options: MiddlewareOptions,

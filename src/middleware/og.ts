@@ -1,4 +1,5 @@
 import type { Middleware } from 'waku/config';
+import type { HandlerContext } from 'waku/lib/middleware/types';
 import type { Context } from 'hono';
 import type { Browser } from '@cloudflare/puppeteer';
 import { getHonoContext } from '@/lib/hono';
