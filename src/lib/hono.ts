@@ -35,5 +35,14 @@ export function getCloudflareContext() {
   if (isBuild()) {
     return undefined;
   }
+
+  // In development, check for the dev proxy injected by waku.server.ts
+  const devProxy = (globalThis as Record<string, unknown>).__waku_dev_proxy__ as
+    | { env: Record<string, unknown>; ctx: ExecutionContext }
+    | undefined;
+  if (devProxy) {
+    return { env: devProxy.env, executionCtx: devProxy.ctx } as unknown as HonoContextType<{ Bindings: Env }>;
+  }
+
   return getHonoContext<{ Bindings: Env }>();
 }

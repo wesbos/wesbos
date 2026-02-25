@@ -30,7 +30,10 @@ const wrappedFetch = async (request: Request, env: unknown, ctx: ExecutionContex
     }
     const proxy = await devProxyPromise;
     Object.assign(request, { cf: proxy.cf });
-    Object.assign(globalThis, { caches: proxy.caches });
+    Object.assign(globalThis, {
+      caches: proxy.caches,
+      __waku_dev_proxy__: proxy, // Store proxy for getCloudflareContext to access
+    });
     return baseEntry.fetch(request, proxy.env, proxy.ctx);
   }
 
