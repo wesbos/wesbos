@@ -7,11 +7,12 @@ import { IoLogoGithub, IoLogoLinkedin, IoLogoTiktok, IoLogoYoutube } from 'react
 import { Link } from 'waku';
 import Logo from '../../public/images/logo.png';
 
-function activeLink(path: string, href: string) {
+function activeLink(href: string, path?: string) {
+  if (!path) return null;
   if (path === href) {
     return 'current-parent';
   }
-  if (href.includes(path)) {
+  if (path.startsWith(href) && href !== '/') {
     return 'current-parent';
   }
   return null;

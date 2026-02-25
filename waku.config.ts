@@ -17,17 +17,6 @@ import { imgDimensions } from './vite-plugin-img-dimensions';
 
 export default defineConfig({
   unstable_adapter: 'waku/adapters/cloudflare',
-  unstable_honoEnhancer: './waku.hono-enhancer',
-  middleware: [
-    './src/middleware/og',
-    './src/middleware/trailingSlash',
-    './src/middleware/errorReporting',
-    'waku/middleware/context',
-    'waku/middleware/dev-server',
-    './waku.cloudflare-middleware',
-    './src/middleware/cache',
-    'waku/middleware/handler',
-  ],
   vite: {
     plugins: [
       gitHashPlugin(),
