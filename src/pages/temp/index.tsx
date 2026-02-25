@@ -65,3 +65,9 @@ export default async function Temp() {
     </div>
   );
 }
+
+export const getConfig = async () => {
+  return {
+    render: 'dynamic',
+  } as const;
+};

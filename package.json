@@ -7,7 +7,7 @@
     "dev": "waku dev",
     "start": "wrangler dev",
     "build-cf-types": "wrangler types --experimental-include-runtime",
-    "build": "pnpm run content-index && waku build --with-cloudflare",
+    "build": "pnpm run content-index && waku build",
     "worker:deploy": "wrangler deploy",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
@@ -74,7 +74,7 @@
     "tsx": "4.21.0",
     "typescript-plugin-css-modules": "5.2.0",
     "unist-util-visit": "5.0.0",
-    "waku": "0.23.7"
+    "waku": "1.0.0-alpha.4"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.8",
@@ -98,6 +98,9 @@
   "pnpm": {
     "overrides": {
       "axios": "1.7.9"
+    },
+    "patchedDependencies": {
+      "waku@1.0.0-alpha.4": "patches/waku@1.0.0-alpha.4.patch"
     }
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"

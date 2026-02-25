@@ -8,7 +8,13 @@ import type { getConfig as File_404_getConfig } from './pages/404';
 // prettier-ignore
 import type { getConfig as File_SlugIndex_getConfig } from './pages/[slug]/index';
 // prettier-ignore
+import type { getConfig as File_Root_getConfig } from './pages/_root';
+// prettier-ignore
 import type { getConfig as File_About_getConfig } from './pages/about';
+// prettier-ignore
+import type { getConfig as File_BlogPageIndex_getConfig } from './pages/blog/[page]/index';
+// prettier-ignore
+import type { getConfig as File_BlogIndex_getConfig } from './pages/blog/index';
 // prettier-ignore
 import type { getConfig as File_ContactIndex_getConfig } from './pages/contact/index';
 // prettier-ignore
@@ -26,9 +32,13 @@ import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/i
 // prettier-ignore
 import type { getConfig as File_SpeakingAndTrainingIndex_getConfig } from './pages/speaking-and-training/index';
 // prettier-ignore
+import type { getConfig as File_TempIndex_getConfig } from './pages/temp/index';
+// prettier-ignore
 import type { getConfig as File_TermsIndex_getConfig } from './pages/terms/index';
 // prettier-ignore
 import type { getConfig as File_TipSlug_getConfig } from './pages/tip/[slug]';
+// prettier-ignore
+import type { getConfig as File_TipsPageIndex_getConfig } from './pages/tips/[page]/index';
 // prettier-ignore
 import type { getConfig as File_TipsIndex_getConfig } from './pages/tips/index';
 
@@ -36,10 +46,10 @@ import type { getConfig as File_TipsIndex_getConfig } from './pages/tips/index';
 type Page =
 | ({ path: '/404' } & GetConfigResponse<typeof File_404_getConfig>)
 | ({ path: '/[slug]' } & GetConfigResponse<typeof File_SlugIndex_getConfig>)
-| { path: '/_root'; render: 'dynamic' }
+| ({ path: '/_root' } & GetConfigResponse<typeof File_Root_getConfig>)
 | ({ path: '/about' } & GetConfigResponse<typeof File_About_getConfig>)
-| { path: '/blog/[page]'; render: 'dynamic' }
-| { path: '/blog'; render: 'dynamic' }
+| ({ path: '/blog/[page]' } & GetConfigResponse<typeof File_BlogPageIndex_getConfig>)
+| ({ path: '/blog' } & GetConfigResponse<typeof File_BlogIndex_getConfig>)
 | ({ path: '/contact' } & GetConfigResponse<typeof File_ContactIndex_getConfig>)
 | ({ path: '/courses' } & GetConfigResponse<typeof File_Courses_getConfig>)
 | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
@@ -48,10 +58,10 @@ type Page =
 | ({ path: '/og' } & GetConfigResponse<typeof File_OgIndex_getConfig>)
 | ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
 | ({ path: '/speaking-and-training' } & GetConfigResponse<typeof File_SpeakingAndTrainingIndex_getConfig>)
-| { path: '/temp'; render: 'dynamic' }
+| ({ path: '/temp' } & GetConfigResponse<typeof File_TempIndex_getConfig>)
 | ({ path: '/terms' } & GetConfigResponse<typeof File_TermsIndex_getConfig>)
 | ({ path: '/tip/[slug]' } & GetConfigResponse<typeof File_TipSlug_getConfig>)
-| { path: '/tips/[page]'; render: 'dynamic' }
+| ({ path: '/tips/[page]' } & GetConfigResponse<typeof File_TipsPageIndex_getConfig>)
 | ({ path: '/tips' } & GetConfigResponse<typeof File_TipsIndex_getConfig>);
 
 // prettier-ignore

@@ -6,3 +6,9 @@ export default async function RootElement({ children }) {
     </html>
   );
 }
+
+export const getConfig = async () => {
+  return {
+    render: 'static',
+  } as const;
+};
