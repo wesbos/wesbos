@@ -12,7 +12,29 @@ const sentryConfig = () => ({
   integrations: [Sentry.honoIntegration()],
 });
 
+// Development: Use wrangler's getPlatformProxy for local D1/KV/R2 access
+const getDevProxy = async () => {
+  const { getPlatformProxy } = await import('wrangler');
+  const { WebSocketPair } = await import('miniflare');
+  Object.assign(globalThis, { WebSocketPair });
+  return getPlatformProxy({ persist: { path: '.wrangler/state/v3' } });
+};
+
+let devProxyPromise: ReturnType<typeof getDevProxy> | null = null;
+
 const wrappedFetch = async (request: Request, env: unknown, ctx: ExecutionContext) => {
+  // In development, inject wrangler proxy env/ctx for local bindings
+  if (import.meta.env?.DEV) {
+    if (!devProxyPromise) {
+      devProxyPromise = getDevProxy();
+    }
+    const proxy = await devProxyPromise;
+    Object.assign(request, { cf: proxy.cf });
+    Object.assign(globalThis, { caches: proxy.caches });
+    return baseEntry.fetch(request, proxy.env, proxy.ctx);
+  }
+
+  // In production, wrap with Sentry
   return Sentry.withSentry(sentryConfig, {
     fetch: baseEntry.fetch,
   } as ExportedHandler).fetch(request, env, ctx);
