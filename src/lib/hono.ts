@@ -1,33 +1,14 @@
-import type { Env } from 'hono';
-import { getHonoContext as getHonoContextFromWaku } from 'waku/unstable_hono';
-import { getHonoContext as getHonoContextWaku } from 'waku/unstable_hono';
+import type { Context, Env } from 'hono';
+import { unstable_getContextData as getContextData } from 'waku/server';
 import { isBuild } from './waku';
 
+export type HonoContextType<E extends Env = Env> = Context<E>;
+
 /**
- * @description Get the Cloudflare context
- * @returns {Env | undefined}
- * @deprecated Use getHonoContext() instead
+ * @description Get the Hono context from Waku's context data
+ * In Waku v1, the Hono context is stored in the context data under '__hono_context'
  */
-export function getCloudflareContext() {
-  if (isBuild()) {
-    return undefined;
-  }
-  try {
-    return getHonoContextFromWaku<{ Bindings: Env }>();
-  } catch (e) {
-    if (isHonoContextUnavailableError(e)) {
-      return undefined;
-    }
-    throw e;
-  }
-}
-const isHonoContextUnavailableError = (e: unknown): boolean => {
-  return e instanceof Error && e.message === 'Hono context is not available';
-};
-
-export type HonoContextType<E extends Env = Env> = ReturnType<typeof getHonoContextWaku<E>>;
-
-export const getHonoContext = <E extends Env = Env>(ctx?: HandlerContext): HonoContextType<E> | null => {
+export const getHonoContext = <E extends Env = Env>(ctx?: { data: Record<string, unknown> }): HonoContextType<E> | null => {
   try {
     if (ctx) {
       return ctx.data.__hono_context as HonoContextType<E>;
@@ -35,12 +16,24 @@ export const getHonoContext = <E extends Env = Env>(ctx?: HandlerContext): HonoC
     if ((globalThis as Record<string, unknown>).__hono_context) {
       return (globalThis as Record<string, unknown>).__hono_context as HonoContextType<E>;
     }
-    const c = getHonoContextWaku<E>();
-    if (!c) {
-      return null;
+    const contextData = getContextData();
+    if (contextData?.__hono_context) {
+      return contextData.__hono_context as HonoContextType<E>;
     }
-    return c;
+    return null;
   } catch (e) {
     return null;
   }
 };
+
+/**
+ * @description Get the Cloudflare context
+ * @returns The Hono context with Cloudflare bindings, or undefined
+ * @deprecated Use getHonoContext() instead
+ */
+export function getCloudflareContext() {
+  if (isBuild()) {
+    return undefined;
+  }
+  return getHonoContext<{ Bindings: Env }>();
+}
