@@ -22,6 +22,10 @@ const getDevProxy = async () => {
 
 let devProxyPromise: ReturnType<typeof getDevProxy> | null = null;
 
+const sentryHandler = Sentry.withSentry(sentryConfig, {
+  fetch: baseEntry.fetch,
+} as ExportedHandler);
+
 const wrappedFetch = async (request: Request, env: unknown, ctx: ExecutionContext) => {
   // In development, inject wrangler proxy env/ctx for local bindings
   if (import.meta.env?.DEV) {
@@ -38,9 +42,7 @@ const wrappedFetch = async (request: Request, env: unknown, ctx: ExecutionContex
   }
 
   // In production, wrap with Sentry
-  return Sentry.withSentry(sentryConfig, {
-    fetch: baseEntry.fetch,
-  } as ExportedHandler).fetch(request, env, ctx);
+  return sentryHandler.fetch(request, env, ctx);
 };
 
 export default {
