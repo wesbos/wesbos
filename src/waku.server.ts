@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/cloudflare';
-import { fsRouter } from 'waku/router/server';
 import cloudflareAdapter from 'waku/adapters/cloudflare';
+import { fsRouter } from 'waku/router/server';
 
 const pages = import.meta.glob('/src/pages/**/*.{tsx,ts,mdx}', { base: '/src/pages' });
 
@@ -11,6 +11,10 @@ const sentryConfig = () => ({
   tracesSampleRate: 1.0,
   integrations: [Sentry.honoIntegration()],
 });
+
+const sentryWrappedEntry = Sentry.withSentry(sentryConfig, {
+  fetch: baseEntry.fetch,
+} as ExportedHandler);
 
 // Development: Use wrangler's getPlatformProxy for local D1/KV/R2 access
 const getDevProxy = async () => {
@@ -38,9 +42,7 @@ const wrappedFetch = async (request: Request, env: unknown, ctx: ExecutionContex
   }
 
   // In production, wrap with Sentry
-  return Sentry.withSentry(sentryConfig, {
-    fetch: baseEntry.fetch,
-  } as ExportedHandler).fetch(request, env, ctx);
+  return sentryWrappedEntry.fetch(request, env, ctx);
 };
 
 export default {
