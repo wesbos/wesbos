@@ -15,7 +15,7 @@ async function TwitterMedia({ twitterLink }: { twitterLink: SocialLink | undefin
   }
   const media = tweetDetails?.postData?.extended_entities?.media || tweetDetails?.postData?.entities.media;
   return (
-    <XMediaDisplay media={media} tweetUrl={twitterLink?.url} />
+    <XMediaDisplay media={media} />
   );
 }
 
