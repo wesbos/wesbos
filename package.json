@@ -98,6 +98,9 @@
   "pnpm": {
     "overrides": {
       "axios": "1.7.9"
+    },
+    "patchedDependencies": {
+      "waku@1.0.0-alpha.4": "patches/waku@1.0.0-alpha.4.patch"
     }
   },
   "packageManager": "pnpm@9.10.0+sha1.216899f511c8dfde183c7cb50b69009c779534a8"
