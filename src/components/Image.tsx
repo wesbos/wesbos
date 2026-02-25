@@ -1,4 +1,5 @@
 import { Image as UnpicImage } from '@unpic/react';
+import { getEnv } from '@/lib/waku';
 
 interface ImageProps {
   src: string;
@@ -9,6 +10,8 @@ interface ImageProps {
 }
 
 export async function Image({ src, alt, width, height, className, ...props }: ImageProps) {
+  const enableCdn = import.meta.env.MODE !== 'development' && getEnv('CF_IMAGE_CDN') === 'true';
+
   return (
     <UnpicImage
       src={src}
@@ -17,7 +20,7 @@ export async function Image({ src, alt, width, height, className, ...props }: Im
       height={height as number}
       className={className}
       {...props}
-      {...(import.meta.env.MODE !== 'development' && {
+      {...(enableCdn && {
         cdn: 'cloudflare',
       })}
       loading="eager"
