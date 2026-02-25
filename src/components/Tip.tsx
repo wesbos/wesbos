@@ -13,8 +13,9 @@ async function TwitterMedia({ twitterLink }: { twitterLink: SocialLink | undefin
   if (!tweetDetails) {
     return null;
   }
+  const media = tweetDetails?.postData?.extended_entities?.media || tweetDetails?.postData?.entities.media;
   return (
-    <XMediaDisplay media={tweetDetails?.postData?.extended_entities?.media || tweetDetails?.postData?.entities.media} />
+    <XMediaDisplay media={media} tweetUrl={twitterLink?.url} />
   );
 }
 

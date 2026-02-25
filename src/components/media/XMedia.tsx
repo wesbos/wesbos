@@ -1,44 +1,55 @@
-import type { XMediaEntity, XVideoVariant, XVideoVariantFile } from '@/lib/socials/twitter-fetcher';
-import { XVideoPlayer } from './XVideo';
-function findBestXMediaVariant(variants: XVideoVariant[]) {
-  // First look for content_type "application/x-mpegURL".
-  const xMpegUrl = variants.find((variant) => variant.content_type === 'application/x-mpegURL');
-  if (xMpegUrl) return xMpegUrl;
-  // if not return the one with the highest bitrate.
-  return variants
-    .filter((v): v is XVideoVariantFile => v.content_type === 'video/mp4')
-    .sort((a, b) => b.bitrate - a.bitrate)
-    .at(0);
+import type { XMediaEntity } from '@/lib/socials/twitter-fetcher';
+
+export function XMediaDisplay({ media, tweetUrl }: { media: XMediaEntity[]; tweetUrl?: string | undefined }) {
+  if (!media) return null;
+  const first = media.at(0);
+  if (!first) return null;
+
+  if (first.type === 'photo') {
+    const aspectRatio = `${first.original_info?.width} / ${first.original_info?.height}`;
+    return <img src={first.media_url_https} alt="" style={{ aspectRatio }} />;
+  }
+
+  if (!tweetUrl) return null;
+  return <XMediaDisplayVideo media={first} tweetUrl={tweetUrl} />;
 }
 
-export function XMediaDisplay({ media }: { media: XMediaEntity[] }) {
-  if (!media) {
-    console.log(`No media foundd`, media);
-    return null; // Some tips are just text
-  }
-  // Calculate the aspect ratio of the media
-  if (media.at(0)?.type === 'photo') {
-    const photo = media.at(0);
-    const aspectRatio = `${photo?.original_info?.width} / ${photo?.original_info?.height}`;
-    return <img src={media.at(0)?.media_url_https} style={{ aspectRatio }} />;
-  }
-  return <XMediaDisplayVideo media={media} />;
-}
+function XMediaDisplayVideo({ media, tweetUrl }: { media: XMediaEntity; tweetUrl: string }) {
+  const preview = media.media_url_https;
+  if (!preview) return null;
+  const aspectRatio = media.video_info?.aspect_ratio;
+  const style = aspectRatio
+    ? { aspectRatio: `${aspectRatio[0]}/${aspectRatio[1]}` }
+    : undefined;
 
-export function XMediaDisplayVideo({ media }: { media: XMediaEntity[] }) {
-  const video = media.at(0)?.video_info;
-  const variants = video?.variants;
-  if (!video || !variants) return null; // No video variants
-  const bestVariant = findBestXMediaVariant(variants);
-  if (!bestVariant) return null; // No best variant
-  const aspectRatio = video.aspect_ratio;
   return (
-    <XVideoPlayer
-      style={{
-        aspectRatio: `${aspectRatio[0]}/${aspectRatio[1]}`,
-      }}
-      url={bestVariant.url}
-      contentType={bestVariant.content_type}
-    />
+    <a
+      href={tweetUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Play video on X"
+      style={{ display: 'block', position: 'relative', ...style }}
+    >
+      <img
+        src={preview}
+        alt="Video thumbnail"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+      <span
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'rgba(0,0,0,0.3)',
+        }}
+      >
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <circle cx="32" cy="32" r="32" fill="rgba(0,0,0,0.6)" />
+          <path d="M26 20L46 32L26 44V20Z" fill="white" />
+        </svg>
+      </span>
+    </a>
   );
 }

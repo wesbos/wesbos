@@ -14,9 +14,10 @@ import clsx from 'clsx';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { IoIosEye, IoIosHeart, IoIosRepeat } from 'react-icons/io';
 
-function Media({ media, alt }: { media?: XMediaEntity[]; alt: string }) {
-  if (!media) return null;
-  const mediaUrl = media[0].media_url_https;
+function Media({ media, alt }: { media: XMediaEntity[]; alt: string }) {
+  const first = media.at(0);
+  if (!first) return null;
+  const mediaUrl = first.media_url_https;
   const thumb = `${mediaUrl}?name=thumb&format=jpg`;
   return (
     <img
@@ -56,7 +57,7 @@ export default async function Twitter() {
     Sentry.captureException(err);
   });
 
-  const pinnedTweet = tweets?.at(0)?.core.user_results.result.legacy.pinned_tweet_ids_str[0];
+  const pinnedTweet = tweets?.at(0)?.core?.user_results.result.legacy.pinned_tweet_ids_str[0];
 
   return (
     <div className={clsx([FooterBlock, TweetStyles])}>
@@ -78,26 +79,25 @@ export default async function Twitter() {
       <div className={Tweets}>
         {Array.isArray(tweets) &&
           tweets.slice(0, 4).map((tweet) => {
-            const media = tweet.legacy.entities.media;
-            const text = tweet.legacy.full_text?.split('https://t.co').shift() ?? '';
+            const media = tweet.entities?.media as XMediaEntity[] | undefined;
+            const text = tweet.full_text?.split('https://t.co').shift() ?? '';
             const isPinned = tweet.rest_id === pinnedTweet;
-            // Decode HTML entities
             const text_ = decodeEntities(text);
             return (
               <div key={tweet.rest_id} className={Tweet}>
                 <div className={TweetMeta}>
                   <span className="timeAgo">
                     {isPinned && <span className="pinned">📌</span>}
-                    {formatDistanceToNowStrict(new Date(tweet.legacy.created_at), { addSuffix: false })}
+                    {formatDistanceToNowStrict(new Date(tweet.created_at), { addSuffix: false })}
                   </span>
-                  <span title={`${tweet.legacy.retweet_count} Retweets`}>
+                  <span title={`${tweet.retweet_count} Retweets`}>
                     <IoIosRepeat />
-                    {tweet.legacy.retweet_count}
+                    {tweet.retweet_count}
                   </span>
 
-                  <span title={`${tweet.legacy.favorite_count} Hearts`}>
+                  <span title={`${tweet.favorite_count} Hearts`}>
                     <IoIosHeart className="heart" />
-                    {numberFormatter.format(tweet.legacy.favorite_count)}
+                    {numberFormatter.format(tweet.favorite_count)}
                   </span>
 
                   <span title={`${tweet.views.count} Views`}>
@@ -109,11 +109,9 @@ export default async function Twitter() {
                   className={TweetLink}
                   rel="noopener noreferrer"
                   target="_blank"
-                  href={`https://twitter.com/wesbos/status/${tweet.rest_id}`}
+                  href={`https://x.com/wesbos/status/${tweet.rest_id}`}
                 >
-                  {/* @ts-ignore types are wrong upstream */}
-                  {/* I removed the alt because google page speed thinks it's a duplicate */}
-                  <Media media={media} alt="" />
+                  {media && <Media media={media} alt="" />}
                   {text_}
                 </a>
               </div>
