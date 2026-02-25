@@ -4,7 +4,7 @@ import type { Hono } from 'hono';
 
 const withSentry = (app: Hono) => Sentry.withSentry(
   (env) => ({
-    dsn: "https://0641a5796d4140aa8dae677c521b1f65@o28940.ingest.us.sentry.io/126624",
+    dsn: "https://dd98dd6ca4df23ad958966a5384321e2@o28940.ingest.us.sentry.io/4508735015026688",
   }),
   app
 );
