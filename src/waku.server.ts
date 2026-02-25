@@ -1,8 +1,10 @@
 import * as Sentry from '@sentry/cloudflare';
-import { fsRouter } from 'waku';
-import adapter from 'waku/adapters/cloudflare';
+import { fsRouter } from 'waku/router/server';
+import cloudflareAdapter from 'waku/adapters/cloudflare';
 
-const baseEntry = adapter(fsRouter(import.meta.glob('./pages/**/*.{tsx,ts,mdx}')));
+const pages = import.meta.glob('/src/pages/**/*.{tsx,ts,mdx}', { base: '/src/pages' });
+
+const baseEntry = cloudflareAdapter(fsRouter(pages));
 
 const sentryConfig = () => ({
   dsn: 'https://dd98dd6ca4df23ad958966a5384321e2@o28940.ingest.us.sentry.io/4508735015026688',
