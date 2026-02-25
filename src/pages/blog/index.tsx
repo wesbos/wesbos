@@ -48,3 +48,9 @@ export default async function Blog(props: PageProps<'/blog'> & { page: string })
     </>
   );
 }
+
+export const getConfig = async () => {
+  return {
+    render: 'dynamic',
+  } as const;
+};

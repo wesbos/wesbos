@@ -1,0 +1,20 @@
+diff --git a/dist/router/create-pages.js b/dist/router/create-pages.js
+index 82f48660dad4349ca2ea196d6dc3a5b8e2ed7c20..a3c6f07a532c37b3c71fa50b69822b400673a48e 100644
+--- a/dist/router/create-pages.js
++++ b/dist/router/create-pages.js
+@@ -56,6 +56,15 @@ const routePriorityComparator = (a, b)=>{
+     if (bPathLength === 0 && aHasWildcard) {
+         return 1;
+     }
++    // Literal routes should have higher priority than slug routes at each segment
++    const minLength = Math.min(aPathLength, bPathLength);
++    for (let i = 0; i < minLength; i++) {
++        const aIsLiteral = aPath[i]?.type === 'literal';
++        const bIsLiteral = bPath[i]?.type === 'literal';
++        if (aIsLiteral !== bIsLiteral) {
++            return aIsLiteral ? -1 : 1;
++        }
++    }
+     // Compare path lengths first (longer paths are more specific)
+     if (aPathLength !== bPathLength) {
+         return aPathLength > bPathLength ? -1 : 1;

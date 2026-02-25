@@ -8,22 +8,23 @@ import {
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'waku';
+import type { Unstable_ChangeRouteCallback } from 'waku/router/client';
+
 export default function LoadingIndicator() {
   const router = useRouter();
   const [navigationState, setNavigationState] = useState<'start' | 'finish' | 'idle'>('idle');
 
-  // listen for navigation-pending events
   useEffect(() => {
-    function handleNavigationStart(event: CustomEvent) {
+    const handleNavigationStart: Unstable_ChangeRouteCallback = () => {
       setNavigationState('start');
-    }
+    };
 
-    function handleNavigationComplete(event: CustomEvent) {
+    const handleNavigationComplete: Unstable_ChangeRouteCallback = () => {
       setNavigationState('finish');
       setTimeout(() => {
         setNavigationState('idle');
       }, 1000);
-    }
+    };
 
     router.unstable_events.on('start', handleNavigationStart);
     router.unstable_events.on('complete', handleNavigationComplete);
@@ -32,7 +33,7 @@ export default function LoadingIndicator() {
       router.unstable_events.off('start', handleNavigationStart);
       router.unstable_events.off('complete', handleNavigationComplete);
     };
-  }, []);
+  }, [router]);
 
   return (
     <div className={LoadingIndicatorStyles}>

@@ -1,2 +1,1 @@
-import Index from '../index';
-export default Index;
+export { default, getConfig } from '../index';

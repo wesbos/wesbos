@@ -7,7 +7,7 @@ import { drizzle } from 'drizzle-orm/d1';
  */
 export async function getDb() {
   const context = getCloudflareContext();
-  if (!context) return;
+  if (!context?.env?.DB) return;
   const db = drizzle(context.env.DB, {
     schema,
   });
