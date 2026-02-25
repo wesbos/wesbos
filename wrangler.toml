@@ -1,4 +1,4 @@
-main = "./dist/worker/serve-cloudflare.js"
+main = "./dist/server/index.js"
 name = "wesbos"
 compatibility_date = "2024-11-11"
 compatibility_flags = ["nodejs_compat"]
