@@ -1,66 +1,50 @@
 'use client';
-import type { XVideoVariant } from '@/lib/socials/twitter-fetcher';
-import HLSVideoElement from 'hls-video-element/react';
-import {
-  MediaControlBar,
-  MediaController,
-  MediaMuteButton,
-  MediaPlayButton,
-  MediaPlaybackRateButton,
-  MediaTimeDisplay,
-  MediaTimeRange,
-  MediaVolumeRange,
-} from 'media-chrome/react';
-import {
-  MediaRenditionMenu,
-  MediaSettingsMenu,
-  MediaSettingsMenuButton,
-  MediaSettingsMenuItem,
-} from 'media-chrome/react/menu';
-export function XVideoPlayer({
-  url,
-  contentType,
-  style,
-}: { url: string; contentType: XVideoVariant['content_type']; style: React.CSSProperties }) {
-  return (
-    <div style={style}>
-      <MediaController>
-        {contentType === 'application/x-mpegURL' ? (
-          <HLSVideoElement
-            onErrorCapture={(err) => {
-              console.log('error playing hls video', err);
-            }}
-            loop
-            muted
-            autoplay
-            playsInline
-            src={url}
-            slot="media"
-            crossOrigin="anonymous"
-            tabIndex={-1}
-          />
-        ) : (
-          <video loop muted autoPlay playsInline src={url} slot="media" crossOrigin="anonymous" tabIndex={-1} />
-        )}
-        <MediaSettingsMenu hidden anchor="auto">
-          <MediaSettingsMenuItem>
-            Quality
-            <MediaRenditionMenu slot="submenu" hidden>
-              <div slot="title">Quality</div>
-            </MediaRenditionMenu>
-          </MediaSettingsMenuItem>
-        </MediaSettingsMenu>
 
-        <MediaControlBar>
-          <MediaPlayButton />
-          <MediaTimeRange />
-          <MediaTimeDisplay showDuration />
-          <MediaMuteButton />
-          <MediaVolumeRange />
-          <MediaPlaybackRateButton />
-          <MediaSettingsMenuButton />
-        </MediaControlBar>
-      </MediaController>
-    </div>
+const MEDIA_CHROME_CDN = 'https://cdn.jsdelivr.net/npm/media-chrome@4.16.1/dist/iife/index.js';
+const HLS_VIDEO_CDN = 'https://cdn.jsdelivr.net/npm/hls-video-element@1.5.10/+esm';
+
+function buildSrcdoc(url: string, isHLS: boolean) {
+  const videoTag = isHLS
+    ? `<hls-video slot="media" loop muted playsinline preload="metadata" src="${url}"></hls-video>`
+    : `<video slot="media" loop muted playsinline preload="metadata" src="${url}"></video>`;
+
+  const hlsScript = isHLS
+    ? `<script type="module" src="${HLS_VIDEO_CDN}"></` + 'script>'
+    : '';
+
+  return `<!DOCTYPE html>
+<html><head>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: black; }
+  media-controller { width: 100%; height: 100%; }
+  video, hls-video { width: 100%; height: 100%; object-fit: cover; }
+</style>
+<script src="${MEDIA_CHROME_CDN}"></` + `script>
+${hlsScript}
+</head>
+<body>
+  <media-controller>
+    ${videoTag}
+    <media-control-bar>
+      <media-play-button></media-play-button>
+      <media-time-range></media-time-range>
+      <media-time-display show-duration></media-time-display>
+      <media-mute-button></media-mute-button>
+      <media-volume-range></media-volume-range>
+      <media-playback-rate-button></media-playback-rate-button>
+    </media-control-bar>
+  </media-controller>
+</body></html>`;
+}
+
+export function XVideoPlayer({ url, isHLS = false, style }: { url: string; isHLS?: boolean; style?: React.CSSProperties }) {
+  return (
+    <iframe
+      srcDoc={buildSrcdoc(url, isHLS)}
+      sandbox="allow-scripts"
+      style={{ border: 'none', ...style }}
+      title="Video player"
+    />
   );
 }

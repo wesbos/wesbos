@@ -1,44 +1,40 @@
-import type { XMediaEntity, XVideoVariant, XVideoVariantFile } from '@/lib/socials/twitter-fetcher';
+import type { XMediaEntity, XVideoVariant } from '@/lib/socials/twitter-fetcher';
 import { XVideoPlayer } from './XVideo';
-function findBestXMediaVariant(variants: XVideoVariant[]) {
-  // First look for content_type "application/x-mpegURL".
-  const xMpegUrl = variants.find((variant) => variant.content_type === 'application/x-mpegURL');
-  if (xMpegUrl) return xMpegUrl;
-  // if not return the one with the highest bitrate.
+
+function findBestVariant(variants: XVideoVariant[]) {
+  const hls = variants.find((v) => v.content_type === 'application/x-mpegURL');
+  if (hls) return hls;
   return variants
-    .filter((v): v is XVideoVariantFile => v.content_type === 'video/mp4')
+    .filter((v): v is Extract<XVideoVariant, { content_type: 'video/mp4' }> => v.content_type === 'video/mp4')
     .sort((a, b) => b.bitrate - a.bitrate)
     .at(0);
 }
 
 export function XMediaDisplay({ media }: { media: XMediaEntity[] }) {
-  if (!media) {
-    console.log(`No media foundd`, media);
-    return null; // Some tips are just text
+  if (!media) return null;
+  const first = media.at(0);
+  if (!first) return null;
+
+  if (first.type === 'photo') {
+    const aspectRatio = `${first.original_info?.width} / ${first.original_info?.height}`;
+    return <img src={first.media_url_https} alt="" style={{ aspectRatio }} />;
   }
-  // Calculate the aspect ratio of the media
-  if (media.at(0)?.type === 'photo') {
-    const photo = media.at(0);
-    const aspectRatio = `${photo?.original_info?.width} / ${photo?.original_info?.height}`;
-    return <img src={media.at(0)?.media_url_https} style={{ aspectRatio }} />;
-  }
-  return <XMediaDisplayVideo media={media} />;
+
+  return <XMediaDisplayVideo media={first} />;
 }
 
-export function XMediaDisplayVideo({ media }: { media: XMediaEntity[] }) {
-  const video = media.at(0)?.video_info;
-  const variants = video?.variants;
-  if (!video || !variants) return null; // No video variants
-  const bestVariant = findBestXMediaVariant(variants);
-  if (!bestVariant) return null; // No best variant
+function XMediaDisplayVideo({ media }: { media: XMediaEntity }) {
+  const video = media.video_info;
+  if (!video?.variants) return null;
+  const best = findBestVariant(video.variants);
+  if (!best) return null;
   const aspectRatio = video.aspect_ratio;
+
   return (
     <XVideoPlayer
-      style={{
-        aspectRatio: `${aspectRatio[0]}/${aspectRatio[1]}`,
-      }}
-      url={bestVariant.url}
-      contentType={bestVariant.content_type}
+      url={best.url}
+      isHLS={best.content_type === 'application/x-mpegURL'}
+      style={{ aspectRatio: `${aspectRatio[0]}/${aspectRatio[1]}`, width: '100%' }}
     />
   );
 }
