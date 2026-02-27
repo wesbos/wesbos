@@ -30,7 +30,7 @@ const USER_FIELDS = ['pinned_tweet_id'].join(',');
 const EXPANSIONS = ['attachments.media_keys', 'author_id'].join(',');
 
 async function xApiFetch(url: string) {
-  const bearerToken = getEnv('X_BEARER_TOKEN');
+  const bearerToken = process.env.X_BEARER_TOKEN || getEnv('X_BEARER_TOKEN');
   if (!bearerToken) throw new Error('X_BEARER_TOKEN is not set');
   const res = await fetch(url, {
     headers: { Authorization: `Bearer ${bearerToken}` },

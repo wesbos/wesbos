@@ -16,6 +16,7 @@
     "content-index": "tsx ./src/lib/createMDXIndex.ts",
     "types:worker": "wrangler types --experimental-include-runtime  --env-interface CloudflareEnv",
     "tip": "tsx ./createTip.ts",
+    "fetch-social": "tsx --env-file .env ./fetchSocial.ts",
     "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts",
     "lint": "biome lint --write",
     "format": "biome format --write",

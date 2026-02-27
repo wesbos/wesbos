@@ -1,0 +1,49 @@
+---
+tags:
+  - css
+date: 2026-02-27T00:00:00.000Z
+slug: css-truncate-text-from-middle
+links:
+  - https://www.tiktok.com/@wesbos/video/7604917710622903572
+  - https://www.youtube.com/shorts/cuxbmq07Vxw
+  - https://x.com/wesbos/status/2020911590753628443/video/1
+  - https://www.instagram.com/p/DUi6MLoilQo/
+  - https://www.linkedin.com/feed/update/urn:li:activity:7426678079676379136/
+  - https://bsky.app/profile/wesbos.com/post/3megy3ywotc2h
+---
+
+🔥 Someone on reddit posted a demo where CSS truncates text from the middle. They didn't post the code, so here is my shot at it with Flexbox.
+
+Super handy for GUIDs or other long strings that you want to truncate from the middle.
+
+```html
+<p class="truncate-text"><span>2brb5e796-6c5e-4bc4-871b-f3afd469</span><span>-1c1e</span></p>
+<p class="truncate-text"><span>2bb5e796-6c5e-4bc4-871b-</span><span>f3af-d469-1c1e</span></p>
+<p class="truncate-text"><span>2bb5e796-6c5e-4bc4</span><span>-871b-f3af-d469-1c1e</span></p>
+```
+
+```css
+.truncate-text {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  border: 1px solid #000;
+  padding: 0 10px;
+  border-radius: 5px;
+  display: flex;
+  span {
+    overflow: hidden;
+    flex: 0 1 auto;
+  }
+  span:nth-child(1) {
+    flex-shrink: 1;
+    background: red;
+    text-overflow: ellipsis;
+  }
+  span:nth-child(2) {
+    background: green;
+    min-width: fit-content;
+    flex: 1;
+  }
+}
+```
