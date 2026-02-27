@@ -1,0 +1,28 @@
+---
+title: "Safari lets you screenshot elements with a transparent background. HANDY!"
+slug: safari-element-screenshot-transparent-background
+category:
+ - CSS
+ - Workflow + Tooling
+date: 2026-02-27T15:00:00
+image: safari-capture-screenshot-menu.png
+---
+
+I needed to screenshot a single element from a webpage with a transparent background -- just the element, no white box behind it.
+
+Turns out Safari's dev tools can do exactly this, and it preserves transparency.
+
+## How to do it
+
+1. Open Safari Dev Tools (⌘⌥I)
+2. Select the element you want to screenshot in the Elements panel
+3. Right-click on the element
+4. Click **Capture Screenshot**
+
+![Right-click on any element in Safari's Elements panel and select Capture Screenshot](safari-capture-screenshot-menu.png)
+
+That's it -- Safari saves a PNG of just that element. If the element doesn't have a background colour or image set on it, the resulting screenshot will have a **transparent background**. The exported PNG respects the actual transparency rather than compositing it against a white background like most screenshot tools do.
+
+![The resulting screenshot has a transparent background - shown here with the classic checkerboard pattern](transparent-element-screenshot.png)
+
+Super handy when you need to grab a component or UI element from a live site and drop it into a presentation, blog post, or design comp without manually removing the background.
