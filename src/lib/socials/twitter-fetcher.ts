@@ -234,6 +234,24 @@ export async function fetchLatestTweets(): Promise<Tweet[]> {
   });
 }
 
+export async function searchTweets(query: string, { limit = 10 }: { limit?: number } = {}) {
+  const params = new URLSearchParams({
+    query: `from:wesbos ${query}`,
+    max_results: String(limit),
+    'tweet.fields': TWEET_FIELDS,
+    'media.fields': MEDIA_FIELDS,
+    expansions: EXPANSIONS,
+  });
+  const url = `${X_API_BASE}/tweets/search/recent?${params}`;
+  const json = (await xApiFetch(url).catch((err) => {
+    console.error('Error searching tweets', err.message);
+    return null;
+  })) as XApiResponse<XApiTweet[]> | null;
+
+  if (!json?.data?.length) return [];
+  return json.data.map((tweet) => tweetToLegacy(tweet, json.includes?.media));
+}
+
 export type XMediaEntity = {
   display_url: string;
   expanded_url: string;

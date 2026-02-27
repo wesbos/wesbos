@@ -14,7 +14,7 @@ async function getLsdToken(): Promise<string> {
   const setCookies = res.headers.getSetCookie?.() ?? [];
   for (const cookie of setCookies) {
     const match = cookie.match(/lsd=([^;]+)/);
-    if (match) return match[1];
+    if (match?.[1]) return match[1];
   }
   return 'AVqbxe3J_YA';
 }

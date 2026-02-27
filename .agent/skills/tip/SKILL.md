@@ -19,7 +19,13 @@ When the user asks to create a new tip or edit an existing one. Tips are short-f
   pnpm fetch-social <url>
   ```
   It outputs JSON to stdout (status messages go to stderr). Supports: tiktok, twitter (needs `X_BEARER_TOKEN` env var), linkedin, instagram, bluesky. Key fields vary by platform — look for `desc`/`full_text`/`headline` for the post text and `createTime`/`createdAt`/`datePublished` for the date.
+- **Use `listPosts.ts`** to list recent posts or search by keyword. Run it with:
+  ```
+  pnpm list-posts [twitter|bluesky|all] [search query]
+  ```
+  Returns a JSON array of `{ platform, id, url, text, date }` objects sorted by date. Supports twitter and bluesky (these have public/API-accessible feeds). Use this to find the post URLs for a tip when the user describes it but doesn't provide links. Search is only supported on twitter — bluesky always returns the latest posts.
 - If `fetchSocial.ts` returns no data (some platforms block server-side fetches for certain posts), fall back to the **browser MCP**: navigate to the URL, wait for load, snapshot/screenshot to read the content.
+- For Instagram, TikTok, and LinkedIn, there is no feed listing API — use web search or the browser MCP to find specific post URLs on those platforms.
 - Tips are short — typically a few lines of text, sometimes with code snippets, screenshots, or video.
 - The tip body usually starts with a 🔥 emoji.
 
