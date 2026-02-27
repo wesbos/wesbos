@@ -32,7 +32,8 @@ export function isSocialLink(link: string, type?: SocialLinkType): boolean {
 
 export function parseSocialLink(link: string): SocialLink | undefined {
   if (!link) return;
-  const url = new URL(link);
+  const cleaned = link.replace(/^['"\s]+|['"\s]+$/g, '');
+  const url = new URL(cleaned);
   const pathname = url.pathname;
 
   // Twitter/X handling
@@ -41,7 +42,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     postId = postId?.split('?')[0];
     if (!handle || !postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'twitter',
       handle,
       postId,
@@ -53,9 +54,9 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     const parts = pathname.split('/').filter(Boolean);
     const postId = parts[parts.length - 1];
     const handle = parts[0] !== 'p' ? parts[0] : undefined;
-    if (!handle || !postId) return;
+    if (!postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'instagram',
       handle,
       postId,
@@ -69,7 +70,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     const postId = parts[3]?.split('?')[0];
     if (!handle || !postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'tiktok',
       handle,
       postId,
@@ -81,7 +82,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     const postId = pathname.split('/').pop();
     if (!postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'youtube',
       handle: undefined,
       postId,
@@ -98,7 +99,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     }
     if (!postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'linkedin',
       handle: undefined,
       postId,
@@ -112,7 +113,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     const postId = parts?.[2]?.split('?')[0];
     if (!handle || !postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'threads',
       handle,
       postId,
@@ -124,7 +125,7 @@ export function parseSocialLink(link: string): SocialLink | undefined {
     const [, , handle, , postId] = pathname.split('/');
     if (!handle || !postId) return;
     return {
-      url: link,
+      url: cleaned,
       type: 'bluesky',
       handle,
       postId,

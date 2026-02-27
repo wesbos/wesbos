@@ -7,6 +7,7 @@ const links = [
   'https://twitter.com/wesbos/status/1834242925401694490',
   'https://www.instagram.com/wesbos/reel/C_0jGSKqVe0/',
   'https://www.instagram.com/p/DDckx3hR3xh',
+  'https://www.instagram.com/p/DUi6MLoilQo/',
   'https://www.tiktok.com/@wesbos/video/7413769211039730950',
   'https://www.youtube.com/shorts/JCoCRIiKXvI',
   'https://www.linkedin.com/posts/wesbos_are-you-using-position-absolute-to-overlap-activity-7240008841482903552-qT1V/',
@@ -42,6 +43,11 @@ test('it parses instagram links', () => {
   expect(parseSocialLink(`https://www.instagram.com/p/DDckx3hR3xh`)).toMatchObject({
     handle: undefined,
     postId: 'DDckx3hR3xh',
+    type: 'instagram',
+  });
+  expect(parseSocialLink(`'https://www.instagram.com/p/DUi6MLoilQo/'`)).toMatchObject({
+    handle: undefined,
+    postId: 'DUi6MLoilQo',
     type: 'instagram',
   });
 });
