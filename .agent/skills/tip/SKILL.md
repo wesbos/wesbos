@@ -27,7 +27,6 @@ When the user asks to create a new tip or edit an existing one. Tips are short-f
 - If `fetchSocial.ts` returns no data (some platforms block server-side fetches for certain posts), fall back to the **browser MCP**: navigate to the URL, wait for load, snapshot/screenshot to read the content.
 - For Instagram, TikTok, and LinkedIn, there is no feed listing API — use web search or the browser MCP to find specific post URLs on those platforms.
 - Tips are short — typically a few lines of text, sometimes with code snippets, screenshots, or video.
-- The tip body usually starts with a 🔥 emoji.
 
 ### 2. Create the file
 
@@ -98,7 +97,9 @@ The supported social link types in the codebase are defined in `src/utils/parseS
 
 ### 5. Body content
 
+- **Follow the writing style skill** at `.agent/skills/wes-bos-writing-style/SKILL.md` — read it before writing any tip content. Key points: casual authority, Canadian spelling (colour, favourite), short punchy sentences, no AI-sounding filler phrases like "The best part?", "Here's the thing:", "Let's dive in", etc.
 - Keep it short and punchy — these are social media posts, not blog articles
+- Use the post's own words as much as possible. Paraphrase lightly for readability, don't rewrite.
 - Code snippets use fenced code blocks with language tags. Do not include code unless you are provided with it.
 - DO NOT HALLUCINATE CODE
 - Reference images by filename only: `![alt text](image.webp)`

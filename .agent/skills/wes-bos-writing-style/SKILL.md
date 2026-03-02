@@ -66,8 +66,8 @@ Never open with a formal introduction, abstract, or throat-clearing. Jump straig
 - **Inline code backticks** for any technical term, even single words like `this`, `var`, `let` when referring to the code concept.
 - Code blocks should have a language identifier.
 - **Numbered lists** for steps, **bullet lists** for options or features.
-- Keyboard shortcuts should use their correct symbols: ⌘⌥⇧^
-- Never use fancy quotes or emdashes.
+- Keyboard shortcuts should use their correct symbols wrapped in kbd tabs: ⌘⌥⇧`^
+- Never use fancy quotes, emdashes or double dashes.
 - Embed YouTube videos, tweets, and CodePens as bare URLs on their own line -- no ceremony.
 - **Never over-format.** The writing should feel casual, not like a design system document.
 
