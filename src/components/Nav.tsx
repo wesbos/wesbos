@@ -1,10 +1,10 @@
 'use client';
-import H from '@/components/mdxComponents/Headings';
-import { LogoStyles, NavLi, NavLiSocial, NavLink, NavSmall, NavStyles, NavUl } from '@/styles/NavStyles.module.css';
 import clsx from 'clsx';
 import { FaBluesky, FaSquareInstagram, FaXTwitter } from 'react-icons/fa6';
 import { IoLogoGithub, IoLogoLinkedin, IoLogoTiktok, IoLogoYoutube } from 'react-icons/io5';
 import { Link } from 'waku';
+import H from '@/components/mdxComponents/Headings';
+import { LogoStyles, NavLi, NavLink, NavLiSocial, NavSmall, NavStyles, NavUl } from '@/styles/NavStyles.module.css';
 import Logo from '../../public/images/logo.png';
 
 function activeLink(href: string, path?: string) {

@@ -1,5 +1,9 @@
+import * as Sentry from '@sentry/cloudflare';
+import clsx from 'clsx';
+import { formatDistanceToNowStrict } from 'date-fns';
+import { IoIosEye, IoIosHeart, IoIosRepeat } from 'react-icons/io';
 import { withCache } from '@/lib/cache';
-import { type XMediaEntity, fetchLatestTweets } from '@/lib/socials/twitter-fetcher';
+import { fetchLatestTweets, type XMediaEntity } from '@/lib/socials/twitter-fetcher';
 import {
   FooterBlock,
   FooterHeading,
@@ -9,10 +13,6 @@ import {
   TweetStyles,
   Tweets,
 } from '@/styles/FooterStyles.module.css';
-import * as Sentry from '@sentry/cloudflare';
-import clsx from 'clsx';
-import { formatDistanceToNowStrict } from 'date-fns';
-import { IoIosEye, IoIosHeart, IoIosRepeat } from 'react-icons/io';
 
 function Media({ media, alt }: { media: XMediaEntity[]; alt: string }) {
   const first = media.at(0);

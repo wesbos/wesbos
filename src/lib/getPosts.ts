@@ -1,8 +1,8 @@
-import { slug } from 'github-slugger';
 import path from 'node:path';
-import type { ContentType, MDXResult, Frontmatter, JavaScriptFrontmatter } from './types';
+import { slug } from 'github-slugger';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
 import * as mdxIndex from '../content/index';
+import type { ContentType, Frontmatter, JavaScriptFrontmatter, MDXResult } from './types';
 
 const PER_PAGE = 10;
 
