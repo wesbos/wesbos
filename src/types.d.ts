@@ -43,3 +43,9 @@ declare module '*.mdx' {
   const content: MDXContent;
   export default content;
 }
+
+declare module 'cloudflare:workers' {
+  const env: Record<string, unknown>;
+  const waitUntil: (promise: Promise<unknown>) => void;
+  const passThroughOnException: () => void;
+}
