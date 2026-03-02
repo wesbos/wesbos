@@ -168,8 +168,7 @@ export async function populateSocialLinks(links: SocialLinkRecord) {
       return [type, await populateSocialLink(links)] as const;
     }),
   );
-  // filter any links that don't have details
-  const populatedLinksFiltered = populatedLinks.filter((entry) => !!entry[1]?.details);
+  const populatedLinksFiltered = populatedLinks.filter((entry) => !!entry[1]);
   const populatedLinksObject = Object.fromEntries(populatedLinksFiltered) as Record<SocialLinkType, PopulatedLink>;
   return populatedLinksObject;
 }
