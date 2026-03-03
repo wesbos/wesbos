@@ -1,13 +1,13 @@
-import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
 import { Suspense } from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import { Link } from 'waku';
+import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
 import LatestCourse from './LatestCourse';
 import Podcast from './Podcast';
 // import Instagram from './Instagram';
 import Twitter from './Twitter';
 
-export default async function Footer() {
+export async function Footer() {
   return (
     <footer className={FooterStyles}>
       <div className={FooterInner}>

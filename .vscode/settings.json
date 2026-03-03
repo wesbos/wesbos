@@ -51,5 +51,8 @@
   "[jsonc]": {
     "editor.defaultFormatter": "biomejs.biome",
     "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
   }
 }
