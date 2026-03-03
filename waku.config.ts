@@ -64,17 +64,13 @@ export default defineConfig({
           plugins: ['babel-plugin-react-compiler'],
         },
       }),
-      // Waku dev (RSC) currently errors with:
-      // "registerMissingImport is not supported in dev rsc"
-      // when @cloudflare/vite-plugin is enabled.
-      ...(!isWakuDev
-        ? [
-            cloudflare({
-              viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
-              inspectorPort: false,
-            }),
-          ]
-        : []),
+      // Waku dev's RSC environment does not support registerMissingImport yet.
+      // Keep Cloudflare's Vite plugin out of `waku dev` and use wrangler proxy bindings there.
+      !isWakuDev &&
+        cloudflare({
+          viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
+          inspectorPort: false,
+        }),
       gitHashPlugin(),
       imgDimensions(),
       mdx({
@@ -98,7 +94,7 @@ export default defineConfig({
           [rehypeHotTips],
         ],
       }),
-    ],
+    ].filter(Boolean),
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, 'src'),

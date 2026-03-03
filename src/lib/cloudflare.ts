@@ -18,6 +18,7 @@ export async function getCloudflareEnv(): Promise<CloudflareEnv | undefined> {
     // Avoid static dep-scanner resolution in local dev.
     const workersModuleId = 'cloudflare:workers';
     const { env } = await import(/* @vite-ignore */ workersModuleId);
+
     return env as CloudflareEnv;
   } catch {
     return undefined;

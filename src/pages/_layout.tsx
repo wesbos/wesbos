@@ -30,9 +30,9 @@ export default async function RootLayout({ children, path }: RootLayoutProps) {
         <div className={ContentStyles}>
           <ErrorBoundary key={path}>{children}</ErrorBoundary>
         </div>
-        <Suspense>
+        {/* <Suspense>
           <Footer />
-        </Suspense>
+        </Suspense> */}
       </div>
     </>
   );
