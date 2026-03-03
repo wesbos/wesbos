@@ -1,5 +1,5 @@
 'use server';
-import { getEnv } from '../waku';
+import { getEnv } from '../cloudflare';
 
 const X_API_BASE = 'https://api.x.com/2';
 

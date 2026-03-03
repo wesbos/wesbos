@@ -1,6 +1,14 @@
-import { isBuild } from './waku';
+import { getEnv as getWakuEnv } from 'waku';
 
 type CloudflareEnv = Record<string, unknown>;
+
+export function isBuild(): boolean {
+  return typeof process !== 'undefined' && process.env.WAKU_BUILD === 'true';
+}
+
+export function getEnv(key: string): string | undefined {
+  return getWakuEnv(key) || process.env[key];
+}
 
 /**
  * In production, bindings come from `cloudflare:workers`.

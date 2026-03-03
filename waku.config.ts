@@ -40,20 +40,10 @@ export default defineConfig({
           noDiscovery: true,
           include: ['hono/tiny', 'react-icons/io', '@unpic/react', 'clsx', 'github-slugger'],
         },
-        build: {
-          rollupOptions: {
-            platform: 'neutral',
-          } as never,
-        },
       },
       ssr: {
         optimizeDeps: {
           include: ['waku > rsc-html-stream/server'],
-        },
-        build: {
-          rollupOptions: {
-            platform: 'neutral',
-          } as never,
         },
       },
     },
@@ -98,6 +88,9 @@ export default defineConfig({
     resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, 'src'),
+        // Work around blake3-wasm package ESM entry importing a missing `./node.js`.
+        'blake3-wasm': 'blake3-wasm/esm/browser/index.js',
+        'blake3-wasm/esm/index.js': 'blake3-wasm/esm/browser/index.js',
       },
     },
     // optimizeDeps: {
