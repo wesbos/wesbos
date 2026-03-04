@@ -4,11 +4,6 @@
   "name": "wesbos",
   "compatibility_date": "2026-03-02",
   "compatibility_flags": ["nodejs_compat", "nodejs_als"],
-  "tail_consumers": [
-    {
-      "service": "wesbos-tail"
-    }
-  ],
   "upload_source_maps": true,
   "assets": {
     "directory": "./dist/public",
@@ -43,14 +38,14 @@
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1
+  },
+  "env": {
+    "production": {
+      "tail_consumers": [
+        {
+          "service": "wesbos-tail"
+        }
+      ]
+    }
   }
-  //TODO: do I really need this?
-
-  // "rules": [
-  //   {
-  //     "type": "ESModule",
-  //     "globs": ["**/*.js", "**/*.mjs"]
-  //   }
-  // ],
-  // "no_bundle": true
 }
