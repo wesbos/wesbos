@@ -32,8 +32,6 @@ import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/i
 // prettier-ignore
 import type { getConfig as File_SpeakingAndTrainingIndex_getConfig } from './pages/speaking-and-training/index';
 // prettier-ignore
-import type { getConfig as File_TempIndex_getConfig } from './pages/temp/index';
-// prettier-ignore
 import type { getConfig as File_TermsIndex_getConfig } from './pages/terms/index';
 // prettier-ignore
 import type { getConfig as File_TipSlug_getConfig } from './pages/tip/[slug]';
@@ -58,7 +56,6 @@ type Page =
 | ({ path: '/og' } & GetConfigResponse<typeof File_OgIndex_getConfig>)
 | ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
 | ({ path: '/speaking-and-training' } & GetConfigResponse<typeof File_SpeakingAndTrainingIndex_getConfig>)
-| ({ path: '/temp' } & GetConfigResponse<typeof File_TempIndex_getConfig>)
 | ({ path: '/terms' } & GetConfigResponse<typeof File_TermsIndex_getConfig>)
 | ({ path: '/tip/[slug]' } & GetConfigResponse<typeof File_TipSlug_getConfig>)
 | ({ path: '/tips/[page]' } & GetConfigResponse<typeof File_TipsPageIndex_getConfig>)
