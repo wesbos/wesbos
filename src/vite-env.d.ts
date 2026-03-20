@@ -9,6 +9,8 @@ interface ImportMetaEnv {
 
   // Custom env variables
   readonly VITE_GIT_COMMIT_HASH: string;
+  /** Injected by `vite-plugin-git-hash` for cache keys in production */
+  readonly WAKU_GIT_COMMIT_HASH: string;
 }
 
 interface ImportMeta {
