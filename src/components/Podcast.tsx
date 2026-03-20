@@ -1,5 +1,7 @@
 import { Image } from '@/components/Image';
+
 const url = `https://syntax.fm/api/shows/latest`;
+
 import synaxLogo from '@/assets/syntax-artwork.jpeg?meta';
 import { withCache } from '@/lib/cache';
 import { FooterBlock, FooterHeading } from '@/styles/FooterStyles.module.css';

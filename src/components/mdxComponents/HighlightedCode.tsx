@@ -1,8 +1,8 @@
 // import SHIKI_WASM from "./onigasm.wasm";
 // import SHIKI_WASM from "shiki/onig.wasm?module";
-import { cobalt2 } from '@/lib/assets/cobalt2';
-import { type ReactElement, isValidElement } from 'react';
-import { type ThemeInput, createHighlighterCore } from 'shiki';
+
+import { isValidElement, type ReactElement } from 'react';
+import { createHighlighterCore, type ThemeInput } from 'shiki';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 import bash from 'shiki/langs/bash.mjs';
 import cpp from 'shiki/langs/cpp.mjs';
@@ -18,6 +18,7 @@ import typescript from 'shiki/langs/typescript.mjs';
 import vue from 'shiki/langs/vue.mjs';
 import xml from 'shiki/langs/xml.mjs';
 import yaml from 'shiki/langs/yaml.mjs';
+import { cobalt2 } from '@/lib/assets/cobalt2';
 
 // const { default: shikiWasm } = await import(
 //   /* @vite-ignore */ `${SHIKI_WASM}?module`
@@ -38,13 +39,7 @@ function getLanguageFromClassName(className: string) {
   return className.replace('language-', '');
 }
 
-export async function HighlightedCode({
-  children,
-  ...props
-}: {
-  children: React.ReactNode;
-  className: string;
-}) {
+export async function HighlightedCode({ children, ...props }: { children: React.ReactNode; className: string }) {
   // The way we differentiate between inline `code` and code blocks, is we check if the <pre> has a <code> inside of it.
   if (typeof children === 'string') {
     return <code {...props} />;

@@ -1,6 +1,6 @@
 import type { Context, Env } from 'hono';
 import { unstable_getContextData as getContextData } from 'waku/server';
-import { isBuild } from './waku';
+import { isBuild } from './cloudflare';
 
 export type HonoContextType<E extends Env = Env> = Context<E>;
 
@@ -21,7 +21,7 @@ export const getHonoContext = <E extends Env = Env>(ctx?: { data: Record<string,
       return contextData.__hono_context as HonoContextType<E>;
     }
     return null;
-  } catch (e) {
+  } catch {
     return null;
   }
 };
@@ -38,7 +38,7 @@ export function getCloudflareContext() {
 
   // In development, check for the dev proxy injected by waku.server.ts
   const devProxy = (globalThis as Record<string, unknown>).__waku_dev_proxy__ as
-    | { env: Record<string, unknown>; ctx: ExecutionContext }
+    | { env: Record<string, unknown>; ctx: unknown }
     | undefined;
   if (devProxy) {
     return { env: devProxy.env, executionCtx: devProxy.ctx } as unknown as HonoContextType<{ Bindings: Env }>;

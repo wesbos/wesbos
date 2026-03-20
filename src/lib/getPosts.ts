@@ -1,8 +1,9 @@
-import { slug } from 'github-slugger';
 import path from 'node:path';
-import type { ContentType, MDXResult, Frontmatter, JavaScriptFrontmatter } from './types';
+import { slug } from 'github-slugger';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
 import * as mdxIndex from '../content/index';
+
+import type { ContentType, Frontmatter, JavaScriptFrontmatter, MDXResult } from './types';
 
 const PER_PAGE = 10;
 
@@ -103,7 +104,6 @@ export async function getPosts<T extends ContentType>(
   const start = (page - 1) * limit;
   const end = limit === -1 ? undefined : start + limit;
   const postsForPage = posts.slice(start, end);
-
   return {
     posts: postsForPage as TypeToFrontmatter<T>[],
     total: posts.length,

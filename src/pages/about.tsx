@@ -1,12 +1,12 @@
 import { Link } from 'waku';
 import type { PageProps } from 'waku/router';
 import bosFamily from '../../public/images/bos-family.jpg?meta';
-import wesAndScott from '../../public/images/wes-and-scott.jpg?meta';
 import wes from '../../public/images/wes.jpg?meta';
+import wesAndScott from '../../public/images/wes-and-scott.jpg?meta';
 import { Image } from '../components/Image';
 import { MetaTags } from '../components/MetaTags';
-import { TimeSince } from '../components/TimeSince';
 import H from '../components/mdxComponents/Headings';
+import { TimeSince } from '../components/TimeSince';
 export default async function AboutPage(props: PageProps<'/about'>) {
   return (
     <>
