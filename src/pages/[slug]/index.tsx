@@ -1,6 +1,7 @@
 import mdxComponents from '@/components/mdxComponents';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
+import { format } from 'date-fns';
 import { IoLogoGithub } from 'react-icons/io';
 import type { PageProps } from 'waku/router';
 import { unstable_notFound as notFound } from 'waku/router/server';
@@ -26,6 +27,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
   const { default: MDXContent } = post;
   const editURL = `https://github.com/wesbos/wesbos/tree/master/${post.filePath}`;
   const image = post.images?.[0];
+  const postDate = new Date(post.frontmatter.date);
 
   return (
     <>
@@ -34,7 +36,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
       <div>
         <H>{post.frontmatter.title}</H>
         <div className={postMeta}>
-          <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+          <time dateTime={postDate.toISOString()}>{format(postDate, 'MMMM d, yyyy')}</time>
 
           <span>{post.frontmatter.category.join(', ')}</span>
           <a rel="noopener noreferrer" target="_blank" href={editURL}>
@@ -52,7 +54,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
           </a>
         </p>
       </div>
-      <ContentNav prev={prev} next={next} />
+      <ContentNav {...(prev ? { prev } : {})} {...(next ? { next } : {})} />
     </>
   );
 }
