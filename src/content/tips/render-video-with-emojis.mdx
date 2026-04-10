@@ -1,0 +1,19 @@
+---
+tags:
+  - js
+  - canvas
+date: 2026-04-09T12:00:00.000Z
+slug: render-video-with-emojis
+links:
+  - https://x.com/wesbos/status/2042573810952736931
+  - https://www.tiktok.com/@wesbos/video/7626903664480816402
+  - https://www.instagram.com/reel/DW7d6yJinGN/
+  - https://www.facebook.com/reel/2192747728127122
+  - https://www.linkedin.com/feed/update/urn:li:ugcPost:7448148386072969216/
+  - https://www.threads.com/@wesbos/post/DW7eABoEa8U
+  - https://www.youtube.com/shorts/IiGQ3Oj_QDw
+---
+
+Can you render video with Emojis?
+
+I made a photobooth that renders an entire video feed using only emojis. It works by drawing the video to canvas, slicing it into a grid of cells, figuring out the dominant color of each cell, and then matching it to the closest emoji by color. The more grid cells you use, the higher the resolution — but it takes a bit more to render each frame. Writing the emojis to canvas instead of DOM elements keeps it performant.
