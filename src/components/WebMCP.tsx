@@ -9,7 +9,7 @@ type NavigatorWithModelContext = Navigator & {
         name: string;
         description: string;
         inputSchema: Record<string, unknown>;
-        execute: (input: Record<string, string>) => Promise<Record<string, string>>;
+        execute: (input: Record<string, unknown>) => Promise<Record<string, unknown>>;
       }>;
     }) => void;
   };
@@ -35,7 +35,8 @@ export function WebMCP() {
             required: ['query'],
           },
           async execute({ query }) {
-            const url = `/blog?search=${encodeURIComponent(query || '')}`;
+            const queryText = typeof query === 'string' ? query : '';
+            const url = `/blog?search=${encodeURIComponent(queryText)}`;
             return { url, message: 'Open this URL to browse matching posts.' };
           },
         },
