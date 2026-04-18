@@ -178,11 +178,16 @@ function deduplicateUrls(urls: SitemapUrl[]): SitemapUrl[] {
 }
 
 function toDateOnly(value: unknown): string | undefined {
-  if (!value) {
+  const date =
+    value instanceof Date
+      ? value
+      : typeof value === 'string' || typeof value === 'number'
+        ? new Date(value)
+        : undefined;
+  if (!date) {
     return undefined;
   }
 
-  const date = new Date(value as string | number | Date);
   if (Number.isNaN(date.getTime())) {
     return undefined;
   }

@@ -35,8 +35,10 @@ export function WebMCP() {
             required: ['query'],
           },
           async execute({ query }) {
-            const queryText = typeof query === 'string' ? query : '';
-            const url = `/blog?search=${encodeURIComponent(queryText)}`;
+            if (typeof query !== 'string' || query.trim() === '') {
+              throw new Error('"query" must be a non-empty string');
+            }
+            const url = `/blog?search=${encodeURIComponent(query)}`;
             return { url, message: 'Open this URL to browse matching posts.' };
           },
         },
