@@ -16,15 +16,15 @@ links:
 
 Here's a CSS feature I'm so excited to have — it just landed in Chrome stable. `border-shape` lets you apply custom shapes to the border of your element.
 
-In the demo I'm cutting a circle out of the top of a card for an avatar, and adding a little curved notch at the bottom. But unlike a CSS mask, `border-shape` doesn't just cut into the element — it can also _extend_ the element. The box size doesn't change, but the border, background, box-shadow, and outline all follow the new shape.
+In the demo I'm cutting a circle out of the top of a card for an avatar, and adding a little curved notch at the bottom. But unlike a CSS mask, `border-shape` doesn't just cut into the element - it can also _extend_ the element. The box size doesn't change, but the border, background, box-shadow, and outline all follow the new shape.
 
 You draw the shape with the same `shape()` function you might already know — `hline`, `vline`, `arc`, `curve`, `line`, `close` — and you can use `calc()` and CSS variables right inside it. `ccw` draws an arc counter-clockwise, `cw` clockwise.
 
-The killer part: change the border to red and the whole border follows the shape. Add a box-shadow and it follows it too. You couldn't do that with a mask without resorting to `filter: drop-shadow`, and even then you lost multiple shadows and a bunch of other features.
+change the border to red and the whole border follows the shape. Add a box-shadow and it follows it too. You couldn't do that with a mask without resorting to `filter: drop-shadow`, and even then you lost multiple shadows and a bunch of other features.
 
 Breadcrumbs that nest into each other, fancy corner shapes, speech bubbles — there's gonna be so many cool things that come out of this API.
 
-It's in Chrome stable and Edge right now. Not in the other browsers yet. Una has a great blog post with more use cases.
+It's in Chrome stable and Edge right now. Not in the other browsers yet. Una has a great [blog post](https://una.im/border-shape/) with more use cases.
 
 ```css
 .card {
