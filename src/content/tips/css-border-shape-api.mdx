@@ -1,0 +1,75 @@
+---
+tags:
+  - css
+date: 2026-05-08T14:11:00.000Z
+slug: css-border-shape-api
+links:
+  - https://x.com/wesbos/status/2052747808105472459
+  - https://www.tiktok.com/@wesbos/video/7637518117924703509
+  - https://www.instagram.com/p/DYFHtzqKuta/
+  - https://www.facebook.com/reel/1372255618047439
+  - https://www.linkedin.com/feed/update/urn:li:activity:7458514240807645184/
+  - https://bsky.app/profile/did:plc:etdjdgnly5tz5l5xdd4jq76d/post/3mlduykio4227
+  - https://www.threads.com/@wesbos/post/DYFH6K8EcwY
+  - https://youtube.com/shorts/qg6kzUWPsPE
+---
+
+Here's a CSS feature I'm so excited to have — it just landed in Chrome stable. `border-shape` lets you apply custom shapes to the border of your element.
+
+In the demo I'm cutting a circle out of the top of a card for an avatar, and adding a little curved notch at the bottom. But unlike a CSS mask, `border-shape` doesn't just cut into the element — it can also _extend_ the element. The box size doesn't change, but the border, background, box-shadow, and outline all follow the new shape.
+
+You draw the shape with the same `shape()` function you might already know — `hline`, `vline`, `arc`, `curve`, `line`, `close` — and you can use `calc()` and CSS variables right inside it. `ccw` draws an arc counter-clockwise, `cw` clockwise.
+
+The killer part: change the border to red and the whole border follows the shape. Add a box-shadow and it follows it too. You couldn't do that with a mask without resorting to `filter: drop-shadow`, and even then you lost multiple shadows and a bunch of other features.
+
+Breadcrumbs that nest into each other, fancy corner shapes, speech bubbles — there's gonna be so many cool things that come out of this API.
+
+It's in Chrome stable and Edge right now. Not in the other browsers yet. Una has a great blog post with more use cases.
+
+```css
+.card {
+  --avatar-size: 100px;
+  --avatar-half-size: calc(var(--avatar-size) / 2);
+  --avatar-padding: 10px;
+  --avatar-radius: calc(var(--avatar-size) / 2);
+  margin: 0 auto;
+  margin-top: 50px;
+  width: min(340px, calc(100vw - 40px));
+  border: 1px solid rgba(108, 132, 164, 0.24);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 0 30px 10px rgba(65, 84, 116, 0.16);
+  border-shape: shape(
+      /* start drawing at the top-left corner of the card */
+      from 0 0,
+      /* draw along the top edge until the left edge of the centered avatar cutout */
+      hline to calc(50% - var(--avatar-padding) - var(--avatar-half-size)),
+      /* draw a counter-clockwise arc that cuts into the card for the avatar.
+         The endpoint mirrors the previous point on the right side of center.
+         The "of" values are radii, not diameter, so a 100px circle needs 50px 50px here. */
+      arc to calc(50% + var(--avatar-padding) + var(--avatar-half-size)) 0 of var(--avatar-radius) var(--avatar-radius) ccw,
+      /* continue along the top edge to the top-right corner */
+      hline to 100%,
+      /* draw down the right edge to the bottom-right corner */
+      vline to 100%,
+      /* draw left along the bottom edge before rounding into the right bottom notch */
+      hline to 92%,
+      /* soften the right outside corner of the bottom detail */
+      curve to 88% 98% with 90% 100%,
+      /* angle up-left into the right side of the bottom dip */
+      line to 82% 92%,
+      /* round into the flat middle section */
+      curve to 78% 90% with 80% 90%,
+      /* draw the flat middle section across the bottom detail */
+      hline to 22%,
+      /* round out of the flat middle section */
+      curve to 18% 92% with 20% 90%,
+      /* angle down-left toward the left outside corner of the bottom detail */
+      line to 12% 98%,
+      /* soften the left outside corner of the bottom detail */
+      curve to 8% 100% with 10% 100%,
+      /* finish the bottom edge at the bottom-left corner */
+      hline to 0%,
+      /* close the shape by drawing back up the left edge to the start */
+      close);
+}
+```
