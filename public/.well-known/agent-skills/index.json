@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agentskills.io/schemas/agent-skills-index-v0.2.0.json",
+  "skills": [
+    {
+      "name": "sitemap",
+      "type": "discovery",
+      "description": "Discover canonical URLs from the sitemap.",
+      "url": "https://wesbos.com/.well-known/agent-skills/sitemap.md",
+      "sha256": "96bccc43a5b61d71fc234fafcd81c2dc2ecfb0b707379a102044c2262fd96feb"
+    },
+    {
+      "name": "api-catalog",
+      "type": "discovery",
+      "description": "Discover API catalog links.",
+      "url": "https://wesbos.com/.well-known/agent-skills/api-catalog.md",
+      "sha256": "d654099b2a2428a60ab4c876ac348094d81210bae5c73a90382122912179270b"
+    },
+    {
+      "name": "markdown-negotiation",
+      "type": "capability",
+      "description": "Request markdown responses via HTTP content negotiation.",
+      "url": "https://wesbos.com/.well-known/agent-skills/markdown.md",
+      "sha256": "b9f8c17410fa2baea381fda06e883f8b2bdb1ac4f28dc5689cc99c5aa39ca682"
+    }
+  ]
+}

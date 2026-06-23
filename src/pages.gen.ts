@@ -20,6 +20,8 @@ import type { getConfig as File_ContactIndex_getConfig } from './pages/contact/i
 // prettier-ignore
 import type { getConfig as File_Courses_getConfig } from './pages/courses';
 // prettier-ignore
+import type { getConfig as File_DocsApi_getConfig } from './pages/docs/api';
+// prettier-ignore
 import type { getConfig as File_Index_getConfig } from './pages/index';
 // prettier-ignore
 import type { getConfig as File_JavascriptSectionSlug_getConfig } from './pages/javascript/[section]/[slug]';
@@ -50,6 +52,7 @@ type Page =
 | ({ path: '/blog' } & GetConfigResponse<typeof File_BlogIndex_getConfig>)
 | ({ path: '/contact' } & GetConfigResponse<typeof File_ContactIndex_getConfig>)
 | ({ path: '/courses' } & GetConfigResponse<typeof File_Courses_getConfig>)
+| ({ path: '/docs/api' } & GetConfigResponse<typeof File_DocsApi_getConfig>)
 | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
 | ({ path: '/javascript/[section]/[slug]' } & GetConfigResponse<typeof File_JavascriptSectionSlug_getConfig>)
 | ({ path: '/javascript' } & GetConfigResponse<typeof File_JavascriptIndex_getConfig>)
