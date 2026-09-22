@@ -1,0 +1,44 @@
+.linksPage {
+  max-width: 560px;
+  margin: 0 auto;
+
+  header {
+    text-align: center;
+  }
+}
+
+.links {
+  display: grid;
+  gap: 1.2rem;
+  list-style: none;
+  margin: 3rem 0;
+  padding: 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 56px;
+    padding: 1.4rem 1.8rem;
+    border: 2px solid var(--dark);
+    background: var(--light);
+    color: var(--dark);
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--dark);
+      outline-offset: 4px;
+    }
+  }
+}
