@@ -26,6 +26,8 @@ import type { getConfig as File_JavascriptSectionSlug_getConfig } from './pages/
 // prettier-ignore
 import type { getConfig as File_JavascriptIndex_getConfig } from './pages/javascript/index';
 // prettier-ignore
+import type { getConfig as File_Links_getConfig } from './pages/links';
+// prettier-ignore
 import type { getConfig as File_OgIndex_getConfig } from './pages/og/index';
 // prettier-ignore
 import type { getConfig as File_PrivacyIndex_getConfig } from './pages/privacy/index';
@@ -53,6 +55,7 @@ type Page =
 | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
 | ({ path: '/javascript/[section]/[slug]' } & GetConfigResponse<typeof File_JavascriptSectionSlug_getConfig>)
 | ({ path: '/javascript' } & GetConfigResponse<typeof File_JavascriptIndex_getConfig>)
+| ({ path: '/links' } & GetConfigResponse<typeof File_Links_getConfig>)
 | ({ path: '/og' } & GetConfigResponse<typeof File_OgIndex_getConfig>)
 | ({ path: '/privacy' } & GetConfigResponse<typeof File_PrivacyIndex_getConfig>)
 | ({ path: '/speaking-and-training' } & GetConfigResponse<typeof File_SpeakingAndTrainingIndex_getConfig>)
