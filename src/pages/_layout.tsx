@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 import LoadingIndicator from '@/components/LoadingIndicator';
 import Nav from '@/components/Nav';
 import Sentry from '@/components/Sentry';
+import { WebMCP } from '@/components/WebMCP';
 import { ContentStyles } from '@/styles/ContentStyles.module.css';
 // import { operatorMono, radnika } from "@/lib/assets/fonts/Fonts";
 import { LayoutStyles } from '@/styles/LayoutStyles.module.css';
@@ -23,6 +24,7 @@ export default async function RootLayout({ children, path }: RootLayoutProps) {
       <link rel="preload" href={OperatorMonoBook} as="font" type="font/woff2" crossOrigin="anonymous" />
       <link rel="preload" href={OperatorMonoBold} as="font" type="font/woff2" crossOrigin="anonymous" />
       <Sentry />
+      <WebMCP />
       <LoadingIndicator />
       <div className={LayoutStyles}>
         <Analytics />

@@ -1,0 +1,15 @@
+{
+  "serverInfo": {
+    "name": "wesbos-site-tools",
+    "version": "1.0.0"
+  },
+  "transports": [
+    {
+      "type": "http",
+      "url": "https://wesbos.com/.well-known/api-catalog"
+    }
+  ],
+  "capabilities": {
+    "tools": true
+  }
+}
