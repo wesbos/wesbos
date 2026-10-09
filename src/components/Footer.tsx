@@ -3,7 +3,8 @@ import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import { Link } from 'waku';
 import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
 import LatestCourse from './LatestCourse';
-import Podcast from './Podcast';
+// import Podcast from './Podcast';
+import FooterVideo from './FooterVideo';
 // import Instagram from './Instagram';
 import Twitter from './Twitter';
 
@@ -12,7 +13,8 @@ export async function Footer() {
     <footer className={FooterStyles}>
       <div className={FooterInner}>
         <Suspense fallback={<div>Loading...</div>}>
-          <Podcast />
+          {/* <Podcast /> */}
+          <FooterVideo />
         </Suspense>
         <Suspense fallback={<div>Loading...</div>}>
           <Twitter />
