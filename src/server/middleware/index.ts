@@ -1,3 +1,4 @@
+import { agentReadinessMiddleware } from './agentReadiness';
 import { errorLoggingMiddleware } from './errorLogging';
 import { ogJpgMiddleware } from './ogJpg';
 import { responseCacheMiddleware } from './responseCache';
@@ -11,5 +12,6 @@ export const cloudflareMiddlewareFns = [
   errorLoggingMiddleware,
   trailingSlashMiddleware,
   ogJpgMiddleware,
+  agentReadinessMiddleware,
   responseCacheMiddleware,
 ] as const;
