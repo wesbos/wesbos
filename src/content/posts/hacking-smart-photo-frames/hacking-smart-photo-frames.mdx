@@ -8,7 +8,7 @@ date: 2026-10-09T09:00:00
 image: photo-frame-dashboard.png
 ---
 
-My sister's $500 Skylight calendar was headed for the trash with dead Wi-Fi. I used a coding agent to root it, found a hidden debug mode, and got it back online with an $11 USB Wi-Fi dongle. Then I did it all again from scratch with a [random $50 picture frame from Amazon](https://amzn.to/4zneGNM).
+My sister's $500 Skylight calendar was headed for the trash with dead Wi-Fi. I used a coding agent to root it, found a hidden debug mode, and got it back online with an $11 USB Wi-Fi dongle. Then I did it all again from scratch with a [random $50 picture frame from Amazon](https://amzn.to/4zneGNM) (it now often ships a different board, [see below](#update)).
 
 <iframe style={{ width: '100%', aspectRatio: '16 / 9' }} src="https://www.youtube.com/embed/ZLycoUMltNI" title="Hacking smart photo frames" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
@@ -26,3 +26,11 @@ In the video I:
 ![Family dashboard running on a hacked smart photo frame](photo-frame-dashboard.png)
 
 All the code is on GitHub: [wesbos/photo-frame-dashboard](https://github.com/wesbos/photo-frame-dashboard)
+
+## Update
+
+A lot of you built these! A few things we've learned since the video:
+
+- The Amazon listing I linked now often ships a different board, the Allwinner **PF1007L**, which takes more work to unlock. Check Settings → About on yours, then follow the [PF1007L guide](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/pf1007l-start-here.md). Use a USB-A to USB-C data cable; USB-C to USB-C gives no power or data on these.
+- The [device index](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/devices.md) lists every frame people have unlocked so far, with links to buy them.
+- See what everyone made in [Community builds](https://github.com/wesbos/photo-frame-dashboard/blob/main/docs/community-builds.md).
