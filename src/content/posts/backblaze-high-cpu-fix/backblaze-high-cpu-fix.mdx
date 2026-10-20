@@ -1,0 +1,220 @@
+---
+title: "Fixing Backblaze's 100% CPU Usage on macOS"
+slug: backblaze-high-cpu-fix
+category:
+  - Workflow + Tooling
+date: 2026-10-20T09:00:00
+---
+
+**TLDR:** If your computer's Backblaze is always pegged at 100% CPU and gobbling up RAM, point an agent at [this gist](https://gist.github.com/wesbos/87715435e2cbee9404491fba7f14c680).
+
+Millions of tiny files that don't need to be backed up can be excluded, and that will drop resource usage significantly.
+
+## What's going on
+
+`bztransmit` was pinning a CPU core on my Mac, and Backblaze's status kept showing a weird number of "remaining files". The cause: apps churning out thousands of tiny files, mostly caches. Backblaze dedupes, checksums and uploads every single one of them, all day long.
+
+This builds on [alexwlchan's note](https://alexwlchan.net/notes/2026/backblaze-churn/) (and [Brian Wilson's tip](https://www.reddit.com/r/backblaze/comments/4luspc/comment/d3r3icg/) that started it). I found two more things the hard way:
+
+1. **The log files are named by day of month** (`01.log` … `31.log`), not day of week. The newest file in the folder is today's.
+2. **Path regexes that don't allow spaces hide your biggest offenders.** Most of the churn on a modern Mac lives in folders like `~/Library/Application Support/...` and `~/Library/Group Containers/...`. A space-blind regex under-counted `~/Library` by about 5,000 transmissions a day on my machine.
+
+## 1. Confirm the symptom
+
+```bash
+ps aux | grep [b]ztransmit
+```
+
+70% CPU and 6GB of RAM means it's grinding through a huge backlog of tiny files.
+
+## 2. Find what it's uploading
+
+Backblaze logs every file it transmits, in real time:
+
+```
+/Library/Backblaze.bzpkg/bzdata/bzlogs/bzreports_lastfilestransmitted/<DD>.log
+```
+
+A wall of `dedup - 0 bytes` lines means files are being checksummed and thrown away. That's pure wasted CPU.
+
+## 3. Aggregate by folder
+
+This script tallies the log by folder so you can see who's churning. It picks today's log by default.
+
+```bash
+python3 find_backblaze_churn.py              # today's log, depth 6
+python3 find_backblaze_churn.py 13.log 7     # a specific log, deeper folders
+```
+
+```python
+#!/usr/bin/env python3
+"""Find which folders Backblaze (bztransmit) is churning on.
+
+Aggregates Backblaze's bzreports_lastfilestransmitted logs by folder, so
+you can spot high-churn caches worth excluding from your backup.
+
+Based on https://alexwlchan.net/notes/2026/backblaze-churn/ — with one
+important fix: paths are matched even when they contain spaces, because
+on a modern Mac most of the churn lives in folders like
+"~/Library/Application Support/..." and "~/Library/Group Containers/...".
+A space-blind regex under-counts ~/Library by thousands of files/day.
+
+Usage:
+    python3 find_backblaze_churn.py              # today's log, depth 6
+    python3 find_backblaze_churn.py 13.log       # specific day-of-month log
+    python3 find_backblaze_churn.py 13.log 7     # truncate folders deeper
+
+Log files are named by DAY OF MONTH (01.log ... 31.log). The newest file
+in the log folder is today's.
+"""
+
+from collections import Counter
+from datetime import date
+from pathlib import Path
+import os
+import re
+import sys
+
+LOG_DIR = Path(
+    "/Library/Backblaze.bzpkg/bzdata/bzlogs/bzreports_lastfilestransmitted"
+)
+
+# Absolute paths under $HOME, including ones with spaces ("Application
+# Support", "Group Containers", ...). Rstrip each match: greedy spacing
+# can leave a trailing space, and the log line ends right after the path.
+PATH_RE = re.compile(re.escape(os.environ["HOME"]) + r"/[A-Za-z0-9._\-/ ]+")
+
+
+def main() -> None:
+    log_arg = sys.argv[1] if len(sys.argv) > 1 else f"{date.today().day:02d}.log"
+    max_depth = int(sys.argv[2]) if len(sys.argv) > 2 else 6
+
+    log_path = Path(log_arg)
+    if not log_path.is_absolute():
+        log_path = LOG_DIR / log_arg
+    if not log_path.exists():
+        sys.exit(f"Log not found: {log_path}")
+
+    text = log_path.read_text(errors="replace")
+    paths = [Path(m.group(0).rstrip()) for m in PATH_RE.finditer(text)]
+    if not paths:
+        sys.exit("No home-dir paths found in that log.")
+
+    print(f"log: {log_path}  ({len(paths)} transmissions)")
+    print(f"top folders, truncated to depth {max_depth}:\n")
+
+    truncated = [Path(*p.parent.parts[:max_depth]) for p in paths]
+    for folder, count in Counter(truncated).most_common(20):
+        print(f"{count:7d}  {folder}")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Anything that's a cache or package store (pnpm, uv, Electron "Partitions", browser Service Worker / GPUCache folders, Xcode simulators, JS runtimes) is safe to exclude. It's all re-downloadable and none of it is your data.
+
+`~/Library/Caches` and Docker are **already excluded** by Backblaze's built-in rules, so don't bother adding them.
+
+## 4. Exclude the churners
+
+Append rules to `/Library/Backblaze.bzpkg/bzdata/bzexcluderules_editable.xml`. Back it up first: it's root-owned and meant for advanced users. A rule only matches if **all** of its criteria hit, `*` means "any", and paths are matched lowercase.
+
+```xml
+<!-- Dev package caches -->
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/library/pnpm/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/.cache/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/.vite-plus/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+
+<!-- Any Electron app's partition caches (Notion, Missive, Cursor, ...) -->
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/application support/"
+  contains_2="/partitions/" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+
+<!-- Browser cache internals only — profile/logins/history stay backed up -->
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/application support/microsoft edge/"
+  contains_2="/service worker/" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+
+<!-- Xcode: device symbol caches + simulators (keep Archives!) -->
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/library/developer/xcode/"
+  contains_2="devicesupport" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/library/developer/coresimulator/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+
+<!-- Toolchains: rustup, gradle, npm cache, cargo registry, logs -->
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/.rustup/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/.gradle/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/.npm/" contains_2="/_cacache/"
+  doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/.cargo/" contains_2="/registry/"
+  doesNotContain="*" endsWith="*" hasFileExtension="*" />
+<excludefname_rule plat="mac" osVers="*" ruleIsOptional="t"
+  skipFirstCharThenStartsWith="users/" contains_1="/library/logs/"
+  contains_2="*" doesNotContain="*" endsWith="*" hasFileExtension="*" />
+```
+
+Then restart the service:
+
+```bash
+sudo launchctl kickstart -k system/com.backblaze.bzserv
+```
+
+## 5. What happens next (don't panic)
+
+After the restart, Backblaze goes through a few phases, and every one of them looks alarming in Activity Monitor:
+
+1. **"Producing File Lists..."**: `bzfilelist` re-catalogs every file. This takes hours for a multi-million-file set, with low CPU and lots of disk I/O.
+2. **Re-planning cycles**: each `bztransmit` spawn loads the whole catalog into RAM (multiple GB), and CPU bursts to 60–100% of one core for minutes. Its own log calls this `ReadLargeFileIntoBuf_Slowly` (it throttles itself) and `GetFileNameToBzFileIdHash`.
+3. **Catch-up upload**: when the new list is promoted, one big burst uploads the backlog that queued up during the rebuild. Mine was 23GB in 2 hours.
+4. **`bztransmit -updatebackupstats`**: a final pass that recomputes the category stats in the UI.
+
+Expect about a day of noise, then quiet. Judge progress by the transmission log going silent, not by CPU.
+
+## Results
+
+Same machine, before and after 4 days of exclusion rules:
+
+| | before | after |
+|---|---|---|
+| file transmissions/day | **43,119** | **1,144–4,599** (all real data) |
+| backup set | 3,427,530 files | **2,333,183 files** (−32%) |
+| junk churn (dedup-0 uploads) | ~40k/day | ~0 |
+
+The top offenders: Notion's Electron partitions (13,397/day), `~/.cache/codex-runtimes` (11,792), the pnpm store (3,968), the uv cache (3,856) and Edge Service Workers (2,965). Xcode's `DeviceSupport` (27GB!) and `CoreSimulator` (24GB) were pure dead weight on top of that: 321k files with zero restore value.
+
+## The catch: exclusions fix churn, not history
+
+Once the dust settled, `bztransmit` still burned about 40% of wall-clock time at roughly 63% of a core. The logs show why. Every sync cycle:
+
+```
+GetFileNameToBzFileIdHash - parsed 30,339,229 unique ids
+  ... in 240 seconds from 4806 MBytes
+numFilesInTodo of 32 files
+```
+
+**It read 4.8GB of catalog and parsed 30M historical file IDs (about 4 minutes of hard CPU) to discover 32 files to back up.** Those 30M IDs are the backup's entire history: every file ever backed up since 2021, including every junk file that ever churned through it. Exclusions stop feeding the monster, but they don't shrink what's already in the state DB.
+
+If you land here, you've got three options:
+
+1. **Accept it.** It's bounded (about 0.6 of a core) and backups are healthy.
+2. **Open a Backblaze support ticket.** Quote the log lines above. Bloated long-lived local state is a known issue, and they can sometimes fix it without a re-upload.
+3. **Go nuclear and start a fresh backup.** It resets the history so planning drops to seconds, but you pay for it with a full re-upload.
+
+## Repeat as needed
+
+Different apps become the top churner on different days (Notion one day, codex-runtimes the next). When `bztransmit` spikes again, re-run the script on that day's log and exclude the new offender.
