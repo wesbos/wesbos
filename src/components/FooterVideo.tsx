@@ -8,13 +8,13 @@ export default function FooterVideo() {
       </h3>
       <iframe
         style={{ width: '100%', aspectRatio: '16 / 9', border: 0 }}
-        src="https://www.youtube.com/embed/ZLycoUMltNI"
-        title="Hacking Cheap Smart Photo Frames into a Family Dashboard"
+        src="https://www.youtube.com/embed/JGQCcCzuS88"
+        title="I Turned My Office into an Interactive 3D Model with AI"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       />
-      <p>Hacking Cheap Smart Photo Frames into a Family Dashboard</p>
-      <a href="/hacking-smart-photo-frames">Read More →</a>
+      <p>I Turned My Office into an Interactive 3D Model with AI</p>
+      <a href="/3d-model-anything">Read More →</a>
     </div>
   );
 }
