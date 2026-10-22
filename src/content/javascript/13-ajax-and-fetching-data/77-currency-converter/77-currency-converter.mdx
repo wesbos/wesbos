@@ -14,7 +14,7 @@ In this video we will build a currency conversion app.
 
 The app allows you to enter an amount to convert, specify it's currency and then specify which currency to convert it to.
 
-We will be using the https://exchangeratesapi.io API to accomplish this, which is free and open source and will be working out of the `exercises/77 - Currency Converter/` folder.
+We will be using the free, keyless ECB-rates endpoint at https://allratestoday.com/api/compat/exchangeratesapi/latest to accomplish this (exchangeratesapi.io, which the videos use, stopped serving keyless requests in 2021) and will be working out of the `exercises/77 - Currency Converter/` folder.
 
 Let's start by opening the HTML to see what we are working with.
 
@@ -165,12 +165,12 @@ Let's switch to working on some of the functionality before we continue coding t
 
 Start with the function that will go fetch the rates from the exchanges API. It will accept one parameter, `base` which we will default to "USD" as the base currency.
 
-Inside of the function, we need to fetch the latest rates from https://api.exchangeratesapi.io/latest.
+Inside of the function, we need to fetch the latest rates from https://allratestoday.com/api/compat/exchangeratesapi/latest.
 
 Stick that endpoint in a variable at the top.
 
 ```js
-const endpoint = "https://api.exchangeratesapi.io/latest";
+const endpoint = "https://allratestoday.com/api/compat/exchangeratesapi/latest";
 ```
 
 The way this endpoint works is we need to pass it a query parameter of our base currency, as shown in the image below.
