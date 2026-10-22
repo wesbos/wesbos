@@ -6,6 +6,7 @@ import styles from '../styles/LinksStyles.module.css';
 // Add, remove, or reorder links here. They appear in this order on /links.
 const links = [
   { label: 'Home Page', href: '/' },
+  { label: '3D Model Anything — GitHub', href: 'https://github.com/wesbos/3d-model-anything' },
   { label: 'Thrift Store Video', href: 'https://www.youtube.com/watch?v=orcmbqaDoik' },
   { label: 'Syntax', href: 'https://syntax.fm' },
   { label: 'Download Codex + ChatGPT', href: 'https://www.chatgpt.com/download/' },
