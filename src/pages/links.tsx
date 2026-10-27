@@ -6,6 +6,7 @@ import styles from '../styles/LinksStyles.module.css';
 // Add, remove, or reorder links here. They appear in this order on /links.
 const links = [
   { label: 'Home Page', href: '/' },
+  { label: '3D Model Anything — Free iPhone App', href: 'https://apps.apple.com/app/3d-model-anything/id6825843398' },
   { label: '3D Model Anything — GitHub', href: 'https://github.com/wesbos/3d-model-anything' },
   { label: 'Thrift Store Video', href: 'https://www.youtube.com/watch?v=orcmbqaDoik' },
   { label: 'Syntax', href: 'https://syntax.fm' },
