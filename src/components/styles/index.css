@@ -186,6 +186,8 @@
     background: #f6f6f6;
     border: 1px solid rgba(0, 0, 0, 0.05);
     padding: 0 3.5px;
+    /* Long tokens like `document.querySelectorAll('.thing')` can't wrap on their own and push the page wider than a phone */
+    overflow-wrap: anywhere;
   }
 
   [data-language] pre {

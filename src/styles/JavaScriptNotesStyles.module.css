@@ -2,6 +2,12 @@
   display: grid;
   grid-template-columns: minmax(200px, 350px) 1fr;
   gap: 5rem;
+  /* Grid items default to min-width: auto, so long unbreakable lines in code
+     blocks would stretch the 1fr track past the viewport on mobile. Let the
+     columns shrink and have the code blocks scroll instead. */
+  > * {
+    min-width: 0;
+  }
   @media (max-width: 1100px) {
     grid-template-columns: 25% 1fr;
   }
