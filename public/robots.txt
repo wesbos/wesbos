@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /og/*
 Disallow: /nerds-and-haters
 
+Sitemap: https://wesbos.com/sitemap.xml
