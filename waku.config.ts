@@ -2,6 +2,7 @@ import path from 'node:path';
 import { cloudflare } from '@cloudflare/vite-plugin';
 import mdx from '@mdx-js/rollup';
 import babel from '@rolldown/plugin-babel';
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
 import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
@@ -15,12 +16,16 @@ import { defineConfig } from 'waku/config';
 import rehypeHotTips from './src/lib/rehype-hot-tips';
 import rehypeImageSize from './src/lib/rehype-image-size';
 import rehypeWesbos from './src/lib/rehype-wesbos';
-import { gitHashPlugin } from './vite-plugin-git-hash';
+import { getSentryRelease, gitHashPlugin } from './vite-plugin-git-hash';
 import { imgDimensions } from './vite-plugin-img-dimensions';
 
 export default defineConfig({
   vite: {
     environments: {
+      client: {
+        // Sentry needs these, but they shouldn't be public. They're deleted after upload.
+        build: { sourcemap: process.env.SENTRY_AUTH_TOKEN ? 'hidden' : false },
+      },
       rsc: {
         optimizeDeps: {
           // noDiscovery: true,
@@ -64,6 +69,16 @@ export default defineConfig({
           [rehypeMdxTitle],
           [rehypeHotTips],
         ],
+      }),
+      // Without a token, as in local builds, this does nothing
+      sentryVitePlugin({
+        org: 'bostype-inc',
+        project: 'wesbos-com',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
+        disable: !process.env.SENTRY_AUTH_TOKEN,
+        telemetry: false,
+        release: { name: getSentryRelease() },
+        sourcemaps: { filesToDeleteAfterUpload: ['./dist/public/**/*.map'] },
       }),
     ],
     resolve: {
