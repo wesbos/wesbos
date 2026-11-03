@@ -1,6 +1,8 @@
 import * as Sentry from '@sentry/cloudflare';
 
 const WAKU_RENDER_ERROR = 'Error during rendering:';
+// React aborts a render when the visitor leaves mid-stream, which isn't a bug
+const RENDER_ABORTED = 'The render was aborted by the server';
 
 /**
  * Waku has no error hook for renders. An error thrown while streaming, like one inside <Suspense>,
@@ -13,6 +15,7 @@ export function captureRenderErrors() {
     consoleError(...args);
     const [label, details] = args;
     if (label !== WAKU_RENDER_ERROR || typeof details !== 'string') return;
+    if (details.includes(RENDER_ABORTED)) return;
     const stack = details.replaceAll('\\n', '\n');
     const error = new Error(stack.split('\n')[0]?.replace(/^\w*Error: /, ''));
     error.stack = stack;
