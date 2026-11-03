@@ -33,7 +33,6 @@
     "@sentry/react": "10.78.0",
     "@sparticuz/chromium": "141.0.0",
     "@stefanprobst/rehype-extract-toc": "3.0.0",
-    "@unpic/react": "1.0.2",
     "@vitejs/plugin-react": "^6.2.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "better-sqlite3": "12.5.0",
