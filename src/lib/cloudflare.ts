@@ -11,16 +11,10 @@ export function getEnv(key: string): string | undefined {
 }
 
 /**
- * In production, bindings come from `cloudflare:workers`.
- * In dev, waku.server.ts injects wrangler's getPlatformProxy onto globalThis.
+ * Bindings come from `cloudflare:workers`, in production and in dev (via `@cloudflare/vite-plugin`).
  */
 export async function getCloudflareEnv(): Promise<CloudflareEnv | undefined> {
   if (isBuild()) return undefined;
-
-  const devProxy = (globalThis as Record<string, unknown>).__waku_dev_proxy__ as
-    | { env: CloudflareEnv }
-    | undefined;
-  if (devProxy) return devProxy.env;
 
   try {
     // Avoid static dep-scanner resolution in local dev.
