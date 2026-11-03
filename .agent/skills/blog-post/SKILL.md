@@ -42,7 +42,7 @@ image: featured-image-filename.png
   - Workflow + Tooling
   - Business
   - Other
-- `date`: ISO 8601 format. Use the current date/time
+- `date`: ISO 8601 format. Use the current date/time. Dates with no time zone are read as Eastern
 
 ### 3. Images
 

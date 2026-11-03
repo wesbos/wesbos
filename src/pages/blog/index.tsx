@@ -1,5 +1,5 @@
 
-import { format } from 'date-fns';
+import { formatPostDate } from '@/utils/postDates';
 import { getPosts } from '@/lib/getPosts';
 import H from '@/components/mdxComponents/Headings';
 import Pagination from '@/components/Pagination';
@@ -32,7 +32,7 @@ export default async function Blog(props: PageProps<'/blog'> & { page: string })
                 <Link to={`/${post.frontmatter.slug}`}>{post.frontmatter.title}</Link>
               </H>
               <div className={postMeta}>
-                <time dateTime={post.frontmatter.date.toString()}>{format(post.frontmatter.date, 'MMMM d, yyyy')}</time>
+                <time dateTime={post.frontmatter.date.toString()}>{formatPostDate(post.frontmatter.date)}</time>
                 <ul className="categories">
                   {(post.frontmatter.category || []).map((cat) => (
                     <li key={cat}>{cat}</li>
