@@ -38,9 +38,6 @@ importers:
       '@stefanprobst/rehype-extract-toc':
         specifier: 3.0.0
         version: 3.0.0
-      '@unpic/react':
-        specifier: 1.0.2
-        version: 1.0.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@vitejs/plugin-react':
         specifier: ^6.2.1
         version: 6.2.1(@rolldown/plugin-babel@0.3.0(@babel/core@8.1.0)(rolldown@1.2.16)(vite@8.3.5(@types/node@24.10.1)(esbuild@0.25.4)(less@4.3.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.21.0)(yaml@2.7.1)))(babel-plugin-react-compiler@1.0.0)(vite@8.3.5(@types/node@24.10.1)(esbuild@0.25.4)(less@4.3.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.21.0)(yaml@2.7.1))
@@ -2379,19 +2376,6 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@unpic/core@1.0.3':
-    resolution: {integrity: sha512-aum9YNVUGso7MjGLD0Rp/08kywCGLqZ03/q6VQBFFakDBOXWEc8D4kPGcZ8v5wEnGRex3lE+++bOuucBp3KJ/w==}
-
-  '@unpic/react@1.0.2':
-    resolution: {integrity: sha512-5RmRfELwTF8w+4zjtQGqjpvX+RU2VLvis3xDCS1O2uWk0PZN2cvatL+3/KAR3mshAuRrkFGTX1XwyAezSXaoCA==}
-    peerDependencies:
-      next: ^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-      react: ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
-    peerDependenciesMeta:
-      next:
-        optional: true
-
   '@vitejs/plugin-react@6.2.1':
     resolution: {integrity: sha512-9KyWCij3r0+qLG3Q62vBmv0VyevmYibAtxaCIVK9o0k6CXgaajZRIe8tpfchQcdZArJ5b/7OrIz4W3b2uxVRDA==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -4529,9 +4513,6 @@ packages:
   unist-util-visit@5.0.0:
     resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
 
-  unpic@4.2.2:
-    resolution: {integrity: sha512-z6T2ScMgRV2y2H8MwwhY5xHZWXhUx/YxtOCGJwfURSl7ypVy4HpLIMWoIZKnnxQa/RKzM0kg8hUh0paIrpLfvw==}
-
   update-browserslist-db@1.1.3:
     resolution: {integrity: sha512-UxhIZQ+QInVdunkDAaiazvvT/+fXL5Osr0JZlJulepYu6Jd7qJtDZjlur0emRlT71EN3ScPoE7gvsuIKKNavKw==}
     hasBin: true
@@ -6414,16 +6395,6 @@ snapshots:
     optional: true
 
   '@ungap/structured-clone@1.3.0': {}
-
-  '@unpic/core@1.0.3':
-    dependencies:
-      unpic: 4.2.2
-
-  '@unpic/react@1.0.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
-    dependencies:
-      '@unpic/core': 1.0.3
-      react: 19.3.1
-      react-dom: 19.3.1(react@19.3.1)
 
   '@vitejs/plugin-react@6.2.1(@rolldown/plugin-babel@0.3.0(@babel/core@8.1.0)(rolldown@1.2.16)(vite@8.3.5(@types/node@24.10.1)(esbuild@0.25.4)(less@4.3.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.21.0)(yaml@2.7.1)))(babel-plugin-react-compiler@1.0.0)(vite@8.3.5(@types/node@24.10.1)(esbuild@0.25.4)(less@4.3.0)(sass@1.86.3)(stylus@0.62.0)(terser@5.39.0)(tsx@4.21.0)(yaml@2.7.1))':
     dependencies:
@@ -9156,8 +9127,6 @@ snapshots:
       '@types/unist': 3.0.3
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
-
-  unpic@4.2.2: {}
 
   update-browserslist-db@1.1.3(browserslist@4.24.4):
     dependencies:
