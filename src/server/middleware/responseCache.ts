@@ -8,7 +8,6 @@ function isRscPath(pathname: string): boolean {
 
 /**
  * Cloudflare Cache API: cache full GET responses (skip RSC, errors, dev).
- * Mirrors the previous Waku middleware in `_middleware_old/cache.ts`.
  */
 export function responseCacheMiddleware(): MiddlewareHandler {
   return async (c, next) => {
