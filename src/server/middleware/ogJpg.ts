@@ -1,6 +1,7 @@
 import type { Browser } from '@cloudflare/puppeteer';
 import puppeteer from '@cloudflare/puppeteer';
 import type { MiddlewareHandler } from 'hono';
+import { getOgCacheKey } from '../ogCacheKey';
 
 type OgEnv = {
   OG?: KVNamespace;
@@ -9,8 +10,9 @@ type OgEnv = {
 
 async function getScreenshot(pageUrl: string, c: { env: OgEnv }): Promise<Uint8Array> {
   const kv = c.env.OG;
+  const cacheKey = await getOgCacheKey(pageUrl);
   if (kv) {
-    const cached = await kv.get(pageUrl, 'arrayBuffer');
+    const cached = await kv.get(cacheKey, 'arrayBuffer');
     if (cached) {
       return new Uint8Array(cached);
     }
@@ -38,7 +40,7 @@ async function getScreenshot(pageUrl: string, c: { env: OgEnv }): Promise<Uint8A
 
     if (kv) {
       try {
-        await kv.put(pageUrl, buffer, { expirationTtl: 60 * 60 * 24 * 30 });
+        await kv.put(cacheKey, buffer, { expirationTtl: 60 * 60 * 24 * 30 });
       } catch {
         console.log('Error caching OG image in KV. Skipping');
       }
