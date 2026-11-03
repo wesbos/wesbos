@@ -1,23 +1,25 @@
+import * as Sentry from '@sentry/cloudflare';
 import type { MiddlewareHandler } from 'hono';
 
 /**
- * Logs thrown errors that propagate as exceptions (same idea as `_middleware_old/errorReporting.ts`).
- * Many Waku/RSC failures become a Response with status 500 inside the framework; use Sentry on the
- * worker export for those.
+ * Reports server failures to Sentry. Hono catches errors thrown by later middleware and returns a
+ * 500, so they show up on `c.error` rather than as an exception here.
  */
 export function errorLoggingMiddleware(): MiddlewareHandler {
   return async (c, next) => {
-    try {
-      await next();
-    } catch (err) {
-      const url = c.req.url;
-      console.error(`Error Happened on : ${url}`);
-      if (err instanceof Error && err.stack) {
-        console.error(err.stack);
+    await next();
+    const { status } = c.res;
+    if (status < 500) return;
+    const { method } = c.req;
+    const { pathname } = new URL(c.req.url);
+    Sentry.withScope((scope) => {
+      scope.setTags({ 'http.method': method, 'http.status_code': status, path: pathname });
+      if (c.error) {
+        Sentry.captureException(c.error);
       } else {
-        console.error(err);
+        scope.setFingerprint(['server-5xx', String(status), method]);
+        Sentry.captureMessage(`${status} response to ${method} request`, 'error');
       }
-      throw err;
-    }
+    });
   };
 }

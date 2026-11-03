@@ -8,6 +8,10 @@ interface ImportMetaEnv {
   readonly DEV: boolean;
 
   // Custom env variables
+  /** Injected by `vite-plugin-git-hash` */
+  readonly SENTRY_RELEASE: string;
+  /** Injected by `vite-plugin-git-hash` */
+  readonly SENTRY_ENVIRONMENT: string;
   readonly VITE_GIT_COMMIT_HASH: string;
   /** Injected by `vite-plugin-git-hash` for cache keys in production */
   readonly WAKU_GIT_COMMIT_HASH: string;

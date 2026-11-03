@@ -66,3 +66,6 @@ ${items.join('\n')}
     headers: { 'Content-Type': 'application/rss+xml; charset=utf-8' },
   });
 }
+
+// Feed readers and validators often check with HEAD first
+export const HEAD = GET;
