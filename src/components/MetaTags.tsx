@@ -63,6 +63,9 @@ export async function MetaTags({ path, query, section, slug, description, title:
       {/* Canonical */}
       <link rel="canonical" href={url} />
 
+      {/* RSS autodiscovery */}
+      <link rel="alternate" type="application/rss+xml" title="Wes Bos" href={`${baseUrl}/rss.xml`} />
+
       {/* Favicon */}
       <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
       <link rel="shortcut icon" href="/favicon.png" type="image/png" />
