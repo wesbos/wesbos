@@ -1,7 +1,7 @@
 import mdxComponents from '@/components/mdxComponents';
 import { EditDialogStyles } from '@/styles/EditDialogStyles.module.css';
 import { postMeta } from '@/styles/PostMeta.module.css';
-import { format } from 'date-fns';
+import { formatPostDate } from '@/utils/postDates';
 import { IoLogoGithub } from 'react-icons/io';
 import type { PageProps } from 'waku/router';
 import { unstable_notFound as notFound } from 'waku/router/server';
@@ -36,7 +36,7 @@ export default async function BlogPost(props: BlogPostPageProps) {
       <div>
         <H>{post.frontmatter.title}</H>
         <div className={postMeta}>
-          <time dateTime={postDate.toISOString()}>{format(postDate, 'MMMM d, yyyy')}</time>
+          <time dateTime={postDate.toISOString()}>{formatPostDate(postDate)}</time>
 
           <span>{post.frontmatter.category.join(', ')}</span>
           <a rel="noopener noreferrer" target="_blank" href={editURL}>

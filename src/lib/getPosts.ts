@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { slug } from 'github-slugger';
 import { parseNumberFromTitle } from '@/utils/createSectionedFrontmatter';
+import { normalizePostDate } from '@/utils/postDates';
 import * as mdxIndex from '../content/index';
 
 import type { ContentType, Frontmatter, JavaScriptFrontmatter, MDXResult } from './types';
@@ -33,6 +34,9 @@ export function parseContent(post: MDXResult): MDXResult {
   const filename = path.basename(post.filePath, path.extname(post.filePath));
   if (!post.frontmatter.slug) {
     post.frontmatter.slug = slug(filename);
+  }
+  if (post.frontmatter.date) {
+    post.frontmatter.date = normalizePostDate(post.frontmatter.date);
   }
   post.frontmatter.filename = post.filePath;
   post.frontmatter.folder = path.dirname(post.filePath);
