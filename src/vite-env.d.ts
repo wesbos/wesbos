@@ -13,8 +13,10 @@ interface ImportMetaEnv {
   /** Injected by `vite-plugin-git-hash` */
   readonly SENTRY_ENVIRONMENT: string;
   readonly VITE_GIT_COMMIT_HASH: string;
-  /** Injected by `vite-plugin-git-hash` for cache keys in production */
+  /** Injected by `vite-plugin-git-hash`; shown in the footer */
   readonly WAKU_GIT_COMMIT_HASH: string;
+  /** Injected by Waku; different on every build. Used in response cache keys */
+  readonly WAKU_BUILD_ID: string;
   /** Injected by `waku.config.ts`: 'true' when Cloudflare image resizing should be used */
   readonly IMAGE_CDN: string;
 }
