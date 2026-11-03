@@ -1,32 +1,32 @@
 .ContentNavStyles {
-  --borderColor: var(--lightGrey);
   --borderColor: black;
+  --padding: 1rem 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
-  grid-template-rows: auto auto;
   border: 1.5px solid var(--borderColor);
   border-radius: 1rem;
   margin: 4rem 0;
   a {
     display: grid;
     grid-template-rows: auto 1fr;
+    min-width: 0;
+    text-decoration: none;
     &:only-child {
       grid-column: 1 / -1;
+    }
+    &[data-direction="next"] {
       text-align: right;
     }
-    &:nth-child(2) {
-      text-align: right;
+    & + a {
       border-left: 1.5px solid var(--borderColor);
     }
-    text-decoration: none;
   }
   p {
     margin: 0;
   }
   strong {
+    /* Keep the arrow on the same line as its label */
+    white-space: nowrap;
     text-decoration: underline;
     text-decoration-color: var(--yellow);
     border-bottom: 1.5px solid var(--borderColor);
@@ -34,6 +34,42 @@
 
   p,
   strong {
-    padding: 1rem 3rem;
+    padding: var(--padding);
+  }
+
+  /* On narrow screens stack prev/next as two separate rows. Each row is a
+     single block (label + title) divided from the next by a border, so it's
+     clear which title belongs to which arrow. */
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    a {
+      grid-template-rows: auto auto;
+      gap: 0.5rem;
+      /* Padding lives on the link so the clamped title below can't peek into it */
+      padding: 1.5rem 2rem;
+      /* Stacked rows read top-to-bottom, so line both up on the left */
+      &[data-direction="next"] {
+        text-align: left;
+      }
+      & + a {
+        border-left: 0;
+        border-top: 1.5px solid var(--borderColor);
+      }
+    }
+    strong {
+      border-bottom: 0;
+    }
+    p,
+    strong {
+      padding: 0;
+    }
+    p {
+      /* Long titles get truncated rather than wrapping on and on */
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+    }
   }
 }
