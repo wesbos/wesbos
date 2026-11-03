@@ -19,8 +19,16 @@ import rehypeWesbos from './src/lib/rehype-wesbos';
 import { getSentryRelease, gitHashPlugin } from './vite-plugin-git-hash';
 import { imgDimensions } from './vite-plugin-img-dimensions';
 
+// Cloudflare image resizing (/cdn-cgi/image) only works on the wesbos.com zone. Every Workers Build is served
+// there: production on wesbos.com, Previews on their wesbos.com subdomain (their workers.dev URLs will show
+// broken images). Dev and local builds serve original images. Set IMAGE_CDN=true|false to override.
+const imageCdn = process.env.IMAGE_CDN ?? String(Boolean(process.env.WORKERS_CI_BRANCH));
+
 export default defineConfig({
   vite: {
+    define: {
+      'import.meta.env.IMAGE_CDN': JSON.stringify(imageCdn),
+    },
     environments: {
       client: {
         // Sentry needs these, but they shouldn't be public. They're deleted after upload.
