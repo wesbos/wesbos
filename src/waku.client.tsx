@@ -1,12 +1,13 @@
 // This file is the entry point for the client side of the application.
 import { StrictMode, createElement } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
+import { unstable_defaultRootOptions as defaultRootOptions } from 'waku/client';
 import { Router } from 'waku/router/client';
 import * as Sentry from '@sentry/react';
 const rootElement = createElement(StrictMode, null, createElement(Router));
 
 if (globalThis.__WAKU_HYDRATE__) {
-  hydrateRoot(document, rootElement);
+  hydrateRoot(document, rootElement, defaultRootOptions);
 } else {
   createRoot(document, {
     // Error is thrown and not caught by ErrorBoundary
