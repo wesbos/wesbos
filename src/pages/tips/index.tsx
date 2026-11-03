@@ -4,8 +4,13 @@ import Pagination from '../../components/Pagination';
 import { Tip } from '../../components/Tip';
 import { MetaTags } from '../../components/MetaTags';
 import type { PageProps } from 'waku/router';
+import { unstable_notFound as notFound } from 'waku/router/server';
 
 export default async function HotTips(props: PageProps<'/tips'> & { page: string }) {
+  // `[page]` reuses this component; anything but a positive whole number (e.g. /tips/abc) is a 404.
+  if (props.page !== undefined && !/^[1-9]\d*$/.test(props.page)) {
+    return notFound();
+  }
   const currentPage = Number.parseInt(props.page || '1');
 
   const { posts, total, pages } = await getPosts({

@@ -1,17 +1,21 @@
 import { trimTrailingSlash } from 'hono/trailing-slash';
 import { errorLoggingMiddleware } from './errorLogging';
+import { feedRedirectsMiddleware } from './feedRedirects';
 import { ogJpgMiddleware } from './ogJpg';
 import { responseCacheMiddleware } from './responseCache';
 
 /**
  * Order: outer → inner (first runs first on the request, last after `next()` on the way back).
  * Error logging is outermost so it sees everything below it.
+ * Feed redirects run before trailing slash and match `/feed` and `/feed/` alike, so old feed URLs
+ * reach /rss.xml in one 301 instead of two.
  * Trailing slash: Hono's trimTrailingSlash 301s GET/HEAD `/path/` → `/path` and keeps the query
  * string (root "/" unchanged). It runs before RSC and pairs with Wrangler assets `html_handling`.
  * Cache sits innermost so it wraps the Waku RSC handler; OG runs inside the cache layer on misses.
  */
 export const cloudflareMiddlewareFns = [
   errorLoggingMiddleware,
+  feedRedirectsMiddleware,
   () => trimTrailingSlash({ alwaysRedirect: true }),
   ogJpgMiddleware,
   responseCacheMiddleware,
