@@ -1,7 +1,6 @@
-
 import { Link } from 'waku';
-import { ContentNavStyles } from '@/styles/ContentNavStyles.module.css';
 import type { MDXResult } from '@/lib/types';
+import { ContentNavStyles } from '@/styles/ContentNavStyles.module.css';
 import { slugToTitle } from '@/utils/slugToTitle';
 
 function getSlugWithPrefix(result: MDXResult) {
@@ -11,21 +10,25 @@ function getSlugWithPrefix(result: MDXResult) {
   return `${result.frontmatter.slug}`;
 }
 
+function getTitle(result: MDXResult) {
+  return result.frontmatter?.title || slugToTitle(result.frontmatter.slug);
+}
+
 export default function ContentNav({ prev, next }: { prev?: MDXResult; next?: MDXResult }) {
   return (
-    <div className={ContentNavStyles}>
+    <nav className={ContentNavStyles} aria-label="Previous and next posts">
       {prev && (
-        <Link to={getSlugWithPrefix(prev)}>
+        <Link to={getSlugWithPrefix(prev)} data-direction="prev" rel="prev">
           <strong>← Prev</strong>
-          {prev.frontmatter?.title ? <p>{prev.frontmatter.title}</p> : <p>{slugToTitle(prev.frontmatter.slug)}</p>}
+          <p>{getTitle(prev)}</p>
         </Link>
       )}
       {next && (
-        <Link to={getSlugWithPrefix(next)}>
+        <Link to={getSlugWithPrefix(next)} data-direction="next" rel="next">
           <strong>Next →</strong>
-          {next.frontmatter?.title ? <p>{next.frontmatter.title}</p> : <p>{slugToTitle(next.frontmatter.slug)}</p>}
+          <p>{getTitle(next)}</p>
         </Link>
       )}
-    </div>
+    </nav>
   );
 }

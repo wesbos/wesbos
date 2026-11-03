@@ -3,6 +3,8 @@
     font-size: 3rem;
   }
   position: relative;
+  /* Long unbreakable words like `document.createRange()` shouldn't push the page wider than the viewport */
+  overflow-wrap: break-word;
   &:after {
     position: absolute;
     z-index: 2;

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
-import { ErrorBoundary } from 'waku/router/client';
+import { RootErrorBoundary } from '@/components/RootErrorBoundary';
 
 export default async function RootElement({ children }: { children: ReactNode }) {
   return (
-    <ErrorBoundary>
+    <RootErrorBoundary>
       <html lang="en">
         <head>
           <meta charSet="utf-8" />
@@ -11,7 +11,7 @@ export default async function RootElement({ children }: { children: ReactNode })
         </head>
         <body data-version="1.0">{children}</body>
       </html>
-    </ErrorBoundary>
+    </RootErrorBoundary>
   );
 }
 
