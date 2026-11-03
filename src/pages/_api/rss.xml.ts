@@ -1,4 +1,5 @@
 import { getPosts } from '@/lib/getPosts';
+import { slugToTitle } from '@/utils/slugToTitle';
 
 const SITE_URL = 'https://wesbos.com';
 const MAX_ITEMS = 50;
@@ -18,18 +19,27 @@ function escapeXml(value: string) {
 }
 
 export async function GET() {
-  const { posts } = await getPosts({ type: 'blog', limit: MAX_ITEMS });
-  const dated = posts.filter((post) => post.frontmatter.date);
+  const [{ posts: blogPosts }, { posts: tips }] = await Promise.all([
+    getPosts({ type: 'blog', limit: MAX_ITEMS }),
+    getPosts({ type: 'tip', limit: MAX_ITEMS }),
+  ]);
+  const dated = [...blogPosts, ...tips]
+    .filter((post) => post.frontmatter.date)
+    .toSorted((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+    .slice(0, MAX_ITEMS);
 
   const items = dated.map((post) => {
-    const { title, slug, date, category } = post.frontmatter;
-    const url = `${SITE_URL}/${slug}`;
+    const { slug, date, category, tags, type } = post.frontmatter;
+    const isTip = type === 'tip';
+    // Tips don't have a title in their frontmatter, so it comes from the slug
+    const title = isTip ? slugToTitle(`tip/${slug}`) : post.frontmatter.title;
+    const url = `${SITE_URL}/${isTip ? 'tip/' : ''}${slug}`;
     const lines = [
       `<title>${escapeXml(title)}</title>`,
       `<link>${url}</link>`,
       `<guid isPermaLink="true">${url}</guid>`,
       `<pubDate>${new Date(date).toUTCString()}</pubDate>`,
-      ...(category || []).map((cat) => `<category>${escapeXml(cat)}</category>`),
+      ...(category || tags || []).map((cat) => `<category>${escapeXml(cat)}</category>`),
       ...(post.excerpt ? [`<description>${escapeXml(post.excerpt)}</description>`] : []),
     ];
     return `    <item>\n${lines.map((line) => `      ${line}`).join('\n')}\n    </item>`;

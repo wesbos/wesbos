@@ -19,6 +19,7 @@ type BaseFrontmatter = {
   image: string;
   imagePath: string;
   category: string[];
+  tags?: string[];
   date: string;
   id: number;
   filename: string;
