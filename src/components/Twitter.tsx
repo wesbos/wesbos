@@ -8,6 +8,7 @@ import {
   FooterBlock,
   FooterHeading,
   Tweet,
+  TweetError,
   TweetLink,
   TweetMeta,
   TweetPlaceholder,
@@ -95,10 +96,13 @@ export default async function Twitter() {
     <div className={clsx([FooterBlock, TweetStyles])}>
       <TwitterHeading />
       {!tweets?.length && (
-        <p>
-          Hrm... It seems my plans to foil the <s>twitter</s> 𝕏 API isn't working rn. You'll have to{' '}
-          <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
-        </p>
+        // Keeps the fallback's height so the page doesn't jump when the API is down
+        <div className={TweetError}>
+          <p>
+            Hrm... It seems my plans to foil the <s>twitter</s> 𝕏 API isn't working rn. You'll have to{' '}
+            <a href="http://twitter.com/wesbos">follow me</a> to see the 𝕏eets.
+          </p>
+        </div>
       )}
       <div className={Tweets}>
         {Array.isArray(tweets) &&

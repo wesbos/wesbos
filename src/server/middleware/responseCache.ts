@@ -7,6 +7,16 @@ function isRscPath(pathname: string): boolean {
 }
 
 /**
+ * Lazy slices (`/RSC/S/<id>.txt`, e.g. the footer tweets) are fetched on every page view, so they're
+ * cached at the edge too, for a shorter time than pages. Page RSC payloads still go straight through.
+ */
+const SLICE_TTL_SECONDS = 60 * 5;
+
+function isSlicePath(pathname: string): boolean {
+  return pathname.includes('/RSC/S/');
+}
+
+/**
  * Only plain successful pages are cached. Redirects (a stale 301 outlives a route change), 5xx
  * (a 502/503 blip would be served for an hour) and anything that sets a cookie go straight through.
  */
@@ -43,7 +53,8 @@ export function responseCacheMiddleware(): MiddlewareHandler {
     }
 
     const url = new URL(c.req.url);
-    if (c.req.method !== 'GET' || isRscPath(url.pathname)) {
+    const isSlice = isSlicePath(url.pathname);
+    if (c.req.method !== 'GET' || (isRscPath(url.pathname) && !isSlice)) {
       await next();
       return;
     }
@@ -64,8 +75,8 @@ export function responseCacheMiddleware(): MiddlewareHandler {
     }
 
     const headers = new Headers(res.headers);
-    headers.set('Cache-Control', 'max-age=60');
-    headers.set('CDN-Cache-Control', 'max-age=3600');
+    headers.set('Cache-Control', isSlice ? `max-age=${SLICE_TTL_SECONDS}` : 'max-age=60');
+    headers.set('CDN-Cache-Control', isSlice ? `max-age=${SLICE_TTL_SECONDS}` : 'max-age=3600');
     headers.set('x-wes-cached-this', new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }));
 
     const [toClient, toStore] = res.body.tee();

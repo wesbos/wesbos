@@ -126,6 +126,7 @@
 }
 /* Twitter Styles */
 .TweetStyles {
+  --tweetPlaceholderHeight: 110px;
   img {
     margin-right: 5px;
     position: relative;
@@ -188,9 +189,14 @@
 
 /* Reserves roughly the height of one tweet while the lazy `twitter` slice loads */
 .TweetPlaceholder {
-  min-height: 110px;
+  min-height: var(--tweetPlaceholderHeight);
   border-bottom: 1.5px solid black;
   opacity: 0.15;
+}
+
+/* Same height as the 4 placeholder rows, so the block doesn't shrink when the X API is down */
+.TweetError {
+  min-height: calc(4 * var(--tweetPlaceholderHeight));
 }
 
 .terms {

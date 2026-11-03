@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
 import { Link, Slice } from 'waku';
 import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
-import { CurrentYear } from './CurrentYear';
 // import Podcast from './Podcast';
 import FooterVideo from './FooterVideo';
 import LatestCourse from './LatestCourse';
@@ -39,7 +38,8 @@ export async function Footer() {
             <a href="https://web.archive.org/web/20040615000000*/wesbos.com" target="_blank" rel="noreferrer">
               1999
             </a>{' '}
-            — <CurrentYear />
+            — {/* Build year on static pages; you deploy often enough that it stays current */}
+            {new Date().getFullYear()}
           </p>
           <p>
             <Link className={terms} to="/terms">

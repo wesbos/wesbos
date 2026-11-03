@@ -115,6 +115,22 @@ describe('responseCacheMiddleware', () => {
     expect(renders).toBe(2);
   });
 
+  test('caches lazy slices for 5 minutes but not page RSC payloads', async () => {
+    let renders = 0;
+    const a = app(() => {
+      renders++;
+      return new Response('0:["$","div"]', { headers: { 'Content-Type': 'text/x-component' } });
+    });
+    await get(a, '/RSC/S/twitter.txt');
+    const second = await get(a, '/RSC/S/twitter.txt');
+    expect(renders).toBe(1);
+    expect(second.res.headers.get('CDN-Cache-Control')).toBe('max-age=300');
+
+    await get(a, '/RSC/R/about.txt');
+    await get(a, '/RSC/R/about.txt');
+    expect(renders).toBe(3);
+  });
+
   test('keeps binary bodies intact', async () => {
     const bytes = new Uint8Array([0xff, 0xd8, 0xff, 0x00, 0x80]);
     const a = app(() => new Response(bytes, { headers: { 'Content-Type': 'image/jpeg' } }));
