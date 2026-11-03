@@ -6,13 +6,13 @@ import { sentryVitePlugin } from '@sentry/vite-plugin';
 import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
 import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
-import rehypeExtractExcerpt from 'rehype-extract-excerpt';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
 import rehypeMdxTitle from 'rehype-mdx-title';
 import rehypeSlug from 'rehype-slug';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import { defineConfig } from 'waku/config';
+import rehypeExcerpt from './src/lib/rehype-excerpt';
 import rehypeHotTips from './src/lib/rehype-hot-tips';
 import rehypeImageSize from './src/lib/rehype-image-size';
 import rehypeWesbos from './src/lib/rehype-wesbos';
@@ -61,7 +61,7 @@ export default defineConfig({
               throwOnError: true,
             },
           ],
-          [rehypeExtractExcerpt],
+          [rehypeExcerpt],
           [rehypeSlug],
           [rehypeExtractToc, { name: 'toc' }],
           [rehypeExtractTocMdx, { name: 'toc' }],
