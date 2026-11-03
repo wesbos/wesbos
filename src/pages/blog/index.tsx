@@ -7,8 +7,13 @@ import { PostGrid, PostGridItem, postMeta } from '@/styles/PostGrid.module.css';
 import { Link } from 'waku';
 import { MetaTags } from '@/components/MetaTags';
 import type { PageProps } from 'waku/router';
+import { unstable_notFound as notFound } from 'waku/router/server';
 
 export default async function Blog(props: PageProps<'/blog'> & { page: string }) {
+  // `[page]` reuses this component; anything but a positive whole number (e.g. /blog/abc) is a 404.
+  if (props.page !== undefined && !/^[1-9]\d*$/.test(props.page)) {
+    return notFound();
+  }
   const currentPage = Number.parseInt(props.page || '1');
   const { posts, total, pages } = await getPosts({
     page: currentPage,
