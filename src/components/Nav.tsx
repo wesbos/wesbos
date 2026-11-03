@@ -2,7 +2,7 @@
 import clsx from 'clsx';
 import { FaBluesky, FaSquareInstagram, FaXTwitter } from 'react-icons/fa6';
 import { IoLogoGithub, IoLogoLinkedin, IoLogoTiktok, IoLogoYoutube } from 'react-icons/io5';
-import { Link } from 'waku';
+import { Link, useRouter } from 'waku';
 import H from '@/components/mdxComponents/Headings';
 import { LogoStyles, NavLi, NavLink, NavLiSocial, NavSmall, NavStyles, NavUl } from '@/styles/NavStyles.module.css';
 import Logo from '../../public/images/logo.png';
@@ -85,7 +85,9 @@ function useHoverSound() {
   };
 }
 
-export default function Nav({ path }: { path: string }) {
+export default function Nav() {
+  // The layout is static and doesn't get the current path, so read it from the client router
+  const { path } = useRouter();
   const logoWidth = 150;
   const ratio = 1.2195121951;
   const logoHeight = logoWidth / ratio;

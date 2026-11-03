@@ -10,6 +10,7 @@ import {
   Tweet,
   TweetLink,
   TweetMeta,
+  TweetPlaceholder,
   TweetStyles,
   Tweets,
 } from '@/styles/FooterStyles.module.css';
@@ -49,6 +50,37 @@ function decodeEntities(encodedString: string) {
     });
 }
 
+function TwitterHeading() {
+  return (
+    <h3 className={FooterHeading}>
+      <span className="highlight">
+        𝕏{' '}
+        <a href="https://x.com/wesbos" target="_blank" rel="noopener noreferrer">
+          @wesbos{' '}
+        </a>
+        Tweets
+      </span>
+    </h3>
+  );
+}
+
+/**
+ * Shown while the lazy `twitter` slice loads. Same box and heading as the real block, with
+ * placeholder rows roughly the height of 4 tweets, so the footer doesn't jump when they arrive.
+ */
+export function TwitterFallback() {
+  return (
+    <div className={clsx([FooterBlock, TweetStyles])} aria-busy="true">
+      <TwitterHeading />
+      <div className={Tweets}>
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i} className={TweetPlaceholder} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default async function Twitter() {
   const tweets = await withCache(fetchLatestTweets, {
     key: 'tweets',
@@ -61,15 +93,7 @@ export default async function Twitter() {
 
   return (
     <div className={clsx([FooterBlock, TweetStyles])}>
-      <h3 className={FooterHeading}>
-        <span className="highlight">
-          𝕏{' '}
-          <a href="https://x.com/wesbos" target="_blank" rel="noopener noreferrer">
-            @wesbos{' '}
-          </a>
-          Tweets
-        </span>
-      </h3>
+      <TwitterHeading />
       {!tweets?.length && (
         <p>
           Hrm... It seems my plans to foil the <s>twitter</s> 𝕏 API isn't working rn. You'll have to{' '}
@@ -121,9 +145,3 @@ export default async function Twitter() {
     </div>
   );
 }
-
-export const getConfig = async () => {
-  return {
-    render: 'dynamic',
-  } as const;
-};

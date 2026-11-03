@@ -186,6 +186,13 @@
   }
 }
 
+/* Reserves roughly the height of one tweet while the lazy `twitter` slice loads */
+.TweetPlaceholder {
+  min-height: 110px;
+  border-bottom: 1.5px solid black;
+  opacity: 0.15;
+}
+
 .terms {
   text-decoration: none;
   &:before {

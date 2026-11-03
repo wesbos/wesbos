@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
 import { IoLogoGithub, IoLogoYoutube } from 'react-icons/io';
-import { Link } from 'waku';
+import { Link, Slice } from 'waku';
 import styles, { FooterBottomStyles, FooterInner, FooterStyles, terms } from '@/styles/FooterStyles.module.css';
-import LatestCourse from './LatestCourse';
+import { CurrentYear } from './CurrentYear';
 // import Podcast from './Podcast';
 import FooterVideo from './FooterVideo';
+import LatestCourse from './LatestCourse';
 // import Instagram from './Instagram';
-import Twitter from './Twitter';
+import { TwitterFallback } from './Twitter';
 
 export async function Footer() {
   return (
@@ -16,9 +17,8 @@ export async function Footer() {
           {/* <Podcast /> */}
           <FooterVideo />
         </Suspense>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Twitter />
-        </Suspense>
+        {/* Tweets are the only live data in the footer, so they load as a dynamic lazy slice and the rest stays static */}
+        <Slice id="twitter" lazy fallback={<TwitterFallback />} />
         <LatestCourse />
         <div className={FooterBottomStyles}>
           I post videos on{' '}
@@ -39,7 +39,7 @@ export async function Footer() {
             <a href="https://web.archive.org/web/20040615000000*/wesbos.com" target="_blank" rel="noreferrer">
               1999
             </a>{' '}
-            — {new Date().getFullYear()}
+            — <CurrentYear />
           </p>
           <p>
             <Link className={terms} to="/terms">

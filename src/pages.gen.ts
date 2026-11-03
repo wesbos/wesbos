@@ -10,6 +10,8 @@ import type { getConfig as File_SlugIndex_getConfig } from './pages/[slug]/index
 // prettier-ignore
 import type { getConfig as File_Root_getConfig } from './pages/_root';
 // prettier-ignore
+import type { getConfig as File_SlicesTwitter_getConfig } from './pages/_slices/twitter';
+// prettier-ignore
 import type { getConfig as File_About_getConfig } from './pages/about';
 // prettier-ignore
 import type { getConfig as File_BlogPageIndex_getConfig } from './pages/blog/[page]/index';
@@ -47,6 +49,7 @@ type Page =
 | ({ path: '/404' } & GetConfigResponse<typeof File_404_getConfig>)
 | ({ path: '/[slug]' } & GetConfigResponse<typeof File_SlugIndex_getConfig>)
 | ({ path: '/_root' } & GetConfigResponse<typeof File_Root_getConfig>)
+| ({ path: '/_slices/twitter' } & GetConfigResponse<typeof File_SlicesTwitter_getConfig>)
 | ({ path: '/about' } & GetConfigResponse<typeof File_About_getConfig>)
 | ({ path: '/blog/[page]' } & GetConfigResponse<typeof File_BlogPageIndex_getConfig>)
 | ({ path: '/blog' } & GetConfigResponse<typeof File_BlogIndex_getConfig>)
