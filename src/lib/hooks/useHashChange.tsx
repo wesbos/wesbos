@@ -21,7 +21,8 @@ export function useCurrentHeading() {
     const headingsWithIds = Array.from(document.querySelectorAll(`[id]:is(h1,h2,h3,h4,h5,h6)`)).reverse();
     // now filter them for visible ones
     const firstVisibleHeading = findFirstElementInViewport(headingsWithIds);
-    if (firstVisibleHeading) {
+    // Scroll events fire constantly, and Safari throws after 100 replaceState calls in 30 seconds
+    if (firstVisibleHeading && firstVisibleHeading !== currentHeading.current) {
       // window.location.hash = `#${firstVisibleHeading.id}`;
       // instead of using window.location.hash, we will use pushState to change the URL so it doesnt jump to the heading
       window.history.replaceState({}, '', `#${firstVisibleHeading.id}`);
@@ -32,7 +33,6 @@ export function useCurrentHeading() {
   useEffect(() => {
     window.addEventListener('scroll', handleSCrollEvent);
     return () => {
-      console.log(`removing scroll event listener`);
       window.removeEventListener('scroll', handleSCrollEvent);
     };
   }, []);
@@ -47,7 +47,6 @@ export function HashChange({ itemIds }: { itemIds: string[] }) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash;
-      console.log('hash', hash);
       if (hash) {
         // We find the Heading that needs to be scrolled to
         const element = document.getElementById(hash.slice(1));

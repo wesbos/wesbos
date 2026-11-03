@@ -39,6 +39,32 @@
     "enabled": true,
     "head_sampling_rate": 1
   },
+  // Worker Previews don't inherit any of the bindings above
+  "previews": {
+    "browser": {
+      "binding": "MYBROWSER"
+    },
+    // Shared with production on purpose. It's a cache of social stats, and an empty one would make
+    // every Preview spend X API credits.
+    "d1_databases": [
+      {
+        "binding": "DB",
+        "database_name": "wes-bos-social-cache",
+        "database_id": "7a07786d-8f53-4578-86a4-933d939c16bb",
+        "migrations_dir": "migrations"
+      }
+    ],
+    "kv_namespaces": [
+      {
+        "binding": "OG",
+        "id": "b8399cb69a284320bc97b3efbc3af6b6"
+      },
+      {
+        "binding": "NEXT_CACHE_WORKERS_KV",
+        "id": "6160abb870834617ace162b7e567853f"
+      }
+    ]
+  },
   "env": {
     "production": {
       "tail_consumers": [
