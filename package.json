@@ -21,7 +21,9 @@
     "types:styles": "tsx --conditions=react-server ./src/lib/createStyleIndex.ts",
     "lint": "biome lint --write",
     "format": "biome format --write",
-    "check": "biome check"
+    "check": "biome check",
+    "test": "vitest run",
+    "test:live": "LIVE_TESTS=1 vitest run src/lib/socials"
   },
   "dependencies": {
     "@cloudflare/puppeteer": "1.0.4",
