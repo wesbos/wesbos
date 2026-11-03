@@ -1,4 +1,5 @@
 import { errorLoggingMiddleware } from './errorLogging';
+import { htmlCharsetMiddleware } from './htmlCharset';
 import { ogJpgMiddleware } from './ogJpg';
 import { responseCacheMiddleware } from './responseCache';
 import { trailingSlashMiddleware } from './trailingSlash';
@@ -9,6 +10,7 @@ import { trailingSlashMiddleware } from './trailingSlash';
  */
 export const cloudflareMiddlewareFns = [
   errorLoggingMiddleware,
+  htmlCharsetMiddleware,
   trailingSlashMiddleware,
   ogJpgMiddleware,
   responseCacheMiddleware,
