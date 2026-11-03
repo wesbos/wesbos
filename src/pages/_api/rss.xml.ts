@@ -39,7 +39,8 @@ export async function GET() {
       `<link>${url}</link>`,
       `<guid isPermaLink="true">${url}</guid>`,
       `<pubDate>${new Date(date).toUTCString()}</pubDate>`,
-      ...(category || tags || []).map((cat) => `<category>${escapeXml(cat)}</category>`),
+      // An empty `- ` list item in frontmatter parses as null
+      ...(category || tags || []).filter(Boolean).map((cat) => `<category>${escapeXml(cat)}</category>`),
       ...(post.excerpt ? [`<description>${escapeXml(post.excerpt)}</description>`] : []),
     ];
     return `    <item>\n${lines.map((line) => `      ${line}`).join('\n')}\n    </item>`;
