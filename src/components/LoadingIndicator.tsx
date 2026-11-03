@@ -1,13 +1,13 @@
 'use client';
+import clsx from 'clsx';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'waku';
 import {
   LoadingIndicatorProgress,
   LoadingIndicatorProgressFinish,
   LoadingIndicatorProgressStart,
   LoadingIndicatorStyles,
 } from '@/styles/LoadingIndicator.module.css';
-import clsx from 'clsx';
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'waku';
 
 /** Does this click send us to a different page in the same tab of this site? */
 function isInternalNavigation(event: MouseEvent) {

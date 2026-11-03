@@ -3,7 +3,7 @@ import { fsRouter } from 'waku';
 import adapter from 'waku/adapters/cloudflare';
 import { cloudflareMiddlewareFns } from './server/middleware';
 
-const pages = import.meta.glob('./**/*.{tsx,ts}', { base: './pages' });
+const pages = import.meta.glob('./pages/**/*.{tsx,ts}');
 
 const server = adapter(fsRouter(pages), {
   middlewareFns: [...cloudflareMiddlewareFns],

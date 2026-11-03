@@ -1,9 +1,9 @@
 import path from 'node:path';
 import { cloudflare } from '@cloudflare/vite-plugin';
 import mdx from '@mdx-js/rollup';
+import babel from '@rolldown/plugin-babel';
 import rehypeExtractToc from '@stefanprobst/rehype-extract-toc';
 import rehypeExtractTocMdx from '@stefanprobst/rehype-extract-toc/mdx';
-import babel from '@rolldown/plugin-babel';
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import rehypeExtractExcerpt from 'rehype-extract-excerpt';
 import rehypeMdxImportMedia from 'rehype-mdx-import-media';
