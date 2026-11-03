@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { fetchBlueSkyDetailsFromApi } from './blueSkyFetcher';
 import { fetchInstagramDetailsFromApi } from './instagramFetcher';
@@ -5,9 +6,10 @@ import { fetchLinkedInDetailsFromApi } from './linkedInFetcher';
 import { fetchTiktokDetailsFromApi } from './tiktokFetcher';
 import { fetchTweetDetailsFromApi } from './twitter-fetcher';
 
-process.loadEnvFile();
+// Run with `pnpm test:live`. These hit the real APIs.
+if (existsSync('.env')) process.loadEnvFile();
 
-describe('Twitter fetcher', () => {
+describe.skipIf(!process.env.X_BEARER_TOKEN)('Twitter fetcher', () => {
   test('fetches a tweet with expected fields', async () => {
     const result = await fetchTweetDetailsFromApi({ postId: '1834242925401694490' });
     expect(result).toBeDefined();
