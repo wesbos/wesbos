@@ -3,20 +3,25 @@ import type { MDXResult } from '@/lib/types';
 
 const SITE_URL = 'https://wesbos.com';
 
-// The static routes in src/pages. Paginated listings (/blog/2, /tips/3) and /og are left out on purpose.
-const STATIC_PATHS = [
-  '/',
-  '/about',
-  '/courses',
-  '/links',
-  '/contact',
-  '/privacy',
-  '/terms',
-  '/speaking-and-training',
-  '/blog',
-  '/tips',
-  '/javascript',
-];
+/**
+ * Static routes, read from the page files at build time (the same glob Waku's router is built from,
+ * so a new page shows up here without editing this list). Keys only: the modules are never loaded.
+ * Skipped: dynamic `[param]` routes (posts, tips and notes are added from content below), `_`-prefixed
+ * files (layouts, root, API routes, slices) and routes that aren't pages.
+ */
+const NOT_PAGES = new Set(['/404', '/og']);
+
+const STATIC_PATHS = Object.keys(import.meta.glob('/src/pages/**/*.{tsx,ts}'))
+  .map((file) =>
+    file
+      .replace(/^\/src\/pages/, '')
+      .replace(/\.tsx?$/, '')
+      .replace(/(^|\/)index$/, ''),
+  )
+  .map((path) => path || '/')
+  .filter((path) => !path.split('/').some((segment) => segment.startsWith('_') || segment.includes('[')))
+  .filter((path) => !NOT_PAGES.has(path))
+  .toSorted();
 
 type SitemapEntry = { path: string; lastmod?: string };
 
