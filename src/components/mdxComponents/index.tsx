@@ -1,21 +1,13 @@
 import type { MDXComponents } from 'mdx/types';
 import { Image } from '../Image';
+import { Code } from './code';
 import H from './Headings';
 import { HighlightedCode } from './HighlightedCode';
-import { Code } from './code';
+
 /* eslint-disable */
 const mdxComponents: MDXComponents = {
-  // TODO: Figure out what sizes should be
-  img: async (props) => (
-    <Image
-      // sizes="100vw"
-      // width="100"
-      // height="100"
-      style={{ width: '100%', height: 'auto' }}
-      {...props}
-      // placeholder="empty"
-    />
-  ),
+  // Image works out srcset and sizes from the width and height that rehype-image-size adds
+  img: async (props) => <Image style={{ width: '100%', height: 'auto' }} {...props} />,
   h1: (props) => <H as="h1" {...props} />,
   h2: (props) => <H as="h2" {...props} />,
   h3: (props) => <H as="h3" {...props} />,

@@ -15,6 +15,8 @@ interface ImportMetaEnv {
   readonly VITE_GIT_COMMIT_HASH: string;
   /** Injected by `vite-plugin-git-hash` for cache keys in production */
   readonly WAKU_GIT_COMMIT_HASH: string;
+  /** Injected by `waku.config.ts`: 'true' when Cloudflare image resizing should be used */
+  readonly IMAGE_CDN: string;
 }
 
 interface ImportMeta {
