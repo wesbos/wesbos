@@ -2,7 +2,7 @@ import { getPosts } from '@/lib/getPosts';
 import { slugToTitle } from '@/utils/slugToTitle';
 
 const SITE_URL = 'https://wesbos.com';
-const MAX_ITEMS = 50;
+const MAX_ITEMS = 200;
 
 function escapeXml(value: string) {
   return (
